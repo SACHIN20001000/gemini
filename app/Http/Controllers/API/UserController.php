@@ -31,7 +31,7 @@ class UserController extends Controller
      *      response=404,ref="#/components/schemas/Notfound"
      *    ),
      *    @OA\Response(
-     *      response=500,ref="#/components/schemas/Forbidden"
+     *      response=403,ref="#/components/schemas/Forbidden"
      *    )
      * )
      * Store a newly created resource in storage.
