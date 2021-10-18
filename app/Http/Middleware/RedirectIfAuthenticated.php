@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RedirectIfAuthenticated
 {
+
     /**
      * Handle an incoming request.
      *
@@ -19,14 +20,24 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
-        $guards = empty($guards) ? [null] : $guards;
+        if (Auth::check())
+        {
+            $user = Auth::user();
+            if ($user->hasRole('Admin'))
+            {
+                return redirect('/admin/dashboard');
+            } else if ($user->hasRole('IotAdmin'))
+            {
 
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                return redirect('/iot-admin/dashboard');
+            } else
+            {
+
+                return redirect('/home');
             }
         }
 
         return $next($request);
     }
+
 }

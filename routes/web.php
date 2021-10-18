@@ -18,21 +18,30 @@ Route::prefix('admin')->group(function ()
     Route::get('/', function ()
     {
         return view('auth.login');
-    });
+    })->middleware(['guest']);;
 
-    Auth::routes([
-        'register' => false
-    ]);
     Route::group(['middleware' => ['role:Admin']], function ()
     {
-        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+        Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('home');
     });
 
-    Route::group(['middleware' => ['role:IotAdmin']], function ()
-    {
-        Route::get('/iothome', [App\Http\Controllers\HomeController::class, 'index'])->name('iothome');
-    });
+    
 });
+
+Route::prefix('iot-admin')->group(function ()
+{
+
+    Route::get('/', function ()
+    {
+        return view('auth.login');
+    })->middleware(['guest']);;
+
+
+Route::group(['middleware' => ['role:IotAdmin']], function ()
+    {
+        Route::get('/dashboard', [App\Http\Controllers\IotAdmin\DashboardController::class, 'index'])->name('iothome');
+    });
+});  
 Route::prefix('')->group(function ()
 {
     Route::get('{any}', function ()
@@ -40,4 +49,8 @@ Route::prefix('')->group(function ()
         return view('site');
     })->where('any', '.*');
 });
+
+Auth::routes([
+        'register' => false
+    ]);
 
