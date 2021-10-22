@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -52,6 +53,26 @@ use AuthenticatesUsers;
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function logout(Request $request)
+    {
+
+        $user = Auth::user();
+        if ($user->hasRole('Admin'))
+        {
+            $redirect =  '/admin';
+        } else if ($user->hasRole('IotAdmin'))
+        {
+
+            $redirect = '/iot-admin';
+        } else
+        {
+
+            $redirect  = '/';
+        }
+        Auth::logout();
+        return redirect($redirect);
     }
 
 }
