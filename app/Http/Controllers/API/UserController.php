@@ -62,7 +62,7 @@ class UserController extends Controller
      *          },
      * @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/UpdateProfileRequest")
+     *         @OA\JsonContent(ref="#/components/schemas/UpdateProfile")
      *     ),
      *     summary="UpdateProfile",
      *     @OA\Response(
