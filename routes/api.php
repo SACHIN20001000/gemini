@@ -23,6 +23,6 @@ Route::middleware('auth:api')->group(function ()
     Route::group(['middleware' => ['role:User']], function ()
     {
         Route::get('profile', [UserController::class, 'userProfile']);
-        Route::put('update', [UserController::class, 'updateProfile']);
+        // Route::put('update', [UserController::class, 'updateProfile']);
     });
 });
