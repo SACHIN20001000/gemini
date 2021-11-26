@@ -59,9 +59,12 @@ class PassportAuthController extends AppBaseController
         ]);
 
         $token = $user->createToken('LaravelAuthApp')->accessToken;
-        $user->assignRole($roleUser);
-        $user->token = $token;
-        return new TokenResource($user);
+       
+            $user->assignRole($roleUser);
+            $user->token = $token;
+            return new TokenResource($user);
+       
+       
     }
 
     /**

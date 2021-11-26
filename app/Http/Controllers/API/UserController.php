@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\Users\UserResource;
 use App\Models\User;
-use Auth;
-
+use App\Http\Requests\API\ChangePasswordRequest;
 class UserController extends Controller
 {
+
 
     /**
      * @OA\Get(
@@ -32,7 +32,7 @@ class UserController extends Controller
      *      response=404,ref="#/components/schemas/Notfound"
      *    ),
      *    @OA\Response(
-     *      response=403,ref="#/components/schemas/Forbidden"
+     *      response=500,ref="#/components/schemas/Forbidden"
      *    )
      * )
      * Store a newly created resource in storage.
@@ -48,46 +48,50 @@ class UserController extends Controller
 
         return new UserResource($user);
     }
-    /**
-    * @OA\PUT(
-    *      path="/update",
-    *      operationId="update",
-    *      tags={"Users"},
-    *      security={
-    *          {"Bearer": {}},
-    *          },
-    *     summary="Update Profile",
-    *           @OA\RequestBody(
-    *         required=true,
-    *         @OA\JsonContent(ref="#/components/schemas/UpdateProfile")
-    *     ),
-    *     @OA\Response(
-    *         response="200",
-    *         description="Updated Profile",
-    *         @OA\JsonContent(ref="#/components/schemas/UpdateProfile")
-    *     ),
-    *    @OA\Response(
-    *      response=400,ref="#/components/schemas/BadRequest"
-    *    ),
-    *    @OA\Response(
-    *      response=404,ref="#/components/schemas/Notfound"
-    *    ),
-    *    @OA\Response(
-    *      response=403,ref="#/components/schemas/Forbidden"
-    *    )
-    * )
-    * Store a newly created resource in storage.
-    *
-    * @param \App\Http\Requests\ExampleStoreRequest $request
-    *
-    * @return \Illuminate\Http\JsonResponse
-    */
-    public function updateProfile(Request $request)
+ 
+     /**
+     * @OA\Put(
+     *      path="/updateprofile",
+     *      operationId="index1",
+     *      tags={"Users"},
+     *      security={
+     *          {"Bearer": {}},
+     *          },
+     * @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/UpdateProfileRequest")
+     *     ),
+     *     summary="UpdateProfile",
+     *     @OA\Response(
+     *         response="200",
+     *         description="UpdateProfile",
+     *         @OA\JsonContent(ref="#/components/schemas/UpdateProfileResponse")
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
+     * Store a newly created resource in storage.
+     *
+     * @param \App\Http\Requests\ExampleStoreRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+
+    public function updateProfile(UpdateProfileRequest $request)
     {
-        $user = User::find(Auth::id());
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->save();
+
+        $user=User::find(auth()->user()->id)->update(['name'=> $request->name]);
+
         return new UserResource($user);
     }
+
+
+
 }
