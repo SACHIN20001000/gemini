@@ -15,9 +15,13 @@ class TokenResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'name' => $this->name,
+            'message'=> 'Register Successfully',
+            'status' => 'true',
+            'data' => [
+            // 'name' => $this->name,
             'email' => $this->email,
             'token' => $this->token
+            ]
         ];
     }
 }
