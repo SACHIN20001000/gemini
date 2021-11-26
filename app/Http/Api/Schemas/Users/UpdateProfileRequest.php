@@ -7,7 +7,7 @@
  *     description="Update user profile response",
  * )
  */
-class UpdateProfile
+class UpdateProfileRequest
 {
 
 /**
