@@ -20,16 +20,5 @@ class UpdateProfile
      * @var string
      */
     public $name;
-
-    /**
-     * @OA\Property(
-     *     title="Email",
-     *     description="Email for updating",
-     *     example="example@gmail.com",
-     * )
-     *
-     * @var string
-     */
-    public $email;
-
+   
 }
