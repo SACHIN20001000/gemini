@@ -8,7 +8,6 @@ use App\Models\User;
 use App\Http\Requests\API\RegisterUserRequest;
 use App\Http\Requests\API\LoginUserRequest;
 use App\Http\Resources\Users\TokenResource;
-use App\Http\Resources\Users\UserResource;
 use Spatie\Permission\Models\Role;
 
 class PassportAuthController extends AppBaseController
@@ -54,7 +53,7 @@ class PassportAuthController extends AppBaseController
     {
         $roleUser = Role::where('name' , 'User')->first();
         $user = User::create([
-            'name' => 'null',
+            'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
@@ -114,7 +113,7 @@ class PassportAuthController extends AppBaseController
             $token = auth()->user()->createToken('LaravelAuthApp')->accessToken;
             $user = auth()->user();
             $user->token = $token;
-            return new UserResource($user);
+            return new TokenResource($user);
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }

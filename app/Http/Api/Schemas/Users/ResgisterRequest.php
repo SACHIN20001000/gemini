@@ -9,16 +9,16 @@
  */
 class ResgisterRequest
 {
-    // /**
-    //  * @OA\Property(
-    //  *     title="Name",
-    //  *     description="Name of key for storring",
-    //  *     example="random",
-    //  * )
-    //  *
-    //  * @var string
-    //  */
-    // public $name;
+    /**
+     * @OA\Property(
+     *     title="Name",
+     *     description="Name of key for storring",
+     *     example="random",
+     * )
+     *
+     * @var string
+     */
+    public $name;
 
     /**
      * @OA\Property(
