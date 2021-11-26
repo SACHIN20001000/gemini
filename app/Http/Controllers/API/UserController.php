@@ -84,7 +84,7 @@ class UserController extends Controller
      *
      * 
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
 
     public function updateProfile(UpdateProfileRequest $request)
