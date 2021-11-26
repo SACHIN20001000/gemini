@@ -61,7 +61,7 @@ class PassportAuthController extends AppBaseController
         $input     = $request->only('email','password');
         $validator = Validator::make($input, $rules);
         if ($validator->fails()) {
-            return response()->json(['success' => false, 'error' => $validator->messages()]);
+            return response()->json(['success' => false, 'message' => implode(',',$validator->messages()->all())]);
         }
        
         $roleUser = Role::where('name' , 'User')->first();
