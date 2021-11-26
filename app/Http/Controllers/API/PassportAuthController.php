@@ -10,7 +10,7 @@ use App\Http\Requests\API\LoginUserRequest;
 use App\Http\Resources\Users\TokenResource;
 use App\Http\Resources\Users\UserResource;
 use Spatie\Permission\Models\Role;
-
+use Illuminate\Support\Facades\Validator;
 class PassportAuthController extends AppBaseController
 {
 
@@ -50,8 +50,20 @@ class PassportAuthController extends AppBaseController
      * @return \Illuminate\Http\Response
      */
 
-    public function register(RegisterUserRequest $request)
+    public function register(Request $request)
     {
+        $rules = [
+            
+            'email'    => 'unique:users|required',
+            'password' => 'required',
+        ];
+    
+        $input     = $request->only('email','password');
+        $validator = Validator::make($input, $rules);
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'error' => $validator->messages()]);
+        }
+       
         $roleUser = Role::where('name' , 'User')->first();
         $user = User::create([
             'name' => 'null',

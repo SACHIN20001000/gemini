@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Requests\API;
-
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterUserRequest extends FormRequest
@@ -23,10 +23,17 @@ class RegisterUserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            // 'name' => 'required|min:4',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:8'
+       
+        $rules = [
+            
+            'email'    => 'unique:users|required',
+            'password' => 'required',
         ];
+    
+        $input     = $request->only('email','password');
+        $validator = Validator::make($input, $rules);
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'error' => $validator->messages()]);
+        }
     }
 }
