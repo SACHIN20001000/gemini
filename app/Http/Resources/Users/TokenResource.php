@@ -16,7 +16,7 @@ class TokenResource extends JsonResource
     {
         return [
             'message'=> 'Register Successfully',
-            'status' => 'true',
+            'status' => true,
             'data' => [
             // 'name' => $this->name,
             'email' => $this->email,

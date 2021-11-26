@@ -16,7 +16,7 @@ class UserResource extends JsonResource
     {
         return [
             'message'=> 'Login Successfully',
-            'status' => 'true',
+            'status' => true,
             'data' => [
             'email' => $this->email,
             'token' => $this->token,
