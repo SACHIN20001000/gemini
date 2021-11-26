@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Resources\Users\UserResource;
 use App\Models\User;
 use App\Http\Requests\API\ChangePasswordRequest;
+use App\Http\Requests\API\UpdateProfileRequest;
+
+
 class UserController extends Controller
 {
 
