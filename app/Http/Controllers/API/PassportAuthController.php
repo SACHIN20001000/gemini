@@ -141,9 +141,9 @@ class PassportAuthController extends AppBaseController
         } else {
           $check=  User::where('email',$request->email)->first();
           if(!$check){
-            return response()->json(['success' => false, 'message' => "User Doesn't Exists. Please Sign Up"], 401);
+            return response()->json(['success' => false, 'message' => "User Doesn't Exists. Please Sign Up"]);
           }
-            return response()->json(['success' => false, 'message' => 'Password is incorrect. Try Again!'], 401);
+            return response()->json(['success' => false, 'message' => 'Password is incorrect. Try Again!']);
         }
     }
 }
