@@ -118,7 +118,7 @@ class PassportAuthController extends AppBaseController
     {
         $rules = [
             
-            'email'    => 'unique:users|required',
+            'email'    => 'required',
             'password' => 'required',
         ];
     
@@ -127,7 +127,7 @@ class PassportAuthController extends AppBaseController
         if ($validator->fails()) {
             return response()->json(['success' => false, 'message' => implode(',',$validator->messages()->all())]);
         }
-        
+
         $data = [
             'email' => $request->email,
             'password' => $request->password
