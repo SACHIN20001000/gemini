@@ -11,6 +11,7 @@ use App\Http\Resources\Users\TokenResource;
 use App\Http\Resources\Users\UserResource;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Validator;
+use Auth;
 class PassportAuthController extends AppBaseController
 {
 
@@ -145,5 +146,14 @@ class PassportAuthController extends AppBaseController
           }
             return response()->json(['success' => false, 'message' => 'Password is incorrect. Try Again!']);
         }
+    }
+    public function logout(Request $request){
+      
+        Auth::user()->token()->delete();
+       
+        return response()->json([
+            'success' => false,'message' => 'Successfully logged out'
+        ]);
+  
     }
 }
