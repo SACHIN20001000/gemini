@@ -23,17 +23,10 @@ class RegisterUserRequest extends FormRequest
      */
     public function rules()
     {
-       
-        $rules = [
-            
-            'email'    => 'unique:users|required',
-            'password' => 'required',
+        return [
+            'email' => 'unique:users|required|email',
+            'password' => 'required'
         ];
-    
-        $input     = $request->only('email','password');
-        $validator = Validator::make($input, $rules);
-        if ($validator->fails()) {
-            return response()->json(['success' => false, 'error' => $validator->messages()]);
-        }
+       
     }
 }

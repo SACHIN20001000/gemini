@@ -53,7 +53,6 @@ class PassportAuthController extends AppBaseController
     public function register(Request $request)
     {
         $rules = [
-            
             'email'    => 'unique:users|required',
             'password' => 'required',
         ];
@@ -140,7 +139,11 @@ class PassportAuthController extends AppBaseController
             return response()->json([ 'message'=> 'Login Successfully','status' => true, 'data' => new TokenResource($user)]);
 
         } else {
-            return response()->json(['error' => 'Unauthorised'], 401);
+          $check=  User::where('email',$request->email)->first();
+          if(!$check){
+            return response()->json(['success' => false, 'message' => "User Doesn't Exists. Please Sign Up"], 401);
+          }
+            return response()->json(['success' => false, 'message' => 'Password is incorrect. Try Again!'], 401);
         }
     }
 }

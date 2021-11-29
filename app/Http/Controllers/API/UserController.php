@@ -8,6 +8,7 @@ use App\Http\Resources\Users\UserResource;
 use App\Models\User;
 use App\Http\Requests\API\ChangePasswordRequest;
 use App\Http\Requests\API\UpdateProfileRequest;
+use Illuminate\Support\Facades\Validator;
 
 
 class UserController extends Controller
@@ -87,10 +88,19 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function updateProfile(UpdateProfileRequest $request)
+    public function updateProfile(Request $request)
     {
+        $rules = [
+            'email'    => 'required',
+        ];
+    
+        $input     = $request->only('email');
+        $validator = Validator::make($input, $rules);
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'message' => implode(',',$validator->messages()->all())]);
+        }
 
-        $user=User::find(auth()->user()->id)->update(['name'=> $request->name]);
+        $user=User::find(auth()->user()->id)->update(['email' => $request->email]);
 
         return new UserResource($user);
     }
