@@ -15,12 +15,9 @@ class UserResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'message'=> 'Login Successfully',
-            'status' => true,
-            'data' => [
+           
             'email' => $this->email,
-            'token' => $this->token,
-            ]
+                   
         ];
     }
 }

@@ -75,8 +75,7 @@ class PassportAuthController extends AppBaseController
        
             $user->assignRole($roleUser);
             $user->token = $token;
-            return new TokenResource($user);
-       
+            return response()->json([ 'message'=> 'Register Successfully','status' => true, 'data' => new TokenResource($user)]);
        
     }
 
@@ -115,8 +114,20 @@ class PassportAuthController extends AppBaseController
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login(LoginUserRequest $request)
+    public function login(Request $request)
     {
+        $rules = [
+            
+            'email'    => 'unique:users|required',
+            'password' => 'required',
+        ];
+    
+        $input     = $request->only('email','password');
+        $validator = Validator::make($input, $rules);
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'message' => implode(',',$validator->messages()->all())]);
+        }
+        
         $data = [
             'email' => $request->email,
             'password' => $request->password
@@ -126,7 +137,8 @@ class PassportAuthController extends AppBaseController
             $token = auth()->user()->createToken('LaravelAuthApp')->accessToken;
             $user = auth()->user();
             $user->token = $token;
-            return new UserResource($user);
+            return response()->json([ 'message'=> 'Login Successfully','status' => true, 'data' => new TokenResource($user)]);
+
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }
