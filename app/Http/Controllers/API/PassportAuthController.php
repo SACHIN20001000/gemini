@@ -148,12 +148,14 @@ class PassportAuthController extends AppBaseController
         }
     }
     public function logout(Request $request){
-    
-       $a= Auth::user()->token()->revoke();
+        if (Auth::check()) {
+       Auth::user()->token()->revoke();
       
         return response()->json([
             'success' => false,'message' => 'Successfully logged out'
         ]);
-  
+    }else{
+        return response()->json(['success' => false,'message' => 'something_went_wrong'], 500);
+    }
     }
 }
