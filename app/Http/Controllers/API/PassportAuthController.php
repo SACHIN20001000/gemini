@@ -113,7 +113,13 @@ class PassportAuthController extends AppBaseController
             $user->token = $token;
             return new TokenResource($user);
         } else {
-            return response()->json(['error' => 'Unauthorised'], 401);
+            $data= User::Where('email',$request->email)->first();
+            if($data){
+                return response()->json(['success' => false , 'message' => "User Doesn't Exists. Please Sign Up"]);
+            }else{
+                return response()->json(['success' => false , 'message' => "Password is incorrect. Try Again!"]);
+            }
+            // return response()->json(['error' => 'Unauthorised'], 401);
         }
     }   
 }
