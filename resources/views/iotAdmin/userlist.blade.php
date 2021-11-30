@@ -77,30 +77,7 @@
 												</tr>
 											</thead>
 											<tbody>
-                        @foreach ($data as $users)
-											
-												<tr>
-												<td>
-														<a href="#">{{$users->email}}</a>
-													</td>
-													<td>
-														<a >{{@$users->roles[0]->name}}</a>
-													</td>
-													<td>
-														{{$users->created_at}}
-													</td>
-
-
-													<td>
-													 <a href="{{route('editUser',$users->id)}}" class="btn btn-sm btn-info btn-b">
-															<i class="las la-pen"></i>
-														</a>
-														<a href="#" onclick= "showModalFunction({{$users->id}})" class="btn btn-sm btn-danger">
-															<i class="las la-trash"></i>
-														</a>
-													</td>
-												</tr>
-											@endforeach
+                       
 											</tbody>
 										</table>
 									</div>
@@ -136,16 +113,22 @@
  <script>
 
       $(document).ready(function() {
-        $("#table").dataTable({
-				// 	"processing": true,
-        // "serverSide": true,
-				});
-      });
 
-    </script>
-<script>
-
-function showModalFunction(id) {
+    
+    var table = $('#table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('userlist') }}",
+        columns: [
+            {data: 'email', name: 'email'},
+            {data: 'roles[0].name', name: 'roles[0].name', orderable: false,searchable: false},
+            {data: 'created_at', name: 'created_at'},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+        ]
+    });
+    
+  });
+	function showModalFunction(id) {
 	$('#deleteAlert').modal("show");
 	$('#delete_confirm').attr('data-id', id);
 		}
@@ -156,6 +139,7 @@ function showModalFunction(id) {
 				  window.location.href=pageURL+"/delUser/"+id;
 });
 </script>
+
 
 
 @endsection

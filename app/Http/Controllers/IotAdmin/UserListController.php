@@ -8,17 +8,35 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-
+use DataTables;
 use Illuminate\Support\Facades\Validator;
 class UserListController extends Controller
 {
 
   //below function show all data in table
-      public function index(){
+      public function index(Request $request){
 
-        $data = User::with('roles')->get();
-        return view('iotAdmin.userlist',compact('data'));
+        // $data = User::with('roles')->get();
+        // return view('iotAdmin.userlist',compact('data'));
+        if ($request->ajax()) {
+          $data = User::with('roles');
+          
+          return Datatables::of($data)
+                  ->addIndexColumn()
+                  ->addColumn('action', function($row){
+ 
 
+                    $btn = "<a href="."/iot-admin/edit/$row->id". " class='btn btn-sm btn-info btn-b'><i class='las la-pen'></i></a>";
+                    $btn .= "<a href='#' onclick= "."showModalFunction($row->id)"." class='btn btn-sm btn-danger'><i class='las la-trash'></i></a>";
+
+  
+                          return $btn;
+                  })
+                  ->rawColumns(['action'])
+                  ->make(true);
+      }
+      
+      return view('iotAdmin.userlist');
       }
 //below function open the edit tab
 

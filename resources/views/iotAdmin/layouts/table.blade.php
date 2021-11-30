@@ -225,7 +225,7 @@
 				<div class="container">
 					<div class="main-header-left ">
 						<a class="animated-arrow hor-toggle horizontal-navtoggle"><span></span></a><!-- sidebar-toggle-->
-						<a class="header-brand" href="index.html">
+						<a class="header-brand" href="{{url('iot-admin/dashboard')}}">
 							<img src="../../assets/img/brand/logo-white.png" class="desktop-dark">
 							<img src="../../assets/img/brand/logo.png" class="desktop-logo">
 							<img src="../../assets/img/brand/favicon.png" class="desktop-logo-1">

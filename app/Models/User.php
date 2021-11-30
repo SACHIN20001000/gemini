@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     } 
+
+    public function getCreatedAtAttribute($value)
+    {
+        return date('M d, Y h:i:s',strtotime($value));
+    }
 }

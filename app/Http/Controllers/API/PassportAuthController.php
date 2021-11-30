@@ -121,5 +121,13 @@ class PassportAuthController extends AppBaseController
             }
             // return response()->json(['error' => 'Unauthorised'], 401);
         }
-    }   
+    }
+    public function logout(Request $request){
+    
+        Auth::user()->token()->revoke();
+       
+         return response()->json([
+             'success' => false,'message' => 'Successfully logged out'
+         ]);
+        }   
 }
