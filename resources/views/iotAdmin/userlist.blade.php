@@ -23,7 +23,7 @@
 									</div>
 									<p class="tx-12 tx-gray-500 mb-2">Listing of All Users...</p>
 								</div>
-								<a href="{{route('addUser')}}">	<button style=" float:right; "  class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5">Add User</button></a>
+								<a href="{{route('addUser')}}" style="margin-left: 1070px;">	<button style=" float:right; "  class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5">Add User</button></a>
 								<div class="card-body">
 
 
