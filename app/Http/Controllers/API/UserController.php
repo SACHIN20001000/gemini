@@ -56,7 +56,8 @@ class UserController extends Controller
      /**
      * @OA\Put(
      *      path="/updateprofile",
-     *      operationId="index1",
+     *      operationId="update",
+     * summary="Update Existing  user",
      *      tags={"Users"},
      *      security={
      *          {"Bearer": {}},
