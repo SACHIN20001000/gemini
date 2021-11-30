@@ -15,32 +15,34 @@ class UserListController extends Controller
 
   //below function show all data in table
       public function index(){
+
         $data = User::with('roles')->get();
-      
         return view('iotAdmin.userlist',compact('data'));
+
       }
 //below function open the edit tab
+
       public function editUser($id){
         $user= User::with('roles')->where('id',$id)->first();
         $role = Role::where('name','!=','Admin')->get();
         return view('iotAdmin.editUser',compact('user','role'));
       }
 //below function update the user data
+
       public function updateUser(Request $request){
 
         $request->validate([
           'name'=>'required' ,
-          'email'=>'required|string|',
-
+          'email'=>'required|email',
+          'role' =>'required'
          ]);
          app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
          $role = Role::updateOrCreate(['name' => $request->role]);
         $user= User::findorfail($request->id);
         $user->name = $request->name;
         $user->email = $request->email;
-       
         $user->save();
-        $user->assignRole($role);
+        $user->syncRoles([$role]);
        
         return redirect('iot-admin/user')->with('success', 'Updated');
       }
