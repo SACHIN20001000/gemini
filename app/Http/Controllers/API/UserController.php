@@ -88,19 +88,10 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function updateProfile(Request $request)
+    public function updateProfile(UpdateProfileRequest $request)
     {
-        $rules = [
-            'email'    => 'required',
-        ];
-    
-        $input     = $request->only('email');
-        $validator = Validator::make($input, $rules);
-        if ($validator->fails()) {
-            return response()->json(['success' => false, 'message' => implode(',',$validator->messages()->all())]);
-        }
-
-        $user=User::find(auth()->user()->id)->update(['email' => $request->email]);
+       
+        $user=User::find(auth()->user()->id)->update(['name' => $request->name]);
 
         return new UserResource($user);
     }

@@ -8,7 +8,8 @@ use App\Models\User;
 use App\Http\Requests\API\RegisterUserRequest;
 use App\Http\Requests\API\LoginUserRequest;
 use App\Http\Resources\Users\TokenResource;
-
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 class PassportAuthController extends AppBaseController
 {
     
@@ -55,7 +56,9 @@ class PassportAuthController extends AppBaseController
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
-       
+        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+         $role = Role::updateOrCreate(['name' => 'Customer']);
+         $user->assignRole($role);
         $token = $user->createToken('LaravelAuthApp')->accessToken;
  
         $user->token = $token;
