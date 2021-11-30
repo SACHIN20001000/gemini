@@ -188,7 +188,7 @@
 										<div class="d-flex wd-100p">
 											<div class="main-img-user"><img alt="" src="../../assets/img/faces/6.jpg" class=""></div>
 											<div class="ms-3 my-auto">
-												@if(Auth::user()->name)
+												@if(Auth::user()->name != 'null')
 													<h6>{{Auth::user()->name}}</h6><span>Premium Member</span>
 												@else
 												<h6>Petey Cruiser</h6><span>Premium Member</span>
