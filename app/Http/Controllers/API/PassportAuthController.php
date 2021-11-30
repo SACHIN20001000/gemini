@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Auth;
 use App\Http\Requests\API\RegisterUserRequest;
 use App\Http\Requests\API\LoginUserRequest;
 use App\Http\Resources\Users\TokenResource;
