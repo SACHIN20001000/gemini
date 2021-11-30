@@ -14,15 +14,15 @@ class UserListController extends Controller
 
   //below function show all data in table
       public function index(){
-        $user = User::select('users.*','roles.name as role_name')->join('roles','roles.guard_name','=','users.id')->get();
-
-                return view('iotAdmin.userlist',compact('user'));
+        $data = User::with('roles')->get();
+      
+        return view('iotAdmin.userlist',compact('data'));
       }
 //below function open the edit tab
       public function editUser($id){
-        $user= User::select('users.*','roles.name as role')->join('roles','roles.guard_name','=','users.id')->where('users.id',$id)->first();;
-
-        return view('iotAdmin.editUser',compact('user'));
+        $user= User::with('roles')->where('id',$id)->first();
+        $role = Role::all();
+        return view('iotAdmin.editUser',compact('user','role'));
       }
 //below function update the user data
       public function updateUser(Request $request){
@@ -32,12 +32,15 @@ class UserListController extends Controller
           'email'=>'required|string|',
 
          ]);
-
+         $role = $request->role;
         $user= User::findorfail($request->id);
         $user->name = $request->name;
         $user->email = $request->email;
+       
         $user->save();
-        return redirect('/user')->with('success', 'Updated');
+        $user->assignRole($role);
+       
+        return redirect('iot-admin/user')->with('success', 'Updated');
       }
 //below function delete the user data
       public function delUser($id){
@@ -50,8 +53,8 @@ class UserListController extends Controller
 
 // below function open the add user page
       public function addUser(){
-
-                return view('iotAdmin.addUser');
+        $role = Role::all();
+                return view('iotAdmin.addUser',compact('role'));
       }
 
 // below function store user data in db
@@ -69,11 +72,8 @@ class UserListController extends Controller
           'password' => bcrypt($request->password),
 
         ]);
-        $role=Role::create([
-            'name' => $request->role,
-            'guard_name' => $user->id,
-
-          ]);
+        $role = $request->role;
+        $user->assignRole($role);
 
 
        return Redirect::back()->with('success', 'Created');

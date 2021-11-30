@@ -2,6 +2,16 @@
 
 @section('content')
 
+<div class="container">
+	<!-- breadcrumb -->
+	<div class="breadcrumb-header justify-content-between">
+						<div class="my-auto">
+							<div class="d-flex">
+								<h4 class="content-title mb-0 my-auto">User List</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ Userlist</span>
+							</div>
+						</div>
+					</div>
+					<!-- breadcrumb -->
 		<!--Row-->
     <div class="row row-sm">
 						<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 grid-margin">
@@ -13,7 +23,7 @@
 									</div>
 									<p class="tx-12 tx-gray-500 mb-2">Listing of All Users...</p>
 								</div>
-								<a href="{{route('addUser')}}" >	<button style="float:right;" class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5">Add User</button></a>
+								<a href="{{route('addUser')}}">	<button style=" float:right; "   class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5">Add User</button></a>
 								<div class="card-body">
 
 
@@ -67,13 +77,14 @@
 												</tr>
 											</thead>
 											<tbody>
-                        @foreach ($user as $users)
+                        @foreach ($data as $users)
+											
 												<tr>
 												<td>
 														<a href="#">{{$users->email}}</a>
 													</td>
 													<td>
-														<a >{{$users->role_name}}</a>
+														<a >{{$users->roles[0]->name}}</a>
 													</td>
 													<td>
 														{{$users->created_at}}
@@ -93,19 +104,7 @@
 											</tbody>
 										</table>
 									</div>
-									<!-- <ul class="pagination mt-4 mb-0 float-end flex-wrap">
-										<li class="page-item page-prev disabled">
-											<a class="page-link" href="#" tabindex="-1">Prev</a>
-										</li>
-										<li class="page-item active"><a class="page-link" href="#">1</a></li>
-										<li class="page-item"><a class="page-link" href="#">2</a></li>
-										<li class="page-item"><a class="page-link" href="#">3</a></li>
-										<li class="page-item"><a class="page-link" href="#">4</a></li>
-										<li class="page-item"><a class="page-link" href="#">5</a></li>
-										<li class="page-item page-next">
-											<a class="page-link" href="#">Next</a>
-										</li>
-									</ul> -->
+								
 								</div>
 							</div>
 						</div>
@@ -126,6 +125,8 @@
 									</div>
 								</div>
 							</div>
+							</div>
+						
 							<!-- model end -->
 		<link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
 

@@ -1,5 +1,16 @@
 @extends('iotAdmin.layouts.app')
 @section('content')
+<div class="container">
+	<!-- breadcrumb -->
+	<div class="breadcrumb-header justify-content-between">
+						<div class="my-auto">
+							<div class="d-flex">
+								<h4 class="content-title mb-0 my-auto">Add User</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ Userlist</span>
+							</div>
+						</div>
+					</div>
+					<!-- breadcrumb -->
+		<!--Row-->
 <!-- row -->
 <div class="row">
 						<div class="col-lg-12 col-md-12">
@@ -78,8 +89,9 @@
 											<div class="col-md-8 mg-t-5 mg-md-t-0">
 												<select name="role"  class="form-control">
 													<option value="">Choose Below..</option>
-													<option value="Admin">Admin</option>
-													<option value="Customer">Customer</option>
+													@foreach($role as $roles)
+													<option value="{{$roles->name}}">{{$roles->name}}</option>
+													@endforeach
 												</select>
 											</div>
 										</div>
@@ -92,5 +104,5 @@
 						</div>
 					</div>
 					<!-- /row -->
-
+					</div>
 @endsection
