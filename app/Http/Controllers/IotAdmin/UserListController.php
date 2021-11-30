@@ -16,8 +16,7 @@ class UserListController extends Controller
   //below function show all data in table
       public function index(Request $request){
 
-        // $data = User::with('roles')->get();
-        // return view('iotAdmin.userlist',compact('data'));
+        
         if ($request->ajax()) {
           $data = User::with('roles');
           

@@ -120,7 +120,7 @@ class PassportAuthController extends AppBaseController
             }else{
                 return response()->json(['success' => false , 'message' => "Password is incorrect. Try Again!"]);
             }
-            // return response()->json(['error' => 'Unauthorised'], 401);
+          
         }
     }
     public function logout(Request $request){
