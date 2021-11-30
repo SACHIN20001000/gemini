@@ -22,7 +22,7 @@ class UserListController extends Controller
 //below function open the edit tab
       public function editUser($id){
         $user= User::with('roles')->where('id',$id)->first();
-        $role = Role::all();
+        $role = Role::where('name','!=','Admin')->get();
         return view('iotAdmin.editUser',compact('user','role'));
       }
 //below function update the user data
@@ -55,7 +55,7 @@ class UserListController extends Controller
 
 // below function open the add user page
       public function addUser(){
-        $role = Role::all();
+        $role = Role::where('name','!=','Admin')->get();
                 return view('iotAdmin.addUser',compact('role'));
       }
 
