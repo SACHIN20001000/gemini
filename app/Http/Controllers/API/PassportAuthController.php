@@ -114,7 +114,7 @@ class PassportAuthController extends AppBaseController
             return new TokenResource($user);
         } else {
             $data= User::Where('email',$request->email)->first();
-            if($data){
+            if(!$data){
                 return response()->json(['success' => false , 'message' => "User Doesn't Exists. Please Sign Up"]);
             }else{
                 return response()->json(['success' => false , 'message' => "Password is incorrect. Try Again!"]);
