@@ -80,6 +80,7 @@ Route::prefix('')->group(function ()
 {
     Route::get('{any}', function ()
     {
-        return view('site');
+        return view('welcome');
+        //return view('site');
     })->where('any', '.*');
 });

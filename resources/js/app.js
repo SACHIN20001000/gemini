@@ -16,17 +16,7 @@ Vue.use(VueSweetalert2);
 Vue.use(Notifications)
 
 import App from "./components/App";
-
-import Test from "./components/Test";
-
 import Home from "./components/Home";
-
-import ExampleComponent from "./components/ExampleComponent";
-
-import TestForm from "./components/TestForm";
-import Conditional from "./components/Conditional";
-import Registration from "./components/Register";
-import Profile from "./components/Profile";
 const router = new VueRouter({
     mode: "history",
 
@@ -36,41 +26,6 @@ const router = new VueRouter({
             name: "home",
 
             component: Home
-        },
-
-        {
-            path: "/test",
-
-            name: "test",
-
-            component: Test
-        },
-        {
-            path: "/Example",
-
-            name: "Example",
-
-            component: ExampleComponent
-        },
-        {
-            path: "/TestForm",
-            name: "TestForm",
-            component: TestForm
-        },
-        {
-            path: "/Conditional",
-            name: "Conditional",
-            component: Conditional
-        },
-        {
-            path: "/Registration",
-            name: "Registration",
-            component: Registration
-        },
-        {
-            path: "/Profile",
-            name: "Profile",
-            component: Profile
         }
     ]
 });

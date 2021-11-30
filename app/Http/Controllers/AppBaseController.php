@@ -24,7 +24,7 @@ class AppBaseController extends Controller
      * )
      *
      * @OA\Server(
-     *      url="http://localhost:8000/api",
+     *      url="http://3.132.243.209/api",
      *      description="Demo API Server"
      * )
      *
