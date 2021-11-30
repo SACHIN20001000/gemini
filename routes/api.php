@@ -20,9 +20,12 @@ Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
 Route::middleware('auth:api')->group(function ()
 {
+    Route::get('profile', [UserController::class, 'userProfile']);
+    Route::put('update', [UserController::class, 'updateProfile']);
+    Route::get('logout', [PassportAuthController::class, 'logout']);
+
     Route::group(['middleware' => ['role:User']], function ()
     {
-        Route::get('profile', [UserController::class, 'userProfile']);
-        Route::put('update', [UserController::class, 'updateProfile']);
+      
     });
 });

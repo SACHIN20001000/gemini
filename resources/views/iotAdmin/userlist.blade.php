@@ -15,8 +15,8 @@
 								</div>
 								<a href="{{route('addUser')}}" >	<button style="float:right;" class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5">Add User</button></a>
 								<div class="card-body">
-							
-												
+
+
 		<!-- After deleting  or editing below model popup  -->
 								@if (\Session::has('success'))
 					@if(session()->get('success') == 'Deleted')
@@ -32,7 +32,7 @@
 					</div>
 				</div>
 			</div>
-			@else 
+			@else
 			<div class="modal" id="Modal">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content tx-size-sm">
@@ -51,9 +51,9 @@
 							function hideFunction() {
 								document.getElementById("Modal").style.display = 'none';
 		}
-				
+
 					</script>
-					
+
 					@endif
 <!-- Listing all data in user tables -->
 									<div class="table-responsive border-top userlist-table">
@@ -78,12 +78,12 @@
 													<td>
 														{{$users->created_at}}
 													</td>
-												 
-												
+
+
 													<td>
 													 <a href="{{route('editUser',$users->id)}}" class="btn btn-sm btn-info btn-b">
 															<i class="las la-pen"></i>
-														</a> 
+														</a>
 														<a href="#" onclick= "showModalFunction({{$users->id}})" class="btn btn-sm btn-danger">
 															<i class="las la-trash"></i>
 														</a>
@@ -152,7 +152,7 @@ function showModalFunction(id) {
   var id = $(this).data("id");
 	var pageURL = window.location.href;
 						pageURL = pageURL.slice(0, pageURL.lastIndexOf('/'));
-				  window.location.href=pageURL+"/delUser/"+id;						
+				  window.location.href=pageURL+"/delUser/"+id;
 });
 </script>
 
