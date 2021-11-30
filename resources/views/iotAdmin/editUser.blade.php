@@ -63,7 +63,7 @@
 											
 													@foreach($role as $roles)
 												
-													<option value="{{$roles->name}}" {{ $roles->name == $user->roles[0]->name ? 'selected' : '' }}>{{$roles->name}}</option>
+													<option value="{{$roles->name}}" {{ $roles->name == @$user->roles[0]->name ? 'selected' : '' }}>{{$roles->name}}</option>
 
 													@endforeach
 											

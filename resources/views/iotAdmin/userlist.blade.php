@@ -84,7 +84,7 @@
 														<a href="#">{{$users->email}}</a>
 													</td>
 													<td>
-														<a >{{$users->roles[0]->name}}</a>
+														<a >{{@$users->roles[0]->name}}</a>
 													</td>
 													<td>
 														{{$users->created_at}}
