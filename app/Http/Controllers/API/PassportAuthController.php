@@ -52,7 +52,7 @@ class PassportAuthController extends AppBaseController
     public function register(RegisterUserRequest $request)
     {
             $user = User::create([
-            'name' => $request->name,
+            'name' => 'null',
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
