@@ -59,7 +59,7 @@
 				<div class="container">
 					<div class="main-header-left ">
 						<a class="animated-arrow hor-toggle horizontal-navtoggle"><span></span></a><!-- sidebar-toggle-->
-						<a class="header-brand" href="/">
+						<a class="header-brand" href="{{url('iot-admin/dashboard')}}">
 							<img src="{{URL::asset('assets/img/brand/logo-white.png')}}" class="desktop-dark">
 							<img src="{{URL::asset('assets/img/brand/logo.png')}}" class="desktop-logo">
 							<img src="{{URL::asset('assets/img/brand/favicon.png')}}" class="desktop-logo-1">
@@ -235,7 +235,7 @@
 							<input class="form-control" placeholder="Search for anything..." type="search"><button class="btn"><i class="fe fe-search"></i></button>
 						</div>
 					</div><!-- search -->
-					<a class="header-brand header-brand2 d-none d-lg-block" href="index.html">
+					<a class="header-brand header-brand2 d-none d-lg-block" href="{{url('iot-admin/dashboard')}}">
 						<img src="../../assets/img/brand/logo-white.png" class="desktop-dark">
 						<img src="../../assets/img/brand/logo.png" class="desktop-logo">
 						<img src="../../assets/img/brand/favicon.png" class="desktop-logo-1">
