@@ -12,13 +12,13 @@ class UpdateProfileRequest
 
 /**
      * @OA\Property(
-     *     title="email",
-     *     description="email of key for updating",
+     *     title="name",
+     *     description="name of key for updating",
      *     example="random",
      * )
      *
      * @var string
      */
-    public $email;
+    public $name;
    
 }
