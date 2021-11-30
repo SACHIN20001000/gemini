@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
-use App\Models\Role;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 use Illuminate\Support\Facades\Validator;
 class UserListController extends Controller
@@ -32,7 +33,8 @@ class UserListController extends Controller
           'email'=>'required|string|',
 
          ]);
-         $role = $request->role;
+         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+         $role = Role::updateOrCreate(['name' => $request->role]);
         $user= User::findorfail($request->id);
         $user->name = $request->name;
         $user->email = $request->email;
@@ -66,13 +68,14 @@ class UserListController extends Controller
           'password'=>'required|string',
           'role'  =>'required'
          ]);
-         $user = User::create([
+         $user = User::updateOrCreate([
           'name' => $request->name,
           'email' => $request->email,
           'password' => bcrypt($request->password),
 
         ]);
-        $role = $request->role;
+        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+        $role = Role::updateOrCreate(['name' => $request->role]);
         $user->assignRole($role);
 
 
