@@ -63,7 +63,7 @@
 												<label class="form-label mg-b-0">Name</label>
 											</div>
 											<div class="col-md-8 mg-t-5 mg-md-t-0">
-												<input class="form-control" name="name" required placeholder="Enter your name" type="text">
+												<input class="form-control" name="name"  placeholder="Enter your name" type="text">
 											</div>
 										</div>
 										<div class="row row-xs align-items-center mg-b-20">

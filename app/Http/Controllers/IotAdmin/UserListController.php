@@ -49,7 +49,7 @@ class UserListController extends Controller
       public function updateUser(Request $request){
 
         $request->validate([
-          'name'=>'required' ,
+          
           'email'=>'required|email',
           'role' =>'required'
          ]);
@@ -82,7 +82,7 @@ class UserListController extends Controller
       public function addNewUser(Request $request){
 
          $request->validate([
-          'name'=>'required' ,
+         
           'email'=>'required|string|email|unique:users',
           'password'=>'required|string',
           'role'  =>'required'
