@@ -54,7 +54,7 @@ class UserController extends Controller
     }
  
      /**
-     * @OA\Put(
+     * @OA\Post(
      *      path="/updateprofile",
      *      operationId="update",
      * summary="Update Existing  user",
