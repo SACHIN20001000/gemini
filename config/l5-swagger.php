@@ -15,7 +15,7 @@ return [
         'auth',
         'title' => 'Integration Swagger in Laravel with Passport Auth',
             ],
-
+            'url' =>[env('SWAGGER_PATH')],
             'routes' => [
                 /*
                  * Route for accessing api documentation interface
@@ -263,8 +263,8 @@ return [
         /*
          * Uncomment to add constants which can be used in annotations
          */
-        // 'constants' => [
-        // 'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'http://my-default-host.com'),
-        // ],
+        'constants' => [
+        'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'http://3.132.243.209/api'),
+        ],
     ],
 ];

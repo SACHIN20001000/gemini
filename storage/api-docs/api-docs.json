@@ -14,7 +14,7 @@
     },
     "servers": [
         {
-            "url": "http://localhost:8000/api",
+            "url": "http://3.132.243.209/api/",
             "description": "Demo API Server"
         }
     ],
@@ -140,7 +140,7 @@
                     "Users"
                 ],
                 "summary": "UpdateProfile",
-                "operationId": "index1",
+                "operationId": "update",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -320,9 +320,9 @@
                 "title": "Update user profile response",
                 "description": "Update user profile response",
                 "properties": {
-                    "email": {
-                        "title": "email",
-                        "description": "email of key for updating",
+                    "name": {
+                        "title": "name",
+                        "description": "name of key for updating",
                         "type": "string",
                         "example": "random"
                     }

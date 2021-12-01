@@ -24,7 +24,7 @@ class AppBaseController extends Controller
      * )
      *
      * @OA\Server(
-     *      url="http://3.132.243.209/api",
+     *      url=L5_SWAGGER_CONST_HOST,
      *      description="Demo API Server"
      * )
      *
