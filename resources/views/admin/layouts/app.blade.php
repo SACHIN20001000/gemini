@@ -543,6 +543,9 @@
 		<script src="{{URL::asset('assets/js/apexcharts.js')}}"></script>
 		<script src="{{URL::asset('assets/js/jquery.vmap.sampledata.js')}}"></script>
 
+		<!-- Laravel Javascript Validation -->
+		<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+
 		<!-- custom js -->
 		<script src="{{URL::asset('assets/js/custom.js')}}"></script>
 
