@@ -35,7 +35,7 @@ Route::prefix('admin')->group(function ()
 
     Route::group(['middleware' => ['role:Admin']], function ()
     {
-        Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('home');
+        Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     });
 
 
