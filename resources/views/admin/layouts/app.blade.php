@@ -14,37 +14,37 @@
 		<title> Valex -  Premium dashboard ui bootstrap rwd admin html5 template </title>
 
 		<!-- Favicon -->
-		<link rel="icon" href="../../assets/img/brand/favicon.png" type="image/x-icon"/>
+		<link rel="icon" href="{{URL::asset('assets/img/brand/favicon.png')}}" type="image/x-icon"/>
 
 		<!-- Icons css -->
-		<link href="../../assets/css/icons.css" rel="stylesheet">
+		<link href="{{URL::asset('assets/css/icons.css')}}" rel="stylesheet">
 
 		<!-- Bootstrap css -->
-		<link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="{{URL::asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
 		<!--  Owl-carousel css-->
-		<link href="../../assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
+		<link href="{{URL::asset('assets/plugins/owl-carousel/owl.carousel.css')}}" rel="stylesheet" />
 
 		<!-- P-scroll bar css-->
-		<link href="../../assets/plugins/perfect-scrollbar/p-scrollbar.css" rel="stylesheet" />
+		<link href="{{URL::asset('assets/plugins/perfect-scrollbar/p-scrollbar.css')}}" rel="stylesheet" />
 
 		<!--  Right-sidemenu css -->
-		<link href="../../assets/plugins/sidebar/sidebar.css" rel="stylesheet">
+		<link href="{{URL::asset('assets/plugins/sidebar/sidebar.css')}}" rel="stylesheet">
 
 		<!-- Sidemenu css -->
-		<link rel="stylesheet" href="../../assets/css/sidemenu.css">
+		<link rel="stylesheet" href="{{URL::asset('assets/css/sidemenu.css')}}">
 
 		<!-- Maps css -->
-		<link href="../../assets/plugins/jqvmap/jqvmap.min.css" rel="stylesheet">
+		<link href="{{URL::asset('assets/plugins/jqvmap/jqvmap.min.css')}}" rel="stylesheet">
 
 		<!-- style css -->
-		<link href="../../assets/css/style.css" rel="stylesheet">
-		<link href="../../assets/css/style-dark.css" rel="stylesheet">
-		<link href="../../assets/css/boxed.css" rel="stylesheet">
-		<link href="../../assets/css/dark-boxed.css" rel="stylesheet">
+		<link href="{{URL::asset('assets/css/style.css')}}" rel="stylesheet">
+		<link href="{{URL::asset('assets/css/style-dark.css')}}')}}" rel="stylesheet">
+		<link href="{{URL::asset('assets/css/boxed.css')}}" rel="stylesheet">
+		<link href="{{URL::asset('assets/css/dark-boxed.css')}}" rel="stylesheet">
 
 		<!---Skinmodes css-->
-		<link href="../../assets/css/skin-modes.css" rel="stylesheet" />
+		<link href="{{URL::asset('assets/css/skin-modes.css')}}" rel="stylesheet" />
 
 	</head>
 
@@ -52,7 +52,7 @@
 
 		<!-- Loader -->
 		<div id="global-loader">
-			<img src="../../assets/img/loader.svg" class="loader-img" alt="Loader">
+			<img src="{{URL::asset('assets/img/loader.svg')}}" class="loader-img" alt="Loader">
 		</div>
 		<!-- /Loader -->
 		<div class="page">
@@ -64,13 +64,13 @@
 				<div class="container-fluid">
 					<div class="main-header-left ">
 						<div class="responsive-logo">
-							<a href="index.html"><img src="../../assets/img/brand/logo.png" class="logo-1"
+							<a href="index.html"><img src="{{URL::asset('assets/img/brand/logo.png')}}" class="logo-1"
 									alt="logo"></a>
-							<a href="index.html"><img src="../../assets/img/brand/logo-white.png" class="dark-logo-1"
+							<a href="index.html"><img src="{{URL::asset('assets/img/brand/logo-white.png')}}" class="dark-logo-1"
 									alt="logo"></a>
-							<a href="index.html"><img src="../../assets/img/brand/favicon.png" class="logo-2"
+							<a href="index.html"><img src="{{URL::asset('assets/img/brand/favicon.png')}}" class="logo-2"
 									alt="logo"></a>
-							<a href="index.html"><img src="../../assets/img/brand/favicon-white.png" class="dark-logo-2"
+							<a href="index.html"><img src="{{URL::asset('assets/img/brand/favicon-white.png')}}" class="dark-logo-2"
 									alt="logo"></a>
 						</div>
 						<div class="app-sidebar__toggle" data-bs-toggle="sidebar">
@@ -198,11 +198,11 @@
 
 							<li class="dropdown main-profile-menu nav nav-item nav-link">
 								<a class="profile-user d-flex" href=""><img alt=""
-										src="../../assets/img/faces/6.jpg"></a>
+										src="{{URL::asset('assets/img/faces/6.jpg')}}"></a>
 								<div class="dropdown-menu">
 									<div class="main-header-profile bg-primary p-3">
 										<div class="d-flex wd-100p">
-											<div class="main-img-user"><img alt="" src="../../assets/img/faces/6.jpg"
+											<div class="main-img-user"><img alt="" src="{{URL::asset('assets/img/faces/6.jpg')}}"
 													class=""></div>
 											<div class="ms-3 my-auto">
 												<h6>Petey Cruiser</h6><span>Premium Member</span>
@@ -243,7 +243,7 @@
 							<div class="action-header clearfix">
 								<div class="float-start hidden-xs d-flex ms-2">
 									<div class="img_cont me-3">
-										<img src="../../assets/img/faces/6.jpg" class="rounded-circle user_img" alt="img">
+										<img src="{{URL::asset('assets/img/faces/6.jpg')}}" class="rounded-circle user_img" alt="img">
 									</div>
 									<div class="align-items-center mt-2">
 										<h4 class="text-white mb-0 fw-semibold">Daneil Scott</h4>
@@ -288,7 +288,7 @@
 								</div>
 								<div class="d-flex justify-content-start">
 									<div class="img_cont_msg">
-										<img src="../../assets/img/faces/6.jpg" class="rounded-circle user_img_msg" alt="img">
+										<img src="{{URL::asset('assets/img/faces/6.jpg')}}" class="rounded-circle user_img_msg" alt="img">
 									</div>
 									<div class="msg_cotainer">
 										Hi, how are you Jenna Side?
@@ -301,12 +301,12 @@
 										<span class="msg_time_send">8:55 AM, Today</span>
 									</div>
 									<div class="img_cont_msg">
-										<img src="../../assets/img/faces/9.jpg" class="rounded-circle user_img_msg" alt="img">
+										<img src="{{URL::asset('assets/img/faces/9.jpg')}}" class="rounded-circle user_img_msg" alt="img">
 									</div>
 								</div>
 								<div class="d-flex justify-content-start ">
 									<div class="img_cont_msg">
-										<img src="../../assets/img/faces/6.jpg" class="rounded-circle user_img_msg" alt="img">
+										<img src="{{URL::asset('assets/img/faces/6.jpg')}}" class="rounded-circle user_img_msg" alt="img">
 									</div>
 									<div class="msg_cotainer">
 										I am good too, thank you for your chat template
@@ -319,12 +319,12 @@
 										<span class="msg_time_send">9:05 AM, Today</span>
 									</div>
 									<div class="img_cont_msg">
-										<img src="../../assets/img/faces/9.jpg" class="rounded-circle user_img_msg" alt="img">
+										<img src="{{URL::asset('assets/img/faces/9.jpg')}}" class="rounded-circle user_img_msg" alt="img">
 									</div>
 								</div>
 								<div class="d-flex justify-content-start ">
 									<div class="img_cont_msg">
-										<img src="../../assets/img/faces/6.jpg" class="rounded-circle user_img_msg" alt="img">
+										<img src="{{URL::asset('assets/img/faces/6.jpg')}}" class="rounded-circle user_img_msg" alt="img">
 									</div>
 									<div class="msg_cotainer">
 										Yo, Can you update Views?
@@ -337,12 +337,12 @@
 										<span class="msg_time_send">9:10 AM, Today</span>
 									</div>
 									<div class="img_cont_msg">
-										<img src="../../assets/img/faces/9.jpg" class="rounded-circle user_img_msg" alt="img">
+										<img src="{{URL::asset('assets/img/faces/9.jpg')}}" class="rounded-circle user_img_msg" alt="img">
 									</div>
 								</div>
 								<div class="d-flex justify-content-start ">
 									<div class="img_cont_msg">
-										<img src="../../assets/img/faces/6.jpg" class="rounded-circle user_img_msg" alt="img">
+										<img src="{{URL::asset('assets/img/faces/6.jpg')}}" class="rounded-circle user_img_msg" alt="img">
 									</div>
 									<div class="msg_cotainer">
 										Yo, Can you update Views?
@@ -355,12 +355,12 @@
 										<span class="msg_time_send">9:10 AM, Today</span>
 									</div>
 									<div class="img_cont_msg">
-										<img src="../../assets/img/faces/9.jpg" class="rounded-circle user_img_msg" alt="img">
+										<img src="{{URL::asset('assets/img/faces/9.jpg')}}" class="rounded-circle user_img_msg" alt="img">
 									</div>
 								</div>
 								<div class="d-flex justify-content-start ">
 									<div class="img_cont_msg">
-										<img src="../../assets/img/faces/6.jpg" class="rounded-circle user_img_msg" alt="img">
+										<img src="{{URL::asset('assets/img/faces/6.jpg')}}" class="rounded-circle user_img_msg" alt="img">
 									</div>
 									<div class="msg_cotainer">
 										Yo, Can you update Views?
@@ -373,12 +373,12 @@
 										<span class="msg_time_send">9:10 AM, Today</span>
 									</div>
 									<div class="img_cont_msg">
-										<img src="../../assets/img/faces/9.jpg" class="rounded-circle user_img_msg" alt="img">
+										<img src="{{URL::asset('assets/img/faces/9.jpg')}}" class="rounded-circle user_img_msg" alt="img">
 									</div>
 								</div>
 								<div class="d-flex justify-content-start">
 									<div class="img_cont_msg">
-										<img src="../../assets/img/faces/6.jpg" class="rounded-circle user_img_msg" alt="img">
+										<img src="{{URL::asset('assets/img/faces/6.jpg')}}" class="rounded-circle user_img_msg" alt="img">
 									</div>
 									<div class="msg_cotainer">
 										Okay Bye, text you later..
@@ -411,7 +411,7 @@
 					<div class="modal-content bg-dark border-0 text-white">
 						<div class="modal-body mx-auto text-center p-7">
 							<h5>Valex Video call</h5>
-							<img src="../../assets/img/faces/6.jpg" class="rounded-circle user-img-circle h-8 w-8 mt-4 mb-3" alt="img">
+							<img src="{{URL::asset('assets/img/faces/6.jpg')}}" class="rounded-circle user-img-circle h-8 w-8 mt-4 mb-3" alt="img">
 							<h4 class="mb-1 fw-semibold">Daneil Scott</h4>
 							<h6>Calling...</h6>
 							<div class="mt-5">
@@ -444,7 +444,7 @@
 					<div class="modal-content border-0">
 						<div class="modal-body mx-auto text-center p-7">
 							<h5>Valex Voice call</h5>
-							<img src="../../assets/img/faces/6.jpg" class="rounded-circle user-img-circle h-8 w-8 mt-4 mb-3" alt="img">
+							<img src="{{URL::asset('assets/img/faces/6.jpg')}}" class="rounded-circle user-img-circle h-8 w-8 mt-4 mb-3" alt="img">
 							<h4 class="mb-1  fw-semibold">Daneil Scott</h4>
 							<h6>Calling...</h6>
 							<div class="mt-5">
@@ -486,65 +486,65 @@
 		<a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
 
 		<!-- JQuery min js -->
-		<script src="../../assets/plugins/jquery/jquery.min.js"></script>
+		<script src="{{URL::asset('assets/plugins/jquery/jquery.min.js')}}"></script>
 
 		<!-- Bootstrap Bundle js -->
-		<script src="../../assets/plugins/bootstrap/js/popper.min.js"></script>
-		<script src="../../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="{{URL::asset('assets/plugins/bootstrap/js/popper.min.js')}}"></script>
+		<script src="{{URL::asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
 		<!--Internal  Chart.bundle js -->
-		<script src="../../assets/plugins/chart.js/Chart.bundle.min.js"></script>
+		<script src="{{URL::asset('assets/plugins/chart.js/Chart.bundle.min.js')}}"></script>
 
 		<!-- Ionicons js -->
-		<script src="../../assets/plugins/ionicons/ionicons.js"></script>
+		<script src="{{URL::asset('assets/plugins/ionicons/ionicons.js')}}"></script>
 
 		<!-- Moment js -->
-		<script src="../../assets/plugins/moment/moment.js"></script>
+		<script src="{{URL::asset('assets/plugins/moment/moment.js')}}"></script>
 
 		<!--Internal Sparkline js -->
-		<script src="../../assets/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+		<script src="{{URL::asset('assets/plugins/jquery-sparkline/jquery.sparkline.min.js')}}"></script>
 
 		<!-- Moment js -->
-		<script src="../../assets/plugins/raphael/raphael.min.js"></script>
+		<script src="{{URL::asset('assets/plugins/raphael/raphael.min.js')}}"></script>
 
 		<!--Internal Apexchart js-->
-		<script src="../../assets/js/apexcharts.js"></script>
+		<script src="{{URL::asset('assets/js/apexcharts.js')}}"></script>
 
 		<!-- Rating js-->
-		<script src="../../assets/plugins/rating/jquery.rating-stars.js"></script>
-		<script src="../../assets/plugins/rating/jquery.barrating.js"></script>
+		<script src="{{URL::asset('assets/plugins/rating/jquery.rating-stars.js')}}"></script>
+		<script src="{{URL::asset('assets/plugins/rating/jquery.barrating.js')}}"></script>
 
 		<!--Internal  Perfect-scrollbar js -->
-		<script src="../../assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-		<script src="../../assets/plugins/perfect-scrollbar/p-scroll.js"></script>
+		<script src="{{URL::asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+		<script src="{{URL::asset('assets/plugins/perfect-scrollbar/p-scroll.js')}}"></script>
 
 		<!-- Eva-icons js -->
-		<script src="../../assets/js/eva-icons.min.js"></script>
+		<script src="{{URL::asset('assets/js/eva-icons.min.js')}}"></script>
 
 		<!-- right-sidebar js -->
-		<script src="../../assets/plugins/sidebar/sidebar.js"></script>
-		<script src="../../assets/plugins/sidebar/sidebar-custom.js"></script>
+		<script src="{{URL::asset('assets/plugins/sidebar/sidebar.js')}}"></script>
+		<script src="{{URL::asset('assets/plugins/sidebar/sidebar-custom.js')}}"></script>
 
 		<!-- Sticky js -->
-		<script src="../../assets/js/sticky.js"></script>
-		<script src="../../assets/js/modal-popup.js"></script>
+		<script src="{{URL::asset('assets/js/sticky.js')}}"></script>
+		<script src="{{URL::asset('assets/js/modal-popup.js')}}"></script>
 
 		<!-- Left-menu js-->
-		<script src="../../assets/plugins/side-menu/sidemenu.js"></script>
+		<script src="{{URL::asset('assets/plugins/side-menu/sidemenu.js')}}"></script>
 
 		<!-- Internal Map -->
-		<script src="../../assets/plugins/jqvmap/jquery.vmap.min.js"></script>
-		<script src="../../assets/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+		<script src="{{URL::asset('assets/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
+		<script src="{{URL::asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
 
 		<!--Internal  index js -->
-		<script src="../../assets/js/index.js"></script>
+		<script src="{{URL::asset('assets/js/index.js')}}"></script>
 
 		<!-- Apexchart js-->
-		<script src="../../assets/js/apexcharts.js"></script>
-		<script src="../../assets/js/jquery.vmap.sampledata.js"></script>
+		<script src="{{URL::asset('assets/js/apexcharts.js')}}"></script>
+		<script src="{{URL::asset('assets/js/jquery.vmap.sampledata.js')}}"></script>
 
 		<!-- custom js -->
-		<script src="../../assets/js/custom.js"></script>
+		<script src="{{URL::asset('assets/js/custom.js')}}"></script>
 
 	</body>
 </html>
