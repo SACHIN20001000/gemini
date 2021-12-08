@@ -8,6 +8,7 @@
                 <h4 class="content-title mb-0 my-auto">Categories</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{isset($category) ? $category->name : 'Add New' }}</span>
             </div>
         </div>
+        <a class="btn btn-main-primary ml_auto" href="{{ route('categories.index') }}">View Categories</a>
     </div>
     <!-- breadcrumb -->
     <!--Row-->
@@ -19,7 +20,7 @@
                     <div class="main-content-label mg-b-5">
                         {{isset($category) ? 'Update # '.$category->id : 'Add New' }}
                     </div>
-                    <a href="{{ route('categories.index') }}" >	<button style="float: right; margin: -50px 0px;" class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5">View Categories</button></a>
+                    
 
                     <!--  start  --> 
                     <form  id="category-add-edit" action="{{isset($category) ? route('categories.update',$category->id) : route('categories.store')}}" method="POST">
