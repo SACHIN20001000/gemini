@@ -13,7 +13,6 @@ import './assets/js/jquery-3.6.0.min.js'
 import './assets/js/bootstrap.bundle.min.js'
 import './assets/css/bootstrap.min.css'
 import './assets/css/style.css'
-import './assets/css/slick.css'
 
 new Vue({
     el: "#app",

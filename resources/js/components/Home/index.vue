@@ -120,6 +120,440 @@
         </div>
       </div>
     </section>
+    <section class="two_img">
+      <div class="container_max">
+        <div class="row pad_15">
+          <div class="col-md-6 txt_over">
+            <a href="#">
+              <img
+                :src="imgDog"
+                alt="Dog"
+              >
+              <h2>Dogs</h2>
+            </a>
+          </div>
+          <div class="col-md-6 txt_over">
+            <a href="#">
+              <img
+                :src="imgCat"
+                alt="cat"
+              >
+              <h2>Cats</h2>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="container_max">
+        <div class="row">
+          <div class="col-md-4">
+            <a href="#" class="img_box1 gray_panel">
+              <h3>GET THE <span class="re_d">APP</span></h3>
+              <img
+                :src="imgIos"
+                alt="ios"
+              >
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a href="#" class="img_box2 gray_panel">
+              <h3>Curbside <span  class="re_d">Pickup</span></h3>
+              <img
+                src="imgBag"
+                alt=""
+              >
+            </a>
+          </div>
+          <div class="col-md-4">
+            <div class="img_box3 gray_panel">
+              <div class="wrp">
+                <h3>PET PARENTS<span class="re_d">+</span>®</h3>
+                <a href="min_a">Learn More</a>
+              </div>
+              <img
+                :src="imgPawP"
+                alt="pawP"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="two_img rd_blue">
+      <div class="container_max">
+        <div class="row pad_15">
+          <div class="col-md-6 red_box">
+            <div class="con_box rect">
+              <div>
+                <img
+                  :src="imgMonk"
+                  alt="Monk"
+                >
+                <h2>SUMMER <span>TOYS</span></h2>
+                <a href="#">Learn More</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 blue_box">
+            <div class="con_box rect">
+              <div>
+                <h2>
+                  <span>Day</span>Spaw<sup>™</sup>
+                </h2>
+                <p>
+                  <a href="#">Schedule</a> your appointment today
+                </p>
+                <img
+                  :src="imgBath"
+                  alt="Bath"
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="cart_slider">
+      <div class="container_max">
+        <h1 class="line_heading">Sale</h1>
+        <ul class=" row cart_slide slider margin_row">
+          <slick
+            ref="productPanel"
+            :options="productPanelOptions"
+          >
+            <li>
+              <div class="product_panel">
+                <div class="prod_img">
+                  <img
+                    :src="imgPro2"
+                    alt="Pro5"
+                  >
+                </div>
+                <div class="prod_details">
+                  <div class="rat_ing">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </div>
+                  <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
+                  <div class="cart_flex">
+                    <h3>$6.10</h3>
+                    <a href="#">Add To cart</a>
+                  </div>
+                </div>
+                <label class="sale_tag">Sale</label>
+              </div>
+            </li>
+            <li>
+              <div class="product_panel">
+                <div class="prod_img">
+                  <img
+                    :src="imgPro3"
+                    alt="Pro5"
+                  >
+                </div>
+                <div class="prod_details">
+                  <div class="rat_ing">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </div>
+                  <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
+                  <div class="cart_flex">
+                    <h3>$6.10</h3>
+                    <a href="#">Add To cart</a>
+                  </div>
+                </div>
+                <label class="sale_tag">Sale</label>
+              </div>
+            </li>
+            <li>
+              <div class="product_panel">
+                <div class="prod_img">
+                  <img
+                    :src="imgPro4"
+                    alt="Pro5"
+                  >
+                </div>
+                <div class="prod_details">
+                  <div class="rat_ing">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </div>
+                  <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
+                  <div class="cart_flex">
+                    <h3>$6.10</h3>
+                    <a href="#">Add To cart</a>
+                  </div>
+                </div>
+                <label class="sale_tag">Sale</label>
+              </div>
+            </li>
+            <li>
+              <div class="product_panel">
+                <div class="prod_img">
+                  <img
+                    :src="imgPro5"
+                    alt="Pro5"
+                  >
+                </div>
+                <div class="prod_details">
+                  <div class="rat_ing">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </div>
+                  <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
+                  <div class="cart_flex">
+                    <h3>$6.10</h3>
+                    <a href="#">Add To cart</a>
+                  </div>
+                </div>
+                <label class="sale_tag">Sale</label>
+              </div>
+            </li>
+            <li>
+              <div class="product_panel">
+                <div class="prod_img">
+                  <img
+                    :src="imgPro4"
+                    alt="Pro5"
+                  >
+                </div>
+                <div class="prod_details">
+                  <div class="rat_ing">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </div>
+                  <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
+                  <div class="cart_flex">
+                    <h3>$6.10</h3>
+                    <a href="#">Add To cart</a>
+                  </div>
+                </div>
+                <label class="sale_tag">Sale</label>
+              </div>
+            </li>
+            <li>
+              <div class="product_panel">
+                <div class="prod_img">
+                  <img
+                    :src="imgPro2"
+                    alt="Pro5"
+                  >
+                </div>
+                <div class="prod_details">
+                  <div class="rat_ing">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </div>
+                  <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
+                  <div class="cart_flex">
+                    <h3>$6.10</h3>
+                    <a href="#">Add To cart</a>
+                  </div>
+                </div>
+                <label class="sale_tag">Sale</label>
+              </div>
+            </li>
+          </slick>
+        </ul>
+      </div>
+    </section>
+    <section class="duo_banner">
+      <div class="container_max">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="height_mix">
+              <div class="sub_1">
+                <h1>SUBSCRIPTION <span>PAWGRAM<sup>®</sup></span></h1>
+                <p>Convenience + Savings. Yes please.</p>
+                <a href="#">Learn More</a>
+                <img
+                  :src="imgGnaw"
+                  alt="Gnaw"
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="height_mix">
+              <img
+                :src="imgHeat"
+                alt="heat"
+              >
+              <div class="sub_2">
+                <div class="over_red">
+                  <small>LATEST BLOG POST</small>
+                  <h2>Heart Diseases in Dogs</h2>
+                  <a href="#">Continue Reading</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="Keep_touch">
+      <div class="container_min">
+        <div class="row">
+          <div class="col-md-2">
+            <img
+              :src="imgTouch"
+              alt="Touch"
+            >
+          </div>
+          <div class="col-md-6 form_text text-center">
+            <h1>
+              Keep <span class="thin">in</span>
+              <span class="re_d">Touch</span>
+            </h1>
+            <p>Stay up to date with the latest sales, new products, and special events.</p>
+          </div>
+          <div class="col-md-4">
+            <form class="touch_form">
+              <div class="from_grp">
+                <input type="text" placeholder="First Name">
+              </div>
+              <div class="from_grp">
+                <input type="text" placeholder="Last Name">
+              </div>
+              <div class="from_grp radio_check">
+                <span>
+                  <input type="radio" name="cat">Cat
+                </span>
+                <span>
+                  <input type="radio" name="dog">Dog
+                </span>
+              </div>
+              <div class="from_grp">
+                <input type="Email" placeholder="Enter your Email">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="xl_sec">
+      <img
+        :src="imgBg2"
+        alt="bg2"
+      >
+      <div class="container_max ab_over">
+        <div class="row">
+          <div class="col-md-5 offset-md-7">
+            <div class="div_center">
+              <h3 class="lab_22">The <b>Pet Parents</b> Store <label>XL</label></h3>
+              <p class="p_16">All you need, In one place.</p>
+              <a href="#" class="btn_grn">Learn more</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="insta_Sec">
+      <div class="container_max">
+        <h3 class="insta_head"><span>@pet.parents</span></h3>
+        <ul class="insta_nails">
+          <li>
+            <a href="#">
+              <span>
+                <img
+                  :src="imgIn1"
+                  alt="in1"
+                >
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span>
+                <img
+                  :src="imgIn2"
+                  alt="in2"
+                >
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span>
+                <img
+                  :src="imgIn3"
+                  alt="in3"
+                >
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span>
+                <img
+                  :src="imgIn4"
+                  alt="in4"
+                >
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span>
+                <img
+                  :src="imgIn5"
+                  alt="in5"
+                >
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span>
+                <img
+                  :src="imgIn6"
+                  alt="in6"
+                >
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span>
+                <img
+                  :src="imgIn7"
+                  alt="in7"
+                >
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span>
+                <img
+                  :src="imgIn8"
+                  alt="in8"
+                >
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
   </div>
 </template>
 <style>
@@ -136,6 +570,30 @@ import imgToys from "../../assets/images/toys.png"
 import imgSl1 from "../../assets/images/sl1.jpg"
 import imgSl2 from "../../assets/images/sl2.jpg"
 import imgSl3 from "../../assets/images/sl3.jpg"
+import imgDog from "../../assets/images/dog.jpg"
+import imgCat from "../../assets/images/cat.jpg"
+import imgIos from "../../assets/images/ios.png"
+import imgBag from "../../assets/images/bag.png"
+import imgPawP from "../../assets/images/paw_p.png"
+import imgMonk from "../../assets/images/monk.png"
+import imgBath from "../../assets/images/bath.jpg"
+import imgPro5 from "../../assets/images/pro5.png"
+import imgPro2 from "../../assets/images/pro2.jpg"
+import imgPro3 from "../../assets/images/pro3.jpg"
+import imgPro4 from "../../assets/images/pro4.jpg"
+import imgGnaw from "../../assets/images/gnaw.png"
+import imgHeat from "../../assets/images/heat.jpg"
+import imgTouch from "../../assets/images/touch.jpg"
+import imgBg2 from "../../assets/images/bg2.jpg"
+import imgIn1 from "../../assets/images/in1.jpg"
+import imgIn2 from "../../assets/images/in2.jpg"
+import imgIn3 from "../../assets/images/in3.jpg"
+import imgIn4 from "../../assets/images/in4.jpg"
+import imgIn5 from "../../assets/images/in5.jpg"
+import imgIn6 from "../../assets/images/in6.jpg"
+import imgIn7 from "../../assets/images/in7.jpg"
+import imgIn8 from "../../assets/images/in8.jpg"
+
 import Slick from 'vue-slick'
 
 export default {
@@ -152,24 +610,56 @@ export default {
       imgSl1: imgSl1,
       imgSl2: imgSl2,
       imgSl3: imgSl3,
+      imgDog: imgDog,
+      imgCat: imgCat,
+      imgIos: imgIos,
+      imgBag: imgBag,
+      imgPawP: imgPawP,
+      imgMonk: imgMonk,
+      imgBath: imgBath,
+      imgPro5: imgPro5,
+      imgPro4: imgPro4,
+      imgPro3: imgPro3,
+      imgPro2: imgPro2,
+      imgGnaw: imgGnaw,
+      imgHeat: imgHeat,
+      imgTouch: imgTouch,
+      imgBg2: imgBg2,
+      imgIn1: imgIn1,
+      imgIn2: imgIn2,
+      imgIn3: imgIn3,
+      imgIn4: imgIn4,
+      imgIn5: imgIn5,
+      imgIn6: imgIn6,
+      imgIn7: imgIn7,
+      imgIn8: imgIn8,
       slickOptions: {
         slidesToShow: 3,
         infinite: true,
         slidesToShow: 3,
         slidesToScroll: 3
+      },
+      productPanelOptions: {
+        slidesToShow: 5,
+        infinite: true,
+        slidesToShow: 5,
+        slidesToScroll: 5
       }
     }
   },
   methods: {
     next() {
         this.$refs.slick.next()
+        this.$refs.productPanel.next()
     },
     prev() {
         this.$refs.slick.prev();
+        this.$refs.productPanel.prev();
     },
     reInit() {
       this.$nextTick(() => {
         this.$refs.slick.reSlick();
+        this.$refs.productPanel.reSlick();
       });
     },
     handleAfterChange(event, slick, currentSlide) {
