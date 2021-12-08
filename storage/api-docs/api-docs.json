@@ -19,6 +19,41 @@
         }
     ],
     "paths": {
+        "/category": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Category",
+                "operationId": "index",
+                "responses": {
+                    "200": {
+                        "description": "Category",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CategoryResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/register": {
             "post": {
                 "tags": [
@@ -134,7 +169,7 @@
                 ]
             }
         },
-        "/updateprofile": {
+        "/update": {
             "put": {
                 "tags": [
                     "Users"
@@ -193,6 +228,22 @@
                     }
                 },
                 "type": "string"
+            },
+            "CategoryResponse": {
+                "title": "Category Response",
+                "description": "Category Response",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "example": {
+                            "id": "1",
+                            "name": "admin",
+                            "slug": "admin",
+                            "created": "Dec 08, 2021 10:30:06"
+                        }
+                    }
+                },
+                "type": "object"
             },
             "Forbidden": {
                 "title": "Forbidden",

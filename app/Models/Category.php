@@ -16,4 +16,8 @@ class Category extends Model
     protected $fillable = [
         'name', 'slug', 'parent_id'
     ];
+    public function getCreatedAtAttribute($value)
+    {
+        return date('M d, Y h:i:s',strtotime($value));
+    }
 }

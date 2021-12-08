@@ -19,7 +19,7 @@
                 <div class="card-header pb-0">
                     <p class="tx-12 tx-gray-500 mb-2">Listing of All Categories...</p>
                 </div>
-                <a href="{{ route('categories.create') }}" style="margin-left: 1070px;">	<button style=" float:right; "  class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5">Add New</button></a>
+                <a href="{{ route('categories.create') }}">	<button  class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5">Add New</button></a>
                 <div class="card-body">
 
                     <!-- Listing all data in user tables -->
