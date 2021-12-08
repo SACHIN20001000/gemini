@@ -51,10 +51,10 @@
                                     <label class="form-label mg-b-0">Parent Category</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <select name="parent_id"  class="form-control">
+                                    <select name="parent"  class="form-control">
                                         <option value="0">Choose Below..</option>
                                         @foreach($categories as $item)
-                                        <option {{ (isset($category) && $category->parent_id  == $item->id) ? 'selected' : '' }}  value="{{$item->id}}">  {{$item->name}}</option>
+                                        <option {{ (isset($category) && $category->parent  == $item->id) ? 'selected' : '' }}  value="{{$item->id}}">  {{$item->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
