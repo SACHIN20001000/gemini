@@ -23,7 +23,7 @@
                     
 
                     <!--  start  --> 
-                    <form  id="category-add-edit" action="{{isset($category) ? route('categories.update',$category->id) : route('categories.store')}}" method="POST">
+                    <form  id="category-add-edit" action="{{isset($category) ? route('categories.update',$category->id) : route('categories.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{ isset($category) ? method_field('PUT'):'' }}
                         <div class="pd-30 pd-sm-40 bg-gray-200">
@@ -33,6 +33,17 @@
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                     <input class="form-control" name="name"  placeholder="Enter your name" type="text" value="{{isset($category) ? $category->name : '' }}">
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Feature Image</label>
+                                </div>
+                            <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="feature_image"  value="{{isset($category) ? $category->feature_image : '' }}" type="file">
+                                    @if(!empty($category->feature_image))
+                                    <a href="{{url('/images/',$category->feature_image)}}" _blank><img src="{{url('/images',$category->feature_image)}}"  height="50" width="50"></a>
+                                    @endif                                    
                                 </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">

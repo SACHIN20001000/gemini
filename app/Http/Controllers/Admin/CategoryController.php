@@ -67,8 +67,11 @@ class CategoryController extends Controller
     {
         $slug = Str::slug($request->name);
         $inputs = $request->all();
+        $imageName =$request->file('feature_image')->getClientOriginalName(); 
+        $inputs['feature_image'] = $imageName;
         $inputs['slug'] = $slug;
         Category::create($inputs);
+        $request->feature_image->move(public_path('images'), $imageName);
         return back()->with('success','Category addded successfully!');
     }
 
@@ -106,8 +109,15 @@ class CategoryController extends Controller
     {
         $slug = Str::slug($request->name);
         $inputs = $request->all();
+        if($request->hasFile('feature_image')){
+            $imageName =$request->file('feature_image')->getClientOriginalName(); 
+            $inputs['feature_image'] = $imageName;
+            $request->feature_image->move(public_path('images'), $imageName);
+        }
         $inputs['slug'] = $slug;
         $category->update($inputs);
+       
+
         return back()->with('success','Category updated successfully!');
     }
 

@@ -14,7 +14,7 @@ class Category extends Model
     ];
 
     protected $fillable = [
-        'name', 'slug', 'parent_id'
+        'name', 'slug', 'parent_id','feature_image'
     ];
     public function getCreatedAtAttribute($value)
     {
