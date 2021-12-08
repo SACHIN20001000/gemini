@@ -1,0 +1,142 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/Open Sans/OpenSans-ExtraBold.woff2') format('woff2'),
+        url('../fonts/Open Sans/OpenSans-ExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/Open Sans/OpenSans-Bold.woff2') format('woff2'),
+        url('../fonts/Open Sans/OpenSans-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/Open Sans/OpenSans-Light.woff2') format('woff2'),
+        url('../fonts/Open Sans/OpenSans-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/Open Sans/OpenSans-Medium.woff2') format('woff2'),
+        url('../fonts/Open Sans/OpenSans-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/Open Sans/OpenSans-SemiBold.woff2') format('woff2'),
+        url('../fonts/Open Sans/OpenSans-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/Open Sans/OpenSans-Regular.woff2') format('woff2'),
+        url('../fonts/Open Sans/OpenSans-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+@font-face {
+    font-family: 'Gentona';
+    src: url('../fonts/Gentona/Gentona-ExtraLight.woff2') format('woff2'),
+        url('../fonts/Gentona/Gentona-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gentona-Book';
+    src: url('../fonts/Gentona/Gentona-Book.woff2') format('woff2'),
+        url('../fonts/Gentona/Gentona-Book.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gentona';
+    src: url('../fonts/Gentona/Gentona-Heavy.woff2') format('woff2'),
+        url('../fonts/Gentona/Gentona-Heavy.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gentona';
+    src: url('../fonts/Gentona/Gentona-Bold.woff2') format('woff2'),
+        url('../fonts/Gentona/Gentona-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gentona';
+    src: url('../fonts/Gentona/Gentona-ExtraBold.woff2') format('woff2'),
+        url('../fonts/Gentona/Gentona-ExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gentona';
+    src: url('../fonts/Gentona/Gentona-Light.woff2') format('woff2'),
+        url('../fonts/Gentona/Gentona-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gentona';
+    src: url('../fonts/Gentona/Gentona-Thin.woff2') format('woff2'),
+        url('../fonts/Gentona/Gentona-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gentona';
+    src: url('../fonts/Gentona/Gentona-SemiBold.woff2') format('woff2'),
+        url('../fonts/Gentona/Gentona-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gentona';
+    src: url('../fonts/Gentona/Gentona-Medium.woff2') format('woff2'),
+        url('../fonts/Gentona/Gentona-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+html,body
+{
+        font-family: 'Gentona',Open Sans;
+        background: #eeeeee;
+}
