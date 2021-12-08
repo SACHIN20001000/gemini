@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\PassportAuthController;
 use App\Http\Controllers\API\UserController;
-
+use App\Http\Controllers\API\CategoryController;
 /*
   |--------------------------------------------------------------------------
   | API Routes
@@ -23,7 +23,7 @@ Route::middleware('auth:api')->group(function ()
     Route::get('profile', [UserController::class, 'userProfile']);
     Route::put('update', [UserController::class, 'updateProfile']);
     Route::get('logout', [PassportAuthController::class, 'logout']);
-
+    Route::get('category', [CategoryController::class, 'index']);
     Route::group(['middleware' => ['role:User']], function ()
     {
       

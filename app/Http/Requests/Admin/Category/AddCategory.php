@@ -27,7 +27,7 @@ class AddCategory extends FormRequest
             'name' => [
             'required',
             'unique:categories,name'
-        ]
+            ],'feature_image' => 'required'
         ];
     }
 }
