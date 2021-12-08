@@ -77,7 +77,6 @@ Route::prefix('')->group(function ()
 {
     Route::get('{any}', function ()
     {
-        return view('welcome');
-        //return view('site');
+        return view('site');
     })->where('any', '.*');
 });
