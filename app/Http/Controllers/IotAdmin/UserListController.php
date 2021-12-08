@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use DataTables;
+use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Validator;
 class UserListController extends Controller
 {
