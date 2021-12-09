@@ -37,6 +37,14 @@ Route::prefix('admin')->group(function ()
     {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('categories', CategoryController::class);
+        Route::get('/page', [App\Http\Controllers\Admin\PageController::class, 'index'])->name('pages');
+        Route::post('/store', [App\Http\Controllers\Admin\PageController::class, 'store'])->name('storePage');
+        Route::get('/addPages', [App\Http\Controllers\Admin\PageController::class, 'addPages'])->name('addPages');
+        Route::get('/listPages', [App\Http\Controllers\Admin\PageController::class, 'listPages'])->name('listPages');
+        Route::any('/postChangeStatus', [App\Http\Controllers\Admin\PageController::class, 'postChangeStatus'])->name('postChangeStatus');
+        Route::get('/edit/{id}', [App\Http\Controllers\Admin\PageController::class, 'editPage'])->name('editPage');
+        Route::post('/update', [App\Http\Controllers\Admin\PageController::class, 'updatePage'])->name('updatePage');
+        Route::any('/delPage/{id}', [App\Http\Controllers\Admin\PageController::class, 'deletePage']);
     });
 });
 

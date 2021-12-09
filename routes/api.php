@@ -18,12 +18,17 @@ use App\Http\Controllers\API\CategoryController;
 
 Route::post('registers', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
+//below route for frontend vue
+Route::get('page', [FrontendController::class, 'page']);
+Route::get('/{slug}', [FrontendController::class, 'pageData']);
 Route::middleware('auth:api')->group(function ()
 {
     Route::get('profile', [UserController::class, 'userProfile']);
     Route::put('update', [UserController::class, 'updateProfile']);
     Route::get('logout', [PassportAuthController::class, 'logout']);
-    Route::get('category', [CategoryController::class, 'index']);
+    Route::get('categories', [CategoryController::class, 'index']);
+    Route::any('categories/{id}', [CategoryController::class, 'category_by_id']);
+
     Route::group(['middleware' => ['role:User']], function ()
     {
       

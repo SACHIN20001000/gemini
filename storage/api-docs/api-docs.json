@@ -19,20 +19,65 @@
         }
     ],
     "paths": {
-        "/category": {
+        "/categories": {
             "get": {
                 "tags": [
-                    "Category"
+                    "Categories"
                 ],
-                "summary": "Category",
-                "operationId": "index",
+                "summary": "Categories",
+                "operationId": "Categories",
                 "responses": {
                     "200": {
-                        "description": "Category",
+                        "description": "Categories",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/CategoryResponse"
+                                    "$ref": "#/components/schemas/CategoriesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/categories/{id}": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Categories By Id",
+                "operationId": "Categories By Id",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CategoriesRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Categories",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CategoriesResponse"
                                 }
                             }
                         }
@@ -229,17 +274,28 @@
                 },
                 "type": "string"
             },
-            "CategoryResponse": {
-                "title": "Category Response",
-                "description": "Category Response",
+            "CategoriesRequest": {
+                "title": "Categories Request response",
+                "description": "Categories Request response",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id for storring",
+                        "type": "string",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "CategoriesResponse": {
+                "title": "Categories Response",
+                "description": "Categories Response",
                 "properties": {
                     "data": {
                         "type": "object",
                         "example": {
-                            "id": "1",
-                            "name": "admin",
-                            "slug": "admin",
-                            "created": "Dec 08, 2021 10:30:06"
+                            "name": "Bob",
+                            "email": "example@gmail.com"
                         }
                     }
                 },
