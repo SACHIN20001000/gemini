@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\IotAdmin;
+namespace App\Http\Requests\Admin\Profile;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class UpdateUserProfile extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,10 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'=>'required|string|email|unique:users',
-            'password'=>'required|string',
-            'role'  =>'required'
+          'email'=>'required|string|email',
+          'password' => 'string|min:8|required_with:confirm_password|same:confirm_password',
+          'confirm_password' => 'required|string|min:8' ,
+          
         ];
     }
 }

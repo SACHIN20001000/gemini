@@ -12,10 +12,56 @@ use Illuminate\Support\Str;
 use Auth;
 class PageController extends Controller
 {
-    public function index(){
-        $data = Post::with('users')->get();
+    public function index(Request $request){
       
-        return view("admin.pages.pageList",compact('data'));
+        if ($request->ajax())
+        {
+            $data = Post::with('users')->get();
+
+            return Datatables::of($data)
+            ->addIndexColumn()
+                            ->addColumn('status', function ($row)
+                            {
+                                if($row->status == 1){
+                                    $status =  '<span class="label text-success d-flex">
+                                                        <div class="dot-label bg-success me-1"></div>active
+                                                    </span>';
+                                }else{
+                                    $status =  '<span class="label text-danger d-flex">
+                                                        <div class="dot-label bg-danger me-1"></div> inactive
+                                                    </span>';
+                                }
+                                
+                                return $status;
+                            })
+                            ->addColumn('action', function ($row)
+                            {
+                                $action = '<span class="action-buttons">
+                                    <a  href="'.route("editPage", $row->id).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
+                                    </a>
+                                    
+                                    <a href="'.route("deletePage", $row->id).'"
+                                            class="btn btn-sm btn-danger remove_us"
+                                            title="Delete User"
+                                            data-toggle="tooltip"
+                                            data-placement="top"
+                                            data-method="DELETE"
+                                            data-confirm-title="Please Confirm"
+                                            data-confirm-text="Are you sure that you want to delete this Category?"
+                                            data-confirm-delete="Yes, delete it!">
+                                            <i class="las la-trash"></i>
+                                        </a>
+                                ';
+                                return $action;
+                            })
+
+                            ->rawColumns(['action','status'])
+                            ->make(true)
+                            ;
+        }
+
+        
+        return view("admin.pages.pageList");
     }
 
     //below function used for add page 
@@ -36,14 +82,7 @@ class PageController extends Controller
           ]);
           return redirect('admin/addPages')->with('success', 'Updated');
     }
-    //below function is used for change the status
-    public function postChangeStatus(Request $request){
-        $post = Post::find($request->user_id); 
-        $post->status = $request->status; 
-        $post->save(); 
-         return response()->json(['success'=>'Status change successfully.']); 
-
-    } 
+  
 
     public function editPage($id) { 
            $post = Post::find($id); 
