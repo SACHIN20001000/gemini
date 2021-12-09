@@ -59,7 +59,7 @@
                 <a class="nav-link" href="#">SUBSCRIPTION PAWGRAM®</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link "  href="#">PET PARENTS+® </a>
+                <a class="nav-link "  href="#">PET PARENTS+<sup>®</sup> </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">APP
