@@ -40,7 +40,7 @@
                                     <label class="form-label mg-b-0">Feature Image</label>
                                 </div>
                             <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="feature_image"  value="{{isset($category) ? $category->feature_image : '' }}" type="file">
+                                    <input class="form-control" name="feature_image"  type="file">
                                     @if(!empty($category->feature_image))
                                     <a href="{{url('/images/',$category->feature_image)}}" _blank><img src="{{url('/images',$category->feature_image)}}"  height="50" width="50"></a>
                                     @endif                                    
@@ -59,6 +59,18 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+											<div class="col-md-4">
+												<label class="form-label mg-b-0">Status</label>
+											</div>
+                      <div class="col-md-8 mg-t-5 mg-md-t-0">
+                      <select name="status" class="form-control">
+						<option value="">Choose Below..</option>
+						<option value="1" {{ (isset($category) && $category->status  == 1) ? 'selected' : '' }}>Active</option>
+                        <option value="0" {{ (isset($category) && $category->status  == 0) ? 'selected' : '' }}>Inactive</option>
+					  </select>
+                </div>
+								</div>
                             <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($category) ? 'Update' : 'Save' }}</button>
                         </div>
                 </div>

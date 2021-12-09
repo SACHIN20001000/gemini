@@ -18,9 +18,7 @@ use App\Http\Controllers\API\CategoryController;
 
 Route::post('registers', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
-//below route for frontend vue
-Route::get('page', [FrontendController::class, 'page']);
-Route::get('/{slug}', [FrontendController::class, 'pageData']);
+
 Route::middleware('auth:api')->group(function ()
 {
     Route::get('profile', [UserController::class, 'userProfile']);

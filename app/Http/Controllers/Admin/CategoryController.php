@@ -24,7 +24,17 @@ class CategoryController extends Controller
             $data = Category::get();
 
             return Datatables::of($data)
-                            ->addIndexColumn()
+            ->addIndexColumn()
+                            ->addColumn('status', function ($row)
+                            {
+                                if($row->status == 1){
+                                    $status =  "<i class='fas fa-thumbs-up' style='font-size:48px;color:red'></i>";
+                                }else{
+                                    $status =  "<i class='far fa-thumbs-down' style='font-size:48px;color:red'></i>";
+                                }
+                                
+                                return $status;
+                            })
                             ->addColumn('action', function ($row)
                             {
                                 $action = '<span class="action-buttons">
@@ -39,8 +49,10 @@ class CategoryController extends Controller
                                 ';
                                 return $action;
                             })
-                            ->rawColumns(['action'])
-                            ->make(true);
+
+                            ->rawColumns(['action','status'])
+                            ->make(true)
+                            ;
         }
 
         return view('admin.categories.index');
@@ -64,7 +76,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(AddCategory $request)
-    {
+    {  
         $slug = Str::slug($request->name);
         $inputs = $request->all();
         $imageName =$request->file('feature_image')->getClientOriginalName(); 
