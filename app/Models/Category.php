@@ -14,15 +14,15 @@ class Category extends Model
     ];
 
     protected $fillable = [
-        'name', 'slug', 'parent','feature_image','status','profile'
+        'name', 'slug', 'parent','feature_image','status'
     ];
     public function getCreatedAtAttribute($value)
     {
         return date('M d, Y h:i:s',strtotime($value));
     }
 
-    public function children() {
-        return $this->hasMany('App\Models\Category','parent');
+    public function childrens() {
+        return $this->hasMany('App\Models\Category','parent')->with('childrens');
     }
 
     public function parent() {
