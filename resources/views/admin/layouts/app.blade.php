@@ -9,6 +9,7 @@
         <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template">
         <meta name="Author" content="Spruko Technologies Private Limited">
         <meta name="Keywords" content="admin,admin dashboard,admin dashboard template,admin panel template,admin template,admin theme,bootstrap 4 admin template,bootstrap 4 dashboard,bootstrap admin,bootstrap admin dashboard,bootstrap admin panel,bootstrap admin template,bootstrap admin theme,bootstrap dashboard,bootstrap form template,bootstrap panel,bootstrap ui kit,dashboard bootstrap 4,dashboard design,dashboard html,dashboard template,dashboard ui kit,envato templates,flat ui,html,html and css templates,html dashboard template,html5,jquery html,premium,premium quality,sidebar bootstrap 4,template admin bootstrap 4"/>
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
 
         <!-- Title -->
         <title> Valex -  Premium dashboard ui bootstrap rwd admin html5 template </title>
@@ -539,6 +540,9 @@
         <script src="{{URL::asset('assets/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
         <script src="{{URL::asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
 
+        <!-- sweetalert2 js-->
+        <script src="{{URL::asset('assets/plugins/sweet-alert/sweetalert2.min.js')}}"></script>
+
         <!--Internal  index js -->
         <script src="{{URL::asset('assets/js/index.js')}}"></script>
 
@@ -553,16 +557,6 @@
         <!-- custom js -->
         <script src="{{URL::asset('assets/js/custom.js')}}"></script>
          <script src="{{ mix('js/admin.js') }}"></script>
-        <script type="text/javascript">
-                                   function deleteRow()
-                                   {
-                                       if (confirm("Are you sure you want to delete this?")) {
-                                           return true;
-                                       } else {
-                                           return false;
-                                       }
-                                   }
-        </script>
         @yield('scripts')
     </body>
 </html>

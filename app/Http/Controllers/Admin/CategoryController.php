@@ -28,9 +28,13 @@ class CategoryController extends Controller
                             ->addColumn('status', function ($row)
                             {
                                 if($row->status == 1){
-                                    $status =  "<i class='fas fa-thumbs-up' style='font-size:48px;color:red'></i>";
+                                    $status =  '<span class="label text-success d-flex">
+                                                        <div class="dot-label bg-success me-1"></div>active
+                                                    </span>';
                                 }else{
-                                    $status =  "<i class='far fa-thumbs-down' style='font-size:48px;color:red'></i>";
+                                    $status =  '<span class="label text-danger d-flex">
+                                                        <div class="dot-label bg-danger me-1"></div> inactive
+                                                    </span>';
                                 }
                                 
                                 return $status;
@@ -38,14 +42,20 @@ class CategoryController extends Controller
                             ->addColumn('action', function ($row)
                             {
                                 $action = '<span class="action-buttons">
-                                    <a href=' . url('admin/categories/' . $row->id . '/edit') . ' class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
+                                    <a  href="'.route("categories.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
-                                    <form action=' . url('admin/categories/' . $row->id) . ' method="POST">
-                                    ' . csrf_field() . '
-                                    ' . method_field("DELETE") . '
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return deleteRow();"
-                                        ><i class="las la-trash"></i></a>
-                                    </form></span>
+                                    
+                                    <a href="'.route("categories.destroy", $row).'"
+                                            class="btn btn-sm btn-danger remove_us"
+                                            title="Delete User"
+                                            data-toggle="tooltip"
+                                            data-placement="top"
+                                            data-method="DELETE"
+                                            data-confirm-title="Please Confirm"
+                                            data-confirm-text="Are you sure that you want to delete this role?"
+                                            data-confirm-delete="Yes, delete it!">
+                                            <i class="las la-trash"></i>
+                                        </a>
                                 ';
                                 return $action;
                             })

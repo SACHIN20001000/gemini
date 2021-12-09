@@ -3071,7 +3071,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_images_sl1_jpg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../assets/images/sl1.jpg */ "./resources/js/assets/images/sl1.jpg");
 /* harmony import */ var _assets_images_sl2_jpg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../assets/images/sl2.jpg */ "./resources/js/assets/images/sl2.jpg");
 /* harmony import */ var _assets_images_sl3_jpg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../assets/images/sl3.jpg */ "./resources/js/assets/images/sl3.jpg");
-/* harmony import */ var vue_slick__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-slick */ "./node_modules/vue-slick/dist/slickCarousel.esm.js");
+/* harmony import */ var _assets_images_dog_jpg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../assets/images/dog.jpg */ "./resources/js/assets/images/dog.jpg");
+/* harmony import */ var _assets_images_cat_jpg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../assets/images/cat.jpg */ "./resources/js/assets/images/cat.jpg");
+/* harmony import */ var _assets_images_ios_png__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../assets/images/ios.png */ "./resources/js/assets/images/ios.png");
+/* harmony import */ var _assets_images_bag_png__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../assets/images/bag.png */ "./resources/js/assets/images/bag.png");
+/* harmony import */ var _assets_images_paw_p_png__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../assets/images/paw_p.png */ "./resources/js/assets/images/paw_p.png");
+/* harmony import */ var _assets_images_monk_png__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../assets/images/monk.png */ "./resources/js/assets/images/monk.png");
+/* harmony import */ var _assets_images_bath_jpg__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../assets/images/bath.jpg */ "./resources/js/assets/images/bath.jpg");
+/* harmony import */ var _assets_images_pro5_png__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../assets/images/pro5.png */ "./resources/js/assets/images/pro5.png");
+/* harmony import */ var _assets_images_pro2_jpg__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../assets/images/pro2.jpg */ "./resources/js/assets/images/pro2.jpg");
+/* harmony import */ var _assets_images_pro3_jpg__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../assets/images/pro3.jpg */ "./resources/js/assets/images/pro3.jpg");
+/* harmony import */ var _assets_images_pro4_jpg__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../../assets/images/pro4.jpg */ "./resources/js/assets/images/pro4.jpg");
+/* harmony import */ var _assets_images_gnaw_png__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../../assets/images/gnaw.png */ "./resources/js/assets/images/gnaw.png");
+/* harmony import */ var _assets_images_heat_jpg__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../../assets/images/heat.jpg */ "./resources/js/assets/images/heat.jpg");
+/* harmony import */ var _assets_images_touch_jpg__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../../assets/images/touch.jpg */ "./resources/js/assets/images/touch.jpg");
+/* harmony import */ var _assets_images_bg2_jpg__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../../assets/images/bg2.jpg */ "./resources/js/assets/images/bg2.jpg");
+/* harmony import */ var _assets_images_in1_jpg__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../../assets/images/in1.jpg */ "./resources/js/assets/images/in1.jpg");
+/* harmony import */ var _assets_images_in2_jpg__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ../../assets/images/in2.jpg */ "./resources/js/assets/images/in2.jpg");
+/* harmony import */ var _assets_images_in3_jpg__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ../../assets/images/in3.jpg */ "./resources/js/assets/images/in3.jpg");
+/* harmony import */ var _assets_images_in4_jpg__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ../../assets/images/in4.jpg */ "./resources/js/assets/images/in4.jpg");
+/* harmony import */ var _assets_images_in5_jpg__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ../../assets/images/in5.jpg */ "./resources/js/assets/images/in5.jpg");
+/* harmony import */ var _assets_images_in6_jpg__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../../assets/images/in6.jpg */ "./resources/js/assets/images/in6.jpg");
+/* harmony import */ var _assets_images_in7_jpg__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ../../assets/images/in7.jpg */ "./resources/js/assets/images/in7.jpg");
+/* harmony import */ var _assets_images_in8_jpg__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ../../assets/images/in8.jpg */ "./resources/js/assets/images/in8.jpg");
+/* harmony import */ var vue_slick__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! vue-slick */ "./node_modules/vue-slick/dist/slickCarousel.esm.js");
 
 //
 //
@@ -3201,6 +3224,463 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3214,10 +3694,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Home",
   components: {
-    Slick: vue_slick__WEBPACK_IMPORTED_MODULE_10__["default"]
+    Slick: vue_slick__WEBPACK_IMPORTED_MODULE_33__["default"]
   },
   data: function data() {
-    var _slickOptions;
+    var _slickOptions, _productPanelOptions;
 
     return {
       imgShip: _assets_images_ship_png__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -3229,24 +3709,55 @@ __webpack_require__.r(__webpack_exports__);
       imgSl1: _assets_images_sl1_jpg__WEBPACK_IMPORTED_MODULE_7__["default"],
       imgSl2: _assets_images_sl2_jpg__WEBPACK_IMPORTED_MODULE_8__["default"],
       imgSl3: _assets_images_sl3_jpg__WEBPACK_IMPORTED_MODULE_9__["default"],
+      imgDog: _assets_images_dog_jpg__WEBPACK_IMPORTED_MODULE_10__["default"],
+      imgCat: _assets_images_cat_jpg__WEBPACK_IMPORTED_MODULE_11__["default"],
+      imgIos: _assets_images_ios_png__WEBPACK_IMPORTED_MODULE_12__["default"],
+      imgBag: _assets_images_bag_png__WEBPACK_IMPORTED_MODULE_13__["default"],
+      imgPawP: _assets_images_paw_p_png__WEBPACK_IMPORTED_MODULE_14__["default"],
+      imgMonk: _assets_images_monk_png__WEBPACK_IMPORTED_MODULE_15__["default"],
+      imgBath: _assets_images_bath_jpg__WEBPACK_IMPORTED_MODULE_16__["default"],
+      imgPro5: _assets_images_pro5_png__WEBPACK_IMPORTED_MODULE_17__["default"],
+      imgPro4: _assets_images_pro4_jpg__WEBPACK_IMPORTED_MODULE_20__["default"],
+      imgPro3: _assets_images_pro3_jpg__WEBPACK_IMPORTED_MODULE_19__["default"],
+      imgPro2: _assets_images_pro2_jpg__WEBPACK_IMPORTED_MODULE_18__["default"],
+      imgGnaw: _assets_images_gnaw_png__WEBPACK_IMPORTED_MODULE_21__["default"],
+      imgHeat: _assets_images_heat_jpg__WEBPACK_IMPORTED_MODULE_22__["default"],
+      imgTouch: _assets_images_touch_jpg__WEBPACK_IMPORTED_MODULE_23__["default"],
+      imgBg2: _assets_images_bg2_jpg__WEBPACK_IMPORTED_MODULE_24__["default"],
+      imgIn1: _assets_images_in1_jpg__WEBPACK_IMPORTED_MODULE_25__["default"],
+      imgIn2: _assets_images_in2_jpg__WEBPACK_IMPORTED_MODULE_26__["default"],
+      imgIn3: _assets_images_in3_jpg__WEBPACK_IMPORTED_MODULE_27__["default"],
+      imgIn4: _assets_images_in4_jpg__WEBPACK_IMPORTED_MODULE_28__["default"],
+      imgIn5: _assets_images_in5_jpg__WEBPACK_IMPORTED_MODULE_29__["default"],
+      imgIn6: _assets_images_in6_jpg__WEBPACK_IMPORTED_MODULE_30__["default"],
+      imgIn7: _assets_images_in7_jpg__WEBPACK_IMPORTED_MODULE_31__["default"],
+      imgIn8: _assets_images_in8_jpg__WEBPACK_IMPORTED_MODULE_32__["default"],
       slickOptions: (_slickOptions = {
         slidesToShow: 3,
         infinite: true
-      }, (0,D_xampp_htdocs_PetParents_Backend_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_slickOptions, "slidesToShow", 3), (0,D_xampp_htdocs_PetParents_Backend_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_slickOptions, "slidesToScroll", 3), _slickOptions)
+      }, (0,D_xampp_htdocs_PetParents_Backend_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_slickOptions, "slidesToShow", 3), (0,D_xampp_htdocs_PetParents_Backend_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_slickOptions, "slidesToScroll", 3), _slickOptions),
+      productPanelOptions: (_productPanelOptions = {
+        slidesToShow: 5,
+        infinite: true
+      }, (0,D_xampp_htdocs_PetParents_Backend_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_productPanelOptions, "slidesToShow", 5), (0,D_xampp_htdocs_PetParents_Backend_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_productPanelOptions, "slidesToScroll", 5), _productPanelOptions)
     };
   },
   methods: {
     next: function next() {
       this.$refs.slick.next();
+      this.$refs.productPanel.next();
     },
     prev: function prev() {
       this.$refs.slick.prev();
+      this.$refs.productPanel.prev();
     },
     reInit: function reInit() {
       var _this = this;
 
       this.$nextTick(function () {
         _this.$refs.slick.reSlick();
+
+        _this.$refs.productPanel.reSlick();
       });
     },
     handleAfterChange: function handleAfterChange(event, slick, currentSlide) {
@@ -3310,7 +3821,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_js_bootstrap_bundle_min_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_assets_js_bootstrap_bundle_min_js__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _assets_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./assets/css/bootstrap.min.css */ "./resources/js/assets/css/bootstrap.min.css");
 /* harmony import */ var _assets_css_style_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./assets/css/style.css */ "./resources/js/assets/css/style.css");
-/* harmony import */ var _assets_css_slick_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./assets/css/slick.css */ "./resources/js/assets/css/slick.css");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
@@ -3323,7 +3833,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 vue__WEBPACK_IMPORTED_MODULE_5__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_6__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_5__["default"].use((vue_sweetalert2__WEBPACK_IMPORTED_MODULE_3___default()));
 vue__WEBPACK_IMPORTED_MODULE_5__["default"].use((vue_notification__WEBPACK_IMPORTED_MODULE_2___default()));
-
 
 
 
@@ -23321,6 +23830,51 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/assets/images/bag.png":
+/*!********************************************!*\
+  !*** ./resources/js/assets/images/bag.png ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/bag.png?f47801bb387632b089db58fd6be3f83a");
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/bath.jpg":
+/*!*********************************************!*\
+  !*** ./resources/js/assets/images/bath.jpg ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/bath.jpg?26f3668c5d4cd1616b14e9c93e632ebb");
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/bg2.jpg":
+/*!********************************************!*\
+  !*** ./resources/js/assets/images/bg2.jpg ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/bg2.jpg?b728f9ccd4dae6104b099270cda831a3");
+
+/***/ }),
+
 /***/ "./resources/js/assets/images/cart_icon.png":
 /*!**************************************************!*\
   !*** ./resources/js/assets/images/cart_icon.png ***!
@@ -23333,6 +23887,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/cart_icon.png?5c07295d87e8c1fe69fc258cf7d9a297");
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/cat.jpg":
+/*!********************************************!*\
+  !*** ./resources/js/assets/images/cat.jpg ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/cat.jpg?2a1e494ad7d6b7fcd44d437f485b20b7");
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/dog.jpg":
+/*!********************************************!*\
+  !*** ./resources/js/assets/images/dog.jpg ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/dog.jpg?ca6307753bb5141bb1794767b0335f14");
 
 /***/ }),
 
@@ -23381,6 +23965,156 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/assets/images/gnaw.png":
+/*!*********************************************!*\
+  !*** ./resources/js/assets/images/gnaw.png ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/gnaw.png?2464f2125e207f0c2098136dc5f7ff6c");
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/heat.jpg":
+/*!*********************************************!*\
+  !*** ./resources/js/assets/images/heat.jpg ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/heat.jpg?f8d349d0a7bf7bcc59a630eeb35b02ad");
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/in1.jpg":
+/*!********************************************!*\
+  !*** ./resources/js/assets/images/in1.jpg ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/in1.jpg?146319a3c2f92765e017a5e5f935de5f");
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/in2.jpg":
+/*!********************************************!*\
+  !*** ./resources/js/assets/images/in2.jpg ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/in2.jpg?3711d6dc95b3ec458585d2267985ff02");
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/in3.jpg":
+/*!********************************************!*\
+  !*** ./resources/js/assets/images/in3.jpg ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/in3.jpg?024d7069fd14a17dfa480e8618802eda");
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/in4.jpg":
+/*!********************************************!*\
+  !*** ./resources/js/assets/images/in4.jpg ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/in4.jpg?f816948932ef2c1b8ea93029bcac58e9");
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/in5.jpg":
+/*!********************************************!*\
+  !*** ./resources/js/assets/images/in5.jpg ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/in5.jpg?6c05445cd8a5279f63a6958844a92295");
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/in6.jpg":
+/*!********************************************!*\
+  !*** ./resources/js/assets/images/in6.jpg ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/in6.jpg?7495eae24cbb451171db39dd76ba64e0");
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/in7.jpg":
+/*!********************************************!*\
+  !*** ./resources/js/assets/images/in7.jpg ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/in7.jpg?671cc0b11c0c0a30247182581cf72437");
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/in8.jpg":
+/*!********************************************!*\
+  !*** ./resources/js/assets/images/in8.jpg ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/in8.jpg?9804b0152ae6ed67c5baae005526d661");
+
+/***/ }),
+
 /***/ "./resources/js/assets/images/insta.png":
 /*!**********************************************!*\
   !*** ./resources/js/assets/images/insta.png ***!
@@ -23393,6 +24127,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/insta.png?a8d3019506a8cb325c5abf7ca93227e2");
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/ios.png":
+/*!********************************************!*\
+  !*** ./resources/js/assets/images/ios.png ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/ios.png?4bc7667cef5d7de31cb0d8d96e19e6db");
 
 /***/ }),
 
@@ -23441,6 +24190,21 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/assets/images/monk.png":
+/*!*********************************************!*\
+  !*** ./resources/js/assets/images/monk.png ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/monk.png?f7b2db06d173103adfffc81faf37b9b9");
+
+/***/ }),
+
 /***/ "./resources/js/assets/images/paw.png":
 /*!********************************************!*\
   !*** ./resources/js/assets/images/paw.png ***!
@@ -23456,6 +24220,21 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/assets/images/paw_p.png":
+/*!**********************************************!*\
+  !*** ./resources/js/assets/images/paw_p.png ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/paw_p.png?cc65cc75be6c881cf57cbd0e56b99848");
+
+/***/ }),
+
 /***/ "./resources/js/assets/images/pro1.png":
 /*!*********************************************!*\
   !*** ./resources/js/assets/images/pro1.png ***!
@@ -23468,6 +24247,66 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/pro1.png?7e3734b07fa3d3767d00f6c2491b001f");
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/pro2.jpg":
+/*!*********************************************!*\
+  !*** ./resources/js/assets/images/pro2.jpg ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/pro2.jpg?b313cedfe009071cc71518f75af2984a");
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/pro3.jpg":
+/*!*********************************************!*\
+  !*** ./resources/js/assets/images/pro3.jpg ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/pro3.jpg?5206b9fe151936e6de121608a077f13a");
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/pro4.jpg":
+/*!*********************************************!*\
+  !*** ./resources/js/assets/images/pro4.jpg ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/pro4.jpg?e749fbb2eca2f7bb9ebe9c461990fc7a");
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/pro5.png":
+/*!*********************************************!*\
+  !*** ./resources/js/assets/images/pro5.png ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/pro5.png?474b37bf29b59b431d9d22ff085703a9");
 
 /***/ }),
 
@@ -23558,6 +24397,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/sl3.jpg?619075265855cc31904d8db751d940c2");
+
+/***/ }),
+
+/***/ "./resources/js/assets/images/touch.jpg":
+/*!**********************************************!*\
+  !*** ./resources/js/assets/images/touch.jpg ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/touch.jpg?b8c88ec779c1d6e0e3edcd9fa2f747e0");
 
 /***/ }),
 
@@ -34996,30 +35850,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";/*!\r\n * Bootstrap
 
 /***/ }),
 
-/***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/laravel-mix/node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./resources/js/assets/css/slick.css":
-/*!*******************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/laravel-mix/node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./resources/js/assets/css/slick.css ***!
-  \*******************************************************************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js */ "./node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* Slider */\r\n.slick-slider\r\n{\r\n    position: relative;\r\n\r\n    display: block;\r\n    box-sizing: border-box;\r\n\r\n    -webkit-user-select: none;\r\n       -moz-user-select: none;\r\n        -ms-user-select: none;\r\n            user-select: none;\r\n\r\n    -webkit-touch-callout: none;\r\n    -khtml-user-select: none;\r\n    touch-action: pan-y;\r\n    -webkit-tap-highlight-color: transparent;\r\n}\r\n\r\n.slick-list\r\n{\r\n    position: relative;\r\n\r\n    display: block;\r\n    overflow: hidden;\r\n\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n.slick-list:focus\r\n{\r\n    outline: none;\r\n}\r\n.slick-list.dragging\r\n{\r\n    cursor: pointer;\r\n    cursor: hand;\r\n}\r\n\r\n.slick-slider .slick-track,\r\n.slick-slider .slick-list\r\n{\r\n    transform: translate3d(0, 0, 0);\r\n}\r\n\r\n.slick-track\r\n{\r\n    position: relative;\r\n    top: 0;\r\n    left: 0;\r\n\r\n    display: block;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n}\r\n.slick-track:before,\r\n.slick-track:after\r\n{\r\n    display: table;\r\n\r\n    content: '';\r\n}\r\n.slick-track:after\r\n{\r\n    clear: both;\r\n}\r\n.slick-loading .slick-track\r\n{\r\n    visibility: hidden;\r\n}\r\n\r\n.slick-slide\r\n{\r\n    display: none;\r\n    float: left;\r\n\r\n    height: 100%;\r\n    min-height: 1px;\r\n}\r\n[dir='rtl'] .slick-slide\r\n{\r\n    float: right;\r\n}\r\n.slick-slide img\r\n{\r\n    display: block;\r\n}\r\n.slick-slide.slick-loading img\r\n{\r\n    display: none;\r\n}\r\n.slick-slide.dragging img\r\n{\r\n    pointer-events: none;\r\n}\r\n.slick-initialized .slick-slide\r\n{\r\n    display: block;\r\n}\r\n.slick-loading .slick-slide\r\n{\r\n    visibility: hidden;\r\n}\r\n.slick-vertical .slick-slide\r\n{\r\n    display: block;\r\n\r\n    height: auto;\r\n\r\n    border: 1px solid transparent;\r\n}\r\n.slick-arrow.slick-hidden {\r\n    display: none;\r\n}\r\n\r\n/* Arrows */\r\n.slick-prev,\r\n.slick-next\r\n{\r\n    font-size: 0;\r\n    line-height: 0;\r\n\r\n    position: absolute;\r\n    top: 50%;\r\n\r\n    display: block;\r\n\r\n    width: 20px;\r\n    height: 20px;\r\n    padding: 0;\r\n    transform: translate(0, -50%);\r\n\r\n    cursor: pointer;\r\n\r\n    color: transparent;\r\n    border: none;\r\n    outline: none;\r\n    background: transparent;\r\n}\r\n.slick-prev:hover,\r\n.slick-prev:focus,\r\n.slick-next:hover,\r\n.slick-next:focus\r\n{\r\n    color: transparent;\r\n    outline: none;\r\n    background: transparent;\r\n}\r\n.slick-prev:hover:before,\r\n.slick-prev:focus:before,\r\n.slick-next:hover:before,\r\n.slick-next:focus:before\r\n{\r\n    opacity: 1;\r\n}\r\n.slick-prev.slick-disabled:before,\r\n.slick-next.slick-disabled:before\r\n{\r\n    opacity: .25;\r\n}\r\n\r\n.slick-prev:before,\r\n.slick-next:before\r\n{\r\n    font-family: 'slick';\r\n    font-size: 20px;\r\n    line-height: 1;\r\n\r\n    opacity: .75;\r\n    color: white;\r\n\r\n    -webkit-font-smoothing: antialiased;\r\n    -moz-osx-font-smoothing: grayscale;\r\n}\r\n\r\n.slick-prev\r\n{\r\n    left: -25px;\r\n}\r\n[dir='rtl'] .slick-prev\r\n{\r\n    right: -25px;\r\n    left: auto;\r\n}\r\n.slick-prev:before\r\n{\r\n    content: '←';\r\n}\r\n[dir='rtl'] .slick-prev:before\r\n{\r\n    content: '→';\r\n}\r\n\r\n.slick-next\r\n{\r\n    right: -25px;\r\n}\r\n[dir='rtl'] .slick-next\r\n{\r\n    right: auto;\r\n    left: -25px;\r\n}\r\n.slick-next:before\r\n{\r\n    content: '→';\r\n}\r\n[dir='rtl'] .slick-next:before\r\n{\r\n    content: '←';\r\n}\r\n\r\n/* Dots */\r\n.slick-dotted.slick-slider\r\n{\r\n    margin-bottom: 30px;\r\n}\r\n\r\n.slick-dots\r\n{\r\n    position: absolute;\r\n    bottom: -25px;\r\n\r\n    display: block;\r\n\r\n    width: 100%;\r\n    padding: 0;\r\n    margin: 0;\r\n\r\n    list-style: none;\r\n\r\n    text-align: center;\r\n}\r\n.slick-dots li\r\n{\r\n    position: relative;\r\n\r\n    display: inline-block;\r\n\r\n    width: 20px;\r\n    height: 20px;\r\n    margin: 0 5px;\r\n    padding: 0;\r\n\r\n    cursor: pointer;\r\n}\r\n.slick-dots li button\r\n{\r\n    font-size: 0;\r\n    line-height: 0;\r\n\r\n    display: block;\r\n\r\n    width: 20px;\r\n    height: 20px;\r\n    padding: 5px;\r\n\r\n    cursor: pointer;\r\n\r\n    color: transparent;\r\n    border: 0;\r\n    outline: none;\r\n    background: transparent;\r\n}\r\n.slick-dots li button:hover,\r\n.slick-dots li button:focus\r\n{\r\n    outline: none;\r\n}\r\n.slick-dots li button:hover:before,\r\n.slick-dots li button:focus:before\r\n{\r\n    opacity: 1;\r\n}\r\n.slick-dots li button:before\r\n{\r\n    font-family: 'slick';\r\n    font-size: 6px;\r\n    line-height: 20px;\r\n\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n\r\n    width: 20px;\r\n    height: 20px;\r\n\r\n    content: '•';\r\n    text-align: center;\r\n\r\n    opacity: .25;\r\n    color: black;\r\n\r\n    -webkit-font-smoothing: antialiased;\r\n    -moz-osx-font-smoothing: grayscale;\r\n}\r\n.slick-dots li.slick-active button:before\r\n{\r\n    opacity: .75;\r\n    color: black;\r\n}\r\n", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
 /***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/laravel-mix/node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./resources/js/assets/css/style.css":
 /*!*******************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/laravel-mix/node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./resources/js/assets/css/style.css ***!
@@ -35325,7 +36155,7 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_assets_images_arrow_left_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
 var ___CSS_LOADER_URL_REPLACEMENT_1___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_assets_images_arrow_right_png__WEBPACK_IMPORTED_MODULE_3__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\r\n.free_ship_bar { background: #9d9d9c; padding:15px; text-align: center; margin: 5px 0;}\r\n.free_ship_bar p { margin: 0; color: #fff; font-weight: 300; font-style: italic;font-size: 16px;}\r\n.free_ship_bar img { margin-right: 5px;}\r\n.container_max{max-width: 1160px; padding: 0 15px; margin:0 auto; width: 100%;}\r\nsection.banner_sec {  background: #e1efe3; display: flex; justify-content: flex-end; padding-right: 80px;}\r\n.banner_top>span {  font-size: 13px; color: #84b5c7; letter-spacing: 6px;  font-weight: 600;}\r\n.banner_top>h2 {   font-size: 64px;  line-height: .7; letter-spacing: -2px;  font-weight: 700;  color: #fa6734;}\r\n.banner_top>label {  font-size: 22px;    font-weight: 600; color: #78c8cf;}\r\n.banner_top>label span { font-weight: 400;}\r\n.btn_orng { margin-top: 22px;}\r\nspan.blu { color: #78c8cf;}.btn_orng a { display: inline-block; padding: 8px 14px 13px 14px; border-radius: 50px;  color: #fff;\r\ntext-decoration: none;  background: #fa6734; font-size: 15px;  line-height: .7;}\r\n.baner_1 { display: flex; align-items: center; justify-content: flex-end;}\r\n.treat_bg {    background: #9bb79e;}\r\n.food_bg { background: #89b3b4;}\r\n.litter_bg { background: #decdc0;}\r\n.toy_bg { background: #a28ca8;}\r\nsection.treat_sec { padding: 50px 0;}\r\n.grid_4>div { padding-top: 35%;  position: relative;}\r\n.grid_4>div>a h2 { display: block; width: 100%; text-align: center; color: #fff; margin: 0; line-height: 1; font-size: 100px;\r\ntext-transform: uppercase; font-weight: 700;}\r\n.grid_4>div>a{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-decoration: none; text-align: center;}\r\n.grid_4>div>a img { margin-top: 50px;}\r\nsection.product_slider .slick-slide a { color: #706f6f; text-decoration: none;}\r\nsection.product_slider .slick-slide a h3 { font-size: 26px; font-weight: 300; max-width: 313px;}\r\n.product_slider .col-md-4 img {  height: 300px; width: 100%; object-fit: contain;}\r\n.product_slider .row{margin: 0 -32px;}\r\n.product_slider .col-md-4\r\n{padding: 0 32px;}\r\n.slick-prev { border: 1px solid red; width: 40px; height: 40px; background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");}\r\n.slick-prev:before {  width: 40px !important;  height: 40px !important; background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") !important;    color: transparent !important;\r\nbackground-position: center; background-repeat: no-repeat !important;}\r\n.slick-next:before {    width: 40px !important;  height: 40px !important;  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ") !important;\r\ncolor: transparent !important;   background-position: center;  background-repeat: no-repeat !important;}\r\nbutton.slick-prev.slick-arrow { left: 0;}\r\n.slick-next{ right: 0 !important;}\r\n.slick-arrow { z-index: 9;}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".free_ship_bar { background: #9d9d9c; padding:15px; text-align: center; margin: 5px 0;}\r\n.free_ship_bar p { margin: 0; color: #fff; font-weight: 300; font-style: italic;font-size: 16px;}\r\n.free_ship_bar img { margin-right: 5px;}\r\n.container_max{max-width: 1170px; padding: 0 15px; margin:0 auto; width: 100%;}\r\nsection.banner_sec {  background: #e1efe3; display: flex; justify-content: flex-end; padding-right: 80px;}\r\n.banner_top>span {  font-size: 13px; color: #84b5c7; letter-spacing: 6px;  font-weight: 600;}\r\n.banner_top>h2 {   font-size: 64px;  line-height: .7; letter-spacing: -2px;  font-weight: 700;  color: #fa6734;}\r\n.banner_top>label {  font-size: 22px;    font-weight: 600; color: #78c8cf;}\r\n.banner_top>label span { font-weight: 400;}\r\n.btn_orng { margin-top: 22px;}\r\nspan.blu { color: #78c8cf;}.btn_orng a { display: inline-block; padding: 8px 14px 13px 14px; border-radius: 50px;  color: #fff;\r\ntext-decoration: none;  background: #fa6734; font-size: 15px;  line-height: .7;}\r\n.baner_1 { display: flex; align-items: center; justify-content: flex-end;}\r\n.treat_bg {    background: #9bb79e;}\r\n.food_bg { background: #89b3b4;}\r\n.litter_bg { background: #decdc0;}\r\n.toy_bg { background: #a28ca8;}\r\nsection.treat_sec { padding: 60px 0 30px 0;}\r\n.grid_4>div { padding-top: 37%;  position: relative;}\r\n.grid_4>div>a h2 { display: block; width: 100%; text-align: center; color: #fff; margin: 0; line-height: 1; font-size: 100px;\r\ntext-transform: uppercase; font-weight: 700;}\r\n.grid_4>div>a{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-decoration: none; text-align: center;}\r\n.grid_4>div>a img { margin-top: 50px;}\r\nsection.product_slider .slick-slide a { color: #706f6f; text-decoration: none;}\r\nsection.product_slider .slick-slide a h3 { font-size: 26px; font-weight: 300; max-width: 313px;}\r\n.product_slider .col-md-4 img {  height: 300px; width: 100%; object-fit: contain;}\r\n.product_slider .row{margin: 0 -32px;}\r\n.product_slider .col-md-4\r\n{padding: 0 32px;}\r\n.slick-prev { border: 1px solid red; width: 40px; height: 40px; background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");}\r\n.slick-prev:before {  width: 40px !important;  height: 40px !important; background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") !important;    color: transparent !important;\r\nbackground-position: center; background-repeat: no-repeat !important;}\r\n.slick-next:before {    width: 40px !important;  height: 40px !important;  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ") !important;\r\ncolor: transparent !important;   background-position: center;  background-repeat: no-repeat !important;}\r\nbutton.slick-prev.slick-arrow { left: 0;}\r\n.slick-next{ right: 0 !important;}\r\n.slick-arrow { z-index: 9;}\r\n\r\n\r\n.txt_over a { position: relative; text-decoration: none; color: #fff; display: block;}\r\n\r\n.txt_over a h2 {\r\n    position: absolute;\r\n    bottom: 10px;\r\n    font-size: 103px;\r\n    font-weight: 700;\r\n    text-transform: uppercase;\r\n    letter-spacing: -4px;\r\n    padding: 0 50px;\r\n    width: 100%;\r\n}\r\n.pad_15{padding: 0 15px;}\r\nsection.two_img { padding: 40px 0;}\r\n\r\n.gray_panel {text-decoration: none;}\r\na.img_box1 h3 {\r\n    max-width: 64px;\r\n    color: #00b7bc;\r\n    font-size: 33px;\r\n    font-weight: 700;\r\n    line-height: .8;\r\n}\r\na.img_box2 h3\r\n{\r\n   max-width: 150px;\r\n    color: #00b7bc;\r\n    font-size: 33px;\r\n    text-transform: uppercase;\r\n    font-weight: 700;\r\n    line-height: .8;\r\n}\r\n\r\nsection.two_img .col-md-6.txt_over {\r\n    padding: 0;\r\n\r\n}\r\nsection.two_img .col-md-6.txt_over a img {\r\n    position: absolute;\r\n    top: 0;\r\n    height: 100%;\r\n    width: 100%;\r\n    object-fit: cover;\r\n}\r\nsection.two_img .col-md-6.txt_over a\r\n{\r\n        padding-top: 80%;\r\n}\r\n.gray_panel {\r\n    background: #f6f6f6;\r\n    position: relative;\r\n    padding: 15px 50px;\r\n    min-height: 130px;\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    align-items: center;\r\n}\r\nspan.re_d {\r\n    color: #e42930;\r\n}\r\n.img_box1 img {\r\n    position: absolute;\r\n    top: -5px;\r\n    right: 50px;\r\n}\r\n.img_box2 img {\r\n    position: absolute;\r\n    right: 40px;\r\n    top: -30px;\r\n}\r\n.img_box3 h3 {\r\n    font-size: 22px;\r\n    color: #00b7bc;\r\n    font-weight: 600;\r\n    margin: 0;\r\n    line-height: .7;\r\n}\r\n.wrp {\r\n    width: 165px;\r\n}\r\n.wrp a {\r\n    font-size: 12px;\r\n    color: #a4b1b1;\r\n    text-transform: uppercase;\r\n}\r\n.img_box3 img {\r\n    position: absolute;\r\n    right: 40px;\r\n}\r\n\r\n.red_box {\r\n    position: relative;\r\n    padding-top: 40%;\r\n    background: #e3002b;\r\n}\r\n\r\n\r\n.blue_box {\r\n    position: relative;\r\n    padding-top: 40%;\r\n    background: #00b7bc;\r\n}\r\n.red_box h2,.blue_box h2 {\r\n    font-size: 103px;\r\n    line-height: .7;\r\n    font-weight: 700;\r\n    letter-spacing: -4px;\r\n    color: #fff;\r\n}\r\n.blue_box h2\r\n{\r\n    text-align: center;\r\n}\r\n.red_box h2 span,.blue_box h2 span {\r\n    font-weight: 300;\r\n}\r\n.red_box a {\r\n    font-size: 18px;\r\n    color: #fff;\r\n    font-weight: 400;\r\n    padding: 20px;\r\n}\r\n.red_box .rect ,.blue_box .rect {\r\n    position: absolute;\r\n    top: 0;\r\n    height: 100%;\r\n    width: 100%;\r\n    left: 0;\r\n    display: flex;\r\n    align-items: center;\r\n    flex-wrap: wrap;\r\n    padding: 60px;\r\n}\r\n.blue_box .rect\r\n{\r\n padding:50px 60px;\r\n align-items: flex-start;\r\n}\r\n.red_box img {\r\n    position: absolute;\r\n    right: 27px;\r\n    margin-top: 15px;\r\n}\r\n.blue_box p {\r\n    font-size: 26px;\r\n    font-weight: 300;\r\n    color: #fff;\r\n    text-align: center;\r\n}\r\n.blue_box p a {\r\n    color: #fff;\r\n\r\n}\r\n.blue_box sup {\r\n    font-size: 59px;\r\n}\r\n.blue_box img {\r\n    position: absolute;\r\n    left: 0;\r\n    right: 0;\r\n    margin: 0 auto;\r\n    bottom: 0;\r\n}\r\n\r\n\r\n\r\n\r\n.cart_slide li img {\r\n    max-width: 100%;\r\n}\r\n.product_panel {\r\n    position: relative;\r\n    overflow: hidden;\r\n}\r\n.product_panel .sale_tag {\r\n    position: absolute;\r\n    top: 7px;\r\n    background: #00b7bc;\r\n    transform: rotate(\r\n-33deg);\r\n    font-size: 16px;\r\n    font-weight: 600;\r\n    text-transform: uppercase;\r\n    color: #fff;\r\n    padding: 0 30px;\r\n    left: -20px;\r\n}\r\n.prod_details h5 {\r\n    font-size: 16px;\r\n    color: #706f6f;\r\n    font-weight: 400;\r\n    margin: 0;\r\n}\r\n.rat_ing i {\r\n    color: #c6b660;\r\n    margin-left: 15px;\r\n}\r\n.rat_ing {\r\n    display: flex;\r\n    justify-content: center;\r\n    padding: 5px;\r\n}\r\n.cart_flex h3 {\r\n    font-size: 25px;\r\n    color: #706f6f;\r\n    margin: 0;\r\n}\r\n.cart_flex a {\r\n    background: #e3002b;\r\n    display: inline-block;\r\n    color: #fff;\r\n    font-size: 12px;\r\n    text-transform: uppercase;\r\n    font-weight: 600;\r\n    text-decoration: none;\r\n    padding: 4px 12px;\r\n    border-radius: 50px;\r\n    letter-spacing: .4px;\r\n    line-height: 1.8;\r\n}\r\n.cart_flex {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    margin-top: 5px;\r\n}\r\n.cart_slide li {\r\n    padding: 0 15px;\r\n}\r\n.cart_slide {\r\n    padding: 0;\r\n    margin: 0 -15px;\r\n}\r\n.prod_img {\r\n    padding-top: 85%;\r\n    position: relative;\r\n    margin-bottom: 20px;\r\n}\r\n.prod_img img {\r\n    position: absolute;\r\n    top: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    object-fit: contain;\r\n}\r\n.cart_slide button.slick-prev.slick-arrow {\r\n    left: -20px;\r\n}\r\n.cart_slide button.slick-next.slick-arrow {\r\n    right: -20px !important;\r\n}\r\nh1.line_heading {\r\n    font-size: 25px;\r\n    color: #706f6f;\r\n    font-weight: 400;\r\n    align-items: center;\r\n    position: relative;\r\n    display: flex;\r\n    margin-bottom: 25px;\r\n}\r\nh1.line_heading:after {\r\n    content: \"\";\r\n    margin-left: 5px;\r\n    flex-grow: 1;\r\n    display: block;\r\n    height: 1px;\r\n    background: #3a3a3a;\r\n}\r\n.rd_blue {\r\n    padding-bottom: 40px !important;\r\n}\r\n.height_mix {\r\n    padding-top: 80%;\r\n    position: relative;\r\n}\r\n.height_mix>img {\r\n    position: absolute;\r\n    top: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n}\r\n.sub_2 {\r\n    position: absolute;\r\n    top: 0;\r\n    height: 100%;\r\n    width: 100%;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n.over_red {\r\n    background: #e3002b;\r\n    padding: 40px;\r\n    max-width: 267px;\r\n}\r\n.over_red h2 {\r\n    font-size: 41px;\r\n    font-weight: 800;\r\n    text-transform: uppercase;\r\n    line-height: .8;\r\n    color: #fff;\r\n}\r\n.over_red>small {\r\n    font-size: 12px;\r\n    color: #fff;\r\n    margin-bottom: 10px;\r\n    display: block;\r\n}\r\n.over_red>a {\r\n    font-size: 12px;\r\n    color: #fff;\r\n    margin-bottom: 10px;\r\n    display: block;\r\n}\r\n.sub_1 {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    background: #76babf;\r\n    padding: 50px 40px;\r\n}\r\n.sub_1>h1 {\r\n    font-size: 72px;\r\n    font-weight: 700;\r\n    line-height: .8;\r\n    letter-spacing: -4px;\r\n    color: #fff;\r\n}\r\n.sub_1>h1>span {\r\n    font-weight: 300;\r\n}\r\n.sub_1 sup {\r\n    font-size: 34px;\r\n    top: -34px;\r\n}\r\n.sub_1 p {\r\n    font-size: 25px;\r\n    color: #fff;\r\n    font-weight: 300;\r\n        margin-bottom: 0;\r\n}\r\n.sub_1 img {\r\n    position: absolute;\r\n    left: 0;\r\n    right: 0;\r\n    margin: 0 auto;\r\n}\r\n.sub_1 a {\r\n    font-size: 19px;\r\n    color: #fff;\r\n    font-weight: 400;\r\n}\r\nsection.duo_banner {\r\n    padding: 50px 0 25px 0;\r\n}\r\nsection.Keep_touch {\r\n    background: #f6f6f6;\r\n}\r\n.container_min\r\n{\r\n    max-width: 1000px;\r\n    margin: 0 auto;\r\n    padding: 0 15px;\r\n    width: 100%;\r\n}\r\n.form_text h1 {\r\n    font-size: 67px;\r\n    font-weight: bold;\r\n    line-height: .7;\r\n    letter-spacing: -3px;\r\n    color: #00b7bc;\r\n}\r\n.form_text h1 span:not(.re_d) {\r\n    font-weight: 300;\r\n}\r\n.form_text p {\r\n    font-size: 15px;\r\n    color: #9d9d9c;\r\n}\r\n.Keep_touch .from_grp input[type=\"text\"] ,.Keep_touch .from_grp input[type=\"email\"] {\r\n    height: 26px;\r\n    width: 140px;\r\n    border: 1px solid #aca4a6;\r\n    font-size: 14px;\r\n    font-weight: 300;\r\n    padding: 0 0 0 10px;\r\n}\r\n.Keep_touch .from_grp input[type=\"text\"]::placeholder ,.Keep_touch .from_grp input[type=\"email\"]::placeholder\r\n{\r\n     color: #9d9d9c;\r\n    font-size: 14px;\r\n}\r\n.radio_check {\r\n    color: #9d9d9c;\r\n    font-size: 16px;\r\n}\r\n.radio_check input {\r\n    margin-right: 7px;\r\n}\r\n.radio_check span {\r\n    margin-right: 17px;\r\n}\r\nform.touch_form {\r\n    max-width: 300px;\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    grid-gap: 10px;\r\n}\r\n\r\n.Keep_touch .container_min>.row {\r\n    align-items: center;\r\n    justify-content: space-between;\r\n}\r\n\r\n\r\n\r\n.ab_over {\r\n    position: absolute;\r\n    top: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    display: flex;\r\n    align-items: center;\r\n}\r\n.ab_over {\r\n    position: absolute;\r\n    top: 0;\r\n    height: 100%;\r\n    display: block;\r\n    align-items: center;\r\n    width: 100%;\r\n    right: 0;\r\n    margin: 0 auto;\r\n    left: 0;\r\n    padding-top: 15%;\r\n}\r\nh3.lab_22 {\r\n    color: #fff;\r\n    font-weight: 300;\r\n}\r\nh3.lab_22 label {\r\n    display: inline-block;\r\n    padding: 2px 8px;\r\n    background: #fff;\r\n    color: #e3002b;\r\n    font-weight: bold;\r\n}\r\nh3.lab_22 b {\r\n    font-weight: bold;\r\n}\r\np.p_16 {\r\n    font-size: 20px;\r\n    font-weight: 300;\r\n    color: #fff;\r\n}\r\na.btn_grn {\r\n    font-size: 12px;\r\n    color: #fff;\r\n    background: #00b7bc;\r\n    padding: 6px 20px;\r\n    border-radius: 50px;\r\n    text-decoration: none;\r\n}\r\n.div_center {\r\n    text-align: center;\r\n    max-width: 330px;\r\n}\r\nsection.xl_sec {\r\n    position: relative;\r\n    padding: 30px 0;\r\n}\r\nul.insta_nails {\r\n    list-style: none;\r\n    padding: 0;\r\n    margin: 0 -10px;\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n}\r\nul.insta_nails>li{\r\nmax-width:25%;\r\nwidth: 100%;\r\npadding: 10px;\r\n}\r\nul.insta_nails>li>a>span {\r\n    display: block;\r\n    padding-top: 100%;\r\n    position: relative;\r\n}\r\nul.insta_nails>li>a>span img {\r\n    position: absolute;\r\n    left: 0;\r\n    top: 0;\r\n    height: 100%;\r\n    width: 100%;\r\n    object-fit: cover;\r\n}\r\nh3.insta_head span {\r\n    font-size: 23px;\r\n    display: inline-block;\r\n    background: #00b7bc;\r\n    color: #fff;\r\n    padding: 5px 15px;\r\n    border-top-left-radius: 20px;\r\n    border-top-right-radius: 20px;\r\n}\r\nh3.insta_head {\r\n    text-align: center;\r\n    border-bottom: 2px solid #00b7bc;\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -55599,36 +56429,6 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ "./resources/js/assets/css/slick.css":
-/*!*******************************************!*\
-  !*** ./resources/js/assets/css/slick.css ***!
-  \*******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_laravel_mix_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_slick_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../../node_modules/laravel-mix/node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./slick.css */ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/laravel-mix/node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./resources/js/assets/css/slick.css");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_laravel_mix_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_slick_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_laravel_mix_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_slick_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
-
-/***/ }),
-
 /***/ "./resources/js/assets/css/style.css":
 /*!*******************************************!*\
   !*** ./resources/js/assets/css/style.css ***!
@@ -57116,6 +57916,546 @@ var render = function () {
         ),
       ]),
     ]),
+    _vm._v(" "),
+    _c("section", { staticClass: "two_img" }, [
+      _c("div", { staticClass: "container_max" }, [
+        _c("div", { staticClass: "row pad_15" }, [
+          _c("div", { staticClass: "col-md-6 txt_over" }, [
+            _c("a", { attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: _vm.imgDog, alt: "Dog" } }),
+              _vm._v(" "),
+              _c("h2", [_vm._v("Dogs")]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6 txt_over" }, [
+            _c("a", { attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: _vm.imgCat, alt: "cat" } }),
+              _vm._v(" "),
+              _c("h2", [_vm._v("Cats")]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("section", [
+      _c("div", { staticClass: "container_max" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-4" }, [
+            _c(
+              "a",
+              { staticClass: "img_box1 gray_panel", attrs: { href: "#" } },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("img", { attrs: { src: _vm.imgIos, alt: "ios" } }),
+              ]
+            ),
+          ]),
+          _vm._v(" "),
+          _vm._m(2),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-4" }, [
+            _c("div", { staticClass: "img_box3 gray_panel" }, [
+              _vm._m(3),
+              _vm._v(" "),
+              _c("img", { attrs: { src: _vm.imgPawP, alt: "pawP" } }),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("section", { staticClass: "two_img rd_blue" }, [
+      _c("div", { staticClass: "container_max" }, [
+        _c("div", { staticClass: "row pad_15" }, [
+          _c("div", { staticClass: "col-md-6 red_box" }, [
+            _c("div", { staticClass: "con_box rect" }, [
+              _c("div", [
+                _c("img", { attrs: { src: _vm.imgMonk, alt: "Monk" } }),
+                _vm._v(" "),
+                _vm._m(4),
+                _vm._v(" "),
+                _c("a", { attrs: { href: "#" } }, [_vm._v("Learn More")]),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6 blue_box" }, [
+            _c("div", { staticClass: "con_box rect" }, [
+              _c("div", [
+                _vm._m(5),
+                _vm._v(" "),
+                _vm._m(6),
+                _vm._v(" "),
+                _c("img", { attrs: { src: _vm.imgBath, alt: "Bath" } }),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("section", { staticClass: "cart_slider" }, [
+      _c("div", { staticClass: "container_max" }, [
+        _c("h1", { staticClass: "line_heading" }, [_vm._v("Sale")]),
+        _vm._v(" "),
+        _c(
+          "ul",
+          { staticClass: " row cart_slide slider margin_row" },
+          [
+            _c(
+              "slick",
+              {
+                ref: "productPanel",
+                attrs: { options: _vm.productPanelOptions },
+              },
+              [
+                _c("li", [
+                  _c("div", { staticClass: "product_panel" }, [
+                    _c("div", { staticClass: "prod_img" }, [
+                      _c("img", { attrs: { src: _vm.imgPro2, alt: "Pro5" } }),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "prod_details" }, [
+                      _c("div", { staticClass: "rat_ing" }, [
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("h5", [
+                        _vm._v(
+                          "Dr. Doggos’s Really Awesome Dog Foot: Soft... "
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "cart_flex" }, [
+                        _c("h3", [_vm._v("$6.10")]),
+                        _vm._v(" "),
+                        _c("a", { attrs: { href: "#" } }, [
+                          _vm._v("Add To cart"),
+                        ]),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("label", { staticClass: "sale_tag" }, [_vm._v("Sale")]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("div", { staticClass: "product_panel" }, [
+                    _c("div", { staticClass: "prod_img" }, [
+                      _c("img", { attrs: { src: _vm.imgPro3, alt: "Pro5" } }),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "prod_details" }, [
+                      _c("div", { staticClass: "rat_ing" }, [
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("h5", [
+                        _vm._v(
+                          "Dr. Doggos’s Really Awesome Dog Foot: Soft... "
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "cart_flex" }, [
+                        _c("h3", [_vm._v("$6.10")]),
+                        _vm._v(" "),
+                        _c("a", { attrs: { href: "#" } }, [
+                          _vm._v("Add To cart"),
+                        ]),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("label", { staticClass: "sale_tag" }, [_vm._v("Sale")]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("div", { staticClass: "product_panel" }, [
+                    _c("div", { staticClass: "prod_img" }, [
+                      _c("img", { attrs: { src: _vm.imgPro4, alt: "Pro5" } }),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "prod_details" }, [
+                      _c("div", { staticClass: "rat_ing" }, [
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("h5", [
+                        _vm._v(
+                          "Dr. Doggos’s Really Awesome Dog Foot: Soft... "
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "cart_flex" }, [
+                        _c("h3", [_vm._v("$6.10")]),
+                        _vm._v(" "),
+                        _c("a", { attrs: { href: "#" } }, [
+                          _vm._v("Add To cart"),
+                        ]),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("label", { staticClass: "sale_tag" }, [_vm._v("Sale")]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("div", { staticClass: "product_panel" }, [
+                    _c("div", { staticClass: "prod_img" }, [
+                      _c("img", { attrs: { src: _vm.imgPro5, alt: "Pro5" } }),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "prod_details" }, [
+                      _c("div", { staticClass: "rat_ing" }, [
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("h5", [
+                        _vm._v(
+                          "Dr. Doggos’s Really Awesome Dog Foot: Soft... "
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "cart_flex" }, [
+                        _c("h3", [_vm._v("$6.10")]),
+                        _vm._v(" "),
+                        _c("a", { attrs: { href: "#" } }, [
+                          _vm._v("Add To cart"),
+                        ]),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("label", { staticClass: "sale_tag" }, [_vm._v("Sale")]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("div", { staticClass: "product_panel" }, [
+                    _c("div", { staticClass: "prod_img" }, [
+                      _c("img", { attrs: { src: _vm.imgPro4, alt: "Pro5" } }),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "prod_details" }, [
+                      _c("div", { staticClass: "rat_ing" }, [
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("h5", [
+                        _vm._v(
+                          "Dr. Doggos’s Really Awesome Dog Foot: Soft... "
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "cart_flex" }, [
+                        _c("h3", [_vm._v("$6.10")]),
+                        _vm._v(" "),
+                        _c("a", { attrs: { href: "#" } }, [
+                          _vm._v("Add To cart"),
+                        ]),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("label", { staticClass: "sale_tag" }, [_vm._v("Sale")]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("div", { staticClass: "product_panel" }, [
+                    _c("div", { staticClass: "prod_img" }, [
+                      _c("img", { attrs: { src: _vm.imgPro2, alt: "Pro5" } }),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "prod_details" }, [
+                      _c("div", { staticClass: "rat_ing" }, [
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                        _vm._v(" "),
+                        _c("i", {
+                          staticClass: "fa fa-star",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("h5", [
+                        _vm._v(
+                          "Dr. Doggos’s Really Awesome Dog Foot: Soft... "
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "cart_flex" }, [
+                        _c("h3", [_vm._v("$6.10")]),
+                        _vm._v(" "),
+                        _c("a", { attrs: { href: "#" } }, [
+                          _vm._v("Add To cart"),
+                        ]),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("label", { staticClass: "sale_tag" }, [_vm._v("Sale")]),
+                  ]),
+                ]),
+              ]
+            ),
+          ],
+          1
+        ),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("section", { staticClass: "duo_banner" }, [
+      _c("div", { staticClass: "container_max" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "height_mix" }, [
+              _c("div", { staticClass: "sub_1" }, [
+                _vm._m(7),
+                _vm._v(" "),
+                _c("p", [_vm._v("Convenience + Savings. Yes please.")]),
+                _vm._v(" "),
+                _c("a", { attrs: { href: "#" } }, [_vm._v("Learn More")]),
+                _vm._v(" "),
+                _c("img", { attrs: { src: _vm.imgGnaw, alt: "Gnaw" } }),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "height_mix" }, [
+              _c("img", { attrs: { src: _vm.imgHeat, alt: "heat" } }),
+              _vm._v(" "),
+              _vm._m(8),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("section", { staticClass: "Keep_touch" }, [
+      _c("div", { staticClass: "container_min" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-2" }, [
+            _c("img", { attrs: { src: _vm.imgTouch, alt: "Touch" } }),
+          ]),
+          _vm._v(" "),
+          _vm._m(9),
+          _vm._v(" "),
+          _vm._m(10),
+        ]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("section", { staticClass: "xl_sec" }, [
+      _c("img", { attrs: { src: _vm.imgBg2, alt: "bg2" } }),
+      _vm._v(" "),
+      _vm._m(11),
+    ]),
+    _vm._v(" "),
+    _c("section", { staticClass: "insta_Sec" }, [
+      _c("div", { staticClass: "container_max" }, [
+        _vm._m(12),
+        _vm._v(" "),
+        _c("ul", { staticClass: "insta_nails" }, [
+          _c("li", [
+            _c("a", { attrs: { href: "#" } }, [
+              _c("span", [
+                _c("img", { attrs: { src: _vm.imgIn1, alt: "in1" } }),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "#" } }, [
+              _c("span", [
+                _c("img", { attrs: { src: _vm.imgIn2, alt: "in2" } }),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "#" } }, [
+              _c("span", [
+                _c("img", { attrs: { src: _vm.imgIn3, alt: "in3" } }),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "#" } }, [
+              _c("span", [
+                _c("img", { attrs: { src: _vm.imgIn4, alt: "in4" } }),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "#" } }, [
+              _c("span", [
+                _c("img", { attrs: { src: _vm.imgIn5, alt: "in5" } }),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "#" } }, [
+              _c("span", [
+                _c("img", { attrs: { src: _vm.imgIn6, alt: "in6" } }),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "#" } }, [
+              _c("span", [
+                _c("img", { attrs: { src: _vm.imgIn7, alt: "in7" } }),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "#" } }, [
+              _c("span", [
+                _c("img", { attrs: { src: _vm.imgIn8, alt: "in8" } }),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = [
@@ -57143,6 +58483,180 @@ var staticRenderFns = [
           _c("a", { attrs: { href: "#" } }, [_vm._v("LEARN MORE")]),
         ]),
       ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", [
+      _vm._v("GET THE "),
+      _c("span", { staticClass: "re_d" }, [_vm._v("APP")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4" }, [
+      _c("a", { staticClass: "img_box2 gray_panel", attrs: { href: "#" } }, [
+        _c("h3", [
+          _vm._v("Curbside "),
+          _c("span", { staticClass: "re_d" }, [_vm._v("Pickup")]),
+        ]),
+        _vm._v(" "),
+        _c("img", { attrs: { src: "imgBag", alt: "" } }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "wrp" }, [
+      _c("h3", [
+        _vm._v("PET PARENTS"),
+        _c("span", { staticClass: "re_d" }, [_vm._v("+")]),
+        _vm._v("®"),
+      ]),
+      _vm._v(" "),
+      _c("a", { attrs: { href: "min_a" } }, [_vm._v("Learn More")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h2", [_vm._v("SUMMER "), _c("span", [_vm._v("TOYS")])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h2", [
+      _c("span", [_vm._v("Day")]),
+      _vm._v("Spaw"),
+      _c("sup", [_vm._v("™")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("a", { attrs: { href: "#" } }, [_vm._v("Schedule")]),
+      _vm._v(" your appointment today\n              "),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h1", [
+      _vm._v("SUBSCRIPTION "),
+      _c("span", [_vm._v("PAWGRAM"), _c("sup", [_vm._v("®")])]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "sub_2" }, [
+      _c("div", { staticClass: "over_red" }, [
+        _c("small", [_vm._v("LATEST BLOG POST")]),
+        _vm._v(" "),
+        _c("h2", [_vm._v("Heart Diseases in Dogs")]),
+        _vm._v(" "),
+        _c("a", { attrs: { href: "#" } }, [_vm._v("Continue Reading")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6 form_text text-center" }, [
+      _c("h1", [
+        _vm._v("\n            Keep "),
+        _c("span", { staticClass: "thin" }, [_vm._v("in")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "re_d" }, [_vm._v("Touch")]),
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Stay up to date with the latest sales, new products, and special events."
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4" }, [
+      _c("form", { staticClass: "touch_form" }, [
+        _c("div", { staticClass: "from_grp" }, [
+          _c("input", { attrs: { type: "text", placeholder: "First Name" } }),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "from_grp" }, [
+          _c("input", { attrs: { type: "text", placeholder: "Last Name" } }),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "from_grp radio_check" }, [
+          _c("span", [
+            _c("input", { attrs: { type: "radio", name: "cat" } }),
+            _vm._v("Cat\n              "),
+          ]),
+          _vm._v(" "),
+          _c("span", [
+            _c("input", { attrs: { type: "radio", name: "dog" } }),
+            _vm._v("Dog\n              "),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "from_grp" }, [
+          _c("input", {
+            attrs: { type: "Email", placeholder: "Enter your Email" },
+          }),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container_max ab_over" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-5 offset-md-7" }, [
+          _c("div", { staticClass: "div_center" }, [
+            _c("h3", { staticClass: "lab_22" }, [
+              _vm._v("The "),
+              _c("b", [_vm._v("Pet Parents")]),
+              _vm._v(" Store "),
+              _c("label", [_vm._v("XL")]),
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "p_16" }, [
+              _vm._v("All you need, In one place."),
+            ]),
+            _vm._v(" "),
+            _c("a", { staticClass: "btn_grn", attrs: { href: "#" } }, [
+              _vm._v("Learn more"),
+            ]),
+          ]),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "insta_head" }, [
+      _c("span", [_vm._v("@pet.parents")]),
     ])
   },
 ]
