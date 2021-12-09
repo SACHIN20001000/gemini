@@ -18,7 +18,11 @@ class UserListController extends Controller
   //below function show all data in table
       public function index(Request $request){
        if ($request->ajax()) {
-          $data = User::with('roles');
+          $data = User::with('roles')->whereHas(
+            'roles', function($q){
+                $q->where('name','!=','Admin');
+            })
+        ->get();
           return Datatables::of($data)
                   ->addIndexColumn()
                   ->addColumn('action', function($row){

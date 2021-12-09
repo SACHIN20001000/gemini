@@ -52,7 +52,7 @@ class CategoryController extends Controller
                                             data-placement="top"
                                             data-method="DELETE"
                                             data-confirm-title="Please Confirm"
-                                            data-confirm-text="Are you sure that you want to delete this role?"
+                                            data-confirm-text="Are you sure that you want to delete this Category?"
                                             data-confirm-delete="Yes, delete it!">
                                             <i class="las la-trash"></i>
                                         </a>

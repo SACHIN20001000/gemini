@@ -201,20 +201,34 @@
                                 </li> -->
 
                                 <li class="dropdown main-profile-menu nav nav-item nav-link">
-                                    <a class="profile-user d-flex" href=""><img alt=""
-                                                                                src="{{URL::asset('assets/img/faces/6.jpg')}}"></a>
+                                    <a class="profile-user d-flex">
+                                    @if(!empty(Auth::user()->profile))
+                                    <img alt=""src="{{url('/images/profile/',Auth::user()->profile)}}">
+                            @else
+                            <img src="../../assets/img/faces/6.jpg"  alt="img">
+                            @endif
+                                       
+                                    
+                                    </a>
                                     <div class="dropdown-menu">
                                         <div class="main-header-profile bg-primary p-3">
                                             <div class="d-flex wd-100p">
-                                                <div class="main-img-user"><img alt="" src="{{URL::asset('assets/img/faces/6.jpg')}}"
-                                                                                class=""></div>
+                                                <div class="main-img-user">
+                                                @if(!empty(Auth::user()->profile))
+                                                <img alt="" src="{{url('/images/profile/',Auth::user()->profile)}}" class="">
+                                                    @else
+                                                    <img src="../../assets/img/faces/6.jpg"  alt="img">
+                                                    @endif
+                                                                        
+                                                                            
+                                                                            </div>
                                                 <div class="ms-3 my-auto">
                                                     <h6>Petey Cruiser</h6><span>Premium Member</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <a class="dropdown-item" href=""><i class="bx bx-user-circle"></i>Profile</a>
-                                        <a class="dropdown-item" href=""><i class="bx bx-cog"></i> Edit Profile</a>
+                                        <a class="dropdown-item" href="{{route('viewProfile')}}"><i class="bx bx-user-circle"></i>Profile</a>
+                                        <a class="dropdown-item" href="{{route('updateProfile')}}"><i class="bx bx-cog"></i> Edit Profile</a>
                                         <a class="dropdown-item" href=""><i class="bx bxs-inbox"></i>Inbox</a>
                                         <a class="dropdown-item" href=""><i class="bx bx-envelope"></i>Messages</a>
                                         <a class="dropdown-item" href=""><i class="bx bx-slider-alt"></i> Account
@@ -248,7 +262,7 @@
                             <div class="action-header clearfix">
                                 <div class="float-start hidden-xs d-flex ms-2">
                                     <div class="img_cont me-3">
-                                        <img src="{{URL::asset('assets/img/faces/6.jpg')}}" class="rounded-circle user_img" alt="img">
+                                        <img src="{{url('/images/profile/',Auth::user()->profile)}}" class="rounded-circle user_img" alt="img">
                                     </div>
                                     <div class="align-items-center mt-2">
                                         <h4 class="text-white mb-0 fw-semibold">Daneil Scott</h4>
@@ -293,7 +307,7 @@
                                 </div>
                                 <div class="d-flex justify-content-start">
                                     <div class="img_cont_msg">
-                                        <img src="{{URL::asset('assets/img/faces/6.jpg')}}" class="rounded-circle user_img_msg" alt="img">
+                                        <img src="{{url('/images/profile/',Auth::user()->profile)}}" class="rounded-circle user_img_msg" alt="img">
                                     </div>
                                     <div class="msg_cotainer">
                                         Hi, how are you Jenna Side?
@@ -311,7 +325,7 @@
                                 </div>
                                 <div class="d-flex justify-content-start ">
                                     <div class="img_cont_msg">
-                                        <img src="{{URL::asset('assets/img/faces/6.jpg')}}" class="rounded-circle user_img_msg" alt="img">
+                                        <img src="{{url('/images/profile/',Auth::user()->profile)}}" class="rounded-circle user_img_msg" alt="img">
                                     </div>
                                     <div class="msg_cotainer">
                                         I am good too, thank you for your chat template
@@ -329,7 +343,7 @@
                                 </div>
                                 <div class="d-flex justify-content-start ">
                                     <div class="img_cont_msg">
-                                        <img src="{{URL::asset('assets/img/faces/6.jpg')}}" class="rounded-circle user_img_msg" alt="img">
+                                        <img src="{{url('/images/profile/',Auth::user()->profile)}}" class="rounded-circle user_img_msg" alt="img">
                                     </div>
                                     <div class="msg_cotainer">
                                         Yo, Can you update Views?
@@ -347,7 +361,7 @@
                                 </div>
                                 <div class="d-flex justify-content-start ">
                                     <div class="img_cont_msg">
-                                        <img src="{{URL::asset('assets/img/faces/6.jpg')}}" class="rounded-circle user_img_msg" alt="img">
+                                        <img src="{{url('/images/profile/',Auth::user()->profile)}}" class="rounded-circle user_img_msg" alt="img">
                                     </div>
                                     <div class="msg_cotainer">
                                         Yo, Can you update Views?
@@ -365,7 +379,7 @@
                                 </div>
                                 <div class="d-flex justify-content-start ">
                                     <div class="img_cont_msg">
-                                        <img src="{{URL::asset('assets/img/faces/6.jpg')}}" class="rounded-circle user_img_msg" alt="img">
+                                        <img src="{{url('/images/profile/',Auth::user()->profile)}}" class="rounded-circle user_img_msg" alt="img">
                                     </div>
                                     <div class="msg_cotainer">
                                         Yo, Can you update Views?
@@ -383,7 +397,7 @@
                                 </div>
                                 <div class="d-flex justify-content-start">
                                     <div class="img_cont_msg">
-                                        <img src="{{URL::asset('assets/img/faces/6.jpg')}}" class="rounded-circle user_img_msg" alt="img">
+                                        <img src="{{url('/images/profile/',Auth::user()->profile)}}" class="rounded-circle user_img_msg" alt="img">
                                     </div>
                                     <div class="msg_cotainer">
                                         Okay Bye, text you later..
@@ -416,7 +430,7 @@
                     <div class="modal-content bg-dark border-0 text-white">
                         <div class="modal-body mx-auto text-center p-7">
                             <h5>Valex Video call</h5>
-                            <img src="{{URL::asset('assets/img/faces/6.jpg')}}" class="rounded-circle user-img-circle h-8 w-8 mt-4 mb-3" alt="img">
+                            <img src="{{url('/images/profile/',Auth::user()->profile)}}" class="rounded-circle user-img-circle h-8 w-8 mt-4 mb-3" alt="img">
                             <h4 class="mb-1 fw-semibold">Daneil Scott</h4>
                             <h6>Calling...</h6>
                             <div class="mt-5">
@@ -449,7 +463,11 @@
                     <div class="modal-content border-0">
                         <div class="modal-body mx-auto text-center p-7">
                             <h5>Valex Voice call</h5>
-                            <img src="{{URL::asset('assets/img/faces/6.jpg')}}" class="rounded-circle user-img-circle h-8 w-8 mt-4 mb-3" alt="img">
+                            @if(!empty(Auth::user()->profile))
+                            <img src="{{url('/images/profile/',Auth::user()->profile)}}" class="rounded-circle user-img-circle h-8 w-8 mt-4 mb-3" alt="img">
+                            @else
+                            <img src="../../assets/img/faces/6.jpg" class="rounded-circle user-img-circle h-8 w-8 mt-4 mb-3" alt="img">
+                            @endif
                             <h4 class="mb-1  fw-semibold">Daneil Scott</h4>
                             <h6>Calling...</h6>
                             <div class="mt-5">
