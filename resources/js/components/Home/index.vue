@@ -161,6 +161,7 @@
               <h3>Curbside <span  class="re_d">Pickup</span></h3>
               <img
                 src="imgBag"
+                 :src="imgBag"
                 alt=""
               >
             </a>
@@ -459,7 +460,7 @@
         <div class="row">
           <div class="col-md-5 offset-md-7">
             <div class="div_center">
-              <h3 class="lab_22">The <b>Pet Parents</b> Store <label>XL</label></h3>
+              <h3 class="lab_22">The <b>Pet Parents<sup>®</sup></b> Store <label>XL</label></h3>
               <p class="p_16">All you need, In one place.</p>
               <a href="#" class="btn_grn">Learn more</a>
             </div>

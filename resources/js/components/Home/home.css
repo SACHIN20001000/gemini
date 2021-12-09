@@ -7,13 +7,19 @@ section.banner_sec {  background: #e1efe3; display: flex; justify-content: flex-
 .banner_top>h2 {   font-size: 64px;  line-height: .7; letter-spacing: -2px;  font-weight: 700;  color: #fa6734;}
 .banner_top>label {  font-size: 22px;    font-weight: 600; color: #78c8cf;}
 .banner_top>label span { font-weight: 400;}
-.btn_orng { margin-top: 22px;}
-span.blu { color: #78c8cf;}.btn_orng a { display: inline-block; padding: 8px 14px 13px 14px; border-radius: 50px;  color: #fff;
-text-decoration: none;  background: #fa6734; font-size: 15px;  line-height: .7;}
+.btn_orng { margin-top: 5px;}
+span.blu { color: #78c8cf;}.btn_orng a { display: inline-block; padding: 7px 15px; border-radius: 50px;  color: #fff;
+text-decoration: none;  background: #fa6734; font-size: 15px;  line-height: 1.2;}
+.btn_orng a:hover {color: #fff;}
 .baner_1 { display: flex; align-items: center; justify-content: flex-end;}
 .treat_bg {    background: #9bb79e;}
 .food_bg { background: #89b3b4;}
 .litter_bg { background: #decdc0;}
+section.product_slider .slick-slide a {
+    max-width: 300px;
+    display: block !important;
+    margin: 0 auto;
+}
 .toy_bg { background: #a28ca8;}
 section.treat_sec { padding: 60px 0 30px 0;}
 .grid_4>div { padding-top: 37%;  position: relative;}
@@ -23,7 +29,7 @@ text-transform: uppercase; font-weight: 700;}
 .grid_4>div>a img { margin-top: 50px;}
 section.product_slider .slick-slide a { color: #706f6f; text-decoration: none;}
 section.product_slider .slick-slide a h3 { font-size: 26px; font-weight: 300; max-width: 313px;}
-.product_slider .col-md-4 img {  height: 300px; width: 100%; object-fit: contain;}
+.product_slider .col-md-4 img ,section.product_slider .slick-slide img{  height: 300px !important; width: 100% !important; object-fit: contain !important;}
 .product_slider .row{margin: 0 -32px;}
 .product_slider .col-md-4
 {padding: 0 32px;}
@@ -85,6 +91,7 @@ section.two_img .col-md-6.txt_over a
 {
         padding-top: 80%;
 }
+section.two_img .col-md-6.txt_over a:hover{color: #fff;}
 .gray_panel {
     background: #f6f6f6;
     position: relative;
@@ -94,6 +101,7 @@ section.two_img .col-md-6.txt_over a
     flex-wrap: wrap;
     align-items: center;
 }
+.gray_panel:hover{text-decoration: none;}
 span.re_d {
     color: #e42930;
 }
@@ -159,6 +167,7 @@ span.re_d {
     font-weight: 400;
     padding: 20px;
 }
+.red_box a:hover{color: #fff;}
 .red_box .rect ,.blue_box .rect {
     position: absolute;
     top: 0;
@@ -257,6 +266,7 @@ span.re_d {
     letter-spacing: .4px;
     line-height: 1.8;
 }
+.cart_flex a:hover{color: #fff}
 .cart_flex {
     display: flex;
     justify-content: space-between;
@@ -438,13 +448,14 @@ section.Keep_touch {
     margin-right: 7px;
 }
 .radio_check span {
-    margin-right: 17px;
+    margin-right: 12px;
 }
 form.touch_form {
-    max-width: 300px;
+    max-width: 290px;
     display: flex;
     flex-wrap: wrap;
     grid-gap: 10px;
+    justify-content: space-between;
 }
 
 .Keep_touch .container_min>.row {
@@ -453,7 +464,9 @@ form.touch_form {
 }
 
 
-
+form.touch_form input[type="email"] {
+    width: 160px !important;
+}
 .ab_over {
     position: absolute;
     top: 0;
@@ -477,6 +490,7 @@ form.touch_form {
 h3.lab_22 {
     color: #fff;
     font-weight: 300;
+    margin-bottom: 0;
 }
 h3.lab_22 label {
     display: inline-block;
@@ -490,13 +504,14 @@ h3.lab_22 b {
 }
 p.p_16 {
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 400;
     color: #fff;
 }
 a.btn_grn {
     font-size: 12px;
     color: #fff;
     background: #00b7bc;
+    display: inline-block;
     padding: 6px 20px;
     border-radius: 50px;
     text-decoration: none;
@@ -546,4 +561,9 @@ h3.insta_head span {
 h3.insta_head {
     text-align: center;
     border-bottom: 2px solid #00b7bc;
+}
+
+h3.lab_22 sup {
+    font-size: 12px;
+    top: -10px;
 }
