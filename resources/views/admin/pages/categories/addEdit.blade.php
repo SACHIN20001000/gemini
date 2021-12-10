@@ -43,7 +43,7 @@
                             <div class="col-md-8 mg-t-5 mg-md-t-0">
                                     <input class="form-control" name="feature_image"  type="file">
                                     @if(!empty($category->feature_image))
-                                    <a href="{{url('/images/',$category->feature_image)}}" _blank><img src="{{url('/images',$category->feature_image)}}"  height="50" width="50"></a>
+                                    <a href="{{$category->feature_image}}" _blank><img src="{{$category->feature_image}}"  height="50" width="50"></a>
                                     @endif                                    
                                 </div>
                             </div>
