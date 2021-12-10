@@ -62,9 +62,9 @@
 
 @section('scripts')
 @if(isset($brand))
-{!! JsValidator::formRequest('App\Http\Requests\Admin\Brands\UpdateBrandS','#brand-add-edit') !!}
+{!! JsValidator::formRequest('App\Http\Requests\Admin\Brands\UpdateBrands','#brand-add-edit') !!}
 @else
-{!! JsValidator::formRequest('App\Http\Requests\Admin\Brands\AddBrandS','#brand-add-edit') !!}
+{!! JsValidator::formRequest('App\Http\Requests\Admin\Brands\AddBrands','#brand-add-edit') !!}
 @endif
 
 @endsection
