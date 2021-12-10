@@ -567,3 +567,295 @@ h3.lab_22 sup {
     font-size: 12px;
     top: -10px;
 }
+
+
+
+/* responsive */
+
+@media only screen and (max-width: 768px)
+{   
+section.xl_sec img { width: 100%;}
+section.banner_sec {padding: 10px; }
+section.banner_sec {  padding-bottom: 60px;  position: relative;}
+.btn_orng { position: absolute; bottom: 20px; text-align: center; width: 100%;  left: 0;}
+.col-md-5.baner_1 { position: unset;}
+.row.grid_4 {  display: grid; grid-template-columns: 50% 50%;}
+.grid_4>div { padding-top: 90%;}
+.grid_4>div img {   max-width: 128px; margin-top: 20px !important;}
+.grid_4>div>a h2 {font-size: 45px; position: absolute; bottom: 20px; letter-spacing: -2px;}
+section.treat_sec { padding: 0;}
+.row.grid_4.pad_15 { padding: 3px; margin: 0 -15px;}
+.blue_box, .red_box {padding-top: 90%; }
+.red_box h2, .blue_box h2 { font-size: 40px; letter-spacing: -2px; }
+.red_box .rect, .blue_box .rect { padding: 20px;}
+.red_box img {position: absolute; right: 4px; margin-top: 8px; max-width: 109px; }
+.red_box a { font-size: 10px; padding: 10px 0;}
+.blue_box .rect {padding: 20px; align-items: flex-start; }
+.blue_box p {font-size: 10px; text-align: left; }
+.blue_box img { max-width: 105px;}
+.blue_box sup { font-size: 26px;}
+section.two_img.rd_blue .row,section.two_img .row.pad_15,.duo_banner .row {display: grid; grid-template-columns: 50% 50%; padding: 0; }
+.row.pad_15 { padding: 0;}
+section.two_img .col-md-6.txt_over a { padding-top: 100%;}
+.txt_over a h2 {font-size: 40px; padding: 0 10px; text-align: left;}
+section.two_img {padding: 0px 0; }
+.gray_panel {    margin: 20px -15px;}
+.sub_1 {padding: 20px;}
+.sub_1>h1 {font-size: 27px; letter-spacing: -1px; color: #fff; margin: 0; }
+section.duo_banner, section.duo_banner>div {
+    padding: 0;
+}
+.sub_1 sup {
+    font-size: 15px;
+    top: -11px;
+}
+.over_red>small {
+    font-size: 10px;
+    color: #fff;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.duo_banner .row .col-md-6 {
+    padding: 0;
+}
+.sub_1 a {font-size: 10px; color: #fff; font-weight: 400; z-index: 1; position: relative; display: block; }
+
+.sub_1 img {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        max-width: 143px;
+        z-index: 0;
+        bottom: 5px;
+}
+.sub_1 p {
+    font-size: 11px;
+}
+.over_red>a {
+    font-size: 9px;
+    color: #fff;
+    margin-bottom: 10px;
+    display: block;
+}
+.over_red h2 {
+    font-size: 22px;
+   margin: 0;
+}
+.over_red {
+    background: #e3002b;
+    padding:15px 20px;
+    max-width: 136px;
+}
+section.Keep_touch .col-md-2 {
+    max-width: 150px;
+    width: 100%;
+}
+.form_mobile h1 {
+    font-size: 42px;
+    text-align: left;
+}
+.form_mobile {
+    max-width: calc(100% - 150px) !important    ;
+    padding: 0 15px 0 0;
+}
+.form_mobile p {
+    font-size: 14px;
+    line-height: .9;
+    text-align: left;
+    margin: 12px 0 0 0;
+}
+form.mobil_only input {
+    width: 100% !important;
+    height: 34px !important;
+    margin-top: 10px;
+}
+section.Keep_touch {
+    background: #f6f6f6;
+    padding: 15px 0 0 0;
+}
+ul.insta_nails>li {
+    max-width: 50%;
+}
+.cart_slide li {
+    padding: 0 25px;
+}
+section.cart_slider {
+    padding-bottom: 40px;
+}
+.product_slider .col-md-4 {
+    max-width: 200px;
+    padding: 0;
+}
+section.product_slider .slick-slide a h3 {
+    font-size: 18px;
+    font-weight: 300;
+    max-width: 313px;
+    line-height: 1.1;
+}
+.product_slider .col-md-4 img {
+    height: 200px;
+}
+section.two_img.rd_blue {
+    padding-bottom: 20px !important;
+}
+section.product_slider {
+    padding: 20px 0;
+}
+
+a.btn_grn {
+    font-size: 9px;
+}
+ .div_center p {
+    font-size: 14px;
+    margin: 0 0 10px 0;
+}
+.div_center h3 {
+    font-size: 15px;
+    margin: 0 0 0px 0;
+}
+.div_center {
+    max-width: 200px;
+    float: right;
+}
+section.cart_slider,section.product_slider {
+    overflow: hidden;
+}
+section.duo_banner .row {
+    margin: 0;
+}
+section.xl_sec img {
+    max-width: 100%;
+}
+
+ }
+
+
+ @media only screen and (min-width: 768px) and (max-width:1000px)
+ {
+    .grid_4>div ,section.two_img .col-md-6.txt_over,.blue_box, .red_box,.duo_banner .row .col-md-6{
+    width: 100% !important;
+}
+.grid_4>div img {
+    max-width: 230px;
+    height: 230px;
+    object-fit: contain;
+}
+.grid_4>div:nth-child(3) img {
+    max-width: 350px;
+}
+.grid_4>div>a h2,.col-md-6.txt_over h2 {
+    font-size: 68px;
+    bottom: 30px;
+
+}
+.red_box .rect, .blue_box .rect {
+    padding: 50px;
+}
+.red_box h2, .blue_box h2 {
+    font-size: 70px;
+    letter-spacing: -2px;
+}
+.blue_box p {
+    font-size: 18px;
+    text-align: left;
+}
+.red_box a {
+    font-size: 18px;
+    padding: 10px 0;
+}
+.blue_box img {
+    max-width: 200px;
+}
+.red_box img {
+    position: absolute;
+    right: 4px;
+    margin-top: 8px;
+    max-width: 190px;
+}
+.over_red {
+    background: #e3002b;
+    padding: 30px;
+    max-width: 260px;
+}
+.over_red>small {
+    font-size: 16px;
+}
+.over_red h2 {
+    font-size: 40px;
+    margin: 0;
+}
+.over_red>a {
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 10px;
+    display: block;
+}
+.sub_1 {
+    padding: 30px;
+}
+.sub_1>h1 {
+    font-size: 50px;
+    letter-spacing: -1px;
+    color: #fff;
+    margin: 0;
+}
+.sub_1 p {
+    font-size: 18px;
+}
+.sub_1 a {
+    font-size: 18px;
+    color: #fff;
+    font-weight: 400;
+    z-index: 1;
+    position: relative;
+    display: block;
+}
+.sub_1 img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    max-width: 260px;
+    z-index: 0;
+    bottom: 20px;
+}
+.form_mobile {
+    max-width: calc(100% - 150px);
+    padding: 0 15px 0 0;
+    width: 100%;
+}
+.container_min {
+    max-width: 600px;
+}
+.two_img + section .container_max .col-md-4 {
+    width: 100% !important;
+    max-width: 370px;
+    margin: 0 auto;
+}
+section.xl_sec .desk_only {
+    display: block;
+}
+section.xl_sec .mobil_only {
+    display: none;
+}
+ .div_center {
+    max-width: 310px;
+    float: right;
+    width: 100%;
+}
+.div_center h3 {
+    font-size: 24px;
+    margin: 0 0 0px 0;
+}
+.div_center p {
+    font-size: 20px;
+    margin: 0 0 10px 0;
+}
+a.btn_grn {
+    font-size: 14px;
+    display: inline-block;
+    margin-top: 10px;
+}
+ }

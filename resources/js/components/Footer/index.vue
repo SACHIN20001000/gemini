@@ -2,7 +2,7 @@
   <footer class="main_footer">
     <div class="container">
       <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-9 desk_only">
           <div class="row">
             <div class="col-md-6 foot_menu_1">
               <label class="lab_horiz">Products</label>
@@ -45,6 +45,44 @@
             </div>
           </div>
         </div>
+        <div class="mobil_only">
+                     <ul class="foot_mobil">
+                       <li><a href="#" class="link_bold">Get the App</a></li> 
+                       <li><a href="#" class="link_bold">Pet Parents+®</a></li> 
+                       <li><a href="#" class="link_bold">Subscription Pawgram®</a></li> 
+                       <li><a href="#" class="link_bold">Locations</a></li> 
+                       <li><a href="#" class="link_bold">Careers</a></li> 
+
+                       <div class="foot_devider"></div>
+                       <li><a href="#" class="link_bold">Shop</a></li> 
+                       <li><a href="#" >Dog</a></li> 
+                       <li><a href="#" >Cat</a></li> 
+                       <li><a href="#" >Age</a></li> 
+                       <li><a href="#" >Needs</a></li> 
+
+                       <div class="foot_devider"></div>
+                       <li><a href="#" class="link_bold">Services</a></li> 
+                       <li><a href="#" >Services</a></li> 
+                       <li><a href="#" >DaySpaw®</a></li> 
+                       <li><a href="#" >Chowologist™</a></li> 
+                       <li><a href="#" >Click & Pick</a></li> 
+                       <li><a href="#" >Coming Soon...</a></li> 
+
+                        <div class="foot_devider"></div>
+                       <li><a href="#" class="link_bold">Learn</a></li> 
+                       <li><a href="#" >Pet Parenting™ Blog</a></li> 
+                       <li><a href="#" >Recall</a></li> 
+
+
+                       <div class="foot_devider"></div>
+                       <li><a href="#" class="link_bold">Customer Success</a></li> 
+                       <li><a href="#" >Policies</a></li> 
+                       <li><a href="#" >Return/Exchange</a></li>
+                       <li><a href="#" >Contact Us</a></li> 
+                       <li><a href="#" >Help</a></li>  
+                     </ul>
+
+                  </div>
         <div class="col-md-3 foot_3">
           <a href="#" class="paw_logo">
             <img

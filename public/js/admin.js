@@ -3,6 +3,7 @@ var __webpack_exports__ = {};
 /*!*************************************!*\
   !*** ./resources/admin/js/admin.js ***!
   \*************************************/
+// Global Delete event
 (function () {
   var deleteEvent = {
     initialize: function initialize() {
