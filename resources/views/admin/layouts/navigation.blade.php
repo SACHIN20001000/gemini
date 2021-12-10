@@ -1,7 +1,7 @@
 <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
 <aside class="app-sidebar sidebar-scroll">
     <div class="main-sidebar-header active">
-        <a class="desktop-logo logo-light active" href="{{ route('dashboard') }}"><img src="../../assets/img/brand/logo.png" class="main-logo" alt="logo"></a>
+        <a class="desktop-logo logo-light active" href="{{ route('dashboard') }}"><img src="{{URL::asset('assets/img/brand/logo.png')}}" class="main-logo" alt="logo"></a>
     </div>
     <div class="main-sidemenu">
         <div class="app-sidebar__user clearfix">
@@ -10,7 +10,7 @@
                 @if(!empty(Auth::user()->profile))
                 <img  class="avatar avatar-xl brround" src="{{url('/images/profile/',Auth::user()->profile)}}"><span class="avatar-status profile-status bg-green"></span>
                             @else
-                            <img src="../../assets/img/faces/6.jpg" class="rounded-circle user-img-circle h-8 w-8 mt-4 mb-3" alt="img">
+                            <img src="{{URL::asset('assets/img/faces/6.jpg')}}" class="rounded-circle user-img-circle h-8 w-8 mt-4 mb-3" alt="img">
                             @endif
                    
                 </div>
