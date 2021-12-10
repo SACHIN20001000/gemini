@@ -22,7 +22,7 @@
         "/categories": {
             "get": {
                 "tags": [
-                    "Categories"
+                    "Products"
                 ],
                 "summary": "Categories",
                 "operationId": "Categories",
@@ -57,7 +57,7 @@
         "/categories/{id}": {
             "get": {
                 "tags": [
-                    "Categories"
+                    "Products"
                 ],
                 "summary": "Categories By Id",
                 "operationId": "Categories By Id",
