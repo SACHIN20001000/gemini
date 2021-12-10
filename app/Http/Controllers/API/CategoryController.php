@@ -55,10 +55,12 @@ class CategoryController extends Controller
      *      security={
      *          {"Bearer": {}},
      *          },
-     * @OA\RequestBody(
+       *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="1",
      *         required=true,
-     *         @OA\JsonContent(ref="#/components/schemas/CategoriesRequest")
-     *     ),
+     *      ),
      *     summary="Categories By Id",
      *     @OA\Response(
      *         response="200",
@@ -83,6 +85,7 @@ class CategoryController extends Controller
      */
     public function category_by_id($id)
     {
+        
         $categories = Category::with('childrens')->find($id);
       if($categories){
         return  new CategoryResource($categories);
