@@ -16,7 +16,7 @@ use App\Http\Controllers\API\CategoryController;
   |
  */
 
-Route::post('registers', [PassportAuthController::class, 'register']);
+Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
 
 Route::middleware('auth:api')->group(function ()
