@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Http\Requests\Admin\Profile\updateUserProfile;
+use App\Http\Requests\Admin\Profile\UpdateUserProfile;
 use Storage;
 class AdminController extends Controller
 {
