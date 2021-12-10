@@ -42,7 +42,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = Category::with('children')->get();
+        $categories = Category::with('childrens')->where('parent',0)->get();
         
         return  CategoryResource::collection($categories);
     }

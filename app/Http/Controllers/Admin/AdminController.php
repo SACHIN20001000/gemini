@@ -10,10 +10,10 @@ class AdminController extends Controller
 {
     
     public function viewProfile(){
-        return view('admin.profile.viewProfile');
+        return view('admin.Profile.viewProfile');
     }
     public function updateProfile(){
-          return view('admin.profile.editprofile');
+          return view('admin.Profile.editprofile');
     }
 
       /**
