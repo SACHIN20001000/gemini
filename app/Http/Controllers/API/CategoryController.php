@@ -13,7 +13,7 @@ class CategoryController extends Controller
      * @OA\Get(
      *      path="/categories",
      *      operationId="Categories",
-     *      tags={"Categories"},
+     *      tags={"Products"},
      *      security={
      *          {"Bearer": {}},
      *          },
@@ -42,7 +42,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = Category::with('childrens')->where('parent',0)->get();
+        $categories = Category::with('childrens')->where(['parent'=>0,'type'=>'Product'])->get();
         
         return  CategoryResource::collection($categories);
     }
@@ -51,7 +51,7 @@ class CategoryController extends Controller
      *      path="/categories/{id}",
      *      operationId="Categories By Id",
      * summary="Categories_by_id",
-     *      tags={"Categories"},
+     *      tags={"Products"},
      *      security={
      *          {"Bearer": {}},
      *          },
@@ -83,7 +83,12 @@ class CategoryController extends Controller
      */
     public function category_by_id($id)
     {
-        $categories = Category::find($id);
+        $categories = Category::with('childrens')->find($id);
+      if($categories){
         return  new CategoryResource($categories);
+      }else{
+        return response()->json(['success' => false , 'message' => "Invailed Id"]);
+      }
+        
     }
 }
