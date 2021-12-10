@@ -10,11 +10,11 @@ class Category extends Model
     use HasFactory;
     protected $casts = [
         'created_at' => 'datetime:d-m-Y',
-        'updated_at' => 'datetime:d-m-Y', 
+        'updated_at' => 'datetime:d-m-Y',
     ];
 
     protected $fillable = [
-        'name', 'slug', 'parent','feature_image','status'
+        'name', 'slug', 'parent','feature_image','status','type'
     ];
     public function getCreatedAtAttribute($value)
     {
@@ -27,5 +27,9 @@ class Category extends Model
 
     public function parent() {
         return $this->belongsTo('App\Models\Category','parent');
+    }
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }

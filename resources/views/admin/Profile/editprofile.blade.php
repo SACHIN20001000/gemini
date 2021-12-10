@@ -25,7 +25,7 @@
           <div class="main-profile-overview">
             <div class="main-img-user profile-user">
             @if(!empty(Auth::user()->profile))
-            <img alt="" src="{{url('/images/profile/',Auth::user()->profile)}}">      
+            <img alt="" src="{{Auth::user()->profile}}">      
                                 @else
                                 <img src="../../assets/img/faces/6.jpg" alt="img">
                                 @endif

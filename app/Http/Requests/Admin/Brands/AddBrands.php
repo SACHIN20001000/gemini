@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\Category;
+namespace App\Http\Requests\Admin\Brands;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCategory extends FormRequest
+class AddBrands extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,8 @@ class UpdateCategory extends FormRequest
     {
         return [
             'name' => [
-            'required'
-            ],'status' => 'required'
+            'required',
+                      ]
         ];
     }
 }

@@ -7,6 +7,11 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\PageCategoriesController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\BrandsController;
+
+
 /*
   |--------------------------------------------------------------------------
   | Web Routes
@@ -38,17 +43,23 @@ Route::prefix('admin')->group(function ()
     {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('categories', CategoryController::class);
+        Route::resource('page-categories', PageCategoriesController::class);
+        Route::resource('products', ProductController::class);
+        Route::resource('brands', BrandsController::class);
+
+
+
         Route::resource('users', UserController::class);
-        Route::get('/viewProfile', [App\Http\Controllers\Admin\AdminController::class, 'viewProfile'])->name('viewProfile');
-        Route::get('/updateProfile', [App\Http\Controllers\Admin\AdminController::class, 'updateProfile'])->name('updateProfile');
-        Route::post('/updateUserProfile/{id}', [App\Http\Controllers\Admin\AdminController::class, 'updateUserProfile'])->name('updateUserProfile');
+        Route::get('view-profile', [App\Http\Controllers\Admin\AdminController::class, 'viewProfile'])->name('viewProfile');
+        Route::get('update-profile', [App\Http\Controllers\Admin\AdminController::class, 'updateProfile'])->name('updateProfile');
+        Route::post('update-user-profile/{id}', [App\Http\Controllers\Admin\AdminController::class, 'updateUserProfile'])->name('updateUserProfile');
 
         Route::get('/page', [App\Http\Controllers\Admin\PageController::class, 'index'])->name('pages');
         Route::post('/store', [App\Http\Controllers\Admin\PageController::class, 'store'])->name('storePage');
-        Route::get('/addPages', [App\Http\Controllers\Admin\PageController::class, 'addPages'])->name('addPages');
+        Route::get('add-page', [App\Http\Controllers\Admin\PageController::class, 'addPages'])->name('addPages');
         Route::get('/edit/{id}', [App\Http\Controllers\Admin\PageController::class, 'editPage'])->name('editPage');
         Route::post('/update', [App\Http\Controllers\Admin\PageController::class, 'updatePage'])->name('updatePage');
-        Route::any('/delPage/{id}', [App\Http\Controllers\Admin\PageController::class, 'deletePage'])->name('deletePage');
+        Route::any('/delete/{id}', [App\Http\Controllers\Admin\PageController::class, 'deletePage'])->name('deletePage');
     });
 });
 

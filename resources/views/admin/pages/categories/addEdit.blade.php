@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
+
 <div class="container">
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
@@ -8,7 +9,7 @@
                 <h4 class="content-title mb-0 my-auto">Categories</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{isset($category) ? $category->name : 'Add New' }}</span>
             </div>
         </div>
-        <a class="btn btn-main-primary ml_auto" href="{{ route('categories.index') }}">View Categories</a>
+        <a class="btn btn-main-primary ml_auto" href="{{ route('page-categories.index') }}">View categories</a>
     </div>
     <!-- breadcrumb -->
     <!--Row-->
@@ -23,7 +24,7 @@
                     
 
                     <!--  start  --> 
-                    <form  id="category-add-edit" action="{{isset($category) ? route('categories.update',$category->id) : route('categories.store')}}" method="POST" enctype="multipart/form-data">
+                    <form  id="category-add-edit" action="{{isset($category) ? route('page-categories.update',$category->id) : route('page-categories.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{ isset($category) ? method_field('PUT'):'' }}
                         <div class="pd-30 pd-sm-40 bg-gray-200">
@@ -33,8 +34,6 @@
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                     <input class="form-control" name="name"  placeholder="Enter your name" type="text" value="{{isset($category) ? $category->name : '' }}">
-                                    <input  name="type" type="hidden" value="Product">
-                              
                                 </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
@@ -44,7 +43,7 @@
                             <div class="col-md-8 mg-t-5 mg-md-t-0">
                                     <input class="form-control" name="feature_image"  type="file">
                                     @if(!empty($category->feature_image))
-                                    <a href="{{$category->feature_image}}" _blank><img src="{{$category->feature_image}}"  height="50" width="50"></a>
+                                    <a href="{{url('/images/',$category->feature_image)}}" _blank><img src="{{url('/images',$category->feature_image)}}"  height="50" width="50"></a>
                                     @endif                                    
                                 </div>
                             </div>
@@ -55,7 +54,7 @@
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                     <select name="parent"  class="form-control">
                                         <option value="0">Choose Below..</option>
-                                        @foreach($categories as $item)
+                                        @foreach($pagecategories as $item)
                                         <option {{ (isset($category) && $category->parent  == $item->id) ? 'selected' : '' }}  value="{{$item->id}}">  {{$item->name}}</option>
                                         @endforeach
                                     </select>

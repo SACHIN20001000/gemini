@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->text('title');
             $table->text('slug');
             $table->longText('content');
-            $table->text('type');
+            $table->text('category');
             $table->text('status');
             $table->timestamps();
 

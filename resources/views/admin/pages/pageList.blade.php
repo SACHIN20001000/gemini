@@ -33,7 +33,7 @@
 												<tr>
 												<th class="wd-lg-20p"><span>User</span></th>
 												<th class="wd-lg-20p"><span>Title</span></th>
-									      <th class="wd-lg-20p"><span>Type</span></th>
+									      <th class="wd-lg-20p"><span>Category</span></th>
                         <th class="wd-lg-20p"><span>Status</span></th>
                
 
@@ -64,7 +64,7 @@
             columns: [
                 {data: 'users.name', name: 'users.name'},
                 {data: 'title', name: 'title'},
-								{data: 'type', name: 'type'},
+								{data: 'categories.name', name: 'categories.name'},
                 {data: 'status', name: 'status', orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
