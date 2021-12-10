@@ -35,7 +35,17 @@
                                     <input class="form-control" name="name"  placeholder="Enter your name" type="text" value="{{isset($brand) ? $brand->name : '' }}">
                                 </div>
                             </div>
-                           
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Logo</label>
+                                </div>
+                            <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="logo"  type="file">
+                                    @if(!empty($brand->logo))
+                                    <a href="{{$brand->logo}}" _blank><img src="{{$brand->logo}}"  height="50" width="50"></a>
+                                    @endif                                    
+                                </div>
+                            </div>
                             <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($brand) ? 'Update' : 'Save' }}</button>
                         </div>
                 </div>

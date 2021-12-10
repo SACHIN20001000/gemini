@@ -75,6 +75,11 @@ class BrandsController extends Controller
     {  
         
         $inputs = $request->all();
+        if($request->hasFile('logo')){
+            $path = \Storage::disk('s3')->put('images', $request->logo);
+            $path = \Storage::disk('s3')->url($path);
+            $inputs['logo']= $path; 
+        }
         Brand::create($inputs);
        
         return back()->with('success','Brand addded successfully!');
@@ -114,6 +119,11 @@ class BrandsController extends Controller
     {
        
         $inputs = $request->all();
+        if($request->hasFile('logo')){
+            $path = \Storage::disk('s3')->put('images', $request->logo);
+            $path = \Storage::disk('s3')->url($path);
+            $inputs['logo']= $path; 
+        }
         $brand->update($inputs);
         return back()->with('success','Brand updated successfully!');
     }

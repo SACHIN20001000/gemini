@@ -42,10 +42,10 @@ class PageCategoriesController extends Controller
                             ->addColumn('action', function ($row)
                             {
                                 $action = '<span class="action-buttons">
-                                    <a  href="'.route("pagecategories.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
+                                    <a  href="'.route("page-categories.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
                                     
-                                    <a href="'.route("pagecategories.destroy", $row).'"
+                                    <a href="'.route("page-categories.destroy", $row).'"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"
                                             data-toggle="tooltip"
@@ -89,13 +89,17 @@ class PageCategoriesController extends Controller
     {  
         $slug = Str::slug($request->name);
         $inputs = $request->all();
-        $imageName =$request->file('feature_image')->getClientOriginalName(); 
-        $inputs['feature_image'] = $imageName;
+        if($request->hasFile('feature_image')){
+            $path = \Storage::disk('s3')->put('images', $request->feature_image);
+            $path = \Storage::disk('s3')->url($path);
+            $inputs['feature_image']= $path; 
+        }
+      
         $inputs['slug'] = $slug;
         $inputs['type'] = 'Page';
 
         Category::create($inputs);
-        $request->feature_image->move(public_path('images'), $imageName);
+       
         return back()->with('success','Category addded successfully!');
     }
 
@@ -137,9 +141,9 @@ class PageCategoriesController extends Controller
         $slug = Str::slug($request->name);
         $inputs = $request->all();
         if($request->hasFile('feature_image')){
-            $imageName =$request->file('feature_image')->getClientOriginalName(); 
-            $inputs['feature_image'] = $imageName;
-            $request->feature_image->move(public_path('images'), $imageName);
+            $path = \Storage::disk('s3')->put('images', $request->feature_image);
+            $path = \Storage::disk('s3')->url($path);
+            $inputs['feature_image']= $path; 
         }
         $inputs['slug'] = $slug;
         $category->update($inputs);

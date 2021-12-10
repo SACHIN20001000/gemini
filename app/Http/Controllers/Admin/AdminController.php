@@ -34,12 +34,11 @@ class AdminController extends Controller
     }else{
         $inputs['password'] =  bcrypt($request->password);
     }
-    if($request->profile != null){
-        
-            $imageName =$request->file('profile')->getClientOriginalName(); 
-             $request->profile->move(public_path('images/profile'), $imageName);
-             $inputs['profile'] = $imageName;
-            }
+    if($request->hasFile('profile')){
+        $path = \Storage::disk('s3')->put('images', $request->profile);
+        $path = \Storage::disk('s3')->url($path);
+        $inputs['profile']= $path; 
+    }
     $user->update($inputs);
     return back()->with('success','User updated successfully!');
        

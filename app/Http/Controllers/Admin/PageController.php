@@ -70,7 +70,7 @@ class PageController extends Controller
     //below function used for add page 
     public function addPages(){
         $category = Category::where(['type'=> 'Page', 'status' => 1])->get();
-        return view("admin..pages.addpages",compact('category'));
+        return view("admin.pages.addpages",compact('category'));
     }
     //below function store data into  database
     public function store(PagesRequest $request){
@@ -83,19 +83,20 @@ class PageController extends Controller
             'slug' =>     Str::slug($request->title),
             'category' =>     $request->category
           ]);
-          return redirect('admin/addPages')->with('success', 'Updated');
+          return redirect('admin/add-page')->with('success', 'Updated');
     }
   
 
     public function editPage($id) { 
            $post = Post::find($id); 
            $category = Category::where(['type'=> 'Page', 'status' => 1])->get();
-            return view("admin.pages.editPage",compact('post','category'));
+            return view('admin.pages.editPage',compact('post','category'));
 
     } 
 
     //below function update the data 
     public function updatePage(PagesRequest $request)  {
+       
        $post =Post::find($request->id); 
        $post->title =  $request->title;
        $post->status =  $request->status;

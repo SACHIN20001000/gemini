@@ -9,7 +9,7 @@
                 <h4 class="content-title mb-0 my-auto">Categories</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{isset($category) ? $category->name : 'Add New' }}</span>
             </div>
         </div>
-        <a class="btn btn-main-primary ml_auto" href="{{ route('pagecategories.index') }}">View categories</a>
+        <a class="btn btn-main-primary ml_auto" href="{{ route('page-categories.index') }}">View categories</a>
     </div>
     <!-- breadcrumb -->
     <!--Row-->
@@ -24,7 +24,7 @@
                     
 
                     <!--  start  --> 
-                    <form  id="category-add-edit" action="{{isset($category) ? route('pagecategories.update',$category->id) : route('pagecategories.store')}}" method="POST" enctype="multipart/form-data">
+                    <form  id="category-add-edit" action="{{isset($category) ? route('page-categories.update',$category->id) : route('page-categories.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{ isset($category) ? method_field('PUT'):'' }}
                         <div class="pd-30 pd-sm-40 bg-gray-200">

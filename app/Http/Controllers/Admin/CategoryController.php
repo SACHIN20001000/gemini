@@ -89,12 +89,16 @@ class CategoryController extends Controller
     {  
         $slug = Str::slug($request->name);
         $inputs = $request->all();
-        $imageName =$request->file('feature_image')->getClientOriginalName(); 
-        $inputs['feature_image'] = $imageName;
+        if($request->hasFile('feature_image')){
+            $path = \Storage::disk('s3')->put('images', $request->feature_image);
+            $path = \Storage::disk('s3')->url($path);
+            $inputs['feature_image']= $path; 
+        }
+          
         $inputs['slug'] = $slug;
-        $inputs['type'] = 'Product';
+       
         Category::create($inputs);
-        $request->feature_image->move(public_path('images'), $imageName);
+      
         return back()->with('success','Category addded successfully!');
     }
 
@@ -133,9 +137,9 @@ class CategoryController extends Controller
         $slug = Str::slug($request->name);
         $inputs = $request->all();
         if($request->hasFile('feature_image')){
-            $imageName =$request->file('feature_image')->getClientOriginalName(); 
-            $inputs['feature_image'] = $imageName;
-            $request->feature_image->move(public_path('images'), $imageName);
+            $path = \Storage::disk('s3')->put('images', $request->feature_image);
+            $path = \Storage::disk('s3')->url($path);
+            $inputs['feature_image']= $path; 
         }
         $inputs['slug'] = $slug;
         $category->update($inputs);
