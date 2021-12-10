@@ -25,8 +25,8 @@ class UpdateUserProfile extends FormRequest
     {
         return [
           'email'=>'required|string|email',
-          'password' => 'string|min:8|required_with:confirm_password|same:confirm_password',
-          'confirm_password' => 'required|string|min:8' ,
+          'password' => 'same:confirm_password',
+         
           
         ];
     }
