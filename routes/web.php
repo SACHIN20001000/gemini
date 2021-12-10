@@ -8,6 +8,10 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PageCategoriesController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\BrandsController;
+
+
 /*
   |--------------------------------------------------------------------------
   | Web Routes
@@ -40,6 +44,10 @@ Route::prefix('admin')->group(function ()
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('categories', CategoryController::class);
         Route::resource('pagecategories', PageCategoriesController::class);
+        Route::resource('products', ProductController::class);
+        Route::resource('brands', BrandsController::class);
+
+
 
         Route::resource('users', UserController::class);
         Route::get('/viewProfile', [App\Http\Controllers\Admin\AdminController::class, 'viewProfile'])->name('viewProfile');

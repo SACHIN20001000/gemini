@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product;
+use App\Models\Brand;
 use DataTables;
-use App\Http\Requests\Admin\Product\AddProduct;
-use App\Http\Requests\Admin\Product\UpdateProduct;
-class ProductController extends Controller
+use App\Http\Requests\Admin\Brands\AddBrands;
+use App\Http\Requests\Admin\Brands\UpdateBrands;
+class BrandsController extends Controller
 {
 
     /**
@@ -21,24 +21,24 @@ class ProductController extends Controller
         
         if ($request->ajax())
         {
-            $data = Product::all();
+            $data = Brand::all();
 
             return Datatables::of($data)
             ->addIndexColumn()
                     ->addColumn('action', function ($row)
                             {
                                 $action = '<span class="action-buttons">
-                                    <a  href="'.route("products.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
+                                    <a  href="'.route("brands.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
                                     
-                                    <a href="'.route("products.destroy", $row).'"
+                                    <a href="'.route("brands.destroy", $row).'"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"
                                             data-toggle="tooltip"
                                             data-placement="top"
                                             data-method="DELETE"
                                             data-confirm-title="Please Confirm"
-                                            data-confirm-text="Are you sure that you want to delete this Product?"
+                                            data-confirm-text="Are you sure that you want to delete this Brand?"
                                             data-confirm-delete="Yes, delete it!">
                                             <i class="las la-trash"></i>
                                         </a>
@@ -51,7 +51,7 @@ class ProductController extends Controller
                             ;
         }
 
-        return view('admin.products.index');
+        return view('admin.brands.index');
     }
 
     /**
@@ -61,8 +61,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
-        return view('admin.products.addEdit',compact('products'));
+        $brands = Brand::all();
+        return view('admin.brands.addEdit',compact('brands'));
     }
 
     /**
@@ -71,13 +71,13 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AddProduct $request)
+    public function store(AddBrands $request)
     {  
         
         $inputs = $request->all();
-        Product::create($inputs);
+        Brand::create($inputs);
        
-        return back()->with('success','Product addded successfully!');
+        return back()->with('success','Brand addded successfully!');
     }
 
     /**
@@ -97,10 +97,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Brand $brand)
     {
-        $products = Product::where('id','!=',$product->id)->get();
-        return view('admin.products.addEdit',compact('product','products'));
+        $brands = Brand::where('id','!=',$brand->id)->get();
+        return view('admin.brands.addEdit',compact('brand','brands'));
     }
 
     /**
@@ -110,12 +110,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProduct $request, Product $Product)
+    public function update(UpdateBrands $request, Brand $brand)
     {
        
         $inputs = $request->all();
-        $Product->update($inputs);
-        return back()->with('success','Product updated successfully!');
+        $brand->update($inputs);
+        return back()->with('success','Brand updated successfully!');
     }
 
     /**
@@ -124,10 +124,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $Product)
+    public function destroy(Brand $brand)
     {
-        $Product->delete();
-        return back()->with('success','Product deleted successfully!');
+        $brand->delete();
+        return back()->with('success','Brand deleted successfully!');
     }
 
 }
