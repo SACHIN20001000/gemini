@@ -26,21 +26,18 @@ class AdminController extends Controller
      */
     public function updateUserProfile(UpdateUserProfile $request , $id ){
 
-
+        
     $user = User::find($id);
-
-    $inputs = $request->all();
-    if($request->password == $user->password){
-        $inputs['password'] =  $request->password;
-    }else{
-        $inputs['password'] =  bcrypt($request->password);
+    if(!empty($request->password)){
+        $user->password =  bcrypt($request->password);
     }
     if($request->hasFile('profile')){
         $path = Storage::disk('s3')->put('images', $request->profile);
         $path = Storage::disk('s3')->url($path);
-        $inputs['profile']= $path; 
+        $user->profile = $path; 
     }
-    $user->update($inputs);
+    $user->name = $request->name;
+    $user->save();
     return back()->with('success','User updated successfully!');
        
   }
