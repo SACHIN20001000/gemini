@@ -88,7 +88,7 @@
                 <label class="form-label">Password</label>
               </div>
               <div class="col-md-9">
-                <input type="password" class="form-control" name="password"  placeholder="Password" value="{{Auth::user()->password}}">
+                <input type="password" class="form-control" name="password"  placeholder="Password" >
               </div>
             </div>
           </div>
@@ -98,7 +98,7 @@
                 <label class="form-label">Confirm Password</label>
               </div>
               <div class="col-md-9">
-                <input type="password" class="form-control" name="confirm_password"  placeholder="Password" value="{{Auth::user()->password}}" >
+                <input type="password" class="form-control" name="confirm_password"  placeholder="Password" >
               </div>
             </div>
           </div>
