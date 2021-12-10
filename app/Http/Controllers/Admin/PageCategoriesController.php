@@ -9,6 +9,7 @@ use DataTables;
 use App\Http\Requests\Admin\Category\AddCategory;
 use App\Http\Requests\Admin\Category\UpdateCategory;
 use Illuminate\Support\Str;
+use Storage;
 class PageCategoriesController extends Controller
 {
 
@@ -90,8 +91,8 @@ class PageCategoriesController extends Controller
         $slug = Str::slug($request->name);
         $inputs = $request->all();
         if($request->hasFile('feature_image')){
-            $path = \Storage::disk('s3')->put('images', $request->feature_image);
-            $path = \Storage::disk('s3')->url($path);
+            $path = Storage::disk('s3')->put('images', $request->feature_image);
+            $path = Storage::disk('s3')->url($path);
             $inputs['feature_image']= $path; 
         }
       
@@ -141,8 +142,8 @@ class PageCategoriesController extends Controller
         $slug = Str::slug($request->name);
         $inputs = $request->all();
         if($request->hasFile('feature_image')){
-            $path = \Storage::disk('s3')->put('images', $request->feature_image);
-            $path = \Storage::disk('s3')->url($path);
+            $path = Storage::disk('s3')->put('images', $request->feature_image);
+            $path = Storage::disk('s3')->url($path);
             $inputs['feature_image']= $path; 
         }
         $inputs['slug'] = $slug;

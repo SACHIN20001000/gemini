@@ -8,6 +8,7 @@ use App\Models\Brand;
 use DataTables;
 use App\Http\Requests\Admin\Brands\AddBrands;
 use App\Http\Requests\Admin\Brands\UpdateBrands;
+use Storage;
 class BrandsController extends Controller
 {
 
@@ -76,8 +77,8 @@ class BrandsController extends Controller
         
         $inputs = $request->all();
         if($request->hasFile('logo')){
-            $path = \Storage::disk('s3')->put('images', $request->logo);
-            $path = \Storage::disk('s3')->url($path);
+            $path = Storage::disk('s3')->put('images', $request->logo);
+            $path = Storage::disk('s3')->url($path);
             $inputs['logo']= $path; 
         }
         Brand::create($inputs);
@@ -120,8 +121,8 @@ class BrandsController extends Controller
        
         $inputs = $request->all();
         if($request->hasFile('logo')){
-            $path = \Storage::disk('s3')->put('images', $request->logo);
-            $path = \Storage::disk('s3')->url($path);
+            $path = Storage::disk('s3')->put('images', $request->logo);
+            $path = Storage::disk('s3')->url($path);
             $inputs['logo']= $path; 
         }
         $brand->update($inputs);
