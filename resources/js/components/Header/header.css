@@ -29,3 +29,56 @@ ul.navbar-nav { justify-content: center; width: 100%;}
 .menu_nav li.nav-item.active {background: #e4022d;}
 .menu_nav li.nav-item.active a{ border: 0px !important;}
 .top_devider { height: 1px;display: block; width: 100%; background: rgba(0,0,0,.1); margin: 0 0 10px 0;}
+
+
+
+/*header responsive*/
+
+
+@media only screen and (max-width: 768px)
+{   
+img{max-width: 100%;}
+body{overflow-x:hidden ;}
+.profile_bar { display: none;}
+a.navbar-brand {  max-width: 210px;}
+.desk_only{display: none;}
+.mobil_searc button, .mobil_searc a {  border: 0;  background: #00b7bc;  width: 32px;  height: 32px;  border-radius: 50px; align-items: center;    justify-content: center;
+display: flex;}
+button.navbar-toggler:focus { border: none; outline: none; box-shadow: none;}
+.logo_nav {padding: 20px 15px !important; }
+.menu_nav .container-fluid { padding: 0;}
+.menu_nav ul.navbar-nav>li:not(:last-child)>a { border-right: 0; display: block;}
+}
+
+@media only screen and (max-width: 400px)
+{
+    a.navbar-brand {
+    max-width: 170px;
+}
+}
+@media only screen and (max-width: 340px)
+{
+    a.navbar-brand {
+    max-width: 120px;
+}
+}
+
+@media only screen and (min-width:768px) and (max-width:1024px)
+{
+    a.navbar-brand {
+    max-width: 310px;
+}
+.logo_nav {
+    padding: 40px;
+}
+img{max-width: 100%;}
+.menu_nav .navbar-nav li a {
+    padding: 0px 14px !important;
+ 
+}
+}
+
+@media only screen and (min-width: 769px)
+{
+    .mobil_only{display: none;}
+}

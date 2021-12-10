@@ -147,7 +147,7 @@
     <section>
       <div class="container_max">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-4 gb_box">
             <a href="#" class="img_box1 gray_panel">
               <h3>GET THE <span class="re_d">APP</span></h3>
               <img
@@ -156,7 +156,7 @@
               >
             </a>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 gb_box">
             <a href="#" class="img_box2 gray_panel">
               <h3>Curbside <span  class="re_d">Pickup</span></h3>
               <img
@@ -166,7 +166,7 @@
               >
             </a>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 gb_box">
             <div class="img_box3 gray_panel">
               <div class="wrp">
                 <h3>PET PARENTS<span class="re_d">+</span>®</h3>
@@ -418,16 +418,23 @@
             <img
               :src="imgTouch"
               alt="Touch"
+              class="desk_only"
+            >
+              <img
+              :src="imgTouch2"
+              alt="Touch2"
+              class="mobil_only"
             >
           </div>
-          <div class="col-md-6 form_text text-center">
+          <div class="col-md-6 form_text text-center form_mobile">
             <h1>
               Keep <span class="thin">in</span>
               <span class="re_d">Touch</span>
             </h1>
             <p>Stay up to date with the latest sales, new products, and special events.</p>
+             <form class="mobil_only"> <div class="from_grp"><input type="text" placeholder="Enter Your Email"></div></form>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 desk_only">
             <form class="touch_form">
               <div class="from_grp">
                 <input type="text" placeholder="First Name">
@@ -455,6 +462,12 @@
       <img
         :src="imgBg2"
         alt="bg2"
+        class="desk_only"
+      >
+       <img
+        :src="imgBg3"
+        alt="bg2"
+        class="mobil_only"
       >
       <div class="container_max ab_over">
         <div class="row">
@@ -585,7 +598,9 @@ import imgPro4 from "../../assets/images/pro4.jpg"
 import imgGnaw from "../../assets/images/gnaw.png"
 import imgHeat from "../../assets/images/heat.jpg"
 import imgTouch from "../../assets/images/touch.jpg"
+import imgTouch2 from "../../assets/images/mobile_contact.png"
 import imgBg2 from "../../assets/images/bg2.jpg"
+import imgBg3 from "../../assets/images/bg3.jpg"
 import imgIn1 from "../../assets/images/in1.jpg"
 import imgIn2 from "../../assets/images/in2.jpg"
 import imgIn3 from "../../assets/images/in3.jpg"
@@ -625,7 +640,9 @@ export default {
       imgGnaw: imgGnaw,
       imgHeat: imgHeat,
       imgTouch: imgTouch,
+      imgTouch2: imgTouch2,
       imgBg2: imgBg2,
+      imgBg3: imgBg3,
       imgIn1: imgIn1,
       imgIn2: imgIn2,
       imgIn3: imgIn3,
