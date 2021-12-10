@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\Admin\Profile\updateUserProfile;
+use Storage;
 class AdminController extends Controller
 {
     
@@ -35,8 +36,8 @@ class AdminController extends Controller
         $inputs['password'] =  bcrypt($request->password);
     }
     if($request->hasFile('profile')){
-        $path = \Storage::disk('s3')->put('images', $request->profile);
-        $path = \Storage::disk('s3')->url($path);
+        $path = Storage::disk('s3')->put('images', $request->profile);
+        $path = Storage::disk('s3')->url($path);
         $inputs['profile']= $path; 
     }
     $user->update($inputs);
