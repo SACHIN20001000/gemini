@@ -9,7 +9,7 @@ use DataTables;
 use App\Http\Requests\Admin\Category\AddCategory;
 use App\Http\Requests\Admin\Category\UpdateCategory;
 use Illuminate\Support\Str;
-class CategoryController extends Controller
+class PageCategoriesController extends Controller
 {
 
     /**
@@ -21,7 +21,7 @@ class CategoryController extends Controller
     {
         if ($request->ajax())
         {
-            $data = Category::where('type','Product')->get();
+            $data = Category::where('type','Page')->get();
 
             return Datatables::of($data)
             ->addIndexColumn()
@@ -42,10 +42,10 @@ class CategoryController extends Controller
                             ->addColumn('action', function ($row)
                             {
                                 $action = '<span class="action-buttons">
-                                    <a  href="'.route("categories.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
+                                    <a  href="'.route("pagecategories.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
                                     
-                                    <a href="'.route("categories.destroy", $row).'"
+                                    <a href="'.route("pagecategories.destroy", $row).'"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"
                                             data-toggle="tooltip"
@@ -65,7 +65,7 @@ class CategoryController extends Controller
                             ;
         }
 
-        return view('admin.categories.index');
+        return view('admin.pages.categories.index');
     }
 
     /**
@@ -75,8 +75,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('type','Product')->get();
-        return view('admin.categories.addEdit',compact('categories'));
+        $pagecategories = Category::where(['type'=> 'Page'])->get();
+        return view('admin.pages.categories.addEdit',compact('pagecategories'));
     }
 
     /**
@@ -92,7 +92,8 @@ class CategoryController extends Controller
         $imageName =$request->file('feature_image')->getClientOriginalName(); 
         $inputs['feature_image'] = $imageName;
         $inputs['slug'] = $slug;
-        $inputs['type'] = 'Product';
+        $inputs['type'] = 'Page';
+
         Category::create($inputs);
         $request->feature_image->move(public_path('images'), $imageName);
         return back()->with('success','Category addded successfully!');
@@ -115,10 +116,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        $categories = Category::where('id','!=',$category->id)->where('type','Product')->get();
-        return view('admin.categories.addEdit',compact('category','categories'));
+       
+        $category= Category::where('id',$id)->first();
+    
+        $pagecategories = Category::where('id','!=',$category->id)->where('type','Page')->get();
+        return view('admin.pages.categories.addEdit',compact('category','pagecategories'));
     }
 
     /**
@@ -150,9 +154,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        $category->delete();
+        
+        Category::find($id)->delete();
         return back()->with('success','Category deleted successfully!');
     }
 

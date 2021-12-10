@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Category;
+
 use DataTables;
 use App\Http\Requests\Admin\Page\PagesRequest;
 use Illuminate\Support\Str;
@@ -16,7 +18,8 @@ class PageController extends Controller
       
         if ($request->ajax())
         {
-            $data = Post::with('users')->get();
+            $data = Post::with('users')->with('categories')->get();
+         
 
             return Datatables::of($data)
             ->addIndexColumn()
@@ -66,7 +69,8 @@ class PageController extends Controller
 
     //below function used for add page 
     public function addPages(){
-        return view("admin..pages.addpages");
+        $category = Category::where(['type'=> 'Page', 'status' => 1])->get();
+        return view("admin..pages.addpages",compact('category'));
     }
     //below function store data into  database
     public function store(PagesRequest $request){
@@ -77,8 +81,7 @@ class PageController extends Controller
             'status'  =>  $request->status,
             'content' =>  $request->content,
             'slug' =>     Str::slug($request->title),
-            'type' =>     $request->type
-
+            'category' =>     $request->category
           ]);
           return redirect('admin/addPages')->with('success', 'Updated');
     }
@@ -86,7 +89,8 @@ class PageController extends Controller
 
     public function editPage($id) { 
            $post = Post::find($id); 
-            return view("admin.pages.editPage",compact('post'));
+           $category = Category::where(['type'=> 'Page', 'status' => 1])->get();
+            return view("admin.pages.editPage",compact('post','category'));
 
     } 
 
@@ -96,7 +100,7 @@ class PageController extends Controller
        $post->title =  $request->title;
        $post->status =  $request->status;
        $post->content =  $request->content;
-       $post->type =  $request->type;
+       $post->category =  $request->category;
        $post->save();
       
           return redirect('admin/page')->with('success', 'Updated');

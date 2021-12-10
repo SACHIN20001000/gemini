@@ -56,8 +56,11 @@
                       <div class="col-md-10 mg-t-5 mg-md-t-0">
                       <select name="type"   class="form-control">
 													<option value="">Choose Below..</option>
-													<option value="POST" {{ $post->type == 'POST' ? 'selected' : '' }} >POST</option>
-                          <option value="PAGES"{{ $post->type == 'PAGES' ? 'selected' : '' }}>PAGES</option>
+													@foreach($category as $categories)
+													<option value="{{$categories->id}}" {{ $post->category == $categories->id  ? 'selected' : '' }}>{{$categories->name}}</option>
+                         
+													@endforeach
+												
 												</select>
                 </div>
 </div>

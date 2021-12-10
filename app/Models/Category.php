@@ -14,7 +14,7 @@ class Category extends Model
     ];
 
     protected $fillable = [
-        'name', 'slug', 'parent','feature_image','status','profile'
+        'name', 'slug', 'parent','type','feature_image','status','profile'
     ];
     public function getCreatedAtAttribute($value)
     {
@@ -28,4 +28,8 @@ class Category extends Model
     public function parent() {
         return $this->belongsTo('App\Models\Category','parent');
     }
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    } 
 }

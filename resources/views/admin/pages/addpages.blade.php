@@ -49,13 +49,15 @@
 										</div>
 										<div class="row row-xs align-items-center mg-b-20">
 											<div class="col-md-2">
-												<label class="form-label mg-b-0">Type</label>
+												<label class="form-label mg-b-0">Category</label>
 											</div>
                       <div class="col-md-10 mg-t-5 mg-md-t-0">
-                      <select name="type"   class="form-control">
+                      <select name="category"   class="form-control">
 													<option value="">Choose Below..</option>
-													<option value="POST">POST</option>
-                          <option value="PAGES">PAGES</option>
+													@foreach($category as $categories)
+													<option value="{{$categories->id}}">{{$categories->name}}</option>
+                         
+													@endforeach
 												</select>
                 </div>
 								</div>

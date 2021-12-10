@@ -25,7 +25,7 @@ class PagesRequest extends FormRequest
     {
         return [
             'title'=>'required|string',
-            'type'  =>'required',
+            'category'  =>'required',
             'content'  =>'required',
             'status'  =>'required'
         ];
