@@ -83,7 +83,12 @@ class CategoryController extends Controller
      */
     public function category_by_id($id)
     {
-        $categories = Category::find($id)->with('childrens');
+        $categories = Category::with('childrens')->find($id);
+      if($categories){
         return  new CategoryResource($categories);
+      }else{
+        return response()->json(['success' => false , 'message' => "Invailed Id"]);
+      }
+        
     }
 }
