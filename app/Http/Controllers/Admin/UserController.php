@@ -75,8 +75,9 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-      
+    
         $inputs = $request->all();
+        $inputs['password'] = bcrypt($request->password);
         $user= User::create($inputs);
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
         $role = Role::updateOrCreate(['name' => $request->role]);
@@ -119,6 +120,7 @@ class UserController extends Controller
     {
        
         $inputs = $request->all();
+        $inputs['password'] = bcrypt($request->password);
         $user->update($inputs);
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
          $role = Role::updateOrCreate(['name' => $request->role]);

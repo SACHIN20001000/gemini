@@ -24,9 +24,18 @@ class AddProduct extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
-            'required'
-        ]
+            'name' => 'required',
+            'description' => 'required',
+            'category' => 'required',
+            'quantity' => 'required',
+            'weight' => 'required',
+            'price' => 'required',
+            'sale_price' => 'required',
+            'status' => 'required',
+            'featured' => 'required',
+            'sku' => 'required',
+            'feature_image' =>'required'
+
         ];
     }
 }
