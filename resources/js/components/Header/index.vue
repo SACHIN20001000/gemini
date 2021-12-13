@@ -103,7 +103,7 @@ import imgLogo from "../../assets/images/logo.png"
 import imgProfile from "../../assets/images/profile.png"
 import imgCartIcon from "../../assets/images/cart_icon.png"
 import search_mobile from "../../assets/images/search_mobile.png"
-import menu_lines from "../../assets/images/menu_lines.png"
+import menu_lines from "../../assets/images/menu_lines.svg"
 import imgDownload from "../../assets/images/download.png"
 export default {
   name:"Dashboard",
