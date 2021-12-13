@@ -987,7 +987,7 @@ img{max-width: 100%;}
 
 
 
- @media only screen and (min-width:980px) and (max-width:1024px)
+ @media only screen and (min-width:780px) and (max-width:1024px)
 {
 .sub_1 img {
     max-width: 340px;
@@ -1071,5 +1071,12 @@ form.mobil_only input {
 }
 .div_center {
     max-width: 415px;
+}
+}
+
+ @media only screen and (min-width:770px) and (max-width:1024px)
+{
+    section.banner_sec {
+    padding: 40px 0 !important;
 }
 }
