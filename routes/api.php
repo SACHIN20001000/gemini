@@ -29,8 +29,8 @@ Route::middleware('auth:api')->group(function ()
     Route::get('categories', [CategoryController::class, 'index']);
     Route::any('categories/{id}', [CategoryController::class, 'category_by_id']);
     Route::get('products', [ProductController::class, 'index']);
-    Route::any('products/{id}', [ProductController::class, 'product_by_id']);
-    Route::any('products/category/{id}', [ProductController::class, 'product_by_categoryid']);
+    Route::any('products/{id}', [ProductController::class, 'productById']);
+    Route::any('products/category/{id}', [ProductController::class, 'productByCategoryId']);
 
     Route::group(['middleware' => ['role:User']], function ()
     {

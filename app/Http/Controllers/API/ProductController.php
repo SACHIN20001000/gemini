@@ -84,7 +84,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function product_by_id($id)
+    public function productById($id)
     {
         
         $products = Product::with('categories')->find($id)->first();
@@ -133,7 +133,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function product_by_categoryid($id)
+    public function productByCategoryId($id)
     {
         
         $products = Product::with('categories')->where('category',$id)->get();
