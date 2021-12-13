@@ -40,9 +40,10 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::with('childrens')->where(['parent'=>0,'type'=>'Product'])->get();
+        $limit = $request->limit ? $request->limit : 20;
+        $categories = Category::with('childrens')->where(['parent'=>0,'type'=>'Product'])->paginate($limit);
         
         return  CategoryResource::collection($categories);
     }
@@ -83,10 +84,11 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function category_by_id($id)
+    public function category_by_id(Request $request,$id)
     {
-        
-        $categories = Category::with('childrens')->find($id);
+      $limit = $request->limit ? $request->limit : 20;
+
+        $categories = Category::with('childrens')->paginate($limit)->find($id);
       if($categories){
         return  new CategoryResource($categories);
       }else{

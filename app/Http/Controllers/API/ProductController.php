@@ -41,9 +41,10 @@ class ProductController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with('categories')->get();
+      $limit = $request->limit ? $request->limit : 20;
+        $products = Product::with('categories')->paginate($limit);
       
         return  ProductResource::collection($products);
     }
@@ -84,10 +85,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function productById($id)
+    public function productById(Request $request, $id)
     {
-        
-        $products = Product::with('categories')->find($id)->first();
+      $limit = $request->limit ? $request->limit : 20;
+        $products = Product::with('categories')->paginate($limit)->find($id);
       if($products){
         return  new ProductResource($products);
       }else{
@@ -133,10 +134,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function productByCategoryId($id)
+    public function productByCategoryId(Request $request,$id)
     {
-        
-        $products = Product::with('categories')->where('category',$id)->get();
+      $limit = $request->limit ? $request->limit : 20;
+        $products = Product::with('categories')->where('category',$id)->paginate($limit);
       
       if($products){
         return  ProductResource::collection($products);
