@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 use DataTables;
+use Illuminate\Support\Str;
 use App\Http\Requests\Admin\Product\AddProduct;
 use App\Http\Requests\Admin\Product\UpdateProduct;
+use Storage;
 class ProductController extends Controller
 {
 
@@ -21,10 +24,24 @@ class ProductController extends Controller
         
         if ($request->ajax())
         {
-            $data = Product::all();
+            $data = Product::with('categories')->get();
 
             return Datatables::of($data)
             ->addIndexColumn()
+                        ->addColumn('status', function ($row)
+                        {
+                            if($row->status == 1){
+                                $status =  '<span class="label text-success d-flex">
+                                                    <div class="dot-label bg-success me-1"></div>active
+                                                </span>';
+                            }else{
+                                $status =  '<span class="label text-danger d-flex">
+                                                    <div class="dot-label bg-danger me-1"></div> inactive
+                                                </span>';
+                            }
+                            
+                            return $status;
+                        })
                     ->addColumn('action', function ($row)
                             {
                                 $action = '<span class="action-buttons">
@@ -46,7 +63,7 @@ class ProductController extends Controller
                                 return $action;
                             })
 
-                            ->rawColumns(['action'])
+                            ->rawColumns(['action','status'])
                             ->make(true)
                             ;
         }
@@ -60,9 +77,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   $categories = Category::all();
         $products = Product::all();
-        return view('admin.products.addEdit',compact('products'));
+        return view('admin.products.addEdit',compact('products','categories'));
     }
 
     /**
@@ -75,6 +92,13 @@ class ProductController extends Controller
     {  
         
         $inputs = $request->all();
+        $slug = Str::slug($request->name);
+        $inputs['slug'] = $slug;
+        if($request->hasFile('feature_image')){
+            $path = Storage::disk('s3')->put('images', $request->feature_image);
+            $path = Storage::disk('s3')->url($path);
+            $inputs['feature_image']= $path; 
+        }
         Product::create($inputs);
        
         return back()->with('success','Product addded successfully!');
@@ -98,9 +122,10 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Product $product)
-    {
+    {   
+        $categories = Category::all();
         $products = Product::where('id','!=',$product->id)->get();
-        return view('admin.products.addEdit',compact('product','products'));
+        return view('admin.products.addEdit',compact('product','products','categories'));
     }
 
     /**
@@ -114,6 +139,13 @@ class ProductController extends Controller
     {
        
         $inputs = $request->all();
+        $slug = Str::slug($request->name);
+        $inputs['slug'] = $slug;
+        if($request->hasFile('feature_image')){
+            $path = Storage::disk('s3')->put('images', $request->feature_image);
+            $path = Storage::disk('s3')->url($path);
+            $inputs['feature_image']= $path; 
+        }
         $Product->update($inputs);
         return back()->with('success','Product updated successfully!');
     }

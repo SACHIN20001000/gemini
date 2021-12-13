@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\PassportAuthController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\ProductController;
+
 /*
   |--------------------------------------------------------------------------
   | API Routes
@@ -26,6 +28,9 @@ Route::middleware('auth:api')->group(function ()
     Route::get('logout', [PassportAuthController::class, 'logout']);
     Route::get('categories', [CategoryController::class, 'index']);
     Route::any('categories/{id}', [CategoryController::class, 'category_by_id']);
+    Route::get('products', [ProductController::class, 'index']);
+    Route::any('products/{id}', [ProductController::class, 'product_by_id']);
+    Route::any('products/category/{id}', [ProductController::class, 'product_by_categoryid']);
 
     Route::group(['middleware' => ['role:User']], function ()
     {

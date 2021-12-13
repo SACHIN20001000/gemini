@@ -177,6 +177,127 @@
                 }
             }
         },
+        "/products": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Products",
+                "operationId": "Products",
+                "responses": {
+                    "200": {
+                        "description": "Products",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/products/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Products By Id",
+                "operationId": "Product By Id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "1",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "products",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/products/category/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Products By Category Id",
+                "operationId": "Product By categoryId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "1",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "products",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
         "/profile": {
             "get": {
                 "tags": [
@@ -272,6 +393,67 @@
                 },
                 "type": "string"
             },
+            "ProductRequest": {
+                "title": "Product Request response",
+                "description": "Product Request response",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id for storring",
+                        "type": "string",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "ProductResponse": {
+                "title": "Categories Response",
+                "description": "Categories Response",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "example": {
+                            "id": "2",
+                            "name": "test test",
+                            "slug": "test-test",
+                            "status": "1",
+                            "weight": "21.00",
+                            "description": "dfsdfsdfsd",
+                            "sku": "dsfd",
+                            "quantity": "12",
+                            "price": "12.00",
+                            "sale_price": "121.00",
+                            "created": "2021-12-13",
+                            "updated_at": "2021-12-13"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Forbidden": {
+                "title": "Forbidden",
+                "description": "Forbidden",
+                "properties": {
+                    "forbidden": {
+                        "title": "forbidden",
+                        "description": "Forbidden",
+                        "type": "string"
+                    }
+                },
+                "type": "string"
+            },
+            "Notfound": {
+                "title": "Not found",
+                "description": "Not found",
+                "properties": {
+                    "notfound": {
+                        "title": "Not found",
+                        "description": "Not found",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
             "CategoriesRequest": {
                 "title": "Categories Request response",
                 "description": "Categories Request response",
@@ -301,30 +483,6 @@
                             "updated_at": "2021-12-10T11:34:05.000000Z",
                             "childrens": "[]"
                         }
-                    }
-                },
-                "type": "object"
-            },
-            "Forbidden": {
-                "title": "Forbidden",
-                "description": "Forbidden",
-                "properties": {
-                    "forbidden": {
-                        "title": "forbidden",
-                        "description": "Forbidden",
-                        "type": "string"
-                    }
-                },
-                "type": "string"
-            },
-            "Notfound": {
-                "title": "Not found",
-                "description": "Not found",
-                "properties": {
-                    "notfound": {
-                        "title": "Not found",
-                        "description": "Not found",
-                        "type": "string"
                     }
                 },
                 "type": "object"
