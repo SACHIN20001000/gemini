@@ -241,7 +241,7 @@
                   </div>
                   <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
                   <div class="cart_flex">
-                    <h3>$6.10</h3>
+                     <h3>$6<sup>.10</sup></h3>
                     <a href="#">Add To cart</a>
                   </div>
                 </div>
@@ -266,7 +266,7 @@
                   </div>
                   <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
                   <div class="cart_flex">
-                    <h3>$6.10</h3>
+                     <h3>$6<sup>.10</sup></h3>
                     <a href="#">Add To cart</a>
                   </div>
                 </div>
@@ -291,7 +291,7 @@
                   </div>
                   <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
                   <div class="cart_flex">
-                    <h3>$6.10</h3>
+                   <h3>$6<sup>.10</sup></h3>
                     <a href="#">Add To cart</a>
                   </div>
                 </div>
@@ -316,7 +316,7 @@
                   </div>
                   <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
                   <div class="cart_flex">
-                    <h3>$6.10</h3>
+                      <h3>$6<sup>.10</sup></h3>
                     <a href="#">Add To cart</a>
                   </div>
                 </div>
@@ -341,7 +341,7 @@
                   </div>
                   <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
                   <div class="cart_flex">
-                    <h3>$6.10</h3>
+                    <h3>$6<sup>.10</sup></h3>
                     <a href="#">Add To cart</a>
                   </div>
                 </div>
@@ -366,7 +366,7 @@
                   </div>
                   <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
                   <div class="cart_flex">
-                    <h3>$6.10</h3>
+                    <h3>$6<sup>.10</sup></h3>
                     <a href="#">Add To cart</a>
                   </div>
                 </div>
@@ -669,14 +669,19 @@ export default {
               breakpoint: 767,
               settings: {
                 slidesToShow: 2,
-                slidesToScroll: 2
+                slidesToScroll: 2,
+                centerMode: true,
+  centerPadding: '120px'
+
               }
             },
             {
               breakpoint: 639,
               settings: {
                 slidesToShow: 1,
-                slidesToScroll: 1
+                slidesToScroll: 1,
+                centerMode: true,
+  centerPadding: '120px'
               }
             },
           ]
@@ -698,15 +703,19 @@ export default {
             {
               breakpoint: 767,
               settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                   centerMode: true,
+  centerPadding: '60px'
               }
             },
             {
               breakpoint: 639,
               settings: {
                 slidesToShow: 1,
-                slidesToScroll: 1
+                slidesToScroll: 1,
+                   centerMode: true,
+  centerPadding: '60px'
               }
             },
           ]
