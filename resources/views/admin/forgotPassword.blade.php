@@ -29,6 +29,19 @@
 												<div class="main-signin-header">
 													<h2>Forgot Password!</h2>
 													<h4>Please Enter Your Email</h4>
+													@if ($errors->any())
+											@foreach ($errors->all() as $error)
+											<div class="container">
+											<div class="alert alert-solid-danger mg-b-0" role="alert">
+															<button aria-label="Close" class="close" data-bs-dismiss="alert" type="button">
+																	<span aria-hidden="true">&times;</span>
+															</button>
+															<strong>Oh snap!</strong> {{ $error }}
+											</div>
+											</div>
+																	<!-- <div style="color: red;font-size: 20px;">{{$error}}</div> -->
+															@endforeach
+													@endif
 													<form method="POST" action="{{ route('password.email') }}">
 
 													@csrf

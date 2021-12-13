@@ -42,7 +42,7 @@
                             <div class="col-md-8 mg-t-5 mg-md-t-0">
                                     <input class="form-control" name="logo"  type="file">
                                     @if(!empty($brand->logo))
-                                    <a href="{{$brand->logo}}" _blank><img src="{{$brand->logo}}"  height="50" width="50"></a>
+                                    <a href="{{$brand->logo}}" target="_blank"><img src="{{$brand->logo}}"  height="50" width="50"></a>
                                     @endif                                    
                                 </div>
                             </div>

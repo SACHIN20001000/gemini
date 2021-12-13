@@ -29,13 +29,108 @@
                         <div class="pd-30 pd-sm-40 bg-gray-200">
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Category</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <select name="category"  class="form-control">
+                                        <option value="0">Choose Below..</option>
+                                        @foreach($categories as $category)
+                                        <option {{ (isset($product) && $product->category  == $category->id) ? 'selected' : '' }}  value="{{$category->id}}">  {{$category->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">SKU</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="sku"  placeholder="Enter your sku" type="text" value="{{isset($product) ? $product->sku : '' }}">
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
                                     <label class="form-label mg-b-0">Name</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                     <input class="form-control" name="name"  placeholder="Enter your name" type="text" value="{{isset($product) ? $product->name : '' }}">
                                 </div>
                             </div>
-                           
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Feature Image</label>
+                                </div>
+                            <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="feature_image"  type="file">
+                                    @if(!empty($product->feature_image))
+                                    <a href="{{$product->feature_image}}" target="_blank"><img src="{{$product->feature_image}}"  height="50" width="50"></a>
+                                    @endif                                    
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Description</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <textarea name="description" class="form-control"   cols="30" rows="10">{{isset($product) ? $product->description : '' }}</textarea>
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Quantity</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="quantity"  placeholder="Enter quantity" type="number" value="{{isset($product) ? $product->quantity : '' }}">
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Weight</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="weight"  placeholder="Enter weight" type="number" value="{{isset($product) ? $product->weight : '' }}">
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Price</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="price"  placeholder="Enter your price" type="number" value="{{isset($product) ? $product->price : '' }}">
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Sale Price</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="sale_price"  placeholder="Enter your sale price" type="number" value="{{isset($product) ? $product->sale_price : '' }}">
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Status</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <select name="status" class="form-control">
+						<option value="">Choose Below..</option>
+						<option value="1" {{ (isset($product) && $product->status  == 1) ? 'selected' : '' }}>Active</option>
+                        <option value="0" {{ (isset($product) && $product->status  == 0) ? 'selected' : '' }}>Inactive</option>
+					  </select>
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Featured</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                  <select name="featured" class="form-control">
+						<option value="">Choose Below..</option>
+						<option value="1" {{ (isset($product) && $product->featured  == 1) ? 'selected' : '' }}>Yes</option>
+                        <option value="0" {{ (isset($product) && $product->featured  == 0) ? 'selected' : '' }}>No</option>
+					  </select>
+                                </div>
+                            </div>
                             <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>
                         </div>
                 </div>
