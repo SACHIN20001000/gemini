@@ -979,6 +979,10 @@ section.treat_sec {
     padding-top: 20px;
 }
 img{max-width: 100%;}
+.sub_1 sup {
+    font-size: 15px;
+    top: -22px;
+}
  }
 
 
@@ -1061,5 +1065,11 @@ form.mobil_only input {
     font-weight: 300;
     padding: 0 0 0 10px;
 }
-
+.sub_1 sup {
+    font-size: 22px;
+    top: -19px;
+}
+.div_center {
+    max-width: 415px;
+}
 }
