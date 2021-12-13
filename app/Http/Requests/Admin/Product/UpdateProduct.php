@@ -34,7 +34,7 @@ class UpdateProduct extends FormRequest
             'status' => 'required',
             'featured' => 'required',
             'sku' => 'required',
-            'feature_image' =>'required'
+           
         ];
     }
 }

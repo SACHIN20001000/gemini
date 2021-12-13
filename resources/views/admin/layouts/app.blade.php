@@ -224,7 +224,7 @@
                                                                             </div>
                                                 <div class="ms-3 my-auto">
                                                     
-                                                    <h6>Petey Cruiser</h6><span>Premium Member</span>
+                                                    <h6>{{ auth()->user()->name??'Petey Cruiser' }}</h6><span>Premium Member</span>
                                                 </div>
                                             </div>
                                         </div>

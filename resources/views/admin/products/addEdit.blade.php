@@ -63,7 +63,7 @@
                             <div class="col-md-8 mg-t-5 mg-md-t-0">
                                     <input class="form-control" name="feature_image"  type="file">
                                     @if(!empty($product->feature_image))
-                                    <a href="{{$product->feature_image}}" _blank><img src="{{$product->feature_image}}"  height="50" width="50"></a>
+                                    <a href="{{$product->feature_image}}" target="_blank"><img src="{{$product->feature_image}}"  height="50" width="50"></a>
                                     @endif                                    
                                 </div>
                             </div>
@@ -124,7 +124,11 @@
                                     <label class="form-label mg-b-0">Featured</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="featured"  placeholder="Enter your featured" type="number" value="{{isset($product) ? $product->featured : '' }}">
+                                  <select name="featured" class="form-control">
+						<option value="">Choose Below..</option>
+						<option value="1" {{ (isset($product) && $product->featured  == 1) ? 'selected' : '' }}>Yes</option>
+                        <option value="0" {{ (isset($product) && $product->featured  == 0) ? 'selected' : '' }}>No</option>
+					  </select>
                                 </div>
                             </div>
                             <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>

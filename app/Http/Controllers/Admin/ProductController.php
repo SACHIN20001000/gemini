@@ -42,6 +42,16 @@ class ProductController extends Controller
                             
                             return $status;
                         })
+                        ->addColumn('featured', function ($row)
+                        {
+                            if($row->featured == 1){
+                                $featured =  'Yes';
+                            }else{
+                                $featured =  'No';
+                            }
+                            
+                            return $featured;
+                        })
                     ->addColumn('action', function ($row)
                             {
                                 $action = '<span class="action-buttons">
@@ -63,7 +73,7 @@ class ProductController extends Controller
                                 return $action;
                             })
 
-                            ->rawColumns(['action','status'])
+                            ->rawColumns(['action','status','featured'])
                             ->make(true)
                             ;
         }
