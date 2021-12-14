@@ -59,13 +59,13 @@
 
 			                    <select class="form-control" id="product_type" name="product_type">
                                 <option selected="selected"  >Choose below...</option>
-									<option  value="simple">Simple product</option>
-									<option value="variable" >Variable product</option>
+									<option  value="simple_product_section">Simple product</option>
+									<option value="variable_product_section" >variable product</option>
 							
                                             </select>
                                 </div>
                                 </div>
-            <div id="simple">
+            <div id="simple_product_section">
 
 			<div class="panel panel-primary tabs-style-4">
 				<div class="tab-menu-heading">
@@ -183,11 +183,11 @@
 
 
 
-                    <!-- simple ends  -->
+                    <!-- simple_product_section ends  -->
 
-                    <!-- variable  -->
+                    <!-- variable_product_section  -->
 
-                    <div id="variable">
+                    <div id="variable_product_section">
 			<div class="panel panel-primary tabs-style-4">
 				<div class="tab-menu-heading">
 					<div class="tabs-menu ">
@@ -215,7 +215,7 @@
                                     <label class="form-label mg-b-0">SKU</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="sku"  type="text" >
+                                    <input class="form-control" name="sku" id="sku_variable_product_section" type="text" >
                                 </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20" >
@@ -277,10 +277,10 @@
 
            <input type="file" name="variation_image[]" class="form-control">
           
-   <label for="variable_sku0">SKU</label><input type="text" class="form-control"  name="variable_sku" id="variable_sku"  placeholder="sku_001"> 			
+   <label for="variable_product_section_sku0">SKU</label><input type="text" class="form-control"  name="variable_product_section_sku" id="variable_product_section_sku"  placeholder="sku_001"> 			
    <p class="form-row form-row-full form-control options">
       <label>
-          Enabled					<input type="checkbox" class="checkbox" name="variable_enabled" >
+          Enabled					<input type="checkbox" class="checkbox" name="variable_product_section_enabled" >
       </label>
     </p>
    
@@ -357,7 +357,7 @@
                     </div> 
                     </div> 
 
-                    <!-- variable end  -->
+                    <!-- variable_product_section end  -->
 
     <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>
 </form>
@@ -376,34 +376,34 @@
     CKEDITOR.replace( 'description' );
 
     // hide show product sectio 
-       $('#variable').hide();
-    $('#simple').hide();
+       $('#variable_product_section').hide();
+    $('#simple_product_section').hide();
     jQuery(function($) {
   $('#product_type').change(function () {
     var val = $(this).val(); 
-  if (val === 'simple') {
-    $('#variable').hide();
-    $('#simple').show();
+  if (val === 'simple_product_section') {
+    $('#variable_product_section').hide();
+    $('#simple_product_section').show();
     }  
-    else if (val === 'variable') {       
-            $('#simple').hide();
-            $('#variable').show();
-            $('#inventor').show();
-
+    else if (val === 'variable_product_section') {       
+            $('#simple_product_section').hide();
+            $('#variable_product_section').show();
+           
+            $('#sku_variable_product_section').show();
 
     }
     else if (val === 'Choose below...') {       
-       $('#simple').hide();
-       $('#variable').hide();
+       $('#simple_product_section').hide();
+       $('#variable_product_section').hide();
 }   
   });
 });
 // add multi ple feild 
 $(document).ready(function(){  
-var i=1;  
+var counter =1;  
       $('#add').click(function(){  
-           i++;  
-           $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><input type="text" name="value[]" placeholder="Enter your value" class="form-control value_list" /></td><td><input type="checkbox" class="checkbox" style="" name="visibile"  value="yes" ><span class="description">Visible on the product page</span></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+        counter ++;  
+           $('#dynamic_field').append('<tr id="row'+counter +'"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><input type="text" name="value[]" placeholder="Enter your value" class="form-control value_list" /></td><td><input type="checkbox" class="checkbox" style="" name="visibile"  value="yes" ><span class="description">Visible on the product page</span></td><td><button type="button" name="remove" id="'+counter+'" class="btn btn-danger btn_remove">X</button></td></tr>');
       });  
       $(document).on('click', '.btn_remove', function(){  
            var button_id = $(this).attr("id");   
