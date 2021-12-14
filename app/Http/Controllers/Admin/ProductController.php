@@ -98,9 +98,9 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AddProduct $request)
+    public function store(Request $request)
     {  
-        
+        print_r($request->all());die;
         $inputs = $request->all();
         $slug = Str::slug($request->name);
         $inputs['slug'] = $slug;
