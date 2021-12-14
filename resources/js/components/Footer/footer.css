@@ -2,6 +2,23 @@
 footer.main_footer ul { list-style: none; padding: 0; margin: 0;}
 footer.main_footer { padding: 50px 60px;}
 ul.social_list { display: flex; justify-content: space-between; max-width: 180px; margin: 25px auto !important;}
+.foot_menu_1 { background: #b2b2b2;  position: relative;  padding: 40px 50px;}
+ul.foot_nav1 { display: flex;  flex-wrap: wrap;}
+ul.foot_nav1 li {  max-width: 50%; width: 100%;}
+ul.foot_nav1 li a {  font-size: 16px; text-decoration: none; color: #fff; font-weight: 600; line-height: 30px;}
+.foot_menu_2 { background: #f6f6f6; padding: 50px 40px; display: flex; flex-wrap: wrap;}
+ul.foot_nav2 li a {  font-size: 15px; color: #706f6f; text-decoration: none; font-weight:300; line-height: 20px;}
+ul.foot_nav2 {  max-width: 50%;  width: 100%;}
+a.btn_bl { font-size: 12px; text-decoration: none; display: block; max-width: 180px; background: #00b1bb;  color: #fff; text-align: center;
+    font-weight: 600; border-radius: 40px; width: 100%; padding: 2px;}
+a.btn_rd {  font-size: 12px; text-decoration: none; display: block;max-width: 180px;background: #e3002b; color: #fff; text-align: center;
+    font-weight: 600; border-radius: 40px; width: 100%; padding: 2px;}
+a.paw_logo {   display: block;  margin: 20px auto; max-width: 60px;}
+.join_btn {  display: flex;  flex-wrap: wrap;  justify-content: center;}
+.join_btn >a{margin: 5px auto;}
+footer.main_footer ul { list-style: none; padding: 0; margin: 0;}
+footer.main_footer { padding: 50px 60px;}
+ul.social_list { display: flex; justify-content: space-between; max-width: 180px; margin: 25px auto !important;}
 .foot_menu_1 { background: #b2b2b2;  position: relative;  padding: 40px 50px !important;}
 ul.foot_nav1 { display: flex;  flex-wrap: wrap;}
 ul.foot_nav1 li {  max-width: 50%; width: 100%;}
@@ -83,3 +100,8 @@ footer.main_footer .container {
 }
 
 
+
+p.copy_p {    font-size: 12px;   color: #303030;   line-height: 1.3;   max-width: 242px;   margin: 0 auto;}
+label.lab_horiz {  position: absolute; display: block; background: #e3002b;  color: #fff; font-size: 15px; font-weight: 600; text-transform: uppercase;
+padding: 2px 20px; letter-spacing: .5px; left: -50px; transform: rotate(-90deg);  margin-top: 3px;}
+ ul.foot_nav2 li label {  font-weight: 600; color: #706f6f;}
