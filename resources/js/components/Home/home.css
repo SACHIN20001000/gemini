@@ -987,7 +987,7 @@ img{max-width: 100%;}
  @media only screen and (min-width:780px) and (max-width:1024px)
 {
     .product_slider .slick-track .slick-slide {
-    padding: 0 30px;
+    padding: 0 20px;
 }
 .sub_1 img {
     max-width: 340px;
@@ -1007,7 +1007,7 @@ section.product_slider,section.cart_slider {
     max-width: 232px;
 }
 .red_box h2, .blue_box h2 {
-    font-size: 80px;
+    font-size: 70px;
 }
 section.xl_sec img {
     max-width: 100%;
@@ -1026,8 +1026,8 @@ header .menu_nav .navbar-nav li a {
     padding: 40px !important;
 }
 .grid_4>div>a h2, .col-md-6.txt_over h2 {
-    font-size: 90px;
-    bottom: 30px;
+    font-size: 80px;
+    margin-top: -20px;
 }
 .form_mobile form.mobil_only {
     display: block !important;
