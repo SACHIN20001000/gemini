@@ -253,97 +253,67 @@
 				
 							</p>
 
-			<div class="variable_pricing">
-				<p class="form-field variable_regular_price_0_field form-row form-row-first">
-		<label for="variable_regular_price_0">Regular price (₹)</label><input type="text" class="short wc_input_price" style="" name="variable_regular_price[0]" id="variable_regular_price_0" value="" placeholder="Variation price (required)"> </p><p class="form-field variable_sale_price0_field form-row form-row-last">
-		<label for="variable_sale_price0">Sale price (₹) <a href="#" class="sale_schedule">Schedule</a><a href="#" class="cancel_sale_schedule hidden">Cancel schedule</a></label><input type="text" class="short wc_input_price" style="" name="variable_sale_price[0]" id="variable_sale_price0" value="" placeholder=""> </p><div class="form-field sale_price_dates_fields hidden">
-					<p class="form-row form-row-first">
-						<label>Sale start date</label>
-						<input type="text" class="sale_price_dates_from hasDatepicker" name="variable_sale_price_dates_from[0]" value="" placeholder="From… YYYY-MM-DD" maxlength="10" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" id="dp1639464879571">
-					</p>
-					<p class="form-row form-row-last">
-						<label>Sale end date</label>
-						<input type="text" class="sale_price_dates_to hasDatepicker" name="variable_sale_price_dates_to[0]" value="" placeholder="To…  YYYY-MM-DD" maxlength="10" pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])" id="dp1639464879572">
-					</p>
-				</div>			</div>
+                            <div class="row row-xs align-items-center mg-b-20" id="regular_price">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Regular price (₹)</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="regular_price"  type="number" >
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20" id="sale_price">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Sale Price</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="sale_price"  type="number" >
+                                </div>
+                            </div>
+		
+                            <div class="row row-xs align-items-center mg-b-20" id="stoke_quantity">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Stock quantity</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="stoke_quantity"  type="number" >
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20" id="backorders">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Allow backorders?</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
 
-							<div class="show_if_variation_manage_stock" style="">
-					<p class="form-field variable_stock0_field form-row form-row-first">
-		<label for="variable_stock0">Stock quantity</label><span class="woocommerce-help-tip"></span><input type="number" class="short wc_input_stock" style="" name="variable_stock[0]" id="variable_stock0" value="0" placeholder="" step="any"> </p><input type="hidden" name="variable_original_stock[0]" value="0">	<p class="form-row form-row-last form-field variable_backorders0_field">
-		<label for="variable_backorders0">Allow backorders?</label>
-					<span class="woocommerce-help-tip"></span>				<select style="" id="variable_backorders0" name="variable_backorders[0]" class="select short">
-			<option value="no" selected="selected">Do not allow</option><option value="notify">Allow, but notify customer</option><option value="yes">Allow</option>		</select>
-			</p>
-	<p class="form-field variable_low_stock_amount0_field form-row">
-		<label for="variable_low_stock_amount0">Low stock threshold</label><span class="woocommerce-help-tip"></span><input type="number" class="short" style="" name="variable_low_stock_amount[0]" id="variable_low_stock_amount0" value="" placeholder="Store-wide threshold (2)" step="any"> </p>				</div>
+			                        <select class="form-control" name="Allow_backorders">  
+				
+									<option value="Allow">Allow</option>
+									<option value="Do Not Allow">Do Not Allow</option>
+									<option value="Allow, But Notify Customer">Allow, But Notify Customer</option>
+							
+                                            </select>
+                                </div>
+                                </div>
+                                <div class="row row-xs align-items-center mg-b-20" id="low_stock">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Low stock threshold</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="low_stock"  type="number" >
+                                </div>
+                                <div class="row row-xs align-items-center mg-b-20" id="low_stock">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Description</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                   <textarea name="desc" id="desc" class="form-control"cols="20" rows="10"></textarea>
+                                </div>
+
+			<div>
 			
-			<div>
-					<p class="form-row form-row-full variable_stock_status form-field variable_stock_status0_field" style="display: none;">
-		<label for="variable_stock_status0">Stock status</label>
-					<span class="woocommerce-help-tip"></span>				<select style="" id="variable_stock_status0" name="variable_stock_status[0]" class="select short">
-			<option value="instock">In stock</option><option value="outofstock">Out of stock</option><option value="onbackorder" selected="selected">On backorder</option>		</select>
-			</p>
-	<p class="form-field variable_weight0_field form-row form-row-first hide_if_variation_virtual" style="display: none;">
-		<label for="variable_weight0">Weight (kg)</label><span class="woocommerce-help-tip"></span><input type="text" class="short wc_input_decimal" style="" name="variable_weight[0]" id="variable_weight0" value="" placeholder="12"> </p>					<p class="form-field form-row dimensions_field hide_if_variation_virtual form-row-last" style="display: none;">
-						<label for="product_length">
-							Dimensions (L×W×H) (cm)						</label>
-						<span class="woocommerce-help-tip"></span>						<span class="wrap">
-							<input id="product_length" placeholder="12" class="input-text wc_input_decimal" size="6" type="text" name="variable_length[0]" value="">
-							<input placeholder="12" class="input-text wc_input_decimal" size="6" type="text" name="variable_width[0]" value="">
-							<input placeholder="12" class="input-text wc_input_decimal last" size="6" type="text" name="variable_height[0]" value="">
-						</span>
-					</p>
-								</div>
-
-			<div>
-				<p class="form-row hide_if_variation_virtual form-row-full" style="display: none;">
-					<label>Shipping class</label>
-					<select name="variable_shipping_class[0]" id="variable_shipping_class[0]" class="postform">
-	<option value="-1" selected="selected">Same as parent</option>
-</select>
-				</p>
-
-							</div>
-			<div>
-				<p class="form-field variable_description0_field form-row form-row-full">
-		<label for="variable_description0">Description</label><span class="woocommerce-help-tip"></span><textarea class="short" style="" name="variable_description[0]" id="variable_description0" placeholder="" rows="2" cols="20"></textarea> </p>			</div>
-			<div class="show_if_variation_downloadable" style="">
-				<div class="form-row form-row-full downloadable_files">
-					<label>Downloadable files</label>
-					<div>
-								</div><div>
-								</div><table class="widefat">
-						<thead>
-							<tr><th>Name <span class="woocommerce-help-tip"></span></th>
-								<th colspan="2">File URL <span class="woocommerce-help-tip"></span></th>
-								<th>&nbsp;</th>
-							
-						</tr></thead>
-						<tbody>
-													</tbody>
-						<tfoot>
-							<tr><th colspan="4">
-									<a href="#" class="button insert" data-row="
-									<tr>
-	<td class=&quot;file_name&quot;>
-		<input type=&quot;text&quot; class=&quot;input_text&quot; placeholder=&quot;File name&quot; name=&quot;_wc_variation_file_names[18][]&quot; value=&quot;&quot; />
-		<input type=&quot;hidden&quot; name=&quot;_wc_variation_file_hashes[18][]&quot; value=&quot;&quot; />
-	</td>
-	<td class=&quot;file_url&quot;><input type=&quot;text&quot; class=&quot;input_text&quot; placeholder=&quot;http://&quot; name=&quot;_wc_variation_file_urls[18][]&quot; value=&quot;&quot; /></td>
-	<td class=&quot;file_url_choose&quot; width=&quot;1%&quot;><a href=&quot;#&quot; class=&quot;button upload_file_button&quot; data-choose=&quot;Choose file&quot; data-update=&quot;Insert file URL&quot;>Choose file</a></td>
-	<td width=&quot;1%&quot;><a href=&quot;#&quot; class=&quot;delete&quot;>Delete</a></td>
-</tr>
-									">Add file</a>
-								</th>
-							
-						</tr></tfoot>
-					</table>
-				</div>
-			</div>
 			<div class="show_if_variation_downloadable" style="">
 				<p class="form-field variable_download_limit0_field form-row form-row-first">
-		<label for="variable_download_limit0">Download limit</label><span class="woocommerce-help-tip"></span><input type="number" class="short" style="" name="variable_download_limit[0]" id="variable_download_limit0" value="" placeholder="Unlimited" step="1" min="0"> </p><p class="form-field variable_download_expiry0_field form-row form-row-last">
-		<label for="variable_download_expiry0">Download expiry</label><span class="woocommerce-help-tip"></span><input type="number" class="short" style="" name="variable_download_expiry[0]" id="variable_download_expiry0" value="" placeholder="Never" step="1" min="0"> </p>			</div>
+		<label for="variable_download_limit0">Download limit</label><span class="woocommerce-help-tip"></span><input type="number" class="form-control" style="" name="variable_download_limit[0]" id="variable_download_limit0" value="" placeholder="Unlimited" step="1" min="0"> </p><p class="form-field variable_download_expiry0_field form-row form-row-last">
+		<label for="variable_download_expiry0">Download expiry</label><span class="woocommerce-help-tip"></span><input type="number" class="form-control" style="" name="variable_download_expiry[0]" id="variable_download_expiry0" value="" placeholder="Never" step="1" min="0"> </p>			</div>
 					</div>
                   <!-- variation  -->
 					</div>
