@@ -41,7 +41,8 @@ class CreateProductsTable extends Migration
         Schema::create('product_variations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
-            $table->float('price');
+            $table->float('real_price', 8, 2);
+            $table->float('sale_price', 8, 2)->nullable();
             $table->string('image');
             $table->string('variation_name');
             $table->string('sku_id');
