@@ -22,7 +22,7 @@
             <input type="submit" value="">
           </form>
         </div>
-        <div class="profile_bar">
+        <div class="profile_bar" v-if="token && token != null">
           <div class="pr_img">
             <img
               :src="imgProfile"
@@ -31,7 +31,36 @@
           </div>
           <div class="pr_info">
             <label>Susan M.</label>
-            <a href="#">MY PROFILE</a>
+            <router-link
+              :to="{ path: '/profile'}"
+              class="alink"
+            >
+              MY PROFILE
+            </router-link>
+            <router-link
+              :to="{ path: '/signout'}"
+              class="alink"
+            >
+              LogOut
+            </router-link>
+          </div>
+        </div>
+        <div class="profile_bar" v-else>
+          <div class="pr_img">
+            <router-link
+              :to="{ path: '/signin'}"
+              class="alink"
+            >
+              Login
+            </router-link>
+          </div>
+          <div class="pr_info">
+            <router-link
+              :to="{ path: '/register'}"
+              class="alink"
+            >
+              register
+            </router-link>
           </div>
         </div>
         <div class="cart_bar">
@@ -44,7 +73,7 @@
           </a>
         </div>
          <div class="menu_btn mobil_only">
-        <a class="navbar-toggler"  data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <img :src="menuLines" />
           </a>
           </div>
@@ -56,7 +85,7 @@
         <div class="container-fluid">
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a class="nav-link " aria-current="page" href="#">SHOP</a>
               </li>
               <li class="nav-item">
@@ -66,7 +95,7 @@
                 <a class="nav-link" href="#">ABOUT US </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">SUBSCRIPTION PAWGRAM<sup>®</sup></a>
+                <a class="nav-link" href="#">SUBSCRIPTION PAWGRAM®</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link "  href="#">PET PARENTS+<sup>®</sup> </a>
@@ -111,7 +140,8 @@ export default {
       imgCartIcon: imgCartIcon,
       search_mobile: search_mobile,
       menuLines: menuLines,
-      imgDownload: imgDownload
+      imgDownload: imgDownload,
+      token: localStorage.getItem('token')
     }
   }
 }
