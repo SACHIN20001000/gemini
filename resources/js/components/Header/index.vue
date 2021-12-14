@@ -66,7 +66,7 @@
                 <a class="nav-link" href="#">ABOUT US </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">SUBSCRIPTION PAWGRAM®</a>
+                <a class="nav-link" href="#">SUBSCRIPTION PAWGRAM<sup>®</sup></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link "  href="#">PET PARENTS+<sup>®</sup> </a>

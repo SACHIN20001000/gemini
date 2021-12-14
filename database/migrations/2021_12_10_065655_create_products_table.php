@@ -14,20 +14,48 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedInteger('category')->index();
-            $table->string('sku');
+            $table->id();
             $table->string('name');
-            $table->string('slug');
-            $table->string('feature_image');
+            $table->longText('description');
+            $table->set('type', ['Single Product', 'Variation']);
+            $table->float('real_price', 8, 2);
+            $table->float('sale_price', 8, 2)->nullable();
+            $table->unsignedBigInteger('category_id');
+            $table->timestamps();
+        });
+        
+        
+        Schema::create('variations_attributes', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
 
-            $table->text('description')->nullable();
-            $table->unsignedInteger('quantity');
-            $table->decimal('weight', 8, 2)->nullable();
-            $table->decimal('price', 8, 2)->nullable();
-            $table->decimal('sale_price', 8, 2)->nullable();
-            $table->boolean('status')->default(1);
-            $table->boolean('featured')->default(0);
+        Schema::create('variations_attributes_names', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('attribute_id');
+            $table->string('name');
+            $table->timestamps();
+        });
+
+        Schema::create('product_variations', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('product_id');
+            $table->float('real_price', 8, 2);
+            $table->float('sale_price', 8, 2)->nullable();
+            $table->string('image');
+            $table->string('variation_name');
+            $table->string('sku_id');
+            $table->string('variation_ids'); // 123/Color, 321/Size, etc...
+            $table->timestamps();
+        });
+
+        Schema::create('products_sku', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('product_variation')->nullable();
+            $table->integer('sku')->unique();
+            $table->integer('qty');
             $table->timestamps();
         });
     }
