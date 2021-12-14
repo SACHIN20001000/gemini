@@ -2,6 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Dashboard from '../components/Dashboard'
 import Home from "../components/Home";
+import Register from "../components/Register";
+import Login from "../components/Register/Login";
+import Profile from "../components/Profile";
 
 Vue.use(VueRouter)
 
@@ -28,6 +31,24 @@ routes: [
 		// beforeEnter : guardMyroute,
 		name: 'Dashboard',
 		component: Dashboard
+	},
+	{
+		path: '/register',
+		// beforeEnter : guardMyroute,
+		name: 'Register',
+		component: Register
+	},
+	{
+		path: '/signin',
+		// beforeEnter : guardMyroute,
+		name: 'Login',
+		component: Login
+	},
+	{
+		path: '/profile',
+		// beforeEnter : guardMyroute,
+		name: 'Profile',
+		component: Profile
 	}
 ]
 })

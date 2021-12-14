@@ -241,7 +241,7 @@
                   </div>
                   <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
                   <div class="cart_flex">
-                    <h3>$6.10</h3>
+                     <h3>$6<sup>.10</sup></h3>
                     <a href="#">Add To cart</a>
                   </div>
                 </div>
@@ -266,7 +266,7 @@
                   </div>
                   <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
                   <div class="cart_flex">
-                    <h3>$6.10</h3>
+                     <h3>$6<sup>.10</sup></h3>
                     <a href="#">Add To cart</a>
                   </div>
                 </div>
@@ -291,7 +291,7 @@
                   </div>
                   <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
                   <div class="cart_flex">
-                    <h3>$6.10</h3>
+                   <h3>$6<sup>.10</sup></h3>
                     <a href="#">Add To cart</a>
                   </div>
                 </div>
@@ -316,7 +316,7 @@
                   </div>
                   <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
                   <div class="cart_flex">
-                    <h3>$6.10</h3>
+                      <h3>$6<sup>.10</sup></h3>
                     <a href="#">Add To cart</a>
                   </div>
                 </div>
@@ -341,7 +341,7 @@
                   </div>
                   <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
                   <div class="cart_flex">
-                    <h3>$6.10</h3>
+                    <h3>$6<sup>.10</sup></h3>
                     <a href="#">Add To cart</a>
                   </div>
                 </div>
@@ -366,7 +366,7 @@
                   </div>
                   <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
                   <div class="cart_flex">
-                    <h3>$6.10</h3>
+                    <h3>$6<sup>.10</sup></h3>
                     <a href="#">Add To cart</a>
                   </div>
                 </div>
@@ -611,6 +611,7 @@ import imgIn7 from "../../assets/images/in7.jpg"
 import imgIn8 from "../../assets/images/in8.jpg"
 
 import Slick from 'vue-slick'
+import {mapActions,mapGetters} from "vuex"
 
 export default {
   name:"Home",
@@ -655,17 +656,79 @@ export default {
         slidesToShow: 3,
         infinite: true,
         slidesToShow: 3,
-        slidesToScroll: 3
+        slidesToScroll: 3,
+		      responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 2
+              }
+            },
+
+            {
+              breakpoint: 767,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                centerMode: true,
+		            centerPadding: '120px'
+
+              }
+            },
+            {
+              breakpoint: 639,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                centerMode: true,
+		            centerPadding: '120px'
+              }
+            },
+          ]
       },
       productPanelOptions: {
         slidesToShow: 5,
         infinite: true,
         slidesToShow: 5,
-        slidesToScroll: 5
+        slidesToScroll: 5,
+		      responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 2
+              }
+            },
+
+            {
+              breakpoint: 767,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                centerMode: true,
+		            centerPadding: '60px'
+              }
+            },
+            {
+              breakpoint: 639,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                centerMode: true,
+	              centerPadding: '60px'
+              }
+            },
+          ]
       }
     }
   },
+  beforeMount(){
+    console.log(this.getCategories())
+    this.getCategories()
+  },
   methods: {
+    ...mapActions(['getCategories']),
     next() {
         this.$refs.slick.next()
         this.$refs.productPanel.next()
@@ -681,37 +744,37 @@ export default {
       });
     },
     handleAfterChange(event, slick, currentSlide) {
-      console.log('handleAfterChange', event, slick, currentSlide);
+      /*console.log('handleAfterChange', event, slick, currentSlide);*/
     },
     handleBeforeChange(event, slick, currentSlide, nextSlide) {
-      console.log('handleBeforeChange', event, slick, currentSlide, nextSlide);
+      /*console.log('handleBeforeChange', event, slick, currentSlide, nextSlide);*/
     },
     handleBreakpoint(event, slick, breakpoint) {
-      console.log('handleBreakpoint', event, slick, breakpoint);
+      /*console.log('handleBreakpoint', event, slick, breakpoint);*/
     },
     handleDestroy(event, slick) {
-      console.log('handleDestroy', event, slick);
+      /*console.log('handleDestroy', event, slick);*/
     },
     handleEdge(event, slick, direction) {
-      console.log('handleEdge', event, slick, direction);
+      /*console.log('handleEdge', event, slick, direction);*/
     },
     handleInit(event, slick) {
-      console.log('handleInit', event, slick);
+      /*console.log('handleInit', event, slick);*/
     },
     handleReInit(event, slick) {
-      console.log('handleReInit', event, slick);
+      /*console.log('handleReInit', event, slick);*/
     },
     handleSetPosition(event, slick) {
-      console.log('handleSetPosition', event, slick);
+      /*console.log('handleSetPosition', event, slick);*/
     },
     handleSwipe(event, slick, direction) {
-      console.log('handleSwipe', event, slick, direction);
+      /*console.log('handleSwipe', event, slick, direction);*/
     },
     handleLazyLoaded(event, slick, image, imageSource) {
-      console.log('handleLazyLoaded', event, slick, image, imageSource);
+      /*console.log('handleLazyLoaded', event, slick, image, imageSource);*/
     },
     handleLazeLoadError(event, slick, image, imageSource) {
-      console.log('handleLazeLoadError', event, slick, image, imageSource);
+      /*console.log('handleLazeLoadError', event, slick, image, imageSource);*/
     }
   }
 }
