@@ -63,7 +63,11 @@ a.navbar-brand a img {
     max-width: 400px;
     width: 100%;
 }
-
+.menu_btn.mobil_only a {
+    background: #fff;
+    border: none;
+    outline: none;
+}
 /*header responsive*/
 
 
@@ -164,3 +168,9 @@ ul.navbar-nav { justify-content: center; width: 100%;}
 .menu_nav li.nav-item.active {background: #e4022d;}
 .menu_nav li.nav-item.active a{ border: 0px !important;}
 .top_devider { height: 1px;display: block; width: 100%; background: rgba(0,0,0,.1); margin: 0 0 10px 0;}
+
+
+@media only screen and (min-width:1024px)
+{
+    img{max-width: 100%;}
+}
