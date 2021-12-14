@@ -387,7 +387,10 @@
     }  
     else if (val === 'variable') {       
             $('#simple').hide();
-            $('#variable').show();   
+            $('#variable').show();
+            $('#inventor').show();
+
+
     }
     else if (val === 'Choose below...') {       
        $('#simple').hide();
