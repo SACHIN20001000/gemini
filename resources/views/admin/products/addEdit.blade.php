@@ -164,7 +164,7 @@
                                     <tr>  
                                          <td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td>  
                                          <td><input type="text" name="value[]" placeholder="Enter your value" class="form-control value_list" /></td>  
-                                         <td><input type="checkbox" class="checkbox" style="" name="visibile"  value="yes" > <span class="description">Visible on the product page</span></td>
+                                         <td><input type="checkbox" class="checkbox" style="" name="visibile[]"  value="yes" > <span class="description">Visible on the product page</span></td>
                                          <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>  
                                     </tr>  
                                </table> 
@@ -264,7 +264,7 @@
                                     <tr>  
                                          <td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td>  
                                          <td><input type="text" name="value[]" placeholder="Enter your value" class="form-control value_list" /></td>  
-                                         <td><input type="checkbox" class="checkbox" style="" name="visibile"  value="yes" > <span class="description">Visible on the product page</span></td>
+                                         <td><input type="checkbox" class="checkbox" style="" name="visibile[]"  value="yes" > <span class="description">Visible on the product page</span></td>
                                          <td><button type="button" name="add" id="adds" class="btn btn-success">Add More</button></td>  
                                     </tr>  
                                </table> 
@@ -408,18 +408,18 @@ $(document).ready(function(){
 var counter =1;  
       $('#add').click(function(){  
         counter ++;  
-           $('#dynamic_field').append('<tr id="row'+counter +'"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><input type="text" name="value[]" placeholder="Enter your value" class="form-control value_list" /></td><td><input type="checkbox" class="checkbox" style="" name="visibile"  value="yes" ><span class="description">Visible on the product page</span></td><td><button type="button" name="remove" id="'+counter+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+           $('#dynamic_field').append('<tr id="row'+counter +'"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><input type="text" name="value[]" placeholder="Enter your value" class="form-control value_list" /></td><td><input type="checkbox" class="checkbox" style="" name="visibile[]"  value="yes" ><span class="description">Visible on the product page</span></td><td><button type="button" name="remove" id="'+counter+'" class="btn btn-danger btn_remove">X</button></td></tr>');
       });  
       $(document).on('click', '.btn_remove', function(){  
            var button_id = $(this).attr("id");   
            $('#row'+button_id+'').remove();  
       }); 
     });
-    $(document).ready(function(){  
-var counter =1;  
+      $(document).ready(function(){  
+var conts =1;  
       $('#adds').click(function(){  
-        counter ++;  
-           $('#attribute_field').append('<tr id="row'+counter +'"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><input type="text" name="value[]" placeholder="Enter your value" class="form-control value_list" /></td><td><input type="checkbox" class="checkbox" style="" name="visibile"  value="yes" ><span class="description">Visible on the product page</span></td><td><button type="button" name="remove" id="'+counter+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+        conts ++;  
+           $('#attribute_field').append('<tr id="row'+conts +'"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><input type="text" name="value[]" placeholder="Enter your value" class="form-control value_list" /></td><td><input type="checkbox" class="checkbox" style="" name="visibile[]"  value="yes" ><span class="description">Visible on the product page</span></td><td><button type="button" name="remove" id="'+conts+'" class="btn btn-danger btn_remove">X</button></td></tr>');
       });  
       $(document).on('click', '.btn_remove', function(){  
            var button_id = $(this).attr("id");   
