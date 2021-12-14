@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <p>Profile Page</p>
+    <p>Register Page</p>
     <form>
       <template>
         <div class="errorMsg" v-if="errors && errors != null && errors != ''">{{errors}} </div>
@@ -51,6 +51,29 @@
             class="errorMsg">
           </span>
         </div>
+        <div class="input-group mt-3">
+          <div class="input-group-prepend">
+            <span
+              class="input-group-text"
+              id="basic-addon1"
+            >
+              &#128274;
+            </span>
+          </div>
+          <input
+            type='password'
+            name="password"
+            v-model='form.password'
+            class="form-control"
+            placeholder="password"
+            aria-label=".form-control-lg example"
+          >
+          <span
+            v-if="form.errors().has('password')"
+            v-text="form.errors().get('password')"
+            class="errorMsg">
+          </span>
+        </div>
         <div class="btn_submit">
           <input
             type="button"
@@ -97,7 +120,7 @@ export default {
       handler: 'onFormChange'
     },
     userDetails() {
-      this.$router.push({path: 'dashboard'})
+      window.location.href='/dashboard'
     },
   },
   computed: {

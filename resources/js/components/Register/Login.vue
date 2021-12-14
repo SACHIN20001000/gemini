@@ -93,7 +93,7 @@ export default {
       handler: 'onFormChange'
     },
     userDetails() {
-      this.$router.push({path: 'dashboard'})
+      window.location.href='/dashboard'
     },
   },
   computed: {
