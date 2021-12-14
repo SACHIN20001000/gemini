@@ -44,12 +44,9 @@
           </a>
         </div>
          <div class="menu_btn mobil_only">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <img
-              :src="menu_lines"
-              alt="menu_lines"
-            >
-          </button>
+        <a class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <img :src="menuLines" />
+          </a>
           </div>
       </div>
     </div>
@@ -103,7 +100,7 @@ import imgLogo from "../../assets/images/logo.svg"
 import imgProfile from "../../assets/images/profile.png"
 import imgCartIcon from "../../assets/images/cart_icon.png"
 import search_mobile from "../../assets/images/search_mobile.png"
-import menu_lines from "../../assets/images/menu_lines.svg"
+import menuLines from "../../assets/images/menu_lines.svg"
 import imgDownload from "../../assets/images/download.png"
 export default {
   name:"Dashboard",
@@ -113,7 +110,7 @@ export default {
       imgProfile: imgProfile,
       imgCartIcon: imgCartIcon,
       search_mobile: search_mobile,
-      menu_lines: menu_lines,
+      menuLines: menuLines,
       imgDownload: imgDownload
     }
   }
