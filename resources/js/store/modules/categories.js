@@ -2,11 +2,11 @@ import Api from './../../Api'
 
 const state = {
   catErrors: [],
-  getCategories:[]
+  categories:[]
 
 }
 const getters = {
-  getCategories: state => state.getCategories,
+  categories: state => state.categories,
   catErrors: state => state.catErrors
 }
 
@@ -21,7 +21,7 @@ const actions = {
 }
 const mutations = {
   getCategories: (state, categories) => (
-    state.getCategories = categories
+    state.categories = categories
   ),
   catErrors: (state, error) => (
     state.catErrors = error
