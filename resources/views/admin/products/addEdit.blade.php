@@ -336,7 +336,7 @@
                           <label class="form-label mg-b-0">Description</label>
                       </div>
                       <div class="col-md-8 mg-t-5 mg-md-t-0">
-                         <textarea name="desc" id="desc" class="form-control"cols="20" rows="10"></textarea>
+                         <textarea name="description" id="description" class="form-control"cols="20" rows="10"></textarea>
                       </div>
    
 
