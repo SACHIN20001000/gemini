@@ -23,7 +23,34 @@
                     <form  id="product-add-edit" action="{{isset($product) ? route('products.update',$product->id) : route('products.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{ isset($product) ? method_field('PUT'):'' }}
-         
+                        <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Name</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="name"  placeholder="Enter your name" type="text" value="{{isset($product) ? $product->name : '' }}">
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Feature Image</label>
+                                </div>
+                            <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="feature_image"  type="file">
+                                    @if(!empty($product->feature_image))
+                                    <a href="{{$product->feature_image}}" _blank><img src="{{$product->feature_image}}"  height="50" width="50"></a>
+                                    @endif
+                            </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Description </label>
+                                </div>
+                            <div class="col-md-8 mg-t-5 mg-md-t-0">
+                             <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                            </div>
+                            </div>
+
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">Product data</label>
@@ -38,9 +65,8 @@
                                             </select>
                                 </div>
                                 </div>
-                <div id="simple">
-                    <div class="d-md-flex">
-	
+            <div id="simple">
+
 			<div class="panel panel-primary tabs-style-4">
 				<div class="tab-menu-heading">
 					<div class="tabs-menu ">
@@ -55,7 +81,11 @@
 					</div>
 				</div>
 			</div>
-		
+               <style>
+                   ul.nav.panel-tabs{grid-gap:10px;}
+                   .tabs-style-4 .nav.panel-tabs li {width: auto;}
+                   .tabs-style-4 .tab-menu-heading { width: 100%;}
+               </style> 
 	
               
                     <div class="tabs-style-4">
@@ -158,8 +188,6 @@
                     <!-- variable  -->
 
                     <div id="variable">
-                    <div class="d-md-flex">
-		
 			<div class="panel panel-primary tabs-style-4">
 				<div class="tab-menu-heading">
 					<div class="tabs-menu ">
@@ -246,17 +274,15 @@
                     <!-- attributes ends  -->
                     <div class="tab-pane" id="variations">
            <!-- variation start  -->
+
            <input type="file" name="variation_image[]" class="form-control">
-   
-
-
-   <label for="variable_sku0">SKU</label><input type="text" class="form-control"  name="variable_sku" id="variable_sku"  placeholder="sku_001"> 			<p class="form-row form-row-full form-control options">
+          
+   <label for="variable_sku0">SKU</label><input type="text" class="form-control"  name="variable_sku" id="variable_sku"  placeholder="sku_001"> 			
+   <p class="form-row form-row-full form-control options">
       <label>
           Enabled					<input type="checkbox" class="checkbox" name="variable_enabled" >
       </label>
-    
-      
-                  </p>
+    </p>
    
                   <div class="row row-xs align-items-center mg-b-20" id="regular_price">
                       <div class="col-md-4">
@@ -343,46 +369,38 @@
     <!-- /row -->
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script> 
+<script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+
 <script type="text/javascript">
+    // description editor code 
+    CKEDITOR.replace( 'description' );
+
+    // hide show product sectio 
        $('#variable').hide();
     $('#simple').hide();
     jQuery(function($) {
-
   $('#product_type').change(function () {
-    var val = $(this).val();
- 
+    var val = $(this).val(); 
   if (val === 'simple') {
     $('#variable').hide();
     $('#simple').show();
-  
-       
-
-    }
-  
-    else if (val === 'variable') {
-       
+    }  
+    else if (val === 'variable') {       
             $('#simple').hide();
-            $('#variable').show();
-         
-
+            $('#variable').show();   
     }
-    else if (val === 'Choose below...') {
-       
+    else if (val === 'Choose below...') {       
        $('#simple').hide();
        $('#variable').hide();
-    
-
-}
-   
+}   
   });
 });
+// add multi ple feild 
 $(document).ready(function(){  
 var i=1;  
       $('#add').click(function(){  
            i++;  
            $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><input type="text" name="value[]" placeholder="Enter your value" class="form-control value_list" /></td><td><input type="checkbox" class="checkbox" style="" name="visibile"  value="yes" ><span class="description">Visible on the product page</span></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-
-
       });  
       $(document).on('click', '.btn_remove', function(){  
            var button_id = $(this).attr("id");   
