@@ -123,22 +123,13 @@
     <section class="two_img">
       <div class="container_max">
         <div class="row pad_15">
-          <div class="col-md-6 txt_over">
+          <div class="col-md-6 txt_over" v-for="(category, key) in categories"  :key=key>
             <a href="#">
               <img
-                :src="imgDog"
+                :src="category.feature_image"
                 alt="Dog"
               >
-              <h2>Dogs</h2>
-            </a>
-          </div>
-          <div class="col-md-6 txt_over">
-            <a href="#">
-              <img
-                :src="imgCat"
-                alt="cat"
-              >
-              <h2>Cats</h2>
+              <h2>{{category.name}}</h2>
             </a>
           </div>
         </div>
@@ -724,8 +715,10 @@ export default {
     }
   },
   beforeMount(){
-    console.log(this.getCategories())
     this.getCategories()
+  },
+  computed: {
+    ...mapGetters(['categories'])
   },
   methods: {
     ...mapActions(['getCategories']),
