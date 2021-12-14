@@ -147,7 +147,7 @@
     <section>
       <div class="container_max">
         <div class="row">
-          <div class="col-md-4 gb_box">
+          <div class="col-md-4">
             <a href="#" class="img_box1 gray_panel">
               <h3>GET THE <span class="re_d">APP</span></h3>
               <img
@@ -156,17 +156,16 @@
               >
             </a>
           </div>
-          <div class="col-md-4 gb_box">
+          <div class="col-md-4">
             <a href="#" class="img_box2 gray_panel">
               <h3>Curbside <span  class="re_d">Pickup</span></h3>
               <img
                 src="imgBag"
-                 :src="imgBag"
                 alt=""
               >
             </a>
           </div>
-          <div class="col-md-4 gb_box">
+          <div class="col-md-4">
             <div class="img_box3 gray_panel">
               <div class="wrp">
                 <h3>PET PARENTS<span class="re_d">+</span>®</h3>
@@ -241,7 +240,7 @@
                   </div>
                   <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
                   <div class="cart_flex">
-                     <h3>$6<sup>.10</sup></h3>
+                    <h3>$6.10</h3>
                     <a href="#">Add To cart</a>
                   </div>
                 </div>
@@ -266,7 +265,7 @@
                   </div>
                   <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
                   <div class="cart_flex">
-                     <h3>$6<sup>.10</sup></h3>
+                    <h3>$6.10</h3>
                     <a href="#">Add To cart</a>
                   </div>
                 </div>
@@ -291,7 +290,7 @@
                   </div>
                   <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
                   <div class="cart_flex">
-                   <h3>$6<sup>.10</sup></h3>
+                    <h3>$6.10</h3>
                     <a href="#">Add To cart</a>
                   </div>
                 </div>
@@ -316,7 +315,7 @@
                   </div>
                   <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
                   <div class="cart_flex">
-                      <h3>$6<sup>.10</sup></h3>
+                    <h3>$6.10</h3>
                     <a href="#">Add To cart</a>
                   </div>
                 </div>
@@ -341,7 +340,7 @@
                   </div>
                   <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
                   <div class="cart_flex">
-                    <h3>$6<sup>.10</sup></h3>
+                    <h3>$6.10</h3>
                     <a href="#">Add To cart</a>
                   </div>
                 </div>
@@ -366,7 +365,7 @@
                   </div>
                   <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
                   <div class="cart_flex">
-                    <h3>$6<sup>.10</sup></h3>
+                    <h3>$6.10</h3>
                     <a href="#">Add To cart</a>
                   </div>
                 </div>
@@ -418,23 +417,16 @@
             <img
               :src="imgTouch"
               alt="Touch"
-              class="desk_only"
-            >
-              <img
-              :src="imgTouch2"
-              alt="Touch2"
-              class="mobil_only"
             >
           </div>
-          <div class="col-md-6 form_text text-center form_mobile">
+          <div class="col-md-6 form_text text-center">
             <h1>
               Keep <span class="thin">in</span>
               <span class="re_d">Touch</span>
             </h1>
             <p>Stay up to date with the latest sales, new products, and special events.</p>
-             <form class="mobil_only"> <div class="from_grp"><input type="text" placeholder="Enter Your Email"></div></form>
           </div>
-          <div class="col-md-4 desk_only">
+          <div class="col-md-4">
             <form class="touch_form">
               <div class="from_grp">
                 <input type="text" placeholder="First Name">
@@ -462,18 +454,12 @@
       <img
         :src="imgBg2"
         alt="bg2"
-        class="desk_only"
-      >
-       <img
-        :src="imgBg3"
-        alt="bg2"
-        class="mobil_only"
       >
       <div class="container_max ab_over">
         <div class="row">
           <div class="col-md-5 offset-md-7">
             <div class="div_center">
-              <h3 class="lab_22">The <b>Pet Parents<sup>®</sup></b> Store <label>XL</label></h3>
+              <h3 class="lab_22">The <b>Pet Parents</b> Store <label>XL</label></h3>
               <p class="p_16">All you need, In one place.</p>
               <a href="#" class="btn_grn">Learn more</a>
             </div>
@@ -598,9 +584,7 @@ import imgPro4 from "../../assets/images/pro4.jpg"
 import imgGnaw from "../../assets/images/gnaw.png"
 import imgHeat from "../../assets/images/heat.jpg"
 import imgTouch from "../../assets/images/touch.jpg"
-import imgTouch2 from "../../assets/images/mobile_contact.png"
 import imgBg2 from "../../assets/images/bg2.jpg"
-import imgBg3 from "../../assets/images/bg3.jpg"
 import imgIn1 from "../../assets/images/in1.jpg"
 import imgIn2 from "../../assets/images/in2.jpg"
 import imgIn3 from "../../assets/images/in3.jpg"
@@ -611,6 +595,7 @@ import imgIn7 from "../../assets/images/in7.jpg"
 import imgIn8 from "../../assets/images/in8.jpg"
 
 import Slick from 'vue-slick'
+import {mapActions,mapGetters} from "vuex"
 
 export default {
   name:"Home",
@@ -640,9 +625,7 @@ export default {
       imgGnaw: imgGnaw,
       imgHeat: imgHeat,
       imgTouch: imgTouch,
-      imgTouch2: imgTouch2,
       imgBg2: imgBg2,
-      imgBg3: imgBg3,
       imgIn1: imgIn1,
       imgIn2: imgIn2,
       imgIn3: imgIn3,
@@ -656,7 +639,7 @@ export default {
         infinite: true,
         slidesToShow: 3,
         slidesToScroll: 3,
-		responsive: [
+        responsive: [
             {
               breakpoint: 1024,
               settings: {
@@ -669,19 +652,14 @@ export default {
               breakpoint: 767,
               settings: {
                 slidesToShow: 2,
-                slidesToScroll: 2,
-                centerMode: true,
-  centerPadding: '120px'
-
+                slidesToScroll: 2
               }
             },
             {
               breakpoint: 639,
               settings: {
                 slidesToShow: 1,
-                slidesToScroll: 1,
-                centerMode: true,
-  centerPadding: '120px'
+                slidesToScroll: 1
               }
             },
           ]
@@ -691,7 +669,7 @@ export default {
         infinite: true,
         slidesToShow: 5,
         slidesToScroll: 5,
-		responsive: [
+        responsive: [
             {
               breakpoint: 1024,
               settings: {
@@ -703,26 +681,27 @@ export default {
             {
               breakpoint: 767,
               settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                   centerMode: true,
-  centerPadding: '60px'
+                slidesToShow: 2,
+                slidesToScroll: 2
               }
             },
             {
               breakpoint: 639,
               settings: {
                 slidesToShow: 1,
-                slidesToScroll: 1,
-                   centerMode: true,
-  centerPadding: '60px'
+                slidesToScroll: 1
               }
             },
           ]
       }
     }
   },
+  beforeMount(){
+    console.log(this.getCategories())
+    this.getCategories()
+  },
   methods: {
+    ...mapActions(['getCategories']),
     next() {
         this.$refs.slick.next()
         this.$refs.productPanel.next()
@@ -738,37 +717,37 @@ export default {
       });
     },
     handleAfterChange(event, slick, currentSlide) {
-      console.log('handleAfterChange', event, slick, currentSlide);
+      /*console.log('handleAfterChange', event, slick, currentSlide);*/
     },
     handleBeforeChange(event, slick, currentSlide, nextSlide) {
-      console.log('handleBeforeChange', event, slick, currentSlide, nextSlide);
+      /*console.log('handleBeforeChange', event, slick, currentSlide, nextSlide);*/
     },
     handleBreakpoint(event, slick, breakpoint) {
-      console.log('handleBreakpoint', event, slick, breakpoint);
+      /*console.log('handleBreakpoint', event, slick, breakpoint);*/
     },
     handleDestroy(event, slick) {
-      console.log('handleDestroy', event, slick);
+      /*console.log('handleDestroy', event, slick);*/
     },
     handleEdge(event, slick, direction) {
-      console.log('handleEdge', event, slick, direction);
+      /*console.log('handleEdge', event, slick, direction);*/
     },
     handleInit(event, slick) {
-      console.log('handleInit', event, slick);
+      /*console.log('handleInit', event, slick);*/
     },
     handleReInit(event, slick) {
-      console.log('handleReInit', event, slick);
+      /*console.log('handleReInit', event, slick);*/
     },
     handleSetPosition(event, slick) {
-      console.log('handleSetPosition', event, slick);
+      /*console.log('handleSetPosition', event, slick);*/
     },
     handleSwipe(event, slick, direction) {
-      console.log('handleSwipe', event, slick, direction);
+      /*console.log('handleSwipe', event, slick, direction);*/
     },
     handleLazyLoaded(event, slick, image, imageSource) {
-      console.log('handleLazyLoaded', event, slick, image, imageSource);
+      /*console.log('handleLazyLoaded', event, slick, image, imageSource);*/
     },
     handleLazeLoadError(event, slick, image, imageSource) {
-      console.log('handleLazeLoadError', event, slick, image, imageSource);
+      /*console.log('handleLazeLoadError', event, slick, image, imageSource);*/
     }
   }
 }
