@@ -60,7 +60,7 @@
 			                    <select class="form-control" id="product_type" name="product_type">
                                 <option selected="selected"  >Choose below...</option>
 									<option  value="simple_product_section">Simple product</option>
-									<option value="variable_product_section" >variable product</option>
+									<option value="variable_product_section" >Variable product</option>
 							
                                             </select>
                                 </div>
@@ -324,21 +324,24 @@
                                   </select>
                       </div>
                       </div>
-                     
+                      <div class="row row-xs align-items-center mg-b-20" id="backorders">
                       <div class="col-md-4">
                           <label class="form-label mg-b-0">Low stock threshold</label>
                       </div>
                       <div class="col-md-8 mg-t-5 mg-md-t-0">
-                          <input class="form-control" name="low_stock"  type="number" >
+                      <input class="form-control" name="low_stock"  type="number" >
                       </div>
-                    
+                      </div>
+                     
+                      <div class="row row-xs align-items-center mg-b-20" id="backorders">
                       <div class="col-md-4">
                           <label class="form-label mg-b-0">Description</label>
                       </div>
                       <div class="col-md-8 mg-t-5 mg-md-t-0">
-                         <textarea name="description" id="description" class="form-control"cols="20" rows="10"></textarea>
+                      <textarea name="desc"  class="form-control"cols="30" rows="10"></textarea>
                       </div>
-   
+                      </div>
+    
 
                  <!-- variation  end-->
                 <div>
@@ -374,6 +377,8 @@
 <script type="text/javascript">
     // description editor code 
     CKEDITOR.replace( 'description' );
+    CKEDITOR.replace( 'desc' );
+
 
     // hide show product sectio 
        $('#variable_product_section').hide();
