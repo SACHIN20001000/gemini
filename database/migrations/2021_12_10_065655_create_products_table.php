@@ -15,12 +15,15 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('productName');
             $table->longText('description');
             $table->set('type', ['Single Product', 'Variation']);
+            $table->string('feature_image');
             $table->float('real_price', 8, 2);
             $table->float('sale_price', 8, 2)->nullable();
             $table->unsignedBigInteger('category_id');
+            $table->string('status');
+
             $table->timestamps();
         });
         
@@ -54,7 +57,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('product_variation')->nullable();
-            $table->integer('sku')->unique();
+            $table->string('sku')->unique();
             $table->integer('qty');
             $table->timestamps();
         });

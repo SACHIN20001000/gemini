@@ -28,19 +28,14 @@
                             <thead>
                                 <tr>
                                     <th class="wd-lg-20p"><span>Name</span></th>
+                                    <!-- <th class="wd-lg-20p"><span>Description</span></th> -->
+                                    <th class="wd-lg-20p"><span>Type</span></th>
+                                    <!-- <th class="wd-lg-20p"><span>Real Price</span></th>
+                                    <th class="wd-lg-20p"><span>Sale Price</span></th> -->
                                     <th class="wd-lg-20p"><span>Category</span></th>
-                                    <th class="wd-lg-20p"><span>SKU</span></th>
-
-                                    <th class="wd-lg-20p"><span>Description</span></th>
-                                    <th class="wd-lg-20p"><span>Quantity</span></th>
-                                    <th class="wd-lg-20p"><span>Weight</span></th>
-                                    <th class="wd-lg-20p"><span>Price</span></th>
-                                    <th class="wd-lg-20p"><span>Sale Price</span></th>
                                     <th class="wd-lg-20p"><span>Status</span></th>
-                                    <th class="wd-lg-20p"><span>Featured</span></th>
 
                                     <th class="wd-lg-20p"><span>Created At</span></th>
-
                                     <th class="wd-lg-20p">Action</th>
                                 </tr>
                             </thead>
@@ -73,17 +68,13 @@
             serverSide: true,
             ajax: "{{ route('products.index') }}",
             columns: [
-                {data: 'name', name: 'name'},
+                {data: 'productName', name: 'productName'},   
+                // {data: 'description', name: 'description'},
+                {data: 'type', name: 'type'},
+                // {data: 'real_price', name: 'real_price'},
+                // {data: 'sale_price', name: 'sale_price'},
                 {data: 'categories.name', name: 'categories.name'},
-
-                {data: 'sku', name: 'sku'},
-                {data: 'description', name: 'description'},
-                {data: 'quantity', name: 'quantity'},
-                {data: 'weight', name: 'weight'},
-                {data: 'price', name: 'price'},
-                {data: 'sale_price', name: 'sale_price'},
                 {data: 'status', name: 'status'},
-                {data: 'featured', name: 'featured'},
 
                 {data: 'created_at', name: 'created_at'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
