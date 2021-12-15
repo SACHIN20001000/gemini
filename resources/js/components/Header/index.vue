@@ -46,18 +46,17 @@
           </div>
         </div>
         <div class="profile_bar" v-else>
-          <div class="pr_img">
+          <div class="btn_log_sign">
             <router-link
               :to="{ path: '/signin'}"
-              class="alink"
+              class="alink log_btn"
             >
               Login
             </router-link>
-          </div>
-          <div class="pr_info">
+          
             <router-link
               :to="{ path: '/register'}"
-              class="alink"
+              class="alink sign_btn"
             >
               register
             </router-link>
@@ -73,7 +72,7 @@
           </a>
         </div>
          <div class="menu_btn mobil_only">
-        <a class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <img :src="menuLines" />
           </a>
           </div>
@@ -85,7 +84,7 @@
         <div class="container-fluid">
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link " aria-current="page" href="#">SHOP</a>
               </li>
               <li class="nav-item">
@@ -95,7 +94,7 @@
                 <a class="nav-link" href="#">ABOUT US </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">SUBSCRIPTION PAWGRAM®</a>
+                <a class="nav-link" href="#">SUBSCRIPTION PAWGRAM<sup>®</sup></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link "  href="#">PET PARENTS+<sup>®</sup> </a>
@@ -111,8 +110,25 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">LEARN</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item lb_no">
                 <a class="nav-link" href="#">HELP</a>
+              </li>
+               </li>
+              <li class="nav-item nv mobil_only">
+               <router-link
+              :to="{ path: '/signin'}"
+              class="alink log_btn"
+            >
+              Login
+            </router-link>
+              
+                <li class="nav-itemnv mobil_only">
+                <router-link
+              :to="{ path: '/register'}"
+              class="alink sign_btn"
+            >
+              register
+            </router-link>
               </li>
             </ul>
           </div>
