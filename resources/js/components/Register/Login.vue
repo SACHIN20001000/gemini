@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="main log_in">
     <p>Login Page</p>
     <form>
       <template>
@@ -10,7 +10,7 @@
               class="input-group-text"
               id="basic-addon1"
             >
-              &#128274;
+             <i class="fa fa-envelope-o" aria-hidden="true"></i>
             </span>
           </div>
           <input
@@ -33,7 +33,7 @@
               class="input-group-text"
               id="basic-addon1"
             >
-              &#128274;
+             <i class="fa fa-lock" aria-hidden="true"></i>
             </span>
           </div>
           <input

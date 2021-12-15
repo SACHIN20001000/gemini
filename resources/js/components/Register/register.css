@@ -4,3 +4,55 @@
   font-size: 14px;
   font-weight: normal;
 }
+
+.main.log_in {
+    max-width: 450px;
+    margin: 40px auto;
+    border: 1px solid rgba(0,0,0,.1);
+    padding: 30px;
+    background: #fdfdfd;
+    box-shadow: 4px 2px 15px rgb(0 0 0 / 10%);
+}
+.btn_submit input {
+    background: #e4022d;
+    display: inline-block;
+    padding: 5px 30px;
+    color: #fff;
+    opacity: 1 !important;
+    cursor: pointer;
+
+}
+.btn_submit input:hover{color: #fff;}
+.btn_submit {
+    text-align: right;
+    padding-top: 20px;
+}
+.log_in .input-group-prepend span {
+    min-width: 43px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.main.log_in input[type="text"], .main.log_in input[type="email"], .main.log_in input[type="password"] {
+    font-weight: 300;
+}
+
+@media only screen and (max-width:768px)
+{
+  .main.log_in {
+    margin: 40px 20px;
+
+}
+.log_btn, .sign_btn {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff !important;
+    padding: 0px 25px !important;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+.log_btn, .sign_btn:hover{
+   text-decoration: none;
+}
+}
