@@ -97,7 +97,21 @@ class ProductController extends Controller
      */
     public function store(AddProduct $request)
     {  
-      
+        foreach($request->name as $key => $name){
+            if($name) {
+                $variationAttribute = new VariationAttribute;
+                $variationAttribute->name = $name;
+                $variationAttribute->save();
+                $value = $request->value[$key] ?? '';
+                if($value) {
+                    $variationAttributeName = new VariationAttributeName;
+                    $variationAttributeName->name = $value;
+                    $variationAttributeName->attribute_id = $variationAttribute->id;
+                    $variationAttributeName->save();
+                }
+            }
+            $data[]= ['attribute_id' => @$variationAttribute->id , 'attribute_name_id'=> @$variationAttributeName->id ];
+        }
         $products= new Product();
         $products->productName = $request->productName;
         if(!empty($request->feature_image)){
@@ -127,29 +141,21 @@ class ProductController extends Controller
         $productSku = new ProductSku();
         $productSku->product_id=$products->id;
         $productSku->product_variation = $productVariation->id;
-        $productSku->sku =$request->sku;
-        $productSku->qty =$request->qty;
-        $productSku->save();
-        $productVariation->sku_id= $productSku->id;
-        $productVariation->save();
-
-        foreach($request->name as $key => $name){
-            if($name) {
-                $variationAttribute = new VariationAttribute;
-                $variationAttribute->name = $name;
-                $variationAttribute->save();
-                $value = $request->value[$key] ?? '';
-                if($value) {
-                    $variationAttributeName = new VariationAttributeName;
-                    $variationAttributeName->name = $value;
-                    $variationAttributeName->attribute_id = $variationAttribute->id;
-                    $variationAttributeName->save();
-                }
-            }
-            
+        if($request->type == "Variation"){
+            $productSku->sku = $request->variation_sku;
+            $productSku->qty = $request->variation_qty;
+        }else{
+            $productSku->sku = $request->sku;
+            $productSku->qty = $request->qty;
         }
 
-return back()->with('success','Product addded successfully!');
+        $productSku->save();
+        $productVariation->sku_id= $productSku->id;
+        $productVariation->variation_ids= json_encode($data);
+
+        $productVariation->save();
+
+        return back()->with('success','Product addded successfully!');
     
     }
 
@@ -174,7 +180,6 @@ return back()->with('success','Product addded successfully!');
     {   
         $categories = Category::all();
         $product= Product::with(['productSku','productVariation'])->where('id',$id)->first();
-       
         $products = Product::where('id','!=',$id)->get();
         return view('admin.products.addEdit',compact('product','products','categories'));
     }
@@ -188,7 +193,22 @@ return back()->with('success','Product addded successfully!');
      */
     public function update(UpdateProduct $request,$id)
     {
-     
+        foreach($request->name as $key => $name){
+            if($name) {
+                $variationAttribute = new VariationAttribute;
+                $variationAttribute->name = $name;
+                $variationAttribute->save();
+                $value = $request->value[$key] ?? '';
+                if($value) {
+                    $variationAttributeName = new VariationAttributeName;
+                    $variationAttributeName->name = $value;
+                    $variationAttributeName->attribute_id = $variationAttribute->id;
+                    $variationAttributeName->save();
+                }
+            }
+            $data[]= ['attribute_id' => $variationAttribute->id , 'attribute_name_id'=> $variationAttributeName->id ];
+
+        }
         $products= Product::find($id);
         $products->productName = $request->productName;
         if(!empty($request->feature_image)){
@@ -219,27 +239,20 @@ return back()->with('success','Product addded successfully!');
         $productSku = ProductSku::where('product_id',$id)->first();
         $productSku->product_id=$products->id;
         $productSku->product_variation = $productVariation->id;
-        $productSku->sku =$request->sku;
-        $productSku->qty =$request->qty;
+        if($request->type == "Variation"){
+            $productSku->sku = $request->variation_sku;
+            $productSku->qty = $request->variation_qty;
+        }else{
+            $productSku->sku = $request->sku;
+            $productSku->qty = $request->qty;
+        }
+
         $productSku->save();
         $productVariation->sku_id= $productSku->id;
+        $productVariation->variation_ids= json_encode($data);
         $productVariation->save();
 
-        foreach($request->name as $key => $name){
-            if($name) {
-                $variationAttribute = new VariationAttribute;
-                $variationAttribute->name = $name;
-                $variationAttribute->save();
-                $value = $request->value[$key] ?? '';
-                if($value) {
-                    $variationAttributeName = new VariationAttributeName;
-                    $variationAttributeName->name = $value;
-                    $variationAttributeName->attribute_id = $variationAttribute->id;
-                    $variationAttributeName->save();
-                }
-            }
-            
-        }
+      
         return back()->with('success','Product updated successfully!');
     }
 
@@ -250,11 +263,18 @@ return back()->with('success','Product addded successfully!');
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        Product::find($id)->delete();
-        ProductSku::where('product_id',$id)->delete();
-        ProductVariation::where('product_id',$id)->delete();
-
+    {        
+      $productVariation=  ProductVariation::where('product_id',$id)->first();      
+      $data= json_decode($productVariation->variation_ids);
+      foreach($data as $datas ){
+        if(!empty($datas->attribute_id)){
+        VariationAttribute::find($datas->attribute_id)->delete();
+        VariationAttributeName::find($datas->attribute_name_id)->delete();
+       }    
+      }
+      Product::find($id)->delete();
+      ProductSku::where('product_id',$id)->delete();
+      ProductVariation::where('product_id',$id)->delete();
         return back()->with('success','Product deleted successfully!');
     }
 

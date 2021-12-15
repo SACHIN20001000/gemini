@@ -38,7 +38,7 @@
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                         <input class="form-control" name="feature_image"  type="file">
                                         @if(!empty($product->feature_image))
-                                        <a href="{{$product->feature_image}}" _blank><img src="{{$product->feature_image}}"  height="50" width="50"></a>
+                                        <a href="{{$product->feature_image}}" target="_blank" ><img src="{{$product->feature_image}}"  height="50" width="50"></a>
                                         @endif
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                                             </select>
                                 </div>
                             </div>
-                            <!-- simple product section start   -->
+<!-- simple product section start   -->
             <div id="simple_product_section">
 
             <div class="panel panel-primary tabs-style-4">
@@ -177,7 +177,7 @@
                     </div>
                 </div>
             </div>
-            </div>        
+          </div>        
     <!-- simple_product_section ends  -->
 
     <!-- variable_product_section  -->
@@ -191,16 +191,11 @@
 							<li ><a href="#inventor" data-bs-toggle="tab"><i class="fa fa-cube"></i> Inventory</a></li>
 							<li ><a href="#attribute" data-bs-toggle="tab"><i class="fa fa-tasks"></i>Attributes</a></li>
 							<li ><a href="#variations" data-bs-toggle="tab"><i class="fa fa-tasks"></i>Variations</a></li>
-
-
 						</ul>
 					</div>
 				</div>
 			</div>
-
-
-
-           <div class="tabs-style-4">
+        <div class="tabs-style-4">
 			<div class="panel-body ">
 			  <div class="tab-content">
 			<!-- inventory start  -->
@@ -210,7 +205,8 @@
                                     <label class="form-label mg-b-0">SKU</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="sku" value="{{isset($product) ? $product->productSku[0]->sku : '' }}" type="text" >
+
+                                    <input class="form-control" name="variation_sku" value="{{isset($product) ? $product->productSku[0]->sku : '' }}" type="text" >
                                 </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20" >
@@ -218,7 +214,7 @@
                                     <label class="form-label mg-b-0">Stock quantity</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="qty" value="{{isset($product) ? $product->productSku[0]->qty : '' }}"  type="number" >
+                                    <input class="form-control" name="variation_qty" value="{{isset($product) ? $product->productSku[0]->qty : '' }}"  type="number" >
                                 </div>
                             </div>
                         </div>
@@ -234,8 +230,8 @@
                                </table>
                     </div>
                     <!-- attributes ends  -->
-        <div class="tab-pane" id="variations">
-           <!-- variation start  -->
+                <div class="tab-pane" id="variations">
+                <!-- variation start  -->
 
                   <div class="row row-xs align-items-center mg-b-20" >
                       <div class="col-md-4">
@@ -254,7 +250,7 @@
                                 
                       <input type="file" name="image" class="form-control">
                       @if(!empty($product->productVariation[0]->image))
-                                    <a href="{{$product->productVariation[0]->image}}" _blank><img src="{{$product->productVariation[0]->image}}"  height="50" width="50"></a>
+                                    <a href="{{$product->productVariation[0]->image}}" target="_blank"><img src="{{$product->productVariation[0]->image}}"  height="50" width="50"></a>
                       @endif
                       </div>
                   </div>
@@ -264,7 +260,7 @@
                       </div>
                       <div class="col-md-8 mg-t-5 mg-md-t-0">
                                 
-                      <input type="text" class="form-control" value="{{isset($product) ? $product->productSku[0]->sku : '' }}"  name="sku"   placeholder="sku_001">
+                      <input type="text" class="form-control" value="{{isset($product) ? $product->productSku[0]->sku : '' }}"  name="variation_sku"   placeholder="sku_001">
                       </div>
                   </div>
 
@@ -285,15 +281,13 @@
                       </div>
                   </div>
 
+                </div>
+                <!-- variation  end-->
+          
+                </div>
+            </div>
         </div>
-         <!-- variation  end-->
-
-
-                   
-         </div>
-        </div>
-     </div>
- </div>             
+    </div>             
 
                     <!-- variable_product_section end  -->
 

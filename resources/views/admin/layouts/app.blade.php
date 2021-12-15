@@ -526,7 +526,6 @@
 
         <!--Internal Sparkline js -->
         <script src="{{URL::asset('assets/plugins/jquery-sparkline/jquery.sparkline.min.js')}}"></script>
-
         <!-- Moment js -->
         <script src="{{URL::asset('assets/plugins/raphael/raphael.min.js')}}"></script>
 

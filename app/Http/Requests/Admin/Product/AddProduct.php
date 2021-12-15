@@ -25,7 +25,7 @@ class AddProduct extends FormRequest
     {
         return [
             'productName' => 'required',
-            'description' => 'required',
+            // 'description' => 'required',
             'category_id' => 'required',
             'status' => 'required',
             'type' => 'required',
