@@ -97,9 +97,7 @@ class ProductController extends Controller
      */
     public function store(AddProduct $request)
     {  
-        echo "<pre>";
-        print_r($request->all());
-        die;
+      
         $products= new Product();
         $products->productName = $request->productName;
         if(!empty($request->feature_image)){
