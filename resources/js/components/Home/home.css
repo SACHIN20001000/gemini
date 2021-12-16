@@ -13,12 +13,12 @@ text-decoration: none;  background: #fa6734; font-size: 15px;  line-height: 1.2;
 .btn_orng a:hover {color: #fff;}
 .btn_orng a:hover {background: #fff; color: #fa6734; }
 .baner_1 { display: flex; align-items: center; justify-content: flex-end;}
-.treat_bg {    background: #9bb79e;}
+.treats_bg {    background: #9bb79e;}
 .food_bg { background: #89b3b4;}
 .litter_bg { background: #decdc0;}
 section.product_slider .slick-slide a {max-width: 300px; display: block !important; margin: 0 auto; }
 .cart_flex h3>sup {font-size: 16px; top: -4px; }
-.toy_bg { background: #a28ca8;}
+.toys_bg { background: #a28ca8;}
 section.treat_sec { padding: 60px 0 30px 0;}
 .grid_4>div { padding-top: 37%;  position: relative;}
 .grid_4>div>a h2 { display: block; width: 100%; text-align: center; color: #fff; margin: 0; line-height: 1; font-size: 100px;
@@ -586,7 +586,7 @@ footer.main_footer ul li a:hover {
 /* responsive */
 
 @media only screen and (max-width: 768px)
-{   
+{
     .slick-arrow {
     display: none;
 }
@@ -783,12 +783,12 @@ ul.foot_mobil li a {
     max-width: 200px;
 }
 .baner_1 {justify-content: center;}
- 
+
 }
 
 
 @media only screen and (max-width: 400px)
-{  
+{
     .red_box h2, .blue_box h2 {font-size: 35px; letter-spacing: -2px; }
      .red_box img {margin-top: 11px; max-width: 94px; }
      .sub_1>h1 { font-size: 23px; }

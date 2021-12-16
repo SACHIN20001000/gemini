@@ -1,12 +1,15 @@
 <template>
   <header>
     <div class="logo_nav">
-      <a class="navbar-brand" href="#">
+      <router-link
+        :to="{ path: '/'}"
+        class="navbar-brand"
+      >
         <img
           :src="imgLogo"
           alt="logo"
         />
-      </a>
+      </router-link>
       <div class="right_info">
         <div class="search_bar">
         <div class="mobil_searc mobil_only">
@@ -53,7 +56,7 @@
             >
               Login
             </router-link>
-          
+
             <router-link
               :to="{ path: '/register'}"
               class="alink sign_btn"
@@ -121,7 +124,7 @@
             >
               Login
             </router-link>
-              
+
                 <li class="nav-itemnv mobil_only">
                 <router-link
               :to="{ path: '/register'}"

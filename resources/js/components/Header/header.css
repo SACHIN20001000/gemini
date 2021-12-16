@@ -67,12 +67,12 @@ ul.navbar-nav { justify-content: center; width: 100%;}
 .top_devider { height: 1px;display: block; width: 100%; background: rgba(0,0,0,.1); margin: 0 0 10px 0;}
 .menu_btn.mobil_only img {max-width: 33px; width: 100%; opacity: .7; }
 
-a.navbar-brand {
+.navbar-brand {
     display: block;
     max-width: 370px;
     width: 100%;
 }
-a.navbar-brand a img {
+.navbar-brand a img {
     display: block;
     max-width: 400px;
     width: 100%;
@@ -90,7 +90,7 @@ a.navbar-brand a img {
 img{max-width: 100%;}
 body{overflow-x:hidden ;}
 .profile_bar { display: none;}
-a.navbar-brand {  max-width: 210px;}
+.navbar-brand {  max-width: 210px;}
 .desk_only{display: none;}
 .mobil_searc button, .mobil_searc a {  border: 0;  background: #00b7bc;  width: 32px;  height: 32px;  border-radius: 50px; align-items: center;    justify-content: center;
 display: flex;}
@@ -102,13 +102,13 @@ a.navbar-toggler:focus { border: none; outline: none; box-shadow: none;}
 
 @media only screen and (max-width: 400px)
 {
-    a.navbar-brand {
+    .navbar-brand {
     max-width: 170px;
 }
 }
 @media only screen and (max-width: 340px)
 {
-    a.navbar-brand {
+    .navbar-brand {
     max-width: 120px;
 }
 }
@@ -117,7 +117,7 @@ a.navbar-toggler:focus { border: none; outline: none; box-shadow: none;}
 
 @media only screen and (min-width:768px) and (max-width:1000px)
 {
-    a.navbar-brand {
+    .navbar-brand {
     max-width: 310px;
 
 }
