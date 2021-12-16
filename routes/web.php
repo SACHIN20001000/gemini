@@ -10,6 +10,9 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PageCategoriesController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\BrandsController;
+use App\Http\Controllers\Admin\AttributesController;
+
+
 use App\Http\Controllers\Admin\SettingController;
 
 
@@ -48,6 +51,8 @@ Route::prefix('admin')->group(function ()
         Route::resource('page-categories', PageCategoriesController::class);
         Route::resource('products', ProductController::class);
         Route::resource('brands', BrandsController::class);
+        Route::resource('attributes', AttributesController::class);
+
         Route::resource('settings', SettingController::class);
 
 

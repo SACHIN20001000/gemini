@@ -17,7 +17,9 @@ class VariationAttribute extends Model
     protected $fillable = [
         'name'
     ];
-   
+    public function variationAttributeName() {
+        return $this->hasOne(VariationAttributeName::class, 'attribute_id', 'id');
+    }
    
 
 }
