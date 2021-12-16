@@ -98,23 +98,7 @@ class ProductController extends Controller
     public function store(AddProduct $request)
     {  
         //   ADDING ATTRIBUTES 
-        foreach($request->name as $key => $name){
-        if($name) {
-            $variationAttribute = new VariationAttribute;
-            $variationAttribute->name = $name;
-            $variationAttribute->product_id=$products->id;
-            $variationAttribute->save();
-            $value = $request->value[$key] ?? '';
-            if($value) {
-                $variationAttributeName = new VariationAttributeName;
-                $variationAttributeName->name = $value;
-                $variationAttributeName->attribute_id = $variationAttribute->id;
-                $variationAttributeName->product_id=$products->id;
-                $variationAttributeName->save();
-            }
-        }
-        $data[]= ['attribute_id' => @$variationAttribute->id , 'attribute_name_id'=> @$variationAttributeName->id ];
-    }
+   
     // ADD PRODUCT TABLE DATA 
         $products= new Product();
         $products->productName = $request->productName;
@@ -131,7 +115,23 @@ class ProductController extends Controller
         $products->category_id = $request->category_id;
         $products->status = $request->status;
         $products->save();
-      
+        foreach(@$request->name as $key => $name){
+            if($name) {
+                $variationAttribute = new VariationAttribute;
+                $variationAttribute->name = $name;
+                $variationAttribute->product_id=$products->id;
+                $variationAttribute->save();
+                $value = $request->value[$key] ?? '';
+                if($value) {
+                    $variationAttributeName = new VariationAttributeName;
+                    $variationAttributeName->name = $value;
+                    $variationAttributeName->attribute_id = $variationAttribute->id;
+                    $variationAttributeName->product_id=$products->id;
+                    $variationAttributeName->save();
+                }
+            }
+            $data[]= ['attribute_id' => @$variationAttribute->id , 'attribute_name_id'=> @$variationAttributeName->id ];
+        }
     //    SINGLE PRODUCT FUNCTION 
         if($request->type == "Single Product"){
             $productSku = new ProductSku();

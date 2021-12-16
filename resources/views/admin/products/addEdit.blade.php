@@ -223,8 +223,8 @@
                     <div class="tab-pane" id="attribute">
                                 <table class="table table-bordered" id="attribute_field">
                                     <tr>
-                                         <td><input type="text" name="name"  placeholder="Enter your Name" class="form-control name_list" /></td>
-                                         <td><input type="text" name="value"  id="value_attributes" placeholder="Enter your value with (,) seperated" class="form-control value_list" /></td>
+                                         <td><input type="text" name="name[]"  placeholder="Enter your Name" class="form-control name_list" /></td>
+                                         <td><input type="text" name="value[]"  id="value_attributes" placeholder="Enter your value with (,) seperated" class="form-control value_list" /></td>
                                          <td><button type="button" name="add"  id="adds" class="btn btn-success">Add</button></td>
                                     </tr>
                                </table>
