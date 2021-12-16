@@ -48,6 +48,8 @@ class CreateProductsTable extends Migration
             $table->float('sale_price', 8, 2)->nullable();
             $table->string('image');
             $table->string('variation_name');
+            $table->string('variation_attributes');
+
             $table->string('sku_id');
             $table->string('variation_ids'); // 123/Color, 321/Size, etc...
             $table->timestamps();
