@@ -312,17 +312,7 @@ var counter =1;
     });
 
 
-//       $(document).ready(function(){
-// var conts =1;
-//       $('#adds').click(function(){
-//         conts ++;
-//            $('#attribute_field').append('<tr id="row'+conts +'"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><input type="text" name="value[]" id="attributes" placeholder="Enter your value" class="form-control value_list" /></td><td><button type="button" name="remove" id="'+conts+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-//       });
-//       $(document).on('click', '.btn_remove', function(){
-//            var button_id = $(this).attr("id");
-//            $('#row'+button_id+'').remove();
-//       });
-//     });
+
 
  //ADMING ATTRIBUTES FEILD
     $("#adds").click(function(){
@@ -347,10 +337,13 @@ var counter =1;
 var counter = 1;
         $(".selectAttribute").change(function(){
             var id=$(this).val();
-    var newTextBoxDiv = $("<div>").attr("id", 'dynamic_attribut' + counter);
-    newTextBoxDiv.html('<p style="font-size: 20px;">'+id+' </p><input type="hidden" name="variation_attributes[]" value="'+id+'"> <div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"> <label class="form-label mg-b-0">Variation Name</label> </div><div class="col-md-8 mg-t-5 mg-md-t-0"><input type="text" name="variation_name[]" value="{{isset($product) ? $product->productVariation[0]->variation_name : '' }}" class="form-control"></div></div><div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"><label class="form-label mg-b-0">Image</label></div><div class="col-md-8 mg-t-5 mg-md-t-0"><input type="file" name="image[]" class="form-control">@if(!empty($product->productVariation[0]->image))<a href="{{$product->productVariation[0]->image}}" target="_blank"><img src="{{$product->productVariation[0]->image}}"  height="50" width="50"></a>@endif</div></div><div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"><label class="form-label mg-b-0">SKU</label></div><div class="col-md-8 mg-t-5 mg-md-t-0"><input type="text" class="form-control" value="{{isset($product) ? $product->productSku[0]->sku : '' }}"  name="variation_sku[]"   placeholder="sku_001"></div></div><div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"><label class="form-label mg-b-0">Regular price (₹)</label></div><div class="col-md-8 mg-t-5 mg-md-t-0"><input class="form-control" name="variation_real_price[]" value="{{isset($product) ? $product->productVariation[0]->real_price : '' }}"  type="number" ></div></div><div class="row row-xs align-items-center mg-b-20" id="sale_price"><div class="col-md-4"><label class="form-label mg-b-0">Sale Price</label></div><div class="col-md-8 mg-t-5 mg-md-t-0"><input class="form-control" name="variation_sale_price[]" value="{{isset($product) ? $product->productVariation[0]->sale_price : '' }}" type="number" ></div></div>');
-    newTextBoxDiv.appendTo("#addingFeild");
-    counter++;
+            if(id){
+                var newTextBoxDiv = $("<div>").attr("id", 'dynamic_attribut' + counter);
+                newTextBoxDiv.html('<p style="font-size: 20px;">'+id+' </p><input type="hidden" name="variation_attributes[]" value="'+id+'"> <div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"> <label class="form-label mg-b-0">Variation Name</label> </div><div class="col-md-8 mg-t-5 mg-md-t-0"><input type="text" name="variation_name[]" value="{{isset($product) ? $product->productVariation[0]->variation_name : '' }}" class="form-control"></div></div><div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"><label class="form-label mg-b-0">Image</label></div><div class="col-md-8 mg-t-5 mg-md-t-0"><input type="file" name="image[]" class="form-control">@if(!empty($product->productVariation[0]->image))<a href="{{$product->productVariation[0]->image}}" target="_blank"><img src="{{$product->productVariation[0]->image}}"  height="50" width="50"></a>@endif</div></div><div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"><label class="form-label mg-b-0">SKU</label></div><div class="col-md-8 mg-t-5 mg-md-t-0"><input type="text" class="form-control" value="{{isset($product) ? $product->productSku[0]->sku : '' }}"  name="variation_sku[]"   placeholder="sku_001"></div></div><div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"><label class="form-label mg-b-0">Regular price (₹)</label></div><div class="col-md-8 mg-t-5 mg-md-t-0"><input class="form-control" name="variation_real_price[]" value="{{isset($product) ? $product->productVariation[0]->real_price : '' }}"  type="number" ></div></div><div class="row row-xs align-items-center mg-b-20" id="sale_price"><div class="col-md-4"><label class="form-label mg-b-0">Sale Price</label></div><div class="col-md-8 mg-t-5 mg-md-t-0"><input class="form-control" name="variation_sale_price[]" value="{{isset($product) ? $product->productVariation[0]->sale_price : '' }}" type="number" ></div></div>');
+                newTextBoxDiv.appendTo("#addingFeild");
+                counter++;
+            }
+   
     });
 </script>
 @endsection
