@@ -281,12 +281,11 @@ var productsEvent;
               attrs.push(values.map(v => ({[attr]:v})));
 
             attrs = attrs.reduce((a, b) => a.flatMap(d => b.map(e => ({...d, ...e}))));
-            console.log(attrs);
+    
             $.each(attrs, function( index, value ) {
               for (const [name, variation] of Object.entries(value))
                 {
-                    //console.log(name+'--'+variation);
-                    $("#variations_fields").append('<tr class="dynamic_attribut"><td><input type="text" name="attributes[name][]"  value="'+name+'" placeholder="Enter your Name" class="form-control tableData" /></td><td><input type="text" value="'+variation+'" name="attributes[value][]"  placeholder="Enter your value with (,) seperated" class="form-control tableData" /></td></tr>');
+                  $("#variations_fields").append('<tr class="dynamic_attribut"><td><input type="text" name="attributes[name][]"  value="'+name+'" placeholder="Enter your Name" class="form-control tableData" /></td><td><input type="text" value="'+variation+'" name="attributes[value][]"  placeholder="Enter your value with (,) seperated" class="form-control tableData" /></td></tr>');
                 }
             });
         },
@@ -301,10 +300,10 @@ var productsEvent;
 
 })();
 $(document).on('click', '.btn_remove', function(){
-                    var button_id = $(this).attr("id");
-                    $('#row'+button_id+'').remove();
+        var button_id = $(this).attr("id");
+            $('#row'+button_id+'').remove();
                  
-                });
+});
 </script>
 @endsection
 
