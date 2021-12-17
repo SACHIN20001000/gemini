@@ -244,7 +244,7 @@ var productsEvent;
             let attributeName = $("#name_attributes").val();
             let value_attributes = $("#value_attributes").val();
          
-          if(value_attributes.length != 0){
+          if(value_attributes.length != 0  && attributeName.length != 0 ){
             var removeLastQuama = value_attributes.charAt(value_attributes.length-1);
             if(removeLastQuama != ','){
                 let attributeValues = value_attributes.split(",");
