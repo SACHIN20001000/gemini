@@ -323,7 +323,8 @@
                   
                                   </select>
                       </div>
-                      </div>
+                      </div>  
+                      
                       <div class="row row-xs align-items-center mg-b-20" id="backorders">
                       <div class="col-md-4">
                           <label class="form-label mg-b-0">Low stock threshold</label>
