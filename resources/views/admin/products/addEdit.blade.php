@@ -209,90 +209,13 @@
 
 
 
-            <div id="simple_product_section">
+          
 
-            <div class="panel panel-primary tabs-style-4">
-              
-                <!-- <style>
-                    ul.nav.panel-tabs{grid-gap:10px;}
-                    .tabs-style-4 .nav.panel-tabs li {width: auto;}
-                    .tabs-style-4 .tab-menu-heading { width: 100%;}
-                    .img_size{width: 200px !important;height: 200px !important;}
-                    .img_edit{width: 50px !important;height: 50px !important;}
-                </style> -->
-
-
-            <div class="tabs-style-4">
-            <div class="panel-body ">
-                <div class="tab-content">
-                
-                    <div class="tab-pane active" id="general">
-
-                            <div class="row row-xs align-items-center mg-b-20" >
-                                <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Regular price (₹)</label>
-                                </div>
-                                <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="real_price" value="{{isset($product) ? $product->real_price : '' }}" type="number" >
-                                </div>
-                            </div>
-                            <div class="row row-xs align-items-center mg-b-20" >
-                                <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Sale Price</label>
-                                </div>
-                                <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="sale_price" value="{{isset($product) ? $product->sale_price : '' }}" type="number" >
-                                </div>
-                            </div>
-                    </div>
-                  
-                    <div class="tab-pane" id="inventory">
-                            <div class="row row-xs align-items-center mg-b-20" id="sku">
-                                <div class="col-md-4">
-                                    <label class="form-label mg-b-0">SKU</label>
-                                </div>
-                                <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="sku" value="{{isset($product) ? @$product->productSku[0]->sku : '' }}" type="text" >
-                                </div>
-                            </div>
-                            <div class="row row-xs align-items-center mg-b-20" >
-                                <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Stock quantity</label>
-                                </div>
-                                <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="qty" value="{{isset($product) ? @$product->productSku[0]->qty : '' }}" type="number" >
-                                </div>
-                            </div>
-                    
-                    </div>
-               
-                    <div class="tab-pane" id="gallery">
-
-                    <div  id="drag-drop-area"></div>
-                    <div class="row row-xs align-items-center mg-b-20">
-                                <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Product Gallery</label>
-                                </div>
-                                <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                        <input class="form-control" name="image[]" id="upload_file" onchange="preview_image();" multiple  type="file">
-                                        @if(!empty($product->productGallery))
-                                        @foreach($product->productGallery as $value)
-                                        <a href="{{$value->image}}" target="_blank" ><img src="{{$value->image}}"  class="img_edit"></a> <a  href="{{url('delete-gallery', $value->id)}}" class="btn btn-sm btn-danger remove_us"><i class="las la-trash"></i></a>                                 </a>
-
-                                        @endforeach
-                                        @endif
-                                        <div id="image_preview" ></div>
-                                </div>
-                            </div>
-
-
-                    </div>
+          
 
 
     
   
-                    </div>
-                </div>
             </div>
           </div>        
   
