@@ -24,6 +24,8 @@ class CreateSettingsTable extends Migration
             $table->string('youtube')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('copyright')->nullable();
+            $table->string('oauth_token')->nullable();
+
 
             $table->timestamps();
         });
