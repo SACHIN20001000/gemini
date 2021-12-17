@@ -15,7 +15,7 @@ class TokenResponse
       * type="object",
       * example={
     
-      *  "client_id": "2,
+      *  "client_id": "2",
       *  "client_secret": "eyJ0eXAiOiJKVhJkpDuW_NQgUE4ccUTXVKXWrHhYL2Q88ncLi",
       *  }
       * ),
