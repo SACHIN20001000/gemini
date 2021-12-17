@@ -25,6 +25,9 @@ class Product extends Model
     public function productSku() {
         return $this->hasMany(ProductSku::class, 'product_id', 'id');
     }
+    public function productGallery() {
+        return $this->hasMany(ProductGallery::class, 'product_id', 'id');
+    }
     public function productVariation() {
         return $this->hasMany(ProductVariation::class, 'product_id', 'id');
     }

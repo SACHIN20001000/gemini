@@ -21,6 +21,8 @@ class CreateProductsTable extends Migration
             $table->string('feature_image');
             $table->float('real_price', 8, 2);
             $table->float('sale_price', 8, 2)->nullable();
+            $table->integer('weight')->nullable();
+
             $table->unsignedBigInteger('category_id');
             $table->string('status');
 

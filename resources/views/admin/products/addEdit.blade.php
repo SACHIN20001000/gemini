@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
+
 <div class="container">
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
@@ -23,25 +24,18 @@
                     <form  id="product-add-edit" action="{{isset($product) ? route('products.update',$product->id) : route('products.store')}}" method="POST" enctype="application/x-www-form-urlencoded">
                         @csrf
                         {{ isset($product) ? method_field('PUT'):'' }}
+                        <div class="col-lg-12 col-md-12">
+							<div class="card">
+								<div class="card-body">
                         <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Name</label>
+                                    <label class="form-label mg-b-0">Title</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                     <input class="form-control" name="productName"  placeholder="Enter your name" type="text" value="{{isset($product) ? $product->productName : '' }}">
                                 </div>
                             </div>
-                            <div class="row row-xs align-items-center mg-b-20">
-                                <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Feature Image</label>
-                                </div>
-                                <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                        <input class="form-control" name="feature_image"  type="file">
-                                        @if(!empty($product->feature_image))
-                                        <a href="{{$product->feature_image}}" target="_blank" ><img src="{{$product->feature_image}}"  height="50" width="50"></a>
-                                        @endif
-                                </div>
-                            </div>
+                      
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">Description </label>
@@ -50,6 +44,27 @@
                                 <textarea name="description" id="description" cols="30" rows="10">{{isset($product) ? $product->description : '' }}</textarea>
                                 </div>
                             </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                            <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Media </label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <div class="row">
+						<div class="col-lg-12 col-md-12">
+							<div class="card">
+								<div class="card-body">
+                            
+                           
+									<input id="demo" type="file" name="image[]" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
+								
+								</div>
+							</div>
+						</div>
+					</div>
+                                </div>
+                            </div>
+                           
+                         
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">Category</label>
@@ -75,6 +90,109 @@
                                 </select>
                                 </div>
                             </div>
+                            </div>
+							</div>
+						</div>
+                            <div class="col-lg-12 col-md-12">
+							<div class="card">
+								<div class="card-body">
+                                <h4>Pricing</h4>
+                            <div class="row row-xs align-items-center mg-b-20" >
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Regular price (₹)</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="real_price" value="{{isset($product) ? $product->real_price : '' }}" type="number" >
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20" >
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Sale Price</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="sale_price" value="{{isset($product) ? $product->sale_price : '' }}" type="number" >
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+            <div class="col-lg-12 col-md-12">
+				<div class="card">
+					 <div class="card-body">
+                                <h4>Inventory</h4>
+                                <div class="row row-xs align-items-center mg-b-20" id="sku">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">SKU</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="sku" value="{{isset($product) ? @$product->productSku[0]->sku : '' }}" type="text" >
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20" >
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Stock quantity</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="qty" value="{{isset($product) ? @$product->productSku[0]->qty : '' }}" type="number" >
+                                </div>
+                            </div>
+                  </div>
+             </div>
+         </div>
+
+         <div class="col-lg-12 col-md-12">
+				<div class="card">
+					 <div class="card-body">
+                                <h4>Shipping</h4>
+                                <div class="row row-xs align-items-center mg-b-20">
+                                    <div class="col-md-4">
+                                        <label class="form-label mg-b-0">Weight</label>
+                                    </div>
+                                    <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                            <input class="form-control" name="weight" value="{{isset($product) ? $product->weight : '' }}" type="number">
+                                    </div>
+                                </div>
+
+                  </div>
+             </div>
+         </div>
+         <div class="col-lg-12 col-md-12">
+				<div class="card">
+					 <div class="card-body">
+                                <h4>Attributes</h4>
+                                <table class="table table-bordered" id="dynamic_field">
+                                    <tr>
+                                         <td>
+                                             <input type="text" name="name[]"  id="name_attributes" placeholder="Enter your Name" class="form-control tableData" />
+                                    
+                                            </td>
+                                         <td><input type="text" name="value[]"  id="value_attributes" placeholder="Enter your value with (,) seperated" class="form-control tableData" /></td>
+                                         <td><button type="button" name="add"  id="add" class="btn btn-success">Add</button></td>
+                                    </tr>
+                               </table>
+
+
+                  </div>
+             </div>
+         </div>
+
+         <div class="col-lg-12 col-md-12">
+				<div class="card">
+					 <div class="card-body">
+                                <h4>Variants</h4>
+                                              
+                                    <div id='dynamic_attribut' >
+                               
+                                    </div>
+                                    <div id ="addingFeild" ></div>
+                                    </div>
+
+                  </div>
+             </div>
+         </div>
+                             
+
+<!-- 
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">Product data</label>
@@ -88,35 +206,38 @@
 
                                             </select>
                                 </div>
-                            </div>
-<!-- simple product section start   -->
+                            </div> -->
+
             <div id="simple_product_section">
 
             <div class="panel panel-primary tabs-style-4">
                 <div class="tab-menu-heading">
                     <div class="tabs-menu ">
-                        <!-- Tabs -->
+                   
                         <ul class="nav panel-tabs">
                             <li ><a href="#general" class="active" data-bs-toggle="tab"><i class="fa fa-laptop"></i> General</a></li>
                             <li ><a href="#inventory" data-bs-toggle="tab"><i class="fa fa-cube"></i> Inventory</a></li>
-                            <li ><a href="#attributes" data-bs-toggle="tab"><i class="fa fa-tasks"></i>Attributes</a></li>
+                            <li ><a href="#gallery" data-bs-toggle="tab"><i class="fa fa-tasks"></i>Product Gallery</a></li>
+                            <li ><a href="#shipping" data-bs-toggle="tab"><i class="fa fa-tasks"></i>Shiiping</a></li>
 
 
                         </ul>
                     </div>
                 </div>
             </div>
-                <style>
+                <!-- <style>
                     ul.nav.panel-tabs{grid-gap:10px;}
                     .tabs-style-4 .nav.panel-tabs li {width: auto;}
                     .tabs-style-4 .tab-menu-heading { width: 100%;}
-                </style>
+                    .img_size{width: 200px !important;height: 200px !important;}
+                    .img_edit{width: 50px !important;height: 50px !important;}
+                </style> -->
 
 
             <div class="tabs-style-4">
             <div class="panel-body ">
                 <div class="tab-content">
-                    <!-- general start  -->
+                
                     <div class="tab-pane active" id="general">
 
                             <div class="row row-xs align-items-center mg-b-20" >
@@ -136,15 +257,14 @@
                                 </div>
                             </div>
                     </div>
-                    <!-- general end  -->
-                    <!-- inventory start   -->
+                  
                     <div class="tab-pane" id="inventory">
                             <div class="row row-xs align-items-center mg-b-20" id="sku">
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">SKU</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="sku" value="{{isset($product) ? $product->productSku[0]->sku : '' }}" type="text" >
+                                    <input class="form-control" name="sku" value="{{isset($product) ? @$product->productSku[0]->sku : '' }}" type="text" >
                                 </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20" >
@@ -152,41 +272,61 @@
                                     <label class="form-label mg-b-0">Stock quantity</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="qty" value="{{isset($product) ? $product->productSku[0]->qty : '' }}" type="number" >
+                                    <input class="form-control" name="qty" value="{{isset($product) ? @$product->productSku[0]->qty : '' }}" type="number" >
                                 </div>
                             </div>
                     
                     </div>
-                    <!-- inventory start  -->
-    <!-- attribut start  -->
-                    <div class="tab-pane" id="attributes">
+               
+                    <div class="tab-pane" id="gallery">
 
+                    <div  id="drag-drop-area"></div>
+                    <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Product Gallery</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                        <input class="form-control" name="image[]" id="upload_file" onchange="preview_image();" multiple  type="file">
+                                        @if(!empty($product->productGallery))
+                                        @foreach($product->productGallery as $value)
+                                        <a href="{{$value->image}}" target="_blank" ><img src="{{$value->image}}"  class="img_edit"></a> <a  href="{{url('delete-gallery', $value->id)}}" class="btn btn-sm btn-danger remove_us"><i class="las la-trash"></i></a>                                 </a>
 
-                            <table class="table table-bordered" id="dynamic_field">
-                                    <tr>
-                                            <td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td>
-                                            <td><input type="text" name="value[]" placeholder="Enter your value" class="form-control value_list" /></td>
-                                            <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
-                                    </tr>
-                                </table>
+                                        @endforeach
+                                        @endif
+                                        <div id="image_preview" ></div>
+                                </div>
+                            </div>
 
 
                     </div>
 
-    <!-- attributes ends  -->
+
+    <div class="tab-pane" id="shipping">
+
+
+<div class="row row-xs align-items-center mg-b-20">
+            <div class="col-md-4">
+                <label class="form-label mg-b-0">Weight</label>
+            </div>
+            <div class="col-md-8 mg-t-5 mg-md-t-0">
+                    <input class="form-control" name="weight" value="{{isset($product) ? $product->weight : '' }}" type="number">
+            </div>
+        </div>
+
+
+</div>
+  
                     </div>
                 </div>
             </div>
           </div>        
-    <!-- simple_product_section ends  -->
-
-    <!-- variable_product_section  -->
+  
 
         <div id="variable_product_section">
 			<div class="panel panel-primary tabs-style-4">
 				<div class="tab-menu-heading">
 					<div class="tabs-menu ">
-						<!-- Tabs -->
+					
 						<ul class="nav panel-tabs">
 							<li ><a href="#inventor" data-bs-toggle="tab"><i class="fa fa-cube"></i> Inventory</a></li>
 							<li ><a href="#attribute" data-bs-toggle="tab"><i class="fa fa-tasks"></i>Attributes</a></li>
@@ -198,7 +338,7 @@
         <div class="tabs-style-4">
 			<div class="panel-body ">
 			  <div class="tab-content">
-			<!-- inventory start  -->
+		
 					    <div class="tab-pane" id="inventor">
                             <div class="row row-xs align-items-center mg-b-20" >
                                 <div class="col-md-4">
@@ -206,7 +346,7 @@
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
 
-                                    <input class="form-control" name="variation_sku" value="{{isset($product) ? $product->productSku[0]->sku : '' }}" type="text" >
+                                    <input class="form-control" name="variation_sku" value="{{isset($product) ? @$product->productSku[0]->sku : '' }}" type="text" >
                                 </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20" >
@@ -214,24 +354,23 @@
                                     <label class="form-label mg-b-0">Stock quantity</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="variation_qty" value="{{isset($product) ? $product->productSku[0]->qty : '' }}"  type="number" >
+                                    <input class="form-control" name="variation_qty" value="{{isset($product) ? @$product->productSku[0]->qty : '' }}"  type="number" >
                                 </div>
                             </div>
                         </div>
-                    <!-- inventory ends  -->
-				<!-- attribute start  -->
+            
                     <div class="tab-pane" id="attribute">
                                 <table class="table table-bordered" id="attribute_field">
                                     <tr>
                                          <td><input type="text" name="name[]"  placeholder="Enter your Name" class="form-control name_list" /></td>
-                                         <td><input type="text" name="value[]"  id="value_attributes" placeholder="Enter your value with (,) seperated" class="form-control value_list" /></td>
+                                         <td><input type="text" name="value[]"   placeholder="Enter your value with (,) seperated" class="form-control value_list" /></td>
                                          <td><button type="button" name="add"  id="adds" class="btn btn-success">Add</button></td>
                                     </tr>
                                </table>
                     </div>
-                    <!-- attributes ends  -->
+                 
                 <div class="tab-pane" id="variations">
-                <!-- variation start  -->
+          
                 <div class="row row-xs align-items-center mg-b-20" >
                       <div class="col-md-4">
                           <label class="form-label mg-b-0">Variation attributes</label>
@@ -248,14 +387,13 @@
                   </div>
                   <div id ="addingFeild" ></div>
                 </div>
-                <!-- variation  end-->
+           
           
                 </div>
             </div>
         </div>
     </div>             
-
-                    <!-- variable_product_section end  -->
+                 
 
     <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>
 </form>
@@ -266,16 +404,21 @@
     </div>
     <!-- /row -->
 </div>
+<link href="https://transloadit.edgly.net/releases/uppy/v1.6.0/uppy.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+
+ 
+<script src="https://transloadit.edgly.net/releases/uppy/v1.6.0/uppy.min.js"></script>
+
 <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
 
 <script type="text/javascript">
-    // description editor code
-    CKEDITOR.replace( 'description' );
-    CKEDITOR.replace( 'desc' );
+  
+CKEDITOR.replace( 'description' );
+CKEDITOR.replace( 'desc' );
 
 
-    // hide show product sectio
+// hide show product sectio
        $('#variable_product_section').hide();
     $('#simple_product_section').hide();
     jQuery(function($) {
@@ -303,47 +446,31 @@ $(document).ready(function(){
 var counter =1;
       $('#add').click(function(){
         counter ++;
-           $('#dynamic_field').append('<tr id="row'+counter +'"><td><input type="text" name="name[]" placeholder="Enter your Name" class="form-control name_list" /></td><td><input type="text" name="value[]" placeholder="Enter your value" class="form-control value_list" /></td><td><button type="button" name="remove" id="'+counter+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-      });
-      $(document).on('click', '.btn_remove', function(){
-           var button_id = $(this).attr("id");
-           $('#row'+button_id+'').remove();
-      });
-    });
-
-
-
-
- //ADMING ATTRIBUTES FEILD
-    $("#adds").click(function(){
-       
-        var selectValues= document.getElementById('value_attributes').value;
-        var arr = selectValues.split(',');
-
-                var $mySelect = $('#variation_attributes');
-               
-            
-                $.each(arr, function(key, value) {
-  var $option = $("<option/>", {
-    value: value,
-    text: value
-  });
-  $mySelect.append($option);
-});
-               
-    }); 
-
-//ADD DYNAMIC VARIATION 
-var counter = 1;
-        $(".selectAttribute").change(function(){
-            var id=$(this).val();
+ 
+      
+        var selectValue= document.getElementById('value_attributes').value;
+        var selectname= document.getElementById('name_attributes').value;
+        // var arr = selectValue.split(',');
+        // $.each(arr, function(key, value) {
+        $('#dynamic_field').append('<tr id="row'+counter +'" ><td><input type="text"  name="name[]" value="'+selectname+'" class="form-control tableData" /></td><td><input type="text"  name="value[]" value="'+selectValue+'" class="form-control tableData" /></td><td><button type="button" name="remove" id="'+counter+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+         var id= selectValue;
+          
             if(id){
                 var newTextBoxDiv = $("<div>").attr("id", 'dynamic_attribut' + counter);
-                newTextBoxDiv.html('<p style="font-size: 20px;">'+id+' </p><input type="hidden" name="variation_attributes[]" value="'+id+'"> <div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"> <label class="form-label mg-b-0">Variation Name</label> </div><div class="col-md-8 mg-t-5 mg-md-t-0"><input type="text" name="variation_name[]" value="{{isset($product) ? $product->productVariation[0]->variation_name : '' }}" class="form-control"></div></div><div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"><label class="form-label mg-b-0">Image</label></div><div class="col-md-8 mg-t-5 mg-md-t-0"><input type="file" name="image[]" class="form-control">@if(!empty($product->productVariation[0]->image))<a href="{{$product->productVariation[0]->image}}" target="_blank"><img src="{{$product->productVariation[0]->image}}"  height="50" width="50"></a>@endif</div></div><div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"><label class="form-label mg-b-0">SKU</label></div><div class="col-md-8 mg-t-5 mg-md-t-0"><input type="text" class="form-control" value="{{isset($product) ? $product->productSku[0]->sku : '' }}"  name="variation_sku[]"   placeholder="sku_001"></div></div><div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"><label class="form-label mg-b-0">Regular price (₹)</label></div><div class="col-md-8 mg-t-5 mg-md-t-0"><input class="form-control" name="variation_real_price[]" value="{{isset($product) ? $product->productVariation[0]->real_price : '' }}"  type="number" ></div></div><div class="row row-xs align-items-center mg-b-20" id="sale_price"><div class="col-md-4"><label class="form-label mg-b-0">Sale Price</label></div><div class="col-md-8 mg-t-5 mg-md-t-0"><input class="form-control" name="variation_sale_price[]" value="{{isset($product) ? $product->productVariation[0]->sale_price : '' }}" type="number" ></div></div>');
+                newTextBoxDiv.html('<div id = "varient'+counter +'"><div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"> <label class="form-label mg-b-0">Variation Attribute</label> </div><div class="col-md-8 mg-t-5 mg-md-t-0"><input type="text" name="variation_attribute[]" value="'+id+'" class="form-control"></div></div><div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"> <label class="form-label mg-b-0">Variation Name</label> </div><div class="col-md-8 mg-t-5 mg-md-t-0"><input type="text" name="variation_name[]" value="{{isset($product) ? @$product->productVariation[0]->variation_name : '' }}" class="form-control"></div></div><div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"><label class="form-label mg-b-0">Image</label></div><div class="col-md-8 mg-t-5 mg-md-t-0"><input type="file" name="image[]" class="form-control">@if(!empty($product->productVariation[0]->image))<a href="{{@$product->productVariation[0]->image}}" target="_blank"><img src="{{@$product->productVariation[0]->image}}"  height="50" width="50"></a>@endif</div></div><div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"><label class="form-label mg-b-0">SKU</label></div><div class="col-md-8 mg-t-5 mg-md-t-0"><input type="text" class="form-control" value="{{isset($product) ? @$product->productSku[0]->sku : '' }}"  name="variation_sku[]"   placeholder="sku_001"></div></div><div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"><label class="form-label mg-b-0">Regular price (₹)</label></div><div class="col-md-8 mg-t-5 mg-md-t-0"><input class="form-control" name="variation_real_price[]" value="{{isset($product) ? @$product->productVariation[0]->real_price : '' }}"  type="number" ></div></div><div class="row row-xs align-items-center mg-b-20" id="sale_price"><div class="col-md-4"><label class="form-label mg-b-0">Sale Price</label></div><div class="col-md-8 mg-t-5 mg-md-t-0"><input class="form-control" name="variation_sale_price[]" value="{{isset($product) ? @$product->productVariation[0]->sale_price : '' }}" type="number" ></div></div></div>');
                 newTextBoxDiv.appendTo("#addingFeild");
-                counter++;
+               
             }
-    });
+  
+            //  });
+                $(document).on('click', '.btn_remove', function(){
+                    var button_id = $(this).attr("id");
+                    $('#row'+button_id+'').remove();
+                    $('#varient'+button_id+'').remove();
+
+                });
+          });
+        });
 </script>
 @endsection
 
