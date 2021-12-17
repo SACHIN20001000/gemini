@@ -8,6 +8,9 @@ use App\Models\User;
 use Auth;
 use App\Http\Requests\API\RegisterUserRequest;
 use App\Http\Requests\API\LoginUserRequest;
+use App\Http\Requests\API\TokenRequest;
+use App\Models\Setting;
+use Illuminate\Support\Str;
 use App\Http\Resources\Users\TokenResource;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -123,6 +126,7 @@ class PassportAuthController extends AppBaseController
           
         }
     }
+
     public function logout(Request $request){
     
         Auth::user()->token()->revoke();
@@ -130,5 +134,65 @@ class PassportAuthController extends AppBaseController
          return response()->json([
              'success' => false,'message' => 'Successfully logged out'
          ]);
-        }   
+    }  
+    
+       /**
+     * Login
+     */
+
+     /**
+     * @OA\Post(
+     *     path="/oauth/token",
+     *     operationId="token",
+     *     tags={"Users"},
+     *     summary="Token existing user",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/TokenRequest")
+     *     ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="Everything is fine",
+     *         @OA\JsonContent(ref="#/components/schemas/TokenResponse")
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
+     * Store a newly created resource in storage.
+     *
+     * @param \App\Http\Requests\ExampleStoreRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function oauth_token(TokenRequest $request){
+
+
+      
+        $setting = Setting::orderBy('id', 'asc')->first();
+        $updated_time = $setting->updated_at ?? '';
+        $token = $setting->oauth_token ?? '';
+
+        if(empty($token) ){
+            $setting->oauth_token =Str::random(30);
+            $setting->save();
+        }
+        $afterdays=  date('Y-m-d h:m:s', strtotime($updated_time. ' + 1 days'));
+        if($updated_time > $afterdays && $token == $request->client_secret){
+            $setting->oauth_token =Str::random(30);
+            $setting->save();
+        }
+        
+        return response()->json([
+            'success' => true,'Token' => $setting->oauth_token
+        ]);
+
+    }
+
 }

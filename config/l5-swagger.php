@@ -266,5 +266,9 @@ return [
         'constants' => [
         'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'http://3.132.243.209/api'),
         ],
+        // STATIC TOKEN 
+        'api_token' => [
+            'API_ACCESS_TOKEN' => env('API_ACCESS_TOKEN', '66rmIoZXhXf4KI0sQvIZLR3zFTxYsuQ615Y92Rs3mc95ub2pKdBndZDrHs5t'),
+            ],
     ],
 ];
