@@ -14,7 +14,7 @@
     },
     "servers": [
         {
-            "url": "http://3.132.243.209/api/",
+            "url": "http://3.132.243.209/api",
             "description": "Demo API Server"
         }
     ],
@@ -49,7 +49,7 @@
                 },
                 "security": [
                     {
-                        "Bearer": []
+                        "api_access_token": "66rmIoZXhXf4KI0sQvIZLR3zFTxYsuQ615Y92Rs3mc95ub2pKdBndZDrHs5t"
                     }
                 ]
             }
