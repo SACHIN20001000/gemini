@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Setting;
 use App\Http\Resources\Admin\CategoryResource;
 use App\Http\Requests\API\CategoriesRequest;
 class CategoryController extends Controller
@@ -14,9 +15,7 @@ class CategoryController extends Controller
      *      path="/categories",
      *      operationId="Categories",
      *      tags={"Products"},
-     *      security={
-     *          {"Bearer": {}},
-     *          },
+     *    
      *     summary="Categories",
      *     @OA\Response(
      *         response="200",
@@ -39,13 +38,21 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-
+  
     public function index(Request $request)
-    {
-        $limit = $request->limit ? $request->limit : 20;
-        $categories = Category::with('childrens')->where(['parent'=>0,'type'=>'Product'])->paginate($limit);
-        
-        return  CategoryResource::collection($categories);
+    {   
+        $header = $request->header('api_access_token');
+        $setting = Setting::orderBy('id', 'asc')->first();
+        $token = $setting->oauth_token ?? '';
+        if($header == $token){
+          $limit = $request->limit ? $request->limit : 20;
+          $categories = Category::with('childrens')->where(['parent'=>0,'type'=>'Product'])->paginate($limit);
+          
+          return  CategoryResource::collection($categories);
+        }else{
+          return response()->json(['success' => false , 'message' => "Invailed Token"]);
+        }
+      
     }
      /**
      * @OA\Get(
@@ -53,9 +60,7 @@ class CategoryController extends Controller
      *      operationId="Categories By Id",
      * summary="Categories_by_id",
      *      tags={"Products"},
-     *      security={
-     *          {"Bearer": {}},
-     *          },
+     *     
        *      @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -84,16 +89,25 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function category_by_id(Request $request,$id)
+    public function category_by_id(Request $request)
     {
-      $limit = $request->limit ? $request->limit : 20;
-
-        $categories = Category::with('childrens')->paginate($limit)->find($id);
-      if($categories){
-        return  new CategoryResource($categories);
+      $header = $request->header('api_access_token');
+      $setting = Setting::orderBy('id', 'asc')->first();
+      $token = $setting->oauth_token ?? '';
+      if($header == $token){
+              $limit = $request->limit ? $request->limit : 20;
+              $categories = Category::with('childrens')->paginate($limit)->find($request->id);
+            if($categories){
+                  return  new CategoryResource($categories);
+            }else{
+                  return response()->json(['success' => false , 'message' => "Invailed Id"]);
+            }
       }else{
-        return response()->json(['success' => false , 'message' => "Invailed Id"]);
+
+              return response()->json(['success' => false , 'message' => "Invailed Token"]);
+
       }
+        
         
     }
 }
