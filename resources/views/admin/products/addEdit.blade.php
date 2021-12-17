@@ -25,8 +25,8 @@
                         @csrf
                         {{ isset($product) ? method_field('PUT'):'' }}
                         <div class="col-lg-12 col-md-12">
-							<div class="card">
-								<div class="card-body">
+                            <div class="card">
+                                <div class="card-body">
                         <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">Title</label>
@@ -50,17 +50,17 @@
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                 <div class="row">
-						<div class="col-lg-12 col-md-12">
-							<div class="card">
-								<div class="card-body">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="card">
+                                <div class="card-body">
                             
                            
-									<input id="demo" type="file" name="image[]" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
-								
-								</div>
-							</div>
-						</div>
-					</div>
+                                    <input id="demo" type="file" name="image[]" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                                 </div>
                             </div>
                            
@@ -91,11 +91,11 @@
                                 </div>
                             </div>
                             </div>
-							</div>
-						</div>
+                            </div>
+                        </div>
                             <div class="col-lg-12 col-md-12">
-							<div class="card">
-								<div class="card-body">
+                            <div class="card">
+                                <div class="card-body">
                                 <h4>Pricing</h4>
                             <div class="row row-xs align-items-center mg-b-20" >
                                 <div class="col-md-4">
@@ -117,8 +117,8 @@
                             </div>
                             </div>
             <div class="col-lg-12 col-md-12">
-				<div class="card">
-					 <div class="card-body">
+                <div class="card">
+                     <div class="card-body">
                                 <h4>Inventory</h4>
                                 <div class="row row-xs align-items-center mg-b-20" id="sku">
                                 <div class="col-md-4">
@@ -141,8 +141,8 @@
          </div>
 
          <div class="col-lg-12 col-md-12">
-				<div class="card">
-					 <div class="card-body">
+                <div class="card">
+                     <div class="card-body">
                                 <h4>Shipping</h4>
                                 <div class="row row-xs align-items-center mg-b-20">
                                     <div class="col-md-4">
@@ -157,17 +157,19 @@
              </div>
          </div>
          <div class="col-lg-12 col-md-12">
-				<div class="card">
-					 <div class="card-body">
+                <div class="card">
+                     <div class="card-body">
                                 <h4>Attributes</h4>
-                                <table class="table table-bordered" id="dynamic_field">
+                                <table class="table table-bordered" id="attributes_fields">
                                     <tr>
                                          <td>
-                                             <input type="text" name="name[]"  id="name_attributes" placeholder="Enter your Name" class="form-control tableData" />
+                                             <input type="text"  id="name_attributes" placeholder="Enter your Name" class="form-control tableData" />
                                     
                                             </td>
-                                         <td><input type="text" name="value[]"  id="value_attributes" placeholder="Enter your value with (,) seperated" class="form-control tableData" /></td>
-                                         <td><button type="button" name="add"  id="add" class="btn btn-success">Add</button></td>
+                                         <td><input type="text"   id="value_attributes" placeholder="Enter your value with (,) seperated" class="form-control tableData" />
+                                         </td>
+                                         <td><button type="button" name="add" onclick="productsEvent.addAttributes()"  id="add" class="btn btn-success">Save</button></td>
+
                                     </tr>
                                </table>
 
@@ -177,54 +179,27 @@
          </div>
 
          <div class="col-lg-12 col-md-12">
-				<div class="card">
-					 <div class="card-body">
+                <div class="card">
+                     <div class="card-body">
                                 <h4>Variants</h4>
                                               
                                     <div id='dynamic_attribut' >
-                               
+                                    <table class="table table-bordered" id="variations_fields">
+                                    </table>
                                     </div>
-                                    <div id ="addingFeild" ></div>
-                                    </div>
+                                    
 
                   </div>
              </div>
          </div>
                              
 
-<!-- 
-                            <div class="row row-xs align-items-center mg-b-20">
-                                <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Product data</label>
-                                </div>
-                                <div class="col-md-8 mg-t-5 mg-md-t-0">
 
-                                <select class="form-control" id="product_type" name="type">
-                                <option selected="selected" value=""  >Choose below...</option>
-                                    <option  value="Single Product" {{ (isset($product) && @$product->type == 'Single Product') ? 'selected' : '' }} >Simple product</option>
-                                    <option value="Variation" {{ (isset($product) && @$product->type == 'Variation') ? 'selected' : '' }}>Variable product</option>
-
-                                            </select>
-                                </div>
-                            </div> -->
 
             <div id="simple_product_section">
 
             <div class="panel panel-primary tabs-style-4">
-                <div class="tab-menu-heading">
-                    <div class="tabs-menu ">
-                   
-                        <ul class="nav panel-tabs">
-                            <li ><a href="#general" class="active" data-bs-toggle="tab"><i class="fa fa-laptop"></i> General</a></li>
-                            <li ><a href="#inventory" data-bs-toggle="tab"><i class="fa fa-cube"></i> Inventory</a></li>
-                            <li ><a href="#gallery" data-bs-toggle="tab"><i class="fa fa-tasks"></i>Product Gallery</a></li>
-                            <li ><a href="#shipping" data-bs-toggle="tab"><i class="fa fa-tasks"></i>Shiiping</a></li>
-
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
+              
                 <!-- <style>
                     ul.nav.panel-tabs{grid-gap:10px;}
                     .tabs-style-4 .nav.panel-tabs li {width: auto;}
@@ -301,20 +276,7 @@
                     </div>
 
 
-    <div class="tab-pane" id="shipping">
-
-
-<div class="row row-xs align-items-center mg-b-20">
-            <div class="col-md-4">
-                <label class="form-label mg-b-0">Weight</label>
-            </div>
-            <div class="col-md-8 mg-t-5 mg-md-t-0">
-                    <input class="form-control" name="weight" value="{{isset($product) ? $product->weight : '' }}" type="number">
-            </div>
-        </div>
-
-
-</div>
+    
   
                     </div>
                 </div>
@@ -322,76 +284,7 @@
           </div>        
   
 
-        <div id="variable_product_section">
-			<div class="panel panel-primary tabs-style-4">
-				<div class="tab-menu-heading">
-					<div class="tabs-menu ">
-					
-						<ul class="nav panel-tabs">
-							<li ><a href="#inventor" data-bs-toggle="tab"><i class="fa fa-cube"></i> Inventory</a></li>
-							<li ><a href="#attribute" data-bs-toggle="tab"><i class="fa fa-tasks"></i>Attributes</a></li>
-							<li ><a href="#variations" data-bs-toggle="tab"><i class="fa fa-tasks"></i>Variations</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-        <div class="tabs-style-4">
-			<div class="panel-body ">
-			  <div class="tab-content">
-		
-					    <div class="tab-pane" id="inventor">
-                            <div class="row row-xs align-items-center mg-b-20" >
-                                <div class="col-md-4">
-                                    <label class="form-label mg-b-0">SKU</label>
-                                </div>
-                                <div class="col-md-8 mg-t-5 mg-md-t-0">
-
-                                    <input class="form-control" name="variation_sku" value="{{isset($product) ? @$product->productSku[0]->sku : '' }}" type="text" >
-                                </div>
-                            </div>
-                            <div class="row row-xs align-items-center mg-b-20" >
-                                <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Stock quantity</label>
-                                </div>
-                                <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="variation_qty" value="{{isset($product) ? @$product->productSku[0]->qty : '' }}"  type="number" >
-                                </div>
-                            </div>
-                        </div>
-            
-                    <div class="tab-pane" id="attribute">
-                                <table class="table table-bordered" id="attribute_field">
-                                    <tr>
-                                         <td><input type="text" name="name[]"  placeholder="Enter your Name" class="form-control name_list" /></td>
-                                         <td><input type="text" name="value[]"   placeholder="Enter your value with (,) seperated" class="form-control value_list" /></td>
-                                         <td><button type="button" name="add"  id="adds" class="btn btn-success">Add</button></td>
-                                    </tr>
-                               </table>
-                    </div>
-                 
-                <div class="tab-pane" id="variations">
-          
-                <div class="row row-xs align-items-center mg-b-20" >
-                      <div class="col-md-4">
-                          <label class="form-label mg-b-0">Variation attributes</label>
-                      </div>
-                      <div class="col-md-8 mg-t-5 mg-md-t-0">
-                      <select class="form-control selectAttribute" id="variation_attributes"  name="variation_attributes">
-                    <option value="">Choose below..</option>
-                    </select>     
-                      </div>
-                  </div>
-               
-                  <div id='dynamic_attribut' style="border-style: inset;">
-               
-                  </div>
-                  <div id ="addingFeild" ></div>
-                </div>
-           
-          
-                </div>
-            </div>
-        </div>
+       
     </div>             
                  
 
@@ -416,61 +309,67 @@
   
 CKEDITOR.replace( 'description' );
 CKEDITOR.replace( 'desc' );
+var productsEvent;
+(function() {
+    var attributes =[];
+    productsEvent = {
+        initialize: function() {
+            //productsEvent.addAttributes();
+        },
+        getAllAttributes()
+        {
+
+        },
+        addAttributes:function()
+        {
+
+            let attributeName = $("#name_attributes").val();
+            let value_attributes = $("#value_attributes").val();
+            let attributeValues = value_attributes.split(",");;
+            attributes[attributeName] = attributeValues;
+
+            
+            productsEvent.displayAttributes();
+            productsEvent.displayVariations();
 
 
-// hide show product sectio
-       $('#variable_product_section').hide();
-    $('#simple_product_section').hide();
-    jQuery(function($) {
-  $('#product_type').change(function () {
-    var val = $(this).val();
-  if (val === 'Single Product') {
-    $('#variable_product_section').hide();
-    $('#simple_product_section').show();
-    }
-    else if (val === 'Variation') {
-            $('#simple_product_section').hide();
-            $('#variable_product_section').show();
-
-            $('#sku_variable_product_section').show();
-
-    }
-    else if (val === '') {
-       $('#simple_product_section').hide();
-       $('#variable_product_section').hide();
-}
-  });
-});
-// add multi ple feild
-$(document).ready(function(){
-var counter =1;
-      $('#add').click(function(){
-        counter ++;
- 
-      
-        var selectValue= document.getElementById('value_attributes').value;
-        var selectname= document.getElementById('name_attributes').value;
-        // var arr = selectValue.split(',');
-        // $.each(arr, function(key, value) {
-        $('#dynamic_field').append('<tr id="row'+counter +'" ><td><input type="text"  name="name[]" value="'+selectname+'" class="form-control tableData" /></td><td><input type="text"  name="value[]" value="'+selectValue+'" class="form-control tableData" /></td><td><button type="button" name="remove" id="'+counter+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-         var id= selectValue;
-          
-            if(id){
-                var newTextBoxDiv = $("<div>").attr("id", 'dynamic_attribut' + counter);
-                newTextBoxDiv.html('<div id = "varient'+counter +'"><div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"> <label class="form-label mg-b-0">Variation Attribute</label> </div><div class="col-md-8 mg-t-5 mg-md-t-0"><input type="text" name="variation_attribute[]" value="'+id+'" class="form-control"></div></div><div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"> <label class="form-label mg-b-0">Variation Name</label> </div><div class="col-md-8 mg-t-5 mg-md-t-0"><input type="text" name="variation_name[]" value="{{isset($product) ? @$product->productVariation[0]->variation_name : '' }}" class="form-control"></div></div><div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"><label class="form-label mg-b-0">Image</label></div><div class="col-md-8 mg-t-5 mg-md-t-0"><input type="file" name="image[]" class="form-control">@if(!empty($product->productVariation[0]->image))<a href="{{@$product->productVariation[0]->image}}" target="_blank"><img src="{{@$product->productVariation[0]->image}}"  height="50" width="50"></a>@endif</div></div><div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"><label class="form-label mg-b-0">SKU</label></div><div class="col-md-8 mg-t-5 mg-md-t-0"><input type="text" class="form-control" value="{{isset($product) ? @$product->productSku[0]->sku : '' }}"  name="variation_sku[]"   placeholder="sku_001"></div></div><div class="row row-xs align-items-center mg-b-20" ><div class="col-md-4"><label class="form-label mg-b-0">Regular price (₹)</label></div><div class="col-md-8 mg-t-5 mg-md-t-0"><input class="form-control" name="variation_real_price[]" value="{{isset($product) ? @$product->productVariation[0]->real_price : '' }}"  type="number" ></div></div><div class="row row-xs align-items-center mg-b-20" id="sale_price"><div class="col-md-4"><label class="form-label mg-b-0">Sale Price</label></div><div class="col-md-8 mg-t-5 mg-md-t-0"><input class="form-control" name="variation_sale_price[]" value="{{isset($product) ? @$product->productVariation[0]->sale_price : '' }}" type="number" ></div></div></div>');
-                newTextBoxDiv.appendTo("#addingFeild");
-               
+        },
+        displayAttributes:function() {
+            $(".dynamic_attributes").remove();
+            for (const [attr, values] of Object.entries(attributes))
+            {
+                let cellValue = values.toString();
+                $("#attributes_fields").prepend('<tr class="dynamic_attributes"><td><input type="text" name="attributes[name][]"  value="'+attr+'" placeholder="Enter your Name" class="form-control tableData" /></td><td><input type="text" value="'+cellValue+'" name="attributes[value][]"  placeholder="Enter your value with (,) seperated" class="form-control tableData" /></td></tr>');
             }
-  
-            //  });
-                $(document).on('click', '.btn_remove', function(){
-                    var button_id = $(this).attr("id");
-                    $('#row'+button_id+'').remove();
-                    $('#varient'+button_id+'').remove();
+            $("#name_attributes").val('');
+            $("#value_attributes").val('');
+        },
+        displayVariations:function() {
+            let attrs = [];
+            $("#variations_fields").empty();
+            for (const [attr, values] of Object.entries(attributes))
+              attrs.push(values.map(v => ({[attr]:v})));
 
-                });
-          });
-        });
+            attrs = attrs.reduce((a, b) => a.flatMap(d => b.map(e => ({...d, ...e}))));
+            console.log(attrs);
+            $.each(attrs, function( index, value ) {
+              for (const [name, variation] of Object.entries(value))
+                {
+                    //console.log(name+'--'+variation);
+                    $("#variations_fields").append(name+'='+variation);
+                }
+            });
+        },
+        removeAttributes:function()
+        {
+
+        },
+        
+    };
+
+    productsEvent.initialize();
+
+})();
 </script>
 @endsection
 
