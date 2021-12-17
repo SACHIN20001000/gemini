@@ -182,24 +182,17 @@ class PassportAuthController extends AppBaseController
         if(empty($token) ){
             $setting->oauth_token =Str::random(30);
             $setting->save();
-            return response()->json([
-                'success' => true,'Token' => $setting->oauth_token
-            ]);
-    
         }
         $afterdays=  date('Y-m-d h:m:s', strtotime($updated_time. ' + 1 days'));
         if($updated_time > $afterdays && $token == $request->client_secret){
             $setting->oauth_token =Str::random(30);
             $setting->save();
-            return response()->json([
-                'success' => true,'Token' => $setting->oauth_token
-            ]);
-    
         }
+        
         return response()->json([
-            'success' => false,'Message' => 'Invailed Secret Id'
+            'success' => true,'Token' => $setting->oauth_token
         ]);
-    
+
     }
 
 }
