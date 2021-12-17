@@ -183,7 +183,7 @@
                      <div class="card-body">
                                 <h4>Variants</h4>
                                               
-                                    <div id='dynamic_attribut' >
+                                   
                                     <table class="table table-bordered" >
                                         <thead>
                                             <tr>
@@ -199,30 +199,12 @@
 
                                         </tbody>
                                     </table>
-                                    </div>
+                                  
                                     
 
                   </div>
              </div>
          </div>
-                             
-
-
-
-          
-
-          
-
-
-    
-  
-            </div>
-          </div>        
-  
-
-       
-    </div>             
-                 
 
     <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>
 </form>
