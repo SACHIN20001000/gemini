@@ -184,7 +184,20 @@
                                 <h4>Variants</h4>
                                               
                                     <div id='dynamic_attribut' >
-                                    <table class="table table-bordered" id="variations_fields">
+                                    <table class="table table-bordered" >
+                                        <thead>
+                                            <tr>
+                                                <td>
+                                                    Name
+                                                </td>
+                                                <td>
+                                                    Value
+                                                </td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="variations_fields">
+
+                                        </tbody>
                                     </table>
                                     </div>
                                     
@@ -325,21 +338,33 @@ var productsEvent;
 
             let attributeName = $("#name_attributes").val();
             let value_attributes = $("#value_attributes").val();
-            let attributeValues = value_attributes.split(",");;
-            attributes[attributeName] = attributeValues;
+         
+          if(value_attributes.length != 0){
+            var removeLastQuama = value_attributes.charAt(value_attributes.length-1);
+            if(removeLastQuama != ','){
+                let attributeValues = value_attributes.split(",");
+           attributes[attributeName] = attributeValues;
+           productsEvent.displayAttributes();
+           productsEvent.displayVariations();
+            }else(
+                alert('Their is not (,) at the last of your value')
+            )
 
-            
-            productsEvent.displayAttributes();
-            productsEvent.displayVariations();
 
+            }else{
+                alert('Both Feild is Required')
+            }
+           
 
         },
         displayAttributes:function() {
             $(".dynamic_attributes").remove();
+            var counter =1;
             for (const [attr, values] of Object.entries(attributes))
             {
                 let cellValue = values.toString();
-                $("#attributes_fields").prepend('<tr class="dynamic_attributes"><td><input type="text" name="attributes[name][]"  value="'+attr+'" placeholder="Enter your Name" class="form-control tableData" /></td><td><input type="text" value="'+cellValue+'" name="attributes[value][]"  placeholder="Enter your value with (,) seperated" class="form-control tableData" /></td></tr>');
+                $("#attributes_fields").prepend('<tr class="dynamic_attributes" id="row'+counter +'"><td><input type="text" name="attributes[name][]"  value="'+attr+'" placeholder="Enter your Name" class="form-control tableData" /></td><td><input type="text" value="'+cellValue+'" name="attributes[value][]"  placeholder="Enter your value with (,) seperated" class="form-control tableData" /></td><td><button type="button" name="remove" id="'+counter+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+                counter ++;
             }
             $("#name_attributes").val('');
             $("#value_attributes").val('');
@@ -356,7 +381,7 @@ var productsEvent;
               for (const [name, variation] of Object.entries(value))
                 {
                     //console.log(name+'--'+variation);
-                    $("#variations_fields").append(name+'='+variation);
+                    $("#variations_fields").append('<tr class="dynamic_attribut"><td><input type="text" name="attributes[name][]"  value="'+name+'" placeholder="Enter your Name" class="form-control tableData" /></td><td><input type="text" value="'+variation+'" name="attributes[value][]"  placeholder="Enter your value with (,) seperated" class="form-control tableData" /></td></tr>');
                 }
             });
         },
@@ -370,6 +395,11 @@ var productsEvent;
     productsEvent.initialize();
 
 })();
+$(document).on('click', '.btn_remove', function(){
+                    var button_id = $(this).attr("id");
+                    $('#row'+button_id+'').remove();
+                 
+                });
 </script>
 @endsection
 
