@@ -272,7 +272,16 @@ var productsEvent;
             {
             for (const [attr, values] of Object.entries(attributes))
               attrs.push(values.map(v => ({[attr]:v})));
-            variations = attrs.reduce((a, b) => a.flatMap(d => b.map(e => ({...d, ...e}))));
+            attrs = attrs.reduce((a, b) => a.flatMap(d => b.map(e => ({...d, ...e}))));
+
+            $.each(attrs, function( index, value ) {
+                attrs[index]['Qty'] = {value:0,placeholder:"Qty",type:'number',customClass:""};
+                attrs[index]['Regular Price'] = {value:0,placeholder:"Regular Price",type:'number',customClass:""};
+                attrs[index]['Sale Price'] = {value:0,placeholder:"Sale Price",type:'number',customClass:""};
+                attrs[index]['Sku'] = {value:0,placeholder:"Sku",type:'text',customClass:""};
+                attrs[index]['Image'] = {value:null,placeholder:"Image",type:'file',customClass:"dropify"};
+            });
+            variations = attrs;
             productsEvent.displayVariations();
             }
         },
@@ -282,10 +291,6 @@ var productsEvent;
             if(variations && Object.keys(variations).length)
             {
             let headings = Object.keys(variations[0]);
-                headings.push('Qty');
-                headings.push('Regular Price');
-                headings.push('Sale Price');
-                headings.push('Sku');
             $.each(headings, function( index, value ) {
                 $("#variations_heading").append('<th>'+value+'</th>');
             });
@@ -295,12 +300,17 @@ var productsEvent;
 
               for (const [name, variation] of Object.entries(value))
                 {
-                    htmlString +='<td><input name="variations['+variation+'][]" class="form-control" type="text" disabled="true" value="'+variation+'" placeholder="'+variation+'"></td>';
+                    if(typeof variation === 'object' && variation !== null)
+                    {
+                        htmlString +='<td><input  name="variations['+name+'][]" class="form-control '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'"></td>';
+                    }
+                    else
+                    {
+                        htmlString +='<td><input name="variations['+name+'][]" class="form-control" type="text" disabled="true" value="'+variation+'" placeholder="'+variation+'"></td>';
+                    }
+                    
                 }
-                htmlString +='<td><input name="variations[qty][]" class="form-control" type="number" placeholder="Qty"></td>';
-                htmlString +='<td><input name="variations[regular_price][]" class="form-control" type="number" placeholder="Regular Price"></td>';
-                htmlString +='<td><input name="variations[sale_price][]" class="form-control" type="number" placeholder="Sale Price"></td>';
-                htmlString +='<td><input name="variations[sku][]" class="form-control" type="text" placeholder="Sku"></td>';
+                
                 htmlString += '<td><button type="button" name="remove" onclick="productsEvent.removeVariation(\''+index+'\')" class="btn btn-danger btn_remove">X</button></td>';
                 htmlString += '</tr>';
                 $("#variations_fields").append(htmlString);
@@ -317,6 +327,10 @@ var productsEvent;
         {
             variations.splice(index,1);
             productsEvent.displayVariations();
+        },
+        updateVariationvalue:function(index,key,value)
+        {
+            variations[index][key].value = value;
         },
         
     };
