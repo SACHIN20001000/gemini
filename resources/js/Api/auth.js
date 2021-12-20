@@ -1,14 +1,13 @@
 import axios from 'axios'
 
 const HTTP =  axios.create({
-  baseURL: `{process.env.VUE_APP_APIURL}`
+  baseURL: `{process.env.MIX_APP_APIURL}`
 })
 
 HTTP.interceptors.request.use((config) => {
-    /*if (getWithExpiry("userauth") !== null) {
-      config.headers.Authorization = `Bearer ${getWithExpiry("userauth")}`
-    }*/
-    config.headers.Authorization = `Bearer ${getWithExpiry("userauth")}`
+    if (localStorage.getItem("userauth") !== null) {
+      config.headers.Authorization = `Bearer ${localStorage.getItem("userauth")}`
+    }
     return config
   }, function (error) {
     return Promise.reject(error)
@@ -20,7 +19,7 @@ HTTP.interceptors.response.use(function (response) {
   return Promise.reject(error)
 })
 
-function getWithExpiry(key) {
+/*function getWithExpiry(key) {
 	const itemStr = localStorage.getItem(key)
 	if (!itemStr) {
 		return null
@@ -37,5 +36,5 @@ function getWithExpiry(key) {
 	}
 
 	return item.value
-}
+}*/
 export default HTTP
