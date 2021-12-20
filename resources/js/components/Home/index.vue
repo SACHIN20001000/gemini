@@ -35,41 +35,18 @@
     <section class="treat_sec">
       <div class="container_max">
         <div class="row grid_4">
-        <div class="col-md-6 treat_bg">
+        <div
+          v-for="(firstCatbanner, keycat) in firstCatbanners"
+          class="col-md-6"
+          :class="firstCatbanner.classname"
+          :key="keycat"
+        >
           <a href="#">
             <img
-              :src="imgTreats"
+              :src="firstCatbanner.feature_image"
               alt="Treats"
             >
-
-            <h2>Treats</h2>
-          </a>
-        </div>
-        <div class="col-md-6 food_bg">
-          <a href="#">
-            <img
-              :src="imgFood"
-              alt="Food"
-            >
-            <h2>Food</h2>
-          </a>
-        </div>
-        <div class="col-md-6 litter_bg">
-          <a href="#">
-            <img
-              :src="imgLitter"
-              alt="Litter"
-            >
-            <h2>Litter</h2>
-          </a>
-        </div>
-        <div class="col-md-6 toy_bg">
-          <a href="#">
-            <img
-              :src="imgToys"
-              alt="Toys"
-            >
-            <h2>Toys</h2>
+            <h2>{{firstCatbanner.name}}</h2>
           </a>
         </div>
         </div>
@@ -123,22 +100,13 @@
     <section class="two_img">
       <div class="container_max">
         <div class="row pad_15">
-          <div class="col-md-6 txt_over">
+          <div class="col-md-6 txt_over" v-for="(category, key) in categories"  :key=key>
             <a href="#">
               <img
-                :src="imgDog"
+                :src="category.feature_image"
                 alt="Dog"
               >
-              <h2>Dogs</h2>
-            </a>
-          </div>
-          <div class="col-md-6 txt_over">
-            <a href="#">
-              <img
-                :src="imgCat"
-                alt="cat"
-              >
-              <h2>Cats</h2>
+              <h2>{{category.name}}</h2>
             </a>
           </div>
         </div>
@@ -577,15 +545,9 @@
 <script>
 import imgShip from "../../assets/images/ship.png"
 import imgPro1 from "../../assets/images/pro1.png"
-import imgTreats from "../../assets/images/treats.png"
-import imgFood from "../../assets/images/food.png"
-import imgLitter from "../../assets/images/litter.png"
-import imgToys from "../../assets/images/toys.png"
 import imgSl1 from "../../assets/images/sl1.jpg"
 import imgSl2 from "../../assets/images/sl2.jpg"
 import imgSl3 from "../../assets/images/sl3.jpg"
-import imgDog from "../../assets/images/dog.jpg"
-import imgCat from "../../assets/images/cat.jpg"
 import imgIos from "../../assets/images/ios.png"
 import imgBag from "../../assets/images/bag.png"
 import imgPawP from "../../assets/images/paw_p.png"
@@ -620,15 +582,9 @@ export default {
     return {
       imgShip: imgShip,
       imgPro1: imgPro1,
-      imgTreats: imgTreats,
-      imgFood: imgFood,
-      imgLitter: imgLitter,
-      imgToys: imgToys,
       imgSl1: imgSl1,
       imgSl2: imgSl2,
       imgSl3: imgSl3,
-      imgDog: imgDog,
-      imgCat: imgCat,
       imgIos: imgIos,
       imgBag: imgBag,
       imgPawP: imgPawP,
@@ -720,12 +676,31 @@ export default {
               }
             },
           ]
-      }
+      },
+      firstCatbanners:[]
     }
   },
   beforeMount(){
-    console.log(this.getCategories())
     this.getCategories()
+  },
+  watch: {
+    categories(){
+      const listCategories = this.categories
+      var insertCat =[]
+      listCategories.filter(function (category,catind) {
+        category.childrens.filter(function (chilsCategory,childCatind) {
+          if(childCatind < 2){
+            chilsCategory.classname = chilsCategory.name.toLowerCase().trim()+'_bg'
+            insertCat.push(chilsCategory)
+          }
+        })
+      })
+      this.firstCatbanners=insertCat
+
+    }
+  },
+  computed: {
+    ...mapGetters(['categories'])
   },
   methods: {
     ...mapActions(['getCategories']),

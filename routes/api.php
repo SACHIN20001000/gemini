@@ -20,17 +20,22 @@ use App\Http\Controllers\API\ProductController;
 
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
+Route::post('oauth/token', [PassportAuthController::class, 'oauth_token']);
+
+Route::get('categories', [CategoryController::class, 'index']);
+Route::any('categories/{id}', [CategoryController::class, 'category_by_id']);
+Route::get('products', [ProductController::class, 'index']);
+Route::any('products/{id}', [ProductController::class, 'productById']);
+Route::any('products/category/{id}', [ProductController::class, 'productByCategoryId']);
+
 
 Route::middleware('auth:api')->group(function ()
 {
     Route::get('profile', [UserController::class, 'userProfile']);
     Route::put('update', [UserController::class, 'updateProfile']);
     Route::get('logout', [PassportAuthController::class, 'logout']);
-    Route::get('categories', [CategoryController::class, 'index']);
-    Route::any('categories/{id}', [CategoryController::class, 'category_by_id']);
-    Route::get('products', [ProductController::class, 'index']);
-    Route::any('products/{id}', [ProductController::class, 'productById']);
-    Route::any('products/category/{id}', [ProductController::class, 'productByCategoryId']);
+ 
+ 
 
     Route::group(['middleware' => ['role:User']], function ()
     {

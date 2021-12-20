@@ -13,20 +13,12 @@ text-decoration: none;  background: #fa6734; font-size: 15px;  line-height: 1.2;
 .btn_orng a:hover {color: #fff;}
 .btn_orng a:hover {background: #fff; color: #fa6734; }
 .baner_1 { display: flex; align-items: center; justify-content: flex-end;}
-.treat_bg {    background: #9bb79e;}
+.treats_bg {    background: #9bb79e;}
 .food_bg { background: #89b3b4;}
 .litter_bg { background: #decdc0;}
-section.product_slider .slick-slide a {
-    max-width: 300px;
-    display: block !important;
-    margin: 0 auto;
-}
-.cart_flex h3>sup {
-    font-size: 16px;
-    top: -4px;
-}
-
-.toy_bg { background: #a28ca8;}
+section.product_slider .slick-slide a {max-width: 300px; display: block !important; margin: 0 auto; }
+.cart_flex h3>sup {font-size: 16px; top: -4px; }
+.toys_bg { background: #a28ca8;}
 section.treat_sec { padding: 60px 0 30px 0;}
 .grid_4>div { padding-top: 37%;  position: relative;}
 .grid_4>div>a h2 { display: block; width: 100%; text-align: center; color: #fff; margin: 0; line-height: 1; font-size: 100px;
@@ -47,7 +39,9 @@ color: transparent !important;   background-position: center;  background-repeat
 button.slick-prev.slick-arrow { left: 0;}
 .slick-next{ right: 0 !important;}
 .slick-arrow { z-index: 9;}
-
+.lb_no a {
+    border-right: 0 !important;
+}
 
 .txt_over a { position: relative; text-decoration: none; color: #fff; display: block;}
 
@@ -592,7 +586,10 @@ footer.main_footer ul li a:hover {
 /* responsive */
 
 @media only screen and (max-width: 768px)
-{   
+{
+    .slick-arrow {
+    display: none;
+}
 section.xl_sec img { width: 100%;}
 section.banner_sec {padding: 10px; }
 section.banner_sec {  padding-bottom: 60px;  position: relative;}
@@ -786,12 +783,12 @@ ul.foot_mobil li a {
     max-width: 200px;
 }
 .baner_1 {justify-content: center;}
- 
+
 }
 
 
 @media only screen and (max-width: 400px)
-{  
+{
     .red_box h2, .blue_box h2 {font-size: 35px; letter-spacing: -2px; }
      .red_box img {margin-top: 11px; max-width: 94px; }
      .sub_1>h1 { font-size: 23px; }
@@ -813,6 +810,9 @@ ul.foot_mobil li a {
 
  @media only screen and (min-width: 768px) and (max-width:1024px)
  {
+    .slick-arrow {
+    display: none;
+}
     .grid_4>div ,section.two_img .col-md-6.txt_over,.blue_box, .red_box,.duo_banner .row .col-md-6{
     width: 100% !important;
 }
@@ -987,12 +987,16 @@ img{max-width: 100%;}
     font-size: 15px;
     top: -22px;
 }
+
  }
 
 
 
  @media only screen and (min-width:780px) and (max-width:1024px)
 {
+    .product_slider .slick-track .slick-slide {
+    padding: 0 20px;
+}
 .sub_1 img {
     max-width: 340px;
 }
@@ -1005,12 +1009,13 @@ section.product_slider,section.cart_slider {
     margin-top: 37px;
     max-width: 208px;
 }
+
 .blue_box img {
 
     max-width: 232px;
 }
 .red_box h2, .blue_box h2 {
-    font-size: 92px;
+    font-size: 70px;
 }
 section.xl_sec img {
     max-width: 100%;
@@ -1029,8 +1034,8 @@ header .menu_nav .navbar-nav li a {
     padding: 40px !important;
 }
 .grid_4>div>a h2, .col-md-6.txt_over h2 {
-    font-size: 90px;
-    bottom: 30px;
+    font-size: 80px;
+    margin-top: -20px;
 }
 .form_mobile form.mobil_only {
     display: block !important;
@@ -1082,5 +1087,26 @@ form.mobil_only input {
 {
     section.banner_sec {
     padding: 40px 0 !important;
+}
+.cart_slide button.slick-next.slick-arrow{display: none;}
+}
+
+@media only screen and (min-width:1000px) and (max-width:1180px)
+{
+    .red_box h2, .blue_box h2 {
+    font-size: 93px !important;
+}
+img{max-width:100%;}
+footer.main_footer {
+    padding: 50px 0;
+}
+.container {
+    max-width: 1100px !important;
+}
+header .logo_nav {
+    padding: 40px !important;
+}
+.slick-arrow {
+    display: none !important;
 }
 }
