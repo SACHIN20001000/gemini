@@ -7,10 +7,10 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Products</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ list</span>
+                <h4 class="content-title mb-0 my-auto">Attributes</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ list</span>
             </div>
         </div>
-        <a class="btn btn-main-primary ml_auto" href="{{ route('products.create') }}">Add New</a>
+        <a class="btn btn-main-primary ml_auto" href="{{ route('attributes.create') }}">Add New</a>
     </div>
     <!-- breadcrumb -->
    
@@ -18,7 +18,7 @@
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 grid-margin">
             <div class="card">
                 <div class="card-header pb-0">
-                    <p class="tx-12 tx-gray-500 mb-2">Listing of All Products...</p>
+                    <p class="tx-12 tx-gray-500 mb-2">Listing of All Attributes...</p>
                 </div>
                 <div class="card-body">
 
@@ -28,14 +28,10 @@
                             <thead>
                                 <tr>
                                     <th class="wd-lg-20p"><span>Name</span></th>
-                                    <!-- <th class="wd-lg-20p"><span>Description</span></th> -->
-                                    <th class="wd-lg-20p"><span>Type</span></th>
-                                    <!-- <th class="wd-lg-20p"><span>Real Price</span></th>
-                                    <th class="wd-lg-20p"><span>Sale Price</span></th> -->
-                                    <th class="wd-lg-20p"><span>Category</span></th>
-                                    <th class="wd-lg-20p"><span>Status</span></th>
+                                    <th class="wd-lg-20p"><span>Value</span></th>
 
                                     <th class="wd-lg-20p"><span>Created At</span></th>
+
                                     <th class="wd-lg-20p">Action</th>
                                 </tr>
                             </thead>
@@ -66,15 +62,10 @@
         var table = $('#datatable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('products.index') }}",
+            ajax: "{{ route('attributes.index') }}",
             columns: [
-                {data: 'productName', name: 'productName'},   
-                // {data: 'description', name: 'description'},
-                {data: 'type', name: 'type'},
-                // {data: 'real_price', name: 'real_price'},
-                // {data: 'sale_price', name: 'sale_price'},
-                {data: 'categories.name', name: 'categories.name'},
-                {data: 'status', name: 'status'},
+                {data: 'name', name: 'name'},
+                {data: 'variation_attribute_name.name', name: 'variation_attribute_name.name'},
 
                 {data: 'created_at', name: 'created_at'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
