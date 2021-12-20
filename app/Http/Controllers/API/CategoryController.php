@@ -45,6 +45,7 @@ class CategoryController extends Controller
         $setting = Setting::orderBy('id', 'asc')->first();
         $token = $setting->oauth_token ?? '';
         if($header == $token){
+          
           $limit = $request->limit ? $request->limit : 20;
           $categories = Category::with('childrens')->where(['parent'=>0,'type'=>'Product'])->paginate($limit);
           
