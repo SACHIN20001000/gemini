@@ -226,7 +226,7 @@
 <script type="text/javascript">
   
 CKEDITOR.replace( 'description' );
-CKEDITOR.replace( 'desc' );
+
 var productsEvent;
 (function() {
     var attributes =[];
@@ -281,8 +281,16 @@ var productsEvent;
               attrs.push(values.map(v => ({[attr]:v})));
 
             attrs = attrs.reduce((a, b) => a.flatMap(d => b.map(e => ({...d, ...e}))));
-    
+    // console.log(attrs)
+   
             $.each(attrs, function( index, value ) {
+                for (var value in attrs) {
+                    if (attrs.hasOwnProperty(value)) {
+                
+                                // Printing values
+                                console.log(value + "/");
+                            }
+                        } 
               for (const [name, variation] of Object.entries(value))
                 {
                   $("#variations_fields").append('<tr class="dynamic_attribut"><td><input type="text" name="attributes[name][]"  value="'+name+'" placeholder="Enter your Name" class="form-control tableData" /></td><td><input type="text" value="'+variation+'" name="attributes[value][]"  placeholder="Enter your value with (,) seperated" class="form-control tableData" /></td></tr>');
