@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-const Api =  axios.create({
-  baseURL: `{process.env.VUE_APP_APIURL}`
+const API =  axios.create({
+  baseURL: `{process.env.MIX_APP_APIURL}`
 })
 
-Api.interceptors.request.use((config) => {
+API.interceptors.request.use((config) => {
     if (localStorage.getItem("token") !== null) {
-      config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+      config.headers.Token = `${localStorage.getItem('token')}`
     }
     return config
   }, function (error) {
@@ -14,10 +14,10 @@ Api.interceptors.request.use((config) => {
   })
 
 
-  Api.interceptors.response.use(function (response) {
+  API.interceptors.response.use(function (response) {
     return response
   }, function (error) {
     return Promise.reject(error)
   })
 
-export default Api
+export default API

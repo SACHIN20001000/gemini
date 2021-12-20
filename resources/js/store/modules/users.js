@@ -1,44 +1,58 @@
 /*import axios from 'axios'*/
-import Api from './../../Api'
+import API from './../../Api'
+import HTTP from './../../Api/auth'
 
 const state = {
   errors: [],
   userDetails:[],
   accountDetails:[],
-  accountErrors:[]
-
+  accountErrors:[],
+  tokenStatus:'',
+  tokenError:''
 }
-/*const formData = new FormData()*/
+const formData = new FormData()
+formData.append('client_id', 2)
+formData.append('client_secret', '8BSSg7qMYw2NAJaiMhQOCYxGlFSs141SLfPRLU')
 
 const getters = {
   userDetails: state => state.userDetails,
   errors: state => state.errors,
   accountDetails: state => state.accountDetails,
-  accountErrors: state => state.accountErrors
+  accountErrors: state => state.accountErrors,
+  tokenStatus: state => state.tokenStatus,
+  tokenError: state => state.tokenError
 }
 
 const actions = {
   async registerUser({commit},data){
-    Api.post(process.env.MIX_APP_APIURL+"register", data).then((response) => {
-      localStorage.setItem('token', response.data.data.token)
+    API.post(process.env.MIX_APP_APIURL+"register", data).then((response) => {
+      localStorage.setItem('userauth', response.data.data.token)
       commit("userInfo", response.data.data)
     }).catch((errors) => {
       commit("userErrors", errors.response.data.message)
     })
   },
   async loginUser({commit},data){
-    Api.post(process.env.MIX_APP_APIURL+"login", data).then((response) => {
-      localStorage.setItem('token', response.data.data.token)
+    API.post(process.env.MIX_APP_APIURL+"login", data).then((response) => {
+      localStorage.setItem('userauth', response.data.data.token)
       commit("userInfo", response.data.data)
     }).catch((errors) => {
       commit("userErrors", errors.response.data.message)
     })
   },
   async getProfile({commit}){
-    Api.get(process.env.MIX_APP_APIURL+"profile").then((response) => {
+    HTTP.get(process.env.MIX_APP_APIURL+"profile").then((response) => {
       commit("accountDetails", response.data.data)
     }).catch((errors) => {
       commit("accountErrors", errors.response.data.message)
+    })
+  },
+  async getToken({commit}){
+    API.post(process.env.MIX_APP_APIURL+'oauth/token', formData).then((response) => {
+      localStorage.setItem('token', response.data.Token)
+      commit("tokenStatus", 'token is set!')
+    }).catch((errors) => {
+      commit("tokenError", errors.response.data.message)
     })
   }
 }
@@ -54,6 +68,12 @@ const mutations = {
   ),
   accountErrors: (state, accerror) => (
     state.accountErrors = accerror
+  ),
+  tokenStatus: (state, tokenstatus) => (
+    state.tokenStatus = tokenstatus
+  ),
+  tokenError: (state, tokenerror) => (
+    state.tokenError = tokenerror
   ),
 }
 
