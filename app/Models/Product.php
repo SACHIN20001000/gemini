@@ -15,11 +15,22 @@ class Product extends Model
     ];
 
     protected $fillable = [
-        'name','sku','category','name','slug','feature_image','description','quantity','weight','price','sale_price','status','featured'
+        'productName','type','feature_image','description','real_price','sale_price','category_id','status'
     ];
 
     public function categories()
     {
-        return $this->belongsTo(Category::class,'category');
+        return $this->belongsTo(Category::class,'category_id');
     }
+    public function productSku() {
+        return $this->hasMany(ProductSku::class, 'product_id', 'id');
+    }
+    public function productGallery() {
+        return $this->hasMany(ProductGallery::class, 'product_id', 'id');
+    }
+    public function productVariation() {
+        return $this->hasMany(ProductVariation::class, 'product_id', 'id');
+    }
+  
+ 
 }

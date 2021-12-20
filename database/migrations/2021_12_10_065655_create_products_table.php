@@ -15,12 +15,17 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('productName');
             $table->longText('description');
             $table->set('type', ['Single Product', 'Variation']);
+            $table->string('feature_image');
             $table->float('real_price', 8, 2);
             $table->float('sale_price', 8, 2)->nullable();
+            $table->integer('weight')->nullable();
+
             $table->unsignedBigInteger('category_id');
+            $table->string('status');
+
             $table->timestamps();
         });
         
@@ -45,6 +50,7 @@ class CreateProductsTable extends Migration
             $table->float('sale_price', 8, 2)->nullable();
             $table->string('image');
             $table->string('variation_name');
+            $table->string('variation_attributes');
             $table->string('sku_id');
             $table->string('variation_ids'); // 123/Color, 321/Size, etc...
             $table->timestamps();
@@ -54,7 +60,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('product_variation')->nullable();
-            $table->integer('sku')->unique();
+            $table->string('sku')->unique();
             $table->integer('qty');
             $table->timestamps();
         });
