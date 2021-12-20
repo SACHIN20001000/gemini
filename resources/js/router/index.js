@@ -6,12 +6,22 @@ import Register from "../components/Register";
 import Login from "../components/Register/Login";
 import Logout from "../components/Register/Logout";
 import Profile from "../components/Profile";
+import Category from "../components/Category";
 
 Vue.use(VueRouter)
 
 function guardMyroute(to, from, next)
 {
 	if(localStorage.getItem('token') && localStorage.getItem('token') !=null){
+		next()
+	}else{
+		window.location.href='/'
+		return
+	}
+}
+function loginRoute(to, from, next)
+{
+	if(localStorage.getItem('userauth') && localStorage.getItem('userauth') !=null){
 		next()
 	}else{
 		window.location.href='/'
@@ -36,9 +46,15 @@ routes: [
 		name: 'Home',
 		component: Home
 	},
+  {
+		path: '/category/:id',
+		beforeEnter : guardMyroute,
+		name: 'Category',
+		component: Category
+	},
 	{
 		path: '/dashboard',
-		beforeEnter : guardMyroute,
+		beforeEnter : loginRoute,
 		name: 'Dashboard',
 		component: Dashboard
 	},
@@ -56,7 +72,7 @@ routes: [
 	},
 	{
 		path: '/profile',
-		beforeEnter : guardMyroute,
+		beforeEnter : loginRoute,
 		name: 'Profile',
 		component: Profile
 	},

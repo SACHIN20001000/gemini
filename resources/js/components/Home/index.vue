@@ -41,13 +41,15 @@
           class="col-md-6"
           :class="'img_topbanner_bg_'+keycat"
         >
-          <a href="#">
+          <router-link
+            :to="{ path: 'category/'+firstCatbanner.id}"
+          >
             <img
               :src="firstCatbanner.feature_image"
               alt="Treats"
             >
             <h2>{{firstCatbanner.name}}</h2>
-          </a>
+          </router-link>
         </div>
         </div>
       </div>
@@ -100,14 +102,20 @@
     <section class="two_img">
       <div class="container_max">
         <div class="row pad_15">
-          <div class="col-md-6 txt_over" v-for="(category, key) in categories"  :key=key>
-            <a href="#">
+          <div
+            class="col-md-6 txt_over"
+            v-for="(category, key) in categories"
+            :key=key
+          >
+            <router-link
+              :to="{ path: 'category/'+category.id}"
+            >
               <img
                 :src="category.feature_image"
                 alt="Dog"
               >
               <h2>{{category.name}}</h2>
-            </a>
+            </router-link>
           </div>
         </div>
       </div>
