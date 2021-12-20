@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ProductSku;
+use App\Models\ProductVariation;
+use App\Models\ProductGallery;
+use App\Models\VariationAttribute;
+use App\Models\VariationAttributeName;
 use App\Models\Category;
 use DataTables;
 use Illuminate\Support\Str;
@@ -25,6 +30,7 @@ class ProductController extends Controller
         if ($request->ajax())
         {
             $data = Product::with('categories')->get();
+         
 
             return Datatables::of($data)
             ->addIndexColumn()
@@ -42,16 +48,7 @@ class ProductController extends Controller
                             
                             return $status;
                         })
-                        ->addColumn('featured', function ($row)
-                        {
-                            if($row->featured == 1){
-                                $featured =  'Yes';
-                            }else{
-                                $featured =  'No';
-                            }
-                            
-                            return $featured;
-                        })
+                        
                     ->addColumn('action', function ($row)
                             {
                                 $action = '<span class="action-buttons">
@@ -73,7 +70,7 @@ class ProductController extends Controller
                                 return $action;
                             })
 
-                            ->rawColumns(['action','status','featured'])
+                            ->rawColumns(['action','status'])
                             ->make(true)
                             ;
         }
@@ -98,20 +95,105 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddProduct $request)
     {  
-        print_r($request->all());die;
-        $inputs = $request->all();
-        $slug = Str::slug($request->name);
-        $inputs['slug'] = $slug;
-        if($request->hasFile('feature_image')){
+        
+  
+    // ADD PRODUCT TABLE DATA 
+        $products= new Product();
+       
+        if(!empty($request->feature_image)){
             $path = Storage::disk('s3')->put('images', $request->feature_image);
             $path = Storage::disk('s3')->url($path);
-            $inputs['feature_image']= $path; 
+            $products->feature_image = $path; 
         }
-        Product::create($inputs);
-       
+     
+        $products->productName = $request->productName;
+        $products->description = $request->description;
+        $products->type = $request->type;
+        $products->real_price = $request->real_price;
+        $products->sale_price = $request->sale_price;
+        $products->weight = $request->weight;
+
+        $products->category_id = $request->category_id;
+        $products->status = $request->status;
+        $products->save();
+   
+    //    SINGLE PRODUCT FUNCTION 
+        if($request->type == "Single Product"){
+            $productSku = new ProductSku();
+            $productSku->product_id=$products->id;
+            $productSku->sku = $request->sku;
+            $productSku->qty = $request->qty;
+            $productSku->save();
+            foreach($request->image as $image){
+                $productSingleImage = new ProductGallery();
+                if(!empty($image)){
+                  
+                    $path = Storage::disk('s3')->put('images', $image);
+                    $path = Storage::disk('s3')->url($path);
+                    $productSingleImage->image = $path;
+                }
+               
+               
+                $productSingleImage->product_id = $products->id;
+                $productSingleImage->save();
+            }
+
+        }
+    //    VARIATION FUNCTION 
+    if($request->type == "Variation"){
+        foreach($request->name as $key => $name){
+            if($name) {
+                $variationAttribute = new VariationAttribute;
+                $variationAttribute->name = $name;
+                $variationAttribute->product_id=$products->id;
+                $variationAttribute->save();
+                $value = $request->value[$key] ?? '';
+                if($value) {
+                    $variationAttributeName = new VariationAttributeName;
+                    $variationAttributeName->name = $value;
+                    $variationAttributeName->attribute_id = $variationAttribute->id;
+                    $variationAttributeName->product_id=$products->id;
+                    $variationAttributeName->save();
+                }
+            }
+            $data[]= ['attribute_id' => @$variationAttribute->id , 'attribute_name_id'=> @$variationAttributeName->id ];
+        }
+        foreach($request->variation_name as $key => $value  ){
+            $image = $request->image[$key] ?? '';
+            $variation_real_price = $request->variation_real_price[$key] ?? '';
+            $variation_sale_price = $request->variation_sale_price[$key] ?? '';
+            $variation_sku = $request->variation_sku[$key] ?? '';
+            $variation_attributes = $request->variation_attributes[$key] ?? '';
+
+
+            $productVariation = new ProductVariation();
+            $productVariation->product_id=$products->id;
+            $productVariation->real_price =$variation_real_price;
+            $productVariation->sale_price =$variation_sale_price;
+            if(!empty($image)){
+                $path = Storage::disk('s3')->put('images', $image);
+                $path = Storage::disk('s3')->url($path);
+                $productVariation->image = $path; 
+             
+            }
+            $productVariation->variation_name =	$value;
+            $productVariation->variation_attributes =	$variation_attributes;
+
+            $productVariation->save();
+            $productSku = new ProductSku();
+            $productSku->product_id=$products->id;
+            $productSku->sku = $variation_sku;
+            $productSku->product_variation = $productVariation->id;
+            $productSku->save();
+            $productVariation->sku_id= $productSku->id;
+            $productVariation->variation_ids= json_encode($data);
+            $productVariation->save();
+        }
+    }
         return back()->with('success','Product addded successfully!');
+    
     }
 
     /**
@@ -120,10 +202,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+   
 
     /**
      * Show the form for editing the specified resource.
@@ -131,10 +210,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {   
         $categories = Category::all();
-        $products = Product::where('id','!=',$product->id)->get();
+        $product= Product::with(['productSku','productVariation','productGallery'])->where('id',$id)->first();
+   
+        $products = Product::where('id','!=',$id)->get();
         return view('admin.products.addEdit',compact('product','products','categories'));
     }
 
@@ -145,18 +226,104 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProduct $request, Product $Product)
+    public function update(UpdateProduct $request,$id)
     {
-       
-        $inputs = $request->all();
-        $slug = Str::slug($request->name);
-        $inputs['slug'] = $slug;
-        if($request->hasFile('feature_image')){
-            $path = Storage::disk('s3')->put('images', $request->feature_image);
+// ADD PRODUCT TABLE DATA 
+$products= Product::find($id);
+$products->productName = $request->productName;
+if(!empty($request->feature_image)){
+    $path = Storage::disk('s3')->put('images', $request->feature_image);
+    $path = Storage::disk('s3')->url($path);
+    $products->feature_image = $path; 
+}
+
+$products->description = $request->description;
+$products->type = $request->type;
+$products->real_price = $request->real_price;
+$products->sale_price = $request->sale_price;
+$products->weight = $request->weight;
+
+$products->category_id = $request->category_id;
+$products->status = $request->status;
+$products->save();
+
+//    SINGLE PRODUCT FUNCTION 
+if($request->type == "Single Product"){
+    $productSku = ProductSku::where('product_id',$id)->first();
+    $productSku->product_id=$products->id;
+    $productSku->sku = $request->sku;
+    $productSku->qty = $request->qty;
+    $productSku->save();
+    foreach($request->image as $image){
+        $productSingleImage = ProductGallery::where('product_id',$id)->first();;
+        if(!empty($image)){
+          
+            $path = Storage::disk('s3')->put('images', $image);
             $path = Storage::disk('s3')->url($path);
-            $inputs['feature_image']= $path; 
+            $productSingleImage->image = $path;
+
+           
         }
-        $Product->update($inputs);
+       
+        $productSingleImage->product_id = $products->id;
+        $productSingleImage->save();
+    }
+
+}
+//    VARIATION FUNCTION 
+if($request->type == "Variation"){
+foreach($request->name as $key => $name){
+    if($name) {
+        $variationAttribute = new VariationAttribute;
+        $variationAttribute->name = $name;
+        $variationAttribute->product_id=$products->id;
+        $variationAttribute->save();
+        $value = $request->value[$key] ?? '';
+        if($value) {
+            $variationAttributeName = new VariationAttributeName;
+            $variationAttributeName->name = $value;
+            $variationAttributeName->attribute_id = $variationAttribute->id;
+            $variationAttributeName->product_id=$products->id;
+            $variationAttributeName->save();
+        }
+    }
+    $data[]= ['attribute_id' => @$variationAttribute->id , 'attribute_name_id'=> @$variationAttributeName->id ];
+}
+foreach($request->variation_name as $key => $value  ){
+    $image = $request->image[$key] ?? '';
+    $variation_real_price = $request->variation_real_price[$key] ?? '';
+    $variation_sale_price = $request->variation_sale_price[$key] ?? '';
+    $variation_sku = $request->variation_sku[$key] ?? '';
+    $variation_attributes = $request->variation_attributes[$key] ?? '';
+
+
+    $productVariation = ProductVariation::where('product_id',$id)->first();
+    $productVariation->product_id=$products->id;
+    $productVariation->real_price =$variation_real_price;
+    $productVariation->sale_price =$variation_sale_price;
+    if(!empty($image)){
+        $path = Storage::disk('s3')->put('images', $image);
+        $path = Storage::disk('s3')->url($path);
+        $productVariation->image = $path; 
+    }
+    $productVariation->variation_name =	$value;
+    $productVariation->variation_attributes =	$variation_attributes;
+
+    $productVariation->save();
+    $productSku = ProductSku::where('product_id',$id)->first();;
+    $productSku->product_id=$products->id;
+    $productSku->sku = $variation_sku;
+    $productSku->product_variation = $productVariation->id;
+    $productSku->save();
+    $productVariation->sku_id= $productSku->id;
+    $productVariation->variation_ids= json_encode($data);
+    $productVariation->save();
+}
+}
+
+
+
+
         return back()->with('success','Product updated successfully!');
     }
 
@@ -166,10 +333,29 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $Product)
-    {
-        $Product->delete();
+    public function destroy($id)
+    {        
+      $productVariation=  ProductVariation::where('product_id',$id)->first();      
+ 
+      if(!empty($productVariation->variation_ids)){
+        $data= json_decode($productVariation->variation_ids);
+        foreach($data as $datas ){
+            if(!empty($datas->attribute_id)){
+            VariationAttribute::find($datas->attribute_id)->delete();
+            VariationAttributeName::find($datas->attribute_name_id)->delete();
+           }    
+          }
+      }
+  
+      Product::find($id)->delete();
+      ProductSku::where('product_id',$id)->delete();
+      ProductGallery::where('product_id',$id)->delete();
+
+      ProductVariation::where('product_id',$id)->delete();
         return back()->with('success','Product deleted successfully!');
     }
 
+    public function deleteGalery($id){
+        print_r($id);die;
+    }
 }
