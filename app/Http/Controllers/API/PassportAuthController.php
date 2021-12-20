@@ -206,5 +206,4 @@ class PassportAuthController extends AppBaseController
         }
   
     }
-
 }
