@@ -37,9 +37,9 @@
         <div class="row grid_4">
         <div
           v-for="(firstCatbanner, keycat) in firstCatbanners"
-          class="col-md-6"
-          :class="firstCatbanner.classname"
           :key="keycat"
+          class="col-md-6"
+          :class="'img_topbanner_bg_'+keycat"
         >
           <a href="#">
             <img
@@ -680,8 +680,8 @@ export default {
       firstCatbanners:[]
     }
   },
-  beforeMount(){
-    this.getCategories()
+  mounted(){
+    this.init();
   },
   watch: {
     categories(){
@@ -690,20 +690,26 @@ export default {
       listCategories.filter(function (category,catind) {
         category.childrens.filter(function (chilsCategory,childCatind) {
           if(childCatind < 2){
-            chilsCategory.classname = chilsCategory.name.toLowerCase().trim()+'_bg'
             insertCat.push(chilsCategory)
           }
         })
       })
       this.firstCatbanners=insertCat
-
+    },
+    tokenStatus(){
+      this.getCategories()
     }
   },
   computed: {
-    ...mapGetters(['categories'])
+    ...mapGetters(['categories','tokenStatus'])
   },
   methods: {
     ...mapActions(['getCategories']),
+    async init(){
+      if(localStorage.getItem("token") && localStorage.getItem("token") !='' && localStorage.getItem("token") !='undefined'){
+        this.getCategories()
+      }
+    },
     next() {
         this.$refs.slick.next()
         this.$refs.productPanel.next()

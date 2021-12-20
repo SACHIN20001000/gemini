@@ -1,4 +1,5 @@
-import Api from './../../Api'
+import API from './../../Api'
+/*import HTTP from './../../Api/auth'*/
 
 const state = {
   catErrors: [],
@@ -12,7 +13,7 @@ const getters = {
 
 const actions = {
   async getCategories({commit}){
-    Api.get(process.env.MIX_APP_APIURL+"categories").then((response) => {
+    API.get(process.env.MIX_APP_APIURL+"categories").then((response) => {
       commit("getCategories", response.data.data)
     }).catch((errors) => {
       commit("catErrors", errors.response.data.message)
