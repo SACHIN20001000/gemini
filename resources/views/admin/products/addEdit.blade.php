@@ -212,7 +212,11 @@
     <!-- /row -->
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+
+@endsection 
+
+@section('scripts')
+
 <script type="text/javascript">
 var productsEvent;
 (function() {
@@ -370,9 +374,7 @@ $(document).on('click', '.remove_image', function(){
 
 
 </script>
-@endsection
 
-@section('scripts')
 @if(isset($product))
 {!! JsValidator::formRequest('App\Http\Requests\Admin\Product\UpdateProduct','#product-add-edit') !!}
 @else
