@@ -42,7 +42,7 @@
           :class="'img_topbanner_bg_'+keycat"
         >
           <router-link
-            :to="{ path: 'category/'+firstCatbanner.id}"
+            :to="{ path: 'category/'+firstCatbanner.slug}"
           >
             <img
               :src="firstCatbanner.feature_image"
@@ -108,7 +108,7 @@
             :key=key
           >
             <router-link
-              :to="{ path: 'category/'+category.id}"
+              :to="{ path: 'category/'+category.slug}"
             >
               <img
                 :src="category.feature_image"

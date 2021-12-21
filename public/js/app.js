@@ -2807,7 +2807,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.filter.js */ "./node_modules/core-js/modules/es.array.filter.js");
+/* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+
+
 
 //
 //
@@ -2827,16 +2833,41 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Category",
+  data: function data() {
+    return {
+      category: []
+    };
+  },
   created: function created() {
-    console.log('I ma here----');
-    console.log(this.$route.params.id);
-
-    if (this.$route.params.id) {
-      this.getCategory(this.$route.params.id);
+    this.getCategories();
+  },
+  watch: {
+    categories: function categories() {
+      if (this.$route.params.slug) {
+        this.category = this.singleCategory(this.$route.params.slug);
+        /*this.getCategory(this.$route.params.slug)*/
+      }
     }
   },
-  computed: (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)(['category', 'catErrors'])),
-  methods: (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)(['getCategory']))
+  computed: (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)(['categories', 'catErrors'])),
+  methods: (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])((0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapActions)(['getCategories'])), {}, {
+    singleCategory: function singleCategory(slug) {
+      var listCategories = this.categories;
+      var insertCat = [];
+      listCategories.filter(function (category, catind) {
+        if (category.slug == slug) {
+          insertCat = category;
+        } else {
+          category.childrens.filter(function (childCategory, childCatind) {
+            if (childCategory.slug == slug) {
+              insertCat = childCategory;
+            }
+          });
+        }
+      });
+      return insertCat;
+    }
+  })
 });
 
 /***/ }),
@@ -12951,7 +12982,7 @@ function withOutToken(to, from, next) {
     name: 'Home',
     component: _components_Home__WEBPACK_IMPORTED_MODULE_1__["default"]
   }, {
-    path: '/category/:id',
+    path: '/category/:slug',
     beforeEnter: guardMyroute,
     name: 'Category',
     component: _components_Category__WEBPACK_IMPORTED_MODULE_6__["default"]
@@ -36389,7 +36420,9 @@ var render = function () {
               [
                 _c(
                   "router-link",
-                  { attrs: { to: { path: "category/" + firstCatbanner.id } } },
+                  {
+                    attrs: { to: { path: "category/" + firstCatbanner.slug } },
+                  },
                   [
                     _c("img", {
                       attrs: {
@@ -36491,7 +36524,7 @@ var render = function () {
               [
                 _c(
                   "router-link",
-                  { attrs: { to: { path: "category/" + category.id } } },
+                  { attrs: { to: { path: "category/" + category.slug } } },
                   [
                     _c("img", {
                       attrs: { src: category.feature_image, alt: "Dog" },
