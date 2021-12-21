@@ -43,7 +43,9 @@
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                 <textarea name="description" id="description" cols="30" rows="10">{{isset($product) ? $product->description : '' }}</textarea>
-                                </div>
+                                <!-- <div id="quillEditor" style="height: 200px;"></div> -->
+
+                            </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-4">
@@ -56,8 +58,7 @@
                                 <div class="card-body">
                             
                               <div id="imageAddFeild"></div>
-                                    <!-- <input id="demo" type="file" name="image[]" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple> -->
-                                
+                                                             
                                 </div>
                             </div>
                         </div>
@@ -260,7 +261,7 @@ var productsEvent;
     var variations =[];
     productsEvent = {
         initialize: function() {
-            //productsEvent.addAttributes();
+            // productsEvent.addAttributes();
         },
         getAllAttributes()
         {
@@ -385,9 +386,8 @@ $(document).ready(function (e) {
 
   $('#product-add-edit').submit(function(e) {
       e.preventDefault();
-      $('.tableData').prop("disabled", false); // Element(s) are now enabled.
       var formData = new FormData(this);
-
+      $('.tableData').prop("disabled", false); // Element(s) are now enabled.
       $.ajax({
           type:'POST',
           url: "{{isset($product) ? route('products.update',$product->id) : route('products.store')}}",
@@ -396,11 +396,17 @@ $(document).ready(function (e) {
           contentType: false,
           processData: false,
          
+
           success:function(data)  {
-              console.log(data)
+            if(data.success == false){
+                console.log(data)
+            }else{
+            console.log(data)
             $('input[type="text"],texatrea, select', this).val('');
             var url ="{{ route('products.create') }}"; 
             $(location).attr('href', url);
+            }
+          
           },
           error: function(data){
               console.log(data);
@@ -453,11 +459,6 @@ $(document).on('click', '.btn_remove', function(){
                  
 });
 
-
-// $(".btn-main-primary").click(function(event){
-//    event.preventDefault();
-//    $('.tableData').prop("disabled", false); // Element(s) are now enabled.
-// });
 </script>
 @endsection
 
