@@ -21,7 +21,8 @@
                     <div class="main-content-label mg-b-5">
                         {{isset($product) ? 'Update # '.$product->id : 'Add New' }}
                     </div>
-                    <form  id="product-add-edit" action="{{isset($product) ? route('products.update',$product->id) : route('products.store')}}" method="POST" enctype="application/x-www-form-urlencoded">
+                
+                    <form  id="product-add-edit"  action="javascript:void(0)"  method="POST" enctype="application/x-www-form-urlencoded">
                         @csrf
                         {{ isset($product) ? method_field('PUT'):'' }}
                         <div class="col-lg-12 col-md-12">
@@ -54,8 +55,8 @@
                             <div class="card">
                                 <div class="card-body">
                             
-                           
-                                    <input id="demo" type="file" name="image[]" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
+                              <div id="imageAddFeild"></div>
+                                    <!-- <input id="demo" type="file" name="image[]" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple> -->
                                 
                                 </div>
                             </div>
@@ -201,8 +202,41 @@
 
     <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>
 </form>
-
                 <!-- form end  -->
+
+                <!-- ajax image form  -->
+
+                <form method="POST" enctype="multipart/form-data" id="upload_image_form" action="javascript:void(0)" >
+                  
+                
+                  <div class="row row-xs align-items-center mg-b-20">
+                                      <div class="col-md-4">
+                                          <label class="form-label mg-b-0">Add Media </label>
+                                      </div>
+                                      <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                          <div class="row">
+                                              <div class="col-lg-12 col-md-12">
+                                                  <div class="card">
+                                                      <div class="card-body">
+
+
+                                                      <input type="file" name="images" placeholder="Choose image" id="image">
+
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                      
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                    
+            </form>
+
+
+                <!-- ajax image form end  -->
             </div>
         </div>
     </div>
@@ -219,7 +253,7 @@
 <script type="text/javascript">
   
 CKEDITOR.replace( 'description' );
-CKEDITOR.replace( 'desc' );
+
 var productsEvent;
 (function() {
     var attributes =[];
@@ -302,11 +336,11 @@ var productsEvent;
                 {
                     if(typeof variation === 'object' && variation !== null)
                     {
-                        htmlString +='<td><input  name="variations['+name+'][]" class="form-control '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'"></td>';
+                        htmlString +='<td><input  name="variations['+name+'][]" class="form-control tableData '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'"></td>';
                     }
                     else
                     {
-                        htmlString +='<td><input name="variations['+name+'][]" class="form-control" type="text" disabled="true" value="'+variation+'" placeholder="'+variation+'"></td>';
+                        htmlString +='<td><input name="variations['+name+'][]" class="form-control tableData" type="text" disabled="true" value="'+variation+'" placeholder="'+variation+'"></td>';
                     }
                     
                 }
@@ -338,6 +372,89 @@ var productsEvent;
     productsEvent.initialize();
 
 })();
+
+// ajax product form submit 
+
+$(document).ready(function (e) {
+  
+  $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
+
+  $('#product-add-edit').submit(function(e) {
+      e.preventDefault();
+      $('.tableData').prop("disabled", false); // Element(s) are now enabled.
+      var formData = new FormData(this);
+
+      $.ajax({
+          type:'POST',
+          url: "{{isset($product) ? route('products.update',$product->id) : route('products.store')}}",
+          data: formData,
+          cache:false,
+          contentType: false,
+          processData: false,
+         
+          success: (data) => {
+            $('input[type="text"],texatrea, select', this).val('');
+            var url ="{{ route('products.create') }}"; //the url I want to redirect to
+            $(location).attr('href', url);
+          },
+          error: function(data){
+              console.log(data);
+          }
+      });
+  });
+});
+
+
+//ajax image sent   
+
+$(document).ready(function (e) {
+  
+  $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
+
+  $('#upload_image_form').submit(function(e) {
+      e.preventDefault();
+
+      var formData = new FormData(this);
+
+      $.ajax({
+          type:'POST',
+          url: "{{ route('save_photo')}}",
+          data: formData,
+          cache:false,
+          contentType: false,
+          processData: false,
+         
+          success: (data) => {
+           var counter = 0
+              counter ++
+            $("#imageAddFeild").prepend('<div id="row'+counter +'"><img class="imageSize" src="'+data.image+'" /><i class="fas fa-trash-alt btn_remove" id="'+counter+'"></i><input type="hidden"  value="' + data.image + '" name="image[]"  /> </div>');
+            alert('Image Upload SuccessFully')
+          },
+          error: function(data){
+              console.log(data);
+          }
+      });
+  });
+});
+$(document).on('click', '.btn_remove', function(){
+        var button_id = $(this).attr("id");
+            $('#row'+button_id+'').remove();
+                 
+});
+
+
+// $(".btn-main-primary").click(function(event){
+//    event.preventDefault();
+//    $('.tableData').prop("disabled", false); // Element(s) are now enabled.
+// });
 </script>
 @endsection
 
