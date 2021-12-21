@@ -98,7 +98,9 @@ class ProductController extends Controller
     public function store(AddProduct $request)
     {  
         
-
+        $inputs = $request->all(); 
+        echo '<pre>';
+        print_r($inputs); die;
         // ADD PRODUCT TABLE DATA 
       if(!empty($request->productName)){
         $products= new Product();
@@ -179,7 +181,6 @@ if(!empty($request['variations']['Qty'])){
         }
     }
 }
-$message=$products;
     \Session::flash('success', __('Product Upload successfully.')); 
     return Response()->json([
         "success" => true,
@@ -222,7 +223,6 @@ $message=$products;
      */
     public function update(UpdateProduct $request,$id)
     {
-
         if(!empty($request->productName)){
             $products= Product::find($id);
             $products->productName = $request->productName;
@@ -302,7 +302,6 @@ $message=$products;
             }
         }
     }
-        $message=$products;
         \Session::flash('success', __('Product update successfully.')); 
         return Response()->json([
             "success" => true,

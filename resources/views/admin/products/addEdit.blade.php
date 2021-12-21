@@ -22,7 +22,7 @@
                         {{isset($product) ? 'Update # '.$product->id : 'Add New' }}
                     </div>
                 
-                    <form  id="product-add-edit"  action="javascript:void(0)"  method="POST" enctype="application/x-www-form-urlencoded">
+                    <form  id="" action="{{isset($product) ? route('products.update',$product->id) : route('products.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{ isset($product) ? method_field('PUT'):'' }}
                         <div class="col-lg-12 col-md-12">
@@ -42,10 +42,8 @@
                                     <label class="form-label mg-b-0">Description </label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                <!-- <textarea name="description" id="description" cols="30" rows="10">{{isset($product) ? $product->description : '' }}</textarea> -->
-                                <div id="quillEditor" style="height: 200px;"></div>
-                                <textarea name="description" style="display:none" id="hiddenDescription"></textarea>
-                            </div>
+                                <textarea name="description" id="description" cols="30" rows="10">{{isset($product) ? $product->description : '' }}</textarea>
+                                </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-4">
@@ -212,10 +210,17 @@
     </div>
     <!-- /row -->
 </div>
-
+<link href="https://transloadit.edgly.net/releases/uppy/v1.6.0/uppy.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
-<script type="text/javascript">
 
+ 
+<script src="https://transloadit.edgly.net/releases/uppy/v1.6.0/uppy.min.js"></script>
+
+<script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+
+<script type="text/javascript">
+  
+CKEDITOR.replace( 'description' );
 
 var productsEvent;
 (function() {
@@ -258,7 +263,7 @@ var productsEvent;
             for (const [attr, values] of Object.entries(attributes))
             {
                 let cellValue = values.toString();
-                $("#attributes_fields").prepend('<tr class="dynamic_attributes" id="row'+attr +'"><td><input type="text" disabled="true" name="attributes[name][]"  value="'+attr+'" placeholder="Enter your Name" class="form-control tableData" /></td><td><input type="text" disabled="true" value="'+cellValue+'" name="attributes[value][]"  placeholder="Enter your value with (,) seperated" class="form-control tableData" /></td><td><button type="button" name="remove" onclick="productsEvent.removeAttributes(\''+attr+'\')" class="btn btn-danger btn_remove">X</button></td></tr>');
+                $("#attributes_fields").prepend('<tr class="dynamic_attributes" id="row'+attr +'"><td><input type="text" disabled="true" name="attributes[name][]"  value="'+attr+'" placeholder="Enter your Name" class="form-control tableData" /></td><td><input type="text" readonly="true" value="'+cellValue+'" name="attributes['+attr+']"  placeholder="Enter your value with (,) seperated" class="form-control tableData" /></td><td><button type="button" name="remove" onclick="productsEvent.removeAttributes(\''+attr+'\')" class="btn btn-danger btn_remove">X</button></td></tr>');
             }
             $("#name_attributes").val('');
             $("#value_attributes").val('');
@@ -299,11 +304,11 @@ var productsEvent;
                 {
                     if(typeof variation === 'object' && variation !== null)
                     {
-                        htmlString +='<td><input  name="variations['+name+'][]" class="form-control tableData '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'"></td>';
+                        htmlString +='<td><input  name="variations['+index+']['+name+']" class="form-control tableData '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'"></td>';
                     }
                     else
                     {
-                        htmlString +='<td><input name="variations['+name+'][]" class="form-control tableData" type="text" disabled="true" value="'+variation+'" placeholder="'+variation+'"></td>';
+                        htmlString +='<td><input name="variations['+index+']['+name+']" class="form-control tableData" type="text" readonly="true" value="'+variation+'" placeholder="'+variation+'"></td>';
                     }
                     
                 }
@@ -372,29 +377,21 @@ $(document).ready(function (e) {
 });
 
 
-//Image upload code 
+
 $(function() {
     $('#product-galary').FancyFileUpload({
         url:'/admin/save-photo',
         fileupload : {
             maxChunkSize : 1000000
-        },    
-       
+        },        
         uploadcompleted : function(e, data) {
-           
-            var counter = 1; 
-            $("#imageAddFeild").prepend('<div id="row'+counter +'"><img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt remove_image" id="'+counter+'"></i><input type="hidden"  value="' + data.result.image + '" name="image[]"  /></div>');
-            counter ++
+            $("#imageAddFeild").prepend('<img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt btn_remove" ></i><input type="hidden"  value="' + data.result.image + '" name="image[]"  />');
             data.ff_info.RemoveFile();
         }
     });
 });
 
-$(document).on('click', '.remove_image', function(){
-        var button_id = $(this).attr("id");
-            $('#row'+button_id+'').remove();
-                 
-});
+
 
 
 </script>
