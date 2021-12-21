@@ -18,18 +18,44 @@ import {mapActions,mapGetters} from "vuex"
 
 export default {
   name:"Category",
+  data: function () {
+    return {
+      category:[]
+    }
+  },
   created(){
-    console.log('I ma here----')
-    console.log(this.$route.params.id)
-    if (this.$route.params.id) {
-      this.getCategory(this.$route.params.id)
+    this.getCategories()
+  },
+  watch:{
+    categories(){
+      if (this.$route.params.slug) {
+        this.category = this.singleCategory(this.$route.params.slug)
+        /*this.getCategory(this.$route.params.slug)*/
+      }
     }
   },
   computed: {
-    ...mapGetters(['category', 'catErrors'])
+    ...mapGetters(['categories', 'catErrors'])
   },
   methods: {
-    ...mapActions(['getCategory'])
+    ...mapActions(['getCategories']),
+    singleCategory(slug){
+      const listCategories = this.categories
+      var insertCat =[]
+      listCategories.filter(function (category,catind) {
+        if(category.slug==slug){
+          insertCat=category
+        }
+        else{
+          category.childrens.filter(function (childCategory,childCatind) {
+            if(childCategory.slug==slug){
+              insertCat=childCategory
+            }
+          })
+        }
+      })
+      return insertCat
+    }
   }
 }
 </script>

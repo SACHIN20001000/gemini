@@ -47,7 +47,7 @@ routes: [
 		component: Home
 	},
   {
-		path: '/category/:id',
+		path: '/category/:slug',
 		beforeEnter : guardMyroute,
 		name: 'Category',
 		component: Category
