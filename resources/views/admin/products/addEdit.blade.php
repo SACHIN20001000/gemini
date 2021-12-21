@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
-
+<style>.imageSize{height: 100px;width: 100px;}</style>
 <div class="container">
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
@@ -396,13 +396,15 @@ $(document).ready(function (e) {
           contentType: false,
           processData: false,
          
-          success: (data) => {
+          success:function(data)  {
+              console.log(data)
             $('input[type="text"],texatrea, select', this).val('');
-            var url ="{{ route('products.create') }}"; //the url I want to redirect to
+            var url ="{{ route('products.create') }}"; 
             $(location).attr('href', url);
           },
           error: function(data){
               console.log(data);
+          
           }
       });
   });
@@ -428,11 +430,12 @@ $(document).ready(function (e) {
           type:'POST',
           url: "{{ route('save_photo')}}",
           data: formData,
+          dataType: 'JSON',
           cache:false,
           contentType: false,
           processData: false,
          
-          success: (data) => {
+          success: function(data){
            var counter = 0
               counter ++
             $("#imageAddFeild").prepend('<div id="row'+counter +'"><img class="imageSize" src="'+data.image+'" /><i class="fas fa-trash-alt btn_remove" id="'+counter+'"></i><input type="hidden"  value="' + data.image + '" name="image[]"  /> </div>');
