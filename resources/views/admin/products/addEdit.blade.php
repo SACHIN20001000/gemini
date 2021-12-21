@@ -42,8 +42,10 @@
                                     <label class="form-label mg-b-0">Description </label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                <textarea name="description" id="description" cols="30" rows="10">{{isset($product) ? $product->description : '' }}</textarea>
-                                </div>
+                                <!-- <textarea name="description" id="description" cols="30" rows="10">{{isset($product) ? $product->description : '' }}</textarea> -->
+                                <div id="quillEditor" style="height: 200px;"></div>
+                                <textarea name="description" style="display:none" id="hiddenDescription"></textarea>
+                            </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-4">
@@ -210,17 +212,10 @@
     </div>
     <!-- /row -->
 </div>
-<link href="https://transloadit.edgly.net/releases/uppy/v1.6.0/uppy.min.css" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
-
- 
-<script src="https://transloadit.edgly.net/releases/uppy/v1.6.0/uppy.min.js"></script>
-
-<script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
-
 <script type="text/javascript">
-  
-CKEDITOR.replace( 'description' );
+
 
 var productsEvent;
 (function() {
@@ -377,21 +372,29 @@ $(document).ready(function (e) {
 });
 
 
-
+//Image upload code 
 $(function() {
     $('#product-galary').FancyFileUpload({
         url:'/admin/save-photo',
         fileupload : {
             maxChunkSize : 1000000
-        },        
+        },    
+       
         uploadcompleted : function(e, data) {
-            $("#imageAddFeild").prepend('<img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt btn_remove" ></i><input type="hidden"  value="' + data.result.image + '" name="image[]"  />');
+           
+            var counter = 1; 
+            $("#imageAddFeild").prepend('<div id="row'+counter +'"><img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt remove_image" id="'+counter+'"></i><input type="hidden"  value="' + data.result.image + '" name="image[]"  /></div>');
+            counter ++
             data.ff_info.RemoveFile();
         }
     });
 });
 
-
+$(document).on('click', '.remove_image', function(){
+        var button_id = $(this).attr("id");
+            $('#row'+button_id+'').remove();
+                 
+});
 
 
 </script>

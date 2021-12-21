@@ -179,6 +179,7 @@ if(!empty($request['variations']['Qty'])){
         }
     }
 }
+$message=$products;
     \Session::flash('success', __('Product Upload successfully.')); 
     return Response()->json([
         "success" => true,
@@ -221,6 +222,7 @@ if(!empty($request['variations']['Qty'])){
      */
     public function update(UpdateProduct $request,$id)
     {
+
         if(!empty($request->productName)){
             $products= Product::find($id);
             $products->productName = $request->productName;
@@ -300,6 +302,7 @@ if(!empty($request['variations']['Qty'])){
             }
         }
     }
+        $message=$products;
         \Session::flash('success', __('Product update successfully.')); 
         return Response()->json([
             "success" => true,

@@ -29,6 +29,10 @@ $(function() {
 		},
 		theme: 'snow'
 	});
+	quill.on('text-change', function(delta, oldDelta, source) {
+		console.log(quill.container.firstChild.innerHTML)
+		$('#hiddenDescription').val(quill.container.firstChild.innerHTML);
+});
 	// var quillModal = new Quill('#quillEditorModal', {
 	// 	modules: {
 	// 		toolbar: toolbarOptions
