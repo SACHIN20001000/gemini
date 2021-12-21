@@ -351,9 +351,11 @@ if(!empty($request['variations']['Qty'])){
         if ($request->file('images')) {
             $path = Storage::disk('s3')->put('images', $request->images);
             $path = Storage::disk('s3')->url($path);
+            $id = substr($path, -8, 1);
            return Response()->json([
                 "success" => true,
-                "image" => $path
+                "image" => $path,
+                "id" => $id
             ]);
  
         }
