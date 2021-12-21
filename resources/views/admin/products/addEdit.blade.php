@@ -43,9 +43,7 @@
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                 <textarea name="description" id="description" cols="30" rows="10">{{isset($product) ? $product->description : '' }}</textarea>
-                                <!-- <div id="quillEditor" style="height: 200px;"></div> -->
-
-                            </div>
+                                </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-4">
@@ -57,8 +55,10 @@
                             <div class="card">
                                 <div class="card-body">
                             
-                              <div id="imageAddFeild"></div>
-                                                             
+                              
+                                    <input id="product-galary" type="file" name="images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
+                                    <div id="imageAddFeild"></div>
+                                
                                 </div>
                             </div>
                         </div>
@@ -261,7 +261,7 @@ var productsEvent;
     var variations =[];
     productsEvent = {
         initialize: function() {
-            // productsEvent.addAttributes();
+            //productsEvent.addAttributes();
         },
         getAllAttributes()
         {
@@ -386,8 +386,9 @@ $(document).ready(function (e) {
 
   $('#product-add-edit').submit(function(e) {
       e.preventDefault();
-      var formData = new FormData(this);
       $('.tableData').prop("disabled", false); // Element(s) are now enabled.
+      var formData = new FormData(this);
+
       $.ajax({
           type:'POST',
           url: "{{isset($product) ? route('products.update',$product->id) : route('products.store')}}",
@@ -396,56 +397,10 @@ $(document).ready(function (e) {
           contentType: false,
           processData: false,
          
-
-          success:function(data)  {
-            if(data.success == false){
-                console.log(data)
-            }else{
-            console.log(data)
+          success: (data) => {
             $('input[type="text"],texatrea, select', this).val('');
-            var url ="{{ route('products.create') }}"; 
+            var url ="{{ route('products.create') }}"; //the url I want to redirect to
             $(location).attr('href', url);
-            }
-          
-          },
-          error: function(data){
-              console.log(data);
-          
-          }
-      });
-  });
-});
-
-
-//ajax image sent   
-
-$(document).ready(function (e) {
-  
-  $.ajaxSetup({
-      headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-  });
-
-  $('#upload_image_form').submit(function(e) {
-      e.preventDefault();
-
-      var formData = new FormData(this);
-
-      $.ajax({
-          type:'POST',
-          url: "{{ route('save_photo')}}",
-          data: formData,
-          dataType: 'JSON',
-          cache:false,
-          contentType: false,
-          processData: false,
-         
-          success: function(data){
-           var counter = 0
-              counter ++
-            $("#imageAddFeild").prepend('<div id="row'+counter +'"><img class="imageSize" src="'+data.image+'" /><i class="fas fa-trash-alt btn_remove" id="'+counter+'"></i><input type="hidden"  value="' + data.image + '" name="image[]"  /> </div>');
-            alert('Image Upload SuccessFully')
           },
           error: function(data){
               console.log(data);
@@ -453,11 +408,24 @@ $(document).ready(function (e) {
       });
   });
 });
-$(document).on('click', '.btn_remove', function(){
-        var button_id = $(this).attr("id");
-            $('#row'+button_id+'').remove();
-                 
+
+
+
+$(function() {
+    $('#product-galary').FancyFileUpload({
+        url:'/admin/save-photo',
+        fileupload : {
+            maxChunkSize : 1000000
+        },        
+        uploadcompleted : function(e, data) {
+            $("#imageAddFeild").prepend('<img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt btn_remove" ></i><input type="hidden"  value="' + data.result.image + '" name="image[]"  />');
+            data.ff_info.RemoveFile();
+        }
+    });
 });
+
+
+
 
 </script>
 @endsection
