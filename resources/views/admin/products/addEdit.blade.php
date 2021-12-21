@@ -342,19 +342,14 @@ var productsEvent;
 
 })();
 
-// ajax product form submit 
 
-$(document).ready(function (e) {
-  
+$(document).ready(function () {
   $.ajaxSetup({
       headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
   });
-
 });
-
-
 
 $(function() {
     var counter = 1; 
@@ -371,9 +366,6 @@ $(function() {
         }
     });
 });
-
-
-
 
 </script>
 
