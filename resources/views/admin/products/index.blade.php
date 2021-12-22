@@ -29,7 +29,7 @@
                                 <tr>
                                     <th class="wd-lg-20p"><span>Name</span></th>
                                     <!-- <th class="wd-lg-20p"><span>Description</span></th> -->
-                                    <th class="wd-lg-20p"><span>Type</span></th>
+                                    <!-- <th class="wd-lg-20p"><span>Type</span></th> -->
                                     <!-- <th class="wd-lg-20p"><span>Real Price</span></th>
                                     <th class="wd-lg-20p"><span>Sale Price</span></th> -->
                                     <th class="wd-lg-20p"><span>Category</span></th>
@@ -70,7 +70,7 @@
             columns: [
                 {data: 'productName', name: 'productName'},   
                 // {data: 'description', name: 'description'},
-                {data: 'type', name: 'type'},
+                // {data: 'type', name: 'type'},
                 // {data: 'real_price', name: 'real_price'},
                 // {data: 'sale_price', name: 'sale_price'},
                 {data: 'categories.name', name: 'categories.name'},

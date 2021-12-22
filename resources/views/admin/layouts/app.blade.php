@@ -19,7 +19,9 @@
 
         <!-- Icons css -->
         <link href="{{URL::asset('assets/css/icons.css')}}" rel="stylesheet">
-
+            <!--Internal  Quill css -->
+        <link href="{{URL::asset('assets/plugins/quill/quill.snow.css')}}" rel="stylesheet">
+        <link href="{{URL::asset('assets/plugins/quill/quill.bubble.css')}}" rel="stylesheet">
         <!-- Bootstrap css -->
         <link href="{{URL::asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
         <!---Internal Fileupload css-->
@@ -563,7 +565,10 @@
         <!-- Internal Map -->
         <script src="{{URL::asset('assets/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
         <script src="{{URL::asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
-
+        <!-- Internal Form-editor js -->
+        <script src="{{URL::asset('assets/js/form-editor.js')}}"></script>
+        	<!--Internal quill js -->
+		<script src="{{URL::asset('assets/plugins/quill/quill.min.js')}}"></script>
         <!-- sweetalert2 js-->
         <script src="{{URL::asset('assets/plugins/sweet-alert/sweetalert2.min.js')}}"></script>
 

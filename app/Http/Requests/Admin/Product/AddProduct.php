@@ -28,16 +28,19 @@ class AddProduct extends FormRequest
             // // 'description' => 'required',
             // 'category_id' => 'required',
             // 'status' => 'required',
-            // 'type' => 'required',
-
-            // 'quantity' => 'required',
+            // // 'attributes["name"]' => 'required',
+            // // 'attributes["value"]' => 'required',
             // 'weight' => 'required',
-            // 'price' => 'required',
+            // 'real_price' => 'required',
             // 'sale_price' => 'required',
-          
-            // 'featured' => 'required',
             // 'sku' => 'required',
-            // 'feature_image' =>'required'
+            // 'qty' => 'required',
+            // 'variations["Qty"]' => 'required',
+            // 'variations["Regular Price"]' => 'required',
+            // 'variations["Sale Price"]' => 'required',
+            // 'variations["Sku"]' => 'required',
+            // 'variations["Image"]' => 'required',
+
 
         ];
     }

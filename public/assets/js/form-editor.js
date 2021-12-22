@@ -29,37 +29,41 @@ $(function() {
 		},
 		theme: 'snow'
 	});
-	var quillModal = new Quill('#quillEditorModal', {
-		modules: {
-			toolbar: toolbarOptions
-		},
-		theme: 'snow'
-	});
-	var quillModal2 = new Quill('#quillEditorModal2', {
-		modules: {
-			toolbar: toolbarOptions
-		},
-		theme: 'snow'
-	});
-	var toolbarInlineOptions = [
-		['bold', 'italic', 'underline'],
-		[{
-			'header': 1
-		}, {
-			'header': 2
-		}, 'blockquote'],
-		['link', 'image', 'code-block'],
-	];
-	var quillInline = new Quill('#quillInline', {
-		modules: {
-			toolbar: toolbarInlineOptions
-		},
-		bounds: '#quillInline',
-		scrollingContainer: '#scrolling-container',
-		placeholder: 'Write something...',
-		theme: 'bubble'
-	});
-	new PerfectScrollbar('#scrolling-container', {
-		suppressScrollX: true
-	});
+	quill.on('text-change', function(delta, oldDelta, source) {
+		console.log(quill.container.firstChild.innerHTML)
+		$('#hiddenDescription').val(quill.container.firstChild.innerHTML);
+});
+	// var quillModal = new Quill('#quillEditorModal', {
+	// 	modules: {
+	// 		toolbar: toolbarOptions
+	// 	},
+	// 	theme: 'snow'
+	// });
+	// var quillModal2 = new Quill('#quillEditorModal2', {
+	// 	modules: {
+	// 		toolbar: toolbarOptions
+	// 	},
+	// 	theme: 'snow'
+	// });
+	// var toolbarInlineOptions = [
+	// 	['bold', 'italic', 'underline'],
+	// 	[{
+	// 		'header': 1
+	// 	}, {
+	// 		'header': 2
+	// 	}, 'blockquote'],
+	// 	['link', 'image', 'code-block'],
+	// ];
+	// var quillInline = new Quill('#quillInline', {
+	// 	modules: {
+	// 		toolbar: toolbarInlineOptions
+	// 	},
+	// 	bounds: '#quillInline',
+	// 	scrollingContainer: '#scrolling-container',
+	// 	placeholder: 'Write something...',
+	// 	theme: 'bubble'
+	// });
+	// new PerfectScrollbar('#scrolling-container', {
+	// 	suppressScrollX: true
+	// });
 });
