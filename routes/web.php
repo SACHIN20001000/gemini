@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PageCategoriesController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\StoreController;
+
 use App\Http\Controllers\Admin\BrandsController;
 use App\Http\Controllers\Admin\AttributesController;
 use App\Models\ProductGallery;
@@ -51,6 +53,8 @@ Route::prefix('admin')->group(function ()
         Route::resource('categories', CategoryController::class);
         Route::resource('page-categories', PageCategoriesController::class);
         Route::resource('products', ProductController::class);
+        Route::resource('stores', StoreController::class);
+
         Route::get('delete-gallery/{id}', function () {
             ProductGallery::where('product_id',$id)->delete();
             return back()->with('success','Product deleted successfully!');
