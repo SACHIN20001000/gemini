@@ -30,6 +30,8 @@ Route::get('products', [ProductController::class, 'index']);
 Route::any('products/{id}', [ProductController::class, 'productById']);
 Route::any('products/category/{id}', [ProductController::class, 'productByCategoryId']);
 Route::get('pages', [PageController::class, 'index']);
+Route::any('pages/{id}', [PageController::class, 'pageByID']);
+
 
 
 Route::middleware('auth:api')->group(function ()
