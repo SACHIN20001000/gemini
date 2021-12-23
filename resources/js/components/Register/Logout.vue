@@ -10,7 +10,7 @@
 
 export default {
   name:"Logout",
-  beforeMount(){
+  created(){
     localStorage.removeItem('token')
     localStorage.removeItem('userauth')
     window.location.href='/signin'
