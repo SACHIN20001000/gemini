@@ -101,7 +101,7 @@ class PageController extends Controller
 
     //below function update the data 
     public function updatePage(PagesRequest $request)  {
-        if($request->hasFile('feature_image')){
+        if(!empty($request->feature_image)){
             $path = Storage::disk('s3')->put('images/pages', $request->feature_image);
             $path = Storage::disk('s3')->url($path);
            
