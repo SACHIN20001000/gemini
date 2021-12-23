@@ -75,8 +75,8 @@ class PageController extends Controller
     //below function store data into  database
     public function store(PagesRequest $request){
         if(!empty($request->feature_image)){
-            $path = Storage::disk('s3')->put('images', $request->feature_image);
-            $path = Storage::disk('s3')->url($path) ?? '';
+            $path = Storage::disk('s3')->put('images/pages', $request->feature_image);
+            $path = Storage::disk('s3')->url($path) ;
            
         }
            $user = Post::updateOrCreate([
@@ -86,7 +86,7 @@ class PageController extends Controller
             'content' =>  $request->content,
             'slug' =>     Str::slug($request->title),
             'category' =>     $request->category,
-            'feature_image' => $path
+            'feature_image' => $path ?? null
           ]);
           return redirect('admin/add-page')->with('success', 'Page Created Succesfully');
     }
@@ -102,7 +102,7 @@ class PageController extends Controller
     //below function update the data 
     public function updatePage(PagesRequest $request)  {
         if($request->hasFile('feature_image')){
-            $path = Storage::disk('s3')->put('images', $request->feature_image);
+            $path = Storage::disk('s3')->put('images/pages', $request->feature_image);
             $path = Storage::disk('s3')->url($path);
            
         }
@@ -111,7 +111,7 @@ class PageController extends Controller
        $post->status =  $request->status;
        $post->content =  $request->content;
        $post->category =  $request->category;
-       $post->feature_image = $request->feature_image;
+       $post->feature_image = $path ?? null;
        $post->save();
       
           return redirect('admin/page')->with('success', 'Page Updated Successfully');
