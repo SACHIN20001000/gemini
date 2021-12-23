@@ -15,30 +15,45 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('productName');
-            $table->longText('description');
-            $table->set('type', ['Single Product', 'Variation']);
-            $table->string('feature_image');
-            $table->float('real_price', 8, 2);
+            $table->string('productName')->nullable();
+            $table->longText('description')->nullable();
+            $table->set('type', ['Single Product', 'Variation'])->default('Single Product');
+            $table->string('feature_image')->nullable();
+            $table->float('real_price', 8, 2)->nullable();
             $table->float('sale_price', 8, 2)->nullable();
             $table->integer('weight')->nullable();
+            $table->integer('quantity')->nullable();
 
-            $table->unsignedBigInteger('category_id');
-            $table->string('status');
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->string('status')->nullable();
 
             $table->timestamps();
         });
-        
+		
+        Schema::create('product_galleries', function (Blueprint $table) {
+            $table->id();
+			$table->unsignedBigInteger('product_id');
+            $table->string('image_path');
+            $table->timestamps();
+        });
         
         Schema::create('variations_attributes', function (Blueprint $table) {
             $table->id();
+			$table->unsignedBigInteger('product_id');
             $table->string('name');
             $table->timestamps();
         });
-
-        Schema::create('variations_attributes_names', function (Blueprint $table) {
+		
+		Schema::create('variations_attributes_values', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('attribute_id');
+            $table->string('name');
+            $table->timestamps();
+        });
+		
+        Schema::create('variations_attributes_names', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('product_id');
             $table->string('name');
             $table->timestamps();
         });
@@ -49,21 +64,22 @@ class CreateProductsTable extends Migration
             $table->float('real_price', 8, 2);
             $table->float('sale_price', 8, 2)->nullable();
             $table->string('image');
+            $table->string('weight');
+            $table->string('quantity');
             $table->string('variation_name');
-            $table->string('variation_attributes');
-            $table->string('sku_id');
-            $table->string('variation_ids'); // 123/Color, 321/Size, etc...
+            $table->string('variation_attributes_name_id');
+            $table->string('sku');
             $table->timestamps();
         });
 
-        Schema::create('products_sku', function (Blueprint $table) {
+        /*Schema::create('products_sku', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('product_variation')->nullable();
             $table->string('sku')->unique();
             $table->integer('qty');
             $table->timestamps();
-        });
+        });*/
     }
 
     /**
