@@ -41,18 +41,11 @@ class CategoryController extends Controller
   
     public function index(Request $request)
     {   
-        $header = $request->header('Token');
-        $setting = Setting::orderBy('id', 'asc')->first();
-        $token = $setting->oauth_token ?? '';
-        if($header == $token){
-          
           $limit = $request->limit ? $request->limit : 20;
           $categories = Category::with('childrens')->where(['parent'=>0,'type'=>'Product'])->paginate($limit);
           
           return  CategoryResource::collection($categories);
-        }else{
-          return response()->json(['success' => false , 'message' => "Invalid Token"]);
-        }
+        
       
     }
      /**
@@ -92,23 +85,14 @@ class CategoryController extends Controller
      */
     public function category_by_id(Request $request)
     {
-      $header = $request->header('Token');
-      $setting = Setting::orderBy('id', 'asc')->first();
-      $token = $setting->oauth_token ?? '';
-      if($header == $token){
+      
               $limit = $request->limit ? $request->limit : 20;
               $categories = Category::with('childrens')->paginate($limit)->find($request->id);
             if($categories){
                   return  new CategoryResource($categories);
             }else{
-                  return response()->json(['success' => false , 'message' => "Invalid Id"]);
-            }
-      }else{
-
-              return response()->json(['success' => false , 'message' => "Invalid Token"]);
-
-      }
-        
+                  return response()->json(['success' => false , 'message' => "Invailed Id"]);
+            }        
         
     }
 }

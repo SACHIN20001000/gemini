@@ -99,7 +99,8 @@ class ProductController extends Controller
     public function store(AddProduct $request)
     {  
         $inputs = $request->all(); 
-		
+
+ 		
 		// ADD PRODUCT TABLE DATA 
 		if(!empty($inputs['productName'])){
 			$products= new Product();
@@ -107,10 +108,14 @@ class ProductController extends Controller
 			$products->description = $inputs['description'];
 			$products->real_price = $inputs['real_price'];
 			$products->sale_price = $inputs['sale_price'];
+            $products->sku = $inputs['sku'];
 			$products->weight = $inputs['weight'];
 			$products->quantity = $inputs['qty'];
 			$products->category_id = $inputs['category_id'];
 			$products->status = $inputs['status'];
+            if(!empty($inputs['variations'])){  
+                $products->type = 'Variation';
+            }
 			$products->save();
 			//add attributes 
 			//store images in gallery 
@@ -125,11 +130,16 @@ class ProductController extends Controller
 			if(!empty($inputs['attributes'])){			
 				
 				$attributeCombinations=[];
+                $attributesName =[];
 				foreach($inputs['attributes'] as $vakey => $attributeName){
-					$variationAttribute = new VariationAttribute;
-					$variationAttribute->product_id = $products->id;
-					$variationAttribute->name = $vakey;
-					$variationAttribute->save();
+
+                    $variationAttribute = VariationAttribute::updateOrCreate([
+                        'name'   => $vakey
+                    ],[
+                        'name'   => $vakey
+                    ]);
+                    array_push($attributesName,$vakey);
+
 					
 					/**insert attribute**/
 					if($variationAttribute->id){
@@ -138,79 +148,61 @@ class ProductController extends Controller
 												
 						foreach($variationAttrArrs as $variationAttrArr){
 							$variationAttributeValue = new VariationAttributeValue;
-							$variationAttributeValue->attribute_id = $variationAttribute->id;	
+                            $variationAttributeValue->attribute_id = $variationAttribute->id;   
+							$variationAttributeValue->product_id = $products->id;	
 							$variationAttributeValue->name = $variationAttrArr;
 							$variationAttributeValue->save();
-							$attributeCombinations[$vakey][]=$variationAttrArr;
-							/**insert variant**/						
-							/*if(!empty($inputs['variations']) && $i<1){	
-								foreach($inputs['variations'] as $vkey => $variation){
-									if($variation[$vakey] !='' && $variation[$vakey] == $variationAttrArr){
-										
-									}	
-								}
-							}*/
 						}
 						
 					}
 				}
-				$possibleCombinations = $this->array_cartesian_product($attributeCombinations);
-				
-				foreach($possibleCombinations as $pckay => $possibleCombination){
-					$variationAttributeName = new VariationAttributeName;
-					$variationAttributeName->product_id = $products->id;	
-					$variationAttributeName->name = implode('-',$possibleCombination);
-					$variationAttributeName->save();
-					
-					$productVariation = new ProductVariation;										
-					$productVariation->product_id=$products->id;
-					$productVariation->real_price=$inputs['variations'][$pckay]['Regular Price'];
-					$productVariation->sale_price=$inputs['variations'][$pckay]['Sale Price'];
-					
-					$productVariation->image='';
-					$productVariation->quantity='';
-					$productVariation->weight='';
-					$productVariation->variation_name=implode('-',$possibleCombination);
-					$productVariation->variation_attributes_name_id=$variationAttributeName->id;
-					$productVariation->sku=$inputs['variations'][$pckay]['Sku'];
-					$productVariation->save();
-				}
+
+                if(!empty($inputs['variations'])){  
+                    foreach($inputs['variations'] as $variation)
+                    {
+                        $Imagepath = '';
+                        if(!empty($variation['image'])){
+                            $path = Storage::disk('s3')->put('images', $variation['image']);
+                            $Imagepath = Storage::disk('s3')->url($path);
+                        }
+
+                        $productVariation = new ProductVariation;                                       
+                        $productVariation->product_id=$products->id;
+
+                        $variationAttributeIds = [];
+                        foreach ($attributesName as $key => $attribute) {
+                            $selectedAttrubutes = VariationAttributeValue::select('id','attribute_id')->where(['product_id'=>$products->id,'name'=>$variation[$attribute]])->first();
+                            if($selectedAttrubutes)
+                            {
+                                $AttributesArray =[];
+                                $AttributesArray['attribute_id'] = $selectedAttrubutes->id;
+                                $AttributesArray['attribute_name_id'] = $selectedAttrubutes->attribute_id;
+                                array_push($variationAttributeIds,$AttributesArray);
+                            }
+                        }
+                        $productVariation->real_price=$variation['regular_price'];
+                        $productVariation->sale_price=$variation['sale_price'];
+                        
+                        $productVariation->quantity=$variation['qty'];
+                        $productVariation->weight=$variation['weight'];
+                        $productVariation->variation_name='';
+                        $productVariation->variation_attributes_name_id=json_encode($variationAttributeIds);
+                        $productVariation->sku=$variation['sku'];
+
+                        $productVariation->image = $Imagepath;
+                        $productVariation->save();
+                    }
+
+                }
 
 			}
 			
-			\Session::flash('success', __('Product Upload successfully.')); 
-			return Response()->json([
-			"success" => true,
-			/*"data" => $message*/
-				]);
-		}     
-        return Response()->json([
-            "success" => false,
-                    ]); 
+		} 
+
+        return back()->with('success','Product added successfully!');
     }
-	function array_cartesian_product($arrays)
-	{
-		$result = array();
-		$arrays = array_values($arrays);
-		$sizeIn = sizeof($arrays);
-		$size = $sizeIn > 0 ? 1 : 0;
-		foreach ($arrays as $array)
-			$size = $size * sizeof($array);
-		for ($i = 0; $i < $size; $i ++)
-		{
-			$result[$i] = array();
-			for ($j = 0; $j < $sizeIn; $j ++)
-				array_push($result[$i], current($arrays[$j]));
-			for ($j = ($sizeIn -1); $j >= 0; $j --)
-			{
-				if (next($arrays[$j]))
-					break;
-				elseif (isset ($arrays[$j]))
-					reset($arrays[$j]);
-			}
-		}
-		return $result;
-	}
+	
+
     /**
      * Display the specified resource.
      *
@@ -253,12 +245,7 @@ class ProductController extends Controller
             $products->category_id = $request->category_id;
             $products->status = $request->status;
             $products->save();
-            //add sku in sku db
-            $productSku = ProductSku::where('product_id',$id)->first();
-            $productSku->product_id=$products->id;
-            $productSku->sku = $request->sku;
-            $productSku->qty = $request->qty;
-            $productSku->save();
+
         //add attributes 
             if(!empty($request['attributes']['name'])){
                 foreach($request['attributes']['name'] as $key => $name){
@@ -321,15 +308,9 @@ class ProductController extends Controller
             }
         }
     }
-        \Session::flash('success', __('Product update successfully.')); 
-        return Response()->json([
-            "success" => true,
-            "data" => $message
-                ]);
+        
      }     
-           return Response()->json([
-                "success" => false,
-                        ]); 
+           return back()->with('success','Product added successfully!');
 
 
 
@@ -357,9 +338,7 @@ class ProductController extends Controller
       }
   
       Product::find($id)->delete();
-      ProductSku::where('product_id',$id)->delete();
       ProductGallery::where('product_id',$id)->delete();
-
       ProductVariation::where('product_id',$id)->delete();
         return back()->with('success','Product deleted successfully!');
     }
