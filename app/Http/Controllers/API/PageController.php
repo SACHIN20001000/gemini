@@ -101,11 +101,11 @@ class PageController extends Controller
             if($pages){
                   return  new PageResource($pages);
             }else{
-                  return response()->json(['success' => false , 'message' => "Invailed Id/Slug"]);
+                  return response()->json(['success' => false , 'message' => "Invalid Id/Slug"]);
             }
       }else{
 
-              return response()->json(['success' => false , 'message' => "Invailed Token"]);
+              return response()->json(['success' => false , 'message' => "Invalid Token"]);
 
       }
         
