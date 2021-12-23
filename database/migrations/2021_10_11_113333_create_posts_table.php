@@ -21,6 +21,8 @@ class CreatePostsTable extends Migration
             $table->longText('content');
             $table->text('category');
             $table->text('status');
+            $table->text('feature_image');
+
             $table->timestamps();
 
             $table->foreign('created_by')->references('id')->on('users');  

@@ -26,7 +26,7 @@
 
 									<p class="mg-b-20">Add Pages</p>
 					<!-- form start  -->
-                  <form action="{{route('storePage')}}" method="post" id="page-add">
+                  <form action="{{route('storePage')}}" method="post" id="page-add" enctype="multipart/form-data">
                   @csrf
 									<div class="pd-30 pd-sm-40 bg-gray-200">
 										<div class="row row-xs align-items-center mg-b-20">
@@ -71,6 +71,15 @@
 													<option value="1">Active</option>
                           <option value="0">Inactive</option>
 												</select>
+                </div>
+								</div>
+								<div class="row row-xs align-items-center mg-b-20">
+											<div class="col-md-2">
+												<label class="form-label mg-b-0">Feature Image</label>
+											</div>
+                      <div class="col-md-10 mg-t-5 mg-md-t-0">
+											<input class="form-control" name="feature_image"  type="file">
+                                    
                 </div>
 								</div>
 										<button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">Add</button>
