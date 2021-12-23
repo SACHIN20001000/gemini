@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class VariationAttributeName extends Model
+class VariationAttributeValue extends Model
 {
-    protected $table = 'variations_attributes_names';
+    protected $table = 'variations_attributes_values';
     use HasFactory;
     protected $casts = [
         'created_at' => 'datetime:d-m-Y',
@@ -15,11 +15,11 @@ class VariationAttributeName extends Model
     ];
 
     protected $fillable = [
-        'product_id','name'
+        'attribute_id','name'
     ];
     public function variationAttributeName()
     {
-        return $this->belongsTo(VariationAttributeName::class,'product_id' );
+        return $this->belongsTo(VariationAttributeName::class,'attribute_id' );
     }
    
 

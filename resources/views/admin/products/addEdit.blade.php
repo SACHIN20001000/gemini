@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
-
+<style>.imageSize{height: 100px;width: 100px;}</style>
 <div class="container">
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
@@ -21,7 +21,8 @@
                     <div class="main-content-label mg-b-5">
                         {{isset($product) ? 'Update # '.$product->id : 'Add New' }}
                     </div>
-                    <form  id="product-add-edit" action="{{isset($product) ? route('products.update',$product->id) : route('products.store')}}" method="POST" enctype="application/x-www-form-urlencoded">
+                
+                    <form  id="" action="{{isset($product) ? route('products.update',$product->id) : route('products.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{ isset($product) ? method_field('PUT'):'' }}
                         <div class="col-lg-12 col-md-12">
@@ -41,8 +42,9 @@
                                     <label class="form-label mg-b-0">Description </label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                <textarea name="description" id="description" cols="30" rows="10">{{isset($product) ? $product->description : '' }}</textarea>
-                                </div>
+                                <div id="quillEditor" style="height: 200px;"></div>
+                                <textarea name="description" style="display:none" id="hiddenDescription"></textarea>
+                            </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-4">
@@ -54,8 +56,9 @@
                             <div class="card">
                                 <div class="card-body">
                             
-                           
-                                    <input id="demo" type="file" name="image[]" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
+                              
+                                    <input id="product-galary" type="file" name="images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
+                                    <ul id="product-galary-items"></ul>
                                 
                                 </div>
                             </div>
@@ -201,25 +204,20 @@
 
     <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>
 </form>
-
                 <!-- form end  -->
+
             </div>
         </div>
     </div>
     <!-- /row -->
 </div>
-<link href="https://transloadit.edgly.net/releases/uppy/v1.6.0/uppy.min.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
 
- 
-<script src="https://transloadit.edgly.net/releases/uppy/v1.6.0/uppy.min.js"></script>
 
-<script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+@endsection 
+
+@section('scripts')
 
 <script type="text/javascript">
-  
-CKEDITOR.replace( 'description' );
-CKEDITOR.replace( 'desc' );
 var productsEvent;
 (function() {
     var attributes =[];
@@ -261,7 +259,7 @@ var productsEvent;
             for (const [attr, values] of Object.entries(attributes))
             {
                 let cellValue = values.toString();
-                $("#attributes_fields").prepend('<tr class="dynamic_attributes" id="row'+attr +'"><td><input type="text" disabled="true" name="attributes[name][]"  value="'+attr+'" placeholder="Enter your Name" class="form-control tableData" /></td><td><input type="text" disabled="true" value="'+cellValue+'" name="attributes[value][]"  placeholder="Enter your value with (,) seperated" class="form-control tableData" /></td><td><button type="button" name="remove" onclick="productsEvent.removeAttributes(\''+attr+'\')" class="btn btn-danger btn_remove">X</button></td></tr>');
+                $("#attributes_fields").prepend('<tr class="dynamic_attributes" id="row'+attr +'"><td><input type="text" disabled="true" name="attributes[name][]"  value="'+attr+'" placeholder="Enter your Name" class="form-control tableData" /></td><td><input type="text" readonly="true" value="'+cellValue+'" name="attributes['+attr+']"  placeholder="Enter your value with (,) seperated" class="form-control tableData" /></td><td><button type="button" name="remove" onclick="productsEvent.removeAttributes(\''+attr+'\')" class="btn btn-danger btn_remove">X</button></td></tr>');
             }
             $("#name_attributes").val('');
             $("#value_attributes").val('');
@@ -302,11 +300,11 @@ var productsEvent;
                 {
                     if(typeof variation === 'object' && variation !== null)
                     {
-                        htmlString +='<td><input  name="variations['+name+'][]" class="form-control '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'"></td>';
+                        htmlString +='<td><input  name="variations['+index+']['+name+']" class="form-control tableData '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'"></td>';
                     }
                     else
                     {
-                        htmlString +='<td><input name="variations['+name+'][]" class="form-control" type="text" disabled="true" value="'+variation+'" placeholder="'+variation+'"></td>';
+                        htmlString +='<td><input name="variations['+index+']['+name+']" class="form-control tableData" type="text" readonly="true" value="'+variation+'" placeholder="'+variation+'"></td>';
                     }
                     
                 }
@@ -332,16 +330,45 @@ var productsEvent;
         {
             variations[index][key].value = value;
         },
+        removeProductGalaryImage:function(itemId)
+        {
+            $('#galary-item'+itemId+'').remove();
+        },
+        
         
     };
 
     productsEvent.initialize();
 
 })();
-</script>
-@endsection
 
-@section('scripts')
+
+$(document).ready(function () {
+  $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
+});
+
+$(function() {
+    var counter = 1; 
+    $('#product-galary').FancyFileUpload({
+        url:'/admin/save-photo',
+        fileupload : {
+            maxChunkSize : 1000000
+        },        
+        uploadcompleted : function(e, data) {
+            
+            $("#product-galary-items").prepend('<li id="galary-item'+counter +'"><img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt" onclick="productsEvent.removeProductGalaryImage('+counter+')"></i><input type="hidden"  value="' + data.result.image + '" name="image[]"  /></li>');
+            counter ++
+            data.ff_info.RemoveFile();
+        }
+    });
+});
+
+</script>
+
 @if(isset($product))
 {!! JsValidator::formRequest('App\Http\Requests\Admin\Product\UpdateProduct','#product-add-edit') !!}
 @else

@@ -91,7 +91,7 @@ class CategoryController extends Controller
         $slug = Str::slug($request->name);
         $inputs = $request->all();
         if($request->hasFile('feature_image')){
-            $path = Storage::disk('s3')->put('images', $request->feature_image);
+            $path = Storage::disk('s3')->put('images/categories', $request->feature_image);
             $path = Storage::disk('s3')->url($path);
             $inputs['feature_image']= $path; 
         }
@@ -138,7 +138,7 @@ class CategoryController extends Controller
         $slug = Str::slug($request->name);
         $inputs = $request->all();
         if($request->hasFile('feature_image')){
-            $path = Storage::disk('s3')->put('images', $request->feature_image);
+            $path = Storage::disk('s3')->put('images/categories', $request->feature_image);
             $path = Storage::disk('s3')->url($path);
             $inputs['feature_image']= $path; 
         }
