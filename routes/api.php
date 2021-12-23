@@ -6,6 +6,8 @@ use App\Http\Controllers\API\PassportAuthController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\API\PageController;
+
 
 /*
   |--------------------------------------------------------------------------
@@ -27,6 +29,7 @@ Route::any('categories/{id}', [CategoryController::class, 'category_by_id']);
 Route::get('products', [ProductController::class, 'index']);
 Route::any('products/{id}', [ProductController::class, 'productById']);
 Route::any('products/category/{id}', [ProductController::class, 'productByCategoryId']);
+Route::get('pages', [PageController::class, 'index']);
 
 
 Route::middleware('auth:api')->group(function ()

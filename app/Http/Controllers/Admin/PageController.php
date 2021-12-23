@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
-
+use Storage;
 use DataTables;
 use App\Http\Requests\Admin\Page\PagesRequest;
 use Illuminate\Support\Str;
@@ -74,16 +74,21 @@ class PageController extends Controller
     }
     //below function store data into  database
     public function store(PagesRequest $request){
-              
+        if(!empty($request->feature_image)){
+            $path = Storage::disk('s3')->put('images', $request->feature_image);
+            $path = Storage::disk('s3')->url($path) ?? '';
+           
+        }
            $user = Post::updateOrCreate([
             'title' =>    $request->title,
             'created_by'=>Auth::User()->id,
             'status'  =>  $request->status,
             'content' =>  $request->content,
             'slug' =>     Str::slug($request->title),
-            'category' =>     $request->category
+            'category' =>     $request->category,
+            'feature_image' => $path
           ]);
-          return redirect('admin/add-page')->with('success', 'Updated');
+          return redirect('admin/add-page')->with('success', 'Page Created Succesfully');
     }
   
 
@@ -96,21 +101,26 @@ class PageController extends Controller
 
     //below function update the data 
     public function updatePage(PagesRequest $request)  {
-       
+        if($request->hasFile('feature_image')){
+            $path = Storage::disk('s3')->put('images', $request->feature_image);
+            $path = Storage::disk('s3')->url($path);
+           
+        }
        $post =Post::find($request->id); 
        $post->title =  $request->title;
        $post->status =  $request->status;
        $post->content =  $request->content;
        $post->category =  $request->category;
+       $post->feature_image = $request->feature_image;
        $post->save();
       
-          return redirect('admin/page')->with('success', 'Updated');
+          return redirect('admin/page')->with('success', 'Page Updated Successfully');
 
     } 
      //  below function delete the data 
     public function deletePage($id) {
        $post =Post::find($id)->delete();
-     return redirect('admin/page')->with('success', 'Deleted');
+     return redirect('admin/page')->with('success', 'Deleted Successfully');
 
     } 
 }
