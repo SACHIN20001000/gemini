@@ -7,6 +7,7 @@ import Login from "../components/Register/Login";
 import Logout from "../components/Register/Logout";
 import Profile from "../components/Profile";
 import Category from "../components/Category";
+import Blog from "../components/Blog";
 
 Vue.use(VueRouter)
 
@@ -51,6 +52,12 @@ routes: [
 		beforeEnter : guardMyroute,
 		name: 'Category',
 		component: Category
+	},
+  {
+		path: '/blog/:slug',
+		beforeEnter : guardMyroute,
+		name: 'Blog',
+		component: Blog
 	},
 	{
 		path: '/dashboard',
