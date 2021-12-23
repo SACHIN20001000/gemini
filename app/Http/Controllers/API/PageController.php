@@ -50,7 +50,7 @@ class PageController extends Controller
         //   print_r($pages);die;
           return  PageResource::collection($pages);
         }else{
-          return response()->json(['success' => false , 'message' => "Invailed Token"]);
+          return response()->json(['success' => false , 'message' => "Invalid Token"]);
         }
       
     }
