@@ -1,5 +1,21 @@
 <template>
   <div class="main">
+    <div id="map" v-cloak>
+      <p>
+        Let us locate you for better results...
+        <button @click="locateMe">Get location</button>
+      </p>
+      <div v-if="errorStr">
+        Sorry, but the following error
+        occurred: {{errorStr}}
+      </div>
+      <div v-if="gettingLocation">
+        <i>Getting your location...</i>
+      </div>
+      <div v-if="location">
+        Your location data is {{ location.coords.latitude }}, {{ location.coords.longitude}}
+      </div>
+    </div>
     <div class="free_ship_bar">
       <p>
         <img
@@ -460,86 +476,20 @@
     <section class="insta_Sec">
       <div class="container_max">
         <h3 class="insta_head"><span>@pet.parents</span></h3>
-        <ul class="insta_nails">
-          <li>
-            <a href="#">
-              <span>
-                <img
-                  :src="imgIn1"
-                  alt="in1"
-                >
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span>
-                <img
-                  :src="imgIn2"
-                  alt="in2"
-                >
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span>
-                <img
-                  :src="imgIn3"
-                  alt="in3"
-                >
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span>
-                <img
-                  :src="imgIn4"
-                  alt="in4"
-                >
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span>
-                <img
-                  :src="imgIn5"
-                  alt="in5"
-                >
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span>
-                <img
-                  :src="imgIn6"
-                  alt="in6"
-                >
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span>
-                <img
-                  :src="imgIn7"
-                  alt="in7"
-                >
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span>
-                <img
-                  :src="imgIn8"
-                  alt="in8"
-                >
-              </span>
-            </a>
+        <ul class="insta_nails" v-if="listPages">
+          <li
+            v-for="(listPage,pkey) in listPages"  :key="pkey"
+          >
+          <router-link
+            :to="{ path: 'blog/'+listPage.slug}"
+          >
+            <span>
+              <img
+                :src="listPage.feature_image"
+                alt="listPage.title"
+              >
+            </span>
+          </router-link>
           </li>
         </ul>
       </div>
@@ -571,14 +521,7 @@ import imgTouch from "../../assets/images/touch.jpg"
 import imgTouch2 from "../../assets/images/mobile_contact.png"
 import imgBg2 from "../../assets/images/bg2.jpg"
 import imgBg3 from "../../assets/images/bg3.jpg"
-import imgIn1 from "../../assets/images/in1.jpg"
-import imgIn2 from "../../assets/images/in2.jpg"
-import imgIn3 from "../../assets/images/in3.jpg"
-import imgIn4 from "../../assets/images/in4.jpg"
-import imgIn5 from "../../assets/images/in5.jpg"
-import imgIn6 from "../../assets/images/in6.jpg"
-import imgIn7 from "../../assets/images/in7.jpg"
-import imgIn8 from "../../assets/images/in8.jpg"
+
 
 import Slick from 'vue-slick'
 import {mapActions,mapGetters} from "vuex"
@@ -608,14 +551,6 @@ export default {
       imgTouch2: imgTouch2,
       imgBg2: imgBg2,
       imgBg3: imgBg3,
-      imgIn1: imgIn1,
-      imgIn2: imgIn2,
-      imgIn3: imgIn3,
-      imgIn4: imgIn4,
-      imgIn5: imgIn5,
-      imgIn6: imgIn6,
-      imgIn7: imgIn7,
-      imgIn8: imgIn8,
       slickOptions: {
         slidesToShow: 3,
         infinite: true,
@@ -685,11 +620,16 @@ export default {
             },
           ]
       },
-      firstCatbanners:[]
+      firstCatbanners:[],
+      location:null,
+      gettingLocation: false,
+      errorStr:null
     }
   },
   mounted(){
-    this.init();
+    this.init()
+    this.getPages()
+    this.locateMe()
   },
   watch: {
     categories(){
@@ -709,14 +649,41 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['categories','tokenStatus'])
+    ...mapGetters(['categories','tokenStatus','listPages'])
   },
   methods: {
-    ...mapActions(['getCategories']),
+    ...mapActions(['getCategories','getPages']),
     async init(){
       if(localStorage.getItem("token") && localStorage.getItem("token") !='' && localStorage.getItem("token") !='undefined'){
         this.getCategories()
       }
+    },
+    async getLocation() {
+      return new Promise((resolve, reject) => {
+
+        if(!("geolocation" in navigator)) {
+          reject(new Error('Geolocation is not available.'));
+        }
+
+        navigator.geolocation.getCurrentPosition(pos => {
+          resolve(pos);
+        }, err => {
+          reject(err);
+        });
+
+      });
+    },
+    async locateMe() {
+
+      this.gettingLocation = true;
+      try {
+        this.gettingLocation = false;
+        this.location = await this.getLocation();
+      } catch(e) {
+        this.gettingLocation = false;
+        this.errorStr = e.message;
+      }
+
     },
     next() {
         this.$refs.slick.next()

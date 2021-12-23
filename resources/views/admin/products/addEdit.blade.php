@@ -273,11 +273,12 @@ var productsEvent;
             attrs = attrs.reduce((a, b) => a.flatMap(d => b.map(e => ({...d, ...e}))));
 
             $.each(attrs, function( index, value ) {
-                attrs[index]['Qty'] = {value:0,placeholder:"Qty",type:'number',customClass:""};
-                attrs[index]['Regular Price'] = {value:0,placeholder:"Regular Price",type:'number',customClass:""};
-                attrs[index]['Sale Price'] = {value:0,placeholder:"Sale Price",type:'number',customClass:""};
-                attrs[index]['Sku'] = {value:0,placeholder:"Sku",type:'text',customClass:""};
-                attrs[index]['Image'] = {value:null,placeholder:"Image",type:'file',customClass:"dropify"};
+                attrs[index]['Qty'] = {value:0,name:'qty',placeholder:"Qty",type:'number',customClass:""};
+                attrs[index]['Weight'] = {value:0,name:'weight',placeholder:"weight",type:'number',customClass:""};
+                attrs[index]['Regular Price'] = {value:0,name:'regular_price',placeholder:"Regular Price",type:'number',customClass:""};
+                attrs[index]['Sale Price'] = {value:0,name:'sale_price',placeholder:"Sale Price",type:'number',customClass:""};
+                attrs[index]['Sku'] = {value:0,name:'sku',placeholder:"Sku",type:'text',customClass:""};
+                attrs[index]['Image'] = {value:null,name:'image',placeholder:"Image",type:'file',customClass:"dropify"};
             });
             variations = attrs;
             productsEvent.displayVariations();
@@ -300,7 +301,7 @@ var productsEvent;
                 {
                     if(typeof variation === 'object' && variation !== null)
                     {
-                        htmlString +='<td><input  name="variations['+index+']['+name+']" class="form-control tableData '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'"></td>';
+                        htmlString +='<td><input  name="variations['+index+']['+variation.name+']" class="form-control tableData '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'"></td>';
                     }
                     else
                     {

@@ -174,20 +174,39 @@ class PassportAuthController extends AppBaseController
     public function oauth_token(TokenRequest $request){
 
 
-      
+        $client_secret = env('API_ACCESS_CLIENT_SECRET');
+        $client_id = env('API_ACCESS_CLIENT_ID');
+
+        if($request->client_id !=$client_id)
+        {
+            return response()->json(['success' => false , 'message' => "Invalid client Id"],400);
+        }
+
+        if($request->client_secret !=$client_secret)
+        {
+            return response()->json(['success' => false , 'message' => "Invalid client secret"],400);
+        }
+
+
         $setting = Setting::orderBy('id', 'asc')->first();
-        $updated_time = $setting->updated_at ?? '';
+        $updated_at = $setting->updated_at ?? '';
         $token = $setting->oauth_token ?? '';
+        $currentDate = date('Y-m-d H:i:s');
 
         if(empty($token) ){
-            $setting->oauth_token =Str::random(30);
+            $setting->oauth_token =Str::random(70);
             $setting->save();
         }
-        $afterdays=  date('Y-m-d h:m:s', strtotime($updated_time. ' + 1 days'));
-        if($updated_time > $afterdays && $token == $request->client_secret){
-            $setting->oauth_token =Str::random(30);
-            $setting->save();
-        }
+        
+
+
+        $untillDate=  date('Y-m-d h:m:s', strtotime($updated_at. ' + 1 days'));
+
+            if($currentDate > $untillDate)
+            {
+                $setting->oauth_token =Str::random(70);
+                $setting->save();
+            }
         
         return response()->json([
             'success' => true,'Token' => $setting->oauth_token
