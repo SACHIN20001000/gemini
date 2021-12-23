@@ -46,7 +46,7 @@ class PageController extends Controller
         $token = $setting->oauth_token ?? '';
         if($header == $token){
           $limit = $request->limit ? $request->limit : 20;
-          $pages = Post::with('users')->with('categories')->where('status',1)->paginate($limit);
+          $pages = Post::with(['users','categories'])->where('status',1)->paginate($limit);
         //   print_r($pages);die;
           return  PageResource::collection($pages);
         }else{
