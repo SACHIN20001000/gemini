@@ -16,7 +16,7 @@ class ProductController extends Controller
      *      operationId="Products",
      *      tags={"Products"},
      *      security={
-     *          {"Bearer": {}},
+     *          {"Token": {}},
      *          },
      *     summary="Products",
      *     @OA\Response(
@@ -55,7 +55,7 @@ class ProductController extends Controller
      * summary="products_by_id",
      *      tags={"Products"},
      *      security={
-     *          {"Bearer": {}},
+     *          {"Token": {}},
      *          },
        *      @OA\Parameter(
      *         name="id",
@@ -103,7 +103,7 @@ class ProductController extends Controller
      * summary="product_by_categoryid",
      *      tags={"Products"},
      *      security={
-     *          {"Bearer": {}},
+     *          {"Token": {}},
      *          },
        *      @OA\Parameter(
      *         name="id",

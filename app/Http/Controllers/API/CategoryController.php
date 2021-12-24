@@ -15,6 +15,9 @@ class CategoryController extends Controller
      *      path="/categories",
      *      operationId="Categories",
      *      tags={"Products"},
+     *      security={
+     *          {"Token": {}},
+     *          },
      *    
      *     summary="Categories",
      *     @OA\Response(
@@ -54,6 +57,9 @@ class CategoryController extends Controller
      *      operationId="Categories By Id",
      * summary="Categories_by_id",
      *      tags={"Products"},
+     * security={
+     *          {"Token": {}},
+     *          },
      *     
        *      @OA\Parameter(
      *         name="id",
