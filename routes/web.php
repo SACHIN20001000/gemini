@@ -12,7 +12,6 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\StoreController;
 
 use App\Http\Controllers\Admin\BrandsController;
-use App\Http\Controllers\Admin\AttributesController;
 use App\Models\ProductGallery;
 
 
@@ -62,7 +61,6 @@ Route::prefix('admin')->group(function ()
         Route::post('save-photo', [App\Http\Controllers\Admin\ProductController::class, 'save_photo'])->name('save_photo');
 
         Route::resource('brands', BrandsController::class);
-        Route::resource('attributes', AttributesController::class);
 
         Route::resource('settings', SettingController::class);
 

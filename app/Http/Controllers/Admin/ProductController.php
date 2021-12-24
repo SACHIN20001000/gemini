@@ -5,13 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\ProductSku;
 use App\Models\ProductVariation;
 use App\Models\ProductGallery;
 use App\Models\VariationAttribute;
 use App\Models\VariationAttributeName;
 use App\Models\VariationAttributeValue;
 use App\Models\Category;
+use App\Models\Store;
 use DataTables;
 use Illuminate\Support\Str;
 use App\Http\Requests\Admin\Product\AddProduct;
@@ -30,7 +30,7 @@ class ProductController extends Controller
         
         if ($request->ajax())
         {
-            $data = Product::with('categories')->get();
+            $data = Product::with('store','category')->get();
          
 
             return Datatables::of($data)
@@ -85,9 +85,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   $categories = Category::all();
-        $products = Product::all();
-        return view('admin.products.addEdit',compact('products','categories'));
+    {   $categories = Category::where('type','Product')->get();
+        $stores = Store::all();
+        return view('admin.products.addEdit',compact('categories','stores'));
     }
 
     /**
@@ -112,6 +112,7 @@ class ProductController extends Controller
 			$products->weight = $inputs['weight'];
 			$products->quantity = $inputs['qty'];
 			$products->category_id = $inputs['category_id'];
+            $products->store_id = $inputs['store_id'];
 			$products->status = $inputs['status'];
             if(!empty($inputs['variations'])){  
                 $products->type = 'Variation';
@@ -185,7 +186,6 @@ class ProductController extends Controller
                         
                         $productVariation->quantity=$variation['qty'];
                         $productVariation->weight=$variation['weight'];
-                        $productVariation->variation_name='';
                         $productVariation->variation_attributes_name_id=json_encode($variationAttributeIds);
                         $productVariation->sku=$variation['sku'];
 
@@ -219,8 +219,12 @@ class ProductController extends Controller
      */
     public function edit($id)
     {   
-        $categories = Category::all();
-        $product= Product::with(['productSku','productVariation','productGallery'])->where('id',$id)->first();   
+        $categories = Category::where('type','Product')->get();
+        $stores = Store::all();
+        $product= Product::with(['category','store','productVariation','productGallery','variationAttributesValue'])->where('id',$id)->first(); 
+        echo '<pre>';
+        print_r($product->toArray()); die; 
+        dd($product); 
         $products = Product::where('id','!=',$id)->get();
         return view('admin.products.addEdit',compact('product','products','categories'));
     }
