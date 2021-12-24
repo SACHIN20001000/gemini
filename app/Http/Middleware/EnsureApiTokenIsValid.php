@@ -18,7 +18,7 @@ class EnsureApiTokenIsValid
      */
     public function handle(Request $request, Closure $next)
     {
-        $header = $request->header('api_access_token');
+        $header = $request->header('Token');
         $setting = Setting::orderBy('id', 'asc')->first();
         $currentDate = date('Y-m-d H:i:s');
 
