@@ -24,6 +24,7 @@ class ProductResource extends JsonResource
             'id' => $this->id,
             'name' => $this->productName,
             'sku' => $this->sku,
+            'type' => $this->type,
             'category' => new ProductCategoryResource($this->category),
             'store' => new ProductStoreResource($this->store),
             'variations' => ProductVariationsResource::collection($this->productVariation),
