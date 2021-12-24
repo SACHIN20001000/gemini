@@ -36,7 +36,7 @@
              <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ route('categories.index') }}">Categories</a></li>
                     <li><a class="slide-item" href="{{route('products.index')}}">Products</a></li>
-                    <!-- <li><a class="slide-item" href="{{route('attributes.index')}}">All Attributes</a></li> -->
+                    <li><a class="slide-item" href="{{route('stores.index')}}">Stores</a></li>
                 </ul>
             </li>
             <li class="slide">
