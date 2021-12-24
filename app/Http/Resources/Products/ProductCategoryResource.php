@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Admin;
+namespace App\Http\Resources\Products;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoryResource extends JsonResource
+class ProductCategoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,13 +19,8 @@ class CategoryResource extends JsonResource
            
             'id' => $this->id,
             'name' => $this->name,
-            'slug' => $this->slug,
             'status' => $this->status,
             'feature_image' => $this->feature_image,
-            'status' => $this->status,
-            'created' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'childrens' => $this->childrens ?? array(),
                                
         ];
     }

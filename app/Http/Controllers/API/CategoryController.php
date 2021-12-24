@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Setting;
-use App\Http\Resources\Admin\CategoryResource;
+use App\Http\Resources\Category\CategoryResource;
 use App\Http\Requests\API\CategoriesRequest;
 class CategoryController extends Controller
 {
@@ -15,6 +15,9 @@ class CategoryController extends Controller
      *      path="/categories",
      *      operationId="Categories",
      *      tags={"Products"},
+     *      security={
+     *          {"Token": {}},
+     *          },
      *    
      *     summary="Categories",
      *     @OA\Response(
@@ -54,6 +57,9 @@ class CategoryController extends Controller
      *      operationId="Categories By Id",
      * summary="Categories_by_id",
      *      tags={"Products"},
+     * security={
+     *          {"Token": {}},
+     *          },
      *     
        *      @OA\Parameter(
      *         name="id",

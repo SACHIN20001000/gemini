@@ -15,11 +15,11 @@ class VariationAttributeValue extends Model
     ];
 
     protected $fillable = [
-        'attribute_id','name'
+        'attribute_id','product_id','name'
     ];
     public function variationAttributeName()
     {
-        return $this->belongsTo(VariationAttributeName::class,'attribute_id' );
+        return $this->belongsTo(VariationAttribute::class,'attribute_id' );
     }
    
 

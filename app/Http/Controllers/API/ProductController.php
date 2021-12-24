@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Http\Resources\Admin\ProductResource;
+use App\Http\Resources\Products\ProductResource;
 use App\Http\Requests\API\ProductRequest;
 class ProductController extends Controller
 {
@@ -16,7 +16,7 @@ class ProductController extends Controller
      *      operationId="Products",
      *      tags={"Products"},
      *      security={
-     *          {"Bearer": {}},
+     *          {"Token": {}},
      *          },
      *     summary="Products",
      *     @OA\Response(
@@ -44,7 +44,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
       $limit = $request->limit ? $request->limit : 20;
-        $products = Product::with('categories')->paginate($limit);
+        $products = Product::with(['category','store','productVariation','productGallery','variationAttributesValue'])->paginate($limit);
       
         return  ProductResource::collection($products);
     }
@@ -55,7 +55,7 @@ class ProductController extends Controller
      * summary="products_by_id",
      *      tags={"Products"},
      *      security={
-     *          {"Bearer": {}},
+     *          {"Token": {}},
      *          },
        *      @OA\Parameter(
      *         name="id",
@@ -87,8 +87,7 @@ class ProductController extends Controller
      */
     public function productById(Request $request, $id)
     {
-      $limit = $request->limit ? $request->limit : 20;
-        $products = Product::with('categories')->paginate($limit)->find($id);
+        $products = Product::with(['category','store','productVariation','productGallery','variationAttributesValue'])->find($id);
       if($products){
         return  new ProductResource($products);
       }else{
@@ -104,7 +103,7 @@ class ProductController extends Controller
      * summary="product_by_categoryid",
      *      tags={"Products"},
      *      security={
-     *          {"Bearer": {}},
+     *          {"Token": {}},
      *          },
        *      @OA\Parameter(
      *         name="id",
@@ -137,7 +136,7 @@ class ProductController extends Controller
     public function productByCategoryId(Request $request,$id)
     {
       $limit = $request->limit ? $request->limit : 20;
-        $products = Product::with('categories')->where('category',$id)->paginate($limit);
+        $products = Product::with(['category','store','productVariation','productGallery','variationAttributesValue'])->where('category_id',$id)->paginate($limit);
       
       if($products){
         return  ProductResource::collection($products);

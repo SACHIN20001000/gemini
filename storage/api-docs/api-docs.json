@@ -46,7 +46,12 @@
                     "500": {
                         "$ref": "#/components/schemas/Forbidden"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "Token": []
+                    }
+                ]
             }
         },
         "/categories/{id}": {
@@ -84,19 +89,24 @@
                     "500": {
                         "$ref": "#/components/schemas/Forbidden"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "Token": []
+                    }
+                ]
             }
         },
         "/pages": {
             "get": {
                 "tags": [
-                    "Page"
+                    "Pages"
                 ],
-                "summary": "Page",
+                "summary": "Pages",
                 "operationId": "Pages",
                 "responses": {
                     "200": {
-                        "description": "Page",
+                        "description": "Pages",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -114,13 +124,18 @@
                     "500": {
                         "$ref": "#/components/schemas/Forbidden"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "Token": []
+                    }
+                ]
             }
         },
         "/pages/{id}": {
             "get": {
                 "tags": [
-                    "Page"
+                    "Pages"
                 ],
                 "summary": "Page By Id",
                 "operationId": "Pages By Id",
@@ -134,7 +149,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Page",
+                        "description": "Pages",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -152,7 +167,12 @@
                     "500": {
                         "$ref": "#/components/schemas/Forbidden"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "Token": []
+                    }
+                ]
             }
         },
         "/register": {
@@ -305,7 +325,7 @@
                 },
                 "security": [
                     {
-                        "Bearer": []
+                        "Token": []
                     }
                 ]
             }
@@ -348,7 +368,7 @@
                 },
                 "security": [
                     {
-                        "Bearer": []
+                        "Token": []
                     }
                 ]
             }
@@ -391,7 +411,7 @@
                 },
                 "security": [
                     {
-                        "Bearer": []
+                        "Token": []
                     }
                 ]
             }
@@ -772,6 +792,12 @@
                 "name": "Authorization",
                 "in": "header",
                 "scheme": "Bearer"
+            },
+            "Token": {
+                "type": "apiKey",
+                "name": "Token",
+                "in": "header",
+                "scheme": "Token"
             }
         }
     },

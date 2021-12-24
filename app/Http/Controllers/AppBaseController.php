@@ -32,12 +32,19 @@ class AppBaseController extends Controller
      *     name="Pet Parents",
      *     description="API Endpoints of Pet Parents"
      * )
-      * @OA\SecurityScheme(
+     * @OA\SecurityScheme(
      *       scheme="Bearer",
      *       securityScheme="Bearer",
      *       type="apiKey",
      *       in="header",
      *       name="Authorization",
+     * )
+     * @OA\SecurityScheme(
+     *       scheme="Token",
+     *       securityScheme="Token",
+     *       type="apiKey",
+     *       in="header",
+     *       name="Token",
      * )
      */
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
