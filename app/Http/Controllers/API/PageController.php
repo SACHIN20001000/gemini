@@ -14,12 +14,15 @@ class PageController extends Controller
      * @OA\Get(
      *      path="/pages",
      *      operationId="Pages",
-     *      tags={"Page"},
+     *      tags={"Pages"},
+     *      security={
+     *          {"Token": {}},
+     *          },
      *    
-     *     summary="Page",
+     *     summary="Pages",
      *     @OA\Response(
      *         response="200",
-     *         description="Page",
+     *         description="Pages",
      *         @OA\JsonContent(ref="#/components/schemas/PageResponse")
      *     ),
      *    @OA\Response(
@@ -59,7 +62,10 @@ class PageController extends Controller
      *      path="/pages/{id}",
      *      operationId="Pages By Id",
      * summary="Page_by_id",
-     *      tags={"Page"},
+     *      tags={"Pages"},
+     *      security={
+     *          {"Token": {}},
+     *          },
      *     
        *      @OA\Parameter(
      *         name="id",
@@ -70,7 +76,7 @@ class PageController extends Controller
      *     summary="Page By Id",
      *     @OA\Response(
      *         response="200",
-     *         description="Page",
+     *         description="Pages",
      *         @OA\JsonContent(ref="#/components/schemas/PageResponse")
      *     ),
      *    @OA\Response(

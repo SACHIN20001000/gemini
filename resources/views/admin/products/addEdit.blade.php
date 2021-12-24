@@ -22,7 +22,7 @@
                         {{isset($product) ? 'Update # '.$product->id : 'Add New' }}
                     </div>
                 
-                    <form  id="" action="{{isset($product) ? route('products.update',$product->id) : route('products.store')}}" method="POST" enctype="multipart/form-data">
+                    <form  id="product-add-edit" action="{{isset($product) ? route('products.update',$product->id) : route('products.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{ isset($product) ? method_field('PUT'):'' }}
                         <div class="col-lg-12 col-md-12">
@@ -74,20 +74,32 @@
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                 <select name="category_id"  class="form-control">
-                                        <option value="">Choose Below..</option>
                                         @foreach($categories as $category)
                                         <option {{ (isset($product) && $product->category_id  == $category->id) ? 'selected' : '' }}  value="{{$category->id}}">  {{$category->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Store</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <select name="store_id"  class="form-control">
+                                        @foreach($stores as $store)
+                                        <option {{ (isset($product) && $product->store_id  == $store->id) ? 'selected' : '' }}  value="{{$store->id}}">  {{$store->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">Status</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                 <select name="status" class="form-control">
-                                    <option value="">Choose Below..</option>
                                     <option value="1" {{ (isset($product) && $product->status  == 1) ? 'selected' : '' }}>Active</option>
                                     <option value="0" {{ (isset($product) && $product->status  == 0) ? 'selected' : '' }}>Inactive</option>
                                 </select>

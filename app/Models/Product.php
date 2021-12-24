@@ -18,18 +18,24 @@ class Product extends Model
         'productName','type','feature_image','description','real_price','sale_price','category_id','status'
     ];
 
-    public function categories()
+    public function category()
     {
         return $this->belongsTo(Category::class,'category_id');
     }
-    public function productSku() {
-        return $this->hasMany(ProductSku::class, 'product_id', 'id');
+
+    public function store()
+    {
+        return $this->belongsTo(Store::class,'store_id');
     }
+    
     public function productGallery() {
         return $this->hasMany(ProductGallery::class, 'product_id', 'id');
     }
     public function productVariation() {
         return $this->hasMany(ProductVariation::class, 'product_id', 'id');
+    }
+    public function variationAttributesValue() {
+        return $this->hasMany(VariationAttributeValue::class, 'product_id', 'id');
     }
   
  
