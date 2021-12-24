@@ -41,8 +41,8 @@ return [
     */
 
 
-    'API_ACCESS_CLIENT_ID' => env('API_ACCESS_CLIENT_ID', ''),
-    'API_ACCESS_CLIENT_SECRET' => env('API_ACCESS_CLIENT_SECRET', ''),
+    'API_ACCESS_CLIENT_ID' => env('API_ACCESS_CLIENT_ID', '2'),
+    'API_ACCESS_CLIENT_SECRET' => env('API_ACCESS_CLIENT_SECRET', '8BSSg7qMYw2NAJaiMhQOCYxGlFSs141SLfPRLU'),
 
     /*
     |--------------------------------------------------------------------------
