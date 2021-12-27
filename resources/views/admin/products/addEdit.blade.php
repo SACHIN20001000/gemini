@@ -34,6 +34,7 @@
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                     <input class="form-control" name="productName"  placeholder="Enter your name" type="text" value="{{isset($product) ? $product->productName : '' }}">
+                                    
                                 </div>
                             </div>
                       
@@ -43,7 +44,7 @@
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                 <div id="quillEditor" style="height: 200px;"></div>
-                                <textarea name="description" style="display:none" id="hiddenDescription"></textarea>
+                                <textarea name="description" style="display:none" id="hiddenDescription">{{isset($product) ? $product->description : '' }}</textarea>
                             </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
@@ -140,7 +141,7 @@
                                     <label class="form-label mg-b-0">SKU</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="sku" value="{{isset($product) ? @$product->productSku[0]->sku : '' }}" type="text" >
+                                    <input class="form-control" name="sku" value="{{isset($product) ? $product->sku : '' }}" type="text" >
                                 </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20" >
@@ -148,7 +149,7 @@
                                     <label class="form-label mg-b-0">Stock quantity</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="qty" value="{{isset($product) ? @$product->productSku[0]->qty : '' }}" type="number" >
+                                    <input class="form-control" name="qty" value="{{isset($product) ? $product->quantity : '' }}" type="number" >
                                 </div>
                             </div>
                   </div>
