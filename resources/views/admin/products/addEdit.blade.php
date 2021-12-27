@@ -236,7 +236,10 @@ var productsEvent;
     var variations =[];
     productsEvent = {
         initialize: function() {
-            //productsEvent.addAttributes();
+            attributes = {!! json_encode($attributes) !!};
+            variations = {!! json_encode($variations) !!};
+            productsEvent.displayAttributes();
+            productsEvent.displayVariations();
         },
         getAllAttributes()
         {
@@ -299,6 +302,8 @@ var productsEvent;
         displayVariations:function() {
             $("#variations_fields").empty();
             $("#variations_heading").empty();
+
+            console.log(variations);
             if(variations && Object.keys(variations).length)
             {
             let headings = Object.keys(variations[0]);

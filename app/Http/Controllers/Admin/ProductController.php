@@ -8,7 +8,6 @@ use App\Models\Product;
 use App\Models\ProductVariation;
 use App\Models\ProductGallery;
 use App\Models\VariationAttribute;
-use App\Models\VariationAttributeName;
 use App\Models\VariationAttributeValue;
 use App\Models\Category;
 use App\Models\Store;
@@ -87,7 +86,9 @@ class ProductController extends Controller
     public function create()
     {   $categories = Category::where('type','Product')->get();
         $stores = Store::all();
-        return view('admin.products.addEdit',compact('categories','stores'));
+        $attributes = [];
+        $variations =[];
+        return view('admin.products.addEdit',compact('categories','stores','attributes','variations'));
     }
 
     /**
@@ -221,12 +222,36 @@ class ProductController extends Controller
     {   
         $categories = Category::where('type','Product')->get();
         $stores = Store::all();
-        $product= Product::with(['category','store','productVariation','productGallery','variationAttributesValue'])->where('id',$id)->first(); 
-        echo '<pre>';
-        print_r($product->toArray()); die; 
-        dd($product); 
-        $products = Product::where('id','!=',$id)->get();
-        return view('admin.products.addEdit',compact('product','products','categories'));
+        $product= Product::with(['category','store','productVariation','productGallery','variationAttributesValue.variationAttributeName'])->where('id',$id)->first(); 
+
+        $variations = [];
+        foreach ($product->productVariation as $key => $variation) {
+            $allvariations = json_decode($variation->variation_attributes_name_id);
+
+            $viewData = [];
+            
+            foreach($allvariations as $data)
+            {
+                
+                $attr_name = VariationAttribute::where('id',$data->attribute_name_id)->pluck('name')->first();
+                $attrValue = VariationAttributeValue::where('id',$data->attribute_id)->pluck('name')->first();
+                $viewData[$attr_name] = $attrValue;
+            }
+
+            $viewData['Qty']=array('value'=>$variation->quantity,'name'=>'qty','placeholder'=>'Qty','type'=>'number','customClass'=>'');
+            $viewData['Weight']=array('value'=>$variation->weight,'name'=>'weight','placeholder'=>'weight','type'=>'number','customClass'=>'');
+            $viewData['Regular Price']=array('value'=>$variation->real_price,'name'=>'regular_price','placeholder'=>'Regular Price','type'=>'number','customClass'=>'');
+            $viewData['Sale Price']=array('value'=>$variation->sale_price,'name'=>'sale_price','placeholder'=>'Sale Price','type'=>'number','customClass'=>'');
+            $viewData['Sku']=array('value'=>$variation->sku,'name'=>'sku','placeholder'=>'Sku','type'=>'text','customClass'=>'');
+            $viewData['Image']=array('value'=>'','name'=>'image','placeholder'=>'Image','type'=>'file','customClass'=>'');
+            array_push($variations,$viewData);
+        }
+
+        $attributes =[];
+        foreach ($product->variationAttributesValue as $data) {
+            $attributes[$data->variationAttributeName->name][] = $data->name;
+        }
+        return view('admin.products.addEdit',compact('product','stores','categories','attributes','variations'));
     }
 
     /**
@@ -238,6 +263,9 @@ class ProductController extends Controller
      */
     public function update(UpdateProduct $request,$id)
     {
+$inputs = $request->all(); 
+        dd($inputs);
+
         if(!empty($request->productName)){
             $products= Product::find($id);
             $products->productName = $request->productName;
