@@ -56,11 +56,12 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                            
-                              
+                    
                                     <input id="product-galary" type="file" name="images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
                                     <ul id="product-galary-items"></ul>
-                                
+                                    @foreach($product->productGallery as $image)
+                                   <a href="{{$image->image_path}}" target="_blank" rel="noopener noreferrer"> <img src="{{$image->image_path}}" id="{{$image->id}}" alt="" height=50 width=50></a><i class="fas fa-trash-alt" id="{{$image->id}}" onclick='delImage()'></i>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -369,8 +370,23 @@ $(document).ready(function () {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
   });
-});
 
+});
+function delImage(){
+    if (confirm('Are You Sure You Want To Delete This Image')) {
+   $.ajax({
+           type:'POST',
+           url:'/admin/delete-photo',
+           data:'_token = <?php echo csrf_token() ?>',
+           success:function(data){
+            
+           }
+        });
+} else {
+    
+}
+        
+     }
 $(function() {
     var counter = 1; 
     $('#product-galary').FancyFileUpload({
