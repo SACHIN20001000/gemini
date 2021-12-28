@@ -43,8 +43,8 @@
                                     <label class="form-label mg-b-0">Description </label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                <div id="quillEditor" style="height: 200px;"></div>
-                                <textarea name="description" style="display:none" id="hiddenDescription">{{isset($product) ? $product->description : '' }}</textarea>
+                           
+                                <textarea name="description"  id="hiddenDescription">{{isset($product) ? $product->description : '' }}</textarea>
                             </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
@@ -229,8 +229,9 @@
 @endsection 
 
 @section('scripts')
-
+<script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
 <script type="text/javascript">
+         CKEDITOR.replace( 'description' );
 var productsEvent;
 (function() {
     var attributes =[];

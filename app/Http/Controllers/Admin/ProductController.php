@@ -377,22 +377,13 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {        
-      $productVariation=  ProductVariation::where('product_id',$id)->first();      
- 
-      if(!empty($productVariation->variation_ids)){
-        $data= json_decode($productVariation->variation_ids);
-        foreach($data as $datas ){
-            if(!empty($datas->attribute_id)){
-            VariationAttribute::find($datas->attribute_id)->delete();
-            VariationAttributeName::find($datas->attribute_name_id)->delete();
-           }    
-          }
-      }
-  
-      Product::find($id)->delete();
-      ProductGallery::where('product_id',$id)->delete();
-      ProductVariation::where('product_id',$id)->delete();
+    {  
+            
+         ProductVariation::where('product_id',$id)->delete();      
+         ProductGallery::where('product_id',$id)->delete();
+         VariationAttributeValue::where('product_id',$id)->delete();
+         Product::find($id)->delete();
+     
         return back()->with('success','Product deleted successfully!');
     }
 
