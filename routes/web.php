@@ -59,6 +59,7 @@ Route::prefix('admin')->group(function ()
             return back()->with('success','Product deleted successfully!');
         });
         Route::post('save-photo', [App\Http\Controllers\Admin\ProductController::class, 'save_photo'])->name('save_photo');
+        Route::post('delete-photo', [App\Http\Controllers\Admin\ProductController::class, 'del_photo'])->name('del_photo');
 
         Route::resource('brands', BrandsController::class);
 
