@@ -34,6 +34,7 @@
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                     <input class="form-control" name="productName"  placeholder="Enter your name" type="text" value="{{isset($product) ? $product->productName : '' }}">
+                                    
                                 </div>
                             </div>
                       
@@ -42,8 +43,8 @@
                                     <label class="form-label mg-b-0">Description </label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                <div id="quillEditor" style="height: 200px;"></div>
-                                <textarea name="description" style="display:none" id="hiddenDescription"></textarea>
+                           
+                                <textarea name="description"  id="hiddenDescription">{{isset($product) ? $product->description : '' }}</textarea>
                             </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
@@ -55,11 +56,12 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                            
-                              
+                    
                                     <input id="product-galary" type="file" name="images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
                                     <ul id="product-galary-items"></ul>
-                                
+                                    @foreach($product->productGallery as $image)
+                                   <a href="{{$image->image_path}}" target="_blank" rel="noopener noreferrer"> <img src="{{$image->image_path}}" id="{{$image->id}}" alt="" height=50 width=50></a><i class="fas fa-trash-alt" id="{{$image->id}}" onclick='delImage()'></i>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -140,7 +142,7 @@
                                     <label class="form-label mg-b-0">SKU</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="sku" value="{{isset($product) ? @$product->productSku[0]->sku : '' }}" type="text" >
+                                    <input class="form-control" name="sku" value="{{isset($product) ? $product->sku : '' }}" type="text" >
                                 </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20" >
@@ -148,7 +150,7 @@
                                     <label class="form-label mg-b-0">Stock quantity</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="qty" value="{{isset($product) ? @$product->productSku[0]->qty : '' }}" type="number" >
+                                    <input class="form-control" name="qty" value="{{isset($product) ? $product->quantity : '' }}" type="number" >
                                 </div>
                             </div>
                   </div>
@@ -228,15 +230,19 @@
 @endsection 
 
 @section('scripts')
-
+<script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
 <script type="text/javascript">
+         CKEDITOR.replace( 'description' );
 var productsEvent;
 (function() {
     var attributes =[];
     var variations =[];
     productsEvent = {
         initialize: function() {
-            //productsEvent.addAttributes();
+            attributes = {!! json_encode($attributes) !!};
+            variations = {!! json_encode($variations) !!};
+            productsEvent.displayAttributes();
+            productsEvent.displayVariations();
         },
         getAllAttributes()
         {
@@ -299,6 +305,8 @@ var productsEvent;
         displayVariations:function() {
             $("#variations_fields").empty();
             $("#variations_heading").empty();
+
+            console.log(variations);
             if(variations && Object.keys(variations).length)
             {
             let headings = Object.keys(variations[0]);
@@ -362,8 +370,23 @@ $(document).ready(function () {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
   });
-});
 
+});
+function delImage(){
+    if (confirm('Are You Sure You Want To Delete This Image')) {
+   $.ajax({
+           type:'POST',
+           url:'/admin/delete-photo',
+           data:'_token = <?php echo csrf_token() ?>',
+           success:function(data){
+            
+           }
+        });
+} else {
+    
+}
+        
+     }
 $(function() {
     var counter = 1; 
     $('#product-galary').FancyFileUpload({
