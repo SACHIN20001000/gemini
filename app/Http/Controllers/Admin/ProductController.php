@@ -306,7 +306,7 @@ class ProductController extends Controller
                     ]);
                     array_push($attributesName,$vakey);
 
-					
+					VariationAttributeValue::where('product_id',$id)->delete();
 					/**insert attribute**/
 					if($variationAttribute->id){
 						
