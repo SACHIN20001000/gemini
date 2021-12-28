@@ -7,6 +7,7 @@ use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\PageController;
+use App\Http\Controllers\API\CartController;
 use App\Http\Middleware\EnsureApiTokenIsValid;
 /*
   |--------------------------------------------------------------------------
@@ -41,11 +42,16 @@ Route::middleware('auth:api')->group(function ()
     Route::get('profile', [UserController::class, 'userProfile']);
     Route::put('update', [UserController::class, 'updateProfile']);
     Route::get('logout', [PassportAuthController::class, 'logout']);
- 
- 
 
     Route::group(['middleware' => ['role:User']], function ()
     {
       
     });
 });
+
+Route::resource('carts', CartController::class);
+Route::get('cartIdByKey', [CartController::class, 'getCartIDUsingKey']);
+Route::post('/carts/{cart}',[CartController::class, 'addProducts']);
+
+
+
