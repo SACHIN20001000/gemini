@@ -51,6 +51,8 @@ Route::middleware('auth:api')->group(function ()
 
 Route::resource('carts', CartController::class);
 Route::get('cartIdByKey', [CartController::class, 'getCartIDUsingKey']);
+
+
 Route::post('/carts/{cart}',[CartController::class, 'addProducts']);
 
 

@@ -29,13 +29,34 @@ class CartController extends Controller
     {
         //
     }
-
-    /**
+/**
+     * @OA\Post(
+     *      path="/carts",
+     *      operationId="Create cart key",
+     *      tags={"Carts"},
+     *     summary="Create cart key",
+     *     @OA\Response(
+     *         response="200",
+     *         description="Create cart key",
+     *         @OA\JsonContent(ref="#/components/schemas/CartResponse")
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \App\Http\Requests\ExampleStoreRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
+
     public function store(Request $request)
     {
         $user = auth('api')->user();
@@ -65,6 +86,40 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+   /**
+     * @OA\Get(
+     *      path="/carts/{id}",
+     *      operationId="show cart items",
+     *      tags={"Carts"},
+     *     summary="show cart items",
+     *        *      @OA\Parameter(
+     *         name="key",
+     *         in="path",
+     *         description="a88483e72092f83baee46349fef80e9661cc3e5d4cba2",
+     *         required=true,
+     *      ),
+     *     @OA\Response(
+     *         response="204",
+     *         description="show cart items",
+     *       @OA\JsonContent(ref="#/components/schemas/SingleCartResponse")
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
+     * Store a newly created resource in storage.
+     *
+     * @param \App\Http\Requests\ExampleStoreRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+
     public function show(Cart $cart, CartIdRequest $request)
     {
         if ($cart->key == $request->key) {
@@ -107,9 +162,46 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     /**
+     * @OA\Delete(
+     *      path="/carts/{id}",
+     *      operationId="Delete cart",
+     *      tags={"Carts"},
+     *     summary="Delete cart",
+     *        *      @OA\Parameter(
+     *         name="key",
+     *         in="path",
+     *         description="a88483e72092f83baee46349fef80e9661cc3e5d4cba2",
+     *         required=true,
+     *      ),
+     *     @OA\Response(
+     *         response="204",
+     *         description="Get cart id by key",
+     *       
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
+     * Store a newly created resource in storage.
+     *
+     * @param \App\Http\Requests\ExampleStoreRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+
     public function destroy(Cart $cart, CartIdRequest $request)
     {
-        if ($cart->key == $request->key) {
+ 
+       $cart= Cart::where('key',$request->key)->first();
+        if (!empty($cart)) {
             $cart->delete();
             return response()->json(null, 204);
 
@@ -120,6 +212,39 @@ class CartController extends Controller
             ], 400);
         }
     }
+/**
+     * @OA\Get(
+     *      path="/cartIdByKey",
+     *      operationId="Get cart id by key",
+     *      tags={"Carts"},
+     *     summary="Get cart id by key",
+     *        *      @OA\Parameter(
+     *         name="key",
+     *         in="path",
+     *         description="a88483e72092f83baee46349fef80e9661cc3e5d4cba2",
+     *         required=true,
+     *      ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="Get cart id by key",
+     *         @OA\JsonContent(ref="#/components/schemas/CartResponse")
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
+     * Store a newly created resource in storage.
+     *
+     * @param \App\Http\Requests\ExampleStoreRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
 
     public function getCartIDUsingKey(CartIdRequest $request)
     {
@@ -133,6 +258,38 @@ class CartController extends Controller
                 'message' => 'The Cart key does not match with any cart.',
             ], 400);
     }
+
+    /**
+     * @OA\Post(
+     ** path="/carts/{cart}",
+     *   tags={"Carts"},
+     *   summary="Add Product into cart",
+     *   operationId="ProductCart",
+     *    @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CartRequest")
+     *     ),
+     *    @OA\Response(
+     *         response="200",
+     *         description="Everything is fine",
+     *         @OA\JsonContent(ref="#/components/schemas/CartResponse")
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     *)
+     **/
+    /**
+     * Add Product into cart api
+     *
+     * @return \Illuminate\Http\Response
+     */
 
     public function addProducts(Cart $cart, CartAddProductRequest $request)
     {
