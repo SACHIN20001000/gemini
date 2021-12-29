@@ -94,11 +94,15 @@ class CartController extends Controller
      *      tags={"Carts"},
      *     summary="show cart items",
      *        *      @OA\Parameter(
-     *         name="key",
+     *         name="id",
      *         in="path",
-     *         description="a88483e72092f83baee46349fef80e9661cc3e5d4cba2",
+     *         description="3",
      *         required=true,
      *      ),
+     *      *      *    @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CartKeyRequest")
+     *     ),
      *     @OA\Response(
      *         response="204",
      *         description="show cart items",
@@ -171,11 +175,15 @@ class CartController extends Controller
      *      tags={"Carts"},
      *     summary="Delete cart",
      *        *      @OA\Parameter(
-     *         name="key",
+     *         name="id",
      *         in="path",
-     *         description="a88483e72092f83baee46349fef80e9661cc3e5d4cba2",
+     *         description="3",
      *         required=true,
      *      ),
+     *      *    @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CartKeyRequest")
+     *     ),
      *     @OA\Response(
      *         response="204",
      *         description="Get cart id by key",
@@ -219,12 +227,10 @@ class CartController extends Controller
      *      operationId="Get cart id by key",
      *      tags={"Carts"},
      *     summary="Get cart id by key",
-     *        *      @OA\Parameter(
-     *         name="key",
-     *         in="path",
-     *         description="a88483e72092f83baee46349fef80e9661cc3e5d4cba2",
+       *      *    @OA\RequestBody(
      *         required=true,
-     *      ),
+     *         @OA\JsonContent(ref="#/components/schemas/CartKeyRequest")
+     *     ),
      *     @OA\Response(
      *         response="200",
      *         description="Get cart id by key",
