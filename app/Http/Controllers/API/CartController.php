@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Http\Resources\Carts\CartResource;
+use App\Http\Resources\Carts\CartItemsResource;
 use App\Http\Requests\API\CartIdRequest;
 use App\Http\Requests\API\CartAddProductRequest;
 class CartController extends Controller
@@ -123,7 +124,7 @@ class CartController extends Controller
     public function show(Cart $cart, CartIdRequest $request)
     {
         if ($cart->key == $request->key) {
-            return response()->json($cart, 200);
+            return  CartItemsResource::collection($cart->items);
 
         } else {
 
