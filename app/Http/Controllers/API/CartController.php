@@ -210,6 +210,7 @@ class CartController extends Controller
  
        $cart= Cart::where('key',$request->key)->first();
         if (!empty($cart)) {
+            CartItem::where('cart_id',$cart->id)->delete();
             $cart->delete();
             return response()->json(null, 204);
 
@@ -220,6 +221,66 @@ class CartController extends Controller
             ], 400);
         }
     }
+
+
+     /**
+     * @OA\Delete(
+     *      path="/cart/item/{id}",
+     *      operationId="Delete cart item",
+     *      tags={"Carts"},
+     *     summary="Delete cart item",
+     *        *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="3",
+     *         required=true,
+     *      ),
+     *      *    @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CartKeyRequest")
+     *     ),
+     *     @OA\Response(
+     *         response="204",
+     *         description="Delete cart item by key",
+     *       
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
+     * Store a newly created resource in storage.
+     *
+     * @param \App\Http\Requests\ExampleStoreRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+
+    public function deleteCartItem(Cart $cart, CartIdRequest $request , $id)
+    {
+ 
+       $cart= Cart::where('key',$request->key)->first();
+        if (!empty($cart)) {
+            CartItem::where('cart_id',$id)->delete();
+            
+            return response()->json(null, 204);
+
+        } else {
+
+            return response()->json([
+                'message' => 'The Cart key does not match with any cart.',
+            ], 400);
+        }
+    }
+
+
+
+
 /**
      * @OA\Get(
      *      path="/cartIdByKey",

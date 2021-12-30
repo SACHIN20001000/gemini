@@ -136,6 +136,47 @@
                 }
             }
         },
+        "/cart/item/{id}": {
+            "delete": {
+                "tags": [
+                    "Carts"
+                ],
+                "summary": "Delete cart item",
+                "operationId": "Delete cart item",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CartKeyRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Delete cart item by key"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "/cartIdByKey": {
             "get": {
                 "tags": [
