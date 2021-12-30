@@ -16,6 +16,11 @@ class CartItem extends Model
 
     public function product()
     {
-        return $this->hasOne(Product::class);
+        return $this->hasOne(Product::class,'id', 'product_id');
+    }
+
+    public function variationProduct()
+    {
+        return $this->hasOne(ProductVariation::class,'id', 'variation_product_id');
     }
 }

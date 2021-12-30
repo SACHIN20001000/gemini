@@ -127,7 +127,8 @@ class CartController extends Controller
     public function show(Cart $cart, CartIdRequest $request)
     {
         if ($cart->key == $request->key) {
-            return  CartItemsResource::collection($cart->items);
+            $items = CartItem::where('cart_id',$cart->id)->with(['product','variationProduct'])->get();
+            return  CartItemsResource::collection($items);
 
         } else {
 
