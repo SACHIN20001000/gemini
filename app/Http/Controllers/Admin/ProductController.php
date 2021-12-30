@@ -409,23 +409,12 @@ class ProductController extends Controller
     }
 
     public function del_photo(Request $request){
-      print_r($request->all());
- die('here');
-        if ($request->file('images')) {
-            $path = Storage::disk('s3')->put('images/products', $request->images);
-            $path = Storage::disk('s3')->url($path);
-            $id = substr($path, -8, 1);
-           return Response()->json([
-                "success" => true,
-                "image" => $path,
-                "id" => $id
-            ]);
- 
-        }
+
+        ProductGallery::find($request->id)->delete();
  
         return Response()->json([
-                "success" => false,
-                "image" => ''
+                "success" => 'Deleted Successfully',
+             
             ]);
     }
 }

@@ -59,9 +59,11 @@
                     
                                     <input id="product-galary" type="file" name="images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
                                     <ul id="product-galary-items"></ul>
+                                    @if(isset($product))
                                     @foreach($product->productGallery as $image)
-                                   <a href="{{$image->image_path}}" target="_blank" rel="noopener noreferrer"> <img src="{{$image->image_path}}" id="{{$image->id}}" alt="" height=50 width=50></a><i class="fas fa-trash-alt" id="{{$image->id}}" onclick='delImage()'></i>
+                                   <div id="imgDel{{$image->id}}"><a href="{{$image->image_path}}" target="_blank" data-item-id="{{$image->id}}"> <img src="{{$image->image_path}}"  alt="" height=50 width=50></a><i class="fas fa-trash-alt"  onclick='delImage({{$image->id}})'></i></div>
                                     @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -372,14 +374,15 @@ $(document).ready(function () {
   });
 
 });
-function delImage(){
+function delImage(id){
+    var data = 'id='+ id ;
     if (confirm('Are You Sure You Want To Delete This Image')) {
    $.ajax({
            type:'POST',
            url:'/admin/delete-photo',
-           data:'_token = <?php echo csrf_token() ?>',
+           data: data ,
            success:function(data){
-            
+            $('#imgDel'+id+'').remove();
            }
         });
 } else {
