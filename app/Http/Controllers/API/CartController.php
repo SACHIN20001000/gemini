@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\Product;
+use App\Models\CartItem;
 use App\Http\Resources\Carts\CartResource;
 use App\Http\Resources\Carts\CartItemsResource;
 use App\Http\Requests\API\CartIdRequest;
@@ -16,9 +18,26 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user = auth('api')->user();
+        if($user)
+        {
+            $cart = Cart::where('user_id',$user->id)->first();
+            if($cart)
+            {
+                return  new CartResource($cart);
+            }
+            
+        }
+        $cart = Cart::create([
+            'key' => md5(uniqid(rand(), true)).uniqid(),
+            'user_id' => $user->id??0,
+
+        ]);
+        
+
+        return  new CartResource($cart);
     }
 
     /**
@@ -60,24 +79,7 @@ class CartController extends Controller
 
     public function store(Request $request)
     {
-        $user = auth('api')->user();
-        if($user)
-        {
-            $cart = Cart::where('user_id',$user->id)->first();
-            if($cart)
-            {
-                return  new CartResource($cart);
-            }
-            
-        }
-        $cart = Cart::create([
-            'key' => md5(uniqid(rand(), true)).uniqid(),
-            'user_id' => $user->id??0,
-
-        ]);
         
-
-        return  new CartResource($cart);
 
     }
 
@@ -303,6 +305,8 @@ class CartController extends Controller
        
         $product_id = $request->product_id;
         $quantity = $request->quantity;
+        
+        $variation_product_id = $request->variation_product_id ?? 0;
         //Check if the CarKey is Valid
         if ($cart->key == $request->key) {
             //Check if the proudct exist or return 404 not found.
@@ -313,12 +317,12 @@ class CartController extends Controller
             }
 
             //check if the the same product is already in the Cart, if true update the quantity, if not create a new one.
-            $cartItem = CartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id])->first();
+            $cartItem = CartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id, 'variation_product_id' => $variation_product_id])->first();
             if ($cartItem) {
                 $cartItem->quantity = $quantity;
-                CartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id])->update(['quantity' => $quantity]);
+                CartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id,'variation_product_id' => $variation_product_id])->update(['quantity' => $quantity]);
             } else {
-                CartItem::create(['cart_id' => $cart->id, 'product_id' => $product_id, 'quantity' => $quantity]);
+                CartItem::create(['cart_id' => $cart->id, 'product_id' => $product_id,'variation_product_id' => $variation_product_id, 'quantity' => $quantity]);
             }
 
             return response()->json(['message' => 'The Cart was updated with the given product information successfully'], 200);
