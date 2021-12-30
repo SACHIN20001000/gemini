@@ -49,11 +49,11 @@ Route::middleware('auth:api')->group(function ()
     });
 });
 
-Route::resource('carts', CartController::class);
+Route::resource('cart', CartController::class);
 Route::get('cartIdByKey', [CartController::class, 'getCartIDUsingKey']);
 
 
-Route::post('/carts/{cart}',[CartController::class, 'addProducts']);
+Route::post('/cart/{cart}',[CartController::class, 'addProducts']);
 
 
 

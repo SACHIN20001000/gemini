@@ -24,7 +24,7 @@ class CartRequest
      * @OA\Property(
      *     title="Product Id",
      *     description="Product Id for storring",
-     *     example="example@gmail.com",
+     *     example="1",
      * )
      *
      * @var string
@@ -35,10 +35,21 @@ class CartRequest
      * @OA\Property(
      *     title="Quantity",
      *     description="Quantity for storring",
-     *     example="12345678",
+     *     example="2",
      * )
      *
      * @var string
      */
     public $quantity;
+
+      /**
+     * @OA\Property(
+     *     title="Variation",
+     *     description="Variation id for storring",
+     *     example="2",
+     * )
+     *
+     * @var string
+     */
+    public $variation_id;
 }
