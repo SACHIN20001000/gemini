@@ -41,4 +41,15 @@ class CartRequest
      * @var string
      */
     public $quantity;
+
+      /**
+     * @OA\Property(
+     *     title="Variation",
+     *     description="Variation id for storring",
+     *     example="2",
+     * )
+     *
+     * @var string
+     */
+    public $variation_id;
 }
