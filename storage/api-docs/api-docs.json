@@ -136,7 +136,7 @@
                 }
             }
         },
-        "/cart/item/{id}": {
+        "cart/{cart}/{itemId}": {
             "delete": {
                 "tags": [
                     "Carts"
@@ -145,7 +145,13 @@
                 "operationId": "Delete cart item",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "cart id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    },
+                    {
+                        "name": "item id",
                         "in": "path",
                         "description": "3",
                         "required": true

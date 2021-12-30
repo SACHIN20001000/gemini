@@ -208,7 +208,6 @@ class CartController extends Controller
     public function destroy(Cart $cart, CartIdRequest $request)
     {
  
-       $cart= Cart::where('key',$request->key)->first();
         if (!empty($cart)) {
             CartItem::where('cart_id',$cart->id)->delete();
             $cart->delete();
@@ -225,12 +224,18 @@ class CartController extends Controller
 
      /**
      * @OA\Delete(
-     *      path="/cart/item/{id}",
+     *      path="cart/{cart}/{itemId}",
      *      operationId="Delete cart item",
      *      tags={"Carts"},
      *     summary="Delete cart item",
      *        *      @OA\Parameter(
-     *         name="id",
+     *         name="cart id",
+     *         in="path",
+     *         description="3",
+     *         required=true,
+     *      ),
+     * *        *      @OA\Parameter(
+     *         name="item id",
      *         in="path",
      *         description="3",
      *         required=true,
@@ -261,12 +266,11 @@ class CartController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function deleteCartItem(Cart $cart, CartIdRequest $request , $id)
+    public function deleteCartItem(Cart $cart, CartItem $itemId,CartIdRequest $request)
     {
- 
-       $cart= Cart::where('key',$request->key)->first();
-        if (!empty($cart)) {
-            CartItem::where('cart_id',$id)->delete();
+        if ($cart->key == $request->key) {
+     
+            $itemId->delete();
             
             return response()->json(null, 204);
 
