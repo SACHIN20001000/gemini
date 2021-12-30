@@ -127,7 +127,8 @@ class CartController extends Controller
     public function show(Cart $cart, CartIdRequest $request)
     {
         if ($cart->key == $request->key) {
-            return  CartItemsResource::collection($cart->items);
+            $items = CartItem::where('cart_id',$cart->id)->with(['product','variationProduct'])->get();
+            return  CartItemsResource::collection($items);
 
         } else {
 
@@ -208,8 +209,8 @@ class CartController extends Controller
     public function destroy(Cart $cart, CartIdRequest $request)
     {
  
-       $cart= Cart::where('key',$request->key)->first();
-        if (!empty($cart)) {
+        if ($cart->key == $request->key) {
+            CartItem::where('cart_id',$cart->id)->delete();
             $cart->delete();
             return response()->json(null, 204);
 
@@ -220,6 +221,71 @@ class CartController extends Controller
             ], 400);
         }
     }
+
+
+     /**
+     * @OA\Delete(
+     *      path="cart/{cart}/{itemId}",
+     *      operationId="Delete cart item",
+     *      tags={"Carts"},
+     *     summary="Delete cart item",
+     *        *      @OA\Parameter(
+     *         name="cart id",
+     *         in="path",
+     *         description="3",
+     *         required=true,
+     *      ),
+     * *        *      @OA\Parameter(
+     *         name="item id",
+     *         in="path",
+     *         description="3",
+     *         required=true,
+     *      ),
+     *      *    @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CartKeyRequest")
+     *     ),
+     *     @OA\Response(
+     *         response="204",
+     *         description="Delete cart item by key",
+     *       
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
+     * Store a newly created resource in storage.
+     *
+     * @param \App\Http\Requests\ExampleStoreRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+
+    public function deleteCartItem(Cart $cart, CartItem $itemId,CartIdRequest $request)
+    {
+        if ($cart->key == $request->key) {
+     
+            $itemId->delete();
+            
+            return response()->json(null, 204);
+
+        } else {
+
+            return response()->json([
+                'message' => 'The Cart key does not match with any cart.',
+            ], 400);
+        }
+    }
+
+
+
+
 /**
      * @OA\Get(
      *      path="/cartIdByKey",
