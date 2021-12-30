@@ -14,10 +14,33 @@ use App\Http\Requests\API\CartAddProductRequest;
 class CartController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *      path="/cart",
+     *      operationId="Create cart key",
+     *      tags={"Carts"},
+     *     summary="Create cart key",
+     *     @OA\Response(
+     *         response="200",
+     *         description="Create cart key",
+     *         @OA\JsonContent(ref="#/components/schemas/CartResponse")
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
+     * Store a newly created resource in storage.
      *
-     * @return \Illuminate\Http\Response
+     * @param \App\Http\Requests\ExampleStoreRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
+
     public function index(Request $request)
     {
         $user = auth('api')->user();
@@ -49,33 +72,7 @@ class CartController extends Controller
     {
         //
     }
-/**
-     * @OA\Post(
-     *      path="/carts",
-     *      operationId="Create cart key",
-     *      tags={"Carts"},
-     *     summary="Create cart key",
-     *     @OA\Response(
-     *         response="200",
-     *         description="Create cart key",
-     *         @OA\JsonContent(ref="#/components/schemas/CartResponse")
-     *     ),
-     *    @OA\Response(
-     *      response=400,ref="#/components/schemas/BadRequest"
-     *    ),
-     *    @OA\Response(
-     *      response=404,ref="#/components/schemas/Notfound"
-     *    ),
-     *    @OA\Response(
-     *      response=500,ref="#/components/schemas/Forbidden"
-     *    )
-     * )
-     * Store a newly created resource in storage.
-     *
-     * @param \App\Http\Requests\ExampleStoreRequest $request
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+
 
     public function store(Request $request)
     {
@@ -91,7 +88,7 @@ class CartController extends Controller
      */
    /**
      * @OA\Get(
-     *      path="/carts/{id}",
+     *      path="/cart/{id}",
      *      operationId="show cart items",
      *      tags={"Carts"},
      *     summary="show cart items",
@@ -172,7 +169,7 @@ class CartController extends Controller
 
      /**
      * @OA\Delete(
-     *      path="/carts/{id}",
+     *      path="/cart/{id}",
      *      operationId="Delete cart",
      *      tags={"Carts"},
      *     summary="Delete cart",
@@ -270,11 +267,17 @@ class CartController extends Controller
 
     /**
      * @OA\Post(
-     ** path="/carts/{cart}",
+     ** path="/cart/{cart}",
      *   tags={"Carts"},
      *   summary="Add Product into cart",
      *   operationId="ProductCart",
-     *    @OA\RequestBody(
+     * *        *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="3",
+     *         required=true,
+     *      ),
+     *      *    @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(ref="#/components/schemas/CartRequest")
      *     ),
