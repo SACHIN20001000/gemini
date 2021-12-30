@@ -19,8 +19,8 @@
         }
     ],
     "paths": {
-        "/carts": {
-            "post": {
+        "/cart": {
+            "get": {
                 "tags": [
                     "Carts"
                 ],
@@ -49,7 +49,7 @@
                 }
             }
         },
-        "/carts/{id}": {
+        "/cart/{id}": {
             "get": {
                 "tags": [
                     "Carts"
@@ -176,13 +176,21 @@
                 }
             }
         },
-        "/carts/{cart}": {
+        "/cart/{cart}": {
             "post": {
                 "tags": [
                     "Carts"
                 ],
                 "summary": "Add Product into cart",
                 "operationId": "ProductCart",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -735,13 +743,19 @@
                         "title": "Product Id",
                         "description": "Product Id for storring",
                         "type": "string",
-                        "example": "example@gmail.com"
+                        "example": "1"
                     },
                     "quantity": {
                         "title": "Quantity",
                         "description": "Quantity for storring",
                         "type": "string",
-                        "example": "12345678"
+                        "example": "2"
+                    },
+                    "variation_id": {
+                        "title": "Variation",
+                        "description": "Variation id for storring",
+                        "type": "string",
+                        "example": "2"
                     }
                 },
                 "type": "object"

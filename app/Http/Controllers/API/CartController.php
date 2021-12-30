@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\Product;
+use App\Models\CartItem;
 use App\Http\Resources\Carts\CartResource;
 use App\Http\Resources\Carts\CartItemsResource;
 use App\Http\Requests\API\CartIdRequest;
@@ -12,27 +14,8 @@ use App\Http\Requests\API\CartAddProductRequest;
 class CartController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-/**
-     * @OA\Post(
-     *      path="/carts",
+     * @OA\Get(
+     *      path="/cart",
      *      operationId="Create cart key",
      *      tags={"Carts"},
      *     summary="Create cart key",
@@ -58,7 +41,7 @@ class CartController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function store(Request $request)
+    public function index(Request $request)
     {
         $user = auth('api')->user();
         if($user)
@@ -78,6 +61,22 @@ class CartController extends Controller
         
 
         return  new CartResource($cart);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+
+    public function store(Request $request)
+    {
+        
 
     }
 
@@ -89,7 +88,7 @@ class CartController extends Controller
      */
    /**
      * @OA\Get(
-     *      path="/carts/{id}",
+     *      path="/cart/{id}",
      *      operationId="show cart items",
      *      tags={"Carts"},
      *     summary="show cart items",
@@ -170,7 +169,7 @@ class CartController extends Controller
 
      /**
      * @OA\Delete(
-     *      path="/carts/{id}",
+     *      path="/cart/{id}",
      *      operationId="Delete cart",
      *      tags={"Carts"},
      *     summary="Delete cart",
@@ -268,11 +267,17 @@ class CartController extends Controller
 
     /**
      * @OA\Post(
-     ** path="/carts/{cart}",
+     ** path="/cart/{cart}",
      *   tags={"Carts"},
      *   summary="Add Product into cart",
      *   operationId="ProductCart",
-     *    @OA\RequestBody(
+     * *        *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="3",
+     *         required=true,
+     *      ),
+     *      *    @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(ref="#/components/schemas/CartRequest")
      *     ),
@@ -303,6 +308,8 @@ class CartController extends Controller
        
         $product_id = $request->product_id;
         $quantity = $request->quantity;
+        
+        $variation_product_id = $request->variation_product_id ?? 0;
         //Check if the CarKey is Valid
         if ($cart->key == $request->key) {
             //Check if the proudct exist or return 404 not found.
@@ -313,12 +320,12 @@ class CartController extends Controller
             }
 
             //check if the the same product is already in the Cart, if true update the quantity, if not create a new one.
-            $cartItem = CartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id])->first();
+            $cartItem = CartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id, 'variation_product_id' => $variation_product_id])->first();
             if ($cartItem) {
                 $cartItem->quantity = $quantity;
-                CartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id])->update(['quantity' => $quantity]);
+                CartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id,'variation_product_id' => $variation_product_id])->update(['quantity' => $quantity]);
             } else {
-                CartItem::create(['cart_id' => $cart->id, 'product_id' => $product_id, 'quantity' => $quantity]);
+                CartItem::create(['cart_id' => $cart->id, 'product_id' => $product_id,'variation_product_id' => $variation_product_id, 'quantity' => $quantity]);
             }
 
             return response()->json(['message' => 'The Cart was updated with the given product information successfully'], 200);
