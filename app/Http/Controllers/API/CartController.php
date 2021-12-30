@@ -208,7 +208,7 @@ class CartController extends Controller
     public function destroy(Cart $cart, CartIdRequest $request)
     {
  
-        if (!empty($cart)) {
+        if ($cart->key == $request->key) {
             CartItem::where('cart_id',$cart->id)->delete();
             $cart->delete();
             return response()->json(null, 204);
