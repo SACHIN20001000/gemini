@@ -9,6 +9,7 @@ import "sweetalert2/dist/sweetalert2.min.css"
 Vue.use(VueRouter)
 Vue.use(VueSweetalert2)
 Vue.use(Notifications)
+Vue.use(store)
 import './assets/js/jquery-3.6.0.min.js'
 import './assets/js/bootstrap.bundle.min.js'
 import './assets/css/bootstrap.min.css'
