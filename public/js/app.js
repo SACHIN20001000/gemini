@@ -13170,12 +13170,12 @@ function withOutToken(to, from, next) {
     component: _components_Dashboard__WEBPACK_IMPORTED_MODULE_0__["default"]
   }, {
     path: '/register',
-    beforeEnter: withOutToken,
+    beforeEnter: guardMyroute,
     name: 'Register',
     component: _components_Register__WEBPACK_IMPORTED_MODULE_2__["default"]
   }, {
     path: '/signin',
-    beforeEnter: withOutToken,
+    beforeEnter: guardMyroute,
     name: 'Login',
     component: _components_Register_Login__WEBPACK_IMPORTED_MODULE_3__["default"]
   }, {
