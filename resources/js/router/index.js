@@ -81,13 +81,13 @@ routes: [
 	},
 	{
 		path: '/register',
-		beforeEnter : withOutToken,
+		beforeEnter : guardMyroute,
 		name: 'Register',
 		component: Register
 	},
 	{
 		path: '/signin',
-		beforeEnter : withOutToken,
+		beforeEnter : guardMyroute,
 		name: 'Login',
 		component: Login
 	},
