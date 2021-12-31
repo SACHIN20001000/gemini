@@ -8,6 +8,8 @@ import Logout from "../components/Register/Logout";
 import Profile from "../components/Profile";
 import Category from "../components/Category";
 import Blog from "../components/Blog";
+import Products from "../components/Products";
+import Cart from "../components/Cart";
 
 Vue.use(VueRouter)
 
@@ -25,7 +27,7 @@ function loginRoute(to, from, next)
 	if(localStorage.getItem('userauth') && localStorage.getItem('userauth') !=null){
 		next()
 	}else{
-		window.location.href='/'
+		window.location.href='/signin'
 		return
 	}
 }
@@ -52,6 +54,18 @@ routes: [
 		beforeEnter : guardMyroute,
 		name: 'Category',
 		component: Category
+	},
+  {
+		path: '/products/:id',
+		beforeEnter : guardMyroute,
+		name: 'Products',
+		component: Products
+	},
+  {
+		path: '/cart',
+		beforeEnter : guardMyroute,
+		name: 'Cart',
+		component: Cart
 	},
   {
 		path: '/blog/:slug',

@@ -22,11 +22,18 @@ export default {
   created: function(){
     this.init()
   },
+  watch:{
+    tokenStatus(){
+      if(localStorage.getItem('cartKey') === null || localStorage.getItem('cartKey') =='undefined') {
+        this.getCartToken()
+      }
+    }
+  },
   computed: {
     ...mapGetters(['tokenStatus','tokenError'])
   },
   methods: {
-    ...mapActions(["getToken"]),
+    ...mapActions(["getToken" ,"getCartToken"]),
     init(){
       if(localStorage.getItem('token') === null || localStorage.getItem('token') =='undefined') {
         this.getToken()

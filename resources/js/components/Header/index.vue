@@ -66,13 +66,15 @@
           </div>
         </div>
         <div class="cart_bar">
-          <a href="#">
+          <router-link
+            :to="{ path: '/cart'}"
+          >
             <img
               :src="imgCartIcon"
               alt="Cart Icon"
             >
-            <span class="cart_items">3</span>
-          </a>
+            <span class="cart_items">{{cartQuantity}}</span>
+          </router-link>
         </div>
          <div class="menu_btn mobil_only">
         <a class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -118,12 +120,12 @@
               </li>
                </li>
               <li class="nav-item nv mobil_only">
-               <router-link
-              :to="{ path: '/signin'}"
-              class="alink log_btn"
-            >
-              Login
-            </router-link>
+                <router-link
+                  :to="{ path: '/signin'}"
+                  class="alink log_btn"
+                >
+                  Login
+                </router-link>
 
                 <li class="nav-itemnv mobil_only">
                 <router-link
@@ -150,6 +152,8 @@ import imgCartIcon from "../../assets/images/cart_icon.png"
 import search_mobile from "../../assets/images/search_mobile.png"
 import menuLines from "../../assets/images/menu_lines.svg"
 import imgDownload from "../../assets/images/download.png"
+import {mapActions,mapGetters} from "vuex"
+
 export default {
   name:"Dashboard",
   data: function () {
@@ -160,8 +164,24 @@ export default {
       search_mobile: search_mobile,
       menuLines: menuLines,
       imgDownload: imgDownload,
-      token: localStorage.getItem('token')
+      token: localStorage.getItem('userauth')
     }
+  },
+  created(){
+    if(localStorage.getItem('cartKey') != null){
+      this.getCartItems()
+    }
+  },
+  watch:{
+    cartToken(){
+      this.getCartItems()
+    }
+  },
+  computed: {
+    ...mapGetters(['cartQuantity',"cartToken"])
+  },
+  methods: {
+    ...mapActions(['getCartItems'])
   }
 }
 </script>

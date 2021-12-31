@@ -1,5 +1,5 @@
 import API from './../../Api'
-/*import HTTP from './../../Api/auth'*/
+import HTTP from './../../Api/auth'
 
 const state = {
   catErrors: [],
@@ -7,16 +7,24 @@ const state = {
   category:[],
   listPages:[],
   singlePage:[],
-  pageErrors:[]
-
+  pageErrors:[],
+  products:[],
+  product:[],
+  cartToken:[],
+  productErrors:[]
 }
+
 const getters = {
   categories: state => state.categories,
   catErrors: state => state.catErrors,
   category: state => state.category,
   listPages: state => state.listPages,
   singlePage: state => state.singlePage,
-  pageErrors: state => state.pageErrors
+  pageErrors: state => state.pageErrors,
+  products: state => state.products,
+  product: state => state.product,
+  cartToken: state => state.cartToken,
+  productErrors: state => state.productErrors,  
 }
 
 const actions = {
@@ -47,6 +55,32 @@ const actions = {
     }).catch((errors) => {
       commit("pageErrors", errors.response.data.message)
     })
+  },
+  async getProducts({commit}){
+    API.get(process.env.MIX_APP_APIURL+"products").then((response) => {
+      commit("getProducts", response.data.data)
+    }).catch((errors) => {
+      commit("productErrors", errors.response.data.message)
+    })
+  },
+  async getProduct({commit},id){
+    API.get(process.env.MIX_APP_APIURL+"products/"+id).then((response) => {
+      commit("getProduct", response.data.data)
+    }).catch((errors) => {
+      commit("productErrors", errors.response.data.message)
+    })
+  },
+  async getCartToken({commit}){
+    HTTP.get(process.env.MIX_APP_APIURL+"cart").then((response) => {
+      commit("getCartToken", response.data.data)
+      const cartToken = response.data.data;
+      if(cartToken.key){
+        localStorage.setItem('cartKey', cartToken.key)
+        localStorage.setItem('cartId', cartToken.id)
+      }
+    }).catch((errors) => {
+      commit("pageErrors", errors.response.data.message)
+    })
   }
 }
 const mutations = {
@@ -67,6 +101,18 @@ const mutations = {
   ),
   getPage: (state, page) => (
     state.singlePage = page
+  ),
+  getProducts: (state, products) => (
+    state.products = products
+  ),
+  getProduct: (state, product) => (
+    state.product = product
+  ),
+  getCartToken: (state, payload) => (
+    state.cartToken = payload
+  ),
+  productErrors: (state, payload) => (
+    state.productErrors = payload
   )
 }
 
