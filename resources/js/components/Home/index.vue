@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <div id="map" v-cloak>
+    <!--<div id="map" v-cloak>
       <p>
         Let us locate you for better results...
         <button @click="locateMe">Get location</button>
@@ -15,7 +15,7 @@
       <div v-if="location">
         Your location data is {{ location.coords.latitude }}, {{ location.coords.longitude}}
       </div>
-    </div>
+    </div>-->
     <div class="free_ship_bar">
       <p>
         <img
@@ -72,45 +72,28 @@
     </section>
     <section class="product_slider">
       <div class="container_max">
-        <div class=" row regular slider margin_row">
+        <div
+          class="row regular slider margin_row"
+          v-if="categories && categories.length>0"
+        >
           <slick
             ref="slick"
             :options="slickOptions"
-            @afterChange="handleAfterChange"
-            @beforeChange="handleBeforeChange"
-            @breakpoint="handleBreakpoint"
-            @destroy="handleDestroy"
-            @edge="handleEdge"
-            @init="handleInit"
-            @reInit="handleReInit"
-            @setPosition="handleSetPosition"
-            @swipe="handleSwipe"
-            @lazyLoaded="handleLazyLoaded"
-            @lazyLoadError="handleLazeLoadError">
-            <a href="http://placehold.it/2000x1000">
-              <img :src="imgSl1" alt="">
-              <h3>PetAlive Ear Dr. Dog & Cat Ear Drops</h3>
-            </a>
-            <a href="http://placehold.it/2000x1000">
-              <img :src="imgSl2" alt="">
-              <h3>PetAlive Ear Dr. Dog & Cat Ear Drops</h3>
-            </a>
-            <a href="http://placehold.it/2000x1000">
-              <img :src="imgSl3" alt="">
-              <h3>PetAlive Ear Dr. Dog & Cat Ear Drops</h3>
-            </a>
-            <a href="http://placehold.it/2000x1000">
-              <img :src="imgSl1" alt="">
-              <h3>PetAlive Ear Dr. Dog & Cat Ear Drops</h3>
-            </a>
-            <a href="http://placehold.it/2000x1000">
-              <img :src="imgSl2" alt="">
-              <h3>PetAlive Ear Dr. Dog & Cat Ear Drops</h3>
-            </a>
-            <a href="http://placehold.it/2000x1000">
-              <img :src="imgSl3" alt="">
-              <h3>PetAlive Ear Dr. Dog & Cat Ear Drops</h3>
-            </a>
+          >
+            <div
+              class="category_loop"
+              v-for="(category,catbkey) in categories"  :key="catbkey"
+            >
+              <router-link
+                :to="{ path: 'category/'+category.slug}"
+              >
+                <img
+                  :src="category.feature_image"
+                  :alt="category.name"
+                >
+                <h3>{{category.name}}</h3>
+              </router-link>
+            </div>
           </slick>
         </div>
       </div>
@@ -121,9 +104,10 @@
           <div
             class="col-md-6 txt_over"
             v-for="(category, key) in categories"
-            :key=key
+            :key="key"
           >
             <router-link
+              v-if="key<2"
               :to="{ path: 'category/'+category.slug}"
             >
               <img
@@ -210,16 +194,30 @@
     <section class="cart_slider">
       <div class="container_max">
         <h1 class="line_heading">Sale</h1>
-        <ul class=" row cart_slide slider margin_row">
+        <ul
+          class="row cart_slide slider margin_row"
+          v-if="products.length>0"
+        >
           <slick
             ref="productPanel"
             :options="productPanelOptions"
+            @afterChange="handleAfterChange"
+            @beforeChange="handleBeforeChange"
+            @breakpoint="handleBreakpoint"
+            @destroy="handleDestroy"
+            @edge="handleEdge"
+            @init="handleInit"
+            @reInit="handleReInit"
+            @setPosition="handleSetPosition"
+            @swipe="handleSwipe"
+            @lazyLoaded="handleLazyLoaded"
+            @lazyLoadError="handleLazeLoadError"
           >
-            <li>
+            <li v-for="(product,pkey) in products"  :key="pkey">
               <div class="product_panel">
-                <div class="prod_img">
+                <div class="prod_img" v-if="product.gallary[0]">
                   <img
-                    :src="imgPro2"
+                    :src="product.gallary[0].image_path"
                     alt="Pro5"
                   >
                 </div>
@@ -231,135 +229,14 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                   </div>
-                  <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
-                  <div class="cart_flex">
-                     <h3>$6<sup>.10</sup></h3>
-                    <a href="#">Add To cart</a>
-                  </div>
-                </div>
-                <label class="sale_tag">Sale</label>
-              </div>
-            </li>
-            <li>
-              <div class="product_panel">
-                <div class="prod_img">
-                  <img
-                    :src="imgPro3"
-                    alt="Pro5"
+                  <router-link
+                    :to="{ path: 'products/'+product.id}"
                   >
-                </div>
-                <div class="prod_details">
-                  <div class="rat_ing">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                  </div>
-                  <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
+                    <h5>{{product.name}} </h5>
+                  </router-link>
                   <div class="cart_flex">
-                     <h3>$6<sup>.10</sup></h3>
-                    <a href="#">Add To cart</a>
-                  </div>
-                </div>
-                <label class="sale_tag">Sale</label>
-              </div>
-            </li>
-            <li>
-              <div class="product_panel">
-                <div class="prod_img">
-                  <img
-                    :src="imgPro4"
-                    alt="Pro5"
-                  >
-                </div>
-                <div class="prod_details">
-                  <div class="rat_ing">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                  </div>
-                  <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
-                  <div class="cart_flex">
-                   <h3>$6<sup>.10</sup></h3>
-                    <a href="#">Add To cart</a>
-                  </div>
-                </div>
-                <label class="sale_tag">Sale</label>
-              </div>
-            </li>
-            <li>
-              <div class="product_panel">
-                <div class="prod_img">
-                  <img
-                    :src="imgPro5"
-                    alt="Pro5"
-                  >
-                </div>
-                <div class="prod_details">
-                  <div class="rat_ing">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                  </div>
-                  <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
-                  <div class="cart_flex">
-                      <h3>$6<sup>.10</sup></h3>
-                    <a href="#">Add To cart</a>
-                  </div>
-                </div>
-                <label class="sale_tag">Sale</label>
-              </div>
-            </li>
-            <li>
-              <div class="product_panel">
-                <div class="prod_img">
-                  <img
-                    :src="imgPro4"
-                    alt="Pro5"
-                  >
-                </div>
-                <div class="prod_details">
-                  <div class="rat_ing">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                  </div>
-                  <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
-                  <div class="cart_flex">
-                    <h3>$6<sup>.10</sup></h3>
-                    <a href="#">Add To cart</a>
-                  </div>
-                </div>
-                <label class="sale_tag">Sale</label>
-              </div>
-            </li>
-            <li>
-              <div class="product_panel">
-                <div class="prod_img">
-                  <img
-                    :src="imgPro2"
-                    alt="Pro5"
-                  >
-                </div>
-                <div class="prod_details">
-                  <div class="rat_ing">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                  </div>
-                  <h5>Dr. Doggos’s Really Awesome Dog Foot: Soft... </h5>
-                  <div class="cart_flex">
-                    <h3>$6<sup>.10</sup></h3>
-                    <a href="#">Add To cart</a>
+                     <h3>${{product.sale_price}}<sup></sup></h3>
+                    <a href="javascript:;" @click="addItemInCart(product.id)">Add To cart</a>
                   </div>
                 </div>
                 <label class="sale_tag">Sale</label>
@@ -511,10 +388,6 @@ import imgBag from "../../assets/images/bag.png"
 import imgPawP from "../../assets/images/paw_p.png"
 import imgMonk from "../../assets/images/monk.png"
 import imgBath from "../../assets/images/bath.jpg"
-import imgPro5 from "../../assets/images/pro5.png"
-import imgPro2 from "../../assets/images/pro2.jpg"
-import imgPro3 from "../../assets/images/pro3.jpg"
-import imgPro4 from "../../assets/images/pro4.jpg"
 import imgGnaw from "../../assets/images/gnaw.png"
 import imgHeat from "../../assets/images/heat.jpg"
 import imgTouch from "../../assets/images/touch.jpg"
@@ -541,10 +414,6 @@ export default {
       imgPawP: imgPawP,
       imgMonk: imgMonk,
       imgBath: imgBath,
-      imgPro5: imgPro5,
-      imgPro4: imgPro4,
-      imgPro3: imgPro3,
-      imgPro2: imgPro2,
       imgGnaw: imgGnaw,
       imgHeat: imgHeat,
       imgTouch: imgTouch,
@@ -554,8 +423,7 @@ export default {
       slickOptions: {
         slidesToShow: 3,
         infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToScroll: 2,
 		      responsive: [
             {
               breakpoint: 1024,
@@ -589,8 +457,7 @@ export default {
       productPanelOptions: {
         slidesToShow: 5,
         infinite: true,
-        slidesToShow: 5,
-        slidesToScroll: 5,
+        slidesToScroll: 3,
 		      responsive: [
             {
               breakpoint: 1024,
@@ -603,7 +470,7 @@ export default {
             {
               breakpoint: 767,
               settings: {
-                slidesToShow: 1,
+                slidesToShow: 2,
                 slidesToScroll: 1,
                 centerMode: true,
 		            centerPadding: '60px'
@@ -626,12 +493,23 @@ export default {
       errorStr:null
     }
   },
+  created(){
+    if(this.tokenStatus != null){
+      this.getCategories()
+      this.getProducts()
+      this.getPages()
+    }
+  },
   mounted(){
     this.init()
-    this.getPages()
     this.locateMe()
   },
   watch: {
+    tokenStatus(){
+      this.getCategories()
+      this.getProducts()
+      this.getPages()
+    },
     categories(){
       const listCategories = this.categories
       var insertCat =[]
@@ -644,18 +522,31 @@ export default {
       })
       this.firstCatbanners=insertCat
     },
-    tokenStatus(){
-      this.getCategories()
+    addCartItems(){
+      this.getCartItems()
     }
   },
   computed: {
-    ...mapGetters(['categories','tokenStatus','listPages'])
+    ...mapGetters(['categories','tokenStatus','listPages','products','addCartItems'])
   },
   methods: {
-    ...mapActions(['getCategories','getPages']),
+    ...mapActions(['getCategories','getPages','getProducts','addCartItem','getCartItems']),
     async init(){
       if(localStorage.getItem("token") && localStorage.getItem("token") !='' && localStorage.getItem("token") !='undefined'){
-        this.getCategories()
+        /*this.getCategories()*/
+      }
+    },
+    addItemInCart(proId){
+      if(proId){
+        const cartkey = localStorage.getItem('cartKey')
+        const itemDetails= {
+          key: cartkey,
+          product_id: proId,
+          quantity: 1,
+          variation_product_id:0
+        }
+        this.addCartItem(itemDetails)
+
       }
     },
     async getLocation() {

@@ -1,4 +1,4 @@
-/*import axios from 'axios'*/
+import axios from 'axios'
 import API from './../../Api'
 import HTTP from './../../Api/auth'
 
@@ -7,7 +7,7 @@ const state = {
   userDetails:[],
   accountDetails:[],
   accountErrors:[],
-  tokenStatus:'',
+  tokenStatus: localStorage.getItem("token"),
   tokenError:''
 }
 const formData = new FormData()
@@ -48,7 +48,7 @@ const actions = {
     })
   },
   async getToken({commit}){
-    API.post(process.env.MIX_APP_APIURL+'oauth/token', formData).then((response) => {
+    await axios.post(process.env.MIX_APP_APIURL+'oauth/token', formData).then((response) => {
       localStorage.setItem('token', response.data.Token)
       commit("tokenStatus", 'token is set!')
     }).catch((errors) => {

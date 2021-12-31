@@ -1,0 +1,25 @@
+.errorMsg{
+  width: 100%;
+  color: red;
+  font-size: 14px;
+  font-weight: normal;
+}
+.button{
+  color: #fff;
+  background: red;
+  border-radius: 4px;
+  padding: 5px;
+  list-style: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+.button:hover{
+  color: #fff;
+  list-style: none;
+  text-decoration: none;
+}
+.button strong{
+  color: #fff;
+}
+.main table tr td {font-weight: normal;}
+.totalamount{text-align: right;}
