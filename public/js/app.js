@@ -13287,28 +13287,22 @@ var getters = {
     }, 0).toFixed(2);
   }
 };
-var cartKey = '';
-var cartId = '';
-
-if (localStorage.getItem('cartKey') != '' && localStorage.getItem('cartId') != '') {
-  cartKey = localStorage.getItem('cartKey');
-  cartId = localStorage.getItem('cartId');
-}
-
 var actions = {
   getCartItems: function getCartItems(_ref) {
     return (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
-      var commit;
+      var commit, cartKey, cartId;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               commit = _ref.commit;
+              cartKey = localStorage.getItem('cartKey');
+              cartId = localStorage.getItem('cartId');
               _Api_auth__WEBPACK_IMPORTED_MODULE_5__["default"].get("http://3.132.243.209/api/" + 'cart/' + cartId + '?key=' + cartKey).then(function (response) {
                 commit('getItemsCart', response.data.data);
               });
 
-            case 2:
+            case 4:
             case "end":
               return _context.stop();
           }
@@ -13318,6 +13312,7 @@ var actions = {
   },
   addCartItem: function addCartItem(_ref2, cartItem) {
     var commit = _ref2.commit;
+    var cartId = localStorage.getItem('cartId');
     _Api_auth__WEBPACK_IMPORTED_MODULE_5__["default"].post("http://3.132.243.209/api/" + 'cart/' + cartId, cartItem).then(function (response) {
       commit('addItemCart', response.data.data);
     });

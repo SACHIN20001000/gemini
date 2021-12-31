@@ -23,20 +23,17 @@ const getters = {
     }, 0).toFixed(2);
   },
 }
-let cartKey =''
-let cartId = ''
-if(localStorage.getItem('cartKey') != '' && localStorage.getItem('cartId') !=''){
-  cartKey = localStorage.getItem('cartKey')
-  cartId = localStorage.getItem('cartId')
-}
 
 const actions = {
   async getCartItems ({ commit }) {
+    const cartKey = localStorage.getItem('cartKey')
+    const cartId = localStorage.getItem('cartId')
     HTTP.get(process.env.MIX_APP_APIURL+'cart/'+cartId+'?key='+cartKey).then((response) => {
       commit('getItemsCart', response.data.data)
     });
   },
-  addCartItem ({ commit }, cartItem) {
+  addCartItem ({ commit }, cartItem) { 
+    const cartId = localStorage.getItem('cartId')
     HTTP.post(process.env.MIX_APP_APIURL+'cart/'+cartId, cartItem).then((response) => {
       commit('addItemCart', response.data.data)
     });
