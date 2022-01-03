@@ -4,9 +4,17 @@ const HTTP =  axios.create({
   baseURL: `{process.env.MIX_APP_APIURL}`
 })
 
+const formData = new FormData()
+formData.append('client_id', 2)
+formData.append('client_secret', '8BSSg7qMYw2NAJaiMhQOCYxGlFSs141SLfPRLU')
+
 HTTP.interceptors.request.use((config) => {
     if (localStorage.getItem("userauth") !== null) {
       config.headers.Authorization = `Bearer ${localStorage.getItem("userauth")}`
+    }else if (localStorage.getItem('token') != null) {
+      config.headers.Token = `${localStorage.getItem('token')}`
+    }else {
+      config.headers.Token = getTokenResponse()
     }
     return config
   }, function (error) {
@@ -19,6 +27,14 @@ HTTP.interceptors.response.use(function (response) {
   return Promise.reject(error)
 })
 
+async function getTokenResponse(){
+  await axios.post(process.env.MIX_APP_APIURL+'oauth/token', formData).then((response) => {
+    localStorage.setItem('token', response.data.Token)
+    return response.data.Token
+  }).catch(() => {
+    return ''
+  })
+}
 /*function getWithExpiry(key) {
 	const itemStr = localStorage.getItem(key)
 	if (!itemStr) {

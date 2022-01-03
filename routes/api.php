@@ -53,7 +53,7 @@ Route::middleware('auth:api')->group(function ()
 
 Route::resource('cart', CartController::class);
 Route::get('cartIdByKey', [CartController::class, 'getCartIDUsingKey']);
-Route::post('cart/{cart}/{itemId}', [CartController::class, 'deleteCartItem']);
+Route::delete('cart/{cart}/{itemId}', [CartController::class, 'deleteCartItem']);
 
 
 
