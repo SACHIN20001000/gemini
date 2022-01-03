@@ -212,7 +212,9 @@ class CartController extends Controller
         if ($cart->key == $request->key) {
             CartItem::where('cart_id',$cart->id)->delete();
             $cart->delete();
-            return response()->json(null, 204);
+            return response()->json([
+                'message' => 'Cart has been deleted.',
+            ], 204);
 
         } else {
 
@@ -273,7 +275,9 @@ class CartController extends Controller
      
             $itemId->delete();
             
-            return response()->json(null, 204);
+            return response()->json([
+                'message' => 'Cart item has been deleted.',
+            ], 204);
 
         } else {
 
