@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\ProductVariation;
 use App\Models\CartItem;
 use App\Http\Resources\Carts\CartResource;
 use App\Http\Resources\Carts\CartItemsResource;
 use App\Http\Requests\API\CartIdRequest;
+use App\Http\Requests\API\CheckoutRequest;
 use App\Http\Requests\API\CartAddProductRequest;
 class CartController extends Controller
 {
@@ -400,6 +402,34 @@ class CartController extends Controller
 
             return response()->json([
                 'message' => 'The CarKey you provided does not match the Cart Key for this Cart.',
+            ], 400);
+        }
+
+    }
+
+    public function checkout(Cart $cart, CheckoutRequest $request)
+    {
+        if ($cart->key == $request->key) {
+            $name = $request->name;
+            $address = $request->address;
+            // $transactionID = $request->transactionID;
+            $totalPrice = (float) 0.0;
+            
+            $items = $cart->items;
+
+            foreach ($items as $item) {
+                if($item->variation_product_id !=0)
+                {
+                    $product = ProductVariation::find($item->variation_product_id);
+                }
+                else
+                {
+                    $product = Product::find($item->product_id);
+                }
+            }
+        } else {
+            return response()->json([
+                'message' => 'The Key you provided does not match the Cart Key for this Cart.',
             ], 400);
         }
 
