@@ -19,6 +19,8 @@ class CreatePostsTable extends Migration
             $table->text('title');
             $table->text('slug');
             $table->longText('content');
+            $table->longText('css');
+
             $table->text('category');
             $table->text('status');
             $table->text('feature_image');

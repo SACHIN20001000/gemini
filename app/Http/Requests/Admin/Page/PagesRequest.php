@@ -27,7 +27,8 @@ class PagesRequest extends FormRequest
             'title'=>'required|string',
             'category'  =>'required',
             'content'  =>'required',
-            'status'  =>'required'
+            'status'  =>'required',
+            'css' =>'required'
         ];
     }
 }
