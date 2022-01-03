@@ -409,23 +409,49 @@ class CartController extends Controller
 
     public function checkout(Cart $cart, CheckoutRequest $request)
     {
+        
         if ($cart->key == $request->key) {
             $name = $request->name;
             $address = $request->address;
-            // $transactionID = $request->transactionID;
+            $zip_code = $request->zip_code;
+            $email = $request->email;
+            $state = $request->state;
+            $city = $request->city;
+            $country = $request->country;
+
+
+        
             $totalPrice = (float) 0.0;
             
             $items = $cart->items;
-
+         
             foreach ($items as $item) {
+             
                 if($item->variation_product_id !=0)
                 {
                     $product = ProductVariation::find($item->variation_product_id);
+                    $variationPrice= $product->sale_price;
+                  $totalVariationPrice=   $variationPrice* $item->quantity;
                 }
-                else
+               if($item->product_id !=0)
                 {
                     $product = Product::find($item->product_id);
+                    $productPrice= $product->sale_price;
+                    $totalproductPrice=   $productPrice* $item->quantity;
+                   
                 }
+                $totalPrice= $totalVariationPrice+ $totalproductPrice;
+               
+                print_r( $totalPrice);
+                die;
+                $order = Order::create([
+                    'products' => $product->productName,
+                    'totalPrice' => $totalPrice,
+                    'name' => $name,
+                    'address' => $address,
+                    'userID' => isset($userId) ? $userId : null,
+                    'transactionID' => $transactionID,
+                ]);
             }
         } else {
             return response()->json([
