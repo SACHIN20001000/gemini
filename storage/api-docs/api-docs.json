@@ -807,6 +807,74 @@
                 }
             }
         },
+        "/stores": {
+            "get": {
+                "tags": [
+                    "Stores"
+                ],
+                "summary": "stores",
+                "operationId": "stores",
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StoreResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/stores/{store}": {
+            "get": {
+                "tags": [
+                    "Stores"
+                ],
+                "summary": "store By Id",
+                "operationId": "store By Id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "1",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StoreResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "/profile": {
             "get": {
                 "tags": [
@@ -1188,6 +1256,20 @@
                             "insta": null,
                             "linkedin": null,
                             "copyright": null
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "StoreResponse": {
+                "title": "store Response",
+                "description": "store Response",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "example": {
+                            "id": 1,
+                            "name": "nike"
                         }
                     }
                 },

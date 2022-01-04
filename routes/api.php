@@ -11,7 +11,6 @@ use App\Http\Controllers\API\CartController;
 use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\SettingController;
 
-use App\Http\Controllers\API\SettingController;
 use App\Http\Controllers\API\StoreController;
 use App\Http\Middleware\EnsureApiTokenIsValid;
 /*
