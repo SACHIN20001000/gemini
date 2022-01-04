@@ -8,6 +8,7 @@ use App\Models\Cart;
 use App\Models\Product;
 use App\Models\ProductVariation;
 use App\Models\CartItem;
+use Auth;
 use App\Http\Resources\Carts\CartResource;
 use App\Http\Resources\Carts\CartItemsResource;
 use App\Http\Requests\API\CartIdRequest;
@@ -418,7 +419,7 @@ class CartController extends Controller
             $state = $request->state;
             $city = $request->city;
             $country = $request->country;
-
+            $userId= Auth::user();
 
         
             $totalPrice = (float) 0.0;
@@ -429,28 +430,35 @@ class CartController extends Controller
              
                 if($item->variation_product_id !=0)
                 {
-                    $product = ProductVariation::find($item->variation_product_id);
-                    $variationPrice= $product->sale_price;
-                  $totalVariationPrice=   $variationPrice* $item->quantity;
+                    $product = ProductVariation::with('products')->find($item->variation_product_id);
+                    $productPrice= $product->sale_price;
+                    $totalPrice=   $productPrice* $item->quantity;
+                    $productName= $product['products']->productName;
+                  
                 }
-               if($item->product_id !=0)
+              else
                 {
+                    
                     $product = Product::find($item->product_id);
                     $productPrice= $product->sale_price;
-                    $totalproductPrice=   $productPrice* $item->quantity;
+                    $totalPrice=   $productPrice* $item->quantity;
+                    $productName= $product->productName;
                    
                 }
-                $totalPrice= $totalVariationPrice+ $totalproductPrice;
+                
+             
                
-                print_r( $totalPrice);
-                die;
                 $order = Order::create([
-                    'products' => $product->productName,
+                    'products' => $productName,
                     'totalPrice' => $totalPrice,
                     'name' => $name,
                     'address' => $address,
                     'userID' => isset($userId) ? $userId : null,
-                    'transactionID' => $transactionID,
+                    'email' => $email,
+                    'state' => $state,
+                    'city' => $city,
+                    'country' => $country,
+
                 ]);
             }
         } else {
