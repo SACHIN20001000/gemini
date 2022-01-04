@@ -9,6 +9,7 @@ use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\PageController;
 use App\Http\Controllers\API\CartController;
 use App\Http\Controllers\API\OrderController;
+use App\Http\Controllers\API\SettingController;
 
 use App\Http\Controllers\API\SettingController;
 use App\Http\Controllers\API\StoreController;
