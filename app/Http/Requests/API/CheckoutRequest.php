@@ -26,7 +26,7 @@ class CheckoutRequest extends FormRequest
         return [
             'key' => 'required',
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|email',
             'address' => 'required',
             'zip_code' => 'required',
             'city' => 'required',
