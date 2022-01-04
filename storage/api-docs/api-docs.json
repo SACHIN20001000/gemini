@@ -390,6 +390,74 @@
                 ]
             }
         },
+        "/order": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "get orders",
+                "operationId": "get orders",
+                "responses": {
+                    "200": {
+                        "description": "get orders",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/order/{order}": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "get order by id",
+                "operationId": "get order by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "1",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "get orders",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "/pages": {
             "get": {
                 "tags": [
@@ -991,6 +1059,30 @@
                         "title": "Not found",
                         "description": "Not found",
                         "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "OrderResponse": {
+                "title": "Order Response",
+                "description": "Order Response",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "example": {
+                            "id": 1,
+                            "product_name": "test test",
+                            "total_price": "84.00",
+                            "user_id": null,
+                            "name": "user",
+                            "email": "test@gmail.com",
+                            "city": "chd",
+                            "state": "punjab",
+                            "zip_code": "140301",
+                            "address": "fgdfgfg",
+                            "country": "india",
+                            "created_at": "2022-01-04T04:59:18.000000Z"
+                        }
                     }
                 },
                 "type": "object"
