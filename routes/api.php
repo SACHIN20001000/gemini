@@ -11,6 +11,7 @@ use App\Http\Controllers\API\CartController;
 use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\SettingController;
 
+use App\Http\Controllers\API\StoreController;
 use App\Http\Middleware\EnsureApiTokenIsValid;
 /*
   |--------------------------------------------------------------------------
@@ -55,14 +56,14 @@ Route::middleware('auth:api')->group(function ()
 Route::resource('cart', CartController::class);
 Route::get('cartIdByKey', [CartController::class, 'getCartIDUsingKey']);
 Route::delete('cart/{cart}/{itemId}', [CartController::class, 'deleteCartItem']);
-
-
-
 Route::post('/cart/{cart}',[CartController::class, 'addProducts']);
 Route::post('/checkout/{cart}',[CartController::class, 'checkout']);
 Route::get('settings', [SettingController::class, 'index']);
 
+Route::get('stores', [StoreController::class, 'index']);
+Route::get('stores/{store}', [StoreController::class, 'show']);
 
+Route::resource('order', OrderController::class);
 
 
 

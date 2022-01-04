@@ -390,6 +390,74 @@
                 ]
             }
         },
+        "/order": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "get orders",
+                "operationId": "get orders",
+                "responses": {
+                    "200": {
+                        "description": "get orders",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/order/{order}": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "get order by id",
+                "operationId": "get order by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "1",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "get orders",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "/pages": {
             "get": {
                 "tags": [
@@ -709,6 +777,104 @@
                 ]
             }
         },
+        "/settings": {
+            "get": {
+                "tags": [
+                    "Settings"
+                ],
+                "summary": "settings",
+                "operationId": "settings",
+                "responses": {
+                    "200": {
+                        "description": "settings",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SettingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/stores": {
+            "get": {
+                "tags": [
+                    "Stores"
+                ],
+                "summary": "stores",
+                "operationId": "stores",
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StoreResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/stores/{store}": {
+            "get": {
+                "tags": [
+                    "Stores"
+                ],
+                "summary": "store By Id",
+                "operationId": "store By Id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "1",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StoreResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "/profile": {
             "get": {
                 "tags": [
@@ -995,6 +1161,30 @@
                 },
                 "type": "object"
             },
+            "OrderResponse": {
+                "title": "Order Response",
+                "description": "Order Response",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "example": {
+                            "id": 1,
+                            "product_name": "test test",
+                            "total_price": "84.00",
+                            "user_id": null,
+                            "name": "user",
+                            "email": "test@gmail.com",
+                            "city": "chd",
+                            "state": "punjab",
+                            "zip_code": "140301",
+                            "address": "fgdfgfg",
+                            "country": "india",
+                            "created_at": "2022-01-04T04:59:18.000000Z"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "PageResponse": {
                 "title": "Page Response",
                 "description": "Page Response",
@@ -1045,6 +1235,41 @@
                             "created": "Dec 10, 2021 11:34:05",
                             "updated_at": "2021-12-10T11:34:05.000000Z",
                             "childrens": "[]"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "SettingResponse": {
+                "title": "settings Response",
+                "description": "settings Response",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "example": {
+                            "site_title": "dfdfdf",
+                            "site_email": "test@gmail.com",
+                            "phone": "1212121",
+                            "logo": null,
+                            "facebook": null,
+                            "youtube": null,
+                            "insta": null,
+                            "linkedin": null,
+                            "copyright": null
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "StoreResponse": {
+                "title": "store Response",
+                "description": "store Response",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "example": {
+                            "id": 1,
+                            "name": "nike"
                         }
                     }
                 },
