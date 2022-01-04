@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\Page;
+namespace App\Http\Requests\Admin\Orders;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PagesRequest extends FormRequest
+class UpdateOrders extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,9 @@ class PagesRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'=>'required|string',
-            'category'  =>'required',
-            'content'  =>'required',
-            'status'  =>'required',
-            'css' =>'required'
+            'name' => [
+            'required'
+            ],'transactionID' => 'required', 'address' => 'required','totalPrice' => 'required','products'=>'required'
         ];
     }
 }

@@ -51,6 +51,15 @@
 										</div>
 										<div class="row row-xs align-items-center mg-b-20">
 											<div class="col-md-2">
+												<label class="form-label mg-b-0">Css</label>
+											</div>
+											<div class="col-md-10 mg-t-5 mg-md-t-0">
+                        <textarea name="css" class="form-control"  id="" cols="30" rows="10">{{$post->css}}</textarea>
+												
+											</div>
+										</div>
+										<div class="row row-xs align-items-center mg-b-20">
+											<div class="col-md-2">
 												<label class="form-label mg-b-0">Category</label>
 											</div>
                       <div class="col-md-10 mg-t-5 mg-md-t-0">
@@ -98,6 +107,8 @@
 <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
 <script>
                         CKEDITOR.replace( 'content' );
+                        CKEDITOR.replace( 'css' );
+
                 </script>
 @endsection
 @section('scripts')

@@ -84,6 +84,8 @@ class PageController extends Controller
             'created_by'=>Auth::User()->id,
             'status'  =>  $request->status,
             'content' =>  $request->content,
+            'css' =>  $request->css,
+
             'slug' =>     Str::slug($request->title),
             'category' =>     $request->category,
             'feature_image' => $path ?? null
@@ -101,17 +103,20 @@ class PageController extends Controller
 
     //below function update the data 
     public function updatePage(PagesRequest $request)  {
+        $post =Post::find($request->id);
         if(!empty($request->feature_image)){
             $path = Storage::disk('s3')->put('images/pages', $request->feature_image);
             $path = Storage::disk('s3')->url($path);
-           
+            $post->feature_image = $path;
         }
-       $post =Post::find($request->id); 
+       
        $post->title =  $request->title;
        $post->status =  $request->status;
        $post->content =  $request->content;
+       $post->css =  $request->css;
+
        $post->category =  $request->category;
-       $post->feature_image = $path ?? null;
+     
        $post->save();
       
           return redirect('admin/page')->with('success', 'Page Updated Successfully');
