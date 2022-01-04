@@ -101,8 +101,18 @@
 
 <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
 <script>
-                        CKEDITOR.replace( 'content' );
-                        CKEDITOR.replace( 'css' );
+ 
+ CKEDITOR.config.autoParagraph = false; 
+ CKEDITOR.config.fillEmptyBlocks = false; 
+ CKEDITOR.config.basicEntities = false; 
+ CKEDITOR.config.entities_greek = false; 
+ CKEDITOR.config.entities_latin = false; 
+
+
+
+						CKEDITOR.replace( 'content' );
+            CKEDITOR.replace( 'css' );
+					
 
                 </script>
 @endsection
