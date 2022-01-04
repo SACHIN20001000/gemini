@@ -58,7 +58,7 @@ Route::delete('cart/{cart}/{itemId}', [CartController::class, 'deleteCartItem'])
 
 
 Route::post('/cart/{cart}',[CartController::class, 'addProducts']);
-Route::post('/order/{cart}',[OrderController::class, 'checkout']);
+Route::post('/checkout/{cart}',[CartController::class, 'checkout']);
 
 
 

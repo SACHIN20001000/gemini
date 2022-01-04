@@ -271,6 +271,47 @@
                 }
             }
         },
+        "/checkout/{cart}": {
+            "post": {
+                "tags": [
+                    "Carts"
+                ],
+                "summary": "Add checkout for order from cart",
+                "operationId": "CheckOutCart",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CartCheckoutRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "/categories": {
             "get": {
                 "tags": [
@@ -762,6 +803,61 @@
                     }
                 },
                 "type": "string"
+            },
+            "CartCheckoutRequest": {
+                "title": "Create new checkout",
+                "description": "Request for create a new checkout for a cart",
+                "properties": {
+                    "key": {
+                        "title": "key",
+                        "description": "key  for storring",
+                        "type": "string",
+                        "example": "e2e26459499dac9e6361419963e2e42861cc42adb8d6d"
+                    },
+                    "name": {
+                        "title": "name ",
+                        "description": "name for storring",
+                        "type": "string",
+                        "example": "john"
+                    },
+                    "email": {
+                        "title": "email",
+                        "description": "email for storring",
+                        "type": "string",
+                        "example": "john@gmail.com"
+                    },
+                    "address": {
+                        "title": "address",
+                        "description": "address  for storring",
+                        "type": "string",
+                        "example": "2"
+                    },
+                    "zip_code": {
+                        "title": "zip_code",
+                        "description": "zip_code  for storring",
+                        "type": "string",
+                        "example": "2"
+                    },
+                    "city": {
+                        "title": "city",
+                        "description": "city  for storring",
+                        "type": "string",
+                        "example": "2"
+                    },
+                    "state": {
+                        "title": "state",
+                        "description": "state  for storring",
+                        "type": "string",
+                        "example": "2"
+                    },
+                    "country": {
+                        "title": "country",
+                        "description": "country  for storring",
+                        "type": "string",
+                        "example": "2"
+                    }
+                },
+                "type": "object"
             },
             "CartKeyRequest": {
                 "title": "Create new Cart",

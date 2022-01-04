@@ -6,10 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\ProductVariation;
 use App\Models\CartItem;
+use App\Models\Order;
+
+use Auth;
 use App\Http\Resources\Carts\CartResource;
 use App\Http\Resources\Carts\CartItemsResource;
 use App\Http\Requests\API\CartIdRequest;
+use App\Http\Requests\API\CheckoutRequest;
 use App\Http\Requests\API\CartAddProductRequest;
 class CartController extends Controller
 {
@@ -404,6 +409,107 @@ class CartController extends Controller
 
             return response()->json([
                 'message' => 'The CarKey you provided does not match the Cart Key for this Cart.',
+            ], 400);
+        }
+
+    }
+ /**
+     * @OA\Post(
+     ** path="/checkout/{cart}",
+     *   tags={"Carts"},
+     *   summary="Add checkout for order from cart",
+     *   operationId="CheckOutCart",
+     * *        *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="3",
+     *         required=true,
+     *      ),
+     *      *    @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CartCheckoutRequest")
+     *     ),
+     *    @OA\Response(
+     *         response="200",
+     *         description="Everything is fine",
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     *)
+     **/
+    /**
+     * Add Product into cart api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function checkout(Cart $cart, CheckoutRequest $request)
+    {
+        
+        if ($cart->key == $request->key) {
+            $name = $request->name;
+            $address = $request->address;
+            $zip_code = $request->zip_code;
+            $email = $request->email;
+            $state = $request->state;
+            $city = $request->city;
+            $country = $request->country;
+            $userId= Auth::user();
+
+        
+            $totalPrice = (float) 0.0;
+            
+            $items = $cart->items;
+         
+            foreach ($items as $item) {
+             
+                if($item->variation_product_id !=0)
+                {
+                    $product = ProductVariation::with('products')->find($item->variation_product_id);
+                    $productPrice= $product->sale_price;
+                    $totalPrice=   $productPrice* $item->quantity;
+                    $productName= $product['products']->productName;
+                  
+                }
+              else
+                {
+                    
+                    $product = Product::find($item->product_id);
+                    $productPrice= $product->sale_price;
+                    $totalPrice=   $productPrice* $item->quantity;
+                    $productName= $product->productName;
+                   
+                }
+                
+             
+               
+                $order = Order::create([
+                    'product_name' => $productName,
+                    'total_price' => $totalPrice,
+                    'name' => $name,
+                    'address' => $address,
+                    'user_id' => isset($userId) ? $userId : null,
+                    'email' => $email,
+                    'state' => $state,
+                    'city' => $city,
+                    'zip_code' => $zip_code,
+
+                    'country' => $country,
+
+                ]);
+                return response()->json([
+                    'message' => 'Order created successfully',
+                ], 400); 
+            }
+        } else {
+            return response()->json([
+                'message' => 'The Key you provided does not match the Cart Key for this Cart.',
             ], 400);
         }
 
