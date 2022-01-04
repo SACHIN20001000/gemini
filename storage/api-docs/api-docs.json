@@ -777,6 +777,36 @@
                 ]
             }
         },
+        "/settings": {
+            "get": {
+                "tags": [
+                    "Settings"
+                ],
+                "summary": "settings",
+                "operationId": "settings",
+                "responses": {
+                    "200": {
+                        "description": "settings",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SettingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "/profile": {
             "get": {
                 "tags": [
@@ -1137,6 +1167,27 @@
                             "created": "Dec 10, 2021 11:34:05",
                             "updated_at": "2021-12-10T11:34:05.000000Z",
                             "childrens": "[]"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "SettingResponse": {
+                "title": "settings Response",
+                "description": "settings Response",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "example": {
+                            "site_title": "dfdfdf",
+                            "site_email": "test@gmail.com",
+                            "phone": "1212121",
+                            "logo": null,
+                            "facebook": null,
+                            "youtube": null,
+                            "insta": null,
+                            "linkedin": null,
+                            "copyright": null
                         }
                     }
                 },
