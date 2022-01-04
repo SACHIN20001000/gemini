@@ -8,35 +8,85 @@ use App\Models\Product;
 use App\Models\CartItem;
 use Illuminate\Http\Request;
 use App\Http\Requests\API\OrderRequest;
-use App\Http\Resources\OrderCollection as OrderCollection;
-use App\Http\Resources\OrderResource as OrderResource;
+use App\Http\Resources\Orders\OrderResource;
 use Illuminate\Support\Facades\Validator;
 
 
 class OrderController extends Controller
 {
     /**
-     * Display a listing of the User orders.
+     * @OA\Get(
+     *      path="/order",
+     *      operationId="get orders",
+     *      tags={"Orders"},
+     *     summary="get orders",
+     *     @OA\Response(
+     *         response="200",
+     *         description="get orders",
+     *         @OA\JsonContent(ref="#/components/schemas/OrderResponse")
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
+     * Store a newly created resource in storage.
      *
-     * @return \Illuminate\Http\Response
+     * @param \App\Http\Requests\ExampleStoreRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+
+    public function index(Request $request)
     {
-       $userOrders = Order::where('userID', auth()->id())->get();
-       return new OrderCollection($userOrders);
+        $limit = $request->limit ? $request->limit : 20;
+        $orders = Order::paginate($limit);
+        return OrderResource::collection($orders);
     }
 
 
-
-    /**
-     * Display the specified resource.
+   /**
+     * @OA\Get(
+     *      path="/order/{order}",
+     *      operationId="get order by id",
+     *      tags={"Orders"},
+     *     summary="get order by id",
+     *       @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="1",
+     *         required=true,
+     *      ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="get orders",
+     *         @OA\JsonContent(ref="#/components/schemas/OrderResponse")
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
+     * Store a newly created resource in storage.
      *
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
+     * @param \App\Http\Requests\ExampleStoreRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
+
     public function show(Order $order)
     {
-        if($order->userID == auth()->id()){
+        if(!empty($order)){
              return new OrderResource($order);
          }else{
             return response()->json([

@@ -499,7 +499,6 @@ class CartController extends Controller
                     'state' => $state,
                     'city' => $city,
                     'zip_code' => $zip_code,
-
                     'country' => $country,
 
                 ]);
