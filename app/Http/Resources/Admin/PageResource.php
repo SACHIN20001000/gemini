@@ -21,6 +21,7 @@ class PageResource extends JsonResource
             'title' => $this->title,
             'slug' => $this->slug,
             'content' => $this->content,
+            'css' => $this->css,
             'feature_image' => $this->feature_image,
             'status' => $this->status,
             'user' => $this->users->name,
