@@ -10,6 +10,8 @@ use App\Http\Controllers\API\PageController;
 use App\Http\Controllers\API\CartController;
 use App\Http\Controllers\API\OrderController;
 
+use App\Http\Controllers\API\SettingController;
+use App\Http\Controllers\API\StoreController;
 use App\Http\Middleware\EnsureApiTokenIsValid;
 /*
   |--------------------------------------------------------------------------
@@ -59,7 +61,10 @@ Route::delete('cart/{cart}/{itemId}', [CartController::class, 'deleteCartItem'])
 
 Route::post('/cart/{cart}',[CartController::class, 'addProducts']);
 Route::post('/checkout/{cart}',[CartController::class, 'checkout']);
+Route::get('settings', [SettingController::class, 'index']);
 
+Route::get('stores', [StoreController::class, 'index']);
+Route::get('stores/{store}', [StoreController::class, 'show']);
 
 
 
