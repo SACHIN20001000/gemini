@@ -507,7 +507,7 @@ class CartController extends Controller
                 ]);
                 return response()->json([
                     'message' => 'Order created successfully',
-                ], 400); 
+                ], 200); 
             }
         } else {
             return response()->json([
