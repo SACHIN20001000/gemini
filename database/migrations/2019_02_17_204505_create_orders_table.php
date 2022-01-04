@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->longText('product_id');
+            $table->longText('product_name');
             $table->decimal('total_price');
             $table->unsignedInteger('user_id')->nullable();
             $table->String('name');
@@ -23,8 +23,6 @@ class CreateOrdersTable extends Migration
             $table->text('city');
             $table->text('state');
             $table->text('zip_code');
-            $table->text('address');
-            $table->text('address');
             $table->text('address');
             $table->String('country');
             $table->timestamps();

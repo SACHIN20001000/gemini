@@ -8,6 +8,8 @@ use App\Models\Cart;
 use App\Models\Product;
 use App\Models\ProductVariation;
 use App\Models\CartItem;
+use App\Models\Order;
+
 use Auth;
 use App\Http\Resources\Carts\CartResource;
 use App\Http\Resources\Carts\CartItemsResource;
@@ -407,7 +409,42 @@ class CartController extends Controller
         }
 
     }
-
+ /**
+     * @OA\Post(
+     ** path="/checkout/{cart}",
+     *   tags={"Carts"},
+     *   summary="Add checkout for order from cart",
+     *   operationId="CheckOutCart",
+     * *        *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="3",
+     *         required=true,
+     *      ),
+     *      *    @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CartCheckoutRequest")
+     *     ),
+     *    @OA\Response(
+     *         response="200",
+     *         description="Everything is fine",
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     *)
+     **/
+    /**
+     * Add Product into cart api
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function checkout(Cart $cart, CheckoutRequest $request)
     {
         
@@ -449,17 +486,22 @@ class CartController extends Controller
              
                
                 $order = Order::create([
-                    'products' => $productName,
-                    'totalPrice' => $totalPrice,
+                    'product_name' => $productName,
+                    'total_price' => $totalPrice,
                     'name' => $name,
                     'address' => $address,
-                    'userID' => isset($userId) ? $userId : null,
+                    'user_id' => isset($userId) ? $userId : null,
                     'email' => $email,
                     'state' => $state,
                     'city' => $city,
+                    'zip_code' => $zip_code,
+
                     'country' => $country,
 
                 ]);
+                return response()->json([
+                    'message' => 'Order created successfully',
+                ], 400); 
             }
         } else {
             return response()->json([
