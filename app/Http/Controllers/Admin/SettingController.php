@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Setting;
 use DataTables;
 use App\Http\Requests\Admin\Setting\Addsetting;
-use App\Http\Requests\Admin\Setting\Updatesetting;
+use App\Http\Requests\Admin\Setting\UpdateSetting;
 use Storage;
 class SettingController extends Controller
 {
@@ -85,7 +85,7 @@ class SettingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Updatesetting $request, Setting $Setting)
+    public function update(UpdateSetting $request, Setting $Setting)
     {
        
         $inputs = $request->all();

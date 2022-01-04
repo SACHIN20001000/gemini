@@ -27,11 +27,14 @@
                         <table class="table card-table table-striped table-vcenter text-nowrap mb-0" id="datatable">
                             <thead>
                                 <tr>
-                                    <th class="wd-lg-20p"><span>Product</span></th>
-                                    <th class="wd-lg-20p"><span>Price</span></th>
-                                    <th class="wd-lg-20p"><span>Name</span></th>
-                                    <th class="wd-lg-20p"><span>Address</span></th>
                                     <th class="wd-lg-20p"><span>Transaction Id</span></th>
+                                    <th class="wd-lg-20p"><span>Unit Price</span></th>
+                                    <th class="wd-lg-20p"><span>Quantity</span></th>
+                                    <th class="wd-lg-20p"><span>Total Price</span></th>
+
+                                    <th class="wd-lg-20p"><span>Email</span></th>
+                                    <th class="wd-lg-20p"><span>Address</span></th>
+                                    
                                     <th class="wd-lg-20p">Action</th>
                                 </tr>
                             </thead>
@@ -64,13 +67,12 @@
             serverSide: true,
             ajax: "{{ route('orders.index') }}",
             columns: [
-                {data: 'products', name: 'products'},
-                {data: 'totalPrice', name: 'totalPrice'},
-                {data: 'name', name: 'name'},
-
-                {data: 'address', name: 'address'},
-                {data: 'transactionID', name: 'transactionID'},
-            
+                {data: 'transaction_id', name: 'transaction_id'},
+                {data: 'unit_price', name: 'unit_price'},
+                {data: 'quantity', name: 'quantity'},
+                {data: 'total_price', name: 'total_price'},
+                {data: 'email', name: 'email'},            
+                {data: 'address', name: 'address'},            
 
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
