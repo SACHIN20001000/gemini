@@ -9,8 +9,6 @@ use App\Models\Product;
 use App\Models\ProductVariation;
 use App\Models\CartItem;
 use App\Models\Order;
-
-use Auth;
 use App\Http\Resources\Carts\CartResource;
 use App\Http\Resources\Carts\CartItemsResource;
 use App\Http\Requests\API\CartIdRequest;
