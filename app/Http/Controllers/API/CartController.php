@@ -217,9 +217,7 @@ class CartController extends Controller
         if ($cart->key == $request->key) {
             CartItem::where('cart_id',$cart->id)->delete();
             $cart->delete();
-            return response()->json([
-                'message' => 'Cart has been deleted.',
-            ], 204);
+            return response()->json('Cart has been deleted.', 204);
 
         } else {
 
@@ -280,9 +278,7 @@ class CartController extends Controller
      
             $itemId->delete();
             
-            return response()->json([
-                'message' => 'Cart item has been deleted.',
-            ], 204);
+            return response()->json('Cart item has been deleted.', 204);
 
         } else {
 
@@ -460,7 +456,7 @@ class CartController extends Controller
             $state = $request->state;
             $city = $request->city;
             $country = $request->country;
-            $userId= Auth::user();
+            $user = auth('api')->user();
 
         
             $totalPrice = (float) 0.0;
@@ -468,13 +464,18 @@ class CartController extends Controller
             $items = $cart->items;
          
             foreach ($items as $item) {
-             
+                $product_id = $item->product_id;
+                $variation_id = $item->variation_product_id;
+                $transactionID = md5(uniqid(rand(), true));
+                $unitPrice = 0;
+                $quantity = 0;
                 if($item->variation_product_id !=0)
                 {
-                    $product = ProductVariation::with('products')->find($item->variation_product_id);
+                    $product = ProductVariation::find($item->variation_product_id);
                     $productPrice= $product->sale_price;
                     $totalPrice=   $productPrice* $item->quantity;
-                    $productName= $product['products']->productName;
+                    $quantity = $item->quantity;
+                    $unitPrice =  $product->sale_price;
                   
                 }
               else
@@ -483,23 +484,26 @@ class CartController extends Controller
                     $product = Product::find($item->product_id);
                     $productPrice= $product->sale_price;
                     $totalPrice=   $productPrice* $item->quantity;
-                    $productName= $product->productName;
+                    $quantity = $item->quantity;
+                    $unitPrice = $product->sale_price;
                    
                 }
                 
              
-               
                 $order = Order::create([
-                    'product_name' => $productName,
+                    'product_id' => $product_id,
+                    'variation_id' => $variation_id,
+                    'transaction_id' => $transactionID,
                     'total_price' => $totalPrice,
+                    'unit_price' => $unitPrice,
+                    'quantity' => $quantity,
                     'name' => $name,
                     'address' => $address,
-                    'user_id' => isset($userId) ? $userId : null,
+                    'user_id' => $user->id??0,
                     'email' => $email,
                     'state' => $state,
                     'city' => $city,
                     'zip_code' => $zip_code,
-
                     'country' => $country,
 
                 ]);
