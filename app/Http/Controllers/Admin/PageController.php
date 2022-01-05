@@ -79,12 +79,40 @@ class PageController extends Controller
             $path = Storage::disk('s3')->url($path) ;
            
         }
+   
+        // minified css code 
+
+       
+        $request->css = str_replace(': ', ':', $request->css);
+        $request->css = str_replace('<br />', '', $request->css);
+        $request->css = str_replace('; ', '', $request->css);
+        $request->css= str_replace(array(' {',' }','{ ','; '),array('{','}','{',';'),$request->css);
+        $request->css= str_replace(array("\r\n", "\r", "\n", "\t",'{ '), '',  $request->css);
+  // setup the URL and read the CSS from a file
+  $url = 'https://www.toptal.com/developers/cssminifier/raw';
+  $css =  $request->css;
+
+  // init the request, set various options, and send it
+  $ch = curl_init();
+
+  curl_setopt_array($ch, [
+      CURLOPT_URL => $url,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_POST => true,
+      CURLOPT_HTTPHEADER => ["Content-Type: application/x-www-form-urlencoded"],
+      CURLOPT_POSTFIELDS => http_build_query([ "input" => $css ])
+  ]);
+
+  $minified = curl_exec($ch);
+
+  // finally, close the request
+  curl_close($ch);
            $user = Post::updateOrCreate([
             'title' =>    $request->title,
             'created_by'=>Auth::User()->id,
             'status'  =>  $request->status,
             'content' =>  $request->content,
-            'css' =>  $request->css,
+            'css' =>   $minified,
 
             'slug' =>     Str::slug($request->title),
             'category' =>     $request->category,
@@ -109,11 +137,41 @@ class PageController extends Controller
             $path = Storage::disk('s3')->url($path);
             $post->feature_image = $path;
         }
+
+
+
+        // minified css code 
+
        
+        $request->css = str_replace(': ', ':', $request->css);
+        $request->css = str_replace('<br />', '', $request->css);
+        $request->css = str_replace('; ', '', $request->css);
+        $request->css= str_replace(array(' {',' }','{ ','; '),array('{','}','{',';'),$request->css);
+        $request->css= str_replace(array("\r\n", "\r", "\n", "\t",'{ '), '',  $request->css);
+  // setup the URL and read the CSS from a file
+  $url = 'https://www.toptal.com/developers/cssminifier/raw';
+  $css =  $request->css;
+
+  // init the request, set various options, and send it
+  $ch = curl_init();
+
+  curl_setopt_array($ch, [
+      CURLOPT_URL => $url,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_POST => true,
+      CURLOPT_HTTPHEADER => ["Content-Type: application/x-www-form-urlencoded"],
+      CURLOPT_POSTFIELDS => http_build_query([ "input" => $css ])
+  ]);
+
+  $minified = curl_exec($ch);
+
+  // finally, close the request
+  curl_close($ch);
+
        $post->title =  $request->title;
        $post->status =  $request->status;
        $post->content =  $request->content;
-       $post->css =  $request->css;
+       $post->css =  $minified;
 
        $post->category =  $request->category;
      
