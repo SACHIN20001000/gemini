@@ -115,7 +115,6 @@ export default {
           variation_product_id:0
         }
         this.addCartItem(itemDetails)
-
       }
     }
   }
