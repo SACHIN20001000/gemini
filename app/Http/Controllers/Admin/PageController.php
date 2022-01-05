@@ -85,7 +85,6 @@ class PageController extends Controller
        
         $request->css = str_replace(': ', ':', $request->css);
         $request->css = str_replace('<br />', '', $request->css);
-        $request->css = str_replace('; ', '', $request->css);
         $request->css= str_replace(array(' {',' }','{ ','; '),array('{','}','{',';'),$request->css);
         $request->css= str_replace(array("\r\n", "\r", "\n", "\t",'{ '), '',  $request->css);
   // setup the URL and read the CSS from a file
@@ -145,7 +144,6 @@ class PageController extends Controller
        
         $request->css = str_replace(': ', ':', $request->css);
         $request->css = str_replace('<br />', '', $request->css);
-        $request->css = str_replace('; ', '', $request->css);
         $request->css= str_replace(array(' {',' }','{ ','; '),array('{','}','{',';'),$request->css);
         $request->css= str_replace(array("\r\n", "\r", "\n", "\t",'{ '), '',  $request->css);
   // setup the URL and read the CSS from a file
