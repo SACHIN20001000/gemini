@@ -32,15 +32,21 @@ const actions = {
       commit('getItemsCart', response.data.data)
     });
   },
-  addCartItem ({ commit }, cartItem) { 
+  addCartItem ({ commit }, cartItem) {
     const cartId = localStorage.getItem('cartId')
     HTTP.post(process.env.MIX_APP_APIURL+'cart/'+cartId, cartItem).then((response) => {
       commit('addItemCart', response.data.data)
     });
   },
-  removeCartItem ({ commit }, cartItem) {
-    HTTP.delete(process.env.MIX_APP_APIURL+'cart/delete', cartItem).then((response) => {
-      commit('deleteItemsCart', response.data.data)
+  removeCartItem ({ commit }, cartId) {
+    const cartKey = localStorage.getItem('cartKey')
+    const cartkeyId = localStorage.getItem('cartId')
+    HTTP.delete(process.env.MIX_APP_APIURL+'cart/'+cartkeyId+'/'+cartId, {
+      data: {
+        key: cartKey
+      }
+    }).then(() => {
+      commit('deleteCartItem', cartId)
     });
   },
   removeAllCartItems ({ commit }) {
@@ -56,7 +62,7 @@ const mutations = {
   addItemCart: (state, payload) => (
     state.addCartItems = payload
   ),
-  deleteItemsCart: (state, payload) => (
+  deleteCartItem: (state, payload) => (
     state.deleteCartItem = payload
   ),
   deleteAllItemsCart: (state, payload) => (

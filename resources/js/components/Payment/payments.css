@@ -37,5 +37,8 @@
 .proccedtocheckout a:hover{
   list-style: none;
   background: blue;
-  color: #fff;  
+  color: #fff;
+}
+.ordertable{
+  width: 100%;
 }

@@ -236,7 +236,12 @@
                   </router-link>
                   <div class="cart_flex">
                      <h3>${{product.sale_price}}<sup></sup></h3>
-                    <a href="javascript:;" @click="addItemInCart(product.id)">Add To cart</a>
+                    <a
+                      href="javascript:;"
+                      @click="addItemInCart(product.id)"
+                    >
+                      Add To cart
+                    </a>
                   </div>
                 </div>
                 <label class="sale_tag">Sale</label>
@@ -546,7 +551,6 @@ export default {
           variation_product_id:0
         }
         this.addCartItem(itemDetails)
-
       }
     },
     async getLocation() {

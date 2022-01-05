@@ -111,7 +111,7 @@
  CKEDITOR.config.basicEntities = false; 
  CKEDITOR.config.entities_greek = false; 
  CKEDITOR.config.entities_latin = false; 
- 
+ CKEDITOR.config.allowedContent = true;
                         CKEDITOR.replace( 'content' );
                         CKEDITOR.replace( 'css' );
 
