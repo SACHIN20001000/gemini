@@ -30,8 +30,21 @@ class CheckoutRequest extends FormRequest
             'address' => 'required',
             'zip_code' => 'required',
             'city' => 'required',
+            'phone' => 'required',
             'state' => 'required',
             'country' => 'required',
+            'sh_email' => 'required|email',
+            'sh_name' => 'required',
+            'sh_city' => 'required',
+            'sh_state' => 'required',
+            'sh_address' => 'required',
+            'sh_country' => 'required',
+            'sh_zip_code' => 'required',
+            'sh_phone' => 'required',
+            'payment_method' => 'required',
+            'shippingmethod' => 'required',
+            'remark' => 'required'
+            
         ];
     }
 }

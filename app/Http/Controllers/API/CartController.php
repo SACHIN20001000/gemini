@@ -14,8 +14,15 @@ use App\Http\Resources\Carts\CartItemsResource;
 use App\Http\Requests\API\CartIdRequest;
 use App\Http\Requests\API\CheckoutRequest;
 use App\Http\Requests\API\CartAddProductRequest;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use App\Models\User;
+use App\Models\OrderItem;
+use App\Models\Shipping;
+
 class CartController extends Controller
 {
+
     /**
      * @OA\Get(
      *      path="/cart",
@@ -43,27 +50,23 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-
     public function index(Request $request)
     {
         $user = auth('api')->user();
-        if($user)
+        if ($user)
         {
-            $cart = Cart::where('user_id',$user->id)->first();
-            if($cart)
+            $cart = Cart::where('user_id', $user->id)->first();
+            if ($cart)
             {
-                return  new CartResource($cart);
+                return new CartResource($cart);
             }
-            
         }
         $cart = Cart::create([
-            'key' => md5(uniqid(rand(), true)).uniqid(),
-            'user_id' => $user->id??0,
-
+                    'key' => md5(uniqid(rand(), true)) . uniqid(),
+                    'user_id' => $user->id ?? 0,
         ]);
-        
 
-        return  new CartResource($cart);
+        return new CartResource($cart);
     }
 
     /**
@@ -76,11 +79,9 @@ class CartController extends Controller
         //
     }
 
-
     public function store(Request $request)
     {
         
-
     }
 
     /**
@@ -89,7 +90,8 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   /**
+
+    /**
      * @OA\Get(
      *      path="/cart/{id}",
      *      operationId="show cart items",
@@ -126,18 +128,18 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-
     public function show(Cart $cart, CartIdRequest $request)
     {
-        if ($cart->key == $request->key) {
-            $items = CartItem::where('cart_id',$cart->id)->with(['product','variationProduct'])->get();
-            return  CartItemsResource::collection($items);
-
-        } else {
+        if ($cart->key == $request->key)
+        {
+            $items = CartItem::where('cart_id', $cart->id)->with(['product', 'variationProduct'])->get();
+            return CartItemsResource::collection($items);
+        } else
+        {
 
             return response()->json([
-                'message' => 'The Cart key does not match with any cart.',
-            ], 400);
+                        'message' => 'The Cart key does not match with any cart.',
+                            ], 400);
         }
     }
 
@@ -171,7 +173,7 @@ class CartController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     /**
+    /**
      * @OA\Delete(
      *      path="/cart/{id}",
      *      operationId="Delete cart",
@@ -208,25 +210,24 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-
     public function destroy(Cart $cart, CartIdRequest $request)
     {
- 
-        if ($cart->key == $request->key) {
-            CartItem::where('cart_id',$cart->id)->delete();
+
+        if ($cart->key == $request->key)
+        {
+            CartItem::where('cart_id', $cart->id)->delete();
             $cart->delete();
             return response()->json('Cart has been deleted.', 204);
-
-        } else {
+        } else
+        {
 
             return response()->json([
-                'message' => 'The Cart key does not match with any cart.',
-            ], 400);
+                        'message' => 'The Cart key does not match with any cart.',
+                            ], 400);
         }
     }
 
-
-     /**
+    /**
      * @OA\Delete(
      *      path="cart/{cart}/{itemId}",
      *      operationId="Delete cart item",
@@ -269,33 +270,30 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-
-    public function deleteCartItem(Cart $cart, CartItem $itemId,CartIdRequest $request)
+    public function deleteCartItem(Cart $cart, CartItem $itemId, CartIdRequest $request)
     {
-        if ($cart->key == $request->key) {
-     
-            $itemId->delete();
-            
-            return response()->json('Cart item has been deleted.', 204);
+        if ($cart->key == $request->key)
+        {
 
-        } else {
+            $itemId->delete();
+
+            return response()->json('Cart item has been deleted.', 204);
+        } else
+        {
 
             return response()->json([
-                'message' => 'The Cart key does not match with any cart.',
-            ], 400);
+                        'message' => 'The Cart key does not match with any cart.',
+                            ], 400);
         }
     }
 
-
-
-
-/**
+    /**
      * @OA\Get(
      *      path="/cartIdByKey",
      *      operationId="Get cart id by key",
      *      tags={"Carts"},
      *     summary="Get cart id by key",
-       *      *    @OA\RequestBody(
+     *      *    @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(ref="#/components/schemas/CartKeyRequest")
      *     ),
@@ -320,23 +318,22 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-
     public function getCartIDUsingKey(CartIdRequest $request)
     {
-        $cart = Cart::where('key',$request->key)->first();
-            if($cart)
-            {
-                return  new CartResource($cart);
-            }
+        $cart = Cart::where('key', $request->key)->first();
+        if ($cart)
+        {
+            return new CartResource($cart);
+        }
 
-             return response()->json([
-                'message' => 'The Cart key does not match with any cart.',
-            ], 400);
+        return response()->json([
+                    'message' => 'The Cart key does not match with any cart.',
+                        ], 400);
     }
 
     /**
      * @OA\Post(
-     ** path="/cart/{cart}",
+     * * path="/cart/{cart}",
      *   tags={"Carts"},
      *   summary="Add Product into cart",
      *   operationId="ProductCart",
@@ -364,52 +361,59 @@ class CartController extends Controller
      *    @OA\Response(
      *      response=500,ref="#/components/schemas/Forbidden"
      *    )
-     *)
-     **/
+     * )
+     * */
+
     /**
      * Add Product into cart api
      *
      * @return \Illuminate\Http\Response
      */
-
     public function addProducts(Cart $cart, CartAddProductRequest $request)
     {
-       
+
         $product_id = $request->product_id;
         $quantity = $request->quantity;
-        
+
         $variation_product_id = $request->variation_product_id ?? 0;
         //Check if the CarKey is Valid
-        if ($cart->key == $request->key) {
+        if ($cart->key == $request->key)
+        {
             //Check if the proudct exist or return 404 not found.
-            try { $Product = Product::findOrFail($product_id);} catch (ModelNotFoundException $e) {
+            try
+            {
+                $Product = Product::findOrFail($product_id);
+            } catch (ModelNotFoundException $e)
+            {
                 return response()->json([
-                    'message' => 'The Product you\'re trying to add does not exist.',
-                ], 404);
+                            'message' => 'The Product you\'re trying to add does not exist.',
+                                ], 404);
             }
 
             //check if the the same product is already in the Cart, if true update the quantity, if not create a new one.
             $cartItem = CartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id, 'variation_product_id' => $variation_product_id])->first();
-            if ($cartItem) {
+            if ($cartItem)
+            {
                 $cartItem->quantity = $quantity;
-                CartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id,'variation_product_id' => $variation_product_id])->update(['quantity' => $quantity]);
-            } else {
-                CartItem::create(['cart_id' => $cart->id, 'product_id' => $product_id,'variation_product_id' => $variation_product_id, 'quantity' => $quantity]);
+                CartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id, 'variation_product_id' => $variation_product_id])->update(['quantity' => $quantity]);
+            } else
+            {
+                CartItem::create(['cart_id' => $cart->id, 'product_id' => $product_id, 'variation_product_id' => $variation_product_id, 'quantity' => $quantity]);
             }
 
             return response()->json(['message' => 'The Cart was updated with the given product information successfully'], 200);
-
-        } else {
+        } else
+        {
 
             return response()->json([
-                'message' => 'The CarKey you provided does not match the Cart Key for this Cart.',
-            ], 400);
+                        'message' => 'The CarKey you provided does not match the Cart Key for this Cart.',
+                            ], 400);
         }
-
     }
- /**
+
+    /**
      * @OA\Post(
-     ** path="/checkout/{cart}",
+     * * path="/checkout/{cart}",
      *   tags={"Carts"},
      *   summary="Add checkout for order from cart",
      *   operationId="CheckOutCart",
@@ -436,8 +440,9 @@ class CartController extends Controller
      *    @OA\Response(
      *      response=500,ref="#/components/schemas/Forbidden"
      *    )
-     *)
-     **/
+     * )
+     * */
+
     /**
      * Add Product into cart api
      *
@@ -445,75 +450,110 @@ class CartController extends Controller
      */
     public function checkout(Cart $cart, CheckoutRequest $request)
     {
-        
-        if ($cart->key == $request->key) {
-            $name = $request->name;
-            $address = $request->address;
-            $zip_code = $request->zip_code;
-            $email = $request->email;
-            $state = $request->state;
-            $city = $request->city;
-            $country = $request->country;
+
+        if ($cart->key == $request->key)
+        {
+
             $user = auth('api')->user();
 
-        
+            if (!$user)
+            {
+                $roleGuest = Role::where(['name' => 'Guest'])->first();
+                $user = User::updateOrCreate(
+                                [
+                                    'email' => $request->email,
+                                ],
+                                [
+                                    'name' => $request->name,
+                                    'address' => $request->address,
+                                    'zip_code' => $request->zip_code,
+                                    'state' => $request->state,
+                                    'city' => $request->city,
+                                    'country' => $request->country,
+                                    'phone' => $request->phone,
+                                    'password' => bcrypt(uniqid(rand(), true))
+                ]);
+                $user->assignRole($roleGuest);
+            }
+
+
             $totalPrice = (float) 0.0;
-            
+            $grand_total = 0;
             $items = $cart->items;
-         
-            foreach ($items as $item) {
+
+            $shipping = Shipping::updateOrCreate(
+                            [
+                                'user_id' => $user->id,
+                                'sh_email' => $request->sh_email,
+                            ],
+                            [
+                                'sh_name' => $request->sh_name,
+                                'sh_city' => $request->sh_city,
+                                'sh_state' => $request->sh_state,
+                                'sh_address' => $request->sh_address,
+                                'sh_country' => $request->sh_country,
+                                'sh_zip_code' => $request->sh_zip_code,
+                                'sh_phone' => $request->sh_phone,
+                            ]
+            );
+
+            $order = Order::create([
+                        'transaction_id' => md5(uniqid(rand(), true)),
+                        'grand_total' => $grand_total,
+                        'item_count' => count($items),
+                        'remark' => $request->remark,
+                        'user_id' => $user->id ?? 0,
+                        'payment_method' => $request->payment_method,
+                        'shippingmethod' => $request->shippingmethod,
+                        'shipping_id' => $shipping->id ?? 0,
+            ]);
+            $grand_total = 0;
+            foreach ($items as $item)
+            {
                 $product_id = $item->product_id;
                 $variation_id = $item->variation_product_id;
-                $transactionID = md5(uniqid(rand(), true));
-                $unitPrice = 0;
+
                 $quantity = 0;
-                if($item->variation_product_id !=0)
+                $price = 0;
+                if ($item->variation_product_id != 0)
                 {
-                    $product = ProductVariation::find($item->variation_product_id);
-                    $productPrice= $product->sale_price;
-                    $totalPrice=   $productPrice* $item->quantity;
+                    $productvariation = ProductVariation::find($variation_id);
                     $quantity = $item->quantity;
-                    $unitPrice =  $product->sale_price;
-                  
-                }
-              else
+                    $unitPrice = $productvariation->sale_price;
+                    $totalPrice = $unitPrice * $quantity ?? 0;
+                } else
                 {
-                    
-                    $product = Product::find($item->product_id);
-                    $productPrice= $product->sale_price;
-                    $totalPrice=   $productPrice* $item->quantity;
+
+                    $product = Product::find($product_id);
                     $quantity = $item->quantity;
                     $unitPrice = $product->sale_price;
-                   
+                    $totalPrice = $unitPrice * $quantity ?? 0;
                 }
-                
-             
-                $order = Order::create([
-                    'product_id' => $product_id,
-                    'variation_id' => $variation_id,
-                    'transaction_id' => $transactionID,
-                    'total_price' => $totalPrice,
-                    'unit_price' => $unitPrice,
-                    'quantity' => $quantity,
-                    'name' => $name,
-                    'address' => $address,
-                    'user_id' => $user->id??0,
-                    'email' => $email,
-                    'state' => $state,
-                    'city' => $city,
-                    'zip_code' => $zip_code,
-                    'country' => $country,
-
+                $order_item = OrderItem::updateOrCreate(
+                                [
+                                    'order_id' => $order->id,
+                                    'product_id' => $product_id,
+                                    'variation_id' => $variation_id,
+                                    'unit_price' => $unitPrice,
+                                    'total_price' => $totalPrice,
+                                    'quantity' => $quantity,
                 ]);
-                return response()->json([
-                    'message' => 'Order created successfully',
-                ], 200); 
-            }
-        } else {
-            return response()->json([
-                'message' => 'The Key you provided does not match the Cart Key for this Cart.',
-            ], 400);
-        }
 
+                $grand_total = $grand_total + $price;
+            }
+
+            $order->grand_total = $grand_total;
+            $order->save();
+
+            return response()->json([
+                        'message' => 'Order created successfully',
+                            ], 200);
+        } else
+        {
+            return response()->json([
+                        'message' => 'The Key you provided does not match the Cart Key for this Cart.',
+                            ], 400);
+        }
     }
+
 }
