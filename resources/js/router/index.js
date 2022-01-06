@@ -10,6 +10,8 @@ import Category from "../components/Category";
 import Blog from "../components/Blog";
 import Products from "../components/Products";
 import Cart from "../components/Cart";
+import Checkout from "../components/Checkout";
+import Payment from "../components/Payment";
 
 Vue.use(VueRouter)
 
@@ -31,7 +33,7 @@ function loginRoute(to, from, next)
 		return
 	}
 }
-function withOutToken(to, from, next)
+/*function withOutToken(to, from, next)
 {
 	if(localStorage.getItem('token') && localStorage.getItem('token') !=null){
     window.location.href='/'
@@ -39,7 +41,7 @@ function withOutToken(to, from, next)
 	}else{
     next()
 	}
-}
+}*/
 export default new VueRouter({
 	mode: 'history',
 routes: [
@@ -66,6 +68,18 @@ routes: [
 		beforeEnter : guardMyroute,
 		name: 'Cart',
 		component: Cart
+	},
+  {
+		path: '/payment',
+		beforeEnter : guardMyroute,
+		name: 'Payment',
+		component: Payment
+	},
+  {
+		path: '/checkout',
+		beforeEnter : guardMyroute,
+		name: 'Checkout',
+		component: Checkout
 	},
   {
 		path: '/blog/:slug',
