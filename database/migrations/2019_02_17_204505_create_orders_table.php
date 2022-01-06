@@ -34,8 +34,9 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id')->nullable();
             $table->unsignedBigInteger('variation_id')->default(0);
-            $table->float('price');
-            $table->integer('quantity');
+            $table->float('unit_price')->nullable();;
+            $table->integer('quantity')->nullable();;
+            $table->float('total_price')->nullable();;
             
             $table->timestamps();
         });
