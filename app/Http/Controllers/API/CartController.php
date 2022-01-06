@@ -14,6 +14,11 @@ use App\Http\Resources\Carts\CartItemsResource;
 use App\Http\Requests\API\CartIdRequest;
 use App\Http\Requests\API\CheckoutRequest;
 use App\Http\Requests\API\CartAddProductRequest;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use App\Models\User;
+use App\Models\OrderItem;
+use App\Models\Shipping;
 class CartController extends Controller
 {
     /**
@@ -449,18 +454,60 @@ class CartController extends Controller
         if ($cart->key == $request->key) {
             $name = $request->name;
             $address = $request->address;
+            $billing_address = $request->billing_address;
             $zip_code = $request->zip_code;
             $email = $request->email;
             $state = $request->state;
             $city = $request->city;
             $country = $request->country;
+            $notes = $request->notes
             $user = auth('api')->user();
 
-        
-            $totalPrice = (float) 0.0;
+            if(!$user)
+            {
+                $roleGuest = Role::where(['name' => 'Guest'])->first();
+                $user = User::updateOrCreate(
+                        [
+                            'email' => $email,
+                        ],
+                        [
+                            'name' => $name,
+                            'address' => $address,
+                            'zip_code' => $zip_code,
+                            'state' => $state,
+                            'city' => $city,
+                            'country' => $country,
+                            'password' => bcrypt(uniqid(rand(), true))
+                         ]);
+                        $user->assignRole($roleGuest);
+            }
             
+
+            $totalPrice = (float) 0.0;
+            $grand_tota = 0;
             $items = $cart->items;
-         
+
+            $shipping = Shipping::updateOrCreate(
+                        [
+                            'user_id' => $user->id,
+                            'address' => $billing_address,
+                        ]);
+
+            $order = Order::create([
+                    'transaction_id' => $transactionID,
+                    'grand_total' => $grand_total,
+                    'item_count' => count($cart->items),
+                    'notes' => $notes,
+                    'name' => $name,
+                    'address' => $address,
+                    'user_id' => $user->id??0,
+                    'email' => $email,
+                    'state' => $state,
+                    'city' => $city,
+                    'zip_code' => $zip_code,
+                    'country' => $country,
+
+                ]);
             foreach ($items as $item) {
                 $product_id = $item->product_id;
                 $variation_id = $item->variation_product_id;
@@ -488,23 +535,7 @@ class CartController extends Controller
                 }
                 
              
-                $order = Order::create([
-                    'product_id' => $product_id,
-                    'variation_id' => $variation_id,
-                    'transaction_id' => $transactionID,
-                    'total_price' => $totalPrice,
-                    'unit_price' => $unitPrice,
-                    'quantity' => $quantity,
-                    'name' => $name,
-                    'address' => $address,
-                    'user_id' => $user->id??0,
-                    'email' => $email,
-                    'state' => $state,
-                    'city' => $city,
-                    'zip_code' => $zip_code,
-                    'country' => $country,
-
-                ]);
+                
                 return response()->json([
                     'message' => 'Order created successfully',
                 ], 200); 

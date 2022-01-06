@@ -32,6 +32,7 @@ class CheckoutRequest extends FormRequest
             'city' => 'required',
             'state' => 'required',
             'country' => 'required',
+            'billing_address' => 'required',
         ];
     }
 }
