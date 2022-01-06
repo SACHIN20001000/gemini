@@ -976,51 +976,123 @@
                 "properties": {
                     "key": {
                         "title": "key",
-                        "description": "key  for storring",
+                        "description": "key  for storing",
                         "type": "string",
                         "example": "e2e26459499dac9e6361419963e2e42861cc42adb8d6d"
                     },
                     "name": {
                         "title": "name ",
-                        "description": "name for storring",
+                        "description": "name for storing",
                         "type": "string",
                         "example": "john"
                     },
                     "email": {
                         "title": "email",
-                        "description": "email for storring",
+                        "description": "email for storing",
                         "type": "string",
                         "example": "john@gmail.com"
                     },
                     "address": {
                         "title": "address",
-                        "description": "address  for storring",
+                        "description": "address  for storing",
+                        "type": "string",
+                        "example": "2"
+                    },
+                    "phone": {
+                        "title": "phone",
+                        "description": "phone  for storing",
                         "type": "string",
                         "example": "2"
                     },
                     "zip_code": {
                         "title": "zip_code",
-                        "description": "zip_code  for storring",
+                        "description": "zip_code  for storing",
                         "type": "string",
                         "example": "2"
                     },
                     "city": {
                         "title": "city",
-                        "description": "city  for storring",
+                        "description": "city  for storing",
                         "type": "string",
                         "example": "2"
                     },
                     "state": {
                         "title": "state",
-                        "description": "state  for storring",
+                        "description": "state  for storing",
                         "type": "string",
                         "example": "2"
                     },
                     "country": {
                         "title": "country",
-                        "description": "country  for storring",
+                        "description": "country  for storing",
                         "type": "string",
                         "example": "2"
+                    },
+                    "sh_email": {
+                        "title": "sh_email",
+                        "description": "sh_email  for storing",
+                        "type": "string",
+                        "example": "example@example.com"
+                    },
+                    "sh_name": {
+                        "title": "sh_name",
+                        "description": "sh_name  for storing",
+                        "type": "string",
+                        "example": "Sam"
+                    },
+                    "sh_city": {
+                        "title": "sh_city",
+                        "description": "sh_city  for storing",
+                        "type": "string",
+                        "example": "Chandigarh"
+                    },
+                    "sh_state": {
+                        "title": "sh_state",
+                        "description": "sh_state  for storing",
+                        "type": "string",
+                        "example": "Chandigarh"
+                    },
+                    "sh_address": {
+                        "title": "sh_address",
+                        "description": "sh_address  for storing",
+                        "type": "string",
+                        "example": "211 IT Park"
+                    },
+                    "sh_country": {
+                        "title": "sh_country",
+                        "description": "sh_country  for storing",
+                        "type": "string",
+                        "example": "India"
+                    },
+                    "sh_zip_code": {
+                        "title": "sh_zip_code",
+                        "description": "sh_zip_code  for storing",
+                        "type": "string",
+                        "example": "134109"
+                    },
+                    "sh_phone": {
+                        "title": "sh_phone",
+                        "description": "sh_phone  for storing",
+                        "type": "string",
+                        "example": "9854689758"
+                    },
+                    "payment_method": {
+                        "title": "payment_method",
+                        "description": "payment_method  for storing",
+                        "type": "string",
+                        "example": "Paypal"
+                    },
+                    "shippingmethod": {
+                        "title": "shippingmethod",
+                        "description": "shippingmethod  for storing",
+                        "type": "string",
+                        "example": "express"
+                    },
+                    "remark": {
+                        "title": "remark",
+                        "description": "remark  for storing",
+                        "type": "string",
+                        "example": "Test remark"
                     }
                 },
                 "type": "object"
