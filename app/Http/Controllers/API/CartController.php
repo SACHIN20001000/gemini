@@ -460,7 +460,12 @@ class CartController extends Controller
             $state = $request->state;
             $city = $request->city;
             $country = $request->country;
-            $notes = $request->notes
+            $phone = $request->phone;
+            $status = $request->status;
+            $notes = $request->notes;
+            $payment_method = $request->payment_method;
+            $shippingmethod = $request->shippingmethod;
+            $transactionID = md5(uniqid(rand(), true));
             $user = auth('api')->user();
 
             if(!$user)
@@ -477,6 +482,8 @@ class CartController extends Controller
                             'state' => $state,
                             'city' => $city,
                             'country' => $country,
+                            'phone' => $phone,
+
                             'password' => bcrypt(uniqid(rand(), true))
                          ]);
                         $user->assignRole($roleGuest);
@@ -484,62 +491,80 @@ class CartController extends Controller
             
 
             $totalPrice = (float) 0.0;
-            $grand_tota = 0;
+            $grand_total = 0;
             $items = $cart->items;
-
+          
             $shipping = Shipping::updateOrCreate(
                         [
                             'user_id' => $user->id,
-                            'address' => $billing_address,
+                            'sh_name' => $name,
+                            'sh_city' => $city,
+                            'sh_state' => $state,
+                            'sh_address' => $billing_address,
+                            'sh_country' => $country,
+                            'sh_zip_code' => $zip_code,
+                            'sh_phone' => $phone,
+                            'sh_email' => $email,
                         ]);
 
             $order = Order::create([
                     'transaction_id' => $transactionID,
                     'grand_total' => $grand_total,
-                    'item_count' => count($cart->items),
-                    'notes' => $notes,
-                    'name' => $name,
-                    'address' => $address,
-                    'user_id' => $user->id??0,
-                    'email' => $email,
-                    'state' => $state,
-                    'city' => $city,
-                    'zip_code' => $zip_code,
-                    'country' => $country,
+                    'item_count' => 0,
+                    'remark' => $notes,
+                    'status'=> $status,
+                    'user_id' => $user->id ?? 0,
+                    'payment_method' => $payment_method,
+                    'shippingmethod' => $shippingmethod,
+                    'user_id' => $user->id ?? 0,
+                    'shipping_id' => $shipping->id ?? 0,
 
                 ]);
             foreach ($items as $item) {
                 $product_id = $item->product_id;
                 $variation_id = $item->variation_product_id;
-                $transactionID = md5(uniqid(rand(), true));
-                $unitPrice = 0;
+              
                 $quantity = 0;
                 if($item->variation_product_id !=0)
                 {
-                    $product = ProductVariation::find($item->variation_product_id);
-                    $productPrice= $product->sale_price;
-                    $totalPrice=   $productPrice* $item->quantity;
+                    $productvariation = ProductVariation::find($variation_id);
+                    $productvariationPrice= $productvariation->sale_price;
                     $quantity = $item->quantity;
-                    $unitPrice =  $product->sale_price;
+                    $totalvariationPrice=   $productvariationPrice* $quantity ?? 0 ;
+                    
                   
                 }
-              else
-                {
+           
+               if($item->product_id !=0) {
                     
-                    $product = Product::find($item->product_id);
+                    $product = Product::find($product_id);
                     $productPrice= $product->sale_price;
-                    $totalPrice=   $productPrice* $item->quantity;
                     $quantity = $item->quantity;
-                    $unitPrice = $product->sale_price;
+                    $totalproductPrice=   $productPrice * $quantity ?? 0;
+
                    
                 }
-                
-             
-                
+               $totalPrice =  $totalvariationPrice +  $totalproductPrice;
+                 $order_item=OrderItem::updateOrCreate(
+                        [
+                            'order_id' => $order->id,
+                            'product_id' => $product_id,
+                            'variation_id' => $variation_id,
+                            'price' => $totalPrice,
+                            'quantity' => $quantity,
+                        
+                        ]);
+                        $order->grand_total = $order->grand_total + $totalPrice;  
+                        $order->item_count= $order->item_count + 1;
+                        $order->save();
+               
                 return response()->json([
                     'message' => 'Order created successfully',
                 ], 200); 
             }
+           
+
+
         } else {
             return response()->json([
                 'message' => 'The Key you provided does not match the Cart Key for this Cart.',

@@ -10,6 +10,16 @@ class Shipping extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'address'
+        'address',
+        'sh_name',
+        'sh_address',
+        'sh_city',
+        'sh_state',
+        'sh_country',
+        'sh_zip_code',
+        'sh_phone',
+        'sh_email',
+
+
     ];
 }
