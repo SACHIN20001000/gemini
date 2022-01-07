@@ -499,22 +499,14 @@ export default {
     }
   },
   created(){
-    if(this.tokenStatus != null){
-      this.getCategories()
-      this.getProducts()
-      this.getPages()
-    }
+    this.getCategories()
+    this.getProducts()
+    this.getPages()
   },
   mounted(){
-    this.init()
     this.locateMe()
   },
   watch: {
-    tokenStatus(){
-      this.getCategories()
-      this.getProducts()
-      this.getPages()
-    },
     categories(){
       const listCategories = this.categories
       var insertCat =[]
@@ -536,11 +528,6 @@ export default {
   },
   methods: {
     ...mapActions(['getCategories','getPages','getProducts','addCartItem','getCartItems']),
-    async init(){
-      if(localStorage.getItem("token") && localStorage.getItem("token") !='' && localStorage.getItem("token") !='undefined'){
-        /*this.getCategories()*/
-      }
-    },
     addItemInCart(proId){
       if(proId){
         const cartkey = localStorage.getItem('cartKey')

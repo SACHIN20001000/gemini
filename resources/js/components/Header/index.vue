@@ -172,13 +172,8 @@ export default {
       this.getCartItems()
     }
   },
-  watch:{
-    cartToken(){
-      this.getCartItems()
-    }
-  },
   computed: {
-    ...mapGetters(['cartQuantity',"cartToken"])
+    ...mapGetters(['cartQuantity'])
   },
   methods: {
     ...mapActions(['getCartItems'])
