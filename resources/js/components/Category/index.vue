@@ -8,10 +8,27 @@
       >
       <p>{{category.name}}</p>
     </div>
+    <div class="productList">
+      <ul v-if="productsByCategory">
+        <li v-for="(productsbycat, pbckey) in productsByCategory"  :key="pbckey">
+          <span v-for="(gallary,gkey) in productsbycat.gallary"  :key="gkey">
+            <span v-if="gkey<1">
+              <img :src="gallary.image_path" />
+            </span>
+          </span>
+          <span>
+            {{productsbycat.name}}
+          </span>
+          <span>
+            Price: {{productsbycat.sale_price}}
+          </span>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 <style>
-  @import './profile.css';
+  @import './category.css';
 </style>
 <script>
 import {mapActions,mapGetters} from "vuex"
@@ -30,15 +47,15 @@ export default {
     categories(){
       if (this.$route.params.slug) {
         this.category = this.singleCategory(this.$route.params.slug)
-        /*this.getCategory(this.$route.params.slug)*/
+        this.getProductsByCategory(this.category.id)
       }
     }
   },
   computed: {
-    ...mapGetters(['categories', 'catErrors'])
+    ...mapGetters(['categories', 'catErrors','productsByCategory'])
   },
   methods: {
-    ...mapActions(['getCategories']),
+    ...mapActions(['getCategories','getProductsByCategory']),
     singleCategory(slug){
       const listCategories = this.categories
       var insertCat =[]
