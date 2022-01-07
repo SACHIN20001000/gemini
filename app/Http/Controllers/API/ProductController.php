@@ -150,6 +150,46 @@ class ProductController extends Controller
         
     }
 
+
+    /**
+     * @OA\Get(
+     *      path="/products/attributes/{id}",
+     *      operationId="Product By categoryId",
+     * summary="attributes_by_product_id",
+     *      tags={"Products"},
+     *      security={
+     *          {"Token": {}},
+     *          },
+       *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="1",
+     *         required=true,
+     *      ),
+     *     summary="Attributes by Product Id",
+     *     @OA\Response(
+     *         response="200",
+     *         description="products",
+     *         @OA\JsonContent(ref="#/components/schemas/AttributesResponse")
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
+     * Store a newly created resource in storage.
+     *
+     * 
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+
     public function getAttributeByProduct(Request $request,$id)
     {
       $attributes = VariationAttribute::whereHas('variationAttributeName', function ($query) use ($id) {
