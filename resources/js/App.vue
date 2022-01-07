@@ -12,7 +12,7 @@
 import PETHeader from "./components/Header"
 import PETFooter from "./components/Footer"
 
-import {mapGetters,mapActions} from "vuex"
+import {mapActions} from "vuex"
 export default {
   name: "App",
   components: {
@@ -21,16 +21,7 @@ export default {
   },
   created: function(){
     this.init()
-  },
-  watch:{
-    tokenStatus(){
-      if(localStorage.getItem('cartKey') === null || localStorage.getItem('cartKey') =='undefined') {
-        this.getCartToken()
-      }
-    }
-  },
-  computed: {
-    ...mapGetters(['tokenStatus','tokenError'])
+    this.getCartToken()
   },
   methods: {
     ...mapActions(["getToken" ,"getCartToken"]),

@@ -11,7 +11,8 @@ const state = {
   products:[],
   product:[],
   cartToken:[],
-  productErrors:[]
+  productErrors:[],
+  productsByCategory:[]
 }
 
 const getters = {
@@ -24,7 +25,8 @@ const getters = {
   products: state => state.products,
   product: state => state.product,
   cartToken: state => state.cartToken,
-  productErrors: state => state.productErrors,  
+  productErrors: state => state.productErrors,
+  productsByCategory: state => state.productsByCategory
 }
 
 const actions = {
@@ -81,6 +83,13 @@ const actions = {
     }).catch((errors) => {
       commit("pageErrors", errors.response.data.message)
     })
+  },
+  async getProductsByCategory({commit},cartId){
+    HTTP.get(process.env.MIX_APP_APIURL+'products/category/'+cartId).then((response) => {
+      commit("getProductsCategory", response.data.data)
+    }).catch((errors) => {
+      commit("productErrors", errors.response.data.message)
+    })
   }
 }
 const mutations = {
@@ -113,6 +122,9 @@ const mutations = {
   ),
   productErrors: (state, payload) => (
     state.productErrors = payload
+  ),
+  getProductsCategory: (state, payload) => (
+    state.productsByCategory = payload
   )
 }
 
