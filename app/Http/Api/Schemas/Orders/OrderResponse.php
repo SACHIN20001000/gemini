@@ -21,11 +21,6 @@ class OrderResponse
   *      "name": "user",
   *      "email": "test@gmail.com",
    *    "city": "chd",
-  *      "state": "punjab",
-  *     "zip_code": "140301",
-  *      "address": "fgdfgfg",
-  *      "country": "india",
-  *      "created_at": "2022-01-04T04:59:18.000000Z"
   *  }
   * ),
   * )

@@ -53,6 +53,7 @@ Route::middleware('auth:api')->group(function ()
     {
       
     });
+    Route::resource('order', OrderController::class);
 });
 
 Route::resource('cart', CartController::class);
@@ -65,7 +66,7 @@ Route::get('settings', [SettingController::class, 'index']);
 Route::get('stores', [StoreController::class, 'index']);
 Route::get('stores/{store}', [StoreController::class, 'show']);
 
-Route::resource('order', OrderController::class);
+
 
 
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Users;
+namespace App\Http\Resources\Shipping;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class ShipingResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,14 +17,14 @@ class UserResource extends JsonResource
         return [
            
             'id' => $this->id,
-            'name' => $this->name,
-            'email' => $this->email,
-            'address' => $this->address,
-            'zip_code' => $this->zip_code,
-            'phone' => $this->phone,
-            'city' => $this->city,
-            'state' => $this->state,
-            'country' => $this->country,
+            'sh_name' => $this->sh_name,
+            'sh_address' => $this->sh_address,
+            'sh_city' => $this->sh_city,
+            'sh_state' => $this->sh_state,
+            'sh_country' => $this->sh_country,
+            'sh_zip_code' => $this->sh_zip_code,
+            'sh_phone' => $this->sh_phone,
+            'sh_email' => $this->sh_email,
             'created_at' => $this->created_at,
                    
         ];
