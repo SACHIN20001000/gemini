@@ -18,7 +18,7 @@ class VariationAttribute extends Model
         'name'
     ];
     public function variationAttributeName() {
-        return $this->hasOne(VariationAttributeName::class, 'attribute_id', 'id');
+        return $this->hasOne(VariationAttributeValue::class, 'attribute_id', 'id');
     }
    
 
