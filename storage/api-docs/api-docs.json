@@ -777,6 +777,49 @@
                 ]
             }
         },
+        "/products/attributes/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Attributes by Product Id",
+                "operationId": "Product By categoryId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "1",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "products",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AttributesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Token": []
+                    }
+                ]
+            }
+        },
         "/settings": {
             "get": {
                 "tags": [
@@ -1274,6 +1317,20 @@
                             "categories": "admin",
                             "created": "2021-12-10T06:01:07.000000Z",
                             "updated_at": "2021-12-23T06:36:41.000000Z"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "AttributesResponse": {
+                "title": "Attributes Response",
+                "description": "Attributes Response",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "example": {
+                            "id": "3",
+                            "name": "size"
                         }
                     }
                 },
