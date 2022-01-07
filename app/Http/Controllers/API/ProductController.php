@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\VariationAttribute;
 use App\Http\Resources\Products\ProductResource;
+use App\Http\Resources\Products\AttributesResource;
 use App\Http\Requests\API\ProductRequest;
 class ProductController extends Controller
 {
@@ -87,7 +89,9 @@ class ProductController extends Controller
      */
     public function productById(Request $request, $id)
     {
-        $products = Product::with(['category','store','productVariation','productGallery','variationAttributesValue'])->find($id);
+
+
+      $products = Product::with(['category','store','productVariation','productGallery','variationAttributesValue'])->find($id);
       if($products){
         return  new ProductResource($products);
       }else{
@@ -144,5 +148,14 @@ class ProductController extends Controller
         return response()->json(['success' => false , 'message' => "Invailed Id"]);
       }
         
+    }
+
+    public function getAttributeByProduct(Request $request,$id)
+    {
+      $attributes = VariationAttribute::whereHas('variationAttributeName', function ($query) use ($id) {
+    return $query->where('product_id', '=', $id);
+})->get();
+
+return  AttributesResource::collection($attributes);
     }
 }

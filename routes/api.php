@@ -37,6 +37,8 @@ Route::middleware([EnsureApiTokenIsValid::class])->group(function () {
   Route::any('products/category/{id}', [ProductController::class, 'productByCategoryId']);
   Route::get('pages', [PageController::class, 'index']);
   Route::any('pages/{id}', [PageController::class, 'pageByID']);
+  Route::get('products/attributes/{id}', [ProductController::class, 'getAttributeByProduct']);
+
 });
 
 
