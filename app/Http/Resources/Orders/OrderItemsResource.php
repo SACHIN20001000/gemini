@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Users;
+namespace App\Http\Resources\Orders;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class OrderItemsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,14 +17,11 @@ class UserResource extends JsonResource
         return [
            
             'id' => $this->id,
-            'name' => $this->name,
-            'email' => $this->email,
-            'address' => $this->address,
-            'zip_code' => $this->zip_code,
-            'phone' => $this->phone,
-            'city' => $this->city,
-            'state' => $this->state,
-            'country' => $this->country,
+            'product_id' => $this->product_id,
+            'variation_id' => $this->variation_id,
+            'unit_price' => $this->unit_price,
+            'quantity' => $this->quantity,
+            'total_price' => $this->total_price,
             'created_at' => $this->created_at,
                    
         ];
