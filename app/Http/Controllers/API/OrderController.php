@@ -49,7 +49,7 @@ class OrderController extends Controller
     {
         $user = auth('api')->user();
         $limit = $request->limit ? $request->limit : 20;
-        $orders = Order::with(['shipping','user','orderItems'])->paginate($limit);
+        $orders = Order::where('user_id',$user->id)->with(['shipping','user','orderItems'])->paginate($limit);
 
         //dd($orders);
         return OrderResource::collection($orders);
