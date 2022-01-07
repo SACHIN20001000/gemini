@@ -14,12 +14,29 @@ class Order extends Model
      'user_id',
      'status',
      'grand_total',
-      'item_count', 
-      'is_paid',
-      'payment_method',
-      'shippingmethod',
-      'remark'
+     'item_count', 
+     'is_paid',
+     'payment_method',
+     'shippingmethod',
+     'remark'
      
     ];
+
+
+    public function shipping()
+    {
+        return $this->belongsTo(Shipping::class,'shipping_id');
+    }
+    
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function orderItems() {
+        return $this->hasMany(OrderItem::class, 'order_id', 'id');
+    }
+    
 
 }

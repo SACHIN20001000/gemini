@@ -19,6 +19,9 @@ class OrderController extends Controller
      *      path="/order",
      *      operationId="get orders",
      *      tags={"Orders"},
+     *      security={
+     *          {"Bearer": {}},
+     *          },
      *     summary="get orders",
      *     @OA\Response(
      *         response="200",
@@ -44,8 +47,11 @@ class OrderController extends Controller
 
     public function index(Request $request)
     {
+        $user = auth('api')->user();
         $limit = $request->limit ? $request->limit : 20;
-        $orders = Order::paginate($limit);
+        $orders = Order::with(['shipping','user','orderItems'])->paginate($limit);
+
+        //dd($orders);
         return OrderResource::collection($orders);
     }
 
@@ -55,6 +61,9 @@ class OrderController extends Controller
      *      path="/order/{order}",
      *      operationId="get order by id",
      *      tags={"Orders"},
+     *     security={
+     *          {"Bearer": {}},
+     *          },
      *     summary="get order by id",
      *       @OA\Parameter(
      *         name="id",
