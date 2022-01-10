@@ -6,6 +6,10 @@ use App\Http\Controllers\API\PassportAuthController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\API\Chowhub\ChowhubProductController;
+use App\Http\Controllers\API\Chowhub\ChowhubCategoryController;
+use App\Http\Controllers\API\Chowhub\ChowhubStoreController;
+
 use App\Http\Controllers\API\PageController;
 use App\Http\Controllers\API\CartController;
 use App\Http\Controllers\API\OrderController;
@@ -35,9 +39,18 @@ Route::middleware([EnsureApiTokenIsValid::class])->group(function () {
   Route::get('products', [ProductController::class, 'index']);
   Route::any('products/{id}', [ProductController::class, 'productById']);
   Route::any('products/category/{id}', [ProductController::class, 'productByCategoryId']);
+  Route::get('products/attributes/{id}', [ProductController::class, 'getAttributeByProduct']);
+
+  Route::get('chowhub/products', [ChowhubProductController::class, 'index']);
+  Route::any('chowhub/products/{id}', [ChowhubProductController::class, 'productById']);
+  Route::any('chowhub/products/category/{id}', [ChowhubProductController::class, 'productByCategoryId']);
+  Route::get('chowhub/products/attributes/{id}', [ChowhubProductController::class, 'getAttributeByProduct']);
+  Route::get('chowhub/categories', [ChowhubCategoryController::class, 'index']);
+  Route::any('chowhub/categories/{id}', [ChowhubCategoryController::class, 'category_by_id']);
+
   Route::get('pages', [PageController::class, 'index']);
   Route::any('pages/{id}', [PageController::class, 'pageByID']);
-  Route::get('products/attributes/{id}', [ProductController::class, 'getAttributeByProduct']);
+
 
 });
 
@@ -65,6 +78,8 @@ Route::get('settings', [SettingController::class, 'index']);
 
 Route::get('stores', [StoreController::class, 'index']);
 Route::get('stores/{store}', [StoreController::class, 'show']);
+Route::get('chowhub/stores', [ChowhubStoreController::class, 'index']);
+Route::get('chowhub/stores/{store}', [ChowhubStoreController::class, 'show']);
 
 
 

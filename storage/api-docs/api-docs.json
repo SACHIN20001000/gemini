@@ -390,6 +390,316 @@
                 ]
             }
         },
+        "chowhub/categories": {
+            "get": {
+                "tags": [
+                    "ChowhubProducts"
+                ],
+                "summary": "Chowhub Categories",
+                "operationId": "Chowhub Categories",
+                "responses": {
+                    "200": {
+                        "description": "Chowhub Categories",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CategoriesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Token": []
+                    }
+                ]
+            }
+        },
+        "chowhub/categories/{id}": {
+            "get": {
+                "tags": [
+                    "ChowhubProducts"
+                ],
+                "summary": "Chowhub Categories By Id",
+                "operationId": "Chowhub Categories By Id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "1",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Categories",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CategoriesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Token": []
+                    }
+                ]
+            }
+        },
+        "/chowhub/products": {
+            "get": {
+                "tags": [
+                    "ChowhubProducts"
+                ],
+                "summary": "Chowhub Products",
+                "operationId": "Chowhub Products",
+                "responses": {
+                    "200": {
+                        "description": "Products",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Token": []
+                    }
+                ]
+            }
+        },
+        "/chowhub/products/{id}": {
+            "get": {
+                "tags": [
+                    "ChowhubProducts"
+                ],
+                "summary": "Chowhub Products By Id",
+                "operationId": "Chowhub Product By Id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "1",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "products",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Token": []
+                    }
+                ]
+            }
+        },
+        "/chowhub/products/category/{id}": {
+            "get": {
+                "tags": [
+                    "ChowhubProducts"
+                ],
+                "summary": "Chowhub Products By Category Id",
+                "operationId": "Chowhub Product By categoryId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "1",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "products",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Token": []
+                    }
+                ]
+            }
+        },
+        "/chowhub/products/attributes/{id}": {
+            "get": {
+                "tags": [
+                    "ChowhubProducts"
+                ],
+                "summary": "Attributes by Chowhub Product Id",
+                "operationId": "Chowhub Product By categoryId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "1",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "products",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AttributesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Token": []
+                    }
+                ]
+            }
+        },
+        "/chowhub/stores": {
+            "get": {
+                "tags": [
+                    "ChowhubStores"
+                ],
+                "summary": "Chowhub stores",
+                "operationId": "chowhub stores",
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StoreResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "chowhub/stores/{store}": {
+            "get": {
+                "tags": [
+                    "ChowhubStores"
+                ],
+                "summary": "Chowhub store By Id",
+                "operationId": "chowhub store By Id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "1",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StoreResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "/order": {
             "get": {
                 "tags": [
