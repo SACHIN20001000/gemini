@@ -5,15 +5,13 @@ const state = {
   getCartItem: [],
   addCartItems: [],
   deleteCartItem: [],
-  deleteCartItems: [],
-  varitationList:[]
+  deleteCartItems: []
 }
 const getters = {
   getCartItem: state => state.getCartItem,
   addCartItems: state => state.addCartItems,
   deleteCartItem: state => state.deleteCartItem,
   deleteCartItems: state => state.deleteCartItems,
-  varitationList: state => state.varitationList,
   cartQuantity: state => {
     return state.getCartItem.reduce((acc, cartItem) => {
       return cartItem.quantity + acc;
@@ -55,11 +53,6 @@ const actions = {
     HTTP.delete(process.env.MIX_APP_APIURL+'cart/delete/all').then((response) => {
       commit('deleteAllItemsCart', response.data.data)
     });
-  },
-  async getVaritationList ({ commit },proId) {
-    HTTP.get(process.env.MIX_APP_APIURL+'products/attributes/'+proId).then((response) => {
-      commit('getVaritations', response.data.data)
-    });
   }
 }
 const mutations = {
@@ -74,9 +67,6 @@ const mutations = {
   ),
   deleteAllItemsCart: (state, payload) => (
     state.deleteCartItems = payload
-  ),
-  getVaritations: (state, payload) => (
-    state.varitationList = payload
   )
 }
 
