@@ -8,6 +8,8 @@ use App\Http\Resources\Products\ProductStoreResource;
 use App\Http\Resources\Products\ProductVariationsResource;
 use App\Http\Resources\Products\ProductGalleryResource;
 use App\Http\Resources\Products\ProductAttributesResource;
+use App\Models\VariationAttribute;
+
 class ProductResource extends JsonResource
 {
     /**
@@ -36,8 +38,19 @@ class ProductResource extends JsonResource
             'quantity' => $this->quantity,
             'real_price' => $this->real_price,
             'sale_price' => $this->sale_price,
-            'feature_image' => $this->feature_image           
+            'feature_image' => $this->feature_image,
+            'variation_attributes'=>  $this->getAttributeByProduct($this->id)       
                                
         ];
+    }
+
+
+    public function getAttributeByProduct($id)
+    {
+      $attributes = VariationAttribute::whereHas('variationAttributeName', function ($query) use ($id) {
+    return $query->where('product_id', '=', $id);
+})->get();
+
+return  AttributesResource::collection($attributes);
     }
 }
