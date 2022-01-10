@@ -4530,15 +4530,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var vue_product_slider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-product-slider */ "./node_modules/vue-product-slider/dist/index.umd.min.js");
-/* harmony import */ var vue_product_slider__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_product_slider__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _swipe__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./swipe */ "./resources/js/components/Products/swipe.js");
-/* harmony import */ var _swipe__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_swipe__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _assets_images_pro1_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../assets/images/pro1.png */ "./resources/js/assets/images/pro1.png");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue_product_slider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-product-slider */ "./node_modules/vue-product-slider/dist/index.umd.min.js");
+/* harmony import */ var vue_product_slider__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_product_slider__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _swipe__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./swipe */ "./resources/js/components/Products/swipe.js");
+/* harmony import */ var _swipe__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_swipe__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _assets_images_pro1_png__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../assets/images/pro1.png */ "./resources/js/assets/images/pro1.png");
+/* harmony import */ var vuejs_form__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuejs-form */ "./node_modules/vuejs-form/dist/index.js");
+/* harmony import */ var vuejs_form__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vuejs_form__WEBPACK_IMPORTED_MODULE_7__);
 
 
 
+
 //
 //
 //
@@ -4630,6 +4635,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -4639,14 +4661,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Products",
   components: {
-    VueProductSlider: vue_product_slider__WEBPACK_IMPORTED_MODULE_3__.VueProductSlider,
-    Swipe: (_swipe__WEBPACK_IMPORTED_MODULE_4___default())
+    VueProductSlider: vue_product_slider__WEBPACK_IMPORTED_MODULE_4__.VueProductSlider,
+    Swipe: (_swipe__WEBPACK_IMPORTED_MODULE_5___default())
   },
   data: function data() {
     return {
-      imgslider1: _assets_images_pro1_png__WEBPACK_IMPORTED_MODULE_5__["default"],
-      imgslider2: _assets_images_pro1_png__WEBPACK_IMPORTED_MODULE_5__["default"],
-      imgslider3: _assets_images_pro1_png__WEBPACK_IMPORTED_MODULE_5__["default"],
+      imgslider1: _assets_images_pro1_png__WEBPACK_IMPORTED_MODULE_6__["default"],
+      imgslider2: _assets_images_pro1_png__WEBPACK_IMPORTED_MODULE_6__["default"],
+      imgslider3: _assets_images_pro1_png__WEBPACK_IMPORTED_MODULE_6__["default"],
       itemDetails: {
         key: 1,
         product_id: 0,
@@ -4654,9 +4676,12 @@ __webpack_require__.r(__webpack_exports__);
       },
       variations: {},
       variationAttributes: [],
-      price: '',
-      weight: '',
-      quantity: ''
+      finalVariant: [],
+      selectedattrIds: [],
+      varaintOutStock: '',
+      form: vuejs_form__WEBPACK_IMPORTED_MODULE_7___default()({
+        selectedIds: []
+      })
     };
   },
   mounted: function mounted() {
@@ -4668,36 +4693,43 @@ __webpack_require__.r(__webpack_exports__);
     },
     product: function product() {
       this.variations = this.product.variations;
+      var variation_attributes = this.product.variation_attributes;
+      var vaarrayCollection = [];
 
-      if (this.variations.length > 0) {
-        this.price = this.variations[0].sale_price;
-        this.weight = this.variations[0].weight;
-        this.quantity = this.variations[0].quantity;
-      }
-    }
-    /*varitationList(){
-      var vaarrayCollection=[]
-      if(this.product.variations !=null && this.varitationList.length>0){
-        const _this = this
-        this.varitationList.filter(function(varitioonattr,vaindex){
-          var vname = varitioonattr.name
-          _this.product.attributes.filter(function(attr,attrindex){
-            if(varitioonattr.id == attr.attribute_id){
-              vaarrayCollection.push({type:vname,id:attr.id,name:attr.name})
+      if (variation_attributes.length > 0) {
+        var _this = this;
+
+        variation_attributes.filter(function (varitioonattr, vaindex) {
+          var vname = varitioonattr.name;
+          var vid = varitioonattr.id;
+          var subAttributeArray = [];
+
+          _this.product.attributes.filter(function (attr, attrindex) {
+            if (varitioonattr.id == attr.attribute_id) {
+              subAttributeArray.push({
+                id: attr.id,
+                name: attr.name
+              });
             }
-          })
-        })
-      }
-      this.variationAttributes = vaarrayCollection
-    }*/
+          });
 
+          vaarrayCollection.push({
+            type: vname,
+            id: vid,
+            attributes: subAttributeArray
+          });
+        });
+      }
+
+      this.variationAttributes = vaarrayCollection;
+      this.firstTimePrice();
+    }
   },
-  computed: (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapGetters)(['product', 'catErrors', 'addCartItems', 'varitationList'])),
-  methods: (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])((0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapActions)(['getProduct', 'addCartItem', 'getCartItems', 'getVaritationList'])), {}, {
+  computed: (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapGetters)(['product', 'catErrors', 'addCartItems'])),
+  methods: (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])((0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapActions)(['getProduct', 'addCartItem', 'getCartItems'])), {}, {
     getProdcut: function getProdcut() {
       if (this.$route.params.id) {
         this.getProduct(this.$route.params.id);
-        this.getVaritationList(this.$route.params.id);
       }
     },
     addItemInCart: function addItemInCart(proId) {
@@ -4712,19 +4744,86 @@ __webpack_require__.r(__webpack_exports__);
         this.addCartItem(itemDetails);
       }
     },
-    variationUpdate: function variationUpdate(e, attributeId) {
-      if (this.variations.length > 0) {
-        var _this = this;
+    variationUpdate: function variationUpdate(e, attributeId, attnameId, typ) {
+      var _this = this;
 
-        this.variations.filter(function (varients, varindex) {
-          varients.variation_attributes.filter(function (varientattrs, varattindex) {
-            if (varientattrs.attribute_id == attributeId) {
-              _this.price = varients.sale_price;
-              _this.weight = varients.weight;
-              _this.quantity = varients.quantity;
+      this.selectedattrIds.filter(function (selIds, selind) {
+        if (selIds.type == typ) {
+          _this.selectedattrIds[selind].id = attributeId;
+        }
+      });
+      var varientsArr = [];
+      this.variations.filter(function (varients, varindex) {
+        var countMatch = 0;
+        varients.variation_attributes.filter(function (varientAttrs, index) {
+          _this.selectedattrIds.filter(function (getarrtibuteId, indx) {
+            if (getarrtibuteId.id == varientAttrs.attribute_id) {
+              countMatch++;
             }
           });
         });
+
+        if (countMatch == _this.selectedattrIds.length) {
+          varientsArr = varients;
+        }
+      });
+
+      if (varientsArr && varientsArr.id) {
+        this.finalVariant = [];
+        this.finalVariant = varientsArr;
+        this.varaintOutStock = '';
+      } else {
+        this.varaintOutStock = 'Option is Out Of Stock.';
+      }
+    },
+    firstTimePrice: function firstTimePrice() {
+      var getarrtibuteIds = [];
+      this.variationAttributes.filter(function (vaattr, vaindex) {
+        getarrtibuteIds.push({
+          id: vaattr.attributes[0].id,
+          type: vaattr.type
+        });
+      });
+      this.selectedattrIds = getarrtibuteIds;
+      var varientsArr = [];
+      this.variations.filter(function (varients, varindex) {
+        var countMatch = 0;
+        varients.variation_attributes.filter(function (varientAttrs, index) {
+          getarrtibuteIds.filter(function (getarrtibuteId, indx) {
+            if (getarrtibuteId.id == varientAttrs.attribute_id) {
+              countMatch++;
+            }
+          });
+        });
+
+        if (countMatch == getarrtibuteIds.length) {
+          varientsArr = varients;
+        }
+      });
+
+      if (varientsArr && varientsArr.id) {
+        this.finalVariant = [];
+        this.finalVariant = varientsArr;
+        this.varaintOutStock = '';
+      } else {
+        this.varaintOutStock = 'Option is Out Of Stock.';
+      }
+    },
+    selectedlabel: function selectedlabel(selId) {
+      var selectCount = 0;
+
+      if (this.finalVariant.variation_attributes) {
+        this.finalVariant.variation_attributes.filter(function (att, attind) {
+          if (att.attribute_id == selId) {
+            selectCount++;
+          }
+        });
+
+        if (selectCount > 0) {
+          return true;
+        } else {
+          return false;
+        }
       }
     }
   })
@@ -14570,8 +14669,7 @@ var state = {
   getCartItem: [],
   addCartItems: [],
   deleteCartItem: [],
-  deleteCartItems: [],
-  varitationList: []
+  deleteCartItems: []
 };
 var getters = {
   getCartItem: function getCartItem(state) {
@@ -14585,9 +14683,6 @@ var getters = {
   },
   deleteCartItems: function deleteCartItems(state) {
     return state.deleteCartItems;
-  },
-  varitationList: function varitationList(state) {
-    return state.varitationList;
   },
   cartQuantity: function cartQuantity(state) {
     return state.getCartItem.reduce(function (acc, cartItem) {
@@ -14647,26 +14742,6 @@ var actions = {
     _Api_auth__WEBPACK_IMPORTED_MODULE_5__["default"]["delete"]("http://3.132.243.209/api/" + 'cart/delete/all').then(function (response) {
       commit('deleteAllItemsCart', response.data.data);
     });
-  },
-  getVaritationList: function getVaritationList(_ref5, proId) {
-    return (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2() {
-      var commit;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              commit = _ref5.commit;
-              _Api_auth__WEBPACK_IMPORTED_MODULE_5__["default"].get("http://3.132.243.209/api/" + 'products/attributes/' + proId).then(function (response) {
-                commit('getVaritations', response.data.data);
-              });
-
-            case 2:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }))();
   }
 };
 var mutations = {
@@ -14681,9 +14756,6 @@ var mutations = {
   },
   deleteAllItemsCart: function deleteAllItemsCart(state, payload) {
     return state.deleteCartItems = payload;
-  },
-  getVaritations: function getVaritations(state, payload) {
-    return state.varitationList = payload;
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -35233,7 +35305,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".errorMsg{\r\n  width: 100%;\r\n  color: red;\r\n  font-size: 14px;\r\n  font-weight: normal;\r\n}\r\n.button{\r\n  color: #fff;\r\n  background: red;\r\n  border-radius: 4px;\r\n  padding: 5px;\r\n  list-style: none;\r\n  text-decoration: none;\r\n  cursor: pointer;\r\n}\r\n.button:hover{\r\n  color: #fff;\r\n  list-style: none;\r\n  text-decoration: none;\r\n}\r\n.button strong{\r\n  color: #fff;\r\n}\r\n.main_product{\r\n  width: 100%;\r\n  display: flex;\r\n  flex-direction: row;\r\n}\r\n.main_product .width50{\r\n  width: 50%;\r\n}\r\n.productDetails{\r\n  padding-left: 20px;\r\n}\r\n.varientAttributes{\r\n  width: 100%;\r\n  display: flex;\r\n  flex-direction: column;\r\n  list-style: none;\r\n}\r\n.varientAttributes li{\r\n  list-style: none;\r\n}\r\n.varientAttribute{\r\n  width: 100%;\r\n  display: flex;\r\n  flex-direction: row;\r\n  list-style: none;\r\n}\r\n.varientAttribute li{\r\n  list-style: none;\r\n}\r\n.varientAttribute li a{\r\n  text-decoration: none;\r\n  border: 1px solid #000;\r\n  padding: 5px 10px;\r\n  margin-right: 10px;\r\n  background: #ccc;\r\n  color: #000;\r\n  border-radius: 4px;\r\n}\r\n.varientAttribute li a:hover{\r\n  text-decoration: none;\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".errorMsg{\r\n  width: 100%;\r\n  color: red;\r\n  font-size: 14px;\r\n  font-weight: normal;\r\n}\r\n.button{\r\n  color: #fff;\r\n  background: red;\r\n  border-radius: 4px;\r\n  padding: 5px;\r\n  list-style: none;\r\n  text-decoration: none;\r\n  cursor: pointer;\r\n}\r\n.button:hover{\r\n  color: #fff;\r\n  list-style: none;\r\n  text-decoration: none;\r\n}\r\n.button strong{\r\n  color: #fff;\r\n}\r\n.main_product{\r\n  width: 100%;\r\n  display: flex;\r\n  flex-direction: row;\r\n}\r\n.main_product .width50{\r\n  width: 50%;\r\n}\r\n.productDetails{\r\n  padding-left: 20px;\r\n}\r\n.variationAttributes{\r\n  width: 100%;\r\n  display: flex;\r\n  flex-direction: column;\r\n  list-style: none;\r\n}\r\n.variationAttributes li{\r\n  list-style: none;\r\n}\r\n.varientAttribute{\r\n  width: 100%;\r\n  display: flex;\r\n  flex-direction: row;\r\n  list-style: none;\r\n}\r\n.varientAttribute li{\r\n  list-style: none;\r\n}\r\n.varientAttribute li a{\r\n  text-decoration: none;\r\n  border: 1px solid #000;\r\n  padding: 5px 10px;\r\n  margin-right: 10px;\r\n  color: #000;\r\n  border-radius: 4px;\r\n}\r\n.varientAttribute li a:hover{\r\n  text-decoration: none;\r\n}\r\n.regularprice{\r\n  text-decoration: line-through;\r\n}\r\n.selectedlabel{\r\n  background: red;\r\n}\r\n.nonSelectedlabel{\r\n  background: #ccc;\r\n}\r\n.outStock{\r\n  color: red;\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -41245,74 +41317,122 @@ var render = function () {
               domProps: { innerHTML: _vm._s(_vm.product.description) },
             }),
             _vm._v(" "),
-            _c("p", [_vm._v("Quantity: " + _vm._s(_vm.quantity))]),
+            _vm.finalVariant
+              ? _c("div", { staticClass: "variant" }, [
+                  _c("p", [
+                    _vm._v("Quantity: " + _vm._s(_vm.finalVariant.quantity)),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "Sale Price: " + _vm._s(_vm.finalVariant.sale_price)
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "regularprice" }, [
+                    _vm._v(
+                      "Regular Price: " + _vm._s(_vm.finalVariant.real_price)
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v("weight: " + _vm._s(_vm.finalVariant.weight)),
+                  ]),
+                ])
+              : _vm._e(),
             _vm._v(" "),
-            _c("p", [_vm._v("Sale Price: " + _vm._s(_vm.price))]),
-            _vm._v(" "),
-            _c("p", [_vm._v("weight: " + _vm._s(_vm.weight))]),
-            _vm._v(" "),
-            _vm.varitationList
+            _vm.variationAttributes
               ? _c(
                   "ul",
                   { staticClass: "variationAttributes" },
-                  _vm._l(_vm.varitationList, function (varitationattr, vakey) {
-                    return _c("li", { key: vakey }, [
-                      _c(
-                        "ul",
-                        { staticClass: "varientAttribute" },
-                        [
-                          _c("li", [
-                            _vm._v(_vm._s(varitationattr.name) + " :"),
-                          ]),
-                          _vm._v(" "),
-                          _vm._l(
-                            _vm.product.attributes,
-                            function (variationAttribute, vak) {
-                              return _c(
-                                "li",
-                                {
-                                  key: vak,
-                                  attrs: { value: variationAttribute.id },
-                                },
-                                [
-                                  varitationattr.id ==
-                                  variationAttribute.attribute_id
-                                    ? _c(
-                                        "a",
-                                        {
-                                          attrs: { href: "javascript:;" },
-                                          on: {
-                                            click: function ($event) {
-                                              return _vm.variationUpdate(
-                                                $event,
-                                                variationAttribute.id
-                                              )
+                  _vm._l(
+                    _vm.variationAttributes,
+                    function (varitationattr, vakey) {
+                      return _c("li", { key: vakey }, [
+                        _c(
+                          "ul",
+                          { staticClass: "varientAttribute" },
+                          [
+                            _c("li", [
+                              _vm._v(_vm._s(varitationattr.type) + " :"),
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(
+                              varitationattr.attributes,
+                              function (variationAttribute, vak) {
+                                return _c("li", { key: vak }, [
+                                  _vm.selectedlabel(variationAttribute.id) ===
+                                  true
+                                    ? _c("span", [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass: "selectedlabel",
+                                            attrs: { href: "javascript:;" },
+                                            on: {
+                                              click: function ($event) {
+                                                return _vm.variationUpdate(
+                                                  $event,
+                                                  variationAttribute.id,
+                                                  varitationattr.id,
+                                                  varitationattr.type
+                                                )
+                                              },
                                             },
                                           },
-                                        },
-                                        [
-                                          _c("span", [
-                                            _vm._v(
-                                              _vm._s(variationAttribute.name)
-                                            ),
-                                          ]),
-                                        ]
-                                      )
-                                    : _vm._e(),
-                                ]
-                              )
-                            }
-                          ),
-                        ],
-                        2
-                      ),
-                    ])
-                  }),
+                                          [
+                                            _c("span", [
+                                              _vm._v(
+                                                _vm._s(variationAttribute.name)
+                                              ),
+                                            ]),
+                                          ]
+                                        ),
+                                      ])
+                                    : _c("span", [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass: "nonSelectedlabel",
+                                            attrs: { href: "javascript:;" },
+                                            on: {
+                                              click: function ($event) {
+                                                return _vm.variationUpdate(
+                                                  $event,
+                                                  variationAttribute.id,
+                                                  varitationattr.id,
+                                                  varitationattr.type
+                                                )
+                                              },
+                                            },
+                                          },
+                                          [
+                                            _c("span", [
+                                              _vm._v(
+                                                _vm._s(variationAttribute.name)
+                                              ),
+                                            ]),
+                                          ]
+                                        ),
+                                      ]),
+                                ])
+                              }
+                            ),
+                          ],
+                          2
+                        ),
+                      ])
+                    }
+                  ),
                   0
                 )
               : _vm._e(),
           ])
         : _vm._e(),
+      _vm._v(" "),
+      _c("p", { staticClass: "outStock" }, [
+        _vm._v(_vm._s(_vm.varaintOutStock)),
+      ]),
       _vm._v(" "),
       _c("p", [
         _c(
