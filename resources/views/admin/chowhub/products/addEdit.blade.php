@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
-<style>.imageSize{height: 100px;width: 100px;}</style>
+<style>.imageSize{height: 100px;width: 100px;} .tag{color:black !important;background-color: aqua;font-size: 15px;}</style>
 <div class="container">
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
@@ -9,7 +9,7 @@
                 <h4 class="content-title mb-0 my-auto">Products</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{isset($product) ? $product->name : 'Add New' }}</span>
             </div>
         </div>
-        <a class="btn btn-main-primary ml_auto" href="{{ route('products.index') }}">View Products</a>
+        <a class="btn btn-main-primary ml_auto" href="{{ route('chowhub-products.index') }}">View Products</a>
     </div>
     <!-- breadcrumb -->
     <!--Row-->
@@ -22,7 +22,7 @@
                         {{isset($product) ? 'Update # '.$product->id : 'Add New' }}
                     </div>
                 
-                    <form  id="product-add-edit" action="{{isset($product) ? route('products.update',$product->id) : route('products.store')}}" method="POST" enctype="multipart/form-data">
+                    <form  id="product-add-edit" action="{{isset($product) ? route('chowhub-products.update',$product->id) : route('chowhub-products.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{ isset($product) ? method_field('PUT'):'' }}
                         <div class="col-lg-12 col-md-12">
@@ -35,6 +35,15 @@
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                     <input class="form-control" name="productName"  placeholder="Enter your name" type="text" value="{{isset($product) ? $product->productName : '' }}">
                                     
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Tags</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                         
+		            	<input type="text" name="tag" placeholder="Tags" value="{{isset($product) ? $product->availTags : '' }}" data-role="tagsinput" class="form-control"/>
                                 </div>
                             </div>
                       
@@ -232,8 +241,12 @@
 @endsection 
 
 @section('scripts')
-<script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+
+<link rel="stylesheet" href="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+<script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
 <script type="text/javascript">
+
             CKEDITOR.config.autoParagraph = false; 
             CKEDITOR.config.fillEmptyBlocks = false; 
             CKEDITOR.config.basicEntities = false; 
@@ -319,9 +332,7 @@ var productsEvent;
             {
             let headings = Object.keys(variations[0]);
             $.each(headings, function( index, value ) {
-                if(value != 'hidden_id'){
-                    $("#variations_heading").append('<th>'+value+'</th>');
-                }
+                $("#variations_heading").append('<th>'+value+'</th>');
             });
             $.each(variations, function( index, value ) {
                 let testdata = {};
@@ -331,16 +342,7 @@ var productsEvent;
                 {
                     if(typeof variation === 'object' && variation !== null)
                     {
-                        if(variation.type == 'hidden'){
-                            htmlString +='<input  name="variations['+index+']['+variation.name+']" class="form-control tableData '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'">';
-                         
-                        }else{
                         htmlString +='<td><input  name="variations['+index+']['+variation.name+']" class="form-control tableData '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'"></td>';
-                        }
-                        if(variation.src){
-                        htmlString +='<td><div id="delete_variation_img'+variation.value+' "> <a href="'+variation.src+'" target="_blank" ><img height=50 style="max-width: 50px;" src="'+variation.src+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)" ></a><i class="fas fa-trash-alt" onclick="removeVariationImage(\''+variation.value+'\')" ></i></div></td>';
-
-                        } 
                     }
                     else
                     {
@@ -396,7 +398,7 @@ function delImage(id){
     if (confirm('Are You Sure You Want To Delete This Image')) {
    $.ajax({
            type:'POST',
-           url:'/admin/delete-photo',
+           url:'/admin/delete-chowhub-photo',
            data: data ,
            success:function(data){
             $('#imgDel'+id+'').remove();
@@ -407,30 +409,10 @@ function delImage(id){
 }
         
      }
-     function removeVariationImage(id){
-    var data = 'id='+ id ;
-   
-    if (confirm('Are You Sure You Want To Delete This Image')) {
-   $.ajax({
-           type:'POST',
-           url:'/admin/delete-variation-img',
-           data: data ,
-           success:function(data){
-           
-            $('#delete_variation_img'+id+'').remove();
-        
-           }
-        });
-} else {
-    
-}
-}
-
-
 $(function() {
     var counter = 1; 
     $('#product-galary').FancyFileUpload({
-        url:'/admin/save-photo',
+        url:'/admin/save-chowhub-photo',
         fileupload : {
             maxChunkSize : 1000000
         },        
@@ -446,9 +428,9 @@ $(function() {
 </script>
 
 @if(isset($product))
-{!! JsValidator::formRequest('App\Http\Requests\Admin\Product\UpdateProduct','#product-add-edit') !!}
+{!! JsValidator::formRequest('App\Http\Requests\Admin\Chowhub\Product\UpdateProduct','#product-add-edit') !!}
 @else
-{!! JsValidator::formRequest('App\Http\Requests\Admin\Product\AddProduct','#product-add-edit') !!}
+{!! JsValidator::formRequest('App\Http\Requests\Admin\Chowhub\Product\AddProduct','#product-add-edit') !!}
 @endif
 
 @endsection

@@ -8,6 +8,7 @@ use App\Http\Resources\Products\ProductStoreResource;
 use App\Http\Resources\Products\ProductVariationsResource;
 use App\Http\Resources\Products\ProductGalleryResource;
 use App\Http\Resources\Products\ProductAttributesResource;
+use App\Http\Resources\Products\TagsResource;
 use App\Models\VariationAttribute;
 
 class ProductResource extends JsonResource
@@ -32,6 +33,7 @@ class ProductResource extends JsonResource
             'variations' => ProductVariationsResource::collection($this->productVariation),
             'gallary' =>  ProductGalleryResource::collection($this->productGallery),
             'attributes' => ProductAttributesResource::collection($this->variationAttributesValue),
+            'tags'=>$this->tags?TagsResource::collection($this->tags):null,
             'status' => $this->status,
             'weight' => $this->weight,
             'description' => $this->description,
