@@ -105,7 +105,8 @@ class ChowhubProductController extends Controller
 
  		$tags=explode(",",$inputs['tag']);
 		// ADD PRODUCT TABLE DATA 
-     
+
+
 		if(!empty($inputs['productName'])){
 			$products= new ChowhubProduct();
 			$products->productName = $inputs['productName'];
@@ -134,22 +135,21 @@ class ChowhubProductController extends Controller
 			}
             //tags
             if(!empty($tags)){			
-				foreach($tags as $vakey => $tagName){
-
-                    $tags = ChowhubTag::updateOrCreate([
+                foreach($tags as $vakey => $tagName){
+                   
+                    $tag = ChowhubTag::updateOrCreate([
                         'name'   => $tagName
                     ],[
                         'name'   => $tagName
                     ]);
                 
-				    $tagValue = new ChowhubProductTag;
-                    $tagValue->tag_id = $tags->id;   
+                    $tagValue = new ChowhubProductTag;
+                    $tagValue->tag_id = $tag->id;   
                     $tagValue->product_id = $products->id;	
                     $tagValue->save();
-					
-				}
-			}
-
+                   
+                }
+            }
 
 
 			if(!empty($inputs['attributes'])){			
@@ -318,24 +318,21 @@ class ChowhubProductController extends Controller
 				}
 			}
             if(!empty($tags)){			
-				foreach($tags as $tagName){
-                    
-                    // ChowhubProductTag::where('product_id',$id)->delete();
-                    $tagKEY = ChowhubTag::updateOrCreate([
+                foreach($tags as $vakey => $tagName){
+                   
+                    $tag = ChowhubTag::updateOrCreate([
                         'name'   => $tagName
                     ],[
                         'name'   => $tagName
                     ]);
-                   if($tagKEY->id){
+                
                     $tagValue = new ChowhubProductTag;
-                    $tagValue->tag_id = $tagKEY->id;   
+                    $tagValue->tag_id = $tag->id;   
                     $tagValue->product_id = $products->id;	
                     $tagValue->save();
-                   }
-				    
-					
-				}
-			}
+                   
+                }
+            }
 
 
 			if(!empty($inputs['attributes'])){			
