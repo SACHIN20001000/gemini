@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\Chowhub\ChowhubCategoryController;
+use App\Http\Controllers\Admin\Chowhub\ChowhubStoreController;
+use App\Http\Controllers\Admin\Chowhub\ChowhubProductController;
+
+
+
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminController;
@@ -56,6 +62,14 @@ Route::prefix('admin')->group(function ()
         Route::resource('products', ProductController::class);
         Route::resource('stores', StoreController::class);
         Route::resource('orders', OrderController::class);
+
+        //chowhub
+        Route::resource('chowhub-categories', ChowhubCategoryController::class);
+        Route::resource('chowhub-store', ChowhubStoreController::class);
+        Route::resource('chowhub-products', ChowhubProductController::class);
+        Route::post('save-chowhub-photo', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'save_photo']);
+        Route::post('delete-chowhub-photo', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'del_photo']);
+
 
 
         Route::get('delete-gallery/{id}', function () {
