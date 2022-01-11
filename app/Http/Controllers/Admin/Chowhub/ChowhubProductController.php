@@ -10,6 +10,9 @@ use App\Models\ChowhubProductGallery;
 use App\Models\ChowhubVariationAttribute;
 use App\Models\ChowhubVariationAttributeValue;
 use App\Models\Category;
+use App\Models\ChowhubTag;
+use App\Models\ChowhubProductTag;
+
 use App\Models\ChowhubStore;
 use DataTables;
 use Illuminate\Support\Str;
@@ -100,8 +103,9 @@ class ChowhubProductController extends Controller
     {  
         $inputs = $request->all(); 
 
- 		
+ 		$tags=explode(",",$inputs['tag']);
 		// ADD PRODUCT TABLE DATA 
+     
 		if(!empty($inputs['productName'])){
 			$products= new ChowhubProduct();
 			$products->productName = $inputs['productName'];
@@ -128,6 +132,26 @@ class ChowhubProductController extends Controller
 					$productImage->save();
 				}
 			}
+            //tags
+            if(!empty($tags)){			
+				foreach($tags as $vakey => $tagName){
+
+                    $tags = ChowhubTag::updateOrCreate([
+                        'name'   => $tagName
+                    ],[
+                        'name'   => $tagName
+                    ]);
+                
+				    $tagValue = new ChowhubProductTag;
+                    $tagValue->tag_id = $tags->id;   
+                    $tagValue->product_id = $products->id;	
+                    $tagValue->save();
+					
+				}
+			}
+
+
+
 			if(!empty($inputs['attributes'])){			
 				
 				$attributeCombinations=[];
@@ -223,6 +247,7 @@ class ChowhubProductController extends Controller
         $stores = ChowhubStore::all();
         $product= ChowhubProduct::with(['category','store','productVariation','productGallery','variationAttributesValue.variationAttributeName'])->where('id',$id)->first(); 
 
+         
         $variations = [];
         foreach ($product->productVariation as $key => $variation) {
             $allvariations = json_decode($variation->variation_attributes_name_id);
@@ -250,7 +275,7 @@ class ChowhubProductController extends Controller
         foreach ($product->variationAttributesValue as $data) {
             $attributes[$data->variationAttributeName->name][] = $data->name;
         }
-    //   echo"<pre>";  print_r($product);die;
+
         return view('admin.chowhub.products.addEdit',compact('product','stores','categories','attributes','variations'));
     }
 
@@ -265,6 +290,7 @@ class ChowhubProductController extends Controller
     {
         $inputs = $request->all(); 
     
+ 		$tags=explode(",",$inputs['tag']);
 		if(!empty($inputs['productName'])){
 			$products= ChowhubProduct::find($id);
 			$products->productName = $inputs['productName'];
@@ -291,6 +317,27 @@ class ChowhubProductController extends Controller
 					$productImage->save();
 				}
 			}
+            if(!empty($tags)){			
+				foreach($tags as $tagName){
+                    
+                    // ChowhubProductTag::where('product_id',$id)->delete();
+                    $tagKEY = ChowhubTag::updateOrCreate([
+                        'name'   => $tagName
+                    ],[
+                        'name'   => $tagName
+                    ]);
+                   if($tagKEY->id){
+                    $tagValue = new ChowhubProductTag;
+                    $tagValue->tag_id = $tagKEY->id;   
+                    $tagValue->product_id = $products->id;	
+                    $tagValue->save();
+                   }
+				    
+					
+				}
+			}
+
+
 			if(!empty($inputs['attributes'])){			
 				
 

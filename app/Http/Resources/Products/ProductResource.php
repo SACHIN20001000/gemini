@@ -30,6 +30,7 @@ class ProductResource extends JsonResource
             'variations' => ProductVariationsResource::collection($this->productVariation),
             'gallary' =>  ProductGalleryResource::collection($this->productGallery),
             'attributes' => ProductAttributesResource::collection($this->variationAttributesValue),
+            'tag'=>$this->availTags,
             'status' => $this->status,
             'weight' => $this->weight,
             'description' => $this->description,

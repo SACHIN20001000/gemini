@@ -19,6 +19,8 @@ class ChowhubProduct extends Model
         'productName','type','feature_image','description','real_price','sale_price','category_id','status'
     ];
 
+    protected $appends = array('availTags');
+
     public function category()
     {
         return $this->belongsTo(Category::class,'category_id');
@@ -37,6 +39,23 @@ class ChowhubProduct extends Model
     }
     public function variationAttributesValue() {
         return $this->hasMany(ChowhubVariationAttributeValue::class, 'product_id', 'id');
+    }
+    public function tags() {
+
+        return $this->hasMany(ChowhubProductTag::class, 'product_id', 'id');
+    }
+
+    public function getAvailTagsAttribute()
+    {
+        $tags = $this->tags;
+        $tagsData = [];
+        foreach($tags as $key => $tag)
+        {
+            $tagName = $tag->tagName;
+            array_push($tagsData, $tagName->name);
+        }
+        $tagsData = implode(',',$tagsData);   
+        return $tagsData;
     }
   
 }

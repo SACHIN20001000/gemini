@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
-<style>.imageSize{height: 100px;width: 100px;}</style>
+<style>.imageSize{height: 100px;width: 100px;} .tag{color:black !important;background-color: aqua;font-size: 15px;}</style>
 <div class="container">
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
@@ -35,6 +35,15 @@
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                     <input class="form-control" name="productName"  placeholder="Enter your name" type="text" value="{{isset($product) ? $product->productName : '' }}">
                                     
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Tags</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                         
+		            	<input type="text" name="tag" placeholder="Tags" value="{{isset($product) ? $product->availTags : '' }}" data-role="tagsinput" class="form-control"/>
                                 </div>
                             </div>
                       
@@ -232,8 +241,12 @@
 @endsection 
 
 @section('scripts')
-<script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+
+<link rel="stylesheet" href="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+<script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
 <script type="text/javascript">
+
             CKEDITOR.config.autoParagraph = false; 
             CKEDITOR.config.fillEmptyBlocks = false; 
             CKEDITOR.config.basicEntities = false; 
