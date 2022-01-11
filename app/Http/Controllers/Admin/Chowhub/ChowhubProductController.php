@@ -424,6 +424,7 @@ class ChowhubProductController extends Controller
         ChowhubProductVariation::where('product_id',$id)->delete();      
         ChowhubProductGallery::where('product_id',$id)->delete();
         ChowhubVariationAttributeValue::where('product_id',$id)->delete();
+        ChowhubProductTag::where('product_id',$id)->delete();
         ChowhubProduct::find($id)->delete();
      
         return back()->with('success','Product deleted successfully!');
