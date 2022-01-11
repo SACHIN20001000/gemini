@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ChowhubTag extends Model
 {
+    
     use HasFactory;
     protected $casts = [
         'created_at' => 'datetime:d-m-Y',
