@@ -1565,6 +1565,7 @@
                             "quantity": "12",
                             "price": "12.00",
                             "sale_price": "121.00",
+                            "variation_attributes": "",
                             "created": "2021-12-13",
                             "updated_at": "2021-12-13"
                         }
