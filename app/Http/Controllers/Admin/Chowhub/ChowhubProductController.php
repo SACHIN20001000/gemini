@@ -320,27 +320,16 @@ class ChowhubProductController extends Controller
             if(!empty($tags)){	
                 ChowhubProductTag::where('product_id',$id)->delete();
                 foreach($tags as $vakey => $tagName){
-                
-                   $tagAttr=ChowhubTag::where('name', $tagName)->first();
                    $tag = ChowhubTag::updateOrCreate([
                         'name'   => $tagName
                     ],[
                         'name'   => $tagName
-                    ]);
-                   if(!empty($tagAttr)){
-                    $tagValue = new ChowhubProductTag;
-                    $tagValue->tag_id = $tagAttr->id;   
-                    $tagValue->product_id = $products->id;	
-                    $tagValue->save();
-                   }else{
-                               
+                    ]);                  
                     $tagValue = new ChowhubProductTag;
                     $tagValue->tag_id = $tag->id;   
                     $tagValue->product_id = $products->id;	
-                    $tagValue->save();
-                   }
-                   
-                   
+                    $tagValue->save();                
+                                      
                 }
             }
 
