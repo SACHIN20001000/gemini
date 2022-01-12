@@ -254,7 +254,7 @@
             CKEDITOR.config.entities_latin = false; 
             CKEDITOR.config.allowedContent = true;
          CKEDITOR.replace( 'description' );
-var productsEvent;
+         var productsEvent;
 (function() {
     var attributes =[];
     var variations =[];
@@ -332,8 +332,11 @@ var productsEvent;
             {
             let headings = Object.keys(variations[0]);
             $.each(headings, function( index, value ) {
-                $("#variations_heading").append('<th>'+value+'</th>');
+                if(value != 'hidden_id'){
+                    $("#variations_heading").append('<th>'+value+'</th>');
+                }
             });
+            // console.log(variations)
             $.each(variations, function( index, value ) {
                 let testdata = {};
                 let htmlString = '<tr class="variation-tr">';
@@ -342,7 +345,16 @@ var productsEvent;
                 {
                     if(typeof variation === 'object' && variation !== null)
                     {
+                        if(variation.type == 'hidden'){
+                            htmlString +='<input  name="variations['+index+']['+variation.name+']" class="form-control hidden_id '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'">';
+                         
+                        }else{
                         htmlString +='<td><input  name="variations['+index+']['+variation.name+']" class="form-control tableData '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'"></td>';
+                        }
+                        if(variation.src){
+                        htmlString +='<td><div id="delete_variation_img'+variation.value+' "> <a href="'+variation.src+'" target="_blank" ><img height=50 style="max-width: 50px;" src="'+variation.src+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)" ></a><i class="fas fa-trash-alt" onclick="removeVariationImage(\''+variation.value+'\')" ></i></div></td>';
+
+                        } 
                     }
                     else
                     {
@@ -398,7 +410,7 @@ function delImage(id){
     if (confirm('Are You Sure You Want To Delete This Image')) {
    $.ajax({
            type:'POST',
-           url:'/admin/delete-chowhub-photo',
+           url:'/admin/delete-photo',
            data: data ,
            success:function(data){
             $('#imgDel'+id+'').remove();
@@ -409,10 +421,30 @@ function delImage(id){
 }
         
      }
+     function removeVariationImage(id){
+    var data = 'id='+ id ;
+   
+    if (confirm('Are You Sure You Want To Delete This Image')) {
+   $.ajax({
+           type:'POST',
+           url:'/admin/delete-variation-img',
+           data: data ,
+           success:function(data){
+           
+            $('#delete_variation_img'+id+'').remove();
+        
+           }
+        });
+} else {
+    
+}
+}
+
+
 $(function() {
     var counter = 1; 
     $('#product-galary').FancyFileUpload({
-        url:'/admin/save-chowhub-photo',
+        url:'/admin/save-photo',
         fileupload : {
             maxChunkSize : 1000000
         },        

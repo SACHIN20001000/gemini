@@ -69,7 +69,7 @@ Route::prefix('admin')->group(function ()
         Route::resource('chowhub-products', ChowhubProductController::class);
         Route::post('save-chowhub-photo', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'save_photo']);
         Route::post('delete-chowhub-photo', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'del_photo']);
-
+        Route::post('delete-chowhub-variation-img', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'del_variationPhoto']);
 
 
         Route::get('delete-gallery/{id}', function () {
@@ -79,12 +79,12 @@ Route::prefix('admin')->group(function ()
         Route::post('save-photo', [App\Http\Controllers\Admin\ProductController::class, 'save_photo'])->name('save_photo');
         Route::post('delete-photo', [App\Http\Controllers\Admin\ProductController::class, 'del_photo'])->name('del_photo');
         Route::post('delete-variation-img', [App\Http\Controllers\Admin\ProductController::class, 'del_variationPhoto'])->name('del_variationPhoto');
-        Route::post('delete-variation', [App\Http\Controllers\Admin\ProductController::class, 'del_variation'])->name('del_variation');
 
         Route::resource('brands', BrandsController::class);
 
         Route::resource('settings', SettingController::class);
 
+     
 
 
         Route::resource('users', UserController::class);
