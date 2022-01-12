@@ -323,16 +323,18 @@ var productsEvent;
                     $("#variations_heading").append('<th>'+value+'</th>');
                 }
             });
+    
             $.each(variations, function( index, value ) {
                 let testdata = {};
-                let htmlString = '<tr class="variation-tr">';
+                // console.log(value.hidden_id.value)
+                let htmlString = '<tr class="variation-tr'+value.hidden_id.value+'">';
 
               for (const [name, variation] of Object.entries(value))
                 {
                     if(typeof variation === 'object' && variation !== null)
                     {
                         if(variation.type == 'hidden'){
-                            htmlString +='<input  name="variations['+index+']['+variation.name+']" class="form-control tableData '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'">';
+                            htmlString +='<input  name="variations['+index+']['+variation.name+']" class="form-control hidden_id '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'">';
                          
                         }else{
                         htmlString +='<td><input  name="variations['+index+']['+variation.name+']" class="form-control tableData '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'"></td>';
@@ -349,7 +351,7 @@ var productsEvent;
                     
                 }
                 
-                htmlString += '<td><button type="button" name="remove" onclick="productsEvent.removeVariation(\''+index+'\')" class="btn btn-danger btn_remove">X</button></td>';
+                htmlString += '<td><button type="button" name="remove" onclick="productsEvent.removeVariation(\''+index+'\')" id='+value.hidden_id.value+' class="btn btn-danger btn_remove variation_delete">X</button></td>';
                 htmlString += '</tr>';
                 $("#variations_fields").append(htmlString);
             });
@@ -402,11 +404,10 @@ function delImage(id){
             $('#imgDel'+id+'').remove();
            }
         });
-} else {
-    
+    } 
 }
-        
-     }
+
+
      function removeVariationImage(id){
     var data = 'id='+ id ;
    
@@ -421,9 +422,7 @@ function delImage(id){
         
            }
         });
-} else {
-    
-}
+} 
 }
 
 
@@ -442,7 +441,26 @@ $(function() {
         }
     });
 });
+$(document).on('click', '.variation_delete', function () {
+    var id = $(this).attr("id");
+    var data = 'id='+ id ;
+    if(id !== null){
+        if (confirm('Are You Sure You Want To Delete This Variation')) {
+        $.ajax({
+           type:'POST',
+           url:'/admin/delete-variation',
+           data: data ,
+           success:function(data){
+         
+            $('.variation-tr'+data.id+'').remove();
+        
+           }
+        });
+        }
+    }
 
+ 
+});
 </script>
 
 @if(isset($product))

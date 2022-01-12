@@ -462,4 +462,13 @@ class ProductController extends Controller
              
             ]);
     }
+    public function del_variation(Request $request){
+      
+        ProductVariation::find($request->id)->delete();
+
+        return Response()->json([
+                "success" => 'Deleted Successfully',
+                "id"=>$request->id
+            ]);
+    }
 }
