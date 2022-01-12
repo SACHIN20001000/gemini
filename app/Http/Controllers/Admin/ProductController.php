@@ -254,7 +254,7 @@ class ProductController extends Controller
         foreach ($product->variationAttributesValue as $data) {
             $attributes[$data->variationAttributeName->name][] = $data->name;
         }
-    //   echo"<pre>";  print_r($product);die;
+    //   echo"<pre>";  print_r($attributes);die;
         return view('admin.products.addEdit',compact('product','stores','categories','attributes','variations'));
     }
 
@@ -267,7 +267,7 @@ class ProductController extends Controller
      */
     public function update(UpdateProduct $request,$id)
     {
-       
+    //   echo"<pre>"; print_r($request->all());die;
         $inputs = $request->all(); 
     
 		if(!empty($inputs['productName'])){
@@ -301,6 +301,7 @@ class ProductController extends Controller
 
 				$attributeCombinations=[];
                 $attributesName =[];
+                VariationAttributeValue::where('product_id',$id)->delete();
 				foreach($inputs['attributes'] as $vakey => $attributeName){
 
                     $variationAttribute = VariationAttribute::updateOrCreate([
@@ -310,7 +311,7 @@ class ProductController extends Controller
                     ]);
                     array_push($attributesName,$vakey);
 
-					VariationAttributeValue::where('product_id',$id)->delete();
+					
 					/**insert attribute**/
 					if($variationAttribute->id){
 						
