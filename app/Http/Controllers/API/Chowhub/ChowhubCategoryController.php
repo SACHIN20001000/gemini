@@ -42,8 +42,8 @@ class ChowhubCategoryController extends Controller
   
     public function index(Request $request)
     {   
-          $limit = $request->limit ? $request->limit : 20;
-          $categories = Category::with('childrens')->where(['parent'=>0,'type'=>'Chowhub'])->paginate($limit);
+        
+          $categories = Category::with('childrens')->where(['parent'=>0,'type'=>'Chowhub'])->all();
           
           return  CategoryResource::collection($categories);
         
@@ -90,8 +90,8 @@ class ChowhubCategoryController extends Controller
     public function category_by_id(Request $request)
     {
       
-              $limit = $request->limit ? $request->limit : 20;
-              $categories = ChowhubCategory::with('childrens')->paginate($limit)->find($request->id);
+  
+              $categories = ChowhubCategory::with('childrens')->find($request->id);
             if($categories){
                   return  new CategoryResource($categories);
             }else{

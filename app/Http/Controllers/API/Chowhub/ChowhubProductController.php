@@ -43,8 +43,26 @@ class ChowhubProductController extends Controller
 
     public function index(Request $request)
     {
-      $limit = $request->limit ? $request->limit : 20;
-        $products = ChowhubProduct::with(['category','store','productVariation','productDescriptionImage','productGallery','variationAttributesValue','tags.tagName'])->paginate($limit);
+      $data = $request->get('search');
+      if(!empty($data)){
+        $search_product = ChowhubProduct::with(['tags.tagName'])->where('productName', 'like', "%{$data}%")
+                            ->orWhere('sku', 'like', "%{$data}%")
+                            ->orWhere('type', 'like', "%{$data}%")
+                            ->orWhere('store_id', 'like', "%{$data}%")
+                            ->orWhere('category_id', 'like', "%{$data}%")
+                            ->orWhere('weight', 'like', "%{$data}%")
+                            ->orWhereHas('tags.tagName', function ($query) use ($data) {
+                             
+                              $query->where('name', 'like', "%{$data}%");
+                              $query->where('tag_id', 'like', "%{$data}%");
+                            
+                          })
+                         
+                            ->get();
+
+                            return  ChowhubProductResource::collection($search_product);
+      }
+        $products = ChowhubProduct::with(['category','store','productVariation','productDescriptionImage','productGallery','variationAttributesValue','tags.tagName'])->all();
       
         return  ChowhubProductResource::collection($products);
     }
@@ -88,7 +106,7 @@ class ChowhubProductController extends Controller
     public function productById(Request $request, $id)
     {
 
-
+  
       $products = ChowhubProduct::with(['category','store','productVariation','productDescriptionImage','productGallery','variationAttributesValue'])->find($id);
       if($products){
         return  new ChowhubProductResource($products);
@@ -137,8 +155,26 @@ class ChowhubProductController extends Controller
      */
     public function productByCategoryId(Request $request,$id)
     {
-      $limit = $request->limit ? $request->limit : 20;
-        $products = ChowhubProduct::with(['category','store','productVariation','productDescriptionImage','productGallery','variationAttributesValue'])->where('category_id',$id)->paginate($limit);
+      $data = $request->get('search');
+      if(!empty($data)){
+        $search_product = ChowhubProduct::with(['tags.tagName'])->where('productName', 'like', "%{$data}%")
+                            ->orWhere('sku', 'like', "%{$data}%")
+                            ->orWhere('type', 'like', "%{$data}%")
+                            ->orWhere('store_id', 'like', "%{$data}%")
+                            ->orWhere('category_id', 'like', "%{$data}%")
+                            ->orWhere('weight', 'like', "%{$data}%")
+                            ->orWhereHas('tags.tagName', function ($query) use ($data) {
+                             
+                              $query->where('name', 'like', "%{$data}%");
+                              $query->where('tag_id', 'like', "%{$data}%");
+                            
+                          })
+                         
+                            ->get();
+
+                            return  ChowhubProductResource::collection($search_product);
+      }
+        $products = ChowhubProduct::with(['category','store','productVariation','productDescriptionImage','productGallery','variationAttributesValue'])->where('category_id',$id)->all();
       
       if($products){
         return  ChowhubProductResource::collection($products);

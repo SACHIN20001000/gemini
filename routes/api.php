@@ -32,11 +32,11 @@ use App\Http\Middleware\EnsureApiTokenIsValid;
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
 Route::post('oauth/token', [PassportAuthController::class, 'oauth_token']);
-
+Route::get('products', [ProductController::class, 'index']);
 Route::middleware([EnsureApiTokenIsValid::class])->group(function () {
   Route::get('categories', [CategoryController::class, 'index']);
   Route::any('categories/{id}', [CategoryController::class, 'category_by_id']);
-  Route::get('products', [ProductController::class, 'index']);
+
   Route::any('products/{id}', [ProductController::class, 'productById']);
   Route::any('products/category/{id}', [ProductController::class, 'productByCategoryId']);
   Route::get('products/attributes/{id}', [ProductController::class, 'getAttributeByProduct']);
