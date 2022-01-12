@@ -21,13 +21,15 @@ export default {
   },
   created: function(){
     this.init()
-    this.getCartToken()
   },
   methods: {
     ...mapActions(["getToken" ,"getCartToken"]),
     init(){
       if(localStorage.getItem('token') === null || localStorage.getItem('token') =='undefined') {
         this.getToken()
+      }
+      if(localStorage.getItem('cartId') === null || localStorage.getItem('cartId') =='undefined') {
+        this.getCartToken()
       }
     }
   }
