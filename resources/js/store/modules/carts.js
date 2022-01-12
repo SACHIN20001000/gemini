@@ -19,7 +19,12 @@ const getters = {
   },
   cartTotal: state => {
     return state.getCartItem.reduce((acc, cartItem) => {
-      return (cartItem.quantity * cartItem.product.sale_price) + acc;
+      if(cartItem.variationProduct){
+        return (cartItem.quantity * cartItem.variationProduct.sale_price) + acc;
+      }else{
+        return (cartItem.quantity * cartItem.product.sale_price) + acc;
+      }
+
     }, 0).toFixed(2);
   },
 }
