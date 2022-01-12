@@ -403,11 +403,8 @@ function delImage(id){
             $('#imgDel'+id+'').remove();
            }
         });
-} else {
-    
+    }     
 }
-        
-     }
      function removeVariationImage(id){
     var data = 'id='+ id ;
    
@@ -422,9 +419,7 @@ function delImage(id){
         
            }
         });
-} else {
-    
-}
+    }
 }
 
 

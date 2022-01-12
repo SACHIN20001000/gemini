@@ -79,13 +79,8 @@ Route::prefix('admin')->group(function ()
         Route::post('save-photo', [App\Http\Controllers\Admin\ProductController::class, 'save_photo'])->name('save_photo');
         Route::post('delete-photo', [App\Http\Controllers\Admin\ProductController::class, 'del_photo'])->name('del_photo');
         Route::post('delete-variation-img', [App\Http\Controllers\Admin\ProductController::class, 'del_variationPhoto'])->name('del_variationPhoto');
-
         Route::resource('brands', BrandsController::class);
-
         Route::resource('settings', SettingController::class);
-
-     
-
 
         Route::resource('users', UserController::class);
         Route::get('view-profile', [App\Http\Controllers\Admin\AdminController::class, 'viewProfile'])->name('viewProfile');
