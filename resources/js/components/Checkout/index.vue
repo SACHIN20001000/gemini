@@ -77,65 +77,65 @@
         <ul class="listItem" v-if="disableShippingForm>0">
           <li>
             <label>First Name:</label>
-            <input name="text" v-model='sh_form.sh_name' placeholder="Full Name">
-            <span v-if="sh_form.errors().has('sh_name')">
-              {{ sh_form.errors().get('sh_name') }}
+            <input name="text" v-model='form.sh_name' placeholder="Full Name">
+            <span v-if="form.errors().has('sh_name')">
+              {{ form.errors().get('sh_name') }}
             </span>
           </li>
           <li>
             <label>Address:</label>
-            <input name="text" v-model='sh_form.sh_address' placeholder="Address">
-            <span v-if="sh_form.errors().has('sh_address')">
-              {{ sh_form.errors().get('sh_address') }}
+            <input name="text" v-model='form.sh_address' placeholder="Address">
+            <span v-if="form.errors().has('sh_address')">
+              {{ form.errors().get('sh_address') }}
             </span>
           </li>
           <li>
             <label>City:</label>
-            <input name="text" v-model='sh_form.sh_city' placeholder="City">
-            <span v-if="sh_form.errors().has('sh_city')">
-              {{ sh_form.errors().get('sh_city') }}
+            <input name="text" v-model='form.sh_city' placeholder="City">
+            <span v-if="form.errors().has('sh_city')">
+              {{ form.errors().get('sh_city') }}
             </span>
           </li>
           <li>
             <label>State:</label>
-            <input name="text" v-model='sh_form.sh_state' placeholder="State">
-            <span v-if="sh_form.errors().has('sh_state')">
-              {{ sh_form.errors().get('sh_state') }}
+            <input name="text" v-model='form.sh_state' placeholder="State">
+            <span v-if="form.errors().has('sh_state')">
+              {{ form.errors().get('sh_state') }}
             </span>
           </li>
           <li>
             <label>Country:</label>
-            <input name="text" v-model='sh_form.sh_country' placeholder="Country">
-            <span v-if="sh_form.errors().has('sh_country')">
-              {{ sh_form.errors().get('sh_country') }}
+            <input name="text" v-model='form.sh_country' placeholder="Country">
+            <span v-if="form.errors().has('sh_country')">
+              {{ form.errors().get('sh_country') }}
             </span>
           </li>
           <li>
             <label>Zip:</label>
-            <input name="text" v-model='sh_form.sh_zip_code' placeholder="Zip">
-            <span v-if="sh_form.errors().has('sh_zip_code')" >
-              {{ sh_form.errors().get('sh_zip_code') }}
+            <input name="text" v-model='form.sh_zip_code' placeholder="Zip">
+            <span v-if="form.errors().has('sh_zip_code')" >
+              {{ form.errors().get('sh_zip_code') }}
             </span>
           </li>
           <li>
             <label>Phone:</label>
-            <input name="text" v-model='sh_form.sh_phone' placeholder="Phone">
-            <span v-if="sh_form.errors().has('sh_phone')">
-              {{ sh_form.errors().get('sh_phone') }}
+            <input name="text" v-model='form.sh_phone' placeholder="Phone">
+            <span v-if="form.errors().has('sh_phone')">
+              {{ form.errors().get('sh_phone') }}
             </span>
           </li>
           <li>
             <label>Email:</label>
-            <input name="text" v-model='sh_form.sh_email' placeholder="Email">
-            <span v-if="sh_form.errors().has('sh_email')">
-              {{ sh_form.errors().get('sh_email') }}
+            <input name="text" v-model='form.sh_email' placeholder="Email">
+            <span v-if="form.errors().has('sh_email')">
+              {{ form.errors().get('sh_email') }}
             </span>
           </li>
           <li>
             <label>Remark:</label>
-            <input name="text" v-model='sh_form.sh_remark' placeholder="Remark">
-            <span v-if="sh_form.errors().has('sh_remark')">
-              {{ sh_form.errors().get('sh_remark') }}
+            <input name="text" v-model='form.sh_remark' placeholder="Remark">
+            <span v-if="form.errors().has('sh_remark')">
+              {{ form.errors().get('sh_remark') }}
             </span>
           </li>
         </ul>
@@ -220,31 +220,7 @@ export default {
       zip_code: '',
       phone:'',
       email:'',
-      remark:''
-    })
-      .rules({
-        name: 'required',
-        address: 'required',
-        city: 'required',
-        state: 'required',
-        country: 'required',
-        zip_code: 'required',
-        phone: 'required',
-        email: 'email|min:5|required',
-        remark: 'required'
-      })
-      .messages({
-        'name': 'This field is required!',
-        'address.address': 'This field is required!',
-        'city.city': 'This field is required!',
-        'state.state': 'This field is required!',
-        'country.country': 'This field is required!',
-        'zip_code.zip_code': 'This field is required!',
-        'phone.phone': 'This field is required!',
-        'email.email': 'Email field must be an email',
-        'remark.remark': 'This field is required!'
-      }),
-    sh_form: form({
+      remark:'',
       sh_name: '',
       sh_address: '',
       sh_city: '',
@@ -256,6 +232,15 @@ export default {
       sh_remark:''
     })
       .rules({
+        name: 'required',
+        address: 'required',
+        city: 'required',
+        state: 'required',
+        country: 'required',
+        zip_code: 'required',
+        phone: 'required',
+        email: 'email|min:5|required',
+        remark: 'required',
         sh_name: 'required',
         sh_address: 'required',
         sh_city: 'required',
@@ -267,6 +252,15 @@ export default {
         sh_remark: 'required'
       })
       .messages({
+        'name': 'This field is required!',
+        'address.address': 'This field is required!',
+        'city.city': 'This field is required!',
+        'state.state': 'This field is required!',
+        'country.country': 'This field is required!',
+        'zip_code.zip_code': 'This field is required!',
+        'phone.phone': 'This field is required!',
+        'email.email': 'Email field must be an email',
+        'remark.remark': 'This field is required!',
         'sh_name.sh_name': 'This field is required!',
         'sh_address.sh_address': 'This field is required!',
         'sh_city.sh_city': 'This field is required!',
@@ -311,12 +305,13 @@ export default {
     ...mapActions(['addOrder']),
     submit() {
       if (this.form.validate().errors().any() || this.order_form.validate().errors().any()) return;
-      if(this.disableShippingForm>0){
+      /*if(this.disableShippingForm>0){
         if (this.sh_form.validate().errors().any()) return;
-      }
-      this.form.data.shipping =this.sh_form.data
-      this.form.data.order = this.order_form.data
-      this.form.data.order.total = Number(this.cartTotalValue) + Number(this.shippingval)
+      }*/
+      /*this.form.data.shipping =this.sh_form.data*/
+      this.form.data.payment_method = this.order_form.data
+      this.form.data.payment_method.total = Number(this.cartTotalValue) + Number(this.shippingval)
+      this.form.data.shippingmethod = this.order_form.data.shippingmethods
       this.form.data.key = localStorage.getItem('cartKey')
       this.addOrder(this.form.data)
     },
