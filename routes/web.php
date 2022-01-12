@@ -79,6 +79,7 @@ Route::prefix('admin')->group(function ()
         Route::post('save-photo', [App\Http\Controllers\Admin\ProductController::class, 'save_photo'])->name('save_photo');
         Route::post('delete-photo', [App\Http\Controllers\Admin\ProductController::class, 'del_photo'])->name('del_photo');
         Route::post('delete-variation-img', [App\Http\Controllers\Admin\ProductController::class, 'del_variationPhoto'])->name('del_variationPhoto');
+        Route::post('delete-variation', [App\Http\Controllers\Admin\ProductController::class, 'del_variation'])->name('del_variation');
 
         Route::resource('brands', BrandsController::class);
 
