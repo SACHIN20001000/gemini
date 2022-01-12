@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    protected $appends = array('availTags');
 
     protected $casts = [
         'created_at' => 'datetime:d-m-Y',
@@ -37,6 +38,22 @@ class Product extends Model
     public function variationAttributesValue() {
         return $this->hasMany(VariationAttributeValue::class, 'product_id', 'id');
     }
-  
+    public function tags() {
+
+        return $this->hasMany(ProductTag::class, 'product_id', 'id');
+    }
+
+    public function getAvailTagsAttribute()
+    {
+        $tags = $this->tags;
+        $tagsData = [];
+        foreach($tags as $key => $tag)
+        {
+            $tagName = $tag->tagName;
+            array_push($tagsData, $tagName->name);
+        }
+        $tagsData = implode(',',$tagsData);   
+        return $tagsData;
+    }
  
 }

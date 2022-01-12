@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                          
-		            	<input type="text" name="tag" placeholder="Tags" value="{{isset($product) ? $product->availTags : '' }}" data-role="tagsinput" class="form-control"/>
+		            	        <input type="text" name="tag" placeholder="Tags" value="{{isset($product) ? $product->availTags : '' }}" data-role="tagsinput" class="form-control"/>
                                 </div>
                             </div>
                       

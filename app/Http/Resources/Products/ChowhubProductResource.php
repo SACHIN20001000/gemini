@@ -13,7 +13,7 @@ use App\Http\Resources\Products\ProductDescriptionImageResource;
 
 use App\Models\VariationAttribute;
 
-class ProductResource extends JsonResource
+class ChowhubProductResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -34,6 +34,8 @@ class ProductResource extends JsonResource
             'store' => new ProductStoreResource($this->store),
             'variations' => ProductVariationsResource::collection($this->productVariation),
             'gallary' =>  ProductGalleryResource::collection($this->productGallery),
+            'description_image' =>  ProductDescriptionImageResource::collection($this->productDescriptionImage) ,
+
             'attributes' => ProductAttributesResource::collection($this->variationAttributesValue),
             'tags'=>$this->tags?TagsResource::collection($this->tags):null,
             'status' => $this->status,
@@ -52,9 +54,9 @@ class ProductResource extends JsonResource
     public function getAttributeByProduct($id)
     {
       $attributes = VariationAttribute::whereHas('variationAttributeName', function ($query) use ($id) {
-        return $query->where('product_id', '=', $id);
-    })->get();
+    return $query->where('product_id', '=', $id);
+})->get();
 
-    return  AttributesResource::collection($attributes);
-        }
+return  AttributesResource::collection($attributes);
     }
+}
