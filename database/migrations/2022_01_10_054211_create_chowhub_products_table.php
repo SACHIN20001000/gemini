@@ -37,6 +37,12 @@ class CreateChowhubProductsTable extends Migration
             $table->string('image_path')->nullable();
             $table->timestamps();
         });
+        Schema::create('chowhub_product_description_images', function (Blueprint $table) {
+            $table->id();
+			$table->unsignedBigInteger('product_id');
+            $table->string('image_path')->nullable();
+            $table->timestamps();
+        });
         Schema::create('chowhub_tags', function (Blueprint $table) {
             $table->id();
             $table->string('name');

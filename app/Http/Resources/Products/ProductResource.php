@@ -32,6 +32,8 @@ class ProductResource extends JsonResource
             'store' => new ProductStoreResource($this->store),
             'variations' => ProductVariationsResource::collection($this->productVariation),
             'gallary' =>  ProductGalleryResource::collection($this->productGallery),
+            'description_image' =>  ProductDescriptionImageResource::collection($this->productDescriptionImage),
+
             'attributes' => ProductAttributesResource::collection($this->variationAttributesValue),
             'tags'=>$this->tags?TagsResource::collection($this->tags):null,
             'status' => $this->status,

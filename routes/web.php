@@ -68,7 +68,11 @@ Route::prefix('admin')->group(function ()
         Route::resource('chowhub-store', ChowhubStoreController::class);
         Route::resource('chowhub-products', ChowhubProductController::class);
         Route::post('save-chowhub-photo', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'save_photo']);
+        Route::post('save-description-photo', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'save_description_photo']);
+
         Route::post('delete-chowhub-photo', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'del_photo']);
+        Route::post('delete-description-photo', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'del_description_photo']);
+     
         Route::post('delete-chowhub-variation-img', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'del_variationPhoto']);
 
 

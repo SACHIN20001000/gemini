@@ -58,25 +58,49 @@
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Description Image </label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                    
+                                                    <input id="description-image" type="file" name="description_images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
+                                                    <ul id="description-image-items"></ul>
+                                                    @if(isset($product))
+                                                    @foreach($product->productDescriptionImage as $image)
+                                                <div id="imgDespDel{{$image->id}}"><a href="{{$image->image_path}}" target="_blank" data-item-id="{{$image->id}}"> <img src="{{$image->image_path}}"  alt="" height=50 width=50></a><i class="fas fa-trash-alt"  onclick='delDespImage({{$image->id}})'></i></div>
+                                                    @endforeach
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="row row-xs align-items-center mg-b-20">
+                            <div class="col-md-4">
                                     <label class="form-label mg-b-0">Media </label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                 <div class="row">
-                        <div class="col-lg-12 col-md-12">
-                            <div class="card">
-                                <div class="card-body">
-                    
-                                    <input id="product-galary" type="file" name="images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
-                                    <ul id="product-galary-items"></ul>
-                                    @if(isset($product))
-                                    @foreach($product->productGallery as $image)
-                                   <div id="imgDel{{$image->id}}"><a href="{{$image->image_path}}" target="_blank" data-item-id="{{$image->id}}"> <img src="{{$image->image_path}}"  alt="" height=50 width=50></a><i class="fas fa-trash-alt"  onclick='delImage({{$image->id}})'></i></div>
-                                    @endforeach
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                    
+                                                    <input id="product-galary" type="file" name="images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
+                                                    <ul id="product-galary-items"></ul>
+                                                    @if(isset($product))
+                                                    @foreach($product->productGallery as $image)
+                                                <div id="imgDel{{$image->id}}"><a href="{{$image->image_path}}" target="_blank" data-item-id="{{$image->id}}"> <img src="{{$image->image_path}}"  alt="" height=50 width=50></a><i class="fas fa-trash-alt"  onclick='delImage({{$image->id}})'></i></div>
+                                                    @endforeach
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                            
@@ -388,7 +412,11 @@
         {
             $('#galary-item'+itemId+'').remove();
         },
-        
+        removeProductDescriptionImage:function(itemId)
+        {
+            $('#description-item'+itemId+'').remove();
+        },
+       
         
     };
 
@@ -410,15 +438,27 @@ function delImage(id){
     if (confirm('Are You Sure You Want To Delete This Image')) {
    $.ajax({
            type:'POST',
-           url:'/admin/delete-photo',
+           url:'/admin/delete-chowhub-photo',
            data: data ,
            success:function(data){
             $('#imgDel'+id+'').remove();
            }
         });
-} else {
-    
-}
+        } 
+        
+     }
+     function delDespImage(id){
+    var data = 'id='+ id ;
+    if (confirm('Are You Sure You Want To Delete This Image')) {
+   $.ajax({
+           type:'POST',
+           url:'/admin/delete-description-photo',
+           data: data ,
+           success:function(data){
+            $('#imgDespDel'+id+'').remove();
+           }
+        });
+        } 
         
      }
      function removeVariationImage(id){
@@ -444,7 +484,7 @@ function delImage(id){
 $(function() {
     var counter = 1; 
     $('#product-galary').FancyFileUpload({
-        url:'/admin/save-photo',
+        url:'/admin/save-chowhub-photo',
         fileupload : {
             maxChunkSize : 1000000
         },        
@@ -456,7 +496,21 @@ $(function() {
         }
     });
 });
-
+$(function() {
+    var counter = 1; 
+    $('#description-image').FancyFileUpload({
+        url:'/admin/save-description-photo',
+        fileupload : {
+            maxChunkSize : 1000000
+        },        
+        uploadcompleted : function(e, data) {
+            
+            $("#description-image-items").prepend('<li id="description-item'+counter +'"><img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt" onclick="productsEvent.removeProductDescriptionImage('+counter+')"></i><input type="hidden"  value="' + data.result.image + '" name="description_images[]"  /></li>');
+            counter ++
+            data.ff_info.RemoveFile();
+        }
+    });
+});
 </script>
 
 @if(isset($product))

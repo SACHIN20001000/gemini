@@ -12,6 +12,8 @@ use App\Models\ChowhubVariationAttributeValue;
 use App\Models\Category;
 use App\Models\ChowhubTag;
 use App\Models\ChowhubProductTag;
+use App\Models\ChowhubProductDescriptionImage;
+
 
 use App\Models\ChowhubStore;
 use DataTables;
@@ -102,7 +104,7 @@ class ChowhubProductController extends Controller
     public function store(AddProduct $request)
     {  
         $inputs = $request->all(); 
-
+// print_r($inputs);die;
  		$tags=explode(",",$inputs['tag']);
 		// ADD PRODUCT TABLE DATA 
 
@@ -128,6 +130,16 @@ class ChowhubProductController extends Controller
 			if(!empty($inputs['image'])){
 				foreach($inputs['image'] as $image){
 					$productImage = new ChowhubProductGallery();
+					$productImage->product_id = $products->id;
+					$productImage->image_path = $image;
+					$productImage->save();
+				}
+			}
+
+            //store desp images
+            if(!empty($inputs['description_images'])){
+				foreach($inputs['description_images'] as $image){
+					$productImage = new ChowhubProductDescriptionImage();
 					$productImage->product_id = $products->id;
 					$productImage->image_path = $image;
 					$productImage->save();
@@ -485,10 +497,39 @@ class ChowhubProductController extends Controller
                 "image" => ''
             ]);
     }
+    public function save_description_photo(Request $request){
+      
+ 
+        if ($request->file('description_images')) {
+            $path = Storage::disk('s3')->put('images/products', $request->description_images);
+            $path = Storage::disk('s3')->url($path);
+            $id = substr($path, -8, 1);
+           return Response()->json([
+                "success" => true,
+                "image" => $path,
+                "id" => $id
+            ]);
+ 
+        }
+ 
+        return Response()->json([
+                "success" => false,
+                "image" => ''
+            ]);
+    }
 
     public function del_photo(Request $request){
 
         ChowhubProductGallery::find($request->id)->delete();
+ 
+        return Response()->json([
+                "success" => 'Deleted Successfully',
+             
+            ]);
+    }
+    public function del_description_photo(Request $request){
+
+        ChowhubProductDescriptionImage::find($request->id)->delete();
  
         return Response()->json([
                 "success" => 'Deleted Successfully',
