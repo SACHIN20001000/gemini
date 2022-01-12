@@ -1,103 +1,130 @@
 <template>
   <div class="main_product">
-    <div class="width50" v-if="variations && variations.length>0">
-      <vue-product-slider>
-          <template slot="slider">
-              <div
-                class="slide"
-                v-for="variation in variations"
-              >
-                  <img :src="variation.image" />
-              </div>
-          </template>
-
-          <template slot="thumbnails">
-              <div
-                class="thumb"
-                v-for="thumbvariation in variations"
-              >
-                  <img :src="thumbvariation.image" />
-              </div>
-          </template>
-      </vue-product-slider>
-    </div>
-    <div class="width50" v-else-if="product.gallary && product.gallary.length>0">
-      <vue-product-slider>
-          <template slot="slider">
-              <div
-                class="slide"
-                v-for="gallery in product.gallary"
-              >
-                  <img :src="gallery.image_path" />
-              </div>
-          </template>
-
-          <template slot="thumbnails">
-              <div
-                class="thumb"
-                v-for="thumbgallery in product.gallary"
-              >
-                  <img :src="thumbgallery.image_path" />
-              </div>
-          </template>
-      </vue-product-slider>
-    </div>
-    <div class="width50">
-      <div class="productDetails" v-if="product">
-      <p>Name: {{product.name}}</p>
-      <p>Description:</p>
-      <div v-html="product.description"></div>
-      <div v-if="finalVariant" class="variant">
-        <p>Quantity: {{finalVariant.quantity}}</p>
-        <p>Sale Price: {{finalVariant.sale_price}}</p>
-        <p class="regularprice">Regular Price: {{finalVariant.real_price}}</p>
-        <p>weight: {{finalVariant.weight}}</p>
-      </div>
-      <ul class="variationAttributes" v-if="variationAttributes">
-        <li v-for="(varitationattr, vakey) in variationAttributes"
-        :key="vakey">
-          <ul class="varientAttribute">
-            <li>{{varitationattr.type}} :</li>
-            <li
-              v-for="(variationAttribute,vak) in varitationattr.attributes"
-              :key="vak"
+    <div class="width100" v-if="variations && variations.length>0">
+      <div class="width50">
+        <div class="thumb-example">
+          <!-- swiper1 -->
+          <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">
+            <swiper-slide
+              v-for="(variation, varky) in variations"
+              :key="varky"
+              :class="'slide-'+varky"
             >
-              <span
-                v-if="selectedlabel(variationAttribute.id) === true"
+              <img :src="variation.image" />
+            </swiper-slide>
+            <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
+            <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
+          </swiper>
+          <!-- swiper2 Thumbs -->
+          <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs">
+            <swiper-slide
+              v-for="(variation, varky) in variations"
+              :key="varky"
+              :class="'slide-'+varky"
+            >
+              <img :src="variation.image" />
+            </swiper-slide>
+          </swiper>
+        </div>
+      </div>
+      <div class="width50">
+        <div class="productDetails" v-if="product">
+        <p>Name: {{product.name}}</p>
+        <p>Description:</p>
+        <div v-html="product.description"></div>
+        <div v-if="finalVariant" class="variant">
+          <p>Quantity: {{finalVariant.quantity}}</p>
+          <p>Sale Price: {{finalVariant.sale_price}}</p>
+          <p class="regularprice">Regular Price: {{finalVariant.real_price}}</p>
+          <p>weight: {{finalVariant.weight}}</p>
+        </div>
+        <ul class="variationAttributes" v-if="variationAttributes">
+          <li v-for="(varitationattr, vakey) in variationAttributes"
+          :key="vakey">
+            <ul class="varientAttribute">
+              <li>{{varitationattr.type}} :</li>
+              <li
+                v-for="(variationAttribute,vak) in varitationattr.attributes"
+                :key="vak"
               >
-                <a
-                  href="javascript:;"
-                  @click="variationUpdate($event,variationAttribute.id,varitationattr.id,varitationattr.type)"
-                  class="selectedlabel"
+                <span
+                  v-if="selectedlabel(variationAttribute.id) === true"
                 >
-                  <span>{{variationAttribute.name}}</span>
-                </a>
-              </span>
-              <span
-                v-else
-              >
-                <a
-                  href="javascript:;"
-                  @click="variationUpdate($event,variationAttribute.id,varitationattr.id,varitationattr.type)"
-                  class="nonSelectedlabel"
+                  <a
+                    href="javascript:;"
+                    @click="variationUpdate($event,variationAttribute.id,varitationattr.id,varitationattr.type)"
+                    class="selectedlabel"
+                  >
+                    <span>{{variationAttribute.name}}</span>
+                  </a>
+                </span>
+                <span
+                  v-else
                 >
-                  <span>{{variationAttribute.name}}</span>
-                </a>
-              </span>
-            </li>
-          </ul>
-        </li>
-      </ul>
+                  <a
+                    href="javascript:;"
+                    @click="variationUpdate($event,variationAttribute.id,varitationattr.id,varitationattr.type)"
+                    class="nonSelectedlabel"
+                  >
+                    <span>{{variationAttribute.name}}</span>
+                  </a>
+                </span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <p class="outStock">{{varaintOutStock}}</p>
+      </div>
     </div>
-    <p class="outStock">{{varaintOutStock}}</p>
-    <p>
-      <a
-        class="button"
-        @click="addItemInCart(product.id)"
-      >
-        <strong>Add to Cart</strong>
-      </a>
-    </p>
+    <div class="width100"  v-else>
+      <div class="width50">
+        <div class="thumb-example">
+          <!-- swiper1 -->
+          <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">
+            <swiper-slide
+              v-for="(gallery, gky) in product.gallary"
+              :key="gky"
+              :class="'slide-'+gky"
+            >
+              <img :src="gallery.image_path" />
+            </swiper-slide>
+            <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
+            <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
+          </swiper>
+          <!-- swiper2 Thumbs -->
+          <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs">
+            <swiper-slide
+              v-for="(gallery, gky) in product.gallary"
+              :key="gky"
+              :class="'slide-'+gky"
+            >
+              <img :src="gallery.image_path" />
+            </swiper-slide>
+          </swiper>
+        </div>
+      </div>
+      <div class="width50">
+        <div class="productDetails" v-if="product">
+          <p>Name: {{product.name}}</p>
+          <p>Description:</p>
+          <div v-html="product.description"></div>
+          <p>Quantity: {{product.quantity}}</p>
+          <p>Sale Price: ${{product.sale_price}}</p>
+          <p class="regularprice">Regular Price: ${{product.real_price}}</p>
+          <p>weight: {{product.weight}} Kg</p>
+        </div>
+      </div>
+    </div>
+    <div class="addtocartbtn">
+      <p>
+        <a
+          class="button"
+          @click="addItemInCart(product.id)"
+        >
+          <strong>Add to Cart</strong>
+        </a>
+      </p>
     </div>
   </div>
 </template>
@@ -107,19 +134,23 @@
 </style>
 <script>
 import {mapActions,mapGetters} from "vuex"
-import { VueProductSlider } from 'vue-product-slider'
-import Swipe from './swipe'
 
 import imgslider1 from "../../assets/images/pro1.png"
 import imgslider2 from "../../assets/images/pro1.png"
 import imgslider3 from "../../assets/images/pro1.png"
 import form from 'vuejs-form'
 
+import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
+import 'swiper/css/swiper.css'
+
 export default {
   name:"Products",
   components: {
-      VueProductSlider,
-      Swipe
+    Swiper,
+    SwiperSlide
+  },
+  directives: {
+    swiper: directive
   },
   data: function () {
     return {
@@ -138,7 +169,27 @@ export default {
       varaintOutStock:'',
       form: form({
         selectedIds: []
-      })
+      }),
+      swiperOptionTop: {
+        loop: true,
+        loopedSlides: 5, // looped slides should be the same
+        spaceBetween: 10,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        }
+      },
+      swiperOptionThumbs: {
+        loop: true,
+        loopedSlides: 5, // looped slides should be the same
+        spaceBetween: 10,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        touchRatio: 0.2,
+        slideToClickedSlide: true
+      },
+      swiperTop:'',
+      swiperThumbs:''
     }
   },
   mounted(){
@@ -168,6 +219,13 @@ export default {
       }
       this.variationAttributes = vaarrayCollection
       this.firstTimePrice()
+
+      this.$nextTick(() => {
+        this.swiperTop = this.$refs.swiperTop.$swiper
+        this.swiperThumbs = this.$refs.swiperThumbs.$swiper
+        this.swiperTop.controller.control = this.swiperThumbs
+        this.swiperThumbs.controller.control = this.swiperTop
+      })
     }
   },
   computed: {
@@ -183,16 +241,22 @@ export default {
     addItemInCart(proId){
       if(proId){
         const cartkey = localStorage.getItem('cartKey')
+        var vid=0
+
+        if(this.finalVariant && this.finalVariant.id){
+          vid = this.finalVariant.id
+        }
         const itemDetails= {
           key: cartkey,
           product_id: proId,
           quantity: 1,
-          variation_product_id:0
+          variation_product_id: vid
         }
         this.addCartItem(itemDetails)
       }
     },
     variationUpdate(e,attributeId,attnameId,typ){
+      var switchTumnb=0
       var _this = this
       this.selectedattrIds.filter(function(selIds,selind){
         if(selIds.type == typ){
@@ -211,6 +275,7 @@ export default {
           })
         })
         if(countMatch == _this.selectedattrIds.length){
+          switchTumnb = varindex
           varientsArr=varients
         }
       })
@@ -218,6 +283,7 @@ export default {
         this.finalVariant =[]
         this.finalVariant = varientsArr
         this.varaintOutStock=''
+        this.toggleSlide(Number(switchTumnb)+Number(1))
       }else{
         this.varaintOutStock='Option is Out Of Stock.'
       }
@@ -266,6 +332,9 @@ export default {
           return false
         }
       }
+    },
+    toggleSlide(i) {
+      this.swiperTop.slideTo(i, 0,true)
     }
   }
 }
