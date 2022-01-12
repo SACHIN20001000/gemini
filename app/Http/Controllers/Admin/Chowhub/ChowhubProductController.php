@@ -348,6 +348,15 @@ class ChowhubProductController extends Controller
 					$productImage->save();
 				}
 			}
+                 //store desp images
+                 if(!empty($inputs['description_images'])){
+                    foreach($inputs['description_images'] as $image){
+                        $productImage = new ChowhubProductDescriptionImage();
+                        $productImage->product_id = $products->id;
+                        $productImage->image_path = $image;
+                        $productImage->save();
+                    }
+                }
 			if(!empty($inputs['attributes'])){			
 				
 
