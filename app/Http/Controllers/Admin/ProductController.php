@@ -11,6 +11,10 @@ use App\Models\VariationAttribute;
 use App\Models\VariationAttributeValue;
 use App\Models\Category;
 use App\Models\Store;
+use App\Models\ProductTag;
+use App\Models\Tag;
+
+
 use DataTables;
 use Illuminate\Support\Str;
 use App\Http\Requests\Admin\Product\AddProduct;
@@ -101,7 +105,8 @@ class ProductController extends Controller
     {  
         $inputs = $request->all(); 
 
- 		
+        $tags=explode(",",$inputs['tag']);
+
 		// ADD PRODUCT TABLE DATA 
 		if(!empty($inputs['productName'])){
 			$products= new Product();
@@ -129,6 +134,23 @@ class ProductController extends Controller
 					$productImage->save();
 				}
 			}
+                //tags
+                if(!empty($tags)){			
+                    foreach($tags as $vakey => $tagName){
+                        
+                        $tag = Tag::updateOrCreate([
+                            'name'   => $tagName
+                        ],[
+                            'name'   => $tagName
+                        ]);
+                    
+                        $tagValue = new ProductTag;
+                        $tagValue->tag_id = $tag->id;   
+                        $tagValue->product_id = $products->id;	
+                        $tagValue->save();
+                        
+                    }
+                }
 			if(!empty($inputs['attributes'])){			
 				
 				$attributeCombinations=[];
@@ -267,8 +289,9 @@ class ProductController extends Controller
      */
     public function update(UpdateProduct $request,$id)
     {
-    //   echo"<pre>"; print_r($request->all());die;
+
         $inputs = $request->all(); 
+        $tags=explode(",",$inputs['tag']);
     
 		if(!empty($inputs['productName'])){
 			$products= Product::find($id);
@@ -296,6 +319,21 @@ class ProductController extends Controller
 					$productImage->save();
 				}
 			}
+            if(!empty($tags)){	
+                ProductTag::where('product_id',$id)->delete();
+                foreach($tags as $vakey => $tagName){
+                   $tag = Tag::updateOrCreate([
+                        'name'   => $tagName
+                    ],[
+                        'name'   => $tagName
+                    ]);                  
+                    $tagValue = new ProductTag;
+                    $tagValue->tag_id = $tag->id;   
+                    $tagValue->product_id = $products->id;	
+                    $tagValue->save();                
+                                      
+                }
+            }
 			if(!empty($inputs['attributes'])){			
 				
 
@@ -418,6 +456,7 @@ class ProductController extends Controller
          ProductVariation::where('product_id',$id)->delete();      
          ProductGallery::where('product_id',$id)->delete();
          VariationAttributeValue::where('product_id',$id)->delete();
+         ProductTag::where('product_id',$id)->delete();
          Product::find($id)->delete();
      
         return back()->with('success','Product deleted successfully!');
@@ -462,13 +501,5 @@ class ProductController extends Controller
              
             ]);
     }
-    public function del_variation(Request $request){
-      
-        ProductVariation::find($request->id)->delete();
-
-        return Response()->json([
-                "success" => 'Deleted Successfully',
-                "id"=>$request->id
-            ]);
-    }
+ 
 }

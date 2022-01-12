@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ChowhubProduct;
 use App\Models\ChowhubVariationAttribute;
-use App\Http\Resources\Products\ProductResource;
+use App\Http\Resources\Products\ChowhubProductResource;
 use App\Http\Resources\Products\AttributesResource;
 class ChowhubProductController extends Controller
 {
@@ -44,9 +44,9 @@ class ChowhubProductController extends Controller
     public function index(Request $request)
     {
       $limit = $request->limit ? $request->limit : 20;
-        $products = ChowhubProduct::with(['category','store','productVariation','productGallery','variationAttributesValue','tags.tagName'])->paginate($limit);
+        $products = ChowhubProduct::with(['category','store','productVariation','productDescriptionImage','productGallery','variationAttributesValue','tags.tagName'])->paginate($limit);
       
-        return  ProductResource::collection($products);
+        return  ChowhubProductResource::collection($products);
     }
      /**
      * @OA\Get(
@@ -89,9 +89,9 @@ class ChowhubProductController extends Controller
     {
 
 
-      $products = ChowhubProduct::with(['category','store','productVariation','productGallery','variationAttributesValue'])->find($id);
+      $products = ChowhubProduct::with(['category','store','productVariation','productDescriptionImage','productGallery','variationAttributesValue'])->find($id);
       if($products){
-        return  new ProductResource($products);
+        return  new ChowhubProductResource($products);
       }else{
         return response()->json(['success' => false , 'message' => "Invailed Id"]);
       }
@@ -138,10 +138,10 @@ class ChowhubProductController extends Controller
     public function productByCategoryId(Request $request,$id)
     {
       $limit = $request->limit ? $request->limit : 20;
-        $products = ChowhubProduct::with(['category','store','productVariation','productGallery','variationAttributesValue'])->where('category_id',$id)->paginate($limit);
+        $products = ChowhubProduct::with(['category','store','productVariation','productDescriptionImage','productGallery','variationAttributesValue'])->where('category_id',$id)->paginate($limit);
       
       if($products){
-        return  ProductResource::collection($products);
+        return  ChowhubProductResource::collection($products);
       }else{
         return response()->json(['success' => false , 'message' => "Invailed Id"]);
       }

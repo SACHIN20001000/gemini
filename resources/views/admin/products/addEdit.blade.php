@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
-<style>.imageSize{height: 100px;width: 100px;}</style>
+<style>.imageSize{height: 100px;width: 100px;} .tag{color:black !important;background-color: aqua;font-size: 15px;}</style>
+
 <div class="container">
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
@@ -37,7 +38,15 @@
                                     
                                 </div>
                             </div>
-                      
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Tags</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                         
+		            	        <input type="text" name="tag" placeholder="Tags" value="{{isset($product) ? $product->availTags : '' }}" data-role="tagsinput" class="form-control"/>
+                                </div>
+                            </div>
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">Description </label>
@@ -232,6 +241,9 @@
 @endsection 
 
 @section('scripts')
+
+<link rel="stylesheet" href="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+<script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
 <script type="text/javascript">
             CKEDITOR.config.autoParagraph = false; 
@@ -323,11 +335,10 @@ var productsEvent;
                     $("#variations_heading").append('<th>'+value+'</th>');
                 }
             });
-    
+            // console.log(variations)
             $.each(variations, function( index, value ) {
                 let testdata = {};
-                // console.log(value.hidden_id.value)
-                let htmlString = '<tr class="variation-tr'+value.hidden_id.value+'">';
+                let htmlString = '<tr class="variation-tr">';
 
               for (const [name, variation] of Object.entries(value))
                 {
@@ -351,7 +362,7 @@ var productsEvent;
                     
                 }
                 
-                htmlString += '<td><button type="button" name="remove" onclick="productsEvent.removeVariation(\''+index+'\')" id='+value.hidden_id.value+' class="btn btn-danger btn_remove variation_delete">X</button></td>';
+                htmlString += '<td><button type="button" name="remove" onclick="productsEvent.removeVariation(\''+index+'\')" class="btn btn-danger btn_remove">X</button></td>';
                 htmlString += '</tr>';
                 $("#variations_fields").append(htmlString);
             });
@@ -404,10 +415,8 @@ function delImage(id){
             $('#imgDel'+id+'').remove();
            }
         });
-    } 
+    }     
 }
-
-
      function removeVariationImage(id){
     var data = 'id='+ id ;
    
@@ -422,7 +431,7 @@ function delImage(id){
         
            }
         });
-} 
+    }
 }
 
 
@@ -441,26 +450,7 @@ $(function() {
         }
     });
 });
-$(document).on('click', '.variation_delete', function () {
-    var id = $(this).attr("id");
-    var data = 'id='+ id ;
-    if(id !== null){
-        if (confirm('Are You Sure You Want To Delete This Variation')) {
-        $.ajax({
-           type:'POST',
-           url:'/admin/delete-variation',
-           data: data ,
-           success:function(data){
-         
-            $('.variation-tr'+data.id+'').remove();
-        
-           }
-        });
-        }
-    }
 
- 
-});
 </script>
 
 @if(isset($product))

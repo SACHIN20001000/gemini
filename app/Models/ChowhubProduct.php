@@ -34,6 +34,7 @@ class ChowhubProduct extends Model
     public function productGallery() {
         return $this->hasMany(ChowhubProductGallery::class, 'product_id', 'id');
     }
+  
     public function productVariation() {
         return $this->hasMany(ChowhubProductVariation::class, 'product_id', 'id');
     }
@@ -44,7 +45,9 @@ class ChowhubProduct extends Model
 
         return $this->hasMany(ChowhubProductTag::class, 'product_id', 'id');
     }
-
+    public function productDescriptionImage() {
+        return $this->hasMany(ChowhubProductDescriptionImage::class, 'product_id', 'id');
+    }
     public function getAvailTagsAttribute()
     {
         $tags = $this->tags;

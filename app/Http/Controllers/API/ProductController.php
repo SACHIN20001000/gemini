@@ -45,9 +45,10 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
+    
       $limit = $request->limit ? $request->limit : 20;
-        $products = Product::with(['category','store','productVariation','productGallery','variationAttributesValue'])->paginate($limit);
-      
+        $products = Product::with(['category','store','productVariation','productGallery','variationAttributesValue','tags.tagName'])->paginate($limit);
+  
         return  ProductResource::collection($products);
     }
      /**
