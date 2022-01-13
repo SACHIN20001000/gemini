@@ -43,26 +43,8 @@ class ChowhubProductController extends Controller
 
     public function index(Request $request)
     {
-      $data = $request->get('search');
-      if(!empty($data)){
-        $search_product = ChowhubProduct::with(['tags.tagName'])->where('productName', 'like', "%{$data}%")
-                            ->orWhere('sku', 'like', "%{$data}%")
-                            ->orWhere('type', 'like', "%{$data}%")
-                            ->orWhere('store_id', 'like', "%{$data}%")
-                            ->orWhere('category_id', 'like', "%{$data}%")
-                            ->orWhere('weight', 'like', "%{$data}%")
-                            ->orWhereHas('tags.tagName', function ($query) use ($data) {
-                             
-                              $query->where('name', 'like', "%{$data}%");
-                              $query->where('tag_id', 'like', "%{$data}%");
-                            
-                          })
-                         
-                            ->get();
-
-                            return  ChowhubProductResource::collection($search_product);
-      }
-        $products = ChowhubProduct::with(['category','store','productVariation','productDescriptionImage','productGallery','variationAttributesValue','tags.tagName'])->all();
+      
+        $products = ChowhubProduct::with(['category','store','productVariation','productDescriptionImage','productGallery','variationAttributesValue','tags.tagName'])->get();
       
         return  ChowhubProductResource::collection($products);
     }
@@ -155,25 +137,7 @@ class ChowhubProductController extends Controller
      */
     public function productByCategoryId(Request $request,$id)
     {
-      $data = $request->get('search');
-      if(!empty($data)){
-        $search_product = ChowhubProduct::with(['tags.tagName'])->where('productName', 'like', "%{$data}%")
-                            ->orWhere('sku', 'like', "%{$data}%")
-                            ->orWhere('type', 'like', "%{$data}%")
-                            ->orWhere('store_id', 'like', "%{$data}%")
-                            ->orWhere('category_id', 'like', "%{$data}%")
-                            ->orWhere('weight', 'like', "%{$data}%")
-                            ->orWhereHas('tags.tagName', function ($query) use ($data) {
-                             
-                              $query->where('name', 'like', "%{$data}%");
-                              $query->where('tag_id', 'like', "%{$data}%");
-                            
-                          })
-                         
-                            ->get();
-
-                            return  ChowhubProductResource::collection($search_product);
-      }
+      
         $products = ChowhubProduct::with(['category','store','productVariation','productDescriptionImage','productGallery','variationAttributesValue'])->where('category_id',$id)->all();
       
       if($products){
