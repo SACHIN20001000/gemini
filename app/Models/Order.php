@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+   
+
     protected $fillable = [
      'product_id',
      'variation_id',
@@ -37,6 +39,8 @@ class Order extends Model
     public function orderItems() {
         return $this->hasMany(OrderItem::class, 'order_id', 'id');
     }
+    
+  
     
 
 }
