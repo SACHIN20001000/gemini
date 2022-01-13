@@ -91,6 +91,9 @@ class CreateChowhubProductsTable extends Migration
     {
         Schema::dropIfExists('chowhub_products');
         Schema::dropIfExists('chowhub_product_galleries');
+        Schema::dropIfExists('chowhub_product_description_images');
+        Schema::dropIfExists('chowhub_tags');
+        Schema::dropIfExists('chowhub_product_tags');
         Schema::dropIfExists('chowhub_variations_attributes');
         Schema::dropIfExists('chowhub_variations_attributes_values');
         Schema::dropIfExists('chowhub_product_variations');

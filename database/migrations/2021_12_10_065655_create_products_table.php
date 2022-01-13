@@ -89,5 +89,7 @@ class CreateProductsTable extends Migration
         Schema::dropIfExists('variations_attributes');
         Schema::dropIfExists('variations_attributes_values');
         Schema::dropIfExists('product_variations');
+        Schema::dropIfExists('tags');
+        Schema::dropIfExists('product_tags');
     }
 }
