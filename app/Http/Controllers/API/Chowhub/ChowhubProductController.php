@@ -5,9 +5,13 @@ namespace App\Http\Controllers\API\Chowhub;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ChowhubProduct;
+use App\Models\ChowhubTag;
+
 use App\Models\ChowhubVariationAttribute;
 use App\Http\Resources\Products\ChowhubProductResource;
 use App\Http\Resources\Products\AttributesResource;
+use App\Http\Resources\Products\ChowhubTagResource;
+
 class ChowhubProductController extends Controller
 {
  /**
@@ -196,4 +200,46 @@ class ChowhubProductController extends Controller
 
     return  AttributesResource::collection($attributes);
     }
+
+
+
+/**
+     * @OA\Get(
+     *      path="/chowhub/tags",
+     *      operationId="Chowhub tags",
+     *      tags={"Chowhubtags"},
+     *     summary="Chowhub tags",
+     *         security={
+     *          {"Token": {}},
+     *          },
+     *     @OA\Response(
+     *         response="200",
+     *         description="tags",
+     *         @OA\JsonContent(ref="#/components/schemas/TagResponse")
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
+     * Store a newly created resource in storage.
+     *
+     * @param \App\Http\Requests\ExampleStoreRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+
+    public function allTags(Request $request)
+    {
+      
+        $tags = ChowhubTag::all();
+      
+        return  ChowhubTagResource::collection($tags);
+    }
+
 }
