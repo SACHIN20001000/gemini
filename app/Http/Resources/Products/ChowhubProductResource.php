@@ -35,7 +35,7 @@ class ChowhubProductResource extends JsonResource
             'variations' => ProductVariationsResource::collection($this->productVariation),
             'gallary' =>  ProductGalleryResource::collection($this->productGallery),
             'description_image' =>  ProductDescriptionImageResource::collection($this->productDescriptionImage) ,
-
+            'feature_page_image' =>  ProductFeaturePageImageResource::collection($this->productFeaturePageImage) ,
             'attributes' => ProductAttributesResource::collection($this->variationAttributesValue),
             'tags'=>$this->tags?TagsResource::collection($this->tags):null,
             'status' => $this->status,
