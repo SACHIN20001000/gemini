@@ -62,7 +62,7 @@ class ChowhubProductController extends Controller
 
                             return  ChowhubProductResource::collection($search_product);
       }
-        $products = ChowhubProduct::with(['category','store','productVariation','productDescriptionImage','productGallery','variationAttributesValue','tags.tagName'])->all();
+        $products = ChowhubProduct::with(['category','store','productVariation','productDescriptionImage','productGallery','variationAttributesValue','tags.tagName'])->get();
       
         return  ChowhubProductResource::collection($products);
     }
@@ -174,7 +174,7 @@ class ChowhubProductController extends Controller
 
                             return  ChowhubProductResource::collection($search_product);
       }
-        $products = ChowhubProduct::with(['category','store','productVariation','productDescriptionImage','productGallery','variationAttributesValue'])->where('category_id',$id)->all();
+        $products = ChowhubProduct::with(['category','store','productVariation','productDescriptionImage','productGallery','variationAttributesValue'])->where('category_id',$id)->get();
       
       if($products){
         return  ChowhubProductResource::collection($products);
