@@ -35,7 +35,8 @@
         <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
         <!-- P-scroll bar css-->
         <link href="{{URL::asset('assets/plugins/perfect-scrollbar/p-scrollbar.css')}}" rel="stylesheet" />
-
+		<!---Internal  Darggable css-->
+		<link href="{{URL::asset('assets/plugins/darggable/jquery-ui-darggable.css')}}" rel="stylesheet">
         <!--  Right-sidemenu css -->
         <link href="{{URL::asset('assets/plugins/sidebar/sidebar.css')}}" rel="stylesheet">
 
@@ -588,7 +589,9 @@
         <script src="{{URL::asset('assets/plugins/fancyuploder/jquery.iframe-transport.js')}}"></script>
         <script src="{{URL::asset('assets/plugins/fancyuploder/jquery.fancy-fileupload.js')}}"></script>
         <script src="{{URL::asset('assets/plugins/fancyuploder/fancy-uploader.js')}}"></script>
-
+	<!--- Internal Darggable js-->
+    <script src="{{URL::asset('assets/plugins/darggable/jquery-ui-darggable.min.js')}}"></script>
+		<script src="{{URL::asset('assets/plugins/darggable/darggable.js')}}"></script>
         <!-- Laravel Javascript Validation -->
         <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
         <script type="text/javascript" src="{{ asset('vendor/DataTables/datatables.min.js')}}"></script>

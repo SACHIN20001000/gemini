@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
+
 <style>.imageSize{height: 100px;width: 100px;} .tag{color:black !important;background-color: aqua;font-size: 15px;}</style>
 <div class="container">
     <!-- breadcrumb -->
@@ -56,29 +57,7 @@
                                 <textarea name="description"  id="hiddenDescription">{{isset($product) ? $product->description : '' }}</textarea>
                             </div>
                             </div>
-                            <div class="row row-xs align-items-center mg-b-20">
-                            <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Description Image </label>
-                                </div>
-                                <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                <div class="row">
-                                        <div class="col-lg-12 col-md-12">
-                                            <div class="card">
-                                                <div class="card-body">
-                                    
-                                                    <input id="description-image" type="file" name="description_images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
-                                                    <ul id="description-image-items"></ul>
-                                                    @if(isset($product))
-                                                    @foreach($product->productDescriptionImage as $image)
-                                                <div id="imgDespDel{{$image->id}}"><a href="{{$image->image_path}}" target="_blank" data-item-id="{{$image->id}}"> <img src="{{$image->image_path}}"  alt="" height=50 width=50></a><i class="fas fa-trash-alt"  onclick='delDespImage({{$image->id}})'></i></div>
-                                                    @endforeach
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                     
                            
                             <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-4">
@@ -251,6 +230,83 @@
              </div>
          </div>
 
+         <div class="col-lg-12 col-md-12">
+                <div class="card">
+                     <div class="card-body">
+                                <h4>Description Image</h4>
+                                              
+                                <div class="row row-xs align-items-center mg-b-20">
+                          
+                                <div class="col-md-12 mg-t-5 mg-md-t-0">
+                                <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                    
+                                                    <input id="description-image" type="file" name="description_images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
+                                                    <ul id="description-image-items"></ul>
+                                                    <div class="sortable ui-sortable">
+                                                    @if(isset($product))
+                                                    @foreach($product->productDescriptionImage as $image)
+                                                    <div id="imgDespDel{{$image->id}}">
+                                                    <div class="card-draggable">
+                                               <a href="{{$image->image_path}}" target="_blank" data-item-id="{{$image->id}}"> <img src="{{$image->image_path}}"  alt="" height=50 width=50></a><i class="fas fa-trash-alt"  onclick='delDespImage({{$image->id}})'></i></div>
+                                                </div>
+                                                @endforeach
+                                                    @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                  
+                                    
+
+                  </div>
+             </div>
+         </div>
+
+         <div class="col-lg-12 col-md-12">
+                <div class="card">
+                     <div class="card-body">
+                                <h4>Feature Page Images</h4>
+                                              
+                                <div class="row row-xs align-items-center mg-b-20">
+                          
+                                <div class="col-md-12 mg-t-5 mg-md-t-0">
+                                <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                    
+                                                    <input id="feature-page-image" type="file" name="description_images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
+                                                    <ul id="feature-page-image-items"></ul>
+                                      <div class="sortable ui-sortable">
+                                                    @if(isset($product))
+                                                    @foreach($product->productFeaturePageImage as $image)
+                                                    <div id="imgfeatureDel{{$image->id}}">
+                                                    <div class="card-draggable">
+                                    <a href="{{$image->image_path}}" target="_blank" data-item-id="{{$image->id}}"> <img src="{{$image->image_path}}"  alt="" height=50 width=50></a><i class="fas fa-trash-alt"  onclick='delFeatureImage({{$image->id}})'></i></div>				
+								<input type="hidden" name="feature_image[]" value="{{$image->id}}">
+                                </div>
+                                                    @endforeach
+                                                    @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>   
+                                  
+                                    
+
+                  </div>
+             </div>
+         </div>
+
     <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>
 </form>
                 <!-- form end  -->
@@ -412,9 +468,10 @@
         {
             $('#galary-item'+itemId+'').remove();
         },
-        removeProductDescriptionImage:function(itemId)
+   
+        removeFeatureDescriptionImage:function(itemId)
         {
-            $('#description-item'+itemId+'').remove();
+            $('#feature-page-item'+itemId+'').remove();
         },
        
         
@@ -461,6 +518,21 @@ function delImage(id){
         } 
         
      }
+     function delFeatureImage(id){
+    var data = 'id='+ id ;
+    if (confirm('Are You Sure You Want To Delete This Image')) {
+   $.ajax({
+           type:'POST',
+           url:'/admin/delete-feature-page-photo',
+           data: data ,
+           success:function(data){
+            $('#imgfeatureDel'+id+'').remove();
+           }
+        });
+        } 
+        
+     }
+
      function removeVariationImage(id){
     var data = 'id='+ id ;
    
@@ -479,7 +551,6 @@ function delImage(id){
     
 }
 }
-
 
 $(function() {
     var counter = 1; 
@@ -506,6 +577,21 @@ $(function() {
         uploadcompleted : function(e, data) {
             
             $("#description-image-items").prepend('<li id="description-item'+counter +'"><img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt" onclick="productsEvent.removeProductDescriptionImage('+counter+')"></i><input type="hidden"  value="' + data.result.image + '" name="description_images[]"  /></li>');
+            counter ++
+            data.ff_info.RemoveFile();
+        }
+    });
+});
+$(function() {
+    var counter = 1; 
+    $('#feature-page-image').FancyFileUpload({
+        url:'/admin/save-description-photo',
+        fileupload : {
+            maxChunkSize : 1000000
+        },        
+        uploadcompleted : function(e, data) {
+            
+            $("#feature-page-image-items").prepend('<li id="feature-page-item'+counter +'"><img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt" onclick="productsEvent.removeFeatureDescriptionImage('+counter+')"></i><input type="hidden"  value="' + data.result.image + '" name="feature_page_images[]"  /></li>');
             counter ++
             data.ff_info.RemoveFile();
         }

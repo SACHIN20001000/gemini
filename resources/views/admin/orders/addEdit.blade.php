@@ -27,31 +27,34 @@
                         @csrf
                         {{ isset($order) ? method_field('PUT'):'' }}
                         <div class="pd-30 pd-sm-40 bg-gray-200">
-                            <div class="row row-xs align-items-center mg-b-20">
-                                <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Product Name</label>
-                                </div>
-                                <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="products"  placeholder="Enter your product name" type="text" value="{{isset($order) ? $order->products : '' }}">
-                                </div>
-                            </div>
-                            <div class="row row-xs align-items-center mg-b-20">
-                                <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Price</label>
-                                </div>
-                            <div class="col-md-8 mg-t-5 mg-md-t-0">
-                            <input class="form-control" name="totalPrice"  placeholder="Enter your product price" type="text" value="{{isset($order) ? $order->totalPrice : '' }}">
-
-                                                              
-                                </div>
-                            </div>
-
-                            <div class="row row-xs align-items-center mg-b-20">
+                        <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">User Name</label>
                                 </div>
                             <div class="col-md-8 mg-t-5 mg-md-t-0">
-                            <input class="form-control" name="name"  placeholder="Enter your name" type="text" value="{{isset($order) ? $order->name : '' }}">
+                            <input class="form-control" name="sh_name"  placeholder="Enter your name" type="text" value="{{isset($order) ? $order->shipping->sh_name : '' }}">
+                            <input clas name="id"  type="hidden" value="{{isset($order) ? $order->shipping->id : '' }}">
+
+
+                                                              
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Phone</label>
+                                </div>
+                            <div class="col-md-8 mg-t-5 mg-md-t-0">
+                            <input class="form-control" name="sh_phone"  placeholder="Enter your phone" type="text" value="{{isset($order) ? $order->shipping->sh_phone : '' }}">
+
+                                                              
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Email</label>
+                                </div>
+                            <div class="col-md-8 mg-t-5 mg-md-t-0">
+                            <input class="form-control" name="sh_email"  placeholder="Enter your email" type="email" value="{{isset($order) ? $order->shipping->sh_email : '' }}">
 
                                                               
                                 </div>
@@ -61,22 +64,66 @@
                                     <label class="form-label mg-b-0">Address</label>
                                 </div>
                             <div class="col-md-8 mg-t-5 mg-md-t-0">
-                            <input class="form-control" name="address"  placeholder="Enter your address" type="text" value="{{isset($order) ? $order->address : '' }}">
+                            <input class="form-control" name="sh_address"  placeholder="Enter your address" type="text" value="{{isset($order) ? $order->shipping->sh_address : '' }}">
 
                                                               
                                 </div>
                             </div>
-
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Transaction Id	</label>
+                                    <label class="form-label mg-b-0">PinCode</label>
                                 </div>
                             <div class="col-md-8 mg-t-5 mg-md-t-0">
-                            <input class="form-control" name="transactionID"  placeholder="Enter your transactionID	" type="text" value="{{isset($order) ? $order->transactionID : '' }}">
+                            <input class="form-control" name="sh_zip_code"  placeholder="Enter your address" type="text" value="{{isset($order) ? $order->shipping->sh_zip_code : '' }}">
 
                                                               
                                 </div>
                             </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">City</label>
+                                </div>
+                            <div class="col-md-8 mg-t-5 mg-md-t-0">
+                            <input class="form-control" name="sh_city"  placeholder="Enter your address" type="text" value="{{isset($order) ? $order->shipping->sh_city : '' }}">
+
+                                                              
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">State</label>
+                                </div>
+                            <div class="col-md-8 mg-t-5 mg-md-t-0">
+                            <input class="form-control" name="sh_state"  placeholder="Enter your address" type="text" value="{{isset($order) ? $order->shipping->sh_state : '' }}">
+
+                                                              
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Country</label>
+                                </div>
+                            <div class="col-md-8 mg-t-5 mg-md-t-0">
+                            <input class="form-control" name="sh_country"  placeholder="Enter your address" type="text" value="{{isset($order) ? $order->shipping->sh_country : '' }}">
+
+                                                              
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Status</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                   <select name="status" class="form-control"  >
+                                       <option value="pending" {{$order->status == 'pending' ? 'Selected' : '' }}>pending</option>
+                                       <option value="processing"{{$order->status == 'processing' ? 'Selected' : '' }}>processing</option>
+                                       <option value="completed"{{$order->status == 'completed' ? 'Selected' : '' }}>completed</option>
+                                       <option value="decline"{{$order->status == 'decline' ? 'Selected' : '' }}>decline</option>
+
+                                   </select>
+                                </div>
+                            </div>
+                           
                             <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($order) ? 'Update' : 'Save' }}</button>
                         </div>
                 </div>

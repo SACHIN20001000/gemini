@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\Orders\UpdateOrders;
 use App\Models\Order;
+use App\Models\Shipping;
+
 use DataTables;
 class OrderController extends Controller
 {
@@ -24,7 +26,12 @@ class OrderController extends Controller
             ->addIndexColumn()
                     ->addColumn('action', function ($row)
                             {
-                                $action = '<span class="action-buttons">
+                                $action = '
+                                
+                                <span class="action-buttons">
+                                <a  href="'.route("orders.show", $row).'" class="btn btn-sm btn-info btn-b"><i class="fa fa-eye" aria-hidden="true"></i>
+
+                                </a>
                                 <a  href="'.route("orders.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                 </a>
                                     
@@ -78,9 +85,11 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Order $order)
     {
-        //
+        $orders=$order->with('user','shipping','orderItems')->first();
+
+        return view('admin.orders.view_single_order',compact('orders'));  
     }
 
     /**
@@ -91,6 +100,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
+        $order= $order->with('user','shipping','orderItems')->first();
         $orders = Order::where('id','!=',$order->id)->get();
         return view('admin.orders.addEdit',compact('order','orders'));
     }
@@ -104,9 +114,22 @@ class OrderController extends Controller
      */
     public function update(UpdateOrders $request, Order $order)
     {
-        $inputs = $request->all();
-      
-        $order->update($inputs);
+
+     
+      $shipping = Shipping::find($request->id)->update(
+        [
+            'sh_name' => $request->sh_name,
+            'sh_city' => $request->sh_city,
+            'sh_state' => $request->sh_state,
+            'sh_address' => $request->sh_address,
+            'sh_country' => $request->sh_country,
+            'sh_zip_code' => $request->sh_zip_code,
+            'sh_phone' => $request->sh_phone,
+            'sh_email' => $request->sh_email,
+        ]
+);
+
+        $order->update(['status' => $request->status]);
         return back()->with('success','Order updated successfully!');
     }
 

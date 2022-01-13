@@ -518,8 +518,10 @@ class CartController extends Controller
                 if ($item->variation_product_id != 0)
                 {
                     $productvariation = ProductVariation::find($variation_id);
+                 
                     $quantity = $item->quantity;
                     $unitPrice = $productvariation->sale_price;
+                   
                     $totalPrice = $unitPrice * $quantity ?? 0;
                 } else
                 {
@@ -529,6 +531,7 @@ class CartController extends Controller
                     $unitPrice = $product->sale_price;
                     $totalPrice = $unitPrice * $quantity ?? 0;
                 }
+           
                 $order_item = OrderItem::updateOrCreate(
                                 [
                                     'order_id' => $order->id,

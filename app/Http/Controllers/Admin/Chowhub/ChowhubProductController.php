@@ -13,6 +13,8 @@ use App\Models\Category;
 use App\Models\ChowhubTag;
 use App\Models\ChowhubProductTag;
 use App\Models\ChowhubProductDescriptionImage;
+use App\Models\ChowhubProductFeaturePageImage;
+
 
 
 use App\Models\ChowhubStore;
@@ -145,6 +147,15 @@ class ChowhubProductController extends Controller
 					$productImage->save();
 				}
 			}
+
+            if(!empty($inputs['feature_page_images'])){
+				foreach($inputs['feature_page_images'] as $image){
+					$productImage = new ChowhubProductFeaturePageImage();
+					$productImage->product_id = $products->id;
+					$productImage->image_path = $image;
+					$productImage->save();
+				}
+			}
             //tags
             if(!empty($tags)){			
                 foreach($tags as $vakey => $tagName){
@@ -257,7 +268,7 @@ class ChowhubProductController extends Controller
     {   
         $categories = Category::where('type','Chowhub')->get();
         $stores = ChowhubStore::all();
-        $product= ChowhubProduct::with(['category','store','productVariation','productGallery','variationAttributesValue.variationAttributeName'])->where('id',$id)->first(); 
+        $product= ChowhubProduct::with(['category','store','productVariation','productFeaturePageImage','productGallery','variationAttributesValue.variationAttributeName'])->where('id',$id)->first(); 
 
          
         $variations = [];
@@ -305,7 +316,7 @@ class ChowhubProductController extends Controller
     public function update(UpdateProduct $request,$id)
     {
         $inputs = $request->all(); 
-    
+    print_r($inputs);die;
  		$tags=explode(",",$inputs['tag']);
          if(!empty($inputs['productName'])){
 			$products= ChowhubProduct::find($id);
@@ -339,6 +350,14 @@ class ChowhubProductController extends Controller
                                       
                 }
             }
+            if(!empty($inputs['feature_page_images'])){
+				foreach($inputs['feature_page_images'] as $image){
+					$productImage = new ChowhubProductFeaturePageImage();
+					$productImage->product_id = $products->id;
+					$productImage->image_path = $image;
+					$productImage->save();
+				}
+			}
 			//store images in gallery 
 			if(!empty($inputs['image'])){
 				foreach($inputs['image'] as $image){
@@ -539,6 +558,15 @@ class ChowhubProductController extends Controller
     public function del_description_photo(Request $request){
 
         ChowhubProductDescriptionImage::find($request->id)->delete();
+ 
+        return Response()->json([
+                "success" => 'Deleted Successfully',
+             
+            ]);
+    }
+    public function del_feature_page_photo(Request $request){
+
+        ChowhubProductFeaturePageImage::find($request->id)->delete();
  
         return Response()->json([
                 "success" => 'Deleted Successfully',

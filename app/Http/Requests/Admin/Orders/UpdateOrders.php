@@ -24,9 +24,9 @@ class UpdateOrders extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
+            'sh_name' => [
             'required'
-            ],'transactionID' => 'required', 'address' => 'required','totalPrice' => 'required','products'=>'required'
+            ],'sh_address' => 'required', 'sh_city' => 'required','sh_state' => 'required','sh_country'=>'required'
         ];
     }
 }
