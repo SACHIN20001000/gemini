@@ -245,11 +245,16 @@
                                     
                                                     <input id="description-image" type="file" name="description_images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
                                                     <ul id="description-image-items"></ul>
+                                                    <div class="sortable ui-sortable">
                                                     @if(isset($product))
                                                     @foreach($product->productDescriptionImage as $image)
-                                                <div id="imgDespDel{{$image->id}}"><a href="{{$image->image_path}}" target="_blank" data-item-id="{{$image->id}}"> <img src="{{$image->image_path}}"  alt="" height=50 width=50></a><i class="fas fa-trash-alt"  onclick='delDespImage({{$image->id}})'></i></div>
-                                                    @endforeach
+                                                    <div id="imgDespDel{{$image->id}}">
+                                                    <div class="card-draggable">
+                                               <a href="{{$image->image_path}}" target="_blank" data-item-id="{{$image->id}}"> <img src="{{$image->image_path}}"  alt="" height=50 width=50></a><i class="fas fa-trash-alt"  onclick='delDespImage({{$image->id}})'></i></div>
+                                                </div>
+                                                @endforeach
                                                     @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -278,11 +283,17 @@
                                     
                                                     <input id="feature-page-image" type="file" name="description_images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
                                                     <ul id="feature-page-image-items"></ul>
+                                      <div class="sortable ui-sortable">
                                                     @if(isset($product))
                                                     @foreach($product->productFeaturePageImage as $image)
-                                                <div id="imgfeatureDel{{$image->id}}"><a href="{{$image->image_path}}" target="_blank" data-item-id="{{$image->id}}"> <img src="{{$image->image_path}}"  alt="" height=50 width=50></a><i class="fas fa-trash-alt"  onclick='delFeatureImage({{$image->id}})'></i></div>
+                                                    <div id="imgfeatureDel{{$image->id}}">
+                                                    <div class="card-draggable">
+                                    <a href="{{$image->image_path}}" target="_blank" data-item-id="{{$image->id}}"> <img src="{{$image->image_path}}"  alt="" height=50 width=50></a><i class="fas fa-trash-alt"  onclick='delFeatureImage({{$image->id}})'></i></div>				
+								<input type="hidden" name="feature_image[]" value="{{$image->id}}">
+                                </div>
                                                     @endforeach
                                                     @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -540,7 +551,6 @@ function delImage(id){
     
 }
 }
-
 
 $(function() {
     var counter = 1; 
