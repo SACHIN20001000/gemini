@@ -72,6 +72,7 @@ Route::prefix('admin')->group(function ()
 
         Route::post('delete-chowhub-photo', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'del_photo']);
         Route::post('delete-description-photo', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'del_description_photo']);
+        Route::post('delete-feature-page-photo', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'del_feature_page_photo']);
      
         Route::post('delete-chowhub-variation-img', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'del_variationPhoto']);
 

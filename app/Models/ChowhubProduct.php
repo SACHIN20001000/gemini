@@ -48,6 +48,9 @@ class ChowhubProduct extends Model
     public function productDescriptionImage() {
         return $this->hasMany(ChowhubProductDescriptionImage::class, 'product_id', 'id');
     }
+    public function productFeaturePageImage() {
+        return $this->hasMany(ChowhubProductFeaturePageImage::class, 'product_id', 'id');
+    }
     public function getAvailTagsAttribute()
     {
         $tags = $this->tags;
