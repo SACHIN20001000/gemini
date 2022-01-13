@@ -632,6 +632,41 @@
                 ]
             }
         },
+        "/chowhub/tags": {
+            "get": {
+                "tags": [
+                    "Chowhubtags"
+                ],
+                "summary": "Chowhub tags",
+                "operationId": "Chowhub tags",
+                "responses": {
+                    "200": {
+                        "description": "tags",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TagResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Token": []
+                    }
+                ]
+            }
+        },
         "/chowhub/stores": {
             "get": {
                 "tags": [
@@ -1715,6 +1750,20 @@
                         "example": {
                             "id": 1,
                             "name": "nike"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "TagResponse": {
+                "title": "tag Response",
+                "description": "tag Response",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "example": {
+                            "id": 1,
+                            "name": "data"
                         }
                     }
                 },
