@@ -14,6 +14,6 @@ class ChowhubProductDescriptionImage extends Model
     ];
 
     protected $fillable = [
-        'product_id','image_path','	priority'
+        'product_id','image_path','priority'
     ];
 }

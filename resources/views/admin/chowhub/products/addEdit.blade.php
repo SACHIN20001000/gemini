@@ -250,7 +250,9 @@
                                                     @foreach($product->productDescriptionImage as $image)
                                                     <div id="imgDespDel{{$image->id}}">
                                                     <div class="card-draggable">
-                                               <a href="{{$image->image_path}}" target="_blank" data-item-id="{{$image->id}}"> <input type="hidden" name="desp_image[]" value="{{$image->id}}"><img src="{{$image->image_path}}"  alt="" height=50 width=50></a><i class="fas fa-trash-alt"  onclick='delDespImage({{$image->id}})'></i></div>
+                                               <a href="{{$image->image_path}}" target="_blank" data-item-id="{{$image->id}}"> <input type="hidden" name="description_images[]" value="{{$image->image_path}}"><img src="{{$image->image_path}}"  alt="" height=400 width=800>
+
+                                               </a><i class="fas fa-trash-alt"  onclick='delDespImage({{$image->id}})'></i></div>
                                               
                                             </div>
                                                 @endforeach
@@ -289,7 +291,9 @@
                                                     @foreach($product->productFeaturePageImage as $image)
                                                     <div id="imgfeatureDel{{$image->id}}">
                                                     <div class="card-draggable">
-                                    <a href="{{$image->image_path}}"  target="_blank" data-item-id="{{$image->id}}"><input type="hidden" name="feature_image[]" value="{{$image->id}}"> <img src="{{$image->image_path}}"  alt="" height=50 width=50></a><i class="fas fa-trash-alt"  onclick='delFeatureImage({{$image->id}})'></i></div>				
+                                    <a href="{{$image->image_path}}"  target="_blank" data-item-id="{{$image->id}}"> <img src="{{$image->image_path}}"  alt="" height=400 width=800>
+                                        <input type="hidden" name="feature_page_images[]" value="{{$image->image_path}}">
+                                    </a><i class="fas fa-trash-alt"  onclick='delFeatureImage({{$image->id}})'></i></div>				
 								
                                 </div>
                                                     @endforeach

@@ -316,6 +316,7 @@ class ChowhubProductController extends Controller
     public function update(UpdateProduct $request,$id)
     {
         $inputs = $request->all(); 
+        //echo '<pre>'; print_r($inputs); die;
  		$tags=explode(",",$inputs['tag']);
          if(!empty($inputs['productName'])){
 			$products= ChowhubProduct::find($id);
@@ -333,6 +334,9 @@ class ChowhubProductController extends Controller
                 $products->type = 'Variation';
             }
 			$products->save();
+
+            ChowhubProductFeaturePageImage::where('product_id',$products->id)->delete();
+            ChowhubProductDescriptionImage::where('product_id',$products->id)->delete();
 			//add attributes 
             if(!empty($tags)){	
                 ChowhubProductTag::where('product_id',$id)->delete();
@@ -350,11 +354,13 @@ class ChowhubProductController extends Controller
                 }
             }
             if(!empty($inputs['feature_page_images'])){
-				foreach($inputs['feature_page_images'] as $image){
-					$productImage = new ChowhubProductFeaturePageImage();
-					$productImage->product_id = $products->id;
-					$productImage->image_path = $image;
-					$productImage->save();
+				foreach($inputs['feature_page_images'] as $key=>$image){
+
+                    ChowhubProductFeaturePageImage::create([
+                                'product_id'     => $products->id,
+                                'priority' => $key,
+                                'image_path'   => $image
+                            ]);
 				}
 			}
 			//store images in gallery 
@@ -368,12 +374,15 @@ class ChowhubProductController extends Controller
 			}
                  //store desp images
                  if(!empty($inputs['description_images'])){
-                    foreach($inputs['description_images'] as $image){
-                        $productImage = new ChowhubProductDescriptionImage();
-                        $productImage->product_id = $products->id;
-                        $productImage->image_path = $image;
-                        $productImage->save();
-                    }
+                    foreach($inputs['description_images'] as $key=>$image){
+                        
+
+                        ChowhubProductDescriptionImage::create([
+                                'image_path'   => $image,
+                                'product_id'     => $products->id,
+                                'priority' => $key,
+                            ]);
+                                                }
                 }
 			if(!empty($inputs['attributes'])){			
 				
