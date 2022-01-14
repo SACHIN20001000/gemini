@@ -18,6 +18,7 @@ class ProductFeaturePageImageResource extends JsonResource
         return [
            
             'id' => $this->id,
+            'priority' => $this->priority,
             'image_path' =>$this->image_path
                                
         ];

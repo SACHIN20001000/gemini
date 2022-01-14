@@ -272,7 +272,7 @@
          <div class="col-lg-12 col-md-12">
                 <div class="card">
                      <div class="card-body">
-                                <h4>Feature Page Images</h4>
+                                <h4>Experiential Page Images</h4>
                                               
                                 <div class="row row-xs align-items-center mg-b-20">
                           
