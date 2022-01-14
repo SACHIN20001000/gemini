@@ -316,7 +316,6 @@ class ChowhubProductController extends Controller
     public function update(UpdateProduct $request,$id)
     {
         $inputs = $request->all(); 
-    print_r($inputs);die;
  		$tags=explode(",",$inputs['tag']);
          if(!empty($inputs['productName'])){
 			$products= ChowhubProduct::find($id);
