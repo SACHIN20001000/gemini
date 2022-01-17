@@ -191,6 +191,16 @@
             <span class="error_validation" v-if="order_form.errors().has('paymentmethods')">
               {{ order_form.errors().get('paymentmethods') }}
             </span>
+            <div class="stripeCard">
+              <label>Card Number</label>
+              <div id="card-number"></div>
+              <label>Card Expiry</label>
+              <div id="card-expiry"></div>
+              <label>Card CVC</label>
+              <div id="card-cvc"></div>
+              <div id="card-error"></div>
+              <button id="custom-button" @click="createToken">Generate Token</button>
+            </div>
           </li>
         </ul>
         <p class="totalamount">Total Cart Price: {{cartTotalValue+shippingval}}</p>
@@ -207,9 +217,13 @@
 <script>
 import {mapGetters,mapActions} from "vuex"
 import form from 'vuejs-form'
+import { StripeElementCard } from '@vue-stripe/vue-stripe'
 
 export default {
   name:"Checkout",
+  components: {
+    StripeElementCard,
+  },
   data: () => ({
     form: form({
       name: '',
@@ -286,7 +300,11 @@ export default {
     cartTotalValue:0,
     tax:5,
     shippingval:0,
-    disableShippingForm:1
+    disableShippingForm:1,
+    token: null,
+    cardNumber: null,
+    cardExpiry: null,
+    cardCvc: null
   }),
   watch:{
     orderResponse(){
@@ -299,18 +317,61 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['cartTotal','orderResponse'])
+    ...mapGetters(['cartTotal','orderResponse']),
+    stripeElements () {
+      return this.$stripe.elements()
+    }
+  },
+  mounted () {
+    const style = {
+      base: {
+        color: 'black',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '14px',
+        '::placeholder': {
+          color: '#aab7c4',
+        },
+      },
+      invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a',
+      },
+    }
+
+    this.cardNumber = this.stripeElements.create('cardNumber', { style });
+    this.cardNumber.mount('#card-number');
+    this.cardExpiry = this.stripeElements.create('cardExpiry', { style });
+    this.cardExpiry.mount('#card-expiry');
+    this.cardCvc = this.stripeElements.create('cardCvc', { style });
+    this.cardCvc.mount('#card-cvc');
+  },
+  beforeDestroy () {
+    this.cardNumber.destroy();
+    this.cardExpiry.destroy();
+    this.cardCvc.destroy();
   },
   methods:{
     ...mapActions(['addOrder']),
     submit() {
+      if(this.disableShippingForm==0){
+        this.form.data.sh_name = this.form.data.name
+        this.form.data.sh_address = this.form.data.address
+        this.form.data.sh_city = this.form.data.city
+        this.form.data.sh_state = this.form.data.state
+        this.form.data.sh_country = this.form.data.country
+        this.form.data.sh_zip_code = this.form.data.zip_code
+        this.form.data.sh_phone = this.form.data.phone
+        this.form.data.sh_email = this.form.data.email
+        this.form.data.sh_remark = this.form.data.remark
+      }
       if (this.form.validate().errors().any() || this.order_form.validate().errors().any()) return;
       /*if(this.disableShippingForm>0){
         if (this.sh_form.validate().errors().any()) return;
       }*/
       /*this.form.data.shipping =this.sh_form.data*/
-      this.form.data.payment_method = this.order_form.data
-      this.form.data.payment_method.total = Number(this.cartTotalValue) + Number(this.shippingval)
+      this.form.data.payment_method = this.order_form.data.paymentmethods
+      this.form.data.total = Number(this.cartTotalValue) + Number(this.shippingval)
       this.form.data.shippingmethod = this.order_form.data.shippingmethods
       this.form.data.key = localStorage.getItem('cartKey')
       this.addOrder(this.form.data)
@@ -325,7 +386,18 @@ export default {
       }else{
         this.disableShippingForm = 1
       }
+    },
+    async createToken () {
+      const { token, error } = await this.$stripe.createToken(this.cardNumber);
+      if (error) {
+        // handle error here
+        document.getElementById('card-error').innerHTML = error.message;
+        return;
+      }
+      console.log(token);
+      // handle the token
+      // send it to your server
     }
   }
-}
+} 
 </script>

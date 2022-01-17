@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\Product;
+namespace App\Http\Requests\Admin\Coupon;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddProduct extends FormRequest
+class AddCoupon extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class AddProduct extends FormRequest
     public function rules()
     {
         return [
-             'productName' => 'required',
+             'CouponName' => 'required',
              'description' => 'required',
              'category_id' => 'required',
              'store_id' => 'required',
