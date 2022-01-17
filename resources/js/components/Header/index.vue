@@ -146,7 +146,7 @@
   @import './header.css';
 </style>
 <script>
-import imgLogo from "../../assets/images/logo.svg"
+import imgLogo from "../../assets/images/logo.png"
 import imgProfile from "../../assets/images/profile.png"
 import imgCartIcon from "../../assets/images/cart_icon.png"
 import search_mobile from "../../assets/images/search_mobile.png"

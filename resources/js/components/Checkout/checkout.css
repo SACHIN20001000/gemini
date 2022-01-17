@@ -65,3 +65,17 @@
   width: 100%;
   color: red;
 }
+.stripeCard{
+  width: 100%;
+}
+#custom-button {
+  height: 30px;
+  outline: 1px solid grey;
+  background-color: green;
+  padding: 5px;
+  color: white;
+}
+
+#card-error {
+  color: red;
+}
