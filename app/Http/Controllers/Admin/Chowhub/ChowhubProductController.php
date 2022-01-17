@@ -137,25 +137,29 @@ class ChowhubProductController extends Controller
 					$productImage->save();
 				}
 			}
-
-            //store desp images
-            if(!empty($inputs['description_images'])){
-				foreach($inputs['description_images'] as $image){
-					$productImage = new ChowhubProductDescriptionImage();
-					$productImage->product_id = $products->id;
-					$productImage->image_path = $image;
-					$productImage->save();
-				}
-			}
-
+// feature page image
             if(!empty($inputs['feature_page_images'])){
-				foreach($inputs['feature_page_images'] as $image){
-					$productImage = new ChowhubProductFeaturePageImage();
-					$productImage->product_id = $products->id;
-					$productImage->image_path = $image;
-					$productImage->save();
+				foreach($inputs['feature_page_images'] as $key=>$image){
+
+                    ChowhubProductFeaturePageImage::create([
+                                'product_id'     => $products->id,
+                                'priority' => $key,
+                                'image_path'   => $image
+                            ]);
 				}
 			}
+         //store desp images
+         if(!empty($inputs['description_images'])){
+            foreach($inputs['description_images'] as $key=>$image){
+                
+
+                ChowhubProductDescriptionImage::create([
+                        'image_path'   => $image,
+                        'product_id'     => $products->id,
+                        'priority' => $key,
+                    ]);
+                                        }
+        }
             //tags
             if(!empty($tags)){			
                 foreach($tags as $vakey => $tagName){
@@ -510,6 +514,8 @@ class ChowhubProductController extends Controller
         ChowhubProductTag::where('product_id',$id)->delete();
         ChowhubProduct::find($id)->delete();
      
+        ChowhubProductFeaturePageImage::where('product_id',$id)->delete();
+        ChowhubProductDescriptionImage::where('product_id',$id)->delete();
         return back()->with('success','Product deleted successfully!');
     }
 
