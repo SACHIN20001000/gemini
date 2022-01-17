@@ -244,12 +244,14 @@
                                                 <div class="card-body">
                                     
                                                     <input id="description-image" type="file" name="description_images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
-                                                    <ul id="description-image-items"></ul>
+                                                    <div class="sortable ui-sortable">
+                                                    <ul id="description-image-items"></ul></div>
                                                     <div class="sortable ui-sortable">
                                                     @if(isset($product))
                                                     @foreach($product->productDescriptionImage as $image)
-                                                    <div id="imgDespDel{{$image->id}}">
                                                     <div class="card-draggable">
+                                                    <div id="imgDespDel{{$image->id}}">
+                                                 
                                                <a href="{{$image->image_path}}" target="_blank" data-item-id="{{$image->id}}"> <input type="hidden" name="description_images[]" value="{{$image->image_path}}"><img src="{{$image->image_path}}"  alt="" height=400 width=800>
 
                                                </a><i class="fas fa-trash-alt"  onclick='delDespImage({{$image->id}})'></i></div>
@@ -285,7 +287,9 @@
                                                 <div class="card-body">
                                     
                                                     <input id="feature-page-image" type="file" name="description_images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
-                                                    <ul id="feature-page-image-items"></ul>
+                                                    <div class="sortable ui-sortable">   
+                                                        <ul id="feature-page-image-items"></ul>
+                                                    </div>
                                       <div class="sortable ui-sortable">
                                                     @if(isset($product))
                                                     @foreach($product->productFeaturePageImage as $image)
@@ -569,7 +573,7 @@ $(function() {
         },        
         uploadcompleted : function(e, data) {
             
-            $("#product-galary-items").prepend('<li id="galary-item'+counter +'"><img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt" onclick="productsEvent.removeProductGalaryImage('+counter+')"></i><input type="hidden"  value="' + data.result.image + '" name="image[]"  /></li>');
+            $("#product-galary-items").prepend('<div class="card-draggable"><li id="galary-item'+counter +'"><img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt" onclick="productsEvent.removeProductGalaryImage('+counter+')"></i><input type="hidden"  value="' + data.result.image + '" name="image[]"  /></li></div>');
             counter ++
             data.ff_info.RemoveFile();
         }
@@ -584,7 +588,7 @@ $(function() {
         },        
         uploadcompleted : function(e, data) {
             
-            $("#description-image-items").prepend('<li id="description-item'+counter +'"><img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt" onclick="productsEvent.removeProductDescriptionImage('+counter+')"></i><input type="hidden"  value="' + data.result.image + '" name="description_images[]"  /></li>');
+            $("#description-image-items").prepend('<div class="card-draggable"><li id="description-item'+counter +'"><img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt" onclick="productsEvent.removeProductDescriptionImage('+counter+')"></i><input type="hidden"  value="' + data.result.image + '" name="description_images[]"  /></li></div>');
             counter ++
             data.ff_info.RemoveFile();
         }
@@ -599,7 +603,7 @@ $(function() {
         },        
         uploadcompleted : function(e, data) {
             
-            $("#feature-page-image-items").prepend('<li id="feature-page-item'+counter +'"><img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt" onclick="productsEvent.removeFeatureDescriptionImage('+counter+')"></i><input type="hidden"  value="' + data.result.image + '" name="feature_page_images[]"  /></li>');
+            $("#feature-page-image-items").prepend('<div class="card-draggable"><li id="feature-page-item'+counter +'"><img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt" onclick="productsEvent.removeFeatureDescriptionImage('+counter+')"></i><input type="hidden"  value="' + data.result.image + '" name="feature_page_images[]"  /></li></div>');
             counter ++
             data.ff_info.RemoveFile();
         }
