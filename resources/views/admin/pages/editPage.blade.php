@@ -45,7 +45,7 @@
 												<label class="form-label mg-b-0">Content</label>
 											</div>
 											<div class="col-md-10 mg-t-5 mg-md-t-0">
-                        <textarea name="content" class="form-control"  id="" cols="30" rows="10">{{$post->content}}</textarea>
+                        <textarea name="content" class="form-control"  id="content" cols="30" rows="10">{{$post->content}}</textarea>
 												
 											</div>
 										</div>
@@ -54,7 +54,7 @@
 												<label class="form-label mg-b-0">Css</label>
 											</div>
 											<div class="col-md-10 mg-t-5 mg-md-t-0">
-                        <textarea name="css" class="form-control"  id="" cols="30" rows="10">{{$post->css}}</textarea>
+                        <textarea name="css" class="form-control"  id="css" cols="30" rows="10">{{$post->css}}</textarea>
 												
 											</div>
 										</div>
@@ -104,19 +104,18 @@
 <!-- form end  -->
 
 
-<script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
-<script>
 
- CKEDITOR.config.fillEmptyBlocks = false; 
- CKEDITOR.config.basicEntities = false; 
- CKEDITOR.config.entities_greek = false; 
- CKEDITOR.config.entities_latin = false; 
- CKEDITOR.config.allowedContent = true;
-                        CKEDITOR.replace( 'content' );
-                        CKEDITOR.replace( 'css' );
-
-                </script>
 @endsection
 @section('scripts')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<script type="text/javascript">
+     $('#content').summernote({
+        height: 400
+    });
+    $('#css').summernote({
+        height: 400
+    });
+</script>
 {!! JsValidator::formRequest('App\Http\Requests\Admin\Page\PagesRequest','#page-edit') !!}
 @endsection
