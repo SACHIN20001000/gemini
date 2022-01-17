@@ -246,7 +246,7 @@
 <script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
 <script type="text/javascript">
-            CKEDITOR.config.autoParagraph = false; 
+   
             CKEDITOR.config.fillEmptyBlocks = false; 
             CKEDITOR.config.basicEntities = false; 
             CKEDITOR.config.entities_greek = false; 

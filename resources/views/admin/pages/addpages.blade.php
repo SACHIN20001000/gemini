@@ -101,8 +101,7 @@
 
 <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
 <script>
- 
- CKEDITOR.config.autoParagraph = false; 
+
  CKEDITOR.config.fillEmptyBlocks = false; 
  CKEDITOR.config.basicEntities = false; 
  CKEDITOR.config.entities_greek = false; 
