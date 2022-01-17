@@ -542,10 +542,10 @@ class CartController extends Controller
                                     'quantity' => $quantity,
                 ]);
 
-                $grand_total = $grand_total + $price;
+              
             }
 
-            $order->grand_total = $grand_total;
+            $order->grand_total = $order->grand_total + $totalPrice ;
             $order->save();
 
             return response()->json([
