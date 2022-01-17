@@ -102,6 +102,8 @@ function addNumber() {
     // console.log(x)
     if(x === 'percentage'){
         $("input[type='number']").prop('max',100);
+    }else{
+        $("input[type='number']").removeAttr('max');
     }
 
 }
