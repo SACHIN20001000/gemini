@@ -43,7 +43,7 @@
 												<label class="form-label mg-b-0">Content</label>
 											</div>
 											<div class="col-md-10 mg-t-5 mg-md-t-0">
-                        <textarea name="content" class="form-control"  cols="30" rows="10"></textarea>
+                        <textarea name="content" id="content" class="form-control"  cols="30" rows="10"></textarea>
 												
 											</div>
 										</div>
@@ -52,7 +52,7 @@
 												<label class="form-label mg-b-0">Css</label>
 											</div>
 											<div class="col-md-10 mg-t-5 mg-md-t-0">
-                        <textarea name="css" class="form-control"  cols="30" rows="10"></textarea>
+                        <textarea name="css" id="css" class="form-control"  cols="30" rows="10"></textarea>
 												
 											</div>
 										</div>
@@ -97,19 +97,15 @@
 								</div>
 </form>
 <!-- form end  -->
-
-
-<script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script>
-	CKEDITOR.replace( 'content' );
-            CKEDITOR.replace( 'css' );
-					
-//  CKEDITOR.config.fillEmptyBlocks = false; 
-//  CKEDITOR.config.basicEntities = false; 
-//  CKEDITOR.config.entities_greek = false; 
-//  CKEDITOR.config.entities_latin = false; 
-//  CKEDITOR.config.allowedContent = true;
-
+     $('#content').summernote({
+        height: 400
+    });
+    $('#css').summernote({
+        height: 400
+    });
 
 					
 

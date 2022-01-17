@@ -244,15 +244,14 @@
 
 <link rel="stylesheet" href="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
 <script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
-<script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+<!-- summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script type="text/javascript">
-   
-            // CKEDITOR.config.fillEmptyBlocks = false; 
-            // CKEDITOR.config.basicEntities = false; 
-            // CKEDITOR.config.entities_greek = false; 
-            // CKEDITOR.config.entities_latin = false; 
-            // CKEDITOR.config.allowedContent = true;
-         CKEDITOR.replace( 'description' );
+     $('#hiddenDescription').summernote({
+        height: 400
+    });
+     
 var productsEvent;
 (function() {
     var attributes =[];
