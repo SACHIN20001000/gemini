@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Vue SPA Demo</title>
-
+	<script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body>
