@@ -17,6 +17,8 @@ use App\Http\Controllers\Admin\PageCategoriesController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\CouponController;
+
 
 
 use App\Http\Controllers\Admin\BrandsController;
@@ -58,6 +60,8 @@ Route::prefix('admin')->group(function ()
     {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('categories', CategoryController::class);
+        Route::resource('coupons', CouponController::class);
+
         Route::resource('page-categories', PageCategoriesController::class);
         Route::resource('products', ProductController::class);
         Route::resource('stores', StoreController::class);
@@ -73,7 +77,7 @@ Route::prefix('admin')->group(function ()
         Route::post('delete-chowhub-photo', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'del_photo']);
         Route::post('delete-description-photo', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'del_description_photo']);
         Route::post('delete-feature-page-photo', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'del_feature_page_photo']);
-     
+
         Route::post('delete-chowhub-variation-img', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'del_variationPhoto']);
 
 
