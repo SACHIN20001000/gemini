@@ -27,6 +27,15 @@
                         @csrf
                         {{ isset($coupon) ? method_field('PUT'):'' }}
                         <div class="pd-30 pd-sm-40 bg-gray-200">
+                        <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Name</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="name" id="name"  placeholder="Enter your name" type="text" value="{{isset($coupon) ? $coupon->name : '' }}"> 
+
+                                </div>
+                            </div>
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">Code</label>
@@ -99,7 +108,7 @@ function generateRandomString(length) {
 }
 function addNumber() {
     var x = document.getElementById("type").value;
-    // console.log(x)
+
     if(x === 'percentage'){
         $("input[type='number']").prop('max',100);
     }else{
@@ -110,7 +119,7 @@ function addNumber() {
 function validation_percentage() {
             var input = document.getElementById('value');
            var max= $('#value').attr('max');
-        //    console.log(max)
+
            if(max == 100){
             var n = input.value;
             n = Number(n);

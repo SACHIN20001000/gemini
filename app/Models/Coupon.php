@@ -9,7 +9,7 @@ class Coupon extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'code','type','apply_to', 'apply_for','value','count', 'expired_at'
+        'name','code','type','apply_to', 'apply_for','value','count', 'expired_at'
     ];
     protected $casts = [
         'created_at' => 'datetime:d-m-Y',

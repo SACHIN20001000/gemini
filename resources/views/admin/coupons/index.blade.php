@@ -27,8 +27,9 @@
                         <table class="table card-table table-striped table-vcenter text-nowrap mb-0" id="datatable">
                             <thead>
                                 <tr>
-                                    <th class="wd-lg-20p"><span>Code Name</span></th>
-                                    <th class="wd-lg-20p"><span>Code Value</span></th>
+                                <th class="wd-lg-20p"><span>Name</span></th>
+                                    <th class="wd-lg-20p"><span>Code</span></th>
+                                    <th class="wd-lg-20p"><span>Value</span></th>
 
                                     <th class="wd-lg-20p"><span>Created At</span></th>
 
@@ -64,6 +65,7 @@
             serverSide: true,
             ajax: "{{ route('coupons.index') }}",
             columns: [
+                {data: 'name', name: 'name'},
                 {data: 'code', name: 'code'},
                 {data: 'value', name: 'value'},
 
