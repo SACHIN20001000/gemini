@@ -104,18 +104,18 @@
 <!-- form end  -->
 
 
+
+@endsection
+@section('scripts')
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-<script>
+<script type="text/javascript">
      $('#content').summernote({
         height: 400
     });
     $('#css').summernote({
         height: 400
     });
-
-                </script>
-@endsection
-@section('scripts')
+</script>
 {!! JsValidator::formRequest('App\Http\Requests\Admin\Page\PagesRequest','#page-edit') !!}
 @endsection
