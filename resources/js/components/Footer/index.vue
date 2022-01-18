@@ -1,5 +1,96 @@
 <template>
-  <footer class="main_footer">
+  <section>
+    <footer class="footer-top">
+       <div class="container_max">
+          <div class="row">
+             <div class="col-md-3 footer_nav01">
+                <ul class="footer_nav">
+                   <li><a href="#">Get the App</a></li>
+                   <li><a href="#">Pet Parents+®</a></li>
+                   <li><a href="#">Subscription Pawgram®</a></li>
+                   <li><a href="#">Locations</a></li>
+                   <li><a href="#">Careers</a></li>
+                </ul>
+             </div>
+             <div class="col-md-9">
+                <div class="row">
+                   <div class="col">
+                      <ul class="footer_nav foot_nav2 foot_nav_shop">
+                         <li><label>Shop</label></li>
+                         <li><a href="#">Dog</a></li>
+                         <li><a href="#">Cat</a></li>
+                         <li><a href="#">Age</a></li>
+                         <li><a href="#">Needs</a></li>
+                      </ul>
+                   </div>
+                   <div class="col">
+                      <ul class="footer_nav foot_nav2">
+                         <li><label>Services</label></li>
+                         <li><a href="#">DaySpaw®</a></li>
+                         <li><a href="#">Chowologist™</a></li>
+                         <li><a href="#">Click & Pick</a></li>
+                         <li><a href="#">Coming_Soon...</a></li>
+                      </ul>
+                   </div>
+                   <div class="col">
+                      <ul class="footer_nav foot_nav2">
+                         <li><label>Shop</label></li>
+                         <li><a href="#">Our Why</a></li>
+                         <li><a href="#">Philantropy</a></li>
+                      </ul>
+                   </div>
+                   <div class="col">
+                      <ul class="footer_nav foot_nav2">
+                         <li><label>Learn</label></li>
+                         <li><a href="#">Pet Parenting™ Blog</a></li>
+                         <li><a href="#">Recall</a></li>
+                      </ul>
+                   </div>
+                   <div class="col">
+                      <ul class="footer_nav foot_nav2">
+                         <li><label>Customer Success</label></li>
+                         <li><a href="#">Policies</a></li>
+                         <li><a href="#">Return/Exchange</a></li>
+                         <li><a href="#">Contact Us</a></li>
+                         <li><a href="#">Help</a></li>
+                      </ul>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </footer>
+
+    <footer class="footer-bottom">
+       <div class="container_max">
+          <div class="row bottom-footer">
+             <div class="col-sm-2 order-03">
+                <ul class="social_list footer_nav">
+                   <li><a href="#"><img :src="imgFb"></a></li>
+                   <li><a href="#"><img :src="imgInsta"></a></li>
+                   <li><a href="#"><img :src="imgUtube"></a></li>
+                   <li><a href="#"><img :src="imgLink"></a></li>
+                </ul>
+             </div>
+             <div class="col-md-5 order-02">
+                <div class="join_btn">
+                   <a href="#" class="btn_bl">CLICK FOR OUR EMAIL LIST</a>
+                   <a href="#" class="btn_rd">JOIN OUR AFFILIATE PROGRAM</a>
+                </div>
+             </div>
+             <div class="col-md-4 order-04">
+                <p class="copy_p">© 2021 Pet Parents LLC. All Logos and Trademarks belong to their respective owners.</p>
+             </div>
+             <div class="col-md-1 order-01">
+                <a href="#" class="paw_logo"><img :src="imgPaw"></a>
+             </div>
+          </div>
+       </div>
+    </footer>
+    <footer class="gray-strip">
+    </footer>
+  </section>
+  <!--<footer class="main_footer">
     <div class="container">
       <div class="row">
         <div class="col-md-9 desk_only">
@@ -134,7 +225,7 @@
         </div>
       </div>
     </div>
-  </footer>
+  </footer>-->
 </template>
 <style>
   @import './footer.css';
