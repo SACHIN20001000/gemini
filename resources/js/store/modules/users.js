@@ -8,7 +8,8 @@ const state = {
   accountDetails:[],
   accountErrors:[],
   tokenStatus: localStorage.getItem("token"),
-  tokenError:''
+  tokenError:'',
+  upProfile:[]
 }
 const formData = new FormData()
 formData.append('client_id', 2)
@@ -20,7 +21,8 @@ const getters = {
   accountDetails: state => state.accountDetails,
   accountErrors: state => state.accountErrors,
   tokenStatus: state => state.tokenStatus,
-  tokenError: state => state.tokenError
+  tokenError: state => state.tokenError,
+  upProfile: state => state.upProfile
 }
 
 const actions = {
@@ -47,6 +49,13 @@ const actions = {
       commit("accountErrors", errors.response.data.message)
     })
   },
+  async updateProfile({commit}, profileData){
+    HTTP.put(process.env.MIX_APP_APIURL+"update", profileData).then((response) => {
+      commit("updateProfile", response.data.message)
+    }).catch((errors) => {
+      commit("userErrors", errors.response.data.message)
+    })
+  },
   async getToken({commit}){
     await axios.post(process.env.MIX_APP_APIURL+'oauth/token', formData).then((response) => {
       localStorage.setItem('token', response.data.Token)
@@ -71,6 +80,9 @@ const mutations = {
   ),
   tokenStatus: (state, tokenstatus) => (
     state.tokenStatus = tokenstatus
+  ),
+  updateProfile: (state, payload) => (
+    state.upProfile = payload
   ),
   tokenError: (state, tokenerror) => (
     state.tokenError = tokenerror
