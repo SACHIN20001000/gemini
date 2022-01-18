@@ -64,7 +64,7 @@
                               <input type="file" class="dropify" data-default-file="{{$product->feature_image}}" name="feature_image"  id="feature_image">
 
                                 @else
-                                <input type="file" class="dropify" data-default-file="https://petparent.s3.ap-south-1.amazonaws.com/images/products/hM7Rv3eQcTqaRVQF8WrI34ReDOO56en5AcsdNMjk.jpg" name="feature_image"  id="feature_image">
+                                <input type="file" class="dropify"  name="feature_image"  id="feature_image">
 
 
                                 @endif
@@ -231,7 +231,7 @@
       @if(!empty($product->banner_image))
         <input id="product-bannerr" type="file" class="dropify"  name="banner_image" accept=".jpg, .png, image/jpeg, image/png" data-default-file="{{$product->banner_image}}">
       @else
-        <input id="product-bannerr" type="file" class="dropify"  name="banner_image" accept=".jpg, .png, image/jpeg, image/png" data-default-file="https://petparent.s3.ap-south-1.amazonaws.com/images/products/hM7Rv3eQcTqaRVQF8WrI34ReDOO56en5AcsdNMjk.jpg">
+        <input id="product-bannerr" type="file" class="dropify"  name="banner_image" accept=".jpg, .png, image/jpeg, image/png" >
 
       @endif
 
@@ -371,7 +371,7 @@
               attrs[index]['Regular Price'] = {value:0,name:'regular_price',placeholder:"Regular Price",type:'number',customClass:""};
               attrs[index]['Sale Price'] = {value:0,name:'sale_price',placeholder:"Sale Price",type:'number',customClass:""};
               attrs[index]['Sku'] = {value:0,name:'sku',placeholder:"Sku",type:'text',customClass:""};
-              attrs[index]['Image'] = {value:null,name:'image',placeholder:"Image",type:'file',customClass:"dropify"};
+              attrs[index]['Image'] = {value:null, name:'image',placeholder:"Image",type:'file',customClass:"dropify"};
           });
           variations = attrs;
           productsEvent.displayVariations();
@@ -403,7 +403,7 @@
                           htmlString +='<input  name="variations['+index+']['+variation.name+']" class="form-control hidden_id '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'">';
 
                       }else{
-                      htmlString +='<td><input  name="variations['+index+']['+variation.name+']" class="form-control tableData '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'"></td>';
+                      htmlString +='<td><input  name="variations['+index+']['+variation.name+']" class="form-control tableData '+variation.customClass+'" data-default-file="'+variation.datafile+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'"></td>';
                       }
                       if(variation.src){
                       htmlString +='<td><div id="delete_variation_img'+variation.value+' "> <a href="'+variation.src+'" target="_blank" ><img height=50 style="max-width: 50px;" src="'+variation.src+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)" ></a><i class="fas fa-trash-alt" onclick="removeVariationImage(\''+variation.value+'\')" ></i></div></td>';

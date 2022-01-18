@@ -296,8 +296,8 @@ class ProductController extends Controller
             $viewData['Regular Price']=array('value'=>$variation->real_price,'name'=>'regular_price','placeholder'=>'Regular Price','type'=>'number','customClass'=>'');
             $viewData['Sale Price']=array('value'=>$variation->sale_price,'name'=>'sale_price','placeholder'=>'Sale Price','type'=>'number','customClass'=>'');
             $viewData['Sku']=array('value'=>$variation->sku,'name'=>'sku','placeholder'=>'Sku','type'=>'text','customClass'=>'');
-            $viewData['Image']=array('value'=>'','name'=>'image','placeholder'=>'Image','type'=>'file','customClass'=>'');
-            $viewData['Image Preview']=array('src'=>$variation->image,'type'=>'hidden' , 'value'=>$variation->id);
+            $viewData['Image']=array('value'=>'','name'=>'image','placeholder'=>'Image','type'=>'file','datafile' => $variation->image,'customClass'=>'dropify');
+
 
             array_push($variations,$viewData);
         }

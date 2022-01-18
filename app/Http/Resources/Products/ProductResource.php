@@ -10,6 +10,8 @@ use App\Http\Resources\Products\ProductGalleryResource;
 use App\Http\Resources\Products\ProductAttributesResource;
 use App\Http\Resources\Products\TagsResource;
 use App\Http\Resources\Products\ProductDescriptionImageResource;
+use App\Http\Resources\Products\ProductDescriptionDetailResource;
+
 
 use App\Models\VariationAttribute;
 
@@ -25,16 +27,22 @@ class ProductResource extends JsonResource
     {
 
         return [
-           
+
             'id' => $this->id,
             'name' => $this->productName,
             'sku' => $this->sku,
             'type' => $this->type,
+            'banner_image' => $this->banner_image,
+            'about_description' => $this->about_description,
+            'feature_image' => $this->feature_image,
+
             'category' => new ProductCategoryResource($this->category),
             'store' => new ProductStoreResource($this->store),
             'variations' => ProductVariationsResource::collection($this->productVariation),
             'gallary' =>  ProductGalleryResource::collection($this->productGallery),
             'attributes' => ProductAttributesResource::collection($this->variationAttributesValue),
+            'product_description_detail' => ProductDescriptionDetailResource::collection($this->productDescriptionDetail),
+
             'tags'=>$this->tags?TagsResource::collection($this->tags):null,
             'status' => $this->status,
             'weight' => $this->weight,
@@ -43,8 +51,8 @@ class ProductResource extends JsonResource
             'real_price' => $this->real_price,
             'sale_price' => $this->sale_price,
             'feature_image' => $this->feature_image,
-            'variation_attributes'=>  $this->getAttributeByProduct($this->id)       
-                               
+            'variation_attributes'=>  $this->getAttributeByProduct($this->id)
+
         ];
     }
 
