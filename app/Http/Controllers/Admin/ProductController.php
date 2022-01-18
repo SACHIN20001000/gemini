@@ -105,7 +105,7 @@ class ProductController extends Controller
      */
     public function store(AddProduct $request)
     {
-        //echo '<pre>'; print_r($request->all());die;
+        // echo '<pre>'; print_r($request->all());die;
         $inputs = $request->all();
 
         $tags=explode(",",$inputs['tag']);
@@ -117,7 +117,16 @@ class ProductController extends Controller
 			$products->description = $inputs['description'];
 			$products->real_price = $inputs['real_price'];
 			$products->sale_price = $inputs['sale_price'];
-			$products->banner_image = $inputs['bannerimage'];
+            if(!empty($inputs['banner_image'])){
+                $path = Storage::disk('s3')->put('images', $inputs['banner_image']);
+                $image_path = Storage::disk('s3')->url($path);
+                $products->banner_image = $image_path;
+            }
+            if(!empty($inputs['feature_image'])){
+                $path = Storage::disk('s3')->put('images', $inputs['feature_image']);
+                $image_path = Storage::disk('s3')->url($path);
+                $products->feature_image = $image_path;
+            }
 			$products->about_description = $inputs['about_description'];
 
             $products->sku = $inputs['sku'];
@@ -132,19 +141,17 @@ class ProductController extends Controller
 			$products->save();
 			//add attributes
 
-            foreach($inputs['image_path'] as $key => $image){
-                if(!empty($image)){
-                    $path = Storage::disk('s3')->put('images', $image);
-                    $image_path = Storage::disk('s3')->url($path);
-                }
+            foreach($inputs['product_detail'] as  $product_detail){
 
                 $productDespImage = new ProductDescriptionDetail();
-                $productDespImage->image_path= $image_path;
+                if(!empty($product_detail['image_path'])){
+                    $path = Storage::disk('s3')->put('images', $product_detail['image_path']);
+                    $image_path = Storage::disk('s3')->url($path);
+                    $productDespImage->image_path= $image_path;
+                }
                 $productDespImage->product_id= $products->id;
-                $productDespImage->value=  $inputs['value'][$key];
+                $productDespImage->value=  $product_detail['value'];
                 $productDespImage->save();
-
-
             }
 
 
@@ -314,6 +321,7 @@ class ProductController extends Controller
     {
 
         $inputs = $request->all();
+
         $tags=explode(",",$inputs['tag']);
 
 		if(!empty($inputs['productName'])){
@@ -325,6 +333,17 @@ class ProductController extends Controller
             $products->sku = $inputs['sku'];
 			$products->weight = $inputs['weight'];
 			$products->quantity = $inputs['qty'];
+            if(!empty($inputs['banner_image'])){
+                $path = Storage::disk('s3')->put('images', $inputs['banner_image']);
+                $image_path = Storage::disk('s3')->url($path);
+                $products->banner_image = $image_path;
+            }
+            if(!empty($inputs['feature_image'])){
+                $path = Storage::disk('s3')->put('images', $inputs['feature_image']);
+                $image_path = Storage::disk('s3')->url($path);
+                $products->feature_image = $image_path;
+            }
+			$products->about_description = $inputs['about_description'];
 			$products->category_id = $inputs['category_id'];
             $products->store_id = $inputs['store_id'];
 			$products->status = $inputs['status'];
@@ -333,6 +352,20 @@ class ProductController extends Controller
             }
 			$products->save();
 			//add attributes
+
+            foreach($inputs['product_detail'] as  $product_detail){
+
+                $productDespImage = ProductDescriptionDetail::find($product_detail['id']);
+                if(!empty($product_detail['image_path'])){
+                    $path = Storage::disk('s3')->put('images', $product_detail['image_path']);
+                    $image_path = Storage::disk('s3')->url($path);
+                    $productDespImage->image_path= $image_path;
+                }
+                $productDespImage->product_id= $products->id;
+                $productDespImage->value=  $product_detail['value'];
+                $productDespImage->save();
+            }
+
 			//store images in gallery
 			if(!empty($inputs['image'])){
 				foreach($inputs['image'] as $image){
@@ -475,7 +508,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-
+        ProductDescriptionDetail::where('product_id',$id)->delete();
          ProductVariation::where('product_id',$id)->delete();
          ProductGallery::where('product_id',$id)->delete();
          VariationAttributeValue::where('product_id',$id)->delete();

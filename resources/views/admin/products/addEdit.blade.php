@@ -60,7 +60,14 @@
                                  <label class="form-label mg-b-0">Feature Image </label>
                               </div>
                               <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                 <input type="file" class="dropify" data-default-file="https://petparent.s3.ap-south-1.amazonaws.com/images/products/hM7Rv3eQcTqaRVQF8WrI34ReDOO56en5AcsdNMjk.jpg" name="feature_image"  id="feature_image">
+                              @if(!empty($product->feature_image))
+                              <input type="file" class="dropify" data-default-file="{{$product->feature_image}}" name="feature_image"  id="feature_image">
+
+                                @else
+                                <input type="file" class="dropify" data-default-file="https://petparent.s3.ap-south-1.amazonaws.com/images/products/hM7Rv3eQcTqaRVQF8WrI34ReDOO56en5AcsdNMjk.jpg" name="feature_image"  id="feature_image">
+
+
+                                @endif
                               </div>
                            </div>
 
@@ -221,8 +228,14 @@
          <div class="card">
          <div class="card-body">
          <h4>Banner image</h4>
-         <input id="product-bannerr" type="file" class="dropify"  name="banner_image" accept=".jpg, .png, image/jpeg, image/png" data-default-file="https://petparent.s3.ap-south-1.amazonaws.com/images/products/hM7Rv3eQcTqaRVQF8WrI34ReDOO56en5AcsdNMjk.jpg">
-         </div>
+      @if(!empty($product->banner_image))
+        <input id="product-bannerr" type="file" class="dropify"  name="banner_image" accept=".jpg, .png, image/jpeg, image/png" data-default-file="{{$product->banner_image}}">
+      @else
+        <input id="product-bannerr" type="file" class="dropify"  name="banner_image" accept=".jpg, .png, image/jpeg, image/png" data-default-file="https://petparent.s3.ap-south-1.amazonaws.com/images/products/hM7Rv3eQcTqaRVQF8WrI34ReDOO56en5AcsdNMjk.jpg">
+
+      @endif
+
+        </div>
          </div>
          </div>
          <div class="col-lg-12 col-md-12">
@@ -237,6 +250,25 @@
          <div class="card">
          <div class="card-body">
          <h4>Product Description Details</h4>
+         @if(!empty($product->productDescriptionDetail))
+         <table class="table table-bordered" id="description_fields">
+         <?php $counter=0; ?>
+@foreach($product->productDescriptionDetail as $productDescriptionDetail)
+
+
+         <tr>
+         <td>
+         <input type="file" name="product_detail[{{$counter}}][image_path]"  class="dropify"  data-default-file="{{$productDescriptionDetail->image_path}}" id="name_description" data-height="200" />
+         </td>
+         <td>
+         <textarea name="product_detail[{{$counter}}][value]" cols="30" rows="10" class="form-control" id="value_description">{{$productDescriptionDetail->value}}</textarea>
+         </td>
+<input type="hidden" name="product_detail[{{$counter}}][id]" value="{{$productDescriptionDetail->id}}">
+         </tr>
+<?php $counter ++ ?>
+@endforeach
+</table>
+         @else
          <table class="table table-bordered" id="description_fields">
          <tr>
          <td>
@@ -245,9 +277,10 @@
          <td>
          <textarea name="product_detail[0][value]" cols="30" rows="10" class="form-control" id="value_description"></textarea>
          </td>
-         
+
          </tr>
          </table>
+         @endif
          <span class="add-more-button"><button type="button" name="add" onclick="productsEvent.addDescription()"  id="add" class="btn btn-success">Add More</button></span>
          </div>
          </div>
@@ -274,7 +307,7 @@
    $('#aboutDescription').summernote({
       height: 400
    });
-   
+
    var productsEvent;
    (function() {
    var attributes =[];
@@ -288,14 +321,14 @@
       },
       getAllAttributes()
       {
-   
+
       },
       addAttributes:function()
       {
-   
+
           let attributeName = $("#name_attributes").val();
           let value_attributes = $("#value_attributes").val();
-   
+
         if(value_attributes.length != 0  && attributeName.length != 0 ){
           var removeLastQuama = value_attributes.charAt(value_attributes.length-1);
           if(removeLastQuama != ','){
@@ -306,13 +339,13 @@
           }else(
               alert('Their is not (,) at the last of your value')
           )
-   
-   
+
+
           }else{
               alert('Both Feild is Required')
           }
-   
-   
+
+
       },
       displayAttributes:function() {
           $(".dynamic_attributes").remove();
@@ -331,7 +364,7 @@
           for (const [attr, values] of Object.entries(attributes))
             attrs.push(values.map(v => ({[attr]:v})));
           attrs = attrs.reduce((a, b) => a.flatMap(d => b.map(e => ({...d, ...e}))));
-   
+
           $.each(attrs, function( index, value ) {
               attrs[index]['Qty'] = {value:0,name:'qty',placeholder:"Qty",type:'number',customClass:""};
               attrs[index]['Weight'] = {value:0,name:'weight',placeholder:"weight",type:'number',customClass:""};
@@ -347,7 +380,7 @@
       displayVariations:function() {
           $("#variations_fields").empty();
           $("#variations_heading").empty();
-   
+
           console.log(variations);
           if(variations && Object.keys(variations).length)
           {
@@ -361,29 +394,29 @@
           $.each(variations, function( index, value ) {
               let testdata = {};
               let htmlString = '<tr class="variation-tr">';
-   
+
             for (const [name, variation] of Object.entries(value))
               {
                   if(typeof variation === 'object' && variation !== null)
                   {
                       if(variation.type == 'hidden'){
                           htmlString +='<input  name="variations['+index+']['+variation.name+']" class="form-control hidden_id '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'">';
-   
+
                       }else{
                       htmlString +='<td><input  name="variations['+index+']['+variation.name+']" class="form-control tableData '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'"></td>';
                       }
                       if(variation.src){
                       htmlString +='<td><div id="delete_variation_img'+variation.value+' "> <a href="'+variation.src+'" target="_blank" ><img height=50 style="max-width: 50px;" src="'+variation.src+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)" ></a><i class="fas fa-trash-alt" onclick="removeVariationImage(\''+variation.value+'\')" ></i></div></td>';
-   
+
                       }
                   }
                   else
                   {
                       htmlString +='<td><input name="variations['+index+']['+name+']" class="form-control tableData" type="text" readonly="true" value="'+variation+'" placeholder="'+variation+'"></td>';
                   }
-   
+
               }
-   
+
               htmlString += '<td><button type="button" name="remove" onclick="productsEvent.removeVariation(\''+index+'\')" class="btn btn-danger btn_remove">X</button></td>';
               htmlString += '</tr>';
               $("#variations_fields").append(htmlString);
@@ -414,41 +447,41 @@
       {
           let attributeName = $("#name_description").val();
           let value_attributes = $("#value_description").val();
-   
-   
+
+
         if(value_attributes.length != 0  && attributeName.length != 0 ){
           counter=1;
-   
+
                           $("#description_fields").append('<tr  id="desp_feild'+counter+'"><td><input type="file" name="product_detail['+counter+'][image_path]" class="dropify" id="name_description" data-height="200" /></td><td><textarea name="product_detail['+counter+'][value]" cols="30" rows="10" class="form-control" id="editor" ></textarea></td><td><button type="button" name="remove" onclick="productsEvent.removeDespFeild(\''+counter+'\')" class="btn btn-danger btn_remove">X</button></td></tr>');
           counter ++;
             $('.dropify').dropify();
           }else{
               alert('Both Feild is Required')
           }
-   
+
       },
       removeDespFeild:function(counter)
       {
-   
+
           $('#desp_feild'+counter+'').remove();
       },
-   
-   
-   
+
+
+
    };
-   
+
    productsEvent.initialize();
-   
+
    })();
-   
-   
+
+
    $(document).ready(function () {
    $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
    });
-   
+
    });
    function delImage(id){
    var data = 'id='+ id ;
@@ -478,22 +511,22 @@
    }
    function removeVariationImage(id){
    var data = 'id='+ id ;
-   
+
    if (confirm('Are You Sure You Want To Delete This Image')) {
    $.ajax({
          type:'POST',
          url:'/admin/delete-variation-img',
          data: data ,
          success:function(data){
-   
+
           $('#delete_variation_img'+id+'').remove();
-   
+
          }
       });
    }
    }
-   
-   
+
+
    $(function() {
    var counter = 1;
    $('#product-galary').FancyFileUpload({
@@ -502,14 +535,14 @@
           maxChunkSize : 1000000
       },
       uploadcompleted : function(e, data) {
-   
+
           $("#product-galary-items").prepend('<li id="galary-item'+counter +'"><img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt" onclick="productsEvent.removeProductGalaryImage('+counter+')"></i><input type="hidden"  value="' + data.result.image + '" name="image[]"  /></li>');
           counter ++
           data.ff_info.RemoveFile();
       }
    });
    });
-   
+
    $(function() {
    var counter = 1;
    $('#product-banner').FancyFileUpload({
@@ -518,7 +551,7 @@
           maxChunkSize : 1000000
       },
       uploadcompleted : function(e, data) {
-   
+
           $("#product-banner-items").html('<li id="banner-item'+counter +'"><img class="imageSize" src="'+data.result.image+'" /><input type="hidden"  value="' + data.result.image + '" name="bannerimage"  /></li>');
           counter ++
           data.ff_info.RemoveFile();
