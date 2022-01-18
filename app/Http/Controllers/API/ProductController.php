@@ -45,9 +45,9 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-    
+
       $limit = $request->limit ? $request->limit : 20;
-      
+
       $data = $request->get('search');
                 if(!empty($data)){
                   $search_product = Product::with(['productVariation','variationAttributesValue','tags.tagName'])->where('productName', 'like', "%{$data}%")
@@ -57,19 +57,19 @@ class ProductController extends Controller
                                       ->orWhere('category_id', 'like', "%{$data}%")
                                       ->orWhere('weight', 'like', "%{$data}%")
                                       ->orWhereHas('tags.tagName', function ($query) use ($data) {
-                                       
+
                                         $query->where('name', 'like', "%{$data}%");
                                         $query->where('tag_id', 'like', "%{$data}%");
-                                      
+
                                     })
-                                   
+
                                       ->paginate( $limit);
 
                                       return  ProductResource::collection($search_product);
                 }
-      
-        $products = Product::with(['category','store','productVariation','productGallery','variationAttributesValue','tags.tagName'])->paginate($limit);
-  
+
+        $products = Product::with(['category','productDescriptionDetail','store','productVariation','productGallery','variationAttributesValue','tags.tagName'])->paginate($limit);
+
         return  ProductResource::collection($products);
     }
      /**
@@ -105,7 +105,7 @@ class ProductController extends Controller
      * )
      * Store a newly created resource in storage.
      *
-     * 
+     *
      *
      * @return \Illuminate\Http\Response
      */
@@ -113,13 +113,13 @@ class ProductController extends Controller
     {
 
 
-      $products = Product::with(['category','store','productVariation','productGallery','variationAttributesValue'])->find($id);
+      $products = Product::with(['category','productDescriptionDetail','store','productVariation','productGallery','variationAttributesValue'])->find($id);
       if($products){
         return  new ProductResource($products);
       }else{
         return response()->json(['success' => false , 'message' => "Invailed Id"]);
       }
-        
+
     }
 
     /**
@@ -155,7 +155,7 @@ class ProductController extends Controller
      * )
      * Store a newly created resource in storage.
      *
-     * 
+     *
      *
      * @return \Illuminate\Http\Response
      */
@@ -171,24 +171,24 @@ class ProductController extends Controller
                             ->orWhere('category_id', 'like', "%{$data}%")
                             ->orWhere('weight', 'like', "%{$data}%")
                             ->orWhereHas('tags.tagName', function ($query) use ($data) {
-                             
+
                               $query->where('name', 'like', "%{$data}%");
                               $query->where('tag_id', 'like', "%{$data}%");
-                            
+
                           })
-                         
+
                             ->paginate( $limit);
 
                             return  ProductResource::collection($search_product);
       }
     $products = Product::with(['category','store','productVariation','productGallery','variationAttributesValue'])->where('category_id',$id)->paginate($limit);
-      
+
       if($products){
         return  ProductResource::collection($products);
       }else{
         return response()->json(['success' => false , 'message' => "Invailed Id"]);
       }
-        
+
     }
 
 
@@ -225,7 +225,7 @@ class ProductController extends Controller
      * )
      * Store a newly created resource in storage.
      *
-     * 
+     *
      *
      * @return \Illuminate\Http\Response
      */

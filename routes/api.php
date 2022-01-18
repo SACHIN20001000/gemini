@@ -64,7 +64,7 @@ Route::middleware('auth:api')->group(function ()
 
     Route::group(['middleware' => ['role:User']], function ()
     {
-      
+
     });
     Route::resource('order', OrderController::class);
 });
