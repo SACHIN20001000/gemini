@@ -22,7 +22,7 @@
                     <div class="main-content-label mg-b-5">
                         {{isset($product) ? 'Update # '.$product->id : 'Add New' }}
                     </div>
-                
+
                     <form  id="product-add-edit" action="{{isset($product) ? route('chowhub-products.update',$product->id) : route('chowhub-products.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{ isset($product) ? method_field('PUT'):'' }}
@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                     <input class="form-control" name="productName"  placeholder="Enter your name" type="text" value="{{isset($product) ? $product->productName : '' }}">
-                                    
+
                                 </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
@@ -43,22 +43,22 @@
                                     <label class="form-label mg-b-0">Tags</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                         
+
 		            	        <input type="text" name="tag" placeholder="Tags" value="{{isset($product) ? $product->availTags : '' }}" data-role="tagsinput" class="form-control"/>
                                 </div>
                             </div>
-                      
+
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">Description </label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                           
+
                                 <textarea name="description"  id="hiddenDescription">{{isset($product) ? $product->description : '' }}</textarea>
                             </div>
                             </div>
-                     
-                           
+
+
                             <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-4">
                                     <label class="form-label mg-b-0">Media </label>
@@ -68,7 +68,7 @@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="card">
                                                 <div class="card-body">
-                                    
+
                                                     <input id="product-galary" type="file" name="images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
                                                     <ul id="product-galary-items"></ul>
                                                     @if(isset($product))
@@ -82,8 +82,8 @@
                                     </div>
                                 </div>
                             </div>
-                           
-                         
+
+
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">Category</label>
@@ -195,7 +195,7 @@
                                     <tr>
                                          <td>
                                              <input type="text"  id="name_attributes" placeholder="Enter your Name" class="form-control tableData" />
-                                    
+
                                             </td>
                                          <td><input type="text"   id="value_attributes" placeholder="Enter your value with (,) seperated" class="form-control tableData" />
                                          </td>
@@ -213,18 +213,18 @@
                 <div class="card">
                      <div class="card-body">
                                 <h4>Variants</h4>
-                                              
-                                   
+
+
                                     <table class="table table-bordered" >
-                                        <thead id="variations_heading"> 
-                                            
+                                        <thead id="variations_heading">
+
                                         </thead>
                                         <tbody id="variations_fields">
 
                                         </tbody>
                                     </table>
-                                  
-                                    
+
+
 
                   </div>
              </div>
@@ -234,15 +234,15 @@
                 <div class="card">
                      <div class="card-body">
                                 <h4>Description Image</h4>
-                                              
+
                                 <div class="row row-xs align-items-center mg-b-20">
-                          
+
                                 <div class="col-md-12 mg-t-5 mg-md-t-0">
                                 <div class="row">
                                         <div class="col-lg-12 col-md-12">
                                             <div class="card">
                                                 <div class="card-body">
-                                    
+
                                                     <input id="description-image" type="file" name="description_images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
                                                     <div class="sortable ui-sortable">
                                                     <ul id="description-image-items"></ul></div>
@@ -251,11 +251,11 @@
                                                     @foreach($product->productDescriptionImage as $image)
                                                     <div class="card-draggable">
                                                     <div id="imgDespDel{{$image->id}}">
-                                                 
+
                                                <a href="{{$image->image_path}}" target="_blank" data-item-id="{{$image->id}}"> <input type="hidden" name="description_images[]" value="{{$image->image_path}}"><img src="{{$image->image_path}}"  alt="" height=400 width=800>
 
                                                </a><i class="fas fa-trash-alt"  onclick='delDespImage({{$image->id}})'></i></div>
-                                              
+
                                             </div>
                                                 @endforeach
                                                     @endif
@@ -266,8 +266,8 @@
                                     </div>
                                 </div>
                             </div>
-                                  
-                                    
+
+
 
                   </div>
              </div>
@@ -277,17 +277,17 @@
                 <div class="card">
                      <div class="card-body">
                                 <h4>Experiential Page Images</h4>
-                                              
+
                                 <div class="row row-xs align-items-center mg-b-20">
-                          
+
                                 <div class="col-md-12 mg-t-5 mg-md-t-0">
                                 <div class="row">
                                         <div class="col-lg-12 col-md-12">
                                             <div class="card">
                                                 <div class="card-body">
-                                    
+
                                                     <input id="feature-page-image" type="file" name="description_images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
-                                                    <div class="sortable ui-sortable">   
+                                                    <div class="sortable ui-sortable">
                                                         <ul id="feature-page-image-items"></ul>
                                                     </div>
                                       <div class="sortable ui-sortable">
@@ -297,8 +297,8 @@
                                                     <div class="card-draggable">
                                     <a href="{{$image->image_path}}"  target="_blank" data-item-id="{{$image->id}}"> <img src="{{$image->image_path}}"  alt="" height=400 width=800>
                                         <input type="hidden" name="feature_page_images[]" value="{{$image->image_path}}">
-                                    </a><i class="fas fa-trash-alt"  onclick='delFeatureImage({{$image->id}})'></i></div>				
-								
+                                    </a><i class="fas fa-trash-alt"  onclick='delFeatureImage({{$image->id}})'></i></div>
+
                                 </div>
                                                     @endforeach
                                                     @endif
@@ -308,9 +308,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>   
-                                  
-                                    
+                            </div>
+
+
 
                   </div>
              </div>
@@ -327,7 +327,7 @@
 </div>
 
 
-@endsection 
+@endsection
 
 @section('scripts')
 
@@ -360,7 +360,7 @@ $('#hiddenDescription').summernote({
 
             let attributeName = $("#name_attributes").val();
             let value_attributes = $("#value_attributes").val();
-         
+
           if(value_attributes.length != 0  && attributeName.length != 0 ){
             var removeLastQuama = value_attributes.charAt(value_attributes.length-1);
             if(removeLastQuama != ','){
@@ -376,7 +376,7 @@ $('#hiddenDescription').summernote({
             }else{
                 alert('Both Feild is Required')
             }
-           
+
 
         },
         displayAttributes:function() {
@@ -403,7 +403,7 @@ $('#hiddenDescription').summernote({
                 attrs[index]['Regular Price'] = {value:0,name:'regular_price',placeholder:"Regular Price",type:'number',customClass:""};
                 attrs[index]['Sale Price'] = {value:0,name:'sale_price',placeholder:"Sale Price",type:'number',customClass:""};
                 attrs[index]['Sku'] = {value:0,name:'sku',placeholder:"Sku",type:'text',customClass:""};
-                attrs[index]['Image'] = {value:null,name:'image',placeholder:"Image",type:'file',customClass:"dropify"};
+                attrs[index]['Image'] = {value:null,name:'image',placeholder:"Image",type:'file',customClass:"dropify   "};
             });
             variations = attrs;
             productsEvent.displayVariations();
@@ -433,25 +433,26 @@ $('#hiddenDescription').summernote({
                     {
                         if(variation.type == 'hidden'){
                             htmlString +='<input  name="variations['+index+']['+variation.name+']" class="form-control hidden_id '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'">';
-                         
+
                         }else{
-                        htmlString +='<td><input  name="variations['+index+']['+variation.name+']" class="form-control tableData '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'"></td>';
+                        htmlString +='<td><input  name="variations['+index+']['+variation.name+']" class="form-control tableData '+variation.customClass+'" data-default-file="'+variation.dataitem+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'"></td>';
                         }
                         if(variation.src){
                         htmlString +='<td><div id="delete_variation_img'+variation.value+' "> <a href="'+variation.src+'" target="_blank" ><img height=50 style="max-width: 50px;" src="'+variation.src+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)" ></a><i class="fas fa-trash-alt" onclick="removeVariationImage(\''+variation.value+'\')" ></i></div></td>';
 
-                        } 
+                        }
                     }
                     else
                     {
                         htmlString +='<td><input name="variations['+index+']['+name+']" class="form-control tableData" type="text" readonly="true" value="'+variation+'" placeholder="'+variation+'"></td>';
                     }
-                    
+
                 }
-                
+
                 htmlString += '<td><button type="button" name="remove" onclick="productsEvent.removeVariation(\''+index+'\')" class="btn btn-danger btn_remove">X</button></td>';
                 htmlString += '</tr>';
                 $("#variations_fields").append(htmlString);
+                $('.dropify').dropify();
             });
             }
         },
@@ -474,13 +475,13 @@ $('#hiddenDescription').summernote({
         {
             $('#galary-item'+itemId+'').remove();
         },
-   
+
         removeFeatureDescriptionImage:function(itemId)
         {
             $('#feature-page-item'+itemId+'').remove();
         },
-       
-        
+
+
     };
 
     productsEvent.initialize();
@@ -507,8 +508,8 @@ function delImage(id){
             $('#imgDel'+id+'').remove();
            }
         });
-        } 
-        
+        }
+
      }
      function delDespImage(id){
     var data = 'id='+ id ;
@@ -521,8 +522,8 @@ function delImage(id){
             $('#imgDespDel'+id+'').remove();
            }
         });
-        } 
-        
+        }
+
      }
      function delFeatureImage(id){
     var data = 'id='+ id ;
@@ -535,26 +536,26 @@ function delImage(id){
             $('#imgfeatureDel'+id+'').remove();
            }
         });
-        } 
-        
+        }
+
      }
 
      function removeVariationImage(id){
     var data = 'id='+ id ;
-   
+
     if (confirm('Are You Sure You Want To Delete This Image')) {
    $.ajax({
            type:'POST',
            url:'/admin/delete-variation-img',
            data: data ,
            success:function(data){
-           
+
             $('#delete_variation_img'+id+'').remove();
-        
+
            }
         });
 } else {
-    
+
 }
 }
 $( ".sortable div a" ).each(function( key ,index ) {
@@ -562,14 +563,14 @@ $( ".sortable div a" ).each(function( key ,index ) {
         });
 
 $(function() {
-    var counter = 1; 
+    var counter = 1;
     $('#product-galary').FancyFileUpload({
         url:'/admin/save-chowhub-photo',
         fileupload : {
             maxChunkSize : 1000000
-        },        
+        },
         uploadcompleted : function(e, data) {
-            
+
             $("#product-galary-items").prepend('<div class="card-draggable"><li id="galary-item'+counter +'"><img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt" onclick="productsEvent.removeProductGalaryImage('+counter+')"></i><input type="hidden"  value="' + data.result.image + '" name="image[]"  /></li></div>');
             counter ++
             data.ff_info.RemoveFile();
@@ -577,14 +578,14 @@ $(function() {
     });
 });
 $(function() {
-    var counter = 1; 
+    var counter = 1;
     $('#description-image').FancyFileUpload({
         url:'/admin/save-description-photo',
         fileupload : {
             maxChunkSize : 1000000
-        },        
+        },
         uploadcompleted : function(e, data) {
-            
+
             $("#description-image-items").prepend('<div class="card-draggable"><li id="description-item'+counter +'"><img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt" onclick="productsEvent.removeProductDescriptionImage('+counter+')"></i><input type="hidden"  value="' + data.result.image + '" name="description_images[]"  /></li></div>');
             counter ++
             data.ff_info.RemoveFile();
@@ -592,14 +593,14 @@ $(function() {
     });
 });
 $(function() {
-    var counter = 1; 
+    var counter = 1;
     $('#feature-page-image').FancyFileUpload({
         url:'/admin/save-description-photo',
         fileupload : {
             maxChunkSize : 1000000
-        },        
+        },
         uploadcompleted : function(e, data) {
-            
+
             $("#feature-page-image-items").prepend('<div class="card-draggable"><li id="feature-page-item'+counter +'"><img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt" onclick="productsEvent.removeFeatureDescriptionImage('+counter+')"></i><input type="hidden"  value="' + data.result.image + '" name="feature_page_images[]"  /></li></div>');
             counter ++
             data.ff_info.RemoveFile();

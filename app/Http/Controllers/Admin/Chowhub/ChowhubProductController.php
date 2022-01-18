@@ -32,11 +32,11 @@ class ChowhubProductController extends Controller
      */
     public function index(Request $request)
     {
-        
+
         if ($request->ajax())
         {
             $data = ChowhubProduct::with('store','category')->get();
-         
+
 
             return Datatables::of($data)
             ->addIndexColumn()
@@ -51,16 +51,16 @@ class ChowhubProductController extends Controller
                                                     <div class="dot-label bg-danger me-1"></div> inactive
                                                 </span>';
                             }
-                            
+
                             return $status;
                         })
-                        
+
                     ->addColumn('action', function ($row)
                             {
                                 $action = '<span class="action-buttons">
                                     <a  href="'.route("chowhub-products.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
-                                    
+
                                     <a href="'.route("chowhub-products.destroy", $row).'"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"
@@ -104,11 +104,11 @@ class ChowhubProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(AddProduct $request)
-    {  
-        $inputs = $request->all(); 
+    {
+        $inputs = $request->all();
 // print_r($inputs);die;
  		$tags=explode(",",$inputs['tag']);
-		// ADD PRODUCT TABLE DATA 
+		// ADD PRODUCT TABLE DATA
 
 
 		if(!empty($inputs['productName'])){
@@ -123,12 +123,12 @@ class ChowhubProductController extends Controller
 			$products->category_id = $inputs['category_id'];
             $products->store_id = $inputs['store_id'];
 			$products->status = $inputs['status'];
-            if(!empty($inputs['variations'])){  
+            if(!empty($inputs['variations'])){
                 $products->type = 'Variation';
             }
 			$products->save();
-			//add attributes 
-			//store images in gallery 
+			//add attributes
+			//store images in gallery
 			if(!empty($inputs['image'])){
 				foreach($inputs['image'] as $image){
 					$productImage = new ChowhubProductGallery();
@@ -151,7 +151,7 @@ class ChowhubProductController extends Controller
          //store desp images
          if(!empty($inputs['description_images'])){
             foreach($inputs['description_images'] as $key=>$image){
-                
+
 
                 ChowhubProductDescriptionImage::create([
                         'image_path'   => $image,
@@ -161,26 +161,26 @@ class ChowhubProductController extends Controller
                                         }
         }
             //tags
-            if(!empty($tags)){			
+            if(!empty($tags)){
                 foreach($tags as $vakey => $tagName){
-                   
+
                     $tag = ChowhubTag::updateOrCreate([
                         'name'   => $tagName
                     ],[
                         'name'   => $tagName
                     ]);
-                
+
                     $tagValue = new ChowhubProductTag;
-                    $tagValue->tag_id = $tag->id;   
-                    $tagValue->product_id = $products->id;	
+                    $tagValue->tag_id = $tag->id;
+                    $tagValue->product_id = $products->id;
                     $tagValue->save();
-                   
+
                 }
             }
 
 
-			if(!empty($inputs['attributes'])){			
-				
+			if(!empty($inputs['attributes'])){
+
 				$attributeCombinations=[];
                 $attributesName =[];
 				foreach($inputs['attributes'] as $vakey => $attributeName){
@@ -192,24 +192,24 @@ class ChowhubProductController extends Controller
                     ]);
                     array_push($attributesName,$vakey);
 
-					
+
 					/**insert attribute**/
 					if($variationAttribute->id){
-						
+
 						$variationAttrArrs = explode(",",$attributeName);
-												
+
 						foreach($variationAttrArrs as $variationAttrArr){
 							$variationAttributeValue = new ChowhubVariationAttributeValue;
-                            $variationAttributeValue->attribute_id = $variationAttribute->id;   
-							$variationAttributeValue->product_id = $products->id;	
+                            $variationAttributeValue->attribute_id = $variationAttribute->id;
+							$variationAttributeValue->product_id = $products->id;
 							$variationAttributeValue->name = $variationAttrArr;
 							$variationAttributeValue->save();
 						}
-						
+
 					}
 				}
 
-                if(!empty($inputs['variations'])){  
+                if(!empty($inputs['variations'])){
                     foreach($inputs['variations'] as $variation)
                     {
                         $Imagepath = '';
@@ -218,7 +218,7 @@ class ChowhubProductController extends Controller
                             $Imagepath = Storage::disk('s3')->url($path);
                         }
 
-                        $productVariation = new ChowhubProductVariation;                                       
+                        $productVariation = new ChowhubProductVariation;
                         $productVariation->product_id=$products->id;
 
                         $variationAttributeIds = [];
@@ -234,7 +234,7 @@ class ChowhubProductController extends Controller
                         }
                         $productVariation->real_price=$variation['regular_price'];
                         $productVariation->sale_price=$variation['sale_price'];
-                        
+
                         $productVariation->quantity=$variation['qty'];
                         $productVariation->weight=$variation['weight'];
                         $productVariation->variation_attributes_name_id=json_encode($variationAttributeIds);
@@ -247,12 +247,12 @@ class ChowhubProductController extends Controller
                 }
 
 			}
-			
-		} 
+
+		}
 
         return back()->with('success','Product added successfully!');
     }
-	
+
 
     /**
      * Display the specified resource.
@@ -260,7 +260,7 @@ class ChowhubProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   
+
 
     /**
      * Show the form for editing the specified resource.
@@ -269,21 +269,21 @@ class ChowhubProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   
+    {
         $categories = Category::where('type','Chowhub')->get();
         $stores = ChowhubStore::all();
-        $product= ChowhubProduct::with(['category','store','productVariation','productFeaturePageImage','productGallery','variationAttributesValue.variationAttributeName'])->where('id',$id)->first(); 
+        $product= ChowhubProduct::with(['category','store','productVariation','productFeaturePageImage','productGallery','variationAttributesValue.variationAttributeName'])->where('id',$id)->first();
 
-         
+
         $variations = [];
         foreach ($product->productVariation as $key => $variation) {
             $allvariations = json_decode($variation->variation_attributes_name_id);
 
             $viewData = [];
-            
+
             foreach($allvariations as $data)
             {
-                
+
                 $attr_name = ChowhubVariationAttribute::where('id',$data->attribute_name_id)->pluck('name')->first();
                 $attrValue = ChowhubVariationAttributeValue::where('id',$data->attribute_id)->pluck('name')->first();
                 $viewData[$attr_name] = $attrValue;
@@ -294,11 +294,11 @@ class ChowhubProductController extends Controller
             $viewData['Regular Price']=array('value'=>$variation->real_price,'name'=>'regular_price','placeholder'=>'Regular Price','type'=>'number','customClass'=>'');
             $viewData['Sale Price']=array('value'=>$variation->sale_price,'name'=>'sale_price','placeholder'=>'Sale Price','type'=>'number','customClass'=>'');
             $viewData['Sku']=array('value'=>$variation->sku,'name'=>'sku','placeholder'=>'Sku','type'=>'text','customClass'=>'');
-            $viewData['Image']=array('value'=>'','name'=>'image','placeholder'=>'Image','type'=>'file','customClass'=>'');
+            $viewData['Image']=array('value'=>'','name'=>'image','placeholder'=>'Image','type'=>'file','dataitem'=>$variation->image ,'customClass'=>'dropify');
             $viewData['hidden_id']=array('value'=>$variation->id,'name'=>'id','placeholder'=>'','type'=>'hidden','customClass'=>'');
-            $viewData['Image Preview']=array('src'=>$variation->image,'type'=>'hidden' , 'value'=>$variation->id);
-           
-           
+       
+
+
             array_push($variations,$viewData);
         }
 
@@ -319,7 +319,7 @@ class ChowhubProductController extends Controller
      */
     public function update(UpdateProduct $request,$id)
     {
-        $inputs = $request->all(); 
+        $inputs = $request->all();
         //echo '<pre>'; print_r($inputs); die;
  		$tags=explode(",",$inputs['tag']);
          if(!empty($inputs['productName'])){
@@ -334,27 +334,27 @@ class ChowhubProductController extends Controller
 			$products->category_id = $inputs['category_id'];
             $products->store_id = $inputs['store_id'];
 			$products->status = $inputs['status'];
-            if(!empty($inputs['variations'])){  
+            if(!empty($inputs['variations'])){
                 $products->type = 'Variation';
             }
 			$products->save();
 
             ChowhubProductFeaturePageImage::where('product_id',$products->id)->delete();
             ChowhubProductDescriptionImage::where('product_id',$products->id)->delete();
-			//add attributes 
-            if(!empty($tags)){	
+			//add attributes
+            if(!empty($tags)){
                 ChowhubProductTag::where('product_id',$id)->delete();
                 foreach($tags as $vakey => $tagName){
                    $tag = ChowhubTag::updateOrCreate([
                         'name'   => $tagName
                     ],[
                         'name'   => $tagName
-                    ]);                  
+                    ]);
                     $tagValue = new ChowhubProductTag;
-                    $tagValue->tag_id = $tag->id;   
-                    $tagValue->product_id = $products->id;	
-                    $tagValue->save();                
-                                      
+                    $tagValue->tag_id = $tag->id;
+                    $tagValue->product_id = $products->id;
+                    $tagValue->save();
+
                 }
             }
             if(!empty($inputs['feature_page_images'])){
@@ -367,7 +367,7 @@ class ChowhubProductController extends Controller
                             ]);
 				}
 			}
-			//store images in gallery 
+			//store images in gallery
 			if(!empty($inputs['image'])){
 				foreach($inputs['image'] as $image){
 					$productImage = new ChowhubProductGallery();
@@ -379,7 +379,7 @@ class ChowhubProductController extends Controller
                  //store desp images
                  if(!empty($inputs['description_images'])){
                     foreach($inputs['description_images'] as $key=>$image){
-                        
+
 
                         ChowhubProductDescriptionImage::create([
                                 'image_path'   => $image,
@@ -388,8 +388,8 @@ class ChowhubProductController extends Controller
                             ]);
                                                 }
                 }
-			if(!empty($inputs['attributes'])){			
-				
+			if(!empty($inputs['attributes'])){
+
 
 				$attributeCombinations=[];
                 $attributesName =[];
@@ -403,33 +403,33 @@ class ChowhubProductController extends Controller
                     ]);
                     array_push($attributesName,$vakey);
 
-					
+
 					/**insert attribute**/
 					if($variationAttribute->id){
-						
+
 						$variationAttrArrs = explode(",",$attributeName);
-												
+
 						foreach($variationAttrArrs as $variationAttrArr){
 							$variationAttributeValue = new ChowhubVariationAttributeValue;
-                            $variationAttributeValue->attribute_id = $variationAttribute->id;   
-							$variationAttributeValue->product_id = $products->id;	
+                            $variationAttributeValue->attribute_id = $variationAttribute->id;
+							$variationAttributeValue->product_id = $products->id;
 							$variationAttributeValue->name = $variationAttrArr;
 							$variationAttributeValue->save();
 						}
-						
+
 					}
 				}
 
-                if(!empty($inputs['variations'])){  
-                   
+                if(!empty($inputs['variations'])){
+
                     foreach($inputs['variations'] as $variation)
                     {
                         $Imagepath = '';
-                     
+
                                 if(!empty($variation['id'])){
-                                    $productVariation = ChowhubProductVariation::find($variation['id']);                                       
+                                    $productVariation = ChowhubProductVariation::find($variation['id']);
                                     $productVariation->product_id=$products->id;
-                                
+
                                     $variationAttributeIds = [];
                                     foreach ($attributesName as $key => $attribute) {
                                         $selectedAttrubutes = ChowhubVariationAttributeValue::select('id','attribute_id')->where(['product_id'=>$products->id,'name'=>$variation[$attribute]])->first();
@@ -455,9 +455,9 @@ class ChowhubProductController extends Controller
                                     $productVariation->sku=$variation['sku'];
                                     $productVariation->save();
                                 }else{
-                                    $productVariation = new ChowhubProductVariation;                                       
+                                    $productVariation = new ChowhubProductVariation;
                                     $productVariation->product_id=$products->id;
-                                
+
                                     $variationAttributeIds = [];
                                     foreach ($attributesName as $key => $attribute) {
                                         $selectedAttrubutes = ChowhubVariationAttributeValue::select('id','attribute_id')->where(['product_id'=>$products->id,'name'=>$variation[$attribute]])->first();
@@ -483,20 +483,20 @@ class ChowhubProductController extends Controller
                                     $productVariation->sku=$variation['sku'];
                                     $productVariation->save();
                                 }
-                      
+
 
                     }
 
                 }
 
 			}
-			
-		} 
-		
+
+		}
+
 
         return back()->with('success','Product Updated successfully!');
 
-       
+
     }
 
     /**
@@ -506,22 +506,22 @@ class ChowhubProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {  
-            
-        ChowhubProductVariation::where('product_id',$id)->delete();      
+    {
+
+        ChowhubProductVariation::where('product_id',$id)->delete();
         ChowhubProductGallery::where('product_id',$id)->delete();
         ChowhubVariationAttributeValue::where('product_id',$id)->delete();
         ChowhubProductTag::where('product_id',$id)->delete();
         ChowhubProduct::find($id)->delete();
-     
+
         ChowhubProductFeaturePageImage::where('product_id',$id)->delete();
         ChowhubProductDescriptionImage::where('product_id',$id)->delete();
         return back()->with('success','Product deleted successfully!');
     }
 
     public function save_photo(Request $request){
-      
- 
+
+
         if ($request->file('images')) {
             $path = Storage::disk('s3')->put('images/products', $request->images);
             $path = Storage::disk('s3')->url($path);
@@ -531,17 +531,17 @@ class ChowhubProductController extends Controller
                 "image" => $path,
                 "id" => $id
             ]);
- 
+
         }
- 
+
         return Response()->json([
                 "success" => false,
                 "image" => ''
             ]);
     }
     public function save_description_photo(Request $request){
-      
- 
+
+
         if ($request->file('description_images')) {
             $path = Storage::disk('s3')->put('images/products', $request->description_images);
             $path = Storage::disk('s3')->url($path);
@@ -551,9 +551,9 @@ class ChowhubProductController extends Controller
                 "image" => $path,
                 "id" => $id
             ]);
- 
+
         }
- 
+
         return Response()->json([
                 "success" => false,
                 "image" => ''
@@ -563,29 +563,29 @@ class ChowhubProductController extends Controller
     public function del_photo(Request $request){
 
         ChowhubProductGallery::find($request->id)->delete();
- 
+
         return Response()->json([
                 "success" => 'Deleted Successfully',
-             
+
             ]);
     }
     public function del_description_photo(Request $request){
 
         ChowhubProductDescriptionImage::find($request->id)->delete();
- 
+
         return Response()->json([
                 "success" => 'Deleted Successfully',
-             
+
             ]);
     }
     public function del_feature_page_photo(Request $request){
 
         ChowhubProductFeaturePageImage::find($request->id)->delete();
- 
+
         return Response()->json([
                 "success" => 'Deleted Successfully',
-             
+
             ]);
     }
- 
+
 }
