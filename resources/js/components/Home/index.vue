@@ -230,9 +230,9 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                   </div>
                   <router-link
-                    :to="{ path: 'products/'+product.id}"
+                    :to="{ path: 'products/'+productSlug(product.name)+'/'+product.id}"
                   >
-                    <h5>{{product.name}} </h5>
+                    <h5>{{product.name}}</h5>
                   </router-link>
                   <div class="cart_flex">
                      <h3>${{product.sale_price}}<sup></sup></h3>
@@ -613,6 +613,9 @@ export default {
     },
     handleLazeLoadError(event, slick, image, imageSource) {
       /*console.log('handleLazeLoadError', event, slick, image, imageSource);*/
+    },
+    productSlug(productName){
+      return productName.replace(/\s+/g, '-').toLowerCase()
     }
   }
 }
