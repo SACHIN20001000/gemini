@@ -356,14 +356,27 @@ class ProductController extends Controller
             foreach($inputs['product_detail'] as  $product_detail){
 
                 $productDespImage = ProductDescriptionDetail::find($product_detail['id']);
-                if(!empty($product_detail['image_path'])){
-                    $path = Storage::disk('s3')->put('images', $product_detail['image_path']);
-                    $image_path = Storage::disk('s3')->url($path);
-                    $productDespImage->image_path= $image_path;
+                if(!empty($productDespImage)){
+                    if(!empty($product_detail['image_path'])){
+                        $path = Storage::disk('s3')->put('images', $product_detail['image_path']);
+                        $image_path = Storage::disk('s3')->url($path);
+                        $productDespImage->image_path= $image_path;
+                    }
+                    $productDespImage->product_id= $products->id;
+                    $productDespImage->value=  $product_detail['value'];
+                    $productDespImage->save();
+                }else{
+                    $productDespImage =new ProductDescriptionDetail;
+                    if(!empty($product_detail['image_path'])){
+                        $path = Storage::disk('s3')->put('images', $product_detail['image_path']);
+                        $image_path = Storage::disk('s3')->url($path);
+                        $productDespImage->image_path= $image_path;
+                    }
+                    $productDespImage->product_id= $products->id;
+                    $productDespImage->value=  $product_detail['value'];
+                    $productDespImage->save();
                 }
-                $productDespImage->product_id= $products->id;
-                $productDespImage->value=  $product_detail['value'];
-                $productDespImage->save();
+
             }
 
 			//store images in gallery
