@@ -58,7 +58,7 @@ routes: [
 		component: Category
 	},
   {
-		path: '/products/:id',
+		path: '/products/:slug/:id',
 		beforeEnter : guardMyroute,
 		name: 'Products',
 		component: Products
