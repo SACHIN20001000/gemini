@@ -22,7 +22,7 @@
                     <div class="main-content-label mg-b-5">
                         {{isset($product) ? 'Update # '.$product->id : 'Add New' }}
                     </div>
-                
+
                     <form  id="product-add-edit" action="{{isset($product) ? route('products.update',$product->id) : route('products.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{ isset($product) ? method_field('PUT'):'' }}
@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                     <input class="form-control" name="productName"  placeholder="Enter your name" type="text" value="{{isset($product) ? $product->productName : '' }}">
-                                    
+
                                 </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
@@ -43,7 +43,7 @@
                                     <label class="form-label mg-b-0">Tags</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                         
+
 		            	        <input type="text" name="tag" placeholder="Tags" value="{{isset($product) ? $product->availTags : '' }}" data-role="tagsinput" class="form-control"/>
                                 </div>
                             </div>
@@ -52,11 +52,11 @@
                                     <label class="form-label mg-b-0">Description </label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                           
+
                                 <textarea name="description"  id="hiddenDescription">{{isset($product) ? $product->description : '' }}</textarea>
                             </div>
                             </div>
-                            <div class="row row-xs align-items-center mg-b-20">
+                   <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-4">
                                     <label class="form-label mg-b-0">Media </label>
                                 </div>
@@ -65,7 +65,7 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                    
+
                                     <input id="product-galary" type="file" name="images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
                                     <ul id="product-galary-items"></ul>
                                     @if(isset($product))
@@ -79,8 +79,10 @@
                     </div>
                                 </div>
                             </div>
-                           
-                         
+
+                                </div>
+                            </div>
+
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">Category</label>
@@ -184,6 +186,9 @@
                   </div>
              </div>
          </div>
+
+
+
          <div class="col-lg-12 col-md-12">
                 <div class="card">
                      <div class="card-body">
@@ -192,7 +197,7 @@
                                     <tr>
                                          <td>
                                              <input type="text"  id="name_attributes" placeholder="Enter your Name" class="form-control tableData" />
-                                    
+
                                             </td>
                                          <td><input type="text"   id="value_attributes" placeholder="Enter your value with (,) seperated" class="form-control tableData" />
                                          </td>
@@ -210,23 +215,80 @@
                 <div class="card">
                      <div class="card-body">
                                 <h4>Variants</h4>
-                                              
-                                   
+
+
                                     <table class="table table-bordered" >
-                                        <thead id="variations_heading"> 
-                                            
+                                        <thead id="variations_heading">
+
                                         </thead>
                                         <tbody id="variations_fields">
 
                                         </tbody>
                                     </table>
-                                  
-                                    
+
+
 
                   </div>
              </div>
          </div>
 
+
+         <div class="col-lg-12 col-md-12">
+                <div class="card">
+                     <div class="card-body">
+                                <h4>Banner image</h4>
+
+
+                                <input id="product-banner" type="file" name="images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
+                                    <ul id="product-banner-items"></ul>
+                                    @if(!empty($product->banner_image))
+
+                                   <div id="imgbannerDel{{$product->id}}"><a href="{{$product->banner_image}}" target="_blank" data-item-id="{{$product->id}}"> <img src="{{$product->banner_image}}"  alt="" height=50 width=50></a><i class="fas fa-trash-alt"  onclick='delbannerImage({{$product->id}})'></i></div>
+
+                                    @endif
+
+
+
+
+                  </div>
+             </div>
+         </div>
+         <div class="col-lg-12 col-md-12">
+                <div class="card">
+                     <div class="card-body">
+                                <h4>About Description</h4>
+
+                                <textarea name="about_description"  id="aboutDescription">{{isset($product) ? $product->about_description : '' }}</textarea>
+
+
+
+                  </div>
+             </div>
+         </div>
+
+         <div class="col-lg-12 col-md-12">
+                <div class="card">
+                     <div class="card-body">
+                                <h4>Product Description Details</h4>
+                                <table class="table table-bordered" id="description_fields">
+                                    <tr>
+                                         <td>
+                                         <input type="file" name="image_path[]" class="form-control" id="name_description" data-height="200" />
+
+                                            </td>
+                                         <td>
+
+                                         <textarea name="value[]" cols="30" rows="10" class="form-control" id="value_description"></textarea>
+                                         </td>
+                                         <td><button type="button" name="add" onclick="productsEvent.addDescription()"  id="add" class="btn btn-success">Save</button></td>
+
+                                    </tr>
+                               </table>
+
+
+                  </div>
+             </div>
+         </div>
     <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>
 </form>
                 <!-- form end  -->
@@ -238,7 +300,7 @@
 </div>
 
 
-@endsection 
+@endsection
 
 @section('scripts')
 
@@ -251,7 +313,10 @@
      $('#hiddenDescription').summernote({
         height: 400
     });
-     
+    $('#aboutDescription').summernote({
+        height: 400
+    });
+
 var productsEvent;
 (function() {
     var attributes =[];
@@ -272,7 +337,7 @@ var productsEvent;
 
             let attributeName = $("#name_attributes").val();
             let value_attributes = $("#value_attributes").val();
-         
+
           if(value_attributes.length != 0  && attributeName.length != 0 ){
             var removeLastQuama = value_attributes.charAt(value_attributes.length-1);
             if(removeLastQuama != ','){
@@ -288,7 +353,7 @@ var productsEvent;
             }else{
                 alert('Both Feild is Required')
             }
-           
+
 
         },
         displayAttributes:function() {
@@ -345,22 +410,22 @@ var productsEvent;
                     {
                         if(variation.type == 'hidden'){
                             htmlString +='<input  name="variations['+index+']['+variation.name+']" class="form-control hidden_id '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'">';
-                         
+
                         }else{
                         htmlString +='<td><input  name="variations['+index+']['+variation.name+']" class="form-control tableData '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'"></td>';
                         }
                         if(variation.src){
                         htmlString +='<td><div id="delete_variation_img'+variation.value+' "> <a href="'+variation.src+'" target="_blank" ><img height=50 style="max-width: 50px;" src="'+variation.src+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)" ></a><i class="fas fa-trash-alt" onclick="removeVariationImage(\''+variation.value+'\')" ></i></div></td>';
 
-                        } 
+                        }
                     }
                     else
                     {
                         htmlString +='<td><input name="variations['+index+']['+name+']" class="form-control tableData" type="text" readonly="true" value="'+variation+'" placeholder="'+variation+'"></td>';
                     }
-                    
+
                 }
-                
+
                 htmlString += '<td><button type="button" name="remove" onclick="productsEvent.removeVariation(\''+index+'\')" class="btn btn-danger btn_remove">X</button></td>';
                 htmlString += '</tr>';
                 $("#variations_fields").append(htmlString);
@@ -386,8 +451,31 @@ var productsEvent;
         {
             $('#galary-item'+itemId+'').remove();
         },
-        
-        
+        addDescription:function()
+        {
+            let attributeName = $("#name_description").val();
+            let value_attributes = $("#value_description").val();
+
+
+          if(value_attributes.length != 0  && attributeName.length != 0 ){
+            counter=1;
+
+                            $("#description_fields").append('<tr  id="desp_feild'+counter+'"><td><input type="file" name="image_path[]" class="form-control" id="name_description" data-height="200" /></td><td><textarea name="value[]" cols="30" rows="10" class="form-control" id="editor" ></textarea></td><td><button type="button" name="remove" onclick="productsEvent.removeDespFeild(\''+counter+'\')" class="btn btn-danger btn_remove">X</button></td></tr>');
+            counter ++;
+
+            }else{
+                alert('Both Feild is Required')
+            }
+
+        },
+        removeDespFeild:function(counter)
+        {
+
+            $('#desp_feild'+counter+'').remove();
+        },
+
+
+
     };
 
     productsEvent.initialize();
@@ -414,20 +502,33 @@ function delImage(id){
             $('#imgDel'+id+'').remove();
            }
         });
-    }     
+    }
+}
+function delbannerImage(id){
+    var data = 'id='+ id ;
+    if (confirm('Are You Sure You Want To Delete This Image')) {
+   $.ajax({
+           type:'POST',
+           url:'/admin/delete-banner-photo',
+           data: data ,
+           success:function(data){
+            $('#imgbannerDel'+id+'').remove();
+           }
+        });
+    }
 }
      function removeVariationImage(id){
     var data = 'id='+ id ;
-   
+
     if (confirm('Are You Sure You Want To Delete This Image')) {
    $.ajax({
            type:'POST',
            url:'/admin/delete-variation-img',
            data: data ,
            success:function(data){
-           
+
             $('#delete_variation_img'+id+'').remove();
-        
+
            }
         });
     }
@@ -435,14 +536,14 @@ function delImage(id){
 
 
 $(function() {
-    var counter = 1; 
+    var counter = 1;
     $('#product-galary').FancyFileUpload({
         url:'/admin/save-photo',
         fileupload : {
             maxChunkSize : 1000000
-        },        
+        },
         uploadcompleted : function(e, data) {
-            
+
             $("#product-galary-items").prepend('<li id="galary-item'+counter +'"><img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt" onclick="productsEvent.removeProductGalaryImage('+counter+')"></i><input type="hidden"  value="' + data.result.image + '" name="image[]"  /></li>');
             counter ++
             data.ff_info.RemoveFile();
@@ -450,6 +551,21 @@ $(function() {
     });
 });
 
+$(function() {
+    var counter = 1;
+    $('#product-banner').FancyFileUpload({
+        url:'/admin/save-photo',
+        fileupload : {
+            maxChunkSize : 1000000
+        },
+        uploadcompleted : function(e, data) {
+
+            $("#product-banner-items").prepend('<li id="banner-item'+counter +'"><img class="imageSize" src="'+data.result.image+'" /><i class="fas fa-trash-alt" onclick="productsEvent.removeProductBannerImage('+counter+')"></i><input type="hidden"  value="' + data.result.image + '" name="bannerimage"  /></li>');
+            counter ++
+            data.ff_info.RemoveFile();
+        }
+    });
+});
 </script>
 
 @if(isset($product))
