@@ -105,7 +105,7 @@ class ProductController extends Controller
      */
     public function store(AddProduct $request)
     {
-        // print_r($request->all());die;
+        //echo '<pre>'; print_r($request->all());die;
         $inputs = $request->all();
 
         $tags=explode(",",$inputs['tag']);
