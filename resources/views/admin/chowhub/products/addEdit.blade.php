@@ -435,7 +435,7 @@ $('#hiddenDescription').summernote({
                             htmlString +='<input  name="variations['+index+']['+variation.name+']" class="form-control hidden_id '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'">';
 
                         }else{
-                        htmlString +='<td><input  name="variations['+index+']['+variation.name+']" class="form-control tableData '+variation.customClass+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'"></td>';
+                        htmlString +='<td><input  name="variations['+index+']['+variation.name+']" class="form-control tableData '+variation.customClass+'" data-default-file="'+variation.dataitem+'" type="'+variation.type+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)"  value="'+variation.value+'" placeholder="'+variation.placeholder+'"></td>';
                         }
                         if(variation.src){
                         htmlString +='<td><div id="delete_variation_img'+variation.value+' "> <a href="'+variation.src+'" target="_blank" ><img height=50 style="max-width: 50px;" src="'+variation.src+'" onchange="productsEvent.updateVariationvalue(\''+index+'\',\''+name+'\',this.value)" ></a><i class="fas fa-trash-alt" onclick="removeVariationImage(\''+variation.value+'\')" ></i></div></td>';
@@ -452,6 +452,7 @@ $('#hiddenDescription').summernote({
                 htmlString += '<td><button type="button" name="remove" onclick="productsEvent.removeVariation(\''+index+'\')" class="btn btn-danger btn_remove">X</button></td>';
                 htmlString += '</tr>';
                 $("#variations_fields").append(htmlString);
+                $('.dropify').dropify();
             });
             }
         },
