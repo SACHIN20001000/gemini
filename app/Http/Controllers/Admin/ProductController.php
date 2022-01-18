@@ -354,8 +354,8 @@ class ProductController extends Controller
 			//add attributes
 
             foreach($inputs['product_detail'] as  $product_detail){
-
-                $productDespImage = ProductDescriptionDetail::find($product_detail['id']);
+$id=$product_detail['id']??0;
+                $productDespImage = ProductDescriptionDetail::find($id);
                 if(!empty($productDespImage)){
                     if(!empty($product_detail['image_path'])){
                         $path = Storage::disk('s3')->put('images', $product_detail['image_path']);
