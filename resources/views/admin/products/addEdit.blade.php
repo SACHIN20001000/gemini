@@ -1,5 +1,3 @@
-
-
 @extends('admin.layouts.app')
 @section('content')
 <style>.imageSize{height: 100px;width: 100px;} .tag{color:black !important;background-color: aqua;font-size: 15px;}</style>
@@ -250,7 +248,7 @@
          <div class="card">
          <div class="card-body">
          <h4>Product Description Details</h4>
-         @if(!empty($product->productDescriptionDetail))
+         @if(!empty($product->productDescriptionDetail[0]['image_path']))
          <table class="table table-bordered" id="description_fields">
          <?php $counter=0; ?>
 @foreach($product->productDescriptionDetail as $productDescriptionDetail)
