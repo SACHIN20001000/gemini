@@ -20,7 +20,7 @@ class CreateCouponsTable extends Migration
             $table->string('code');
             $table->enum('type', ['percentage', 'numeric']);
             $table->enum('apply_to', ['entire_orders', 'specific_category','specific_product']);
-           $table->integer('apply_for')->nullable();
+            $table->integer('apply_for')->nullable();
             $table->integer('value');
             $table->integer('count')->nullable();
             $table->date('expired_at')->nullable();

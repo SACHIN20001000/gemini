@@ -18,6 +18,10 @@ class CreateProductsTable extends Migration
             $table->string('productName')->nullable();
             $table->longText('description')->nullable();
             $table->string('sku')->nullable();
+            $table->string('banner_image')->nullable();
+            $table->longText('about_description')->nullable();
+
+
             $table->set('type', ['Single Product', 'Variation'])->default('Single Product');
             $table->unsignedBigInteger('store_id')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
@@ -30,11 +34,18 @@ class CreateProductsTable extends Migration
 
             $table->timestamps();
         });
-		
+
         Schema::create('product_galleries', function (Blueprint $table) {
             $table->id();
 			$table->unsignedBigInteger('product_id');
             $table->string('image_path')->nullable();
+            $table->timestamps();
+        });
+        Schema::create('product_description_details', function (Blueprint $table) {
+            $table->id();
+			$table->unsignedBigInteger('product_id');
+            $table->string('image_path')->nullable();
+            $table->longText('value')->nullable();
             $table->timestamps();
         });
         Schema::create('tags', function (Blueprint $table) {
@@ -53,7 +64,7 @@ class CreateProductsTable extends Migration
             $table->string('name')->nullable();
             $table->timestamps();
         });
-		
+
 		Schema::create('variations_attributes_values', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('attribute_id')->nullable();
@@ -61,7 +72,7 @@ class CreateProductsTable extends Migration
             $table->string('name')->nullable();
             $table->timestamps();
         });
-		
+
         Schema::create('product_variations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id')->nullable();

@@ -12,11 +12,11 @@ class Product extends Model
 
     protected $casts = [
         'created_at' => 'datetime:d-m-Y',
-        'updated_at' => 'datetime:d-m-Y', 
+        'updated_at' => 'datetime:d-m-Y',
     ];
 
     protected $fillable = [
-        'productName','type','feature_image','description','real_price','sale_price','category_id','status'
+        'productName','type','banner_image','about_description','feature_image','description','real_price','sale_price','category_id','status'
     ];
 
     public function category()
@@ -28,9 +28,12 @@ class Product extends Model
     {
         return $this->belongsTo(Store::class,'store_id');
     }
-    
+
     public function productGallery() {
         return $this->hasMany(ProductGallery::class, 'product_id', 'id');
+    }
+    public function productDescriptionDetail() {
+        return $this->hasMany(ProductDescriptionDetail::class, 'product_id', 'id');
     }
     public function productVariation() {
         return $this->hasMany(ProductVariation::class, 'product_id', 'id');
@@ -52,8 +55,8 @@ class Product extends Model
             $tagName = $tag->tagName;
             array_push($tagsData, $tagName->name);
         }
-        $tagsData = implode(',',$tagsData);   
+        $tagsData = implode(',',$tagsData);
         return $tagsData;
     }
- 
+
 }
