@@ -32,7 +32,7 @@
                                     <label class="form-label mg-b-0">Name</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="name" id="name"  placeholder="Enter your name" type="text" value="{{isset($coupon) ? $coupon->name : '' }}"> 
+                                    <input class="form-control" name="name" id="name"  placeholder="Enter your name" type="text" value="{{isset($coupon) ? $coupon->name : '' }}">
 
                                 </div>
                             </div>
@@ -72,13 +72,40 @@
                                     <label class="form-label mg-b-0">Applies To </label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                <input type="radio" id="apply_to" {{ (isset($coupon) && $coupon->apply_to  == 'entire_orders') ? 'Checked' : '' }} name="apply_to" value="entire_orders">
+                                <input type="radio" id="entire" {{ (isset($coupon) && $coupon->apply_to  == 'entire_orders') ? 'Checked' : '' }} name="apply_to" value="entire_orders">
                                     <label for="age1">Entire order</label><br>
-                                    <input type="radio" id="apply_to" {{ (isset($coupon) && $coupon->apply_to  == 'specific_category') ? 'Checked' : '' }} name="apply_to" value="specific_category">
-                                    <label for="age2">Specific collections</label><br>
-                                    <input type="radio"  id="apply_to"   {{ (isset($coupon) && $coupon->apply_to  == 'specific_product') ? 'Checked' : '' }} name="apply_to" value="specific_product">
+                                    <input type="radio" id="categories" {{ (isset($coupon) && $coupon->apply_to  == 'specific_category') ? 'Checked' : '' }} name="apply_to" value="specific_category">
+                                    <label for="age2">Specific Category</label><br>
+                                    <input type="radio"  id="products"   {{ (isset($coupon) && $coupon->apply_to  == 'specific_product') ? 'Checked' : '' }} name="apply_to" value="specific_product">
                                     <label for="age3">Specific products</label><br>
 
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20" id="category_id">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Category</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                   <select  class="form-control" id="specific_category" name="category_id" >
+                                        <option value="">Select Below</option>
+                                      @foreach($categories as $category)
+                                            <option value="{{$category->id}}" {{ (isset($coupon) && $coupon->category_id  == $category->id) ? 'Selected' : '' }}>{{$category->name}}</option>
+                                      @endforeach
+                                   </select>
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20" id="product_id">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Specific Product</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+
+                                   <select class="form-control select2" id="specific_product"  name="product_id"  >
+                                        <option value="">Select Below</option>
+                                        @foreach($products as $product)
+                                            <option value="{{$product->id}}"{{ (isset($coupon) && $coupon->product_id  == $product->id) ? 'Selected' : '' }}>{{$product->productName}}</option>
+                                      @endforeach
+                                                                       </select>
                                 </div>
                             </div>
                             <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($coupon) ? 'Update' : 'Save' }}</button>
@@ -97,14 +124,45 @@
 
 @section('scripts')
 <script>
+    // hide show feild
+  $(document).ready(function () {
 
+    $("#product_id").hide();
+     $("#category_id").hide();
+    $("#categories").click(function () {
+        $("#product_id").hide();
+        $("#specific_product option").prop("selected", false);
+        $("#category_id").show();
+    });
+    $("#products").click(function () {
+        $("#product_id").show();
+        $("#specific_category option").prop("selected", false);
+
+     $("#category_id").hide();
+    });
+    $("#entire").click(function () {
+        $("#product_id").hide();
+     $("#category_id").hide();
+    });
+    if($("#categories").is(":checked")) {
+        $("#product_id").hide();
+     $("#category_id").show();
+  }
+  if($("#products").is(":checked")) {
+    $("#product_id").show();
+     $("#category_id").hide();
+  }
+    });
+
+    //generate code
 function generateRandomString(length) {
   var text = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
   for (var i = 0; i < length; i++)
     text += possible.charAt(Math.floor(Math.random() * possible.length));
-    $('#code').val('TPPS'+text+text);
+    var x= text;
+    $('#code').val('TPPS'+text+x);
 }
 function addNumber() {
     var x = document.getElementById("type").value;

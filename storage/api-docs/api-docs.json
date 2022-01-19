@@ -735,6 +735,36 @@
                 }
             }
         },
+        "/coupon": {
+            "post": {
+                "tags": [
+                    "coupon"
+                ],
+                "summary": "coupon",
+                "operationId": "coupon",
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CouponResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "/order": {
             "get": {
                 "tags": [
@@ -1603,6 +1633,39 @@
                             "variation_attributes": "",
                             "created": "2021-12-13",
                             "updated_at": "2021-12-13"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "CouponRequest": {
+                "title": "Coupon Request response",
+                "description": "Coupon Request response",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "name for storring",
+                        "type": "string",
+                        "example": "test"
+                    }
+                },
+                "type": "object"
+            },
+            "CouponResponse": {
+                "title": "coupon Response",
+                "description": "coupon Response",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "example": {
+                            "id": 1,
+                            "name": "test test",
+                            "code": "TPPSHGN0DJZRHGN0DJZR",
+                            "category_id": 1,
+                            "product_id": 6,
+                            "value": 13,
+                            "type": "percentage",
+                            "apply_to": "specific_product"
                         }
                     }
                 },
