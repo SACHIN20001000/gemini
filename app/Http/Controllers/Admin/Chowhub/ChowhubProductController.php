@@ -119,6 +119,11 @@ class ChowhubProductController extends Controller
 			$products->sale_price = $inputs['sale_price'];
             $products->sku = $inputs['sku'];
 			$products->weight = $inputs['weight'];
+            if(!empty($inputs['feature_image'])){
+                $path = Storage::disk('s3')->put('images', $inputs['feature_image']);
+                $image_path = Storage::disk('s3')->url($path);
+                $products->feature_image = $image_path;
+            }
 			$products->quantity = $inputs['qty'];
 			$products->category_id = $inputs['category_id'];
             $products->store_id = $inputs['store_id'];
@@ -296,7 +301,7 @@ class ChowhubProductController extends Controller
             $viewData['Sku']=array('value'=>$variation->sku,'name'=>'sku','placeholder'=>'Sku','type'=>'text','customClass'=>'');
             $viewData['Image']=array('value'=>'','name'=>'image','placeholder'=>'Image','type'=>'file','dataitem'=>$variation->image ,'customClass'=>'dropify');
             $viewData['hidden_id']=array('value'=>$variation->id,'name'=>'id','placeholder'=>'','type'=>'hidden','customClass'=>'');
-       
+
 
 
             array_push($variations,$viewData);
@@ -328,6 +333,11 @@ class ChowhubProductController extends Controller
 			$products->description = $inputs['description'];
 			$products->real_price = $inputs['real_price'];
 			$products->sale_price = $inputs['sale_price'];
+            if(!empty($inputs['feature_image'])){
+                $path = Storage::disk('s3')->put('images', $inputs['feature_image']);
+                $image_path = Storage::disk('s3')->url($path);
+                $products->feature_image = $image_path;
+            }
             $products->sku = $inputs['sku'];
 			$products->weight = $inputs['weight'];
 			$products->quantity = $inputs['qty'];

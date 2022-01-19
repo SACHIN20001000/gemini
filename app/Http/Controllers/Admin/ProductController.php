@@ -354,7 +354,7 @@ class ProductController extends Controller
 			//add attributes
 
             foreach($inputs['product_detail'] as  $product_detail){
-$id=$product_detail['id']??0;
+                $id=$product_detail['id']??0;
                 $productDespImage = ProductDescriptionDetail::find($id);
                 if(!empty($productDespImage)){
                     if(!empty($product_detail['image_path'])){
