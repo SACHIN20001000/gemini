@@ -569,8 +569,8 @@ class CartController extends Controller
                     $coupon_discount= $order->grand_total * $code/100 ;
                     $order->grand_total = $order->grand_total - $coupon_discount ;
                 }else{
-                    $coupon_discount =$order->grand_total - $code ;
-                    $order->grand_total = $order->grand_total - $coupon_discount ;
+                   
+                    $order->grand_total = $order->grand_total - $code ;
 
                 }
 
