@@ -321,7 +321,7 @@ class ProductController extends Controller
     {
 
         $inputs = $request->all();
-
+// echo "<pre>"; print_r($inputs);die;
         $tags=explode(",",$inputs['tag']);
 
 		if(!empty($inputs['productName'])){
