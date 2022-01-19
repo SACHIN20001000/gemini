@@ -58,7 +58,21 @@
                             </div>
                             </div>
 
+                            <div class="row row-xs align-items-center mg-b-20">
+                              <div class="col-md-4">
+                                 <label class="form-label mg-b-0">Feature Image </label>
+                              </div>
+                              <div class="col-md-8 mg-t-5 mg-md-t-0">
+                              @if(!empty($product->feature_image))
+                              <input type="file" class="dropify" data-default-file="{{$product->feature_image}}" name="feature_image"  id="feature_image">
 
+                                @else
+                                <input type="file" class="dropify"  name="feature_image"  id="feature_image">
+
+
+                                @endif
+                              </div>
+                           </div>
                             <div class="row row-xs align-items-center mg-b-20">
                             <div class="col-md-4">
                                     <label class="form-label mg-b-0">Media </label>
