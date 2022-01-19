@@ -279,7 +279,7 @@
          </tr>
          </table>
          @endif
-         <span class="add-more-button"><button type="button" name="add" onclick="productsEvent.addDescription()"  id="add" class="btn btn-success">Add More</button></span>
+         <span class="add-more-button"><button type="button" name="add" onclick="productsEvent.addDescription()"  id="add_desp" data-id="{{isset($product->productDescriptionDetail[0]['image_path']) ? 10 : 0 }}" class="btn btn-success">Add More</button></span>
          </div>
          </div>
          </div>
@@ -445,17 +445,19 @@
       {
           let attributeName = $("#name_description").val();
           let value_attributes = $("#value_description").val();
+          let attr= parseInt($("#add_desp").attr("data-id"));
+          var id= attr+1;
+          console.log(id)
 
-
-        if(value_attributes.length != 0  && attributeName.length != 0 ){
-          counter=1;
-
-                          $("#description_fields").append('<tr  id="desp_feild'+counter+'"><td><input type="file" name="product_detail['+counter+'][image_path]" class="dropify" id="name_description" data-height="200" /></td><td><textarea name="product_detail['+counter+'][value]" cols="30" rows="10" class="form-control" id="editor" ></textarea></td><td><button type="button" name="remove" onclick="productsEvent.removeDespFeild(\''+counter+'\')" class="btn btn-danger btn_remove">X</button></td></tr>');
-          counter ++;
-            $('.dropify').dropify();
-          }else{
+          if(value_attributes.length != 0  && attributeName.length != 0 ){
+          $("#add_desp").attr("data-id",id);
+             $("#description_fields").append('<tr  id="desp_feild'+id+'"><td><input type="file" name="product_detail['+id+'][image_path]" class="dropify" id="name_description" data-height="200" /></td><td><textarea name="product_detail['+id+'][value]" cols="30" rows="10" class="form-control" id="editor" ></textarea></td><td><button type="button" name="remove" onclick="productsEvent.removeDespFeild(\''+id+'\')" class="btn btn-danger btn_remove">X</button></td></tr>');
+             $('.dropify').dropify();
+            }else{
               alert('Both Feild is Required')
           }
+
+
 
       },
       removeDespFeild:function(counter)
