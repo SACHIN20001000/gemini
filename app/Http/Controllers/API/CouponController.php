@@ -40,8 +40,21 @@ class CouponController extends Controller
 
     public function index(CouponRequest $request)
     {
-        $coupon = Coupon::where('code',$request->name)->get();
-        return  CouponResource::collection($coupon);
+        $coupon = Coupon::where('code',$request->name)->first();
+        $currentdate=date('Y-m-d');
+        if(!empty($coupon)){
+            if($coupon->count > 0 && $coupon->expired_at >  $currentdate ){
+                return  new CouponResource($coupon);
+            }else{
+                return response()->json(['success' => false , 'message' => "Coupon is expired"],400);
+
+            }
+        }else{
+            return response()->json(['success' => false , 'message' => "Coupon is not valid"],400);
+
+        }
+
+
 
     }
 
