@@ -17,6 +17,8 @@ use App\Http\Requests\API\CartAddProductRequest;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
+use App\Models\Coupon;
+
 use App\Models\OrderItem;
 use App\Models\Shipping;
 
@@ -81,7 +83,7 @@ class CartController extends Controller
 
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -192,7 +194,7 @@ class CartController extends Controller
      *     @OA\Response(
      *         response="204",
      *         description="Get cart id by key",
-     *       
+     *
      *     ),
      *    @OA\Response(
      *      response=400,ref="#/components/schemas/BadRequest"
@@ -252,7 +254,7 @@ class CartController extends Controller
      *     @OA\Response(
      *         response="204",
      *         description="Delete cart item by key",
-     *       
+     *
      *     ),
      *    @OA\Response(
      *      response=400,ref="#/components/schemas/BadRequest"
@@ -518,10 +520,10 @@ class CartController extends Controller
                 if ($item->variation_product_id != 0)
                 {
                     $productvariation = ProductVariation::find($variation_id);
-                 
+// print_r($productvariation);die;
                     $quantity = $item->quantity;
                     $unitPrice = $productvariation->sale_price;
-                   
+
                     $totalPrice = $unitPrice * $quantity ?? 0;
                 } else
                 {
@@ -531,7 +533,7 @@ class CartController extends Controller
                     $unitPrice = $product->sale_price;
                     $totalPrice = $unitPrice * $quantity ?? 0;
                 }
-           
+
                 $order_item = OrderItem::updateOrCreate(
                                 [
                                     'order_id' => $order->id,
@@ -542,10 +544,42 @@ class CartController extends Controller
                                     'quantity' => $quantity,
                 ]);
 
-              
+
             }
 
             $order->grand_total = $order->grand_total + $totalPrice ;
+            if(!empty($request->code)){
+                $coupon = Coupon::where('code',$request->code)->first();
+                $currentdate=date('Y-m-d');
+                if(!empty($coupon)){
+                    if($coupon->count > 0 && $coupon->expired_at >  $currentdate ){
+                       $code=$coupon->value;
+                       $type=$coupon->type;
+                    }else{
+                        return response()->json(['success' => false , 'message' => "Coupon is expired"],400);
+
+                    }
+                }else{
+                    return response()->json(['success' => false , 'message' => "Coupon is not valid"],400);
+
+                }
+            }
+
+            if(!empty($code)){
+                if($type = 'percentage'){
+                    $coupon_discount= $order->grand_total * $code/100 ;
+                    $order->grand_total = $order->grand_total - $coupon_discount ;
+
+                }else{
+
+                    $order->grand_total = $order->grand_total - $code ;
+
+                }
+                $coupon->count=$coupon->count-1;
+                $coupon->save();
+            }
+
+
             $order->save();
 
             return response()->json([
