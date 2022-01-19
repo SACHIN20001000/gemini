@@ -501,6 +501,8 @@ export default {
         loop: true,
         loopedSlides: 5, // looped slides should be the same
         spaceBetween: 10,
+        observer: true,
+        observeParents: true,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
@@ -510,8 +512,10 @@ export default {
         loop: true,
         loopedSlides: 5, // looped slides should be the same
         spaceBetween: 10,
-        centeredSlides: true,
-        slidesPerView: 'auto',
+        centeredSlides: false,
+        slidesPerView: 4,
+        observer: true,
+        observeParents: true,
         touchRatio: 0.2,
         slideToClickedSlide: true
       },

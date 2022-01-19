@@ -17,7 +17,11 @@
             </span>
           </span>
           <span>
-            {{productsbycat.name}}
+            <router-link
+              :to="{ path: 'products/'+productSlug(productsbycat.name)+'/'+productsbycat.id}"
+            >
+              {{productsbycat.name}}
+            </router-link>
           </span>
           <span>
             Price: {{productsbycat.sale_price}}
@@ -72,6 +76,9 @@ export default {
         }
       })
       return insertCat
+    },
+    productSlug(productName){
+      return productName.replace(/\s+/g, '-').toLowerCase()
     }
   }
 }
