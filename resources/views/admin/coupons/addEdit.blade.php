@@ -69,6 +69,24 @@
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Count Value</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <p id="validation_show" style="color: green;"></p>
+                                    <input class="form-control" name="count" id="count"  placeholder="Enter your Count Value" type="number" value="{{isset($coupon) ? $coupon->count : '' }}">
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Expired Date</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <p id="validation_show" style="color: green;"></p>
+                                    <input class="form-control" name="expired_at" id="expired_at"   placeholder="Enter your expired date " type="date" value="{{isset($coupon) ? $coupon->expired_at : '' }}">
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
                                     <label class="form-label mg-b-0">Applies To </label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">

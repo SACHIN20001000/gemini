@@ -20,6 +20,9 @@ class CouponResponse
    *         "category_id": 1,
    *         "product_id": 6,
    *         "value": 13,
+   *     "count": 12,
+        *    "expired_at": "2022-01-20",
+   *
    * "type": "percentage",
     *        "apply_to": "specific_product",
   *  }
