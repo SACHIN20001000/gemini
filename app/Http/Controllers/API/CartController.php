@@ -568,12 +568,14 @@ class CartController extends Controller
                 if($type = 'percentage'){
                     $coupon_discount= $order->grand_total * $code/100 ;
                     $order->grand_total = $order->grand_total - $coupon_discount ;
+
                 }else{
-                   
+
                     $order->grand_total = $order->grand_total - $code ;
 
                 }
-
+                $coupon->count=$coupon->count-1;
+                $coupon->save();
             }
 
 
