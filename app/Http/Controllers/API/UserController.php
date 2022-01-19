@@ -9,7 +9,7 @@ use App\Models\User;
 use App\Http\Requests\API\ChangePasswordRequest;
 use App\Http\Requests\API\UpdateProfileRequest;
 use Illuminate\Support\Facades\Validator;
-
+use Auth;
 
 class UserController extends Controller
 {
@@ -52,7 +52,7 @@ class UserController extends Controller
 
         return new UserResource($user);
     }
- 
+
      /**
      * @OA\Put(
      *      path="/update",
@@ -84,16 +84,26 @@ class UserController extends Controller
      * )
      * Store a newly created resource in storage.
      *
-     * 
+     *
      *
      * @return \Illuminate\Http\Response
      */
 
     public function updateProfile(UpdateProfileRequest $request)
     {
-     
-        auth()->user()->update(['name' => $request->name]);
-        $user = auth()->user();
+
+            $user=auth()->user();
+            $user->name = $request->name;
+            if(!empty($request->password)){
+            $user->password = $request->password;
+            }
+            $user->address = $request->address ?? $user->address;
+            $user->zip_code = $request->zip_code ?? $user->zip_code;
+            $user->phone = $request->phone ?? $user->phone;
+            $user->city = $request->city ?? $user->city;
+            $user->state = $request->state ?? $user->state;
+            $user->country = $request->country ?? $user->country;
+            $user->save();
         return new UserResource($user);
     }
 

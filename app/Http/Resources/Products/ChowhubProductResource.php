@@ -25,11 +25,13 @@ class ChowhubProductResource extends JsonResource
     {
 
         return [
-           
+
             'id' => $this->id,
             'name' => $this->productName,
             'sku' => $this->sku,
             'type' => $this->type,
+            'feature_image' => $this->feature_image,
+
             'category' => new ProductCategoryResource($this->category),
             'store' => new ProductStoreResource($this->store),
             'variations' => ProductVariationsResource::collection($this->productVariation),
@@ -45,8 +47,8 @@ class ChowhubProductResource extends JsonResource
             'real_price' => $this->real_price,
             'sale_price' => $this->sale_price,
             'feature_image' => $this->feature_image,
-            'variation_attributes'=>  $this->getAttributeByProduct($this->id)       
-                               
+            'variation_attributes'=>  $this->getAttributeByProduct($this->id)
+
         ];
     }
 
