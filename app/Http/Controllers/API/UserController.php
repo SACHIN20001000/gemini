@@ -95,7 +95,7 @@ class UserController extends Controller
             $user=auth()->user();
             $user->name = $request->name;
             if(!empty($request->password)){
-            $user->password = $request->password;
+            $user->password = bcrypt($request->password);
             }
             $user->address = $request->address ?? $user->address;
             $user->zip_code = $request->zip_code ?? $user->zip_code;
