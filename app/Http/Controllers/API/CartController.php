@@ -455,22 +455,6 @@ class CartController extends Controller
 
         if ($cart->key == $request->key)
         {
-            if(!empty($request->code)){
-                $coupon = Coupon::where('code',$request->code)->first();
-                $currentdate=date('Y-m-d');
-                if(!empty($coupon)){
-                    if($coupon->count > 0 && $coupon->expired_at >  $currentdate ){
-                       $code=$coupon->value;
-                       $type=$coupon->type;
-                    }else{
-                        return response()->json(['success' => false , 'message' => "Coupon is expired"],400);
-
-                    }
-                }else{
-                    return response()->json(['success' => false , 'message' => "Coupon is not valid"],400);
-
-                }
-            }
 
             $user = auth('api')->user();
 
@@ -564,6 +548,23 @@ class CartController extends Controller
             }
 
             $order->grand_total = $order->grand_total + $totalPrice ;
+            if(!empty($request->code)){
+                $coupon = Coupon::where('code',$request->code)->first();
+                $currentdate=date('Y-m-d');
+                if(!empty($coupon)){
+                    if($coupon->count > 0 && $coupon->expired_at >  $currentdate ){
+                       $code=$coupon->value;
+                       $type=$coupon->type;
+                    }else{
+                        return response()->json(['success' => false , 'message' => "Coupon is expired"],400);
+
+                    }
+                }else{
+                    return response()->json(['success' => false , 'message' => "Coupon is not valid"],400);
+
+                }
+            }
+
             if(!empty($code)){
                 if($type = 'percentage'){
                     $coupon_discount= $order->grand_total * $code/100 ;
