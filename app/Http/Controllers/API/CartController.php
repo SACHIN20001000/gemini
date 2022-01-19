@@ -455,20 +455,23 @@ class CartController extends Controller
 
         if ($cart->key == $request->key)
         {
-            $coupon = Coupon::where('code',$request->code)->first();
-            $currentdate=date('Y-m-d');
-            if(!empty($coupon)){
-                if($coupon->count > 0 && $coupon->expired_at >  $currentdate ){
-                   $code=$coupon->value;
-                   $type=$coupon->type;
+            if(!empty($request->code)){
+                $coupon = Coupon::where('code',$request->code)->first();
+                $currentdate=date('Y-m-d');
+                if(!empty($coupon)){
+                    if($coupon->count > 0 && $coupon->expired_at >  $currentdate ){
+                       $code=$coupon->value;
+                       $type=$coupon->type;
+                    }else{
+                        return response()->json(['success' => false , 'message' => "Coupon is expired"],400);
+
+                    }
                 }else{
-                    return response()->json(['success' => false , 'message' => "Coupon is expired"],400);
+                    return response()->json(['success' => false , 'message' => "Coupon is not valid"],400);
 
                 }
-            }else{
-                return response()->json(['success' => false , 'message' => "Coupon is not valid"],400);
-
             }
+
             $user = auth('api')->user();
 
             if (!$user)
