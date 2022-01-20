@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Coupon;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ChowhubProduct;
 use DataTables;
 use App\Http\Requests\Admin\Coupon\AddCoupon;
 use App\Http\Requests\Admin\Coupon\UpdateCoupon;
@@ -82,8 +83,12 @@ class CouponController extends Controller
 
 
         $inputs = $request->all();
+        foreach ($inputs['product_id'] as $key => $value) {
 
+        $inputs['product_id']=$value;
         Coupon::create($inputs);
+        }
+
 
             return back()->with('success','Coupon addded successfully!');
     }
@@ -109,8 +114,15 @@ class CouponController extends Controller
     {
         $coupon= Coupon::find($id);
         $categories = Category::with('childrens')->where(['parent'=>0,'type'=>'Product'])->get();
-        $products = Product::select('productName','id')->get();
+
         $coupons = Coupon::where('id','!=',$id)->get();
+
+        if($coupon['product_type'] == 'product'){
+            $products = Product::select('productName','id')->get();
+        }else{
+            $products = ChownhubProduct::select('productName','id')->get();
+        }
+
         return view('admin.coupons.addEdit',compact('coupons','coupon','categories','products'));
     }
 
@@ -125,8 +137,11 @@ class CouponController extends Controller
     {
 
         $inputs = $request->all();
-        $coupon->update($inputs);
+        foreach ($inputs['product_id'] as $key => $value) {
 
+        $inputs['product_id']=$value;
+        $coupon->update($inputs);
+        }
         return back()->with('success','Coupon updated successfully!');
     }
 
@@ -141,6 +156,35 @@ class CouponController extends Controller
         $coupon->delete();
 
         return back()->with('success','Coupon deleted successfully!');
+    }
+
+
+
+        /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getProductByAjax(Request $request)
+    {
+    //   print_r($request->data);die('here');
+      if($request->product_type == 'product'){
+            $product=Product::Select('id','productName')->get();
+            return Response()->json([
+                "success" => true,
+                "data" => $product,
+
+            ]);
+      }else{
+        $product=ChowhubProduct::Select('id','productName')->get();
+        return Response()->json([
+            "success" => true,
+            "data" => $product,
+
+        ]);
+      }
+
     }
 
 }

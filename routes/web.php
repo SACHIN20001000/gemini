@@ -61,6 +61,8 @@ Route::prefix('admin')->group(function ()
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('categories', CategoryController::class);
         Route::resource('coupons', CouponController::class);
+        Route::post('getProductByAjax', [CouponController::class,'getProductByAjax'])->name('getProductByAjax');
+
 
         Route::resource('page-categories', PageCategoriesController::class);
         Route::resource('products', ProductController::class);
