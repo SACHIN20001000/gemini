@@ -1,4 +1,3 @@
-import API from './../../Api'
 import HTTP from './../../Api/auth'
 
 const state = {
@@ -31,42 +30,42 @@ const getters = {
 
 const actions = {
   async getCategories({commit}){
-    API.get(process.env.MIX_APP_APIURL+"categories").then((response) => {
+    HTTP.get(process.env.MIX_APP_APIURL+"categories").then((response) => {
       commit("getCategories", response.data.data)
     }).catch((errors) => {
       commit("catErrors", errors.response.data.message)
     })
   },
   async getCategory({commit},id){
-    API.get(process.env.MIX_APP_APIURL+"categories/"+id).then((response) => {
+    HTTP.get(process.env.MIX_APP_APIURL+"categories/"+id).then((response) => {
       commit("getCategory", response.data.data)
     }).catch((errors) => {
       commit("catErrors", errors.response.data.message)
     })
   },
   async getPages({commit}){
-    API.get(process.env.MIX_APP_APIURL+"pages").then((response) => {
+    HTTP.get(process.env.MIX_APP_APIURL+"pages").then((response) => {
       commit("getPages", response.data.data)
     }).catch((errors) => {
       commit("pageErrors", errors.response.data.message)
     })
   },
   async getPage({commit},id){
-    API.get(process.env.MIX_APP_APIURL+"pages/"+id).then((response) => {
+    HTTP.get(process.env.MIX_APP_APIURL+"pages/"+id).then((response) => {
       commit("getPage", response.data.data)
     }).catch((errors) => {
       commit("pageErrors", errors.response.data.message)
     })
   },
   async getProducts({commit}){
-    API.get(process.env.MIX_APP_APIURL+"products").then((response) => {
+    HTTP.get(process.env.MIX_APP_APIURL+"products").then((response) => {
       commit("getProducts", response.data.data)
     }).catch((errors) => {
       commit("productErrors", errors.response.data.message)
     })
   },
   async getProduct({commit},id){
-    API.get(process.env.MIX_APP_APIURL+"products/"+id).then((response) => {
+    HTTP.get(process.env.MIX_APP_APIURL+"products/"+id).then((response) => {
       commit("getProduct", response.data.data)
     }).catch((errors) => {
       commit("productErrors", errors.response.data.message)
