@@ -25,7 +25,11 @@ class UpdateFaq extends FormRequest
     {
         return [
 
-            // // 'description' => 'required',
+            'description' => 'required',
+            'title' => 'required',
+            'product_id' => 'required',
+            'published' => 'required',
+
 
 
         ];

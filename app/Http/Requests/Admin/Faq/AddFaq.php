@@ -25,8 +25,13 @@ class AddFaq extends FormRequest
     {
         return [
 
-            //  'description' => 'required',
-     
+             'description' => 'required',
+             'title' => 'required',
+             'product_id' => 'required',
+             'published' => 'required',
+
+
+
         ];
     }
 }
