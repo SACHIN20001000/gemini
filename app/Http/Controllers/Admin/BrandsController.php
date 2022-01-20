@@ -9,6 +9,7 @@ use DataTables;
 use App\Http\Requests\Admin\Brands\AddBrands;
 use App\Http\Requests\Admin\Brands\UpdateBrands;
 use Storage;
+
 class BrandsController extends Controller
 {
 
@@ -19,20 +20,20 @@ class BrandsController extends Controller
      */
     public function index(Request $request)
     {
-        
+
         if ($request->ajax())
         {
             $data = Brand::all();
 
             return Datatables::of($data)
-            ->addIndexColumn()
-                    ->addColumn('action', function ($row)
+                            ->addIndexColumn()
+                            ->addColumn('action', function ($row)
                             {
                                 $action = '<span class="action-buttons">
-                                    <a  href="'.route("brands.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
+                                    <a  href="' . route("brands.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
                                     
-                                    <a href="'.route("brands.destroy", $row).'"
+                                    <a href="' . route("brands.destroy", $row) . '"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"
                                             data-toggle="tooltip"
@@ -46,10 +47,9 @@ class BrandsController extends Controller
                                 ';
                                 return $action;
                             })
-
                             ->rawColumns(['action'])
                             ->make(true)
-                            ;
+            ;
         }
 
         return view('admin.brands.index');
@@ -63,7 +63,7 @@ class BrandsController extends Controller
     public function create()
     {
         $brands = Brand::all();
-        return view('admin.brands.addEdit',compact('brands'));
+        return view('admin.brands.addEdit', compact('brands'));
     }
 
     /**
@@ -73,17 +73,18 @@ class BrandsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(AddBrands $request)
-    {  
-        
+    {
+
         $inputs = $request->all();
-        if($request->hasFile('logo')){
+        if ($request->hasFile('logo'))
+        {
             $path = Storage::disk('s3')->put('images', $request->logo);
             $path = Storage::disk('s3')->url($path);
-            $inputs['logo']= $path; 
+            $inputs['logo'] = $path;
         }
         Brand::create($inputs);
-       
-        return back()->with('success','Brand addded successfully!');
+
+        return back()->with('success', 'Brand addded successfully!');
     }
 
     /**
@@ -105,8 +106,8 @@ class BrandsController extends Controller
      */
     public function edit(Brand $brand)
     {
-        $brands = Brand::where('id','!=',$brand->id)->get();
-        return view('admin.brands.addEdit',compact('brand','brands'));
+        $brands = Brand::where('id', '!=', $brand->id)->get();
+        return view('admin.brands.addEdit', compact('brand', 'brands'));
     }
 
     /**
@@ -118,15 +119,16 @@ class BrandsController extends Controller
      */
     public function update(UpdateBrands $request, Brand $brand)
     {
-       
+
         $inputs = $request->all();
-        if($request->hasFile('logo')){
+        if ($request->hasFile('logo'))
+        {
             $path = Storage::disk('s3')->put('images', $request->logo);
             $path = Storage::disk('s3')->url($path);
-            $inputs['logo']= $path; 
+            $inputs['logo'] = $path;
         }
         $brand->update($inputs);
-        return back()->with('success','Brand updated successfully!');
+        return back()->with('success', 'Brand updated successfully!');
     }
 
     /**
@@ -138,7 +140,7 @@ class BrandsController extends Controller
     public function destroy(Brand $brand)
     {
         $brand->delete();
-        return back()->with('success','Brand deleted successfully!');
+        return back()->with('success', 'Brand deleted successfully!');
     }
 
 }

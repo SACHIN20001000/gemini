@@ -7,21 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class ChowhubProductVariation extends Model
 {
+
     use HasFactory;
+
     protected $casts = [
         'created_at' => 'datetime:d-m-Y',
-        'updated_at' => 'datetime:d-m-Y', 
+        'updated_at' => 'datetime:d-m-Y',
+    ];
+    protected $fillable = [
+        'product_id', 'real_price', 'sale_price', 'image', 'variation_name', 'sku_id', 'variation_ids'
     ];
 
-    protected $fillable = [
-        'product_id','real_price','sale_price','image','variation_name','sku_id','variation_ids'
-    ];
     public function products()
     {
-        return $this->belongsTo(ChowhubProduct::class,'product_id');
+        return $this->belongsTo(ChowhubProduct::class, 'product_id');
     }
+
     public function productSku()
     {
-        return $this->belongsTo(ChowhubProductSku::class,'sku_id');
+        return $this->belongsTo(ChowhubProductSku::class, 'sku_id');
     }
+
 }

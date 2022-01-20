@@ -9,6 +9,7 @@ use App\Http\Resources\Settings\SettingResource;
 
 class SettingController extends Controller
 {
+
     /**
      * @OA\Get(
      *      path="/settings",
@@ -39,9 +40,9 @@ class SettingController extends Controller
      */
     public function index(Request $request)
     {
-  
-        $setting = Setting::orderBy('id', 'asc')->first();
-        return  new SettingResource($setting);
 
+        $setting = Setting::orderBy('id', 'asc')->first();
+        return new SettingResource($setting);
     }
+
 }

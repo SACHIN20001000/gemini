@@ -14,7 +14,6 @@ use Auth;
 class UserController extends Controller
 {
 
-
     /**
      * @OA\Get(
      *      path="/profile",
@@ -45,7 +44,6 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-
     public function userProfile()
     {
         $user = auth()->user();
@@ -53,7 +51,7 @@ class UserController extends Controller
         return new UserResource($user);
     }
 
-     /**
+    /**
      * @OA\Put(
      *      path="/update",
      *      operationId="update",
@@ -88,25 +86,23 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function updateProfile(UpdateProfileRequest $request)
     {
 
-            $user=auth()->user();
-            $user->name = $request->name;
-            if(!empty($request->password)){
+        $user = auth()->user();
+        $user->name = $request->name;
+        if (!empty($request->password))
+        {
             $user->password = bcrypt($request->password);
-            }
-            $user->address = $request->address ?? $user->address;
-            $user->zip_code = $request->zip_code ?? $user->zip_code;
-            $user->phone = $request->phone ?? $user->phone;
-            $user->city = $request->city ?? $user->city;
-            $user->state = $request->state ?? $user->state;
-            $user->country = $request->country ?? $user->country;
-            $user->save();
+        }
+        $user->address = $request->address ?? $user->address;
+        $user->zip_code = $request->zip_code ?? $user->zip_code;
+        $user->phone = $request->phone ?? $user->phone;
+        $user->city = $request->city ?? $user->city;
+        $user->state = $request->state ?? $user->state;
+        $user->country = $request->country ?? $user->country;
+        $user->save();
         return new UserResource($user);
     }
-
-
 
 }

@@ -7,29 +7,35 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+
     use HasFactory;
+
     protected $casts = [
         'created_at' => 'datetime:d-m-Y',
         'updated_at' => 'datetime:d-m-Y',
     ];
-
     protected $fillable = [
-        'name', 'slug', 'parent','feature_image','status','type'
+        'name', 'slug', 'parent', 'feature_image', 'status', 'type'
     ];
+
     public function getCreatedAtAttribute($value)
     {
-        return date('M d, Y h:i:s',strtotime($value));
+        return date('M d, Y h:i:s', strtotime($value));
     }
 
-    public function childrens() {
-        return $this->hasMany('App\Models\Category','parent')->with('childrens');
+    public function childrens()
+    {
+        return $this->hasMany('App\Models\Category', 'parent')->with('childrens');
     }
 
-    public function parent() {
-        return $this->belongsTo('App\Models\Category','parent');
+    public function parent()
+    {
+        return $this->belongsTo('App\Models\Category', 'parent');
     }
+
     public function posts()
     {
         return $this->hasMany(Post::class);
     }
+
 }

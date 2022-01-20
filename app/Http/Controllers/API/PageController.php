@@ -10,7 +10,8 @@ use App\Http\Resources\Admin\PageResource;
 
 class PageController extends Controller
 {
-     /**
+
+    /**
      * @OA\Get(
      *      path="/pages",
      *      operationId="Pages",
@@ -41,23 +42,24 @@ class PageController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-  
     public function index(Request $request)
-    {   
+    {
         $header = $request->header('Token');
         $setting = Setting::orderBy('id', 'asc')->first();
         $token = $setting->oauth_token ?? '';
-        if($header == $token){
-          $limit = $request->limit ? $request->limit : 20;
-          $pages = Post::with(['users','categories'])->where('status',1)->paginate($limit);
-        //   print_r($pages);die;
-          return  PageResource::collection($pages);
-        }else{
-          return response()->json(['success' => false , 'message' => "Invalid Token"]);
+        if ($header == $token)
+        {
+            $limit = $request->limit ? $request->limit : 20;
+            $pages = Post::with(['users', 'categories'])->where('status', 1)->paginate($limit);
+            //   print_r($pages);die;
+            return PageResource::collection($pages);
+        } else
+        {
+            return response()->json(['success' => false, 'message' => "Invalid Token"]);
         }
-      
     }
-  /**
+
+    /**
      * @OA\Get(
      *      path="/pages/{id}",
      *      operationId="Pages By Id",
@@ -67,7 +69,7 @@ class PageController extends Controller
      *          {"Token": {}},
      *          },
      *     
-       *      @OA\Parameter(
+     *      @OA\Parameter(
      *         name="id",
      *         in="path",
      *         description="1",
@@ -97,24 +99,26 @@ class PageController extends Controller
      */
     public function pageByID(Request $request, $id)
     {
-       
-      $header = $request->header('Token');
-      $setting = Setting::orderBy('id', 'asc')->first();
-      $token = $setting->oauth_token ?? '';
-      if($header == $token){
-              $limit = $request->limit ? $request->limit : 20;
-              $pages = Post::with(['users','categories'])->where(['status' => 1 , 'id' => $id])->orwhere('slug' , $id)->first();
-            if($pages){
-                  return  new PageResource($pages);
-            }else{
-                  return response()->json(['success' => false , 'message' => "Invalid Id/Slug"]);
+
+        $header = $request->header('Token');
+        $setting = Setting::orderBy('id', 'asc')->first();
+        $token = $setting->oauth_token ?? '';
+        if ($header == $token)
+        {
+            $limit = $request->limit ? $request->limit : 20;
+            $pages = Post::with(['users', 'categories'])->where(['status' => 1, 'id' => $id])->orwhere('slug', $id)->first();
+            if ($pages)
+            {
+                return new PageResource($pages);
+            } else
+            {
+                return response()->json(['success' => false, 'message' => "Invalid Id/Slug"]);
             }
-      }else{
+        } else
+        {
 
-              return response()->json(['success' => false , 'message' => "Invalid Token"]);
-
-      }
-        
-        
+            return response()->json(['success' => false, 'message' => "Invalid Token"]);
+        }
     }
+
 }

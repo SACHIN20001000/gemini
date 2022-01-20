@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Resources\Category\CategoryResource;
+
 class ChowhubCategoryController extends Controller
 {
-   /**
+
+    /**
      * @OA\Get(
      *      path="chowhub/categories",
      *      operationId="Chowhub Categories",
@@ -39,17 +41,15 @@ class ChowhubCategoryController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-  
     public function index(Request $request)
-    {   
-        
-          $categories = Category::with('childrens')->where(['parent'=>0,'type'=>'Chowhub'])->all();
-          
-          return  CategoryResource::collection($categories);
-        
-      
+    {
+
+        $categories = Category::with('childrens')->where(['parent' => 0, 'type' => 'Chowhub'])->all();
+
+        return CategoryResource::collection($categories);
     }
-     /**
+
+    /**
      * @OA\Get(
      *      path="chowhub/categories/{id}",
      *      operationId="Chowhub Categories By Id",
@@ -59,7 +59,7 @@ class ChowhubCategoryController extends Controller
      *          {"Token": {}},
      *          },
      *     
-       *      @OA\Parameter(
+     *      @OA\Parameter(
      *         name="id",
      *         in="path",
      *         description="1",
@@ -89,14 +89,16 @@ class ChowhubCategoryController extends Controller
      */
     public function category_by_id(Request $request)
     {
-      
-  
-              $categories = ChowhubCategory::with('childrens')->find($request->id);
-            if($categories){
-                  return  new CategoryResource($categories);
-            }else{
-                  return response()->json(['success' => false , 'message' => "Invailed Id"]);
-            }        
-        
+
+
+        $categories = ChowhubCategory::with('childrens')->find($request->id);
+        if ($categories)
+        {
+            return new CategoryResource($categories);
+        } else
+        {
+            return response()->json(['success' => false, 'message' => "Invailed Id"]);
+        }
     }
+
 }

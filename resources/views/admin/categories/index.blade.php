@@ -13,7 +13,7 @@
         <a class="btn btn-main-primary ml_auto" href="{{ route('categories.create') }}">Add New</a>
     </div>
     <!-- breadcrumb -->
-   
+
     <div class="row row-sm">
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 grid-margin">
             <div class="card">

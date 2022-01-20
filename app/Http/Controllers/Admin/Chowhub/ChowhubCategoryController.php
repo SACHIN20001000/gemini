@@ -10,9 +10,11 @@ use App\Http\Requests\Admin\Chowhub\Category\AddCategory;
 use App\Http\Requests\Admin\Chowhub\Category\UpdateCategory;
 use Illuminate\Support\Str;
 use Storage;
+
 class ChowhubCategoryController extends Controller
 {
-   /**
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -21,31 +23,33 @@ class ChowhubCategoryController extends Controller
     {
         if ($request->ajax())
         {
-            $data = Category::where('type','Chowhub')->get();
+            $data = Category::where('type', 'Chowhub')->get();
 
             return Datatables::of($data)
-            ->addIndexColumn()
+                            ->addIndexColumn()
                             ->addColumn('status', function ($row)
                             {
-                                if($row->status == 1){
-                                    $status =  '<span class="label text-success d-flex">
+                                if ($row->status == 1)
+                                {
+                                    $status = '<span class="label text-success d-flex">
                                                         <div class="dot-label bg-success me-1"></div>active
                                                     </span>';
-                                }else{
-                                    $status =  '<span class="label text-danger d-flex">
+                                } else
+                                {
+                                    $status = '<span class="label text-danger d-flex">
                                                         <div class="dot-label bg-danger me-1"></div> inactive
                                                     </span>';
                                 }
-                                
+
                                 return $status;
                             })
                             ->addColumn('action', function ($row)
                             {
                                 $action = '<span class="action-buttons">
-                                    <a  href="'.route("chowhub-categories.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
+                                    <a  href="' . route("chowhub-categories.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
                                     
-                                    <a href="'.route("chowhub-categories.destroy", $row).'"
+                                    <a href="' . route("chowhub-categories.destroy", $row) . '"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"
                                             data-toggle="tooltip"
@@ -59,10 +63,9 @@ class ChowhubCategoryController extends Controller
                                 ';
                                 return $action;
                             })
-
-                            ->rawColumns(['action','status'])
+                            ->rawColumns(['action', 'status'])
                             ->make(true)
-                            ;
+            ;
         }
 
         return view('admin.chowhub.categories.index');
@@ -75,8 +78,8 @@ class ChowhubCategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('type','Chowhub')->get();
-        return view('admin.chowhub.categories.addEdit',compact('categories'));
+        $categories = Category::where('type', 'Chowhub')->get();
+        return view('admin.chowhub.categories.addEdit', compact('categories'));
     }
 
     /**
@@ -86,20 +89,21 @@ class ChowhubCategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(AddCategory $request)
-    {  
+    {
         $slug = Str::slug($request->name);
         $inputs = $request->all();
-        if($request->hasFile('feature_image')){
+        if ($request->hasFile('feature_image'))
+        {
             $path = Storage::disk('s3')->put('images/categories', $request->feature_image);
             $path = Storage::disk('s3')->url($path);
-            $inputs['feature_image']= $path; 
+            $inputs['feature_image'] = $path;
         }
-          
+
         $inputs['slug'] = $slug;
-       
+
         Category::create($inputs);
-      
-        return back()->with('success','Category addded successfully!');
+
+        return back()->with('success', 'Category addded successfully!');
     }
 
     /**
@@ -121,9 +125,9 @@ class ChowhubCategoryController extends Controller
      */
     public function edit($id)
     {
-        $category=Category::where('id','=',$id)->where('type','Chowhub')->first();
-        $categories = Category::where('id','!=',$id)->where('type','Chowhub')->get();
-        return view('admin.chowhub.categories.addEdit',compact('category','categories'));
+        $category = Category::where('id', '=', $id)->where('type', 'Chowhub')->first();
+        $categories = Category::where('id', '!=', $id)->where('type', 'Chowhub')->get();
+        return view('admin.chowhub.categories.addEdit', compact('category', 'categories'));
     }
 
     /**
@@ -135,19 +139,19 @@ class ChowhubCategoryController extends Controller
      */
     public function update(UpdateCategory $request, $id)
     {
-        $category=Category::find($id);
+        $category = Category::find($id);
         $slug = Str::slug($request->name);
         $inputs = $request->all();
-        if($request->hasFile('feature_image')){
+        if ($request->hasFile('feature_image'))
+        {
             $path = Storage::disk('s3')->put('images/categories', $request->feature_image);
             $path = Storage::disk('s3')->url($path);
-            $inputs['feature_image']= $path; 
+            $inputs['feature_image'] = $path;
         }
         $inputs['slug'] = $slug;
         $category->update($inputs);
-       
 
-        return back()->with('success','Category updated successfully!');
+        return back()->with('success', 'Category updated successfully!');
     }
 
     /**
@@ -158,8 +162,9 @@ class ChowhubCategoryController extends Controller
      */
     public function destroy($id)
     {
-    
+
         Category::find($id)->delete();
-        return back()->with('success','Category deleted successfully!');
+        return back()->with('success', 'Category deleted successfully!');
     }
+
 }

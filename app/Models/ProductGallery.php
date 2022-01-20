@@ -7,13 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductGallery extends Model
 {
+
     use HasFactory;
+
     protected $casts = [
         'created_at' => 'datetime:d-m-Y',
-        'updated_at' => 'datetime:d-m-Y', 
+        'updated_at' => 'datetime:d-m-Y',
+    ];
+    protected $fillable = [
+        'product_id', 'image'
     ];
 
-    protected $fillable = [
-        'product_id','image'
-    ];
 }

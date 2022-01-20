@@ -5,12 +5,12 @@ namespace App\Http\Controllers\API\Chowhub;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ChowhubStore;
-
 use App\Http\Resources\Stores\StoreResource;
 
 class ChowhubStoreController extends Controller
 {
-     /**
+
+    /**
      * @OA\Get(
      *      path="/chowhub/stores",
      *      operationId="chowhub stores",
@@ -38,21 +38,20 @@ class ChowhubStoreController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-  
     public function index(Request $request)
     {
         $stores = ChowhubStore::orderBy('id', 'asc')->get();
-        return  StoreResource::collection($stores);
-
+        return StoreResource::collection($stores);
     }
-/**
+
+    /**
      * @OA\Get(
      *      path="chowhub/stores/{store}",
      *      operationId="chowhub store By Id",
      * summary="store by id",
      *      tags={"ChowhubStores"},
      *     
-       *      @OA\Parameter(
+     *      @OA\Parameter(
      *         name="id",
      *         in="path",
      *         description="1",
@@ -82,7 +81,7 @@ class ChowhubStoreController extends Controller
      */
     public function show(ChowhubStore $store)
     {
-        return  new StoreResource($store);
-
+        return new StoreResource($store);
     }
+
 }

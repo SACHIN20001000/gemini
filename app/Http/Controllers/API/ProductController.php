@@ -9,10 +9,11 @@ use App\Models\VariationAttribute;
 use App\Http\Resources\Products\ProductResource;
 use App\Http\Resources\Products\AttributesResource;
 use App\Http\Requests\API\ProductRequest;
+
 class ProductController extends Controller
 {
 
-/**
+    /**
      * @OA\Get(
      *      path="/products",
      *      operationId="Products",
@@ -42,37 +43,37 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-
     public function index(Request $request)
     {
 
-      $limit = $request->limit ? $request->limit : 20;
+        $limit = $request->limit ? $request->limit : 20;
 
-      $data = $request->get('search');
-                if(!empty($data)){
-                  $search_product = Product::with(['productVariation','variationAttributesValue','tags.tagName'])->where('productName', 'like', "%{$data}%")
-                                      ->orWhere('sku', 'like', "%{$data}%")
-                                      ->orWhere('type', 'like', "%{$data}%")
-                                      ->orWhere('store_id', 'like', "%{$data}%")
-                                      ->orWhere('category_id', 'like', "%{$data}%")
-                                      ->orWhere('weight', 'like', "%{$data}%")
-                                      ->orWhereHas('tags.tagName', function ($query) use ($data) {
+        $data = $request->get('search');
+        if (!empty($data))
+        {
+            $search_product = Product::with(['productVariation', 'variationAttributesValue', 'tags.tagName'])->where('productName', 'like', "%{$data}%")
+                    ->orWhere('sku', 'like', "%{$data}%")
+                    ->orWhere('type', 'like', "%{$data}%")
+                    ->orWhere('store_id', 'like', "%{$data}%")
+                    ->orWhere('category_id', 'like', "%{$data}%")
+                    ->orWhere('weight', 'like', "%{$data}%")
+                    ->orWhereHas('tags.tagName', function ($query) use ($data)
+                    {
 
-                                        $query->where('name', 'like', "%{$data}%");
-                                        $query->where('tag_id', 'like', "%{$data}%");
+                        $query->where('name', 'like', "%{$data}%");
+                        $query->where('tag_id', 'like', "%{$data}%");
+                    })
+                    ->paginate($limit);
 
-                                    })
+            return ProductResource::collection($search_product);
+        }
 
-                                      ->paginate( $limit);
+        $products = Product::with(['category', 'productDescriptionDetail', 'store', 'productVariation', 'productGallery', 'variationAttributesValue', 'tags.tagName'])->paginate($limit);
 
-                                      return  ProductResource::collection($search_product);
-                }
-
-        $products = Product::with(['category','productDescriptionDetail','store','productVariation','productGallery','variationAttributesValue','tags.tagName'])->paginate($limit);
-
-        return  ProductResource::collection($products);
+        return ProductResource::collection($products);
     }
-     /**
+
+    /**
      * @OA\Get(
      *      path="/products/{id}",
      *      operationId="Product By Id",
@@ -81,7 +82,7 @@ class ProductController extends Controller
      *      security={
      *          {"Token": {}},
      *          },
-       *      @OA\Parameter(
+     *      @OA\Parameter(
      *         name="id",
      *         in="path",
      *         description="1",
@@ -113,13 +114,14 @@ class ProductController extends Controller
     {
 
 
-      $products = Product::with(['category','productDescriptionDetail','store','productVariation','productGallery','variationAttributesValue'])->find($id);
-      if($products){
-        return  new ProductResource($products);
-      }else{
-        return response()->json(['success' => false , 'message' => "Invailed Id"]);
-      }
-
+        $products = Product::with(['category', 'productDescriptionDetail', 'store', 'productVariation', 'productGallery', 'variationAttributesValue'])->find($id);
+        if ($products)
+        {
+            return new ProductResource($products);
+        } else
+        {
+            return response()->json(['success' => false, 'message' => "Invailed Id"]);
+        }
     }
 
     /**
@@ -131,7 +133,7 @@ class ProductController extends Controller
      *      security={
      *          {"Token": {}},
      *          },
-       *      @OA\Parameter(
+     *      @OA\Parameter(
      *         name="id",
      *         in="path",
      *         description="1",
@@ -159,38 +161,38 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function productByCategoryId(Request $request,$id)
+    public function productByCategoryId(Request $request, $id)
     {
-      $limit = $request->limit ? $request->limit : 20;
-      $data = $request->get('search');
-      if(!empty($data)){
-        $search_product = Product::with(['tags.tagName'])->where('productName', 'like', "%{$data}%")
-                            ->orWhere('sku', 'like', "%{$data}%")
-                            ->orWhere('type', 'like', "%{$data}%")
-                            ->orWhere('store_id', 'like', "%{$data}%")
-                            ->orWhere('category_id', 'like', "%{$data}%")
-                            ->orWhere('weight', 'like', "%{$data}%")
-                            ->orWhereHas('tags.tagName', function ($query) use ($data) {
+        $limit = $request->limit ? $request->limit : 20;
+        $data = $request->get('search');
+        if (!empty($data))
+        {
+            $search_product = Product::with(['tags.tagName'])->where('productName', 'like', "%{$data}%")
+                    ->orWhere('sku', 'like', "%{$data}%")
+                    ->orWhere('type', 'like', "%{$data}%")
+                    ->orWhere('store_id', 'like', "%{$data}%")
+                    ->orWhere('category_id', 'like', "%{$data}%")
+                    ->orWhere('weight', 'like', "%{$data}%")
+                    ->orWhereHas('tags.tagName', function ($query) use ($data)
+                    {
 
-                              $query->where('name', 'like', "%{$data}%");
-                              $query->where('tag_id', 'like', "%{$data}%");
+                        $query->where('name', 'like', "%{$data}%");
+                        $query->where('tag_id', 'like', "%{$data}%");
+                    })
+                    ->paginate($limit);
 
-                          })
+            return ProductResource::collection($search_product);
+        }
+        $products = Product::with(['category', 'store', 'productVariation', 'productGallery', 'variationAttributesValue'])->where('category_id', $id)->paginate($limit);
 
-                            ->paginate( $limit);
-
-                            return  ProductResource::collection($search_product);
-      }
-    $products = Product::with(['category','store','productVariation','productGallery','variationAttributesValue'])->where('category_id',$id)->paginate($limit);
-
-      if($products){
-        return  ProductResource::collection($products);
-      }else{
-        return response()->json(['success' => false , 'message' => "Invailed Id"]);
-      }
-
+        if ($products)
+        {
+            return ProductResource::collection($products);
+        } else
+        {
+            return response()->json(['success' => false, 'message' => "Invailed Id"]);
+        }
     }
-
 
     /**
      * @OA\Get(
@@ -201,7 +203,7 @@ class ProductController extends Controller
      *      security={
      *          {"Token": {}},
      *          },
-       *      @OA\Parameter(
+     *      @OA\Parameter(
      *         name="id",
      *         in="path",
      *         description="1",
@@ -229,14 +231,14 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-
-    public function getAttributeByProduct(Request $request,$id)
+    public function getAttributeByProduct(Request $request, $id)
     {
-      $attributes = VariationAttribute::whereHas('variationAttributeName', function ($query) use ($id) {
-    return $query->where('product_id', '=', $id);
-})->get();
+        $attributes = VariationAttribute::whereHas('variationAttributeName', function ($query) use ($id)
+                {
+                    return $query->where('product_id', '=', $id);
+                })->get();
 
-return  AttributesResource::collection($attributes);
+        return AttributesResource::collection($attributes);
     }
+
 }
