@@ -131,7 +131,7 @@
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                 <div style="overflow: auto;" >
-                                   <select class="form-control select2" multiple  id="specific_product"  name="product_id[]"  >
+                                   <select class="form-control select2"   id="specific_product"  name="product_id[]"  >
                                      @if(isset($products))
                                      @foreach($products as $product)
                                             <option value="{{$product->id}}" {{ (isset($coupon) && $coupon->product_id  == $product->id) ? 'Selected' : '' }}>{{$product->productName}}</option>
