@@ -9,10 +9,18 @@ use App\Http\Requests\Admin\Profile\UpdateUserProfile;
 use Storage;
 class AdminController extends Controller
 {
-    
+    /**
+     * View Profile
+     * @return type
+     */
     public function viewProfile(){
         return view('admin.profile.viewProfile');
     }
+    
+    /**
+     * Update Profile view
+     * @return type
+     */
     public function updateProfile(){
           return view('admin.profile.editprofile');
     }

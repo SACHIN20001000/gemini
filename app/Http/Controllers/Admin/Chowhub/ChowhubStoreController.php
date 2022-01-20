@@ -9,8 +9,10 @@ use DataTables;
 use App\Http\Requests\Admin\Chowhub\Stores\AddStores;
 use App\Http\Requests\Admin\Chowhub\Stores\UpdateStores;
 use Storage;
+
 class ChowhubStoreController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -18,21 +20,21 @@ class ChowhubStoreController extends Controller
      */
     public function index(Request $request)
     {
-        
+
         if ($request->ajax())
         {
             $data = ChowhubStore::all();
 
             return Datatables::of($data)
-            ->addIndexColumn()
-                    ->addColumn('action', function ($row)
+                            ->addIndexColumn()
+                            ->addColumn('action', function ($row)
                             {
-                                
+
                                 $action = '<span class="action-buttons">
-                                    <a  href="'.route("chowhub-store.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
+                                    <a  href="' . route("chowhub-store.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
                                     
-                                    <a href="'.route("chowhub-store.destroy", $row).'"
+                                    <a href="' . route("chowhub-store.destroy", $row) . '"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"
                                             data-toggle="tooltip"
@@ -46,10 +48,9 @@ class ChowhubStoreController extends Controller
                                 ';
                                 return $action;
                             })
-
                             ->rawColumns(['action'])
                             ->make(true)
-                            ;
+            ;
         }
 
         return view('admin.chowhub.stores.index');
@@ -62,7 +63,7 @@ class ChowhubStoreController extends Controller
      */
     public function create()
     {
-        
+
         return view('admin.chowhub.stores.addEdit');
     }
 
@@ -73,14 +74,14 @@ class ChowhubStoreController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(AddStores $request)
-    {  
-        
-       
-            $Store = new ChowhubStore;
-            $Store->name = $request->name;
-            $Store->save();
-            
-            return back()->with('success','Store addded successfully!');
+    {
+
+
+        $Store = new ChowhubStore;
+        $Store->name = $request->name;
+        $Store->save();
+
+        return back()->with('success', 'Store addded successfully!');
     }
 
     /**
@@ -102,10 +103,10 @@ class ChowhubStoreController extends Controller
      */
     public function edit($id)
     {
-        $store= ChowhubStore::find($id);
-      
-        $stores = ChowhubStore::where('id','!=',$id)->get();
-        return view('admin.chowhub.stores.addEdit',compact('stores','store'));
+        $store = ChowhubStore::find($id);
+
+        $stores = ChowhubStore::where('id', '!=', $id)->get();
+        return view('admin.chowhub.stores.addEdit', compact('stores', 'store'));
     }
 
     /**
@@ -117,12 +118,12 @@ class ChowhubStoreController extends Controller
      */
     public function update(UpdateStores $request, $id)
     {
-      
+
         $Store = ChowhubStore::find($id);
         $Store->name = $request->name;
         $Store->save();
-     
-        return back()->with('success','Store updated successfully!');
+
+        return back()->with('success', 'Store updated successfully!');
     }
 
     /**
@@ -134,8 +135,8 @@ class ChowhubStoreController extends Controller
     public function destroy($id)
     {
         ChowhubStore::find($id)->delete();
-      
-        return back()->with('success','Store deleted successfully!');
+
+        return back()->with('success', 'Store deleted successfully!');
     }
 
 }

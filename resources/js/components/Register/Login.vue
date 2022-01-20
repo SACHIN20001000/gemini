@@ -93,7 +93,7 @@ export default {
       handler: 'onFormChange'
     },
     userDetails() {
-      window.location.href='/dashboard'
+      window.location.href='/profile'
     },
   },
   computed: {

@@ -24,12 +24,13 @@ class UpdateCoupon extends FormRequest
     public function rules()
     {
         return [
-            // 'CouponName' => 'required',
-            // // 'description' => 'required',
-            // 'category_id' => 'required',
-            // 'status' => 'required',
-            // 'type' => 'required',
-        
+            'name' => 'required',
+            'code' => 'required',
+            'type' => 'required',
+            'apply_to' => 'required',
+            'value' => 'required',
+            'count' => 'required',
+            'expired_at' => 'required',
         ];
     }
 }

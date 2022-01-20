@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ChowhubProduct;
 use App\Models\ChowhubTag;
-
 use App\Models\ChowhubVariationAttribute;
 use App\Http\Resources\Products\ChowhubProductResource;
 use App\Http\Resources\Products\AttributesResource;
@@ -14,7 +13,8 @@ use App\Http\Resources\Products\ChowhubTagResource;
 
 class ChowhubProductController extends Controller
 {
- /**
+
+    /**
      * @OA\Get(
      *      path="/chowhub/products",
      *      operationId="Chowhub Products",
@@ -44,15 +44,15 @@ class ChowhubProductController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-
     public function index(Request $request)
     {
-      
-        $products = ChowhubProduct::with(['category','store','productVariation','productDescriptionImage','productGallery','variationAttributesValue','tags.tagName'])->get();
-      
-        return  ChowhubProductResource::collection($products);
+
+        $products = ChowhubProduct::with(['category', 'store', 'productVariation', 'productDescriptionImage', 'productGallery', 'variationAttributesValue', 'tags.tagName'])->get();
+
+        return ChowhubProductResource::collection($products);
     }
-     /**
+
+    /**
      * @OA\Get(
      *      path="/chowhub/products/{id}",
      *      operationId="Chowhub Product By Id",
@@ -61,7 +61,7 @@ class ChowhubProductController extends Controller
      *      security={
      *          {"Token": {}},
      *          },
-       *      @OA\Parameter(
+     *      @OA\Parameter(
      *         name="id",
      *         in="path",
      *         description="1",
@@ -92,14 +92,15 @@ class ChowhubProductController extends Controller
     public function productById(Request $request, $id)
     {
 
-  
-      $products = ChowhubProduct::with(['category','store','productVariation','productDescriptionImage','productGallery','variationAttributesValue'])->find($id);
-      if($products){
-        return  new ChowhubProductResource($products);
-      }else{
-        return response()->json(['success' => false , 'message' => "Invailed Id"]);
-      }
-        
+
+        $products = ChowhubProduct::with(['category', 'store', 'productVariation', 'productDescriptionImage', 'productGallery', 'variationAttributesValue'])->find($id);
+        if ($products)
+        {
+            return new ChowhubProductResource($products);
+        } else
+        {
+            return response()->json(['success' => false, 'message' => "Invailed Id"]);
+        }
     }
 
     /**
@@ -111,7 +112,7 @@ class ChowhubProductController extends Controller
      *      security={
      *          {"Token": {}},
      *          },
-       *      @OA\Parameter(
+     *      @OA\Parameter(
      *         name="id",
      *         in="path",
      *         description="1",
@@ -139,19 +140,19 @@ class ChowhubProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function productByCategoryId(Request $request,$id)
+    public function productByCategoryId(Request $request, $id)
     {
-      
-        $products = ChowhubProduct::with(['category','store','productVariation','productDescriptionImage','productGallery','variationAttributesValue'])->where('category_id',$id)->all();
-      
-      if($products){
-        return  ChowhubProductResource::collection($products);
-      }else{
-        return response()->json(['success' => false , 'message' => "Invailed Id"]);
-      }
-        
-    }
 
+        $products = ChowhubProduct::with(['category', 'store', 'productVariation', 'productDescriptionImage', 'productGallery', 'variationAttributesValue'])->where('category_id', $id)->all();
+
+        if ($products)
+        {
+            return ChowhubProductResource::collection($products);
+        } else
+        {
+            return response()->json(['success' => false, 'message' => "Invailed Id"]);
+        }
+    }
 
     /**
      * @OA\Get(
@@ -162,7 +163,7 @@ class ChowhubProductController extends Controller
      *      security={
      *          {"Token": {}},
      *          },
-       *      @OA\Parameter(
+     *      @OA\Parameter(
      *         name="id",
      *         in="path",
      *         description="1",
@@ -190,20 +191,17 @@ class ChowhubProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-
-    public function getAttributeByProduct(Request $request,$id)
+    public function getAttributeByProduct(Request $request, $id)
     {
-      $attributes = ChowhubVariationAttribute::whereHas('variationAttributeName', function ($query) use ($id) {
-            return $query->where('product_id', '=', $id);
-        })->get();
+        $attributes = ChowhubVariationAttribute::whereHas('variationAttributeName', function ($query) use ($id)
+                {
+                    return $query->where('product_id', '=', $id);
+                })->get();
 
-    return  AttributesResource::collection($attributes);
+        return AttributesResource::collection($attributes);
     }
 
-
-
-/**
+    /**
      * @OA\Get(
      *      path="/chowhub/tags",
      *      operationId="Chowhub tags",
@@ -233,13 +231,12 @@ class ChowhubProductController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-
     public function allTags(Request $request)
     {
-      
+
         $tags = ChowhubTag::all();
-      
-        return  ChowhubTagResource::collection($tags);
+
+        return ChowhubTagResource::collection($tags);
     }
 
 }

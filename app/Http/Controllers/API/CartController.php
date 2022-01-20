@@ -18,7 +18,6 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
 use App\Models\Coupon;
-
 use App\Models\OrderItem;
 use App\Models\Shipping;
 
@@ -83,7 +82,7 @@ class CartController extends Controller
 
     public function store(Request $request)
     {
-
+        
     }
 
     /**
@@ -543,39 +542,41 @@ class CartController extends Controller
                                     'total_price' => $totalPrice,
                                     'quantity' => $quantity,
                 ]);
-
-
             }
 
-            $order->grand_total = $order->grand_total + $totalPrice ;
-            if(!empty($request->code)){
-                $coupon = Coupon::where('code',$request->code)->first();
-                $currentdate=date('Y-m-d');
-                if(!empty($coupon)){
-                    if($coupon->count > 0 && $coupon->expired_at >  $currentdate ){
-                       $code=$coupon->value;
-                       $type=$coupon->type;
-                    }else{
-                        return response()->json(['success' => false , 'message' => "Coupon is expired"],400);
-
+            $order->grand_total = $order->grand_total + $totalPrice;
+            if (!empty($request->code))
+            {
+                $coupon = Coupon::where('code', $request->code)->first();
+                $currentdate = date('Y-m-d');
+                if (!empty($coupon))
+                {
+                    if ($coupon->count > 0 && $coupon->expired_at > $currentdate)
+                    {
+                        $code = $coupon->value;
+                        $type = $coupon->type;
+                    } else
+                    {
+                        return response()->json(['success' => false, 'message' => "Coupon is expired"], 400);
                     }
-                }else{
-                    return response()->json(['success' => false , 'message' => "Coupon is not valid"],400);
-
+                } else
+                {
+                    return response()->json(['success' => false, 'message' => "Coupon is not valid"], 400);
                 }
             }
 
-            if(!empty($code)){
-                if($type = 'percentage'){
-                    $coupon_discount= $order->grand_total * $code/100 ;
-                    $order->grand_total = $order->grand_total - $coupon_discount ;
+            if (!empty($code))
+            {
+                if ($type = 'percentage')
+                {
+                    $coupon_discount = $order->grand_total * $code / 100;
+                    $order->grand_total = $order->grand_total - $coupon_discount;
+                } else
+                {
 
-                }else{
-
-                    $order->grand_total = $order->grand_total - $code ;
-
+                    $order->grand_total = $order->grand_total - $code;
                 }
-                $coupon->count=$coupon->count-1;
+                $coupon->count = $coupon->count - 1;
                 $coupon->save();
             }
 

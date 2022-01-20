@@ -89,7 +89,60 @@ td.t_price span {font-size: 14px; }
  .points:before {content: ""; border-bottom: 15px solid #ee343f; border-left: 15px solid transparent; border-right: 15px solid transparent; position: absolute; top: -15px; left: calc(50% - 13px); }
 }
 
+/* _______ Add form css _______ */
+.add-form {
+	width: 85%;
+  position: relative;
+}
+.add-form-field {
+	margin-bottom: 15px;
+  font-weight: 300;
+  border: 1px solid gainsboro;
+}
+.add-form-field:focus {
+	outline: none;
+  box-shadow: none;
+}
+.update-btn {
+	background: #00b7bc;
+	border: 0px;
+	height: 42px;
+	padding: 0 30px;
+	font-size: 16px;
+	font-weight: 300;
+	color: #fff;
+	border-radius: 3px;
+}
+.add-icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 24px;
+  text-decoration: none;
+  background: #f6f6f6;
+  font-weight: 500;
+  color: #666;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.add-icon:hover {
+  text-decoration: none;
+}
+
 @media only screen and (min-width: 769px)
 {
     .btn_or_mb{display: none;}
+}
+.successMsg{
+  width: 100%;
+  color: #00FF00;
+  font-size: 14px;
+}
+.errorMsg{
+  width: 100%;
+  color: #DC143C;
+  font-size: 14px;
 }

@@ -10,6 +10,7 @@ use App\Http\Requests\Admin\Category\AddCategory;
 use App\Http\Requests\Admin\Category\UpdateCategory;
 use Illuminate\Support\Str;
 use Storage;
+
 class PageCategoriesController extends Controller
 {
 
@@ -22,31 +23,33 @@ class PageCategoriesController extends Controller
     {
         if ($request->ajax())
         {
-            $data = Category::where('type','Page')->get();
+            $data = Category::where('type', 'Page')->get();
 
             return Datatables::of($data)
-            ->addIndexColumn()
+                            ->addIndexColumn()
                             ->addColumn('status', function ($row)
                             {
-                                if($row->status == 1){
-                                    $status =  '<span class="label text-success d-flex">
+                                if ($row->status == 1)
+                                {
+                                    $status = '<span class="label text-success d-flex">
                                                         <div class="dot-label bg-success me-1"></div>active
                                                     </span>';
-                                }else{
-                                    $status =  '<span class="label text-danger d-flex">
+                                } else
+                                {
+                                    $status = '<span class="label text-danger d-flex">
                                                         <div class="dot-label bg-danger me-1"></div> inactive
                                                     </span>';
                                 }
-                                
+
                                 return $status;
                             })
                             ->addColumn('action', function ($row)
                             {
                                 $action = '<span class="action-buttons">
-                                    <a  href="'.route("page-categories.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
+                                    <a  href="' . route("page-categories.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
                                     
-                                    <a href="'.route("page-categories.destroy", $row).'"
+                                    <a href="' . route("page-categories.destroy", $row) . '"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"
                                             data-toggle="tooltip"
@@ -60,10 +63,9 @@ class PageCategoriesController extends Controller
                                 ';
                                 return $action;
                             })
-
-                            ->rawColumns(['action','status'])
+                            ->rawColumns(['action', 'status'])
                             ->make(true)
-                            ;
+            ;
         }
 
         return view('admin.pages.categories.index');
@@ -76,8 +78,8 @@ class PageCategoriesController extends Controller
      */
     public function create()
     {
-        $pagecategories = Category::where(['type'=> 'Page'])->get();
-        return view('admin.pages.categories.addEdit',compact('pagecategories'));
+        $pagecategories = Category::where(['type' => 'Page'])->get();
+        return view('admin.pages.categories.addEdit', compact('pagecategories'));
     }
 
     /**
@@ -87,21 +89,22 @@ class PageCategoriesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(AddCategory $request)
-    {  
+    {
         $slug = Str::slug($request->name);
         $inputs = $request->all();
-        if($request->hasFile('feature_image')){
+        if ($request->hasFile('feature_image'))
+        {
             $path = Storage::disk('s3')->put('images/categories', $request->feature_image);
             $path = Storage::disk('s3')->url($path);
-            $inputs['feature_image']= $path; 
+            $inputs['feature_image'] = $path;
         }
-      
+
         $inputs['slug'] = $slug;
         $inputs['type'] = 'Page';
 
         Category::create($inputs);
-       
-        return back()->with('success','Category addded successfully!');
+
+        return back()->with('success', 'Category addded successfully!');
     }
 
     /**
@@ -123,11 +126,11 @@ class PageCategoriesController extends Controller
      */
     public function edit($id)
     {
-       
-        $category= Category::where('id',$id)->first();
-    
-        $pagecategories = Category::where('id','!=',$category->id)->where('type','Page')->get();
-        return view('admin.pages.categories.addEdit',compact('category','pagecategories'));
+
+        $category = Category::where('id', $id)->first();
+
+        $pagecategories = Category::where('id', '!=', $category->id)->where('type', 'Page')->get();
+        return view('admin.pages.categories.addEdit', compact('category', 'pagecategories'));
     }
 
     /**
@@ -141,16 +144,16 @@ class PageCategoriesController extends Controller
     {
         $slug = Str::slug($request->name);
         $inputs = $request->all();
-        if($request->hasFile('feature_image')){
+        if ($request->hasFile('feature_image'))
+        {
             $path = Storage::disk('s3')->put('images/categories', $request->feature_image);
             $path = Storage::disk('s3')->url($path);
-            $inputs['feature_image']= $path; 
+            $inputs['feature_image'] = $path;
         }
         $inputs['slug'] = $slug;
         $category->update($inputs);
-       
 
-        return back()->with('success','Category updated successfully!');
+        return back()->with('success', 'Category updated successfully!');
     }
 
     /**
@@ -161,9 +164,9 @@ class PageCategoriesController extends Controller
      */
     public function destroy($id)
     {
-        
+
         Category::find($id)->delete();
-        return back()->with('success','Category deleted successfully!');
+        return back()->with('success', 'Category deleted successfully!');
     }
 
 }

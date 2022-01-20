@@ -10,6 +10,7 @@ use App\Http\Requests\Admin\Category\AddCategory;
 use App\Http\Requests\Admin\Category\UpdateCategory;
 use Illuminate\Support\Str;
 use Storage;
+
 class CategoryController extends Controller
 {
 
@@ -22,31 +23,33 @@ class CategoryController extends Controller
     {
         if ($request->ajax())
         {
-            $data = Category::where('type','Product')->get();
+            $data = Category::where('type', 'Product')->get();
 
             return Datatables::of($data)
-            ->addIndexColumn()
+                            ->addIndexColumn()
                             ->addColumn('status', function ($row)
                             {
-                                if($row->status == 1){
-                                    $status =  '<span class="label text-success d-flex">
+                                if ($row->status == 1)
+                                {
+                                    $status = '<span class="label text-success d-flex">
                                                         <div class="dot-label bg-success me-1"></div>active
                                                     </span>';
-                                }else{
-                                    $status =  '<span class="label text-danger d-flex">
+                                } else
+                                {
+                                    $status = '<span class="label text-danger d-flex">
                                                         <div class="dot-label bg-danger me-1"></div> inactive
                                                     </span>';
                                 }
-                                
+
                                 return $status;
                             })
                             ->addColumn('action', function ($row)
                             {
                                 $action = '<span class="action-buttons">
-                                    <a  href="'.route("categories.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
+                                    <a  href="' . route("categories.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
                                     
-                                    <a href="'.route("categories.destroy", $row).'"
+                                    <a href="' . route("categories.destroy", $row) . '"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"
                                             data-toggle="tooltip"
@@ -60,10 +63,9 @@ class CategoryController extends Controller
                                 ';
                                 return $action;
                             })
-
-                            ->rawColumns(['action','status'])
+                            ->rawColumns(['action', 'status'])
                             ->make(true)
-                            ;
+            ;
         }
 
         return view('admin.categories.index');
@@ -76,8 +78,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('type','Product')->get();
-        return view('admin.categories.addEdit',compact('categories'));
+        $categories = Category::where('type', 'Product')->get();
+        return view('admin.categories.addEdit', compact('categories'));
     }
 
     /**
@@ -87,20 +89,21 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(AddCategory $request)
-    {  
+    {
         $slug = Str::slug($request->name);
         $inputs = $request->all();
-        if($request->hasFile('feature_image')){
+        if ($request->hasFile('feature_image'))
+        {
             $path = Storage::disk('s3')->put('images/categories', $request->feature_image);
             $path = Storage::disk('s3')->url($path);
-            $inputs['feature_image']= $path; 
+            $inputs['feature_image'] = $path;
         }
-          
+
         $inputs['slug'] = $slug;
-       
+
         Category::create($inputs);
-      
-        return back()->with('success','Category addded successfully!');
+
+        return back()->with('success', 'Category addded successfully!');
     }
 
     /**
@@ -122,8 +125,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $categories = Category::where('id','!=',$category->id)->where('type','Product')->get();
-        return view('admin.categories.addEdit',compact('category','categories'));
+        $categories = Category::where('id', '!=', $category->id)->where('type', 'Product')->get();
+        return view('admin.categories.addEdit', compact('category', 'categories'));
     }
 
     /**
@@ -137,16 +140,16 @@ class CategoryController extends Controller
     {
         $slug = Str::slug($request->name);
         $inputs = $request->all();
-        if($request->hasFile('feature_image')){
+        if ($request->hasFile('feature_image'))
+        {
             $path = Storage::disk('s3')->put('images/categories', $request->feature_image);
             $path = Storage::disk('s3')->url($path);
-            $inputs['feature_image']= $path; 
+            $inputs['feature_image'] = $path;
         }
         $inputs['slug'] = $slug;
         $category->update($inputs);
-       
 
-        return back()->with('success','Category updated successfully!');
+        return back()->with('success', 'Category updated successfully!');
     }
 
     /**
@@ -158,7 +161,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return back()->with('success','Category deleted successfully!');
+        return back()->with('success', 'Category deleted successfully!');
     }
 
 }

@@ -8,9 +8,11 @@ use App\Models\Category;
 use App\Models\Setting;
 use App\Http\Resources\Category\CategoryResource;
 use App\Http\Requests\API\CategoriesRequest;
+
 class CategoryController extends Controller
 {
-   /**
+
+    /**
      * @OA\Get(
      *      path="/categories",
      *      operationId="Categories",
@@ -41,17 +43,15 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-  
     public function index(Request $request)
-    {   
-          $limit = $request->limit ? $request->limit : 20;
-          $categories = Category::with('childrens')->where(['parent'=>0,'type'=>'Product'])->paginate($limit);
-          
-          return  CategoryResource::collection($categories);
-        
-      
+    {
+        $limit = $request->limit ? $request->limit : 20;
+        $categories = Category::with('childrens')->where(['parent' => 0, 'type' => 'Product'])->paginate($limit);
+
+        return CategoryResource::collection($categories);
     }
-     /**
+
+    /**
      * @OA\Get(
      *      path="/categories/{id}",
      *      operationId="Categories By Id",
@@ -61,7 +61,7 @@ class CategoryController extends Controller
      *          {"Token": {}},
      *          },
      *     
-       *      @OA\Parameter(
+     *      @OA\Parameter(
      *         name="id",
      *         in="path",
      *         description="1",
@@ -91,14 +91,16 @@ class CategoryController extends Controller
      */
     public function category_by_id(Request $request)
     {
-      
-              $limit = $request->limit ? $request->limit : 20;
-              $categories = Category::with('childrens')->paginate($limit)->find($request->id);
-            if($categories){
-                  return  new CategoryResource($categories);
-            }else{
-                  return response()->json(['success' => false , 'message' => "Invailed Id"]);
-            }        
-        
+
+        $limit = $request->limit ? $request->limit : 20;
+        $categories = Category::with('childrens')->paginate($limit)->find($request->id);
+        if ($categories)
+        {
+            return new CategoryResource($categories);
+        } else
+        {
+            return response()->json(['success' => false, 'message' => "Invailed Id"]);
+        }
     }
+
 }

@@ -529,7 +529,6 @@ p.ingr b {
    margin-right: 0;
 }
 .nutrition_inner {
-   background-image: url(../../assets/images/nutrition-dog.jpg);
    background-size: cover;
    background-position: center center;
    background-repeat: no-repeat;
@@ -562,12 +561,13 @@ p.ingr b {
 .ingradients-inner {
    background: #f6f6f6;
 }
-.ingradients-inner p {
+.ingradients-inner .textdecoration {
    font-family: 'Gentona';
    font-size: 14px;
    line-height: 1.7;
    color: #706f6f;
    font-weight: 400;
+   max-width: 500px;
 }
 .centered_txt {
    display: flex;
@@ -644,11 +644,11 @@ p.ingr b {
    border-left: solid 10px transparent;
    border-top: solid 10px transparent;
 }
-.Large-red-btn {
+.Large_red_btn {
    background: #e3002b;
    color: #fff;
 }
-.Large-red-btn::after{
+.Large_red_btn::after{
    border-bottom: solid 10px #fff;
    border-right: solid 10px #fff;
 }
@@ -673,6 +673,9 @@ p.ingr b {
    margin-top: -4px;
 }
 .review-wrap {
+   padding-top: 30px;
+}
+.review-write {
    padding-top: 30px;
 }
 .light-box2 {
@@ -726,6 +729,9 @@ p.ingr b {
    grid-column-gap: 15px;
 }
 .review-wrap .Large-btn {
+   padding: 30px;
+}
+.review-write .Large-btn {
    padding: 30px;
 }
 .letest-review-title {
@@ -879,17 +885,17 @@ p.copy_p {
    .nutrition_inner {
        padding-top: 14%;
    }
-   .ingradients-inner p {
+   .ingradients-inner .textdecoration {
        line-height: 1.3;
    }
    .nutrition_wrap .container_max {
        max-width: 100%;
        padding: 0px;
    }
-   .ingradients-inner p {
+   .ingradients-inner .textdecoration {
        padding: 15px;
    }
-   .ingradients-inner p br {
+   .ingradients-inner .textdecoration br {
        display: none;
    }
 }
@@ -944,6 +950,9 @@ p.copy_p {
    .review-wrap .Large-btn {
        padding: 28px 10px;
    }
+    .review-write .Large-btn {
+       padding: 28px 10px;
+    }
    .reviews-img-section {
        margin-top: 20px;
        height: 170px;
@@ -1148,3 +1157,50 @@ body {
   opacity: 1;
 }
 /**************************swiper css end**************************/
+.nutrition_inner .col-md-12 img {width: 100%;}
+.question_form{display: flex; flex-direction: column; width: 100%;}
+.question_form .form_label{ width: 100%; padding: 10px;}
+.question_form .form_label label{font-size: 14px; width: 20%;}
+.question_form .form_label input,textarea{
+  font-size: 14px;
+  width: 75%;
+  padding: 8px;
+}
+.question_form .form_label button{
+  font-size: 14px;
+  width: 25%;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+}
+.review_form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.review_form .review_form_50{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.review_form .review_form_100{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.review_form .review_form_50 .review_form_label{
+  width: 28%;
+  margin-right:20px;
+}
+.review_form .review_form_100 .form_label{
+  width: 100%;
+}
+.review_form .review_form_100 .form_label lable,input,textarea{
+  width: 100%;
+  padding: 10px;
+}
+.review_btn_label{
+  width: 100%;
+  display: block;
+  margin: 15px 0px;
+}

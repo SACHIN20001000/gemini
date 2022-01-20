@@ -60,12 +60,12 @@
                     >
                       <label v-if="selectedlabel(variationAttribute.id) === true">
                         <input @click="variationUpdate($event,variationAttribute.id,varitationattr.id,varitationattr.type)" type="radio" name="size" vale="small" checked>
-                        <span class="selectedOption">{{variationAttribute.name}}</span>
+                        <span class="selectedOption">{{getProductIcon(variationAttribute.name).toUpperCase()}}</span>
                         <small>{{variationAttribute.name}}</small>
                       </label>
                       <label v-else>
                         <input @click="variationUpdate($event,variationAttribute.id,varitationattr.id,varitationattr.type)" type="radio" name="size" vale="small">
-                        <span>{{variationAttribute.name}}</span>
+                        <span>{{getProductIcon(variationAttribute.name).toUpperCase()}}</span>
                         <small>{{variationAttribute.name}}</small>
                       </label>
                     </li>
@@ -168,64 +168,42 @@
     <section class="nutrition_wrap">
       <div class="container_max">
         <div class="row nutrition_inner m-lr">
-          <div class="col-md-6"></div>
-          <div class="col-md-4">
-            <p>discover the blue buffalo difference</p>
-            <h2>a nutritional philosophy <br> inspired by the love <br>of a family pet</h2>
-          </div>
-          <div class="col-md-2"></div>
-        </div>
-      </div>
-    </section>
-    <section class="ingradients-wrap">
-      <div class="container_max">
-        <div class="row ingradients-inner m-lr">
-          <div class="col-md-4 ps-0">
-            <img :src="high_quality_ingradients">
-          </div>
-          <div class="col-md-8 centered_txt">
-            <p>
-              <b>Real Meat First:</b> Blue Buffalo foods always feature real meat as the first <br>ingredient. High-quality protein from real chicken helps your dog build and <br>
-              maintain healthy muscles. Plus they contain wholesome whole grains, <br>
-              garden veggies and fruit.
-            </p>
+          <div class="col-md-12">
+            <img :src="product.banner_image">
           </div>
         </div>
       </div>
     </section>
-    <section class="ingradients-wrap">
-      <div class="container_max">
-        <div class="row ingradients-inner m-lr">
-          <div class="col-md-8 centered_txt">
-            <p>
-              <b>For adult dogs:</b>
-              BLUE Life Protection Formula adult dog food <br>
-              contains essential proteins and carbohydrates to help meet the <br>
-              energy needs of adult dogs, and features omega 3 & 6 fatty acids <br>
-              to promote a shiny coat and healthy skin.
-            </p>
+    <section v-if="product.product_description_detail">
+      <div
+        class="ingradients-wrap"
+        v-for="(descbanner,dbkey) in product.product_description_detail"
+        :key="dbkey"
+      >
+        <div class="container_max">
+          <div
+            v-if="dbkey% 2 === 0 || dbkey==0"
+            class="row ingradients-inner m-lr"
+          >
+            <div class="col-md-4 ps-0">
+              <img :src="descbanner.image_path">
+            </div>
+            <div class="col-md-8 centered_txt">
+              <div class="textdecoration" v-html="descbanner.value"></div>
+            </div>
           </div>
-          <div class="col-md-4 text-end pe-0">
-            <img :src="high_quality_ingradients_02">
+          <div
+            class="row ingradients-inner m-lr"
+            v-else
+          >
+            <div class="col-md-8 centered_txt order-02">
+              <div class="textdecoration" v-html="descbanner.value"></div>
+            </div>
+            <div class="col-md-4 text-end pe-0">
+              <img :src="descbanner.image_path">
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
-    <section class="ingradients-wrap">
-      <div class="container_max">
-        <div class="row ingradients-inner m-lr">
-          <div class="col-md-4 ps-0">
-            <img :src="high_quality_ingradients">
-          </div>
-          <div class="col-md-8 centered_txt">
-            <p>
-              <b>With Lifesource Bits: </b>
-              This formula contains BLUE's exclusive LifeSource Bits - a
-              precise <br> blend of antioxidants, vitamins and minerals carefully selected by holistic veterinarians <br> and animal nutritionists, to support immune system health, life stage requirements, <br> and a healthy oxidative balance.<br>
-              A natural dog food: BLUE dry dog food is made with the finest natural ingredients <br> enhanced with vitamins and minerals. BLUE contains NO chicken (or poultry) <br> by-product meals, corn, wheat, soy, artificial flavors or preservatives.<br>
-              Contains one (1) 15 lb. Bag of BLUE Life Protection Formula Adult Dry Dog Food,<br> Chicken and Brown Rice
-            </p>
-          </div>
+
         </div>
       </div>
     </section>
@@ -234,15 +212,7 @@
         <div class="row">
           <div class="col-md-12">
             <h3 class="title-txt">About the brand</h3>
-            <p class="light-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vestibulum urna felis, eget auctor nisi placerat ac. Vestibulum porttitor faucibus condimentum. In hac habitasse platea dictumst. Praesent scelerisque sapien a eleifend gravida. In hac habitasse platea dictumst. Nam consequat sapien convallis nulla vestibulum, et ornare ipsum hendrerit. Praesent a ante vel mauris dictum lobortis et nec risus.
-            </p>
-            <p class="light-text">
-              Mauris eu orci pharetra, pulvinar odio non, accumsan erat. Vestibulum elementum pellentesque nulla, at interdum erat porttitor porta. Quisque pharetra tempor elementum. Nulla vel nulla eleifend justo vestibulum sollicitudin. Aenean sed lacinia metus. Vestibulum ac risus urna. Aliquam consequat elit sit amet lorem tristique porttitor. Cras vitae fermentum erat. Proin vulputate nisl dolor. Donec tempus at nisi eget venenatis. Curabitur a ligula a turpis gravida placerat. Duis nec lectus neque.
-            </p>
-            <p class="light-text">
-              Phasellus euismod sodales sagittis. Suspendisse eu vestibulum purus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nulla urna nisi, vehicula molestie efficitur in, lobortis varius ante. Donec et blandit tellus, vel venenatis odio. In hac habitasse platea dictumst. Nunc bibendum sed arcu in suscipit. Nunc tincidunt maximus mi, eu mattis odio tincidunt quis. In quis nisi a magna vulputate mattis.
-            </p>
+            <div v-html="product.about_description"></div>
           </div>
         </div>
       </div>
@@ -256,19 +226,36 @@
         </div>
         <div class="row m-lr question-inner02">
           <div class="col-sm-3 pe-0">
-            <p>Can I use a Bounce dryer sheet...</p>
-            <p>Can I use a Bounce dryer sheet...</p>
-            <p>Can I use a Bounce dryer sheet...</p>
-            <p>Can I use a Bounce dryer sheet...</p>
-            <p>Can I use a Bounce dryer sheet...</p>
+            <div v-if="!searchQuestion">
+              <p>Can I use a Bounce dryer sheet...</p>
+              <p>Can I use a Bounce dryer sheet...</p>
+              <p>Can I use a Bounce dryer sheet...</p>
+              <p>Can I use a Bounce dryer sheet...</p>
+              <p>Can I use a Bounce dryer sheet...</p>
+            </div>
+            <div v-else>
+              <input type="" name="search"><i class="fa fa-search" aria-hidden="true"></i>
+            </div>
           </div>
           <div class="col-sm-2 Large-btn-box">
-            <button class="Large-btn Large-red-btn">ask a question</button>
-            <button class="Large-btn">search question</button>
+            <button
+              class="Large-btn"
+              v-on:click="askQuestion = !askQuestion"
+              v-bind:class="{Large_red_btn: askQuestion}"
+            >
+              ask a question
+            </button>
+            <button
+              class="Large-btn"
+              v-on:click="searchQuestion = !searchQuestion"
+              v-bind:class="{Large_red_btn: searchQuestion}"
+            >
+              search question
+            </button>
             <button class="Large-btn">filter</button>
           </div>
           <div class="col-sm-7">
-            <div class="row">
+            <div class="row" v-if="!askQuestion">
               <div class="col-sm-3">
                 <div class="bm-wrap">
                   <img :src="bm_logo">
@@ -293,6 +280,27 @@
                       Large: 50 inches x60 inches<br>
                       Hope this helps!
                     </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" v-else>
+              <div class="col-sm-12">
+                <div class="question_form">
+                  <div class="form_label">
+                    <label>Name: </label>
+                    <input type="text" />
+                  </div>
+                  <div class="form_label">
+                    <label>Email: </label>
+                    <input type="text" />
+                  </div>
+                  <div class="form_label">
+                    <label>Question: </label>
+                    <textarea></textarea>
+                  </div>
+                  <div class="form_label">
+                    <button type="button">Submit Question</button>
                   </div>
                 </div>
               </div>
@@ -322,7 +330,13 @@
             </div>
           </div>
           <div class="col-sm-2 Large-btn-box">
-            <button class="Large-btn">Write a Review</button>
+            <button
+              class="Large-btn"
+              v-on:click="writeReview = !writeReview"
+              v-bind:class="{Large_red_btn: writeReview}"
+            >
+              Write a Review
+            </button>
             <button class="Large-btn">Review filter</button>
           </div>
           <div class="col-sm-7 reviews-img-section">
@@ -338,6 +352,43 @@
             <img :src="review_01">
             <img :src="review_01">
             <img :src="review_01">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="review-write" v-if="writeReview">
+      <div class="container_max">
+        <div class="row">
+          <div class="col-md-12 question-inner">
+            <div class="review_form">
+              <div class="review_form_50">
+                <div class="review_form_label">
+                  <label>Name: </label>
+                  <input type="text" />
+                </div>
+                <div class="review_form_label">
+                  <label>Email </label>
+                  <input type="text" />
+                </div>
+              </div>
+              <div class="review_form_100">
+                <div class="form_label">
+                  <label>Rating </label>
+                  <input type="text" />
+                </div>
+                <div class="form_label">
+                  <label>Title of Review </label>
+                  <input type="text" />
+                </div>
+                <div class="form_label">
+                  <label>How was your overall experience? </label>
+                  <textarea></textarea>
+                </div>
+              </div>
+              <div class="review_btn_label">
+                <button type="button">Submit Question</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -520,7 +571,10 @@ export default {
         slideToClickedSlide: true
       },
       swiperTop:'',
-      swiperThumbs:''
+      swiperThumbs:'',
+      askQuestion: false,
+      searchQuestion: false,
+      writeReview: false
     }
   },
   mounted(){
@@ -666,6 +720,16 @@ export default {
     },
     toggleSlide(i) {
       this.swiperTop.slideTo(i, 0,true)
+    },
+    getProductIcon(fullName) {
+      let arrName = fullName.split(" ")
+      if(arrName.length>1){
+        let iniName = fullName.charAt(0)
+        let iniLname = arrName[arrName.length - 1].charAt(0)
+        return iniName + iniLname
+      }else{
+        return fullName.charAt(0)+fullName.charAt(1)
+      }
     }
   }
 }

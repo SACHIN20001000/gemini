@@ -13,6 +13,7 @@ use App\Http\Requests\Admin\User\UpdateUserRequest;
 
 class UserController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -20,21 +21,24 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->ajax()) {
+        if ($request->ajax())
+        {
             $data = User::with('roles')->whereHas(
-                'roles', function($q){
-                    $q->where('name','!=','IotAdmin');
-                })
-            ->get();
-            
+                            'roles', function ($q)
+                            {
+                                $q->where('name', '!=', 'IotAdmin');
+                            })
+                    ->get();
+
             return Datatables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function($row){
-                        $action = '<span class="action-buttons">
-                        <a  href="'.route("users.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
+                            ->addIndexColumn()
+                            ->addColumn('action', function ($row)
+                            {
+                                $action = '<span class="action-buttons">
+                        <a  href="' . route("users.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                         </a>
                         
-                        <a href="'.route("users.destroy", $row).'"
+                        <a href="' . route("users.destroy", $row) . '"
                                 class="btn btn-sm btn-danger remove_us"
                                 title="Delete User"
                                 data-toggle="tooltip"
@@ -46,11 +50,11 @@ class UserController extends Controller
                                 <i class="las la-trash"></i>
                             </a>
                     ';
-                            return $action;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
-        }      
+                                return $action;
+                            })
+                            ->rawColumns(['action'])
+                            ->make(true);
+        }
         return view('admin.users.index');
     }
 
@@ -61,10 +65,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        
-        $role = Role::where('name','!=','IotAdmin')->get();
-       
-        return view('admin.users.addEdit',compact('role'));
+
+        $role = Role::where('name', '!=', 'IotAdmin')->get();
+
+        return view('admin.users.addEdit', compact('role'));
     }
 
     /**
@@ -75,14 +79,14 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-    
+
         $inputs = $request->all();
         $inputs['password'] = bcrypt($request->password);
-        $user= User::create($inputs);
+        $user = User::create($inputs);
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
         $role = Role::updateOrCreate(['name' => $request->role]);
         $user->assignRole($role);
-        return back()->with('success','User addded successfully!');
+        return back()->with('success', 'User addded successfully!');
     }
 
     /**
@@ -104,9 +108,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $users = User::where('id','!=',$user->id)->get();
-        $role = Role::where('name','!=','IotAdmin')->get();
-        return view('admin.users.addEdit',compact('user','users','role'));
+        $users = User::where('id', '!=', $user->id)->get();
+        $role = Role::where('name', '!=', 'IotAdmin')->get();
+        return view('admin.users.addEdit', compact('user', 'users', 'role'));
     }
 
     /**
@@ -118,16 +122,15 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-       
+
         $inputs = $request->all();
         $inputs['password'] = bcrypt($request->password);
         $user->update($inputs);
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
-         $role = Role::updateOrCreate(['name' => $request->role]);
-         $user->syncRoles([$role]);    
-       
+        $role = Role::updateOrCreate(['name' => $request->role]);
+        $user->syncRoles([$role]);
 
-        return back()->with('success','User updated successfully!');
+        return back()->with('success', 'User updated successfully!');
     }
 
     /**
@@ -139,6 +142,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return back()->with('success','User deleted successfully!');
+        return back()->with('success', 'User deleted successfully!');
     }
+
 }

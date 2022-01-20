@@ -99,6 +99,19 @@
 
                                 </div>
                             </div>
+                            <div class="row row-xs align-items-center mg-b-20" id="product_type">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Product Type</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <input type="radio" class="chownhub" {{ (isset($coupon) && $coupon->product_type  == 'chownhub') ? 'Checked' : '' }} name="product_type" value="chownhub">
+                                    <label for="age1">Chownhub Product</label><br>
+                                    <input type="radio" class="chownhub" {{ (isset($coupon) && $coupon->product_type  == 'product') ? 'Checked' : '' }} name="product_type" value="product">
+                                    <label for="age2">Product</label><br>
+
+
+                                </div>
+                            </div>
                             <div class="row row-xs align-items-center mg-b-20" id="category_id">
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">Category</label>
@@ -117,13 +130,15 @@
                                     <label class="form-label mg-b-0">Specific Product</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-
-                                   <select class="form-control select2" id="specific_product"  name="product_id"  >
-                                        <option value="">Select Below</option>
-                                        @foreach($products as $product)
-                                            <option value="{{$product->id}}"{{ (isset($coupon) && $coupon->product_id  == $product->id) ? 'Selected' : '' }}>{{$product->productName}}</option>
+                                <div style="overflow: auto;" >
+                                   <select class="form-control select2"   id="specific_product"  name="product_id[]"  >
+                                     @if(isset($products))
+                                     @foreach($products as $product)
+                                            <option value="{{$product->id}}" {{ (isset($coupon) && $coupon->product_id  == $product->id) ? 'Selected' : '' }}>{{$product->productName}}</option>
                                       @endforeach
-                                                                       </select>
+                                      @endif
+                                </select>
+                                </div>
                                 </div>
                             </div>
                             <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($coupon) ? 'Update' : 'Save' }}</button>
@@ -141,36 +156,85 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 <script>
+
     // hide show feild
   $(document).ready(function () {
-
+    $("select").select2();
     $("#product_id").hide();
      $("#category_id").hide();
+     $("#product_type").hide();
     $("#categories").click(function () {
         $("#product_id").hide();
+        $("#product_type").hide();
+
         $("#specific_product option").prop("selected", false);
+        $(".chownhub").prop('checked', false);;
+
         $("#category_id").show();
     });
     $("#products").click(function () {
-        $("#product_id").show();
+
         $("#specific_category option").prop("selected", false);
 
+
+        $("#product_type").show();
      $("#category_id").hide();
     });
+    $(".chownhub").click(function () {
+
+        $("#specific_category option").prop("selected", false);
+        $("#product_id").show();
+        $("#category_id").hide();
+        });
+
     $("#entire").click(function () {
         $("#product_id").hide();
+        $("#product_type").hide();
      $("#category_id").hide();
     });
     if($("#categories").is(":checked")) {
         $("#product_id").hide();
+        $("#product_type").hide();
+
      $("#category_id").show();
+
   }
   if($("#products").is(":checked")) {
     $("#product_id").show();
      $("#category_id").hide();
+     $("#product_type").show();
+
   }
-    });
+  //search
+
+
+// run ajax to get product
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+   });
+$('input:radio[name="product_type"]').change(function(){
+    $('#specific_product').find('option').remove();
+  var product_type=$(this).val();
+        $.ajax({
+                        url:"{{route('getProductByAjax')}}",
+                        method:"POST",
+                        data:{product_type:product_type},
+                        success:function(data){
+                            $.each(data.data, function (index, value) {
+                            $('#specific_product').append($('<option/>', {
+                                value: value.id,
+                                text : value.productName
+                            }));
+                            });
+                        }
+                });
+});
+
+});
 
     //generate code
 function generateRandomString(length) {

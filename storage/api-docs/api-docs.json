@@ -765,6 +765,162 @@
                 }
             }
         },
+        "/faqs/{product_id}": {
+            "get": {
+                "tags": [
+                    "Faqs"
+                ],
+                "summary": "Faqs",
+                "operationId": "faqs",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FaqResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/faq/store": {
+            "post": {
+                "tags": [
+                    "Faqs"
+                ],
+                "summary": "Faqs store",
+                "operationId": "faqs store",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FaqRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FaqResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/chowhub/faq/{product_id}": {
+            "get": {
+                "tags": [
+                    "Faqs"
+                ],
+                "summary": "chowhubFaq",
+                "operationId": "chowhubFaq",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FaqResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/chowhub/faq/store": {
+            "post": {
+                "tags": [
+                    "Faqs"
+                ],
+                "summary": "chowhubFaq store",
+                "operationId": "chowhubFaq store",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FaqRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FaqResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "/order": {
             "get": {
                 "tags": [
@@ -1203,6 +1359,75 @@
                         "Token": []
                     }
                 ]
+            }
+        },
+        "/rating": {
+            "get": {
+                "tags": [
+                    "Rating"
+                ],
+                "operationId": "rating",
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RatingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/rating/create": {
+            "post": {
+                "tags": [
+                    "Rating"
+                ],
+                "summary": "RatingRequest store",
+                "operationId": "Rating Request store",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RatingRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RatingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
             }
         },
         "/settings": {
@@ -1652,8 +1877,8 @@
                 "type": "object"
             },
             "CouponResponse": {
-                "title": "coupon Response",
-                "description": "coupon Response",
+                "title": "Coupon Response",
+                "description": "Coupon Response",
                 "properties": {
                     "data": {
                         "type": "object",
@@ -1668,6 +1893,48 @@
                             "expired_at": "2022-01-20",
                             "type": "percentage",
                             "apply_to": "specific_product"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "FaqRequest": {
+                "title": "Create new checkout",
+                "description": "Request for create a new checkout for a cart",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "name  for storing",
+                        "type": "string",
+                        "example": "johm"
+                    },
+                    "email": {
+                        "title": "email ",
+                        "description": "email for storing",
+                        "type": "string",
+                        "example": "john"
+                    },
+                    "question": {
+                        "title": "question",
+                        "description": "question for storing",
+                        "type": "string",
+                        "example": "john@gmail.com"
+                    }
+                },
+                "type": "object"
+            },
+            "FaqResponse": {
+                "title": "Faq Response",
+                "description": "Faq Response",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "example": {
+                            "id": 1,
+                            "title": "<p>dfsdfs</p>",
+                            "description": "<p>dsfsddf</p>",
+                            "published": 1,
+                            "created_at": "2022-01-20T10:01:36.000000Z"
                         }
                     }
                 },
@@ -1780,6 +2047,67 @@
                             "created": "Dec 10, 2021 11:34:05",
                             "updated_at": "2021-12-10T11:34:05.000000Z",
                             "childrens": "[]"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "RatingRequest": {
+                "title": "Create new checkout",
+                "description": "Request for create a new checkout for a cart",
+                "properties": {
+                    "product_id": {
+                        "title": "product_id",
+                        "description": "product_id  for storing",
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "rating": {
+                        "title": "rating ",
+                        "description": "rating for storing",
+                        "type": "string",
+                        "example": "123"
+                    },
+                    "description": {
+                        "title": "description",
+                        "description": "description for storing",
+                        "type": "string",
+                        "example": "description"
+                    },
+                    "email": {
+                        "title": "email ",
+                        "description": "email  for storing",
+                        "type": "string",
+                        "example": "user@gmail.com"
+                    }
+                },
+                "type": "object"
+            },
+            "RatingResponse": {
+                "title": "RatingResponse",
+                "description": "RatingResponse",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "example": {
+                            "id": 1,
+                            "title": null,
+                            "description": "dfgdfdsfsdfsdf",
+                            "user": {
+                                "id": 6,
+                                "name": "edf",
+                                "email": "admin@fdgdfgfdgfdg.com",
+                                "address": null,
+                                "zip_code": null,
+                                "phone": null,
+                                "city": null,
+                                "state": null,
+                                "country": null,
+                                "created_at": "Jan 20, 2022 10:55:41"
+                            },
+                            "product": null,
+                            "published": null,
+                            "created_at": "2022-01-20T12:45:56.000000Z"
                         }
                     }
                 },

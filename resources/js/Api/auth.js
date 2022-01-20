@@ -12,6 +12,7 @@ formData.append('client_secret', '8BSSg7qMYw2NAJaiMhQOCYxGlFSs141SLfPRLU')
 HTTP.interceptors.request.use((config) => {
     if (localStorage.getItem("userauth") !== null) {
       config.headers.Authorization = `Bearer ${localStorage.getItem("userauth")}`
+      config.headers.Token = `${localStorage.getItem('token')}`
     }else if (localStorage.getItem('token') != null) {
       config.headers.Token = `${localStorage.getItem('token')}`
     } else {

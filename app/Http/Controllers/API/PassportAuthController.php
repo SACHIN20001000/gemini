@@ -14,16 +14,15 @@ use Illuminate\Support\Str;
 use App\Http\Resources\Users\TokenResource;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+
 class PassportAuthController extends AppBaseController
 {
-    
     /**
      * Registration
      */
-
     /**
      * @OA\Post(
-     ** path="/register",
+     * * path="/register",
      *   tags={"Users"},
      *   summary="Register new user",
      *   operationId="register",
@@ -45,35 +44,34 @@ class PassportAuthController extends AppBaseController
      *    @OA\Response(
      *      response=500,ref="#/components/schemas/Forbidden"
      *    )
-     *)
-     **/
+     * )
+     * */
+
     /**
      * Register api
      *
      * @return \Illuminate\Http\Response
      */
-
     public function register(RegisterUserRequest $request)
     {
-            $user = User::create([
-           
-            'email' => $request->email,
-            'password' => bcrypt($request->password)
+        $user = User::create([
+                    'email' => $request->email,
+                    'password' => bcrypt($request->password)
         ]);
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
-         $role = Role::updateOrCreate(['name' => 'Customer']);
-         $user->assignRole($role);
+        $role = Role::updateOrCreate(['name' => 'Customer']);
+        $user->assignRole($role);
         $token = $user->createToken('LaravelAuthApp')->accessToken;
- 
+
         $user->token = $token;
         return new TokenResource($user);
     }
- 
+
     /**
      * Login
      */
 
-     /**
+    /**
      * @OA\Post(
      *     path="/login",
      *     operationId="login",
@@ -110,37 +108,41 @@ class PassportAuthController extends AppBaseController
             'email' => $request->email,
             'password' => $request->password
         ];
- 
-        if (auth()->attempt($data)) {
+
+        if (auth()->attempt($data))
+        {
             $token = auth()->user()->createToken('LaravelAuthApp')->accessToken;
             $user = auth()->user();
             $user->token = $token;
             return new TokenResource($user);
-        } else {
-            $data= User::Where('email',$request->email)->first();
-            if(!$data){
-                return response()->json(['success' => false , 'message' => "User Doesn't Exists. Please Sign Up"],400);
-            }else{
-                return response()->json(['success' => false , 'message' => "Password is incorrect. Try Again!"],400);
+        } else
+        {
+            $data = User::Where('email', $request->email)->first();
+            if (!$data)
+            {
+                return response()->json(['success' => false, 'message' => "User Doesn't Exists. Please Sign Up"], 400);
+            } else
+            {
+                return response()->json(['success' => false, 'message' => "Password is incorrect. Try Again!"], 400);
             }
-          
         }
     }
 
-    public function logout(Request $request){
-    
+    public function logout(Request $request)
+    {
+
         Auth::user()->token()->revoke();
-       
-         return response()->json([
-             'success' => false,'message' => 'Successfully logged out'
-         ]);
-    }  
-    
-       /**
+
+        return response()->json([
+                    'success' => false, 'message' => 'Successfully logged out'
+        ]);
+    }
+
+    /**
      * Login
      */
 
-     /**
+    /**
      * @OA\Post(
      *     path="/oauth/token",
      *     operationId="token",
@@ -171,20 +173,21 @@ class PassportAuthController extends AppBaseController
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function oauth_token(TokenRequest $request){
+    public function oauth_token(TokenRequest $request)
+    {
 
 
         $client_secret = env('API_ACCESS_CLIENT_SECRET');
         $client_id = env('API_ACCESS_CLIENT_ID');
 
-        if($request->client_id !=$client_id)
+        if ($request->client_id != $client_id)
         {
-            return response()->json(['success' => false , 'message' => "Invalid client Id"],400);
+            return response()->json(['success' => false, 'message' => "Invalid client Id"], 400);
         }
 
-        if($request->client_secret !=$client_secret)
+        if ($request->client_secret != $client_secret)
         {
-            return response()->json(['success' => false , 'message' => "Invalid client secret"],400);
+            return response()->json(['success' => false, 'message' => "Invalid client secret"], 400);
         }
 
 
@@ -193,25 +196,25 @@ class PassportAuthController extends AppBaseController
         $token = $setting->oauth_token ?? '';
         $currentDate = date('Y-m-d H:i:s');
 
-        if(empty($token) ){
-            $setting->oauth_token =Str::random(70);
+        if (empty($token))
+        {
+            $setting->oauth_token = Str::random(70);
             $setting->save();
         }
-        
 
 
-        $untillDate=  date('Y-m-d h:m:s', strtotime($updated_at. ' + 1 days'));
 
-            if($currentDate > $untillDate)
-            {
-                $setting->oauth_token =Str::random(70);
-                $setting->save();
-            }
-        
+        $untillDate = date('Y-m-d h:m:s', strtotime($updated_at . ' + 1 days'));
+
+        if ($currentDate > $untillDate)
+        {
+            $setting->oauth_token = Str::random(70);
+            $setting->save();
+        }
+
         return response()->json([
-            'success' => true,'Token' => $setting->oauth_token
+                    'success' => true, 'Token' => $setting->oauth_token
         ]);
-
     }
 
 }
