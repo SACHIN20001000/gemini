@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shipping extends Model
 {
+
     use HasFactory;
+
     protected $fillable = [
         'user_id',
         'address',
@@ -19,7 +21,6 @@ class Shipping extends Model
         'sh_zip_code',
         'sh_phone',
         'sh_email',
-
-
     ];
+
 }

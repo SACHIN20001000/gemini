@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\Coupon;
 use App\Http\Resources\Coupon\CouponResource;
 use App\Http\Requests\API\CouponRequest;
+
 class CouponController extends Controller
 {
-       /**
+
+    /**
      * @OA\post(
      *      path="/coupon",
      *      operationId="coupon",
@@ -37,27 +39,23 @@ class CouponController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-
     public function index(CouponRequest $request)
     {
-        $coupon = Coupon::where('code',$request->name)->first();
-        $currentdate=date('Y-m-d');
-        if(!empty($coupon)){
-            if($coupon->count > 0 && $coupon->expired_at >  $currentdate ){
-                return  new CouponResource($coupon);
-            }else{
-                return response()->json(['success' => false , 'message' => "Coupon is expired"],400);
-
+        $coupon = Coupon::where('code', $request->name)->first();
+        $currentdate = date('Y-m-d');
+        if (!empty($coupon))
+        {
+            if ($coupon->count > 0 && $coupon->expired_at > $currentdate)
+            {
+                return new CouponResource($coupon);
+            } else
+            {
+                return response()->json(['success' => false, 'message' => "Coupon is expired"], 400);
             }
-        }else{
-            return response()->json(['success' => false , 'message' => "Coupon is not valid"],400);
-
+        } else
+        {
+            return response()->json(['success' => false, 'message' => "Coupon is not valid"], 400);
         }
-
-
-
     }
-
-    
 
 }

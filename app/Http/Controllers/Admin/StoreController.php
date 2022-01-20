@@ -9,6 +9,7 @@ use DataTables;
 use App\Http\Requests\Admin\Stores\AddStores;
 use App\Http\Requests\Admin\Stores\UpdateStores;
 use Storage;
+
 class StoreController extends Controller
 {
 
@@ -19,21 +20,21 @@ class StoreController extends Controller
      */
     public function index(Request $request)
     {
-        
+
         if ($request->ajax())
         {
             $data = Store::all();
 
             return Datatables::of($data)
-            ->addIndexColumn()
-                    ->addColumn('action', function ($row)
+                            ->addIndexColumn()
+                            ->addColumn('action', function ($row)
                             {
-                                
+
                                 $action = '<span class="action-buttons">
-                                    <a  href="'.route("stores.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
+                                    <a  href="' . route("stores.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
                                     
-                                    <a href="'.route("stores.destroy", $row).'"
+                                    <a href="' . route("stores.destroy", $row) . '"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"
                                             data-toggle="tooltip"
@@ -47,10 +48,9 @@ class StoreController extends Controller
                                 ';
                                 return $action;
                             })
-
                             ->rawColumns(['action'])
                             ->make(true)
-                            ;
+            ;
         }
 
         return view('admin.stores.index');
@@ -63,7 +63,7 @@ class StoreController extends Controller
      */
     public function create()
     {
-        
+
         return view('admin.stores.addEdit');
     }
 
@@ -74,14 +74,14 @@ class StoreController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(AddStores $request)
-    {  
-        
-       
-            $Store = new Store;
-            $Store->name = $request->name;
-            $Store->save();
-            
-            return back()->with('success','Store addded successfully!');
+    {
+
+
+        $Store = new Store;
+        $Store->name = $request->name;
+        $Store->save();
+
+        return back()->with('success', 'Store addded successfully!');
     }
 
     /**
@@ -103,10 +103,10 @@ class StoreController extends Controller
      */
     public function edit($id)
     {
-        $store= Store::find($id);
-      
-        $stores = Store::where('id','!=',$id)->get();
-        return view('admin.stores.addEdit',compact('stores','store'));
+        $store = Store::find($id);
+
+        $stores = Store::where('id', '!=', $id)->get();
+        return view('admin.stores.addEdit', compact('stores', 'store'));
     }
 
     /**
@@ -118,12 +118,12 @@ class StoreController extends Controller
      */
     public function update(UpdateStores $request, $id)
     {
-      
+
         $Store = Store::find($id);
         $Store->name = $request->name;
         $Store->save();
-     
-        return back()->with('success','Store updated successfully!');
+
+        return back()->with('success', 'Store updated successfully!');
     }
 
     /**
@@ -135,9 +135,8 @@ class StoreController extends Controller
     public function destroy($id)
     {
         Store::find($id)->delete();
-      
-        return back()->with('success','Store deleted successfully!');
+
+        return back()->with('success', 'Store deleted successfully!');
     }
 
 }
-

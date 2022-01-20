@@ -21,7 +21,7 @@
                     <div class="main-content-label mg-b-5">
                         {{isset($attribute) ? 'Update # '.$attribute->id : 'Add New' }}
                     </div>
-                    
+
 
                     <!--  start  --> 
                     <form  id="attribute-add-edit" action="{{isset($attribute) ? route('attributes.update',$attribute->id) : route('attributes.store')}}" method="POST" enctype="multipart/form-data">
@@ -40,9 +40,9 @@
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">Value</label>
                                 </div>
-                            <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
                                     <input class="form-control" name="value"  placeholder="Enter your value" type="text" value="{{isset($attribute) ? $attribute->variationAttributeName->name : '' }}">
-                                                                       
+
                                 </div>
                             </div>
                             <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($attribute) ? 'Update' : 'Save' }}</button>

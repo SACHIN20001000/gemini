@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Store;
 use App\Http\Resources\Stores\StoreResource;
+
 class StoreController extends Controller
 {
-     /**
+
+    /**
      * @OA\Get(
      *      path="/stores",
      *      operationId="stores",
@@ -36,21 +38,20 @@ class StoreController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-  
     public function index(Request $request)
     {
         $stores = Store::orderBy('id', 'asc')->get();
-        return  StoreResource::collection($stores);
-
+        return StoreResource::collection($stores);
     }
-/**
+
+    /**
      * @OA\Get(
      *      path="/stores/{store}",
      *      operationId="store By Id",
      * summary="store by id",
      *      tags={"Stores"},
      *     
-       *      @OA\Parameter(
+     *      @OA\Parameter(
      *         name="id",
      *         in="path",
      *         description="1",
@@ -80,7 +81,7 @@ class StoreController extends Controller
      */
     public function show(Store $store)
     {
-        return  new StoreResource($store);
-
+        return new StoreResource($store);
     }
+
 }

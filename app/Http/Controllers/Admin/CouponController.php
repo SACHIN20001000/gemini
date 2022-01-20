@@ -12,6 +12,7 @@ use DataTables;
 use App\Http\Requests\Admin\Coupon\AddCoupon;
 use App\Http\Requests\Admin\Coupon\UpdateCoupon;
 use Storage;
+
 class CouponController extends Controller
 {
 
@@ -28,15 +29,15 @@ class CouponController extends Controller
             $data = Coupon::all();
 
             return Datatables::of($data)
-            ->addIndexColumn()
-                    ->addColumn('action', function ($row)
+                            ->addIndexColumn()
+                            ->addColumn('action', function ($row)
                             {
 
                                 $action = '<span class="action-buttons">
-                                    <a  href="'.route("coupons.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
+                                    <a  href="' . route("coupons.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
 
-                                    <a href="'.route("coupons.destroy", $row).'"
+                                    <a href="' . route("coupons.destroy", $row) . '"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"
                                             data-toggle="tooltip"
@@ -50,10 +51,9 @@ class CouponController extends Controller
                                 ';
                                 return $action;
                             })
-
                             ->rawColumns(['action'])
                             ->make(true)
-                            ;
+            ;
         }
 
         return view('admin.coupons.index');
@@ -66,10 +66,10 @@ class CouponController extends Controller
      */
     public function create()
     {
-        $categories = Category::select('name','id')->where(['parent'=>0,'type'=>'Product'])->get();
-        $products = Product::select('productName','id')->get();
+        $categories = Category::select('name', 'id')->where(['parent' => 0, 'type' => 'Product'])->get();
+        $products = Product::select('productName', 'id')->get();
 
-        return view('admin.coupons.addEdit',compact('categories','products'));
+        return view('admin.coupons.addEdit', compact('categories', 'products'));
     }
 
     /**
@@ -83,14 +83,15 @@ class CouponController extends Controller
 
 
         $inputs = $request->all();
-        foreach ($inputs['product_id'] as $key => $value) {
+        foreach ($inputs['product_id'] as $key => $value)
+        {
 
-        $inputs['product_id']=$value;
-        Coupon::create($inputs);
+            $inputs['product_id'] = $value;
+            Coupon::create($inputs);
         }
 
 
-            return back()->with('success','Coupon addded successfully!');
+        return back()->with('success', 'Coupon addded successfully!');
     }
 
     /**
@@ -112,18 +113,20 @@ class CouponController extends Controller
      */
     public function edit($id)
     {
-        $coupon= Coupon::find($id);
-        $categories = Category::with('childrens')->where(['parent'=>0,'type'=>'Product'])->get();
+        $coupon = Coupon::find($id);
+        $categories = Category::with('childrens')->where(['parent' => 0, 'type' => 'Product'])->get();
 
-        $coupons = Coupon::where('id','!=',$id)->get();
+        $coupons = Coupon::where('id', '!=', $id)->get();
 
-        if($coupon['product_type'] == 'product'){
-            $products = Product::select('productName','id')->get();
-        }else{
-            $products = ChownhubProduct::select('productName','id')->get();
+        if ($coupon['product_type'] == 'product')
+        {
+            $products = Product::select('productName', 'id')->get();
+        } else
+        {
+            $products = ChownhubProduct::select('productName', 'id')->get();
         }
 
-        return view('admin.coupons.addEdit',compact('coupons','coupon','categories','products'));
+        return view('admin.coupons.addEdit', compact('coupons', 'coupon', 'categories', 'products'));
     }
 
     /**
@@ -133,16 +136,17 @@ class CouponController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCoupon $request,Coupon $coupon)
+    public function update(UpdateCoupon $request, Coupon $coupon)
     {
 
         $inputs = $request->all();
-        foreach ($inputs['product_id'] as $key => $value) {
+        foreach ($inputs['product_id'] as $key => $value)
+        {
 
-        $inputs['product_id']=$value;
-        $coupon->update($inputs);
+            $inputs['product_id'] = $value;
+            $coupon->update($inputs);
         }
-        return back()->with('success','Coupon updated successfully!');
+        return back()->with('success', 'Coupon updated successfully!');
     }
 
     /**
@@ -155,12 +159,10 @@ class CouponController extends Controller
     {
         $coupon->delete();
 
-        return back()->with('success','Coupon deleted successfully!');
+        return back()->with('success', 'Coupon deleted successfully!');
     }
 
-
-
-        /**
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -168,24 +170,21 @@ class CouponController extends Controller
      */
     public function getProductByAjax(Request $request)
     {
-  
+
       if($request->product_type == 'product'){
             $product=Product::Select('id','productName')->get();
             return Response()->json([
-                "success" => true,
-                "data" => $product,
-
+                        "success" => true,
+                        "data" => $product,
             ]);
-      }else{
-        $product=ChowhubProduct::Select('id','productName')->get();
-        return Response()->json([
-            "success" => true,
-            "data" => $product,
-
-        ]);
-      }
-
+        } else
+        {
+            $product = ChowhubProduct::Select('id', 'productName')->get();
+            return Response()->json([
+                        "success" => true,
+                        "data" => $product,
+            ]);
+        }
     }
 
 }
-

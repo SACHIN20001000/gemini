@@ -20,7 +20,7 @@
                     <div class="main-content-label mg-b-5">
                         {{isset($brand) ? 'Update # '.$brand->id : 'Add New' }}
                     </div>
-                    
+
 
                     <!--  start  --> 
                     <form  id="brand-add-edit" action="{{isset($brand) ? route('brands.update',$brand->id) : route('brands.store')}}" method="POST" enctype="multipart/form-data">
@@ -39,7 +39,7 @@
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">Logo</label>
                                 </div>
-                            <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
                                     <input class="form-control" name="logo"  type="file">
                                     @if(!empty($brand->logo))
                                     <a href="{{$brand->logo}}" target="_blank"><img src="{{$brand->logo}}"  height="50" width="50"></a>

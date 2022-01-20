@@ -9,6 +9,7 @@ use DataTables;
 use App\Http\Requests\Admin\Setting\Addsetting;
 use App\Http\Requests\Admin\Setting\UpdateSetting;
 use Storage;
+
 class SettingController extends Controller
 {
 
@@ -20,8 +21,7 @@ class SettingController extends Controller
     public function index(Request $request)
     {
         $setting = Setting::orderBy('id', 'asc')->first();
-        return view('admin.settings.addEdit',compact('setting'));
-       
+        return view('admin.settings.addEdit', compact('setting'));
     }
 
     /**
@@ -31,7 +31,7 @@ class SettingController extends Controller
      */
     public function create()
     {
-  
+
         return view('admin.settings.addEdit');
     }
 
@@ -42,17 +42,18 @@ class SettingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Addsetting $request)
-    {  
-        
+    {
+
         $inputs = $request->all();
-        if($request->hasFile('logo')){
+        if ($request->hasFile('logo'))
+        {
             $path = Storage::disk('s3')->put('images', $request->logo);
             $path = Storage::disk('s3')->url($path);
-            $inputs['logo']= $path; 
+            $inputs['logo'] = $path;
         }
         Setting::create($inputs);
-       
-        return back()->with('success','Setting addded successfully!');
+
+        return back()->with('success', 'Setting addded successfully!');
     }
 
     /**
@@ -75,7 +76,7 @@ class SettingController extends Controller
     public function edit($id)
     {
         $setting = Setting::find(1);
-        return view('admin.settings.addEdit',compact('setting'));
+        return view('admin.settings.addEdit', compact('setting'));
     }
 
     /**
@@ -87,15 +88,16 @@ class SettingController extends Controller
      */
     public function update(UpdateSetting $request, Setting $Setting)
     {
-       
+
         $inputs = $request->all();
-        if($request->hasFile('logo')){
+        if ($request->hasFile('logo'))
+        {
             $path = Storage::disk('s3')->put('images', $request->logo);
             $path = Storage::disk('s3')->url($path);
-            $inputs['logo']= $path; 
+            $inputs['logo'] = $path;
         }
         $Setting->update($inputs);
-        return back()->with('success','Setting updated successfully!');
+        return back()->with('success', 'Setting updated successfully!');
     }
 
     /**
@@ -107,7 +109,7 @@ class SettingController extends Controller
     public function destroy(Setting $Setting)
     {
         $Setting->delete();
-        return back()->with('success','Setting deleted successfully!');
+        return back()->with('success', 'Setting deleted successfully!');
     }
 
 }

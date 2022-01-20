@@ -7,22 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductSku extends Model
 {
+
     protected $table = 'products_sku';
+
     use HasFactory;
+
     protected $casts = [
         'created_at' => 'datetime:d-m-Y',
-        'updated_at' => 'datetime:d-m-Y', 
+        'updated_at' => 'datetime:d-m-Y',
+    ];
+    protected $fillable = [
+        'product_id', 'product_variation', 'sku', 'qty'
     ];
 
-    protected $fillable = [
-        'product_id','product_variation','sku','qty'
-    ];
     public function products()
     {
-        return $this->belongsTo(Product::class,'product_id');
+        return $this->belongsTo(Product::class, 'product_id');
     }
+
     public function productVariation()
     {
-        return $this->belongsTo(ProductVariation::class,'product_variation');
+        return $this->belongsTo(ProductVariation::class, 'product_variation');
     }
+
 }

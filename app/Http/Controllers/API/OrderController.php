@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Cart;
@@ -11,9 +12,9 @@ use App\Http\Requests\API\OrderRequest;
 use App\Http\Resources\Orders\OrderResource;
 use Illuminate\Support\Facades\Validator;
 
-
 class OrderController extends Controller
 {
+
     /**
      * @OA\Get(
      *      path="/order",
@@ -44,19 +45,17 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-
     public function index(Request $request)
     {
         $user = auth('api')->user();
         $limit = $request->limit ? $request->limit : 20;
-        $orders = Order::where('user_id',$user->id)->with(['shipping','user','orderItems'])->paginate($limit);
+        $orders = Order::where('user_id', $user->id)->with(['shipping', 'user', 'orderItems'])->paginate($limit);
 
         //dd($orders);
         return OrderResource::collection($orders);
     }
 
-
-   /**
+    /**
      * @OA\Get(
      *      path="/order/{order}",
      *      operationId="get order by id",
@@ -92,21 +91,17 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-
     public function show(Order $order)
     {
-        if(!empty($order)){
-             return new OrderResource($order);
-         }else{
+        if (!empty($order))
+        {
+            return new OrderResource($order);
+        } else
+        {
             return response()->json([
-                'message' => 'The order you\'re trying to view doesn\'t seem to be yours, hmmmm.',
-            ], 403);
-         }
-
+                        'message' => 'The order you\'re trying to view doesn\'t seem to be yours, hmmmm.',
+                            ], 403);
+        }
     }
-
-
-
-    
 
 }
