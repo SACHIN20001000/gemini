@@ -48,31 +48,92 @@
           </div>
           <div class="col-9 br_1 ps-5">
             <div class="tab-content st_tab_content" id="profil_detail">
-              <div class="tab-pane fade show active" id="st_info">
+              <div
+                class="tab-pane fade show active"
+                id="st_info"
+                v-if="accountDetails"
+              >
                 <div class="form-group">
                   <label class="lb_small">Name</label>
-                  <div class="inp_edt" v-if="nameData==1">
-                    {{accountDetails.name}} <i @click="displayField('name')"><img :src="input_edit"></i>
+                  <div class="inp_edt" v-if="nameData.name==1">
+                    {{shippingFrom.name}} <i @click="displayField('name')"><img :src="input_edit"></i>
                   </div>
                   <div class="inp_edt" v-else>
-                    <input type="text" v-model="name"> <i class="fa fa-check" @click="displayField('name')" aria-hidden="true"></i>
+                    <input type="text" v-model="shippingFrom.name"> <i class="fa fa-check" @click="displayField('name')" aria-hidden="true"></i>
+                    <span
+                      v-if="shippingFrom.errors().has('name')"
+                      v-text="shippingFrom.errors().get('name')"
+                      class="errorMsg">
+                    </span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="lb_small">E-mail</label>
-                  <div class="inp_edt">
-                    {{accountDetails.email}} <i><img :src="input_edit"></i>
+                  <div class="inp_edt" v-if="nameData.email==1">
+                    {{shippingFrom.email}} <i @click="displayField('email')"><img :src="input_edit"></i>
+                  </div>
+                  <div class="inp_edt" v-else>
+                    <input type="text" v-model="shippingFrom.email"> <i class="fa fa-check" @click="displayField('email')" aria-hidden="true"></i>
+                    <span
+                      v-if="shippingFrom.errors().has('email')"
+                      v-text="shippingFrom.errors().get('email')"
+                      class="errorMsg">
+                    </span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="lb_small">Password</label>
-                  <div class="inp_edt mb-0">
-                    ********** <i><img :src="input_edit"></i>
+                  <div class="inp_edt mb-0" v-if="nameData.password==1">
+                    ********** <i @click="displayField('password')"><img :src="input_edit"></i>
+                  </div>
+                  <div class="inp_edt mb-0" v-else>
+                    <input type="text" v-model="shippingFrom.password"> <i class="fa fa-check" @click="displayField('password')" aria-hidden="true"></i>
                   </div>
                 </div>
               </div>
               <div class="tab-pane fade" id="st_shipping">
-                1
+                <form class="add-form">
+                  <input class="add-form-field" type="text" placeholder="Address" v-model="shippingFrom.address">
+                  <span
+                    v-if="shippingFrom.errors().has('address')"
+                    v-text="shippingFrom.errors().get('address')"
+                    class="errorMsg">
+                  </span>
+                  <input class="add-form-field" type="text" placeholder="Zip_code" v-model="shippingFrom.zip_code">
+                  <span
+                    v-if="shippingFrom.errors().has('zip_code')"
+                    v-text="shippingFrom.errors().get('zip_code')"
+                    class="errorMsg">
+                  </span>
+                  <input class="add-form-field" type="text" placeholder="Phone" v-model="shippingFrom.phone">
+                  <span
+                    v-if="shippingFrom.errors().has('phone')"
+                    v-text="shippingFrom.errors().get('phone')"
+                    class="errorMsg">
+                  </span>
+                  <input class="add-form-field" type="text" placeholder="City" v-model="shippingFrom.city">
+                  <span
+                    v-if="shippingFrom.errors().has('city')"
+                    v-text="shippingFrom.errors().get('city')"
+                    class="errorMsg">
+                  </span>
+                  <input class="add-form-field" type="text" placeholder="State" v-model="shippingFrom.state">
+                  <span
+                    v-if="shippingFrom.errors().has('state')"
+                    v-text="shippingFrom.errors().get('state')"
+                    class="errorMsg">
+                  </span>
+                  <input class="add-form-field" type="text" placeholder="Country" v-model="shippingFrom.country">
+                  <span
+                    v-if="shippingFrom.errors().has('country')"
+                    v-text="shippingFrom.errors().get('country')"
+                    class="errorMsg">
+                  </span>
+                  <button type="button" class="update-btn" @click="updateShipping">Update</button>
+                  <!--<a class="add-icon" href="#">+</a>-->
+                </form>
+                <p class="successMsg">{{shippingMsg}}</p>
+                <p class="errorMsg">{{errorMsg}}</p>
               </div>
               <div class="tab-pane fade" id="st_payment">
                 2
@@ -129,66 +190,40 @@
             </div>
             <div class="tab-content st_order_content">
               <div class="tab-pane fade show active" id="or_latest">
-                <div class="tb_responsive">
-                  <table class="produc_table">
+                <div class="tb_responsive" v-if="Orders">
+                  <table
+                    class="produc_table"
+                    v-for="(orderslist, olkey) in Orders"
+                    :key="olkey"
+                  >
                     <thead>
                       <tr>
-                        <th class="data_head" width=25%><span class="tb_sm">Order Date</span> <b>Sept, 14 2021</b></th>
-                        <th class="data_head" width=25%>Order Number #20210900001</th>
-                        <th width=width=25%></th>
-                        <th width=25%></th>
+                        <th class="data_head" width=25%><span class="tb_sm">Order Date</span> <b>{{orderslist.created_at}}</b></th>
+                        <th class="data_head" width=25%>Order Number #{{orderslist.id}}</th>
+                        <th width=25%>Transaction Id:{{orderslist.transaction_id}}</th>
+                        <th width=25%>Status: {{orderslist.status}}</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
+                    <tbody v-if="orderslist.orderItems">
+                      <tr
+                        v-for="(orderItems, oikey) in orderslist.orderItems"
+                        :key="oikey"
+                      >
                         <td class="pt_img">
-                          <a href="#"><img :src="tp1"></a>
+                          <a href="#">{{orderItems.product_id}}</a>
                         </td>
                         <td class="t_size">
-                          Pet Parents®
-                          Dog Diapers
-                          <span>Princess | Size: S</span>
+                          {{orderItems.product_id}}
+                          <span>Princess | Size: {{orderItems.product_id}}</span>
                         </td>
                         <td class="t_price">
                           <span>Item Price:</span>
-                          S 25.00
+                          ${{orderItems.total_price}}
                         </td>
                         <td class="t_btn">
                           <button>
                           Re-Order
                           </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="pt_img">
-                          <a href="#"><img :src="tp2"></a>
-                        </td>
-                        <td class="t_size">
-                          Pet Parents®
-                          Dog Diapers
-                          <span>Princess | Size: S</span>
-                        </td>
-                        <td class="t_price">
-                          <span>Item Price:</span>
-                          S 25.00
-                        </td>
-                        <td class="t_btn">
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="pt_img">
-                          <a href="#"><img :src="tp3"></a>
-                        </td>
-                        <td class="t_size">
-                          Pet Parents®
-                          Dog Diapers
-                          <span>Princess | Size: S</span>
-                        </td>
-                        <td class="t_price">
-                          <span>Item Price:</span>
-                          S 25.00
-                        </td>
-                        <td class="t_btn">
                         </td>
                       </tr>
                     </tbody>
@@ -215,6 +250,7 @@
 <script>
 import {mapActions,mapGetters} from "vuex"
 import form from 'vuejs-form'
+import HTTP from './../../Api/auth'
 
 import tp3 from "../../assets/images/tp3.png"
 import tp2 from "../../assets/images/tp2.png"
@@ -227,44 +263,95 @@ import ship from "../../assets/images/ship.png"
 
 export default {
   name:"Profile",
-  data: function () {
-    return {
-      tp3:tp3,
-      tp2:tp2,
-      tp1:tp1,
-      dog2:dog2,
-      dog1:dog1,
-      input_edit:input_edit,
-      store_profile:store_profile,
-      ship:ship,
-      errorMessage:'',
-      nameData:1,
-      name:''
-    }
-  },
+  data: () => ({
+    tp3:tp3,
+    tp2:tp2,
+    tp1:tp1,
+    dog2:dog2,
+    dog1:dog1,
+    input_edit:input_edit,
+    store_profile:store_profile,
+    ship:ship,
+    errorMessage:'',
+    nameData:{'name':1,'email':1,'password':1},
+    errorMsg:'',
+    shippingMsg:'',
+    shippingFrom: form({
+      name: '',
+      email: '',
+      password: '',
+      zip_code: '',
+      phone: '',
+      city: '',
+      state: '',
+      country: ''
+    })
+      .rules({
+        name: 'required',
+        email: 'required',
+        address: 'required',
+        zip_code: 'required',
+        phone: 'required',
+        city: 'required',
+        state: 'required',
+        country: 'required'
+      })
+      .messages({
+        'name.name': 'Name is required!',
+        'email.email': 'Email is required!',
+        'address.address': 'Address is required!',
+        'zip_code.zip_code': 'Zip Code is required!',
+        'phone.phone': 'Zip Code is required!',
+        'city.city': 'City is required!',
+        'state.state': 'State is required!',
+        'country.country': 'Country is required!'
+      })
+  }),
   beforeMount(){
     this.getProfile()
   },
+  mounted(){
+    this.getOrders()
+  },
   watch: {
     accountDetails(){
-      this.name=this.accountDetails.name
+      Object.keys(this.accountDetails).reduce((formData, key) => {
+           this.shippingFrom[key]= this.accountDetails[key]
+      })
     }
   },
   computed: {
-    ...mapGetters(['accountDetails', 'accountErrors', 'upProfile'])
+    ...mapGetters(['accountDetails', 'accountErrors', 'upProfile', 'Orders'])
   },
   methods: {
-    ...mapActions(['getProfile','updateProfile']),
+    ...mapActions(['getProfile','updateProfile','getOrders']),
     displayField(fieldOpen){
-      if(fieldOpen == 'name'){
-        if(this.nameData==1){
-          this.nameData=0
-        }else{
-          this.nameData=1
-          var profileData = {'name':this.name}
-          this.updateProfile(profileData)
-        }
+      this.shippingMsg=''
+      if(this.nameData[fieldOpen]==1){
+        this.nameData[fieldOpen]=0
+      }else{
+        this.nameData[fieldOpen]=1
+        this.updateShipping()
       }
+    },
+    updateShipping(){
+      this.shippingFrom.validate()
+      if (!this.shippingFrom.validate().errors().any()) {
+        this.requestData(this.shippingFrom.data)
+      }
+      this.shippingMsg=''
+    },
+    requestData(profileData){
+      HTTP.put(process.env.MIX_APP_APIURL+"update", profileData).then((response) => {
+        this.shippingMsg='Shipping address update is successfully!'
+        var profileDetails= response.data.data
+        Object.keys(profileDetails).reduce((formData, key) => {
+             this.shippingFrom[key]= profileDetails[key]
+        })
+      }).catch((errors) => {
+        errorMsg = errors
+        this.shippingMsg=''
+      })
     }
   }
 }
