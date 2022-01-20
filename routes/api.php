@@ -15,6 +15,8 @@ use App\Http\Controllers\API\CartController;
 use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\SettingController;
 use App\Http\Controllers\API\CouponController;
+use App\Http\Controllers\API\FaqController;
+
 
 
 use App\Http\Controllers\API\StoreController;
@@ -80,6 +82,11 @@ Route::get('settings', [SettingController::class, 'index']);
 Route::post('coupon', [CouponController::class, 'index']);
 
 Route::get('stores', [StoreController::class, 'index']);
+Route::get('faq/{product_id}', [FaqController::class, 'index']);
+Route::post('faq/store', [FaqController::class, 'store']);
+Route::get('chowhub/faq/{product_id}', [FaqController::class, 'chouhubIndex']);
+Route::post('chowhub/faq/store', [FaqController::class, 'chouhubStore']);
+
 Route::get('stores/{store}', [StoreController::class, 'show']);
 Route::get('chowhub/stores', [ChowhubStoreController::class, 'index']);
 Route::get('chowhub/stores/{store}', [ChowhubStoreController::class, 'show']);

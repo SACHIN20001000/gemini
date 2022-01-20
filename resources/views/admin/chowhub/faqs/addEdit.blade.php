@@ -1,0 +1,122 @@
+@extends('admin.layouts.app')
+@section('content')
+<div class="container">
+    <!-- breadcrumb -->
+    <div class="breadcrumb-header justify-content-between">
+        <div class="my-auto">
+            <div class="d-flex">
+                <h4 class="content-title mb-0 my-auto">Faqs</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{isset($faq) ? $faq->name : 'Add New' }}</span>
+            </div>
+        </div>
+        <a class="btn btn-main-primary ml_auto" href="{{ route('chowhub-faqs.index') }}">View faqs</a>
+    </div>
+    <!-- breadcrumb -->
+    <!--Row-->
+    <!-- row -->
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="main-content-label mg-b-5">
+                        {{isset($faq) ? 'Update # '.$faq->id : 'Add New' }}
+                    </div>
+
+
+                    <!--  start  -->
+                    <form  id="faq-add-edit" action="{{isset($faq) ? route('chowhub-faqs.update',$faq->id) : route('chowhub-faqs.store')}}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        {{ isset($faq) ? method_field('PUT'):'' }}
+                        <div class="pd-30 pd-sm-40 bg-gray-200">
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Title</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <textarea name="title" class="form-control" id="title" cols="30" rows="10">{{isset($faq) ? $faq->title : '' }}</textarea>
+
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Description</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                  <textarea name="description" class="form-control" id="description" cols="30" rows="10">{{isset($faq) ? $faq->description : '' }}</textarea>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="row row-xs align-items-center mg-b-20" id="product_id">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Product</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <div style="overflow: auto;" >
+                                   <select class="form-control select2"  name="product_id"  >
+                                     @if(isset($products))
+                                     @foreach($products as $product)
+                                            <option value="{{$product->id}}" {{ (isset($faq) && $faq->product_id  == $product->id) ? 'Selected' : '' }}>{{$product->productName}}</option>
+                                      @endforeach
+                                      @endif
+                                </select>
+                                </div>
+                            </div>
+                           </div>
+
+                           <div class="row row-xs align-items-center mg-b-20" id="product_id">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Published</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <div style="overflow: auto;" >
+                                   <select class="form-control select2"   id="published"  name="published"  >
+                                   <option value="1"{{ (isset($faq) && $faq->published  == 1) ? 'Selected' : '' }}>Active</option>
+                                   <option value="0"{{ (isset($faq) && $faq->published  == 0) ? 'Selected' : '' }}>Deactive</option>
+
+                                </select>
+                                </div>
+                            </div>
+                           </div>
+                            <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($faq) ? 'Update' : 'Save' }}</button>
+                        </div>
+                </div>
+                </form>
+                <!-- form end  -->
+            </div>
+        </div>
+    </div>
+    <!-- /row -->
+</div>
+
+
+@endsection
+
+@section('scripts')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $("select").select2();
+    $('#description').summernote({
+      height: 300
+   });
+   $('#title').summernote({
+      height: 200
+   });
+  });
+
+
+</script>
+@if(isset($faq))
+{!! JsValidator::formRequest('App\Http\Requests\Admin\Faq\UpdateFaq','#faq-add-edit') !!}
+@else
+{!! JsValidator::formRequest('App\Http\Requests\Admin\Faq\AddFaq','#faq-add-edit') !!}
+@endif
+
+@endsection
+
+

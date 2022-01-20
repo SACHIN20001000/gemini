@@ -18,6 +18,10 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\Chowhub\ChowhubFaqController;
+
+
 
 
 
@@ -68,6 +72,10 @@ Route::prefix('admin')->group(function ()
         Route::resource('products', ProductController::class);
         Route::resource('stores', StoreController::class);
         Route::resource('orders', OrderController::class);
+        Route::resource('faqs', FaqController::class);
+        Route::resource('chowhub-faqs', ChowhubFaqController::class);
+
+
 
         //chowhub
         Route::resource('chowhub-categories', ChowhubCategoryController::class);

@@ -168,7 +168,7 @@ class CouponController extends Controller
      */
     public function getProductByAjax(Request $request)
     {
-    //   print_r($request->data);die('here');
+  
       if($request->product_type == 'product'){
             $product=Product::Select('id','productName')->get();
             return Response()->json([
