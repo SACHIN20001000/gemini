@@ -1361,6 +1361,75 @@
                 ]
             }
         },
+        "/rating": {
+            "get": {
+                "tags": [
+                    "Rating"
+                ],
+                "operationId": "rating",
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RatingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/rating/create": {
+            "post": {
+                "tags": [
+                    "Rating"
+                ],
+                "summary": "RatingRequest store",
+                "operationId": "Rating Request store",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RatingRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RatingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "/settings": {
             "get": {
                 "tags": [
@@ -1978,6 +2047,67 @@
                             "created": "Dec 10, 2021 11:34:05",
                             "updated_at": "2021-12-10T11:34:05.000000Z",
                             "childrens": "[]"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "RatingRequest": {
+                "title": "Create new checkout",
+                "description": "Request for create a new checkout for a cart",
+                "properties": {
+                    "product_id": {
+                        "title": "product_id",
+                        "description": "product_id  for storing",
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "rating": {
+                        "title": "rating ",
+                        "description": "rating for storing",
+                        "type": "string",
+                        "example": "123"
+                    },
+                    "description": {
+                        "title": "description",
+                        "description": "description for storing",
+                        "type": "string",
+                        "example": "description"
+                    },
+                    "email": {
+                        "title": "email ",
+                        "description": "email  for storing",
+                        "type": "string",
+                        "example": "user@gmail.com"
+                    }
+                },
+                "type": "object"
+            },
+            "RatingResponse": {
+                "title": "RatingResponse",
+                "description": "RatingResponse",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "example": {
+                            "id": 1,
+                            "title": null,
+                            "description": "dfgdfdsfsdfsdf",
+                            "user": {
+                                "id": 6,
+                                "name": "edf",
+                                "email": "admin@fdgdfgfdgfdg.com",
+                                "address": null,
+                                "zip_code": null,
+                                "phone": null,
+                                "city": null,
+                                "state": null,
+                                "country": null,
+                                "created_at": "Jan 20, 2022 10:55:41"
+                            },
+                            "product": null,
+                            "published": null,
+                            "created_at": "2022-01-20T12:45:56.000000Z"
                         }
                     }
                 },
