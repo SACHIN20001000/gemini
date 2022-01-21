@@ -17,8 +17,8 @@ class CreateFaqsTable extends Migration
             $table->increments('id');
             $table->integer('product_id')->nullable();;
             $table->integer('user_id');
-            $table->string('title');
-            $table->longText('description')->nullable();;
+            $table->string('title')->nullable();
+            $table->longText('description')->nullable();
             $table->boolean('published')->default(0);
             $table->timestamps();
         });
