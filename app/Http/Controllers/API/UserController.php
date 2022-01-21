@@ -10,6 +10,7 @@ use App\Http\Requests\API\ChangePasswordRequest;
 use App\Http\Requests\API\UpdateProfileRequest;
 use Illuminate\Support\Facades\Validator;
 use Auth;
+use Storage;
 
 class UserController extends Controller
 {
@@ -52,7 +53,7 @@ class UserController extends Controller
     }
 
     /**
-     * @OA\Put(
+     * @OA\Post(
      *      path="/update",
      *      operationId="update",
      * summary="Update Existing  user",
@@ -91,10 +92,17 @@ class UserController extends Controller
 
         $user = auth()->user();
         $user->name = $request->name;
+
         if (!empty($request->password))
         {
             $user->password = bcrypt($request->password);
         }
+        if (!empty($request['profile_image']))
+            {
+                $path = Storage::disk('s3')->put('images/profile', $request['profile_image']);
+                $image_path = Storage::disk('s3')->url($path);
+                $user->profile = $image_path;
+            }
         $user->address = $request->address ?? $user->address;
         $user->zip_code = $request->zip_code ?? $user->zip_code;
         $user->phone = $request->phone ?? $user->phone;

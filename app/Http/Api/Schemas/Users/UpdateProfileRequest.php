@@ -83,6 +83,17 @@ class UpdateProfileRequest
     public $country;
      /**
      * @OA\Property(
+     *     title="profile_image",
+     *     description="profile_image of key for updating",
+     *     example="random",
+     * )
+     *
+     * @var string
+     */
+    public $profile_image;
+
+     /**
+     * @OA\Property(
      *     title="password",
      *     description="password of key for updating",
      *     example="random",
