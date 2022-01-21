@@ -1564,7 +1564,7 @@
             }
         },
         "/update": {
-            "put": {
+            "post": {
                 "tags": [
                     "Users"
                 ],
@@ -2344,6 +2344,12 @@
                         "description": "country of key for updating",
                         "type": "string",
                         "example": "india"
+                    },
+                    "profile_image": {
+                        "title": "profile_image",
+                        "description": "profile_image of key for updating",
+                        "type": "string",
+                        "example": "random"
                     },
                     "password": {
                         "title": "password",
