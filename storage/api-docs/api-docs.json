@@ -736,6 +736,44 @@
                 }
             }
         },
+        "chowhub/rating/overall/{product_id}": {
+            "get": {
+                "tags": [
+                    "Rating"
+                ],
+                "summary": "over all rating",
+                "operationId": "overall rating",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OverAllRatingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "/chowhub/stores": {
             "get": {
                 "tags": [
@@ -1499,6 +1537,44 @@
                 }
             }
         },
+        "/rating/overall/{product_id}": {
+            "get": {
+                "tags": [
+                    "Rating"
+                ],
+                "summary": "over all rating",
+                "operationId": "overall rating",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OverAllRatingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "/settings": {
             "get": {
                 "tags": [
@@ -2122,6 +2198,21 @@
                             "created": "Dec 10, 2021 11:34:05",
                             "updated_at": "2021-12-10T11:34:05.000000Z",
                             "childrens": "[]"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "OverAllRatingResponse": {
+                "title": "OverAllRatingResponse",
+                "description": "OverAllRatingResponse",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "example": {
+                            "success": true,
+                            "overAllRating": 3,
+                            "total-reviews": 6
                         }
                     }
                 },
