@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Resources\Faqs;
+namespace App\Http\Resources\Rating;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Faqs\ProductResource;
+use App\Http\Resources\Products\ChowhubProductResource;
+
 use App\Http\Resources\Users\UserResource;
-class FaqResource extends JsonResource
+class ChowhubRatingResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -21,7 +22,7 @@ class FaqResource extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'user'=> $this->user_id?new UserResource($this->user): [],
-            'product'=>$this->product_id? new ProductResource($this->product): [],
+            'product'=>$this->product_id? new ChowhubProductResource($this->product): [],
             'published' => $this->published,
             'created_at' => $this->created_at,
 

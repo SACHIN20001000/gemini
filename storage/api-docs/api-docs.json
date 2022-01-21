@@ -667,6 +667,75 @@
                 ]
             }
         },
+        "/chowhub/rating": {
+            "get": {
+                "tags": [
+                    "Rating"
+                ],
+                "operationId": "chowhub rating",
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RatingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/chowhub/rating/create": {
+            "post": {
+                "tags": [
+                    "Rating"
+                ],
+                "summary": "chowhub Rating Request store",
+                "operationId": "chowhub Rating Request store",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RatingRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RatingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "/chowhub/stores": {
             "get": {
                 "tags": [

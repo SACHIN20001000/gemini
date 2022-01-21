@@ -1,23 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Chowhub;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Rating;
-
+use App\Models\ChowhubRating;
 use App\Models\User;
-
-use App\Http\Resources\Rating\RatingResource;
-
-
+use App\Http\Resources\Rating\ChowhubRatingResource;
 use App\Http\Requests\API\RatingRequest;
-class RatingController extends Controller
+class ChowhubRatingController extends Controller
 {
  /**
      * @OA\Get(
-     *      path="/rating",
-     *      operationId="rating",
+     *      path="/chowhub/rating",
+     *      operationId="chowhub rating",
      *      tags={"Rating"},
      *
 
@@ -45,19 +41,19 @@ class RatingController extends Controller
 
     public function index()
     {
-        $rating = Rating::with('user','product')->orderBy('id', 'asc')->get();
+        $rating = ChowhubRating::with('user','product')->orderBy('id', 'asc')->get();
 
-        return  RatingResource::collection($rating);
+        return  ChowhubRatingResource::collection($rating);
 
     }
 
 /**
      * @OA\Post(
-     *      path="/rating/create",
-     *      operationId="Rating Request store",
+     *      path="/chowhub/rating/create",
+     *      operationId="chowhub Rating Request store",
      *      tags={"Rating"},
      *
-     *     summary="RatingRequest store",
+     *     summary="chowhub Rating Request store",
      *  *      *    @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(ref="#/components/schemas/RatingRequest")
@@ -105,7 +101,7 @@ class RatingController extends Controller
         $inputs['description']=$request->description;
         $inputs['product_id']=$request->product_id;
         $inputs['rating']=$request->rating;
-        Rating::create($inputs);
+        ChowhubRating::create($inputs);
 
 
             return response()->json([

@@ -3,7 +3,7 @@
 namespace App\Http\Resources\Faqs;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Products\ChowhubProductResource;
+use App\Http\Resources\Faqs\ChowhubProductResource;
 use App\Http\Resources\Users\UserResource;
 class ChowhubFaqResource extends JsonResource
 {
