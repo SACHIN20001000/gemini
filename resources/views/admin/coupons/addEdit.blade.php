@@ -171,7 +171,7 @@
 
 
         $("#specific_product option").prop("selected", false);
-        $(".chownhub").prop('checked', false);;
+        
 
         $("#category_id").show();
     });

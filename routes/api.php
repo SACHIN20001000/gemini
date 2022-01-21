@@ -17,6 +17,8 @@ use App\Http\Controllers\API\SettingController;
 use App\Http\Controllers\API\CouponController;
 use App\Http\Controllers\API\FaqController;
 use App\Http\Controllers\API\RatingController;
+use App\Http\Controllers\API\PetController;
+
 use App\Http\Controllers\API\Chowhub\ChowhubRatingController;
 
 
@@ -102,7 +104,7 @@ Route::get('stores/{store}', [StoreController::class, 'show']);
 Route::get('chowhub/stores', [ChowhubStoreController::class, 'index']);
 Route::get('chowhub/stores/{store}', [ChowhubStoreController::class, 'show']);
 
-
+Route::post('pet/create', [PetController::class, 'store']);
 
 
 
