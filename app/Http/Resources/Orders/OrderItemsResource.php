@@ -21,6 +21,8 @@ class OrderItemsResource extends JsonResource
             'variation_id' => $this->variation_id,
             'unit_price' => $this->unit_price,
             'quantity' => $this->quantity,
+            'product' => $this->products,
+            'variationProduct' => $this->variationProduct,
             'total_price' => $this->total_price,
             'created_at' => $this->created_at,
                    
