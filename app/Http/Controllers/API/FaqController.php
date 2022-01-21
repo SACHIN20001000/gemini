@@ -11,7 +11,8 @@ use App\Models\User;
 
 use App\Http\Resources\Faqs\FaqResource;
 use App\Http\Resources\Faqs\ChowhubFaqResource;
-
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use App\Http\Requests\API\FaqRequest;
 class FaqController extends Controller
 {
@@ -52,7 +53,7 @@ class FaqController extends Controller
 
     public function index($id)
     {
-        $faqs = Faq::with('user','product')->where('product_id',$id)->orderBy('id', 'asc')->get();
+        $faqs = Faq::with('user','product')->where(['product_id'=>$id,'published'=>1])->orderBy('id', 'asc')->get();
 
         return  FaqResource::collection($faqs);
 
@@ -101,28 +102,29 @@ class FaqController extends Controller
      */
     public function store(FaqRequest $request)
     {
-        $user=User::where(['name'=>$request->name,'email'=>$request->email])->first();
 
-            if(!empty($user)){
+            $user = auth('api')->user();
+
+            if (!$user)
+            {
+                $roleGuest = Role::where(['name' => 'Guest'])->first();
+                $user = User::updateOrCreate(
+                                [
+                                    'email' => $request->email,
+                                ],
+                                [
+                                    'name' => $request->name,
+                                    'password' => bcrypt(uniqid(rand(), true))
+                ]);
+                $user->assignRole($roleGuest);
+            }
+
 
                 $inputs['user_id']=$user->id;
                 $inputs['title']=$request->question;
                 $inputs['product_id']=$request->product_id;
                 $inputs['published']=0;
                 Faq::create($inputs);
-
-            }else{
-               $guest['name']=$request->name;
-               $guest['email']=$request->email;
-               $guest['password'] = bcrypt(12345678);
-               $guest_id= user::create($guest);
-               $inputs['user_id']=$guest_id->id;
-               $inputs['title']=$request->question;
-               $inputs['product_id']=$request->product_id;
-               $inputs['published']=0;
-               Faq::create($inputs);
-
-            }
 
             return response()->json([
                 'success' => true,'message' => 'Faq created successfull'
@@ -166,7 +168,7 @@ class FaqController extends Controller
 
     public function chouhubIndex($id)
     {
-        $faqs = ChowhubFaq::with('user','product')->where('product_id',$id)->orderBy('id', 'asc')->get();
+        $faqs = ChowhubFaq::with('user','product')->where(['product_id'=>$id,'published'=>1])->orderBy('id', 'asc')->get();
 
         return  ChowhubFaqResource::collection($faqs);
 
@@ -207,28 +209,31 @@ class FaqController extends Controller
      */
     public function chouhubStore(FaqRequest $request)
     {
-        $user=User::where(['name'=>$request->name,'email'=>$request->email])->first();
+        
 
-            if(!empty($user)){
+            $user = auth('api')->user();
 
-                $inputs['user_id']=$user->id;
-                $inputs['title']=$request->question;
-                $inputs['product_id']=$request->product_id;
-                $inputs['published']=0;
-                ChowhubFaq::create($inputs);
+            if (!$user)
+            {
+                $roleGuest = Role::where(['name' => 'Guest'])->first();
+                $user = User::updateOrCreate(
+                                [
+                                    'email' => $request->email,
+                                ],
+                                [
+                                    'name' => $request->name,
+                                    'password' => bcrypt(uniqid(rand(), true))
+                ]);
+                $user->assignRole($roleGuest);
+            }
 
-            }else{
-               $guest['name']=$request->name;
-               $guest['email']=$request->email;
-               $guest['password'] = bcrypt(12345678);
-               $guest_id= user::create($guest);
-               $inputs['user_id']=$guest_id->id;
+
+               $inputs['user_id']=$user->id;
                $inputs['title']=$request->question;
                $inputs['product_id']=$request->product_id;
                $inputs['published']=0;
                ChowhubFaq::create($inputs);
 
-            }
 
             return response()->json([
                 'success' => true,'message' => 'Faq created successfull'
