@@ -17,6 +17,8 @@ use App\Http\Controllers\API\SettingController;
 use App\Http\Controllers\API\CouponController;
 use App\Http\Controllers\API\FaqController;
 use App\Http\Controllers\API\RatingController;
+use App\Http\Controllers\API\Chowhub\ChowhubRatingController;
+
 
 
 
@@ -90,7 +92,8 @@ Route::get('chowhub/faq/{product_id}', [FaqController::class, 'chouhubIndex']);
 Route::post('chowhub/faq/store', [FaqController::class, 'chouhubStore']);
 Route::post('rating/create', [RatingController::class, 'create']);
 Route::get('rating', [RatingController::class, 'index']);
-
+Route::post('chowhub/rating/create', [ChowhubRatingController::class, 'create']);
+Route::get('chowhub/rating', [ChowhubRatingController::class, 'index']);
 
 Route::get('stores/{store}', [StoreController::class, 'show']);
 Route::get('chowhub/stores', [ChowhubStoreController::class, 'index']);
