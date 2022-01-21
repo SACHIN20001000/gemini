@@ -35,11 +35,22 @@ class FaqRequest
      * @OA\Property(
      *     title="question",
      *     description="question for storing",
-     *     example="john@gmail.com",
+     *     example="What is the meaning of Lorem ipsum?",
      * )
      *
      * @var string
      */
     public $question;
+
+    /**
+     * @OA\Property(
+     *     title="product_id",
+     *     description="question for product",
+     *     example="2",
+     * )
+     *
+     * @var string
+     */
+    public $product_id;
 
 }

@@ -1918,7 +1918,13 @@
                         "title": "question",
                         "description": "question for storing",
                         "type": "string",
-                        "example": "john@gmail.com"
+                        "example": "What is the meaning of Lorem ipsum?"
+                    },
+                    "product_id": {
+                        "title": "product_id",
+                        "description": "question for product",
+                        "type": "string",
+                        "example": "2"
                     }
                 },
                 "type": "object"
