@@ -14,7 +14,13 @@ class Rating extends Model
         'rating',
         'description',
         'status',
+        'title',
 
+
+    ];
+    protected $casts = [
+        'created_at' => 'datetime:d-m-Y',
+        'updated_at' => 'datetime:d-m-Y',
     ];
     public function user()
     {
@@ -23,5 +29,9 @@ class Rating extends Model
     public function product()
     {
         return $this->belongsTo(Product::class,'product_id','id');
+    }
+    public function ratingGallery()
+    {
+        return $this->belongsTo(RatingGallery::class,'id','rating_id');
     }
 }

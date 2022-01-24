@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\API;
+namespace App\Http\Requests\Admin\Rating;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RatingRequest extends FormRequest
+class UpdateRating extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,10 @@ class RatingRequest extends FormRequest
     public function rules()
     {
         return [
-
-            'product_id' => 'required',
-            'rating' => 'required',
-            'description' => 'required',
-            'status' => 'required',
-            'images' => 'required',
-
-
-
-
+          'rating'=>'required',
+          'title' => 'required',
+          'description' => 'required',
+        //   'status' => 'required',
         ];
     }
 }
