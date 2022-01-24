@@ -5,13 +5,12 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Rating;
-
+use App\Models\RatingGallery;
 use App\Models\User;
-
 use App\Http\Resources\Rating\RatingResource;
-
-
 use App\Http\Requests\API\RatingRequest;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 class RatingController extends Controller
 {
  /**
@@ -45,7 +44,7 @@ class RatingController extends Controller
 
     public function index()
     {
-        $rating = Rating::with('user','product')->orderBy('id', 'asc')->get();
+        $rating = Rating::with('user','product','ratingGallery')->orderBy('id', 'asc')->get();
 
         return  RatingResource::collection($rating);
 
@@ -101,12 +100,25 @@ class RatingController extends Controller
             $user->assignRole($roleGuest);
         }
 
+
         $inputs['user_id']=$user->id ;
+        $inputs['title']=$request->title;
         $inputs['description']=$request->description;
         $inputs['product_id']=$request->product_id;
         $inputs['rating']=$request->rating;
-        Rating::create($inputs);
+        $rating= Rating::create($inputs);
+            if ($request->file('images'))
+            {
+                foreach ($request->images as  $value) {
+                    $path = Storage::disk('s3')->put('images/rating', $request->images);
+                    $path = Storage::disk('s3')->url($path);
+                    RatingGallery::create( [
+                        'rating_id' => $rating->id,
+                        'image_path' => $path
+                    ]);
+                }
 
+            }
 
             return response()->json([
                 'success' => true,'message' => 'Rating created successfull'

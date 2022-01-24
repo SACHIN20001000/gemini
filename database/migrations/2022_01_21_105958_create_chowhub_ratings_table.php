@@ -22,6 +22,12 @@ class CreateChowhubRatingsTable extends Migration
             $table->boolean('status')->default(0);
             $table->timestamps();
         });
+        Schema::create('chowhub_rating_galleries', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('rating_id');
+            $table->integer('image_path');
+                     $table->timestamps();
+        });
     }
 
     /**
@@ -32,5 +38,7 @@ class CreateChowhubRatingsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('chowhub_ratings');
+        Schema::dropIfExists('chowhub_rating_galleries');
+
     }
 }
