@@ -4,10 +4,13 @@ namespace App\Http\Controllers\API\Chowhub;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use App\Models\ChowhubRating;
 use App\Models\User;
 use App\Http\Resources\Rating\ChowhubRatingResource;
 use App\Http\Requests\API\RatingRequest;
+
 class ChowhubRatingController extends Controller
 {
  /**
@@ -101,8 +104,19 @@ class ChowhubRatingController extends Controller
         $inputs['description']=$request->description;
         $inputs['product_id']=$request->product_id;
         $inputs['rating']=$request->rating;
-        ChowhubRating::create($inputs);
+        $rating= ChowhubRating::create($inputs);
+        if ($request->file('images'))
+        {
+            foreach ($request->images as  $value) {
+                $path = Storage::disk('s3')->put('images/rating', $request->images);
+                $path = Storage::disk('s3')->url($path);
+                ChowhubRatingGallery::create( [
+                    'rating_id' => $rating->id,
+                    'image_path' => $path
+                ]);
+            }
 
+        }
 
             return response()->json([
                 'success' => true,'message' => 'Rating created successfull'

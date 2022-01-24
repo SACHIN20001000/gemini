@@ -88,7 +88,7 @@ Route::get('settings', [SettingController::class, 'index']);
 Route::post('coupon', [CouponController::class, 'index']);
 
 Route::get('stores', [StoreController::class, 'index']);
-Route::get('faq/{product_id}', [FaqController::class, 'index']);
+Route::get('faq/{id}', [FaqController::class, 'index']);
 Route::post('faq/store', [FaqController::class, 'store']);
 Route::get('chowhub/faq/{product_id}', [FaqController::class, 'chouhubIndex']);
 Route::post('chowhub/faq/store', [FaqController::class, 'chouhubStore']);
@@ -105,6 +105,8 @@ Route::get('chowhub/stores', [ChowhubStoreController::class, 'index']);
 Route::get('chowhub/stores/{store}', [ChowhubStoreController::class, 'show']);
 
 Route::post('pet/create', [PetController::class, 'store']);
+Route::any('pet/{id}', [PetController::class, 'index']);
+
 
 
 

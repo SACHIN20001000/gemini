@@ -18,7 +18,7 @@ class FaqController extends Controller
 {
       /**
      * @OA\Get(
-     *      path="/faqs/{product_id}",
+     *      path="/faq/{product_id}",
      *      operationId="faqs",
      *      tags={"Faqs"},
      *
@@ -209,7 +209,7 @@ class FaqController extends Controller
      */
     public function chouhubStore(FaqRequest $request)
     {
-        
+
 
             $user = auth('api')->user();
 

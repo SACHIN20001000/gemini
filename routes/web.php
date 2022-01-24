@@ -20,6 +20,9 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\Chowhub\ChowhubFaqController;
+use App\Http\Controllers\Admin\RatingController;
+use App\Http\Controllers\Admin\Chowhub\ChowhubRatingController;
+
 
 
 
@@ -74,7 +77,10 @@ Route::prefix('admin')->group(function ()
         Route::resource('orders', OrderController::class);
         Route::resource('faqs', FaqController::class);
         Route::resource('chowhub-faqs', ChowhubFaqController::class);
-
+        Route::resource('ratings', RatingController::class);
+        Route::post('save-image', [App\Http\Controllers\Admin\RatingController::class, 'save_photo'])->name('save_photo');
+        Route::post('save-chowhub-image', [App\Http\Controllers\Admin\Chowhub\ChowhubRatingController::class, 'save_photo'])->name('save_photo');
+        Route::resource('chowhub-ratings', ChowhubRatingController::class);
 
 
         //chowhub

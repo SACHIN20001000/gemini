@@ -9,17 +9,52 @@ use App\Models\Pet;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Http\Requests\API\PetRequest;
+use App\Http\Resources\Pet\PetResource;
+
 use storage;
 class PetController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *      path="/pet/{user_id}",
+     *      operationId="pet",
+     *      tags={"Pet"},
      *
-     * @return \Illuminate\Http\Response
+     *     summary="Pet",
+     *     *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="3",
+     *         required=true,
+     *      ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="Pages",
+     *         @OA\JsonContent(ref="#/components/schemas/PetResponse")
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
+     * Store a newly created resource in storage.
+     *
+     * @param \App\Http\Requests\ExampleStoreRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+
+    public function index($id)
     {
-        //
+
+        $pets = Pet::where(['user_id'=>$id])->orderBy('id', 'asc')->get();
+
+        return  PetResource::collection($pets);
     }
 
    /**

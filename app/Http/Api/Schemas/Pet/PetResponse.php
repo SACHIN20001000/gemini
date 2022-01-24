@@ -14,10 +14,11 @@ class PetResponse
   * @OA\Property(
   * type="object",
   * example={
-  *           "id": 1,
-  *          "title": "<p>dfsdfs</p>",
-  *          "description": "<p>dsfsddf</p>",
-  *          "published": 1,
+  *            "id": 1,
+  *          "name": "dogu",
+ *           "user_id": 1,
+  *          "age": 2,
+  *          "type": "cat",
    *         "created_at": "2022-01-20T10:01:36.000000Z"
   *  }
   * ),

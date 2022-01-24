@@ -3,7 +3,7 @@
 namespace App\Http\Resources\Rating;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Products\ProductResource;
+use App\Http\Resources\Rating\ProductResource;
 
 use App\Http\Resources\Users\UserResource;
 class RatingResource extends JsonResource
@@ -23,7 +23,8 @@ class RatingResource extends JsonResource
             'description' => $this->description,
             'user'=> $this->user_id?new UserResource($this->user): [],
             'product'=>$this->product_id? new ProductResource($this->product): [],
-            'published' => $this->published,
+            'images'=>$this->ratingGallery? new RatingGalleryResource($this->ratingGallery): [],
+            'published' => $this->status,
             'created_at' => $this->created_at,
 
 
