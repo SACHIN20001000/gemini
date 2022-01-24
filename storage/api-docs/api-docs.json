@@ -910,6 +910,50 @@
                 }
             }
         },
+        "/faq/{product_id}/{string}": {
+            "get": {
+                "tags": [
+                    "Faqs"
+                ],
+                "summary": "Faqs get",
+                "operationId": "faqs search",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    },
+                    {
+                        "name": "string",
+                        "in": "path",
+                        "description": "test",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FaqResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "/faq/store": {
             "post": {
                 "tags": [
@@ -962,6 +1006,50 @@
                         "name": "id",
                         "in": "path",
                         "description": "3",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FaqResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/chowhub/faq/{product_id}/{string}": {
+            "get": {
+                "tags": [
+                    "Faqs"
+                ],
+                "summary": "Faqs get",
+                "operationId": "faqs search",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    },
+                    {
+                        "name": "string",
+                        "in": "path",
+                        "description": "test",
                         "required": true
                     }
                 ],
@@ -2148,6 +2236,12 @@
                         "description": "question for product",
                         "type": "string",
                         "example": "2"
+                    },
+                    "published": {
+                        "title": "published",
+                        "description": "question for product",
+                        "type": "string",
+                        "example": "1/0"
                     }
                 },
                 "type": "object"

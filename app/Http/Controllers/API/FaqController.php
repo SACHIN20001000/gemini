@@ -60,13 +60,52 @@ class FaqController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * @OA\Get(
+     *      path="/faq/{product_id}/{string}",
+     *      operationId="faqs search",
+     *      tags={"Faqs"},
      *
-     * @return \Illuminate\Http\Response
+     *     summary="Faqs get",
+     *     *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="3",
+     *         required=true,
+     *      ),
+     *     @OA\Parameter(
+     *         name="string",
+     *         in="path",
+     *         description="test",
+     *         required=true,
+     *      ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="Pages",
+     *         @OA\JsonContent(ref="#/components/schemas/FaqResponse")
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
+     * Store a newly created resource in storage.
+     *
+     * @param \App\Http\Requests\ExampleStoreRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function create()
+    public function getFaqByString($id,$string)
     {
-        //
+
+        $faqs = Faq::with('user','product')->where(['product_id'=>$id,'published'=>1])->orWhere('title', 'like', '%' . $string . '%')->orderBy('id', 'asc')->get();
+
+        return  FaqResource::collection($faqs);
+
     }
   /**
      * @OA\Post(
@@ -123,7 +162,7 @@ class FaqController extends Controller
                 $inputs['user_id']=$user->id;
                 $inputs['title']=$request->question;
                 $inputs['product_id']=$request->product_id;
-                $inputs['published']=0;
+                $inputs['published']=$request->published ?? 0;
                 Faq::create($inputs);
 
             return response()->json([
@@ -174,7 +213,54 @@ class FaqController extends Controller
 
     }
 
+    /**
+     * @OA\Get(
+     *      path="/chowhub/faq/{product_id}/{string}",
+     *      operationId="faqs search",
+     *      tags={"Faqs"},
+     *
+     *     summary="Faqs get",
+     *     *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="3",
+     *         required=true,
+     *      ),
+     *     @OA\Parameter(
+     *         name="string",
+     *         in="path",
+     *         description="test",
+     *         required=true,
+     *      ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="Pages",
+     *         @OA\JsonContent(ref="#/components/schemas/FaqResponse")
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
+     * Store a newly created resource in storage.
+     *
+     * @param \App\Http\Requests\ExampleStoreRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getChowhubFaqByString($id,$string)
+    {
 
+        $faqs = ChowhubFaq::with('user','product')->where(['product_id'=>$id,'published'=>1])->orWhere('title', 'like', '%' . $string . '%')->orderBy('id', 'asc')->get();
+
+        return  ChowhubFaqResource::collection($faqs);
+
+    }
   /**
      * @OA\Post(
      *      path="/chowhub/faq/store",
@@ -231,7 +317,7 @@ class FaqController extends Controller
                $inputs['user_id']=$user->id;
                $inputs['title']=$request->question;
                $inputs['product_id']=$request->product_id;
-               $inputs['published']=0;
+               $inputs['published']=$request->published ?? 0;
                ChowhubFaq::create($inputs);
 
 
