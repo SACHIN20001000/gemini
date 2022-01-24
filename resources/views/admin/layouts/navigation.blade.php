@@ -53,7 +53,8 @@
                     <li><a class="slide-item" href="{{route('chowhub-products.index')}}">Products</a></li>
                     <li><a class="slide-item" href="{{route('chowhub-store.index')}}">Stores</a></li>
                     <li><a class="slide-item" href="{{ route('chowhub-faqs.index') }}">Faqs</a></li>
-                    <!-- <li><a class="slide-item" href="{{route('orders.index')}}">Orders</a></li> -->
+                    <li><a class="slide-item" href="{{ route('chowhub-ratings.index') }}">Rating</a></li>
+
 
                 </ul>
             </li>

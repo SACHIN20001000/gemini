@@ -872,7 +872,7 @@
                 }
             }
         },
-        "/faqs/{product_id}": {
+        "/faq/{product_id}": {
             "get": {
                 "tags": [
                     "Faqs"

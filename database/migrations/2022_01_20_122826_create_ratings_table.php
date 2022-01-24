@@ -27,7 +27,7 @@ class CreateRatingsTable extends Migration
         Schema::create('rating_galleries', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('rating_id');
-            $table->integer('image_path');
+            $table->string('image_path');
                      $table->timestamps();
         });
     }
