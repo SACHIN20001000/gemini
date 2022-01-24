@@ -618,7 +618,7 @@ p.ingr b {
 .Large-btn-box {
    display: flex;
    flex-direction: column;
-   justify-content: space-between;
+   justify-content: flex-start;
 }
 .Large-btn {
    font-family: 'Gentona';
@@ -631,6 +631,10 @@ p.ingr b {
    background: #fff;
    color: #706f6f;
    position: relative;
+}
+.Large-btn:not(:last-child)
+{
+  margin-bottom:10px;
 }
 .Large-btn::after {
    position: absolute;
@@ -1158,12 +1162,13 @@ body {
 }
 /**************************swiper css end**************************/
 .nutrition_inner .col-md-12 img {width: 100%;}
-.question_form{display: flex; flex-direction: column; width: 100%;}
-.question_form .form_label{ width: 100%; padding: 10px;}
-.question_form .form_label label{font-size: 14px; width: 20%;}
+.question_form{display: flex; width: 100%;}
+.question_form .form_label{padding: 10px;}
+.question_form .form_label label{font-size: 14px; width: 86px;}
 .question_form .form_label input,textarea{
   font-size: 14px;
-  width: 75%;
+  max-width:calc(100% - 90px);
+  width:100%;
   padding: 8px;
 }
 .question_form .form_label button{
@@ -1178,6 +1183,7 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 .review_form .review_form_50{
   display: flex;
   flex-direction: row;
@@ -1189,11 +1195,14 @@ body {
   width: 100%;
 }
 .review_form .review_form_50 .review_form_label{
-  width: 28%;
-  margin-right:20px;
+  width: 50%;
+  margin: 0;
+  padding:10px;
 }
 .review_form .review_form_100 .form_label{
   width: 100%;
+  margin: 0;
+  padding:10px;
 }
 .review_form .review_form_100 .form_label lable,input,textarea{
   width: 100%;
@@ -1203,4 +1212,76 @@ body {
   width: 100%;
   display: block;
   margin: 15px 0px;
+}
+
+
+.bm-wrap.cmnt_txt {
+  flex-wrap: wrap;
+}
+.bm-wrap.cmnt_txt  span {
+    font-size: 14px;
+    font-weight: 400;
+    display: inline-block;
+    margin-bottom: 15px;
+    margin-left: 2px;
+}.faq_list {
+  max-height: 280px;
+  overflow: auto;
+}
+.faq_list p {
+  cursor: pointer;
+}
+.question_form .form_label {
+  align-items: flex-start;
+  display: flex;
+}
+.for_m_btn {
+  justify-content: flex-end;
+}
+.question_form .error_validation {
+  position: absolute;
+  right: 0;
+  bottom: -5px;
+  text-align: right;
+  font-size: 11px;
+  padding: 0 15px 0 0;
+}
+
+.srch_q {
+  position: relative;
+}
+.srch_q i {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.srch_q input {
+  height: 35px;
+}
+
+.review_form {
+  background: #f6f6f6;
+  padding: 30px;
+  width: 100%;
+}
+.review_btn_label button {
+  font-size: 14px;
+  width: 25%;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+}
+.review_btn_label {
+  text-align: right;
+}
+.form_label.txt_area textarea {
+  max-width: 100%;
+}
+.review_form > h4 {
+  padding: 10px;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.blg_auth
+{
+  width:100%;
 }

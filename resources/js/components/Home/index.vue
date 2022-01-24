@@ -299,7 +299,7 @@
         </div>
       </div>
     </section>
-    <section class="Keep_touch">
+    <!--<section class="Keep_touch">
       <div class="container_min">
         <div class="row">
           <div class="col-md-2">
@@ -345,7 +345,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
     <section class="xl_sec">
       <img
         :src="imgBg2"
