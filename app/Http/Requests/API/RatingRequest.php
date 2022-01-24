@@ -28,8 +28,8 @@ class RatingRequest extends FormRequest
             'product_id' => 'required',
             'rating' => 'required',
             'description' => 'required',
-            'status' => 'required',
-            'images' => 'required',
+            // 'status' => 'required',
+            // 'images' => 'required',
 
 
 

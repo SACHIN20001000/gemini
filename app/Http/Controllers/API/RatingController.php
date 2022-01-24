@@ -6,14 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Rating;
 use App\Models\RatingGallery;
-
-
 use App\Models\User;
-
 use App\Http\Resources\Rating\RatingResource;
-
-
 use App\Http\Requests\API\RatingRequest;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 class RatingController extends Controller
 {
  /**
