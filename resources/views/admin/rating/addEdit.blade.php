@@ -47,7 +47,35 @@
                                     <label class="form-label mg-b-0">Rating</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="rating"  placeholder="Enter your rating" type="number" value="{{isset($rating) ? $rating->rating : '' }}">
+                                <div class="col-sm-6 col-md-6">
+							<div class="card custom-card" style="width: 650px;">
+								<div class="card-body">
+
+									<div class="rating-stars block" id="rating">
+                                    <input class="form-control rating-value"readonly="readonly" name="rating"  id="rating-stars-value" placeholder="Enter your rating" type="number" value="{{isset($rating) ? $rating->rating : '' }}">
+
+										<div class="rating-stars-container">
+											<div class="rating-star">
+												<i class="fa fa-star"></i>
+											</div>
+											<div class="rating-star">
+												<i class="fa fa-star"></i>
+											</div>
+											<div class="rating-star">
+												<i class="fa fa-star"></i>
+											</div>
+											<div class="rating-star">
+												<i class="fa fa-star"></i>
+											</div>
+											<div class="rating-star">
+												<i class="fa fa-star"></i>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
                                 </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
@@ -79,6 +107,7 @@
 
                                 </div>
                             </div>
+
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">Images</label>

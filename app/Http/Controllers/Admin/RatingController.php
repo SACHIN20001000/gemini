@@ -65,7 +65,7 @@ class RatingController extends Controller
      */
     public function create()
     {
-       
+
     }
 
     /**
@@ -115,8 +115,9 @@ class RatingController extends Controller
      */
     public function update(UpdateRating $request,$id)
     {
-
         $inputs = $request->all();
+
+
         $ratings=Rating::find($id);
         $rating = Rating::find($id)->update(
             [
