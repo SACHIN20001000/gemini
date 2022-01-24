@@ -216,10 +216,10 @@ class FaqController extends Controller
     /**
      * @OA\Get(
      *      path="/chowhub/faq/{product_id}/{string}",
-     *      operationId="faqs search",
+     *      operationId="faqs search by string",
      *      tags={"Faqs"},
      *
-     *     summary="Faqs get",
+     *     summary="Faqs get by string",
      *     *      @OA\Parameter(
      *         name="id",
      *         in="path",

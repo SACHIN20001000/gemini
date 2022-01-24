@@ -1037,8 +1037,8 @@
                 "tags": [
                     "Faqs"
                 ],
-                "summary": "Faqs get",
-                "operationId": "faqs search",
+                "summary": "Faqs get by string",
+                "operationId": "faqs search by string",
                 "parameters": [
                     {
                         "name": "id",
