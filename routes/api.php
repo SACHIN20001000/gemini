@@ -105,6 +105,8 @@ Route::get('chowhub/stores', [ChowhubStoreController::class, 'index']);
 Route::get('chowhub/stores/{store}', [ChowhubStoreController::class, 'show']);
 
 Route::post('pet/create', [PetController::class, 'store']);
+Route::any('pet/{id}', [PetController::class, 'index']);
+
 
 
 
