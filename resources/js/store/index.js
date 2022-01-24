@@ -4,6 +4,7 @@ import UsersModule from './modules/users'
 import HomesModule from './modules/homes'
 import CartsModule from './modules/carts'
 import CheckoutsModule from './modules/checkouts'
+import RelatedProductsModule from './modules/relatedProducts'
 
 Vue.use(Vuex)
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
     UsersModule,
     HomesModule,
     CartsModule,
-    CheckoutsModule
+    CheckoutsModule,
+    RelatedProductsModule
   }
 })

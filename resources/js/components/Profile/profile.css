@@ -146,3 +146,19 @@ td.t_price span {font-size: 14px; }
   color: #DC143C;
   font-size: 14px;
 }
+.updatelive{
+  display: flex;
+  flex-direction: row;
+}
+.updatelive input{
+  width: auto;
+  padding: 2px;
+}
+.readonly{
+  pointer-events: none;
+}
+.heading{
+  font-size: 15px;
+  color: #000;
+  font-weight: bold;
+}
