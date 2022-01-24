@@ -48,7 +48,7 @@
         </div>
       </div>
     </section>
-    <section class="treat_sec">
+    <section class="treat_sec_updt">
       <div class="container_max">
         <div class="row grid_4">
         <div
@@ -70,34 +70,18 @@
         </div>
       </div>
     </section>
-    <section class="product_slider">
+
+   <section class="sec_info">
       <div class="container_max">
-        <div
-          class="row regular slider margin_row"
-          v-if="categories && categories.length>0"
-        >
-          <slick
-            ref="slick"
-            :options="slickOptions"
-          >
-            <div
-              class="category_loop"
-              v-for="(category,catbkey) in categories"  :key="catbkey"
-            >
-              <router-link
-                :to="{ path: 'category/'+category.slug}"
-              >
-                <img
-                  :src="category.feature_image"
-                  :alt="category.name"
-                >
-                <h3>{{category.name}}</h3>
-              </router-link>
-            </div>
-          </slick>
+        <div class="row">
+          <div class="col-md-12">
+            <h2>PET PARENTING MADE EASY™</h2>
+            <p>We do all the work for you and your furbabies so you don't have to. We create & curate the foods, products, and information to solve the demands of pet parenting.</p>
+          </div>
         </div>
       </div>
     </section>
+
     <section class="two_img">
       <div class="container_max">
         <div class="row pad_15">
@@ -191,7 +175,37 @@
         </div>
       </div>
     </section>
-    <section class="cart_slider">
+
+  <section class="product_slider m_v_5">
+      <div class="container_max">
+      <h1 class="line_aside">Thoughtfully Created & Curated Products</h1>
+        <div
+          class="row regular slider margin_row"
+          v-if="categories && categories.length>0"
+        >
+          <slick
+            ref="slick"
+            :options="slickOptions"
+          >
+            <div
+              class="category_loop"
+              v-for="(category,catbkey) in categories"  :key="catbkey"
+            >
+              <router-link
+                :to="{ path: 'category/'+category.slug}"
+              >
+                <img
+                  :src="category.feature_image"
+                  :alt="category.name"
+                >
+                <h3>{{category.name}}</h3>
+              </router-link>
+            </div>
+          </slick>
+        </div>
+      </div>
+    </section>
+    <!--<section class="cart_slider">
       <div class="container_max">
         <h1 class="line_heading">Sale</h1>
         <ul
@@ -250,7 +264,7 @@
           </slick>
         </ul>
       </div>
-    </section>
+    </section>-->
     <section class="duo_banner">
       <div class="container_max">
         <div class="row">
@@ -398,7 +412,7 @@ import imgHeat from "../../assets/images/heat.jpg"
 import imgTouch from "../../assets/images/touch.jpg"
 import imgTouch2 from "../../assets/images/mobile_contact.png"
 import imgBg2 from "../../assets/images/bg2.jpg"
-import imgBg3 from "../../assets/images/bg3.jpg"
+import imgBg3 from "../../assets/images/bg3.png"
 
 
 import Slick from 'vue-slick'
