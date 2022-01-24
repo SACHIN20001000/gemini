@@ -52,5 +52,15 @@ class FaqRequest
      * @var string
      */
     public $product_id;
+    /**
+     * @OA\Property(
+     *     title="published",
+     *     description="question for product",
+     *     example="1/0",
+     * )
+     *
+     * @var string
+     */
+    public $published;
 
 }
