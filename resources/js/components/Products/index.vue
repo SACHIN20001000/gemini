@@ -617,7 +617,7 @@ export default {
     ...mapGetters(['product', 'catErrors','addCartItems'])
   },
   methods: {
-    ...mapActions(['getProduct','addCartItem','getCartItems']),
+    ...mapActions(['getProduct','addCartItem','getCartItems','addFaq']),
     getProdcut(){
       if (this.$route.params.id) {
         this.getProduct(this.$route.params.id)

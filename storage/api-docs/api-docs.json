@@ -736,6 +736,44 @@
                 }
             }
         },
+        "chowhub/rating/overall/{product_id}": {
+            "get": {
+                "tags": [
+                    "Rating"
+                ],
+                "summary": "over all rating",
+                "operationId": "overall rating",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OverAllRatingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "/chowhub/stores": {
             "get": {
                 "tags": [
@@ -1266,6 +1304,46 @@
                 }
             }
         },
+        "/pet/create": {
+            "post": {
+                "tags": [
+                    "Pet"
+                ],
+                "summary": "pet store",
+                "operationId": "pet store",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PetRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PetResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "/products": {
             "get": {
                 "tags": [
@@ -1483,6 +1561,44 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/RatingResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/rating/overall/{product_id}": {
+            "get": {
+                "tags": [
+                    "Rating"
+                ],
+                "summary": "over all rating",
+                "operationId": "overall rating",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OverAllRatingResponse"
                                 }
                             }
                         }
@@ -2080,6 +2196,54 @@
                 },
                 "type": "object"
             },
+            "PetRequest": {
+                "title": "Create new checkout",
+                "description": "Request for create a new checkout for a cart",
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "name  for storing",
+                        "type": "string",
+                        "example": "johm"
+                    },
+                    "type": {
+                        "title": "type ",
+                        "description": "type for storing",
+                        "type": "string",
+                        "example": "dog/cat"
+                    },
+                    "image": {
+                        "title": "image",
+                        "description": "image for storing",
+                        "type": "string",
+                        "example": "https://petparent.s3.ap-south-1.amazonaws.com/images/4Qpw6AjW7C0PT3GhfLsqctckMeOchNwe2BDFgcW9.png"
+                    },
+                    "age": {
+                        "title": "age",
+                        "description": "age for pet",
+                        "type": "string",
+                        "example": "2"
+                    }
+                },
+                "type": "object"
+            },
+            "PetResponse": {
+                "title": "Pet Response",
+                "description": "Pet Response",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "example": {
+                            "id": 1,
+                            "title": "<p>dfsdfs</p>",
+                            "description": "<p>dsfsddf</p>",
+                            "published": 1,
+                            "created_at": "2022-01-20T10:01:36.000000Z"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "AttributesResponse": {
                 "title": "Attributes Response",
                 "description": "Attributes Response",
@@ -2122,6 +2286,21 @@
                             "created": "Dec 10, 2021 11:34:05",
                             "updated_at": "2021-12-10T11:34:05.000000Z",
                             "childrens": "[]"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "OverAllRatingResponse": {
+                "title": "OverAllRatingResponse",
+                "description": "OverAllRatingResponse",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "example": {
+                            "success": true,
+                            "overAllRating": 3,
+                            "total-reviews": 6
                         }
                     }
                 },

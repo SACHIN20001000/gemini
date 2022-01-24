@@ -12,6 +12,7 @@
             <div class="row">
               <div class="col-3">
                 <img :src="store_profile">
+                <input type="file" accept="image/*" @change="uploadImage($event)" id="file-input">
               </div>
               <div class="col-9">
                 <h1 class="st_h">Welcome back, Susan M.!</h1>
@@ -58,7 +59,7 @@
                   <div class="inp_edt" v-if="nameData.name==1">
                     {{shippingFrom.name}} <i @click="displayField('name')"><img :src="input_edit"></i>
                   </div>
-                  <div class="inp_edt" v-else>
+                  <div class="inp_edt updatelive" v-else>
                     <input type="text" v-model="shippingFrom.name"> <i class="fa fa-check" @click="displayField('name')" aria-hidden="true"></i>
                     <span
                       v-if="shippingFrom.errors().has('name')"
@@ -67,12 +68,12 @@
                     </span>
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group readonly" v-bind:readonly="true">
                   <label class="lb_small">E-mail</label>
                   <div class="inp_edt" v-if="nameData.email==1">
                     {{shippingFrom.email}} <i @click="displayField('email')"><img :src="input_edit"></i>
                   </div>
-                  <div class="inp_edt" v-else>
+                  <div class="inp_edt updatelive" v-else>
                     <input type="text" v-model="shippingFrom.email"> <i class="fa fa-check" @click="displayField('email')" aria-hidden="true"></i>
                     <span
                       v-if="shippingFrom.errors().has('email')"
@@ -86,12 +87,13 @@
                   <div class="inp_edt mb-0" v-if="nameData.password==1">
                     ********** <i @click="displayField('password')"><img :src="input_edit"></i>
                   </div>
-                  <div class="inp_edt mb-0" v-else>
+                  <div class="inp_edt mb-0 updatelive" v-else>
                     <input type="text" v-model="shippingFrom.password"> <i class="fa fa-check" @click="displayField('password')" aria-hidden="true"></i>
                   </div>
                 </div>
               </div>
               <div class="tab-pane fade" id="st_shipping">
+                <p class="heading">Shipping Address</p>
                 <form class="add-form">
                   <input class="add-form-field" type="text" placeholder="Address" v-model="shippingFrom.address">
                   <span
@@ -136,7 +138,7 @@
                 <p class="errorMsg">{{errorMsg}}</p>
               </div>
               <div class="tab-pane fade" id="st_payment">
-                2
+                <p class="heading">Payment Details</p>
               </div>
             </div>
           </div>
@@ -198,10 +200,10 @@
                   >
                     <thead>
                       <tr>
-                        <th class="data_head" width=25%><span class="tb_sm">Order Date</span> <b>{{orderslist.created_at}}</b></th>
-                        <th class="data_head" width=25%>Order Number #{{orderslist.id}}</th>
-                        <th width=25%>Transaction Id:{{orderslist.transaction_id}}</th>
-                        <th width=25%>Status: {{orderslist.status}}</th>
+                        <th class="data_head" width=25%><span class="tb_sm">Order Date</span> <b>{{orderslist.created_at | formatDate}}</b></th>
+                        <th class="data_head" width=25%>Order Number  #{{orderslist.id}}</th>
+                        <th  class="data_head" width=25%>Transaction Id: {{orderslist.transaction_id}}</th>
+                        <th  class="data_head" width=25%>Status: {{orderslist.status}}</th>
                       </tr>
                     </thead>
                     <tbody v-if="orderslist.orderItems">
@@ -251,6 +253,7 @@
 import {mapActions,mapGetters} from "vuex"
 import form from 'vuejs-form'
 import HTTP from './../../Api/auth'
+import axios from 'axios'
 
 import tp3 from "../../assets/images/tp3.png"
 import tp2 from "../../assets/images/tp2.png"
@@ -288,7 +291,7 @@ export default {
     })
       .rules({
         name: 'required',
-        email: 'required',
+        email: 'email|min:5|required',
         address: 'required',
         zip_code: 'required',
         phone: 'required',
@@ -330,8 +333,11 @@ export default {
       if(this.nameData[fieldOpen]==1){
         this.nameData[fieldOpen]=0
       }else{
-        this.nameData[fieldOpen]=1
-        this.updateShipping()
+        this.shippingFrom.validate()
+        if (!this.shippingFrom.validate().errors().any()) {
+          this.nameData[fieldOpen]=1
+          this.requestData(this.shippingFrom.data)
+        }
       }
     },
     updateShipping(){
@@ -346,12 +352,28 @@ export default {
         this.shippingMsg='Shipping address update is successfully!'
         var profileDetails= response.data.data
         Object.keys(profileDetails).reduce((formData, key) => {
-             this.shippingFrom[key]= profileDetails[key]
+            this.shippingFrom[key]= profileDetails[key]
         })
       }).catch((errors) => {
         errorMsg = errors
         this.shippingMsg=''
       })
+    },
+    uploadImage(event) {
+      let data = new FormData();
+      data.append('id', this.accountDetails.id)
+      data.append('name', 'my-picture')
+      data.append('file', event.target.files[0])
+      let config = {
+        header : {
+          'Content-Type' : 'image/png'
+        }
+      }
+      axios.put(process.env.MIX_APP_APIURL+'profileImage',data,config).then(
+        response => {
+          console.log('image upload response > ', response)
+        }
+      )
     }
   }
 }

@@ -36,6 +36,19 @@
 
                                 </div>
                             </div>
+                            <div class="row row-xs align-items-center mg-b-20" id="product_type">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Product Type</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <input type="radio" class="chownhub" {{ (isset($coupon) && $coupon->product_type  == 'chownhub') ? 'Checked' : '' }} name="product_type" value="chownhub">
+                                    <label for="age1">Chownhub Product</label><br>
+                                    <input type="radio" class="chownhub" {{ (isset($coupon) && $coupon->product_type  == 'product') ? 'Checked' : '' }} name="product_type" value="product">
+                                    <label for="age2">Product</label><br>
+
+
+                                </div>
+                            </div>
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">Code</label>
@@ -99,19 +112,7 @@
 
                                 </div>
                             </div>
-                            <div class="row row-xs align-items-center mg-b-20" id="product_type">
-                                <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Product Type</label>
-                                </div>
-                                <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                <input type="radio" class="chownhub" {{ (isset($coupon) && $coupon->product_type  == 'chownhub') ? 'Checked' : '' }} name="product_type" value="chownhub">
-                                    <label for="age1">Chownhub Product</label><br>
-                                    <input type="radio" class="chownhub" {{ (isset($coupon) && $coupon->product_type  == 'product') ? 'Checked' : '' }} name="product_type" value="product">
-                                    <label for="age2">Product</label><br>
 
-
-                                </div>
-                            </div>
                             <div class="row row-xs align-items-center mg-b-20" id="category_id">
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">Category</label>
@@ -164,22 +165,22 @@
     $("select").select2();
     $("#product_id").hide();
      $("#category_id").hide();
-     $("#product_type").hide();
+
     $("#categories").click(function () {
         $("#product_id").hide();
-        $("#product_type").hide();
+
 
         $("#specific_product option").prop("selected", false);
-        $(".chownhub").prop('checked', false);;
+        
 
         $("#category_id").show();
     });
     $("#products").click(function () {
 
         $("#specific_category option").prop("selected", false);
+        $("#product_id").show();
 
 
-        $("#product_type").show();
      $("#category_id").hide();
     });
     $(".chownhub").click(function () {
@@ -191,12 +192,12 @@
 
     $("#entire").click(function () {
         $("#product_id").hide();
-        $("#product_type").hide();
+
      $("#category_id").hide();
     });
     if($("#categories").is(":checked")) {
         $("#product_id").hide();
-        $("#product_type").hide();
+
 
      $("#category_id").show();
 
@@ -204,7 +205,7 @@
   if($("#products").is(":checked")) {
     $("#product_id").show();
      $("#category_id").hide();
-     $("#product_type").show();
+
 
   }
   //search

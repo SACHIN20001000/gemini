@@ -67,9 +67,9 @@ class CouponController extends Controller
     public function create()
     {
         $categories = Category::select('name', 'id')->where(['parent' => 0, 'type' => 'Product'])->get();
-        $products = Product::select('productName', 'id')->get();
+  
 
-        return view('admin.coupons.addEdit', compact('categories', 'products'));
+        return view('admin.coupons.addEdit', compact('categories'));
     }
 
     /**

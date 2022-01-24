@@ -113,15 +113,62 @@ class RatingController extends Controller
             ]);
     }
 
-    /**
+     /**
+     * @OA\Get(
+     *      path="/rating/overall/{product_id}",
+     *      operationId="overall rating",
+     *      tags={"Rating"},
+     *
+     *     summary="over all rating",
+     *     *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="3",
+     *         required=true,
+     *      ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="Pages",
+     *         @OA\JsonContent(ref="#/components/schemas/OverAllRatingResponse")
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \App\Http\Requests\ExampleStoreRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+
+    public function getOverallRating($id)
     {
-        //
+     $singleRating=   Rating::where('product_id',$id)->first();
+     $rating=   Rating::where('product_id',$id)->get();
+        if(isset($singleRating)){
+            foreach ($rating as $key => $value) {
+
+                $overall[]=$value->rating;
+
+            }
+            $totalSum=array_sum($overall);
+            $totalCount=count($overall);
+                $overAllRating=$totalSum/$totalCount;
+                return response()->json([
+                    'success' => true,'overAllRating' => $overAllRating,'total-reviews' =>$totalCount
+                ]);
+        }
+            return response()->json([
+                'success' => false,'message' => 'No record found'
+            ]);
+
     }
 
     /**

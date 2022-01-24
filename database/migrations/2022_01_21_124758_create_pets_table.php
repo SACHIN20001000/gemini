@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateChowhubFaqsTable extends Migration
+class CreatePetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateChowhubFaqsTable extends Migration
      */
     public function up()
     {
-        Schema::create('chowhub_faqs', function (Blueprint $table) {
+        Schema::create('pets', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id')->nullable();
+            $table->string('name');
             $table->integer('user_id');
-            $table->string('title');
-            $table->longText('description')->nullable();
-            $table->boolean('published')->default(0);
+            $table->integer('age')->nullable();
+            $table->string('type')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateChowhubFaqsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chowhub_faqs');
+        Schema::dropIfExists('pets');
     }
 }
