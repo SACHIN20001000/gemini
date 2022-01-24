@@ -8,6 +8,13 @@ import VueSweetalert2 from "vue-sweetalert2"
 import "sweetalert2/dist/sweetalert2.min.css"
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import { StripePlugin } from '@vue-stripe/vue-stripe'
+import moment from 'moment'
+
+Vue.filter('formatDate', function(value) {
+    if (value) {
+        return moment(String(value)).format('MM/DD/YYYY hh:mm')
+    }
+})
 const options = {
   pk: process.env.MIX_STRIPE_PUBLISHABLE_KEY,
   stripeAccount: process.env.MIX_STRIPE_ACCOUNT,
