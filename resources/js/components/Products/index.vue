@@ -226,15 +226,27 @@
         </div>
         <div class="row m-lr question-inner02">
           <div class="col-sm-3 pe-0">
-            <div v-if="!searchQuestion">
-              <p>Can I use a Bounce dryer sheet...</p>
-              <p>Can I use a Bounce dryer sheet...</p>
-              <p>Can I use a Bounce dryer sheet...</p>
-              <p>Can I use a Bounce dryer sheet...</p>
-              <p>Can I use a Bounce dryer sheet...</p>
+            <div v-if="!searchQuestion" class="faq_list">
+              <p
+                v-for="(faq,fkey) in faqs"
+                :key="fkey"
+                @click="openQuestion(fkey)"
+              >{{faq.title}}</p>
             </div>
             <div v-else>
-              <input type="" name="search"><i class="fa fa-search" aria-hidden="true"></i>
+              <div class="srch_q">
+              <input type="text" v-model="filterForm.search"><i @click="filterFaq()" class="fa fa-search" aria-hidden="true"></i>
+              <span class="error_validation" v-if="filterForm.errors().has('search')">
+                {{ filterForm.errors().get('search') }}
+              </span>
+              <divclass="faq_list">
+                <p
+                  v-for="(filterfaq,flkey) in filterfaqs"
+                  :key="flkey"
+                  @click="openQuestion(flkey)"
+                >{{filterfaq.title}}</p>
+              </div>
+              </div>
             </div>
           </div>
           <div class="col-sm-2 Large-btn-box">
@@ -256,51 +268,56 @@
           </div>
           <div class="col-sm-7">
             <div class="row" v-if="!askQuestion">
-              <div class="col-sm-3">
+              <div class="col-sm-3" v-if="faqDetail && faqDetail.user">
                 <div class="bm-wrap">
-                  <img :src="bm_logo">
+                  <img :src="faqDetail.user.profile_image" width="60px">
                   <div>
-                    <span><b>Barbara M.</b></span>
-                    <span>08/31/2021</span><br>
-                    <span>08/31/2021</span>
+                    <span><b>{{faqDetail.user.name}}</b></span>
+                    <span>{{faqDetail.user.created_at}}</span>
                   </div>
                 </div>
               </div>
-              <div class="col-sm-9">
-                <p class="light-text">What are the various dimensions? I have a queen bed.</p>
+              <div class="col-sm-9" v-if="faqDetail">
+                <p class="light-text">{{faqDetail.title}}</p>
                 <p class="light-text">Answers</p>
-                <div class="bm-wrap ">
-                  <img :src="foot_5">
+                <div class="bm-wrap cmnt_txt">
+                <div class="blg_auth">  <img :src="foot_5"> <span> Pet Parents® </span></div>
                   <div>
-                    <p class="light-text">
-                      <span> Pet Parents® </span><br>
-                      Hi Barbara! Our Pawtect® Blanket comes in 3 sizes.<br>
-                      Small: 24 inches x32 inches<br>
-                      Medium: 32 inches x40 inches<br>
-                      Large: 50 inches x60 inches<br>
-                      Hope this helps!
-                    </p>
+                    <div
+                      class="light-text"
+                      v-html="faqDetail.description"
+                    >
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="row" v-else>
               <div class="col-sm-12">
-                <div class="question_form">
-                  <div class="form_label">
+                <div class="question_form row">
+                  <div class="form_label col-md-6">
                     <label>Name: </label>
-                    <input type="text" />
+                    <input type="text" v-model='faqForm.name' />
+                    <span class="error_validation" v-if="faqForm.errors().has('name')">
+                      {{ faqForm.errors().get('name') }}
+                    </span>
                   </div>
-                  <div class="form_label">
+                  <div class="form_label col-md-6">
                     <label>Email: </label>
-                    <input type="text" />
+                    <input type="text" v-model='faqForm.email' />
+                    <span class="error_validation" v-if="faqForm.errors().has('email')">
+                      {{ faqForm.errors().get('email') }}
+                    </span>
                   </div>
-                  <div class="form_label">
+                  <div class="form_label col-md-12">
                     <label>Question: </label>
-                    <textarea></textarea>
+                    <textarea v-model='faqForm.question'></textarea>
+                    <span class="error_validation" v-if="faqForm.errors().has('question')">
+                      {{ faqForm.errors().get('question') }}
+                    </span>
                   </div>
-                  <div class="form_label">
-                    <button type="button">Submit Question</button>
+                  <div class="form_label col-md-12 for_m_btn">
+                    <button type="button" @click='faqSubmit'>Submit Question</button>
                   </div>
                 </div>
               </div>
@@ -361,6 +378,7 @@
         <div class="row">
           <div class="col-md-12 question-inner">
             <div class="review_form">
+              <h4>Reviews</h4>
               <div class="review_form_50">
                 <div class="review_form_label">
                   <label>Name: </label>
@@ -371,21 +389,23 @@
                   <input type="text" />
                 </div>
               </div>
-              <div class="review_form_100">
-                <div class="form_label">
+              <div class="review_form_50">
+                <div class="review_form_label form_label">
                   <label>Rating </label>
                   <input type="text" />
                 </div>
-                <div class="form_label">
+                <div class=" review_form_label form_label">
                   <label>Title of Review </label>
                   <input type="text" />
                 </div>
-                <div class="form_label">
+                </div>
+                <div class="review_form_100">
+                <div class="form_label txt_area">
                   <label>How was your overall experience? </label>
                   <textarea></textarea>
                 </div>
               </div>
-              <div class="review_btn_label">
+              <div class="review_btn_label ">
                 <button type="button">Submit Question</button>
               </div>
             </div>
@@ -522,63 +542,89 @@ export default {
   directives: {
     swiper: directive
   },
-  data: function () {
-    return {
-      product_img:product_img,
-      product_t:product_t,
-      product_t2:product_t2,
-      high_quality_ingradients:high_quality_ingradients,
-      high_quality_ingradients_02:high_quality_ingradients_02,
-      bm_logo:bm_logo,
-      foot_5:foot_5,
-      thumb_up:thumb_up,
-      u_s:u_s,
-      review_01:review_01,
-      ship:ship,
-      itemDetails: {
-        key: 1,
-        product_id: 0,
-        quantity: 2,
-      },
-      variations:{},
-      variationAttributes:[],
-      finalVariant:[],
-      selectedattrIds:[],
-      varaintOutStock:'',
-      form: form({
-        selectedIds: []
+  data: () => ({
+    product_img:product_img,
+    product_t:product_t,
+    product_t2:product_t2,
+    high_quality_ingradients:high_quality_ingradients,
+    high_quality_ingradients_02:high_quality_ingradients_02,
+    bm_logo:bm_logo,
+    foot_5:foot_5,
+    thumb_up:thumb_up,
+    u_s:u_s,
+    review_01:review_01,
+    ship:ship,
+    itemDetails: {
+      key: 1,
+      product_id: 0,
+      quantity: 2,
+    },
+    variations:{},
+    variationAttributes:[],
+    finalVariant:[],
+    selectedattrIds:[],
+    varaintOutStock:'',
+    form: form({
+      selectedIds: []
+    }),
+    swiperOptionTop: {
+      loop: true,
+      loopedSlides: 5, // looped slides should be the same
+      spaceBetween: 10,
+      observer: true,
+      observeParents: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      }
+    },
+    swiperOptionThumbs: {
+      loop: true,
+      loopedSlides: 5, // looped slides should be the same
+      spaceBetween: 10,
+      centeredSlides: false,
+      slidesPerView: 4,
+      observer: true,
+      observeParents: true,
+      touchRatio: 0.2,
+      slideToClickedSlide: true
+    },
+    swiperTop:'',
+    swiperThumbs:'',
+    askQuestion: false,
+    searchQuestion: false,
+    writeReview: false,
+    faqForm: form({
+      name: '',
+      email: '',
+      question: '',
+      product_id:0
+    })
+      .rules({
+        name: 'required',
+        email: 'email|min:5|required',
+        question: 'required'
+      })
+      .messages({
+        'name': 'This field is required!',
+        'email.email': 'Email field must be an email',
+        'question.question': 'This field is required!'
       }),
-      swiperOptionTop: {
-        loop: true,
-        loopedSlides: 5, // looped slides should be the same
-        spaceBetween: 10,
-        observer: true,
-        observeParents: true,
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        }
-      },
-      swiperOptionThumbs: {
-        loop: true,
-        loopedSlides: 5, // looped slides should be the same
-        spaceBetween: 10,
-        centeredSlides: false,
-        slidesPerView: 4,
-        observer: true,
-        observeParents: true,
-        touchRatio: 0.2,
-        slideToClickedSlide: true
-      },
-      swiperTop:'',
-      swiperThumbs:'',
-      askQuestion: false,
-      searchQuestion: false,
-      writeReview: false
-    }
-  },
+    filterForm: form({
+      serach: '',
+      product_id:0
+    })
+      .rules({
+        serach: 'required'
+      })
+      .messages({
+        'serach': 'This field is required!',
+      }),
+    faqDetail:[]
+  }),
   mounted(){
     this.getProdcut()
+    this.getFaqs(this.$route.params.id)
   },
   watch: {
     addCartItems(){
@@ -611,13 +657,18 @@ export default {
         this.swiperTop.controller.control = this.swiperThumbs
         this.swiperThumbs.controller.control = this.swiperTop
       })
+    },
+    faqs(){
+      if(this.faqs.length>0){
+        this.faqDetail = this.faqs[0]
+      }
     }
   },
   computed: {
-    ...mapGetters(['product', 'catErrors','addCartItems'])
+    ...mapGetters(['product', 'catErrors','addCartItems', 'faqs','filterfaqs'])
   },
   methods: {
-    ...mapActions(['getProduct','addCartItem','getCartItems','addFaq']),
+    ...mapActions(['getProduct','addCartItem','getCartItems','addFaq','getFaqs','filterFaqs']),
     getProdcut(){
       if (this.$route.params.id) {
         this.getProduct(this.$route.params.id)
@@ -729,6 +780,26 @@ export default {
         return iniName + iniLname
       }else{
         return fullName.charAt(0)+fullName.charAt(1)
+      }
+    },
+    faqSubmit(){
+      this.faqForm.validate()
+      if (!this.faqForm.validate().errors().any()) {
+        var productId = this.$route.params.id
+        this.faqForm.data.product_id=productId
+        this.addFaq(this.faqForm.data)
+        this.askQuestion=false
+      }
+    },
+    openQuestion(arrayIndex){
+      this.faqDetail = this.faqs[arrayIndex]
+    },
+    filterFaq(){
+      this.filterForm.validate()
+      if (!this.filterForm.validate().errors().any()) {
+        var productId = this.$route.params.id
+        this.filterForm.data.product_id=productId
+        this.filterFaqs(this.faqForm.data)
       }
     }
   }
