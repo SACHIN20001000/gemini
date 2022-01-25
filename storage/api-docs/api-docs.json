@@ -2509,6 +2509,12 @@
                         "type": "string",
                         "example": "123"
                     },
+                    "title": {
+                        "title": "title",
+                        "description": "title for storing",
+                        "type": "string",
+                        "example": "title"
+                    },
                     "description": {
                         "title": "description",
                         "description": "description for storing",
@@ -2520,6 +2526,18 @@
                         "description": "email  for storing",
                         "type": "string",
                         "example": "user@gmail.com"
+                    },
+                    "status": {
+                        "title": "status ",
+                        "description": "status  for storing",
+                        "type": "string",
+                        "example": "0/1"
+                    },
+                    "images": {
+                        "title": "images ",
+                        "description": "images  for storing",
+                        "type": "string",
+                        "example": "0/1"
                     }
                 },
                 "type": "object"

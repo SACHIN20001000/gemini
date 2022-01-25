@@ -30,7 +30,16 @@ class RatingRequest
      * @var string
      */
     public $rating;
-
+/**
+     * @OA\Property(
+     *     title="title",
+     *     description="title for storing",
+     *     example="title",
+     * )
+     *
+     * @var string
+     */
+    public $title;
     /**
      * @OA\Property(
      *     title="description",
@@ -51,5 +60,25 @@ class RatingRequest
      * @var string
      */
     public $email ;
+     /**
+     * @OA\Property(
+     *     title="status ",
+     *     description="status  for storing",
+     *     example="0/1",
+     * )
+     *
+     * @var string
+     */
+    public $status ;
+      /**
+     * @OA\Property(
+     *     title="images ",
+     *     description="images  for storing",
+     *     example="0/1",
+     * )
+     *
+     * @var string
+     */
+    public $images ;
 
 }

@@ -104,6 +104,7 @@ class ChowhubRatingController extends Controller
         $inputs['description']=$request->description;
         $inputs['product_id']=$request->product_id;
         $inputs['rating']=$request->rating;
+        $inputs['status']=$request->status;
         $rating= ChowhubRating::create($inputs);
         if ($request->file('images'))
         {
