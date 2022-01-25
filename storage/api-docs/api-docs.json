@@ -2231,6 +2231,12 @@
                         "type": "string",
                         "example": "What is the meaning of Lorem ipsum?"
                     },
+                    "answer": {
+                        "title": "answer",
+                        "description": "answer for storing",
+                        "type": "string",
+                        "example": "its a dummy data"
+                    },
                     "product_id": {
                         "title": "product_id",
                         "description": "question for product",
@@ -2849,9 +2855,9 @@
             "scheme": "https",
             "flows": {
                 "password": {
-                    "authorizationUrl": "http://localhost/oauth/authorize",
-                    "tokenUrl": "http://localhost/oauth/token",
-                    "refreshUrl": "http://localhost/token/refresh",
+                    "authorizationUrl": "http://127.0.0.1:8000//oauth/authorize",
+                    "tokenUrl": "http://127.0.0.1:8000//oauth/token",
+                    "refreshUrl": "http://127.0.0.1:8000//token/refresh",
                     "scopes": []
                 }
             }

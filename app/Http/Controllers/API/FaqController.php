@@ -160,6 +160,7 @@ class FaqController extends Controller
 
                 $inputs['user_id']=$user->id;
                 $inputs['title']=$request->question;
+                $inputs['description']=$request->answer;
                 $inputs['product_id']=$request->product_id;
                 $inputs['published']=$request->published ?? 0;
                 Faq::create($inputs);
@@ -206,7 +207,7 @@ class FaqController extends Controller
 
     public function chouhubIndex($id)
     {
-        
+
         $faqs = ChowhubFaq::with('user','product')->where(['product_id'=>$id,'published'=>1])->orderBy('id', 'asc')->get();
 
         return  ChowhubFaqResource::collection($faqs);
@@ -316,6 +317,8 @@ class FaqController extends Controller
 
                $inputs['user_id']=$user->id;
                $inputs['title']=$request->question;
+               $inputs['description']=$request->answer;
+
                $inputs['product_id']=$request->product_id;
                $inputs['published']=$request->published ?? 0;
                ChowhubFaq::create($inputs);

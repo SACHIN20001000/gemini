@@ -27,7 +27,9 @@ class FaqRequest extends FormRequest
 
             'product_id' => 'required',
             'question' => 'required',
-            
+            'answer' => 'required',
+
+
 
 
         ];

@@ -101,7 +101,7 @@ Route::get('rating/overall/{id}', [RatingController::class, 'getOverallRating'])
 Route::get('rating', [RatingController::class, 'index']);
 Route::post('chowhub/rating/create', [ChowhubRatingController::class, 'create']);
 Route::get('chowhub/rating', [ChowhubRatingController::class, 'index']);
-Route::get('chowhub/rating/overall/{product_id}', [ChowhubRatingController::class, 'getOverallRating']);
+Route::get('chowhub/rating/overall/{id}', [ChowhubRatingController::class, 'getOverallRating']);
 
 Route::get('stores/{store}', [StoreController::class, 'show']);
 Route::get('chowhub/stores', [ChowhubStoreController::class, 'index']);

@@ -41,7 +41,16 @@ class FaqRequest
      * @var string
      */
     public $question;
-
+   /**
+     * @OA\Property(
+     *     title="answer",
+     *     description="answer for storing",
+     *     example="its a dummy data",
+     * )
+     *
+     * @var string
+     */
+    public $answer;
     /**
      * @OA\Property(
      *     title="product_id",
