@@ -366,7 +366,7 @@ export default {
       data.append('file', event.target.files[0])
       let config = {
         header : {
-          'Content-Type' : 'image/png'
+          'Content-Type': 'multipart/form-data'
         }
       }
       axios.put(process.env.MIX_APP_APIURL+'profileImage',data,config).then(
