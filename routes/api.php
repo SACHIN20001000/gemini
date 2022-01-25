@@ -90,13 +90,13 @@ Route::post('coupon', [CouponController::class, 'index']);
 Route::get('stores', [StoreController::class, 'index']);
 Route::get('faq/{id}', [FaqController::class, 'index']);
 Route::get('faq/{id}/{string}', [FaqController::class, 'getFaqByString']);
-Route::get('chowhub/{id}/{string}', [FaqController::class, 'getChowhubFaqByString']);
+Route::get('chowhub/faq/{id}/{string}', [FaqController::class, 'getChowhubFaqByString']);
 
 Route::post('faq/store', [FaqController::class, 'store']);
-Route::get('chowhub/faq/{product_id}', [FaqController::class, 'chouhubIndex']);
+Route::get('chowhub/faq/{id}', [FaqController::class, 'chouhubIndex']);
 Route::post('chowhub/faq/store', [FaqController::class, 'chouhubStore']);
 Route::post('rating/create', [RatingController::class, 'create']);
-Route::get('rating/overall/{product_id}', [RatingController::class, 'getOverallRating']);
+Route::get('rating/overall/{id}', [RatingController::class, 'getOverallRating']);
 
 Route::get('rating', [RatingController::class, 'index']);
 Route::post('chowhub/rating/create', [ChowhubRatingController::class, 'create']);
