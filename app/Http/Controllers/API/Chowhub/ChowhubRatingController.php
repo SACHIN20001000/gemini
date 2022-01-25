@@ -114,7 +114,7 @@ class ChowhubRatingController extends Controller
         if ($request->file('images'))
         {
             foreach ($request->images as  $value) {
-                $path = Storage::disk('s3')->put('images/rating', $request->images);
+                $path = Storage::disk('s3')->put('images/rating', $value);
                 $path = Storage::disk('s3')->url($path);
                 ChowhubRatingGallery::create( [
                     'rating_id' => $rating->id,
