@@ -667,12 +667,20 @@
                 ]
             }
         },
-        "/chowhub/rating": {
+        "/chowhub/rating/{product_id}": {
             "get": {
                 "tags": [
                     "Rating"
                 ],
                 "operationId": "chowhub rating",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "1",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Pages",
@@ -1634,12 +1642,20 @@
                 ]
             }
         },
-        "/rating": {
+        "/rating/{product_id}": {
             "get": {
                 "tags": [
                     "Rating"
                 ],
                 "operationId": "rating",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "1",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Pages",

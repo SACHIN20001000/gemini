@@ -98,9 +98,9 @@ Route::post('chowhub/faq/store', [FaqController::class, 'chouhubStore']);
 Route::post('rating/create', [RatingController::class, 'create']);
 Route::get('rating/overall/{id}', [RatingController::class, 'getOverallRating']);
 
-Route::get('rating', [RatingController::class, 'index']);
+Route::get('rating/{id}', [RatingController::class, 'index']);
 Route::post('chowhub/rating/create', [ChowhubRatingController::class, 'create']);
-Route::get('chowhub/rating', [ChowhubRatingController::class, 'index']);
+Route::get('chowhub/rating/{id}', [ChowhubRatingController::class, 'index']);
 Route::get('chowhub/rating/overall/{id}', [ChowhubRatingController::class, 'getOverallRating']);
 
 Route::get('stores/{store}', [StoreController::class, 'show']);

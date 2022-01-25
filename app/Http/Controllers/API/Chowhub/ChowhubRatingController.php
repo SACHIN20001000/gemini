@@ -15,11 +15,16 @@ class ChowhubRatingController extends Controller
 {
  /**
      * @OA\Get(
-     *      path="/chowhub/rating",
+     *      path="/chowhub/rating/{product_id}",
      *      operationId="chowhub rating",
      *      tags={"Rating"},
      *
-
+*         @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="1",
+     *         required=true,
+     *      ),
      *     @OA\Response(
      *         response="200",
      *         description="Pages",
@@ -42,9 +47,9 @@ class ChowhubRatingController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function index()
+    public function index($id)
     {
-        $rating = ChowhubRating::with('user','product')->orderBy('id', 'asc')->get();
+        $rating = ChowhubRating::with('user','product')->where('product_id',$id)->orderBy('id', 'asc')->get();
 
         return  ChowhubRatingResource::collection($rating);
 

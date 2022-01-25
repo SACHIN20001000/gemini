@@ -15,11 +15,16 @@ class RatingController extends Controller
 {
  /**
      * @OA\Get(
-     *      path="/rating",
+     *      path="/rating/{product_id}",
      *      operationId="rating",
      *      tags={"Rating"},
      *
-
+  *         @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="1",
+     *         required=true,
+     *      ),
      *     @OA\Response(
      *         response="200",
      *         description="Pages",
@@ -42,9 +47,9 @@ class RatingController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function index()
+    public function index($id)
     {
-        $rating = Rating::with('user','product','ratingGallery')->orderBy('id', 'asc')->get();
+        $rating = Rating::with('user','product','ratingGallery')->where('product_id',$id)->orderBy('id', 'asc')->get();
 
         return  RatingResource::collection($rating);
 
