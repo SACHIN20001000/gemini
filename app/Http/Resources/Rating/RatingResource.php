@@ -21,10 +21,12 @@ class RatingResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
+            'rating' => $this->rating,
+
             'user'=> $this->user_id?new UserResource($this->user): [],
             'product'=>$this->product_id? new ProductResource($this->product): [],
             'images'=>$this->ratingGallery? new RatingGalleryResource($this->ratingGallery): [],
-            'published' => $this->status,
+            'status' => $this->status,
             'created_at' => $this->created_at,
 
 

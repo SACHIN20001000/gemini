@@ -20,10 +20,11 @@ class ChowhubRatingResource extends JsonResource
 
             'id' => $this->id,
             'title' => $this->title,
+            'rating' => $this->rating,
             'description' => $this->description,
             'user'=> $this->user_id?new UserResource($this->user): [],
             'product'=>$this->product_id? new ChowhubProductResource($this->product): [],
-            'published' => $this->published,
+            'status' => $this->status,
             'created_at' => $this->created_at,
 
 
