@@ -31,7 +31,7 @@ class RatingRequest extends FormRequest
 
             'description' => 'required',
             'status' => 'required',
-            'images' => 'required',
+           
 
 
 
