@@ -206,6 +206,7 @@ class FaqController extends Controller
 
     public function chouhubIndex($id)
     {
+        
         $faqs = ChowhubFaq::with('user','product')->where(['product_id'=>$id,'published'=>1])->orderBy('id', 'asc')->get();
 
         return  ChowhubFaqResource::collection($faqs);
