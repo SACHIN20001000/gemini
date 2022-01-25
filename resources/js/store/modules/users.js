@@ -53,6 +53,12 @@ const actions = {
       commit("tokenStatus", 'token is set!')
     }).catch((errors) => {
       commit("tokenError", errors.response.data.message)
+      localStorage.removeItem('token')
+      if(errors.response.data.message =='Invalid client Id'){
+          alert(errors.response.data.message)
+      }else{
+        window.location.reload()
+      }
     })
   }
 }

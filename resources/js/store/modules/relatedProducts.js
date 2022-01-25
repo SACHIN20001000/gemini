@@ -1,17 +1,24 @@
 /*import API from './../../Api'*/
 import HTTP from './../../Api/auth'
+import axios from 'axios'
 
 const state = {
   addFaq: [],
   faqError: [],
   faqs: [],
-  filterfaqs: []
+  reviews: [],
+  insertReview: [],
+  filterfaqs: [],
+  reviewError: []
 }
 const getters = {
   addFaq: state => state.addFaq,
   faqs: state => state.faqs,
   filterfaqs: state => state.filterfaqs,
-  faqError: state => state.faqError
+  reviews: state => state.reviews,
+  insertReview: state => state.insertReview,
+  faqError: state => state.faqError,
+  reviewError: state => state.reviewError
 }
 
 const actions = {
@@ -30,10 +37,29 @@ const actions = {
     })
   },
   filterFaqs ({ commit }, filterdata) {
-    HTTP.get(process.env.MIX_APP_APIURL+'faq/'+filterdata.product_id+'/'+filterdata.search).then((response) => {
+    HTTP.get(process.env.MIX_APP_APIURL+'faq/'+filterdata.data.product_id+'/'+filterdata.data.serachtext).then((response) => {
       commit('filterFaqs', response.data.data)
     }).catch((errors) => {
       commit("faqError", errors.response.data.message)
+    })
+  },
+  getReviews({ commit }, productId) {
+    HTTP.get(process.env.MIX_APP_APIURL+'rating/'+productId).then((response) => {
+      commit('getReviews', response.data.data)
+    }).catch((errors) => {
+      commit("reviewError", errors.response.data.message)
+    })
+  },
+  addReview({ commit }, reviewdata) {
+    let config = {
+      header : {
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+    axios.post(process.env.MIX_APP_APIURL+'rating/create', reviewdata, config).then((response) => {
+      commit('reviewAdd', response.data.data)
+    }).catch((errors) => {
+      commit("reviewError", errors)
     })
   }
 }
@@ -47,8 +73,17 @@ const mutations = {
   filterFaqs: (state, payload) => (
     state.filterfaqs = payload
   ),
+  getReviews: (state, payload) => (
+    state.reviews = payload
+  ),
+  reviewAdd: (state, payload) => (
+    state.insertReview = payload
+  ),
   faqError: (state, payload) => (
     state.faqError = payload
+  ),
+  reviewError: (state, payload) => (
+    state.reviewError = payload
   )
 }
 
