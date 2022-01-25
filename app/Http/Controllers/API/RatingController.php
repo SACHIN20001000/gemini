@@ -11,6 +11,7 @@ use App\Http\Resources\Rating\RatingResource;
 use App\Http\Requests\API\RatingRequest;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Storage;
 class RatingController extends Controller
 {
  /**
