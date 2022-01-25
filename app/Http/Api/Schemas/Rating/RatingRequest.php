@@ -74,7 +74,7 @@ class RatingRequest
      * @OA\Property(
      *     title="images ",
      *     description="images  for storing",
-     *     example="0/1",
+     *     example="user.jpg",
      * )
      *
      * @var string

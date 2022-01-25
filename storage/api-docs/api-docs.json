@@ -2537,7 +2537,7 @@
                         "title": "images ",
                         "description": "images  for storing",
                         "type": "string",
-                        "example": "0/1"
+                        "example": "user.jpg"
                     }
                 },
                 "type": "object"
