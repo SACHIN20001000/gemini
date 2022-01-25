@@ -4862,23 +4862,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es.string.split.js */ "./node_modules/core-js/modules/es.string.split.js");
 /* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _assets_images_ship_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../assets/images/ship.png */ "./resources/js/assets/images/ship.png");
-/* harmony import */ var _assets_images_product_png__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../assets/images/product.png */ "./resources/js/assets/images/product.png");
-/* harmony import */ var _assets_images_product_t_png__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../assets/images/product_t.png */ "./resources/js/assets/images/product_t.png");
-/* harmony import */ var _assets_images_product_t2_png__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../assets/images/product_t2.png */ "./resources/js/assets/images/product_t2.png");
-/* harmony import */ var _assets_images_high_quality_ingradients_jpg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../assets/images/high-quality-ingradients.jpg */ "./resources/js/assets/images/high-quality-ingradients.jpg");
-/* harmony import */ var _assets_images_high_quality_ingradients_02_jpg__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../assets/images/high-quality-ingradients-02.jpg */ "./resources/js/assets/images/high-quality-ingradients-02.jpg");
-/* harmony import */ var _assets_images_bm_logo_jpg__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../assets/images/bm-logo.jpg */ "./resources/js/assets/images/bm-logo.jpg");
-/* harmony import */ var _assets_images_foot_5_jpg__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../assets/images/foot-5.jpg */ "./resources/js/assets/images/foot-5.jpg");
-/* harmony import */ var _assets_images_review_01_jpg__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../assets/images/review-01.jpg */ "./resources/js/assets/images/review-01.jpg");
-/* harmony import */ var _assets_images_thumb_up_png__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../assets/images/thumb-up.png */ "./resources/js/assets/images/thumb-up.png");
-/* harmony import */ var _assets_images_u_s_jpg__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../assets/images/u_s.jpg */ "./resources/js/assets/images/u_s.jpg");
-/* harmony import */ var vuejs_form__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! vuejs-form */ "./node_modules/vuejs-form/dist/index.js");
-/* harmony import */ var vuejs_form__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(vuejs_form__WEBPACK_IMPORTED_MODULE_18__);
-/* harmony import */ var vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! vue-awesome-swiper */ "./node_modules/vue-awesome-swiper/dist/vue-awesome-swiper.js");
-/* harmony import */ var vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_19__);
-/* harmony import */ var swiper_css_swiper_css__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! swiper/css/swiper.css */ "./node_modules/swiper/css/swiper.css");
+/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es.symbol.js */ "./node_modules/core-js/modules/es.symbol.js");
+/* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/es.symbol.description.js */ "./node_modules/core-js/modules/es.symbol.description.js");
+/* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _assets_images_ship_png__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../assets/images/ship.png */ "./resources/js/assets/images/ship.png");
+/* harmony import */ var _assets_images_product_png__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../assets/images/product.png */ "./resources/js/assets/images/product.png");
+/* harmony import */ var _assets_images_product_t_png__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../assets/images/product_t.png */ "./resources/js/assets/images/product_t.png");
+/* harmony import */ var _assets_images_product_t2_png__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../assets/images/product_t2.png */ "./resources/js/assets/images/product_t2.png");
+/* harmony import */ var _assets_images_high_quality_ingradients_jpg__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../assets/images/high-quality-ingradients.jpg */ "./resources/js/assets/images/high-quality-ingradients.jpg");
+/* harmony import */ var _assets_images_high_quality_ingradients_02_jpg__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../assets/images/high-quality-ingradients-02.jpg */ "./resources/js/assets/images/high-quality-ingradients-02.jpg");
+/* harmony import */ var _assets_images_bm_logo_jpg__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../assets/images/bm-logo.jpg */ "./resources/js/assets/images/bm-logo.jpg");
+/* harmony import */ var _assets_images_foot_5_jpg__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../assets/images/foot-5.jpg */ "./resources/js/assets/images/foot-5.jpg");
+/* harmony import */ var _assets_images_review_01_jpg__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../assets/images/review-01.jpg */ "./resources/js/assets/images/review-01.jpg");
+/* harmony import */ var _assets_images_thumb_up_png__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../../assets/images/thumb-up.png */ "./resources/js/assets/images/thumb-up.png");
+/* harmony import */ var _assets_images_u_s_jpg__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../../assets/images/u_s.jpg */ "./resources/js/assets/images/u_s.jpg");
+/* harmony import */ var vuejs_form__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! vuejs-form */ "./node_modules/vuejs-form/dist/index.js");
+/* harmony import */ var vuejs_form__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(vuejs_form__WEBPACK_IMPORTED_MODULE_20__);
+/* harmony import */ var vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! vue-awesome-swiper */ "./node_modules/vue-awesome-swiper/dist/vue-awesome-swiper.js");
+/* harmony import */ var vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_21__);
+/* harmony import */ var swiper_css_swiper_css__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! swiper/css/swiper.css */ "./node_modules/swiper/css/swiper.css");
 
 
 
@@ -4886,28 +4890,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
 //
 //
 //
@@ -5419,25 +5403,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Products",
   components: {
-    Swiper: vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_19__.Swiper,
-    SwiperSlide: vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_19__.SwiperSlide
+    Swiper: vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_21__.Swiper,
+    SwiperSlide: vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_21__.SwiperSlide
   },
   directives: {
-    swiper: vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_19__.directive
+    swiper: vue_awesome_swiper__WEBPACK_IMPORTED_MODULE_21__.directive
   },
   data: function data() {
     return {
-      product_img: _assets_images_product_png__WEBPACK_IMPORTED_MODULE_8__["default"],
-      product_t: _assets_images_product_t_png__WEBPACK_IMPORTED_MODULE_9__["default"],
-      product_t2: _assets_images_product_t2_png__WEBPACK_IMPORTED_MODULE_10__["default"],
-      high_quality_ingradients: _assets_images_high_quality_ingradients_jpg__WEBPACK_IMPORTED_MODULE_11__["default"],
-      high_quality_ingradients_02: _assets_images_high_quality_ingradients_02_jpg__WEBPACK_IMPORTED_MODULE_12__["default"],
-      bm_logo: _assets_images_bm_logo_jpg__WEBPACK_IMPORTED_MODULE_13__["default"],
-      foot_5: _assets_images_foot_5_jpg__WEBPACK_IMPORTED_MODULE_14__["default"],
-      thumb_up: _assets_images_thumb_up_png__WEBPACK_IMPORTED_MODULE_16__["default"],
-      u_s: _assets_images_u_s_jpg__WEBPACK_IMPORTED_MODULE_17__["default"],
-      review_01: _assets_images_review_01_jpg__WEBPACK_IMPORTED_MODULE_15__["default"],
-      ship: _assets_images_ship_png__WEBPACK_IMPORTED_MODULE_7__["default"],
+      product_img: _assets_images_product_png__WEBPACK_IMPORTED_MODULE_10__["default"],
+      product_t: _assets_images_product_t_png__WEBPACK_IMPORTED_MODULE_11__["default"],
+      product_t2: _assets_images_product_t2_png__WEBPACK_IMPORTED_MODULE_12__["default"],
+      high_quality_ingradients: _assets_images_high_quality_ingradients_jpg__WEBPACK_IMPORTED_MODULE_13__["default"],
+      high_quality_ingradients_02: _assets_images_high_quality_ingradients_02_jpg__WEBPACK_IMPORTED_MODULE_14__["default"],
+      bm_logo: _assets_images_bm_logo_jpg__WEBPACK_IMPORTED_MODULE_15__["default"],
+      foot_5: _assets_images_foot_5_jpg__WEBPACK_IMPORTED_MODULE_16__["default"],
+      thumb_up: _assets_images_thumb_up_png__WEBPACK_IMPORTED_MODULE_18__["default"],
+      u_s: _assets_images_u_s_jpg__WEBPACK_IMPORTED_MODULE_19__["default"],
+      review_01: _assets_images_review_01_jpg__WEBPACK_IMPORTED_MODULE_17__["default"],
+      ship: _assets_images_ship_png__WEBPACK_IMPORTED_MODULE_9__["default"],
       itemDetails: {
         key: 1,
         product_id: 0,
@@ -5448,7 +5432,7 @@ __webpack_require__.r(__webpack_exports__);
       finalVariant: [],
       selectedattrIds: [],
       varaintOutStock: '',
-      form: vuejs_form__WEBPACK_IMPORTED_MODULE_18___default()({
+      form: vuejs_form__WEBPACK_IMPORTED_MODULE_20___default()({
         selectedIds: []
       }),
       swiperOptionTop: {
@@ -5480,7 +5464,7 @@ __webpack_require__.r(__webpack_exports__);
       askQuestion: false,
       searchQuestion: false,
       writeReview: false,
-      faqForm: vuejs_form__WEBPACK_IMPORTED_MODULE_18___default()({
+      faqForm: vuejs_form__WEBPACK_IMPORTED_MODULE_20___default()({
         name: '',
         email: '',
         question: '',
@@ -5494,20 +5478,42 @@ __webpack_require__.r(__webpack_exports__);
         'email.email': 'Email field must be an email',
         'question.question': 'This field is required!'
       }),
-      filterForm: vuejs_form__WEBPACK_IMPORTED_MODULE_18___default()({
-        serach: '',
+      filterForm: vuejs_form__WEBPACK_IMPORTED_MODULE_20___default()({
+        serachtext: '',
         product_id: 0
       }).rules({
-        serach: 'required'
+        serachtext: 'required'
       }).messages({
-        'serach': 'This field is required!'
+        'serachtext.serachtext': 'This field is required!'
       }),
+      reviewForm: vuejs_form__WEBPACK_IMPORTED_MODULE_20___default()({
+        name: '',
+        email: '',
+        rating: '',
+        title: '',
+        description: '',
+        product_id: 0,
+        status: '',
+        images: []
+      }).rules({
+        name: 'required',
+        email: 'email|min:5|required',
+        title: 'required',
+        description: 'required'
+      }).messages({
+        'name': 'This field is required!',
+        'email.email': 'Email field must be an email',
+        'title.title': 'This field is required!',
+        'description.description': 'This field is required!'
+      }),
+      photoFiles: [],
       faqDetail: []
     };
   },
   mounted: function mounted() {
     this.getProdcut();
     this.getFaqs(this.$route.params.id);
+    this.getReviews(this.$route.params.id);
   },
   watch: {
     addCartItems: function addCartItems() {
@@ -5560,8 +5566,8 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
-  computed: (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_21__.mapGetters)(['product', 'catErrors', 'addCartItems', 'faqs', 'filterfaqs'])),
-  methods: (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])((0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_21__.mapActions)(['getProduct', 'addCartItem', 'getCartItems', 'addFaq', 'getFaqs', 'filterFaqs'])), {}, {
+  computed: (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_23__.mapGetters)(['product', 'catErrors', 'addCartItems', 'faqs', 'filterfaqs', 'reviews'])),
+  methods: (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])((0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_23__.mapActions)(['getProduct', 'addCartItem', 'getCartItems', 'addFaq', 'getFaqs', 'filterFaqs', 'getReviews', 'addReview'])), {}, {
     getProdcut: function getProdcut() {
       if (this.$route.params.id) {
         this.getProduct(this.$route.params.id);
@@ -5704,7 +5710,31 @@ __webpack_require__.r(__webpack_exports__);
       if (!this.filterForm.validate().errors().any()) {
         var productId = this.$route.params.id;
         this.filterForm.data.product_id = productId;
-        this.filterFaqs(this.faqForm.data);
+        this.filterFaqs(this.filterForm);
+      }
+    },
+    reviewImages: function reviewImages(fileList) {
+      this.photoFiles = fileList;
+    },
+    submitReview: function submitReview() {
+      this.reviewForm.validate();
+
+      if (!this.reviewForm.validate().errors().any()) {
+        var formData = new FormData();
+        formData.append('name', this.reviewForm.data.name);
+        formData.append('email', this.reviewForm.data.email);
+        formData.append('rating', this.reviewForm.data.rating);
+        formData.append('title', this.reviewForm.data.title);
+        formData.append('description', this.reviewForm.data.description);
+        formData.append('status', this.reviewForm.data.status);
+        formData.append('product_id', this.$route.params.id);
+        console.log(this.photoFiles);
+
+        for (var i = 0; i < this.photoFiles.length; i++) {
+          formData.append('images[' + i + ']', this.photoFiles[i]);
+        }
+
+        this.addReview(formData);
       }
     }
   })
@@ -6122,7 +6152,7 @@ __webpack_require__.r(__webpack_exports__);
       data.append('file', event.target.files[0]);
       var config = {
         header: {
-          'Content-Type': 'image/png'
+          'Content-Type': 'multipart/form-data'
         }
       };
       axios__WEBPACK_IMPORTED_MODULE_6___default().put("http://3.132.243.209/api/" + 'profileImage', data, config).then(function (response) {
@@ -15706,21 +15736,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.regexp.exec.js */ "./node_modules/core-js/modules/es.regexp.exec.js");
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_string_search_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.string.search.js */ "./node_modules/core-js/modules/es.string.search.js");
-/* harmony import */ var core_js_modules_es_string_search_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_search_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Api_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../Api/auth */ "./resources/js/Api/auth.js");
-
-
-
+/* harmony import */ var _Api_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../Api/auth */ "./resources/js/Api/auth.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /*import API from './../../Api'*/
+
 
 var state = {
   addFaq: [],
   faqError: [],
   faqs: [],
-  filterfaqs: []
+  reviews: [],
+  insertReview: [],
+  filterfaqs: [],
+  reviewError: []
 };
 var getters = {
   addFaq: function addFaq(state) {
@@ -15732,14 +15761,23 @@ var getters = {
   filterfaqs: function filterfaqs(state) {
     return state.filterfaqs;
   },
+  reviews: function reviews(state) {
+    return state.reviews;
+  },
+  insertReview: function insertReview(state) {
+    return state.insertReview;
+  },
   faqError: function faqError(state) {
     return state.faqError;
+  },
+  reviewError: function reviewError(state) {
+    return state.reviewError;
   }
 };
 var actions = {
   addFaq: function addFaq(_ref, faqData) {
     var commit = _ref.commit;
-    _Api_auth__WEBPACK_IMPORTED_MODULE_2__["default"].post("http://3.132.243.209/api/" + 'faq/store', faqData).then(function (response) {
+    _Api_auth__WEBPACK_IMPORTED_MODULE_0__["default"].post("http://3.132.243.209/api/" + 'faq/store', faqData).then(function (response) {
       commit('addFaq', response.data.data);
     })["catch"](function (errors) {
       commit("faqError", errors.response.data.message);
@@ -15747,7 +15785,7 @@ var actions = {
   },
   getFaqs: function getFaqs(_ref2, productId) {
     var commit = _ref2.commit;
-    _Api_auth__WEBPACK_IMPORTED_MODULE_2__["default"].get("http://3.132.243.209/api/" + 'faq/' + productId).then(function (response) {
+    _Api_auth__WEBPACK_IMPORTED_MODULE_0__["default"].get("http://3.132.243.209/api/" + 'faq/' + productId).then(function (response) {
       commit('getFaqs', response.data.data);
     })["catch"](function (errors) {
       commit("faqError", errors.response.data.message);
@@ -15755,10 +15793,31 @@ var actions = {
   },
   filterFaqs: function filterFaqs(_ref3, filterdata) {
     var commit = _ref3.commit;
-    _Api_auth__WEBPACK_IMPORTED_MODULE_2__["default"].get("http://3.132.243.209/api/" + 'faq/' + filterdata.product_id + '/' + filterdata.search).then(function (response) {
+    _Api_auth__WEBPACK_IMPORTED_MODULE_0__["default"].get("http://3.132.243.209/api/" + 'faq/' + filterdata.data.product_id + '/' + filterdata.data.serachtext).then(function (response) {
       commit('filterFaqs', response.data.data);
     })["catch"](function (errors) {
       commit("faqError", errors.response.data.message);
+    });
+  },
+  getReviews: function getReviews(_ref4, productId) {
+    var commit = _ref4.commit;
+    _Api_auth__WEBPACK_IMPORTED_MODULE_0__["default"].get("http://3.132.243.209/api/" + 'rating/' + productId).then(function (response) {
+      commit('getReviews', response.data.data);
+    })["catch"](function (errors) {
+      commit("reviewError", errors.response.data.message);
+    });
+  },
+  addReview: function addReview(_ref5, reviewdata) {
+    var commit = _ref5.commit;
+    var config = {
+      header: {
+        'Content-Type': 'multipart/form-data'
+      }
+    };
+    axios__WEBPACK_IMPORTED_MODULE_1___default().post("http://3.132.243.209/api/" + 'rating/create', reviewdata, config).then(function (response) {
+      commit('reviewAdd', response.data.data);
+    })["catch"](function (errors) {
+      commit("reviewError", errors);
     });
   }
 };
@@ -15772,8 +15831,17 @@ var mutations = {
   filterFaqs: function filterFaqs(state, payload) {
     return state.filterfaqs = payload;
   },
+  getReviews: function getReviews(state, payload) {
+    return state.reviews = payload;
+  },
+  reviewAdd: function reviewAdd(state, payload) {
+    return state.insertReview = payload;
+  },
   faqError: function faqError(state, payload) {
     return state.faqError = payload;
+  },
+  reviewError: function reviewError(state, payload) {
+    return state.reviewError = payload;
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -15922,6 +15990,13 @@ var actions = {
                 commit("tokenStatus", 'token is set!');
               })["catch"](function (errors) {
                 commit("tokenError", errors.response.data.message);
+                localStorage.removeItem('token');
+
+                if (errors.response.data.message == 'Invalid client Id') {
+                  alert(errors.response.data.message);
+                } else {
+                  window.location.reload();
+                }
               });
 
             case 3:
@@ -19832,23 +19907,6 @@ module.exports = function (it) {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/internals/same-value.js":
-/*!******************************************************!*\
-  !*** ./node_modules/core-js/internals/same-value.js ***!
-  \******************************************************/
-/***/ ((module) => {
-
-// `SameValue` abstract operation
-// https://tc39.es/ecma262/#sec-samevalue
-// eslint-disable-next-line es/no-object-is -- safe
-module.exports = Object.is || function is(x, y) {
-  // eslint-disable-next-line no-self-compare -- NaN check
-  return x === y ? x !== 0 || 1 / x === 1 / y : x != x && y != y;
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/internals/set-global.js":
 /*!******************************************************!*\
   !*** ./node_modules/core-js/internals/set-global.js ***!
@@ -22560,54 +22618,6 @@ fixRegExpWellKnownSymbolLogic('replace', function (_, nativeReplace, maybeCallNa
     }
   ];
 }, !REPLACE_SUPPORTS_NAMED_GROUPS || !REPLACE_KEEPS_$0 || REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE);
-
-
-/***/ }),
-
-/***/ "./node_modules/core-js/modules/es.string.search.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/core-js/modules/es.string.search.js ***!
-  \**********************************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var call = __webpack_require__(/*! ../internals/function-call */ "./node_modules/core-js/internals/function-call.js");
-var fixRegExpWellKnownSymbolLogic = __webpack_require__(/*! ../internals/fix-regexp-well-known-symbol-logic */ "./node_modules/core-js/internals/fix-regexp-well-known-symbol-logic.js");
-var anObject = __webpack_require__(/*! ../internals/an-object */ "./node_modules/core-js/internals/an-object.js");
-var requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ "./node_modules/core-js/internals/require-object-coercible.js");
-var sameValue = __webpack_require__(/*! ../internals/same-value */ "./node_modules/core-js/internals/same-value.js");
-var toString = __webpack_require__(/*! ../internals/to-string */ "./node_modules/core-js/internals/to-string.js");
-var getMethod = __webpack_require__(/*! ../internals/get-method */ "./node_modules/core-js/internals/get-method.js");
-var regExpExec = __webpack_require__(/*! ../internals/regexp-exec-abstract */ "./node_modules/core-js/internals/regexp-exec-abstract.js");
-
-// @@search logic
-fixRegExpWellKnownSymbolLogic('search', function (SEARCH, nativeSearch, maybeCallNative) {
-  return [
-    // `String.prototype.search` method
-    // https://tc39.es/ecma262/#sec-string.prototype.search
-    function search(regexp) {
-      var O = requireObjectCoercible(this);
-      var searcher = regexp == undefined ? undefined : getMethod(regexp, SEARCH);
-      return searcher ? call(searcher, regexp, O) : new RegExp(regexp)[SEARCH](toString(O));
-    },
-    // `RegExp.prototype[@@search]` method
-    // https://tc39.es/ecma262/#sec-regexp.prototype-@@search
-    function (string) {
-      var rx = anObject(this);
-      var S = toString(string);
-      var res = maybeCallNative(nativeSearch, rx, S);
-
-      if (res.done) return res.value;
-
-      var previousLastIndex = rx.lastIndex;
-      if (!sameValue(previousLastIndex, 0)) rx.lastIndex = 0;
-      var result = regExpExec(rx, S);
-      if (!sameValue(rx.lastIndex, previousLastIndex)) rx.lastIndex = previousLastIndex;
-      return result === null ? -1 : result.index;
-    }
-  ];
-});
 
 
 /***/ }),
@@ -37712,7 +37722,7 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_assets_images_arrow_left_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
 var ___CSS_LOADER_URL_REPLACEMENT_1___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_assets_images_arrow_right_png__WEBPACK_IMPORTED_MODULE_3__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".main_container{    max-width: 100%;  margin:0 auto;  min-height: 100vh; background: #fff;}\r\n.free_ship_bar { background: #9d9d9c; padding:15px; text-align: center; margin: 5px 0;}\r\n.free_ship_bar p { margin: 0; color: #fff; font-weight: 300; font-style: italic;font-size: 16px;}\r\n.free_ship_bar img { margin-right: 5px;}\r\n.container_max{max-width: 1170px; padding: 0 15px; margin:0 auto; width: 100%;}\r\nsection.banner_sec {  background: #e1efe3; display: flex; justify-content: flex-end; padding-right: 80px;}\r\n.banner_top>span {  font-size: 13px; color: #84b5c7; letter-spacing: 6px;  font-weight: 600;}\r\n.banner_top>h2 {   font-size: 64px;  line-height: .7; letter-spacing: -2px;  font-weight: 700;  color: #fa6734;}\r\n.banner_top>label {  font-size: 22px;    font-weight: 600; color: #78c8cf;}\r\n.banner_top>label span { font-weight: 400;}\r\n.btn_orng { margin-top: 22px;}\r\nspan.blu { color: #78c8cf;}.btn_orng a { display: inline-block; padding: 8px 14px 13px 14px; border-radius: 50px;  color: #fff;\r\ntext-decoration: none;  background: #fa6734; font-size: 15px;  line-height: .7;}\r\n.baner_1 { display: flex; align-items: center; justify-content: flex-end;}\r\n.treat_bg {    background: #9bb79e;}\r\n.food_bg { background: #89b3b4;}\r\n.litter_bg { background: #decdc0;}\r\n.toy_bg { background: #a28ca8;}\r\nsection.treat_sec { padding: 60px 0 30px 0;}\r\n.grid_4>div { padding-top: 37%;  position: relative;}\r\n.grid_4>div>a h2 { display: block; width: 100%; text-align: center; color: #fff; margin: 0; line-height: 1; font-size: 100px;\r\ntext-transform: uppercase; font-weight: 700;}\r\n.grid_4>div>a{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-decoration: none; text-align: center;}\r\n.grid_4>div>a img { margin-top: 50px;}\r\nsection.product_slider .slick-slide a { color: #706f6f; text-decoration: none;}\r\nsection.product_slider .slick-slide a h3 { font-size: 26px; font-weight: 300; max-width: 313px;}\r\n.product_slider .col-md-4 img {  height: 300px; width: 100%; object-fit: contain;}\r\n.product_slider .row{margin: 0 -32px;}\r\n.product_slider .col-md-4\r\n{padding: 0 32px;}\r\n.slick-prev { border: 1px solid red; width: 40px; height: 40px; }\r\n.slick-prev:before {  width: 40px !important;  height: 40px !important; background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") !important;    color: transparent !important;\r\nbackground-position: center; background-repeat: no-repeat !important;}\r\n.slick-next:before {    width: 40px !important;  height: 40px !important;  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ") !important;\r\ncolor: transparent !important;   background-position: center;  background-repeat: no-repeat !important;}\r\nbutton.slick-prev.slick-arrow { left: 0;}\r\n.slick-next{ right: 0 !important;}\r\n.slick-arrow { z-index: 9;}\r\n.txt_over a { position: relative; text-decoration: none; color: #fff; display: block;}\r\n.txt_over a h2 { position: absolute; bottom: 10px; font-size: 103px; font-weight: 700; text-transform: uppercase; letter-spacing: -4px;\r\npadding: 0 50px; width: 100%;}\r\n.pad_15{padding: 0 15px;}\r\nsection.two_img { padding: 40px 0;}\r\n.gray_panel {text-decoration: none;}\r\na.img_box1 h3 { max-width: 64px; color: #00b7bc; font-size: 33px; font-weight: 700; line-height: .8;}\r\na.img_box2 h3 {  max-width: 150px;  color: #00b7bc;  font-size: 33px; text-transform: uppercase; font-weight: 700; line-height: .8;}\r\nsection.two_img .col-md-6.txt_over {  padding: 0;}\r\nsection.two_img .col-md-6.txt_over a img { position: absolute; top: 0; height: 100%; width: 100%; object-fit: cover;}\r\nsection.two_img .col-md-6.txt_over a {   padding-top: 80%;}\r\n.gray_panel {  background: #f6f6f6;  position: relative; padding: 15px 50px; min-height: 130px; display: flex; flex-wrap: wrap;align-items: center;\r\n}span.re_d { color: #e42930;}\r\n.img_box1 img {position: absolute; top: -5px; right: 50px;}\r\n.img_box2 img { position: absolute;  right: 40px; top: -30px;}\r\n.img_box3 h3 { font-size: 22px; color: #00b7bc; font-weight: 600;  margin: 0; line-height: .7;}\r\n.wrp { width: 165px;}\r\n.wrp a { font-size: 12px;  color: #a4b1b1; text-transform: uppercase;}\r\n.img_box3 img { position: absolute;  right: 40px;}\r\n.red_box {    position: relative;    padding-top: 40%; background: #e3002b;}\r\n.blue_box {  position: relative; padding-top: 40%; background: #00b7bc;}\r\n.red_box h2,.blue_box h2 { font-size: 103px; line-height: .7; font-weight: 700; letter-spacing: -4px; color: #fff;}\r\n.blue_box h2{ text-align: center;}\r\n.red_box h2 span,.blue_box h2 span { font-weight: 300;}\r\n.red_box a { font-size: 18px; color: #fff; font-weight: 400; padding: 20px;}\r\n.red_box .rect ,.blue_box .rect { position: absolute;  top: 0; height: 100%; width: 100%; left: 0; display: flex; align-items: center;\r\nflex-wrap: wrap; padding: 60px;}.blue_box .rect{\r\npadding:50px 60px; align-items: flex-start;}\r\n.red_box img { position: absolute; right: 27px; margin-top: 15px;}\r\n.blue_box p {  font-size: 26px;font-weight: 300;color: #fff; text-align: center;}\r\n.blue_box p a {color: #fff;}\r\n.blue_box sup {font-size: 59px;}\r\n.blue_box img { position: absolute;left: 0; right: 0; margin: 0 auto; bottom: 0;}\r\n.cart_slide li img { max-width: 100%;}\r\n.product_panel { position: relative; overflow: hidden;}\r\n.product_panel .sale_tag { position: absolute; top: 7px; background: #00b7bc; transform: rotate(-33deg); font-size: 16px; font-weight: 600;\r\ntext-transform: uppercase;color: #fff; padding: 0 30px; left: -20px;}\r\n.prod_details h5 { font-size: 16px; color: #706f6f; font-weight: 400; margin: 0;}\r\n.rat_ing i { color: #c6b660;\r\nmargin-left: 15px;}\r\n.rat_ing { display: flex; justify-content: center;  padding: 5px;}\r\n.cart_flex h3 { font-size: 25px; color: #706f6f;  margin: 0;}\r\n.cart_flex a { background: #e3002b; display: inline-block; color: #fff; font-size: 12px;text-transform: uppercase; font-weight: 600;\r\ntext-decoration: none; padding: 4px 12px; border-radius: 50px; letter-spacing: .4px; line-height: 1.8;}\r\n.cart_flex { display: flex; justify-content: space-between; margin-top: 5px;}\r\n.cart_slide li { padding: 0 15px;}\r\n.cart_slide { padding: 0;  margin: 0 -15px;}\r\n.prod_img { padding-top: 85%; position: relative; margin-bottom: 20px;}\r\n.prod_img img { position: absolute; top: 0;  width: 100%; height: 100%; object-fit: contain;}\r\n.cart_slide button.slick-prev.slick-arrow { left: -20px;}\r\n.cart_slide button.slick-next.slick-arrow { right: -20px !important;}\r\nh1.line_heading {  font-size: 25px; color: #706f6f; font-weight: 400; align-items: center; position: relative;display: flex; margin-bottom: 25px;}\r\nh1.line_heading:after { content: \"\";    margin-left: 5px; flex-grow: 1; display: block; height: 1px; background: #3a3a3a;}\r\n.rd_blue { padding-bottom: 40px !important;}\r\n.height_mix { padding-top: 80%;  position: relative;}\r\n.height_mix>img { position: absolute; top: 0; width: 100%; height: 100%;}\r\n.sub_2 { position: absolute; top: 0; height: 100%; width: 100%;    display: flex; align-items: center; justify-content: center;}\r\n.over_red { background: #e3002b; padding: 40px; max-width: 267px;}\r\n.over_red h2 { font-size: 41px;font-weight: 800;text-transform: uppercase;line-height: .8;color: #fff;}\r\n.over_red>small { font-size: 12px; color: #fff; margin-bottom: 10px; display: block;}\r\n.over_red>a { font-size: 12px; color: #fff;  margin-bottom: 10px;  display: block;}\r\n.sub_1 {  position: absolute;  top: 0; left: 0; width: 100%;  height: 100%; background: #76babf; padding: 50px 40px;}\r\n.sub_1>h1 { font-size: 72px; font-weight: 700; line-height: .8; letter-spacing: -4px; color: #fff;}\r\n.sub_1>h1>span { font-weight: 300;}\r\n.sub_1 sup { font-size: 34px; top: -34px;}\r\n.sub_1 p {  font-size: 25px;  color: #fff; font-weight: 300; margin-bottom: 0;}\r\n.sub_1 img { position: absolute; left: 0;  right: 0;  margin: 0 auto;}\r\n.sub_1 a {  font-size: 19px; color: #fff; font-weight: 400;}\r\nsection.duo_banner { padding: 50px 0 25px 0;}\r\nsection.Keep_touch {  background: #f6f6f6;}\r\n.container_min{  max-width: 1000px;    margin: 0 auto; padding: 0 15px; width: 100%;}\r\n.form_text h1 {font-size: 67px; font-weight: bold; line-height: .7; letter-spacing: -3px; color: #00b7bc; }\r\n.form_text h1 span:not(.re_d) {font-weight: 300; }\r\n.form_text p {font-size: 15px; color: #9d9d9c; }\r\n.Keep_touch .from_grp input[type=\"text\"] ,.Keep_touch .from_grp input[type=\"email\"] {\r\nheight: 26px; width: 140px; border: 1px solid #aca4a6; font-size: 14px; font-weight: 300; padding: 0 0 0 10px; }\r\n.Keep_touch .from_grp input[type=\"text\"]::placeholder ,.Keep_touch .from_grp input[type=\"email\"]::placeholder\r\n{color: #9d9d9c; font-size: 14px; }\r\n.radio_check {color: #9d9d9c; font-size: 16px; }\r\n.radio_check input {margin-right: 7px; }\r\n.radio_check span {margin-right: 17px; }\r\nform.touch_form {max-width: 300px; display: flex; flex-wrap: wrap; grid-gap: 10px; }\r\n.Keep_touch .container_min>.row {align-items: center; justify-content: space-between; }\r\n.ab_over {position: absolute; top: 0; width: 100%; height: 100%; display: flex; align-items: center; }\r\n.ab_over {position: absolute; top: 0; height: 100%; display: block; align-items: center; width: 100%; right: 0; margin: 0 auto; left: 0; padding-top: 8%; }\r\nh3.lab_22 {color: #fff; font-weight: 300; }\r\nh3.lab_22 label {display: inline-block; padding: 2px 8px; background: #fff; color: #e3002b; font-weight: bold; }\r\nh3.lab_22 b {font-weight: bold; }\r\np.p_16 {font-size: 20px; font-weight: 300; color: #fff; }\r\na.btn_grn {font-size: 12px; color: #fff; background: #00b7bc; padding: 6px 20px; border-radius: 50px; text-decoration: none; }\r\n.div_center {text-align: center; max-width: 330px; }\r\nsection.xl_sec {position: relative;text-align: center;}\r\nsection.xl_sec {position: relative; padding: 0; background: linear-gradient(90deg , #ffffff 50%, #e3002b 50%); margin: 40px 0; } ul.insta_nails {list-style: none; padding: 0; margin: 0 -10px; display: flex; flex-wrap: wrap; }\r\nul.insta_nails>li{max-width:25%; width: 100%; padding: 10px; }\r\nul.insta_nails>li>a>span {display: block; padding-top: 100%; position: relative; }\r\nul.insta_nails>li>a>span img {position: absolute; left: 0; top: 0; height: 100%; width: 100%; object-fit: cover; }\r\nh3.insta_head span {font-size: 23px; display: inline-block; background: #00b7bc; color: #fff; padding: 5px 15px; border-top-left-radius: 20px; border-top-right-radius: 20px; }\r\nh3.insta_head {text-align: center; border-bottom: 2px solid #00b7bc; }\r\n\r\n/* responsive */\r\n\r\n@media only screen and (max-width: 768px)\r\n{\r\nsection.xl_sec img { width: 100%;}\r\nsection.banner_sec {padding: 10px; }\r\nsection.banner_sec {  padding-bottom: 60px;  position: relative;}\r\n.btn_orng { position: absolute; bottom: 20px; text-align: center; width: 100%;  left: 0;}\r\n.row.grid_4.pad_15 {  display: grid; grid-template-columns: 50% 50%;}\r\n.grid_4>div { padding-top: 90%;}\r\n.grid_4>div img {   max-width: 128px; margin-top: 20px !important;}\r\n.grid_4>div>a h2 {font-size: 45px; position: absolute; bottom: 20px; letter-spacing: -2px;}\r\nsection.treat_sec { padding: 0;}\r\n.row.grid_4.pad_15 { padding: 3px; margin: 0 -15px;}\r\n.blue_box, .red_box {padding-top: 90%; }\r\n.red_box h2, .blue_box h2 { font-size: 40px; letter-spacing: -2px; }\r\n.red_box .rect, .blue_box .rect { padding: 20px;}\r\n.red_box img {position: absolute; right: 4px; margin-top: 8px; max-width: 109px; }\r\n.red_box a { font-size: 10px; padding: 10px 0;}\r\n.blue_box .rect {padding: 20px; align-items: flex-start; }\r\n.blue_box p {font-size: 10px; text-align: left; }\r\n.blue_box img { max-width: 105px;}\r\n.blue_box sup { font-size: 26px;}\r\nsection.two_img.rd_blue .row,section.two_img .row.pad_15,.duo_banner .row {display: grid; grid-template-columns: 50% 50%; padding: 0; }\r\n.row.pad_15 { padding: 0;}\r\nsection.two_img .col-md-6.txt_over a { padding-top: 100%;}\r\n.txt_over a h2 {font-size: 40px; padding: 0 10px; text-align: left;}\r\nsection.two_img {padding: 0px 0; }\r\n.gray_panel {    margin: 20px -15px;}\r\n.sub_1 {padding: 20px;}\r\n.sub_1>h1 {font-size: 27px; letter-spacing: -1px; color: #fff; margin: 0; }\r\nsection.duo_banner, section.duo_banner>div {\r\n    padding: 0;\r\n}\r\n.sub_1 sup {\r\n    font-size: 15px;\r\n    top: -11px;\r\n}\r\n.over_red>small {\r\n    font-size: 10px;\r\n    color: #fff;\r\n    margin-bottom: 5px;\r\n    display: block;\r\n}\r\n\r\n.duo_banner .row .col-md-6 {\r\n    padding: 0;\r\n}\r\n.sub_1 a {font-size: 10px; color: #fff; font-weight: 400; z-index: 1; position: relative; display: block; }\r\n\r\n.sub_1 img {\r\n        position: absolute;\r\n        left: 0;\r\n        right: 0;\r\n        margin: 0 auto;\r\n        max-width: 143px;\r\n        z-index: 0;\r\n        bottom: 5px;\r\n}\r\n.sub_1 p {\r\n    font-size: 11px;\r\n}\r\n.over_red>a {\r\n    font-size: 9px;\r\n    color: #fff;\r\n    margin-bottom: 10px;\r\n    display: block;\r\n}\r\n.over_red h2 {\r\n    font-size: 22px;\r\n   margin: 0;\r\n}\r\n.over_red {\r\n    background: #e3002b;\r\n    padding:15px 20px;\r\n    max-width: 136px;\r\n}\r\nsection.Keep_touch .col-md-2 {\r\n    max-width: 150px;\r\n    width: 100%;\r\n}\r\n.form_mobile h1 {\r\n    font-size: 42px;\r\n    text-align: left;\r\n}\r\n.form_mobile {\r\n    max-width: calc(100% - 150px);\r\n    padding: 0 15px 0 0;\r\n}\r\n.form_mobile p {\r\n    font-size: 14px;\r\n    line-height: .9;\r\n    text-align: left;\r\n    margin: 12px 0 0 0;\r\n}\r\nform.mobil_only input {\r\n    width: 100% !important;\r\n    height: 34px !important;\r\n    margin-top: 10px;\r\n}\r\nsection.Keep_touch {\r\n    background: #f6f6f6;\r\n    padding: 15px 0 0 0;\r\n}\r\nul.insta_nails>li {\r\n    max-width: 50%;\r\n}\r\n.cart_slide li {\r\n    padding: 0 25px;\r\n}\r\nsection.cart_slider {\r\n    padding-bottom: 40px;\r\n}\r\n.product_slider .col-md-4 {\r\n    max-width: 200px;\r\n    padding: 0;\r\n}\r\nsection.product_slider .slick-slide a h3 {\r\n    font-size: 18px;\r\n    font-weight: 300;\r\n    max-width: 313px;\r\n    line-height: 1.1;\r\n}\r\n.product_slider .col-md-4 img {\r\n    height: 200px;\r\n}\r\nsection.two_img.rd_blue {\r\n    padding-bottom: 20px !important;\r\n}\r\nsection.product_slider {\r\n    padding: 20px 0;\r\n}\r\n\r\na.btn_grn {\r\n    font-size: 9px;\r\n}\r\n .div_center p {\r\n    font-size: 14px;\r\n    margin: 0 0 10px 0;\r\n}\r\n.div_center h3 {\r\n    font-size: 15px;\r\n    margin: 0 0 0px 0;\r\n}\r\n.div_center {\r\n    max-width: 200px;\r\n    float: right;\r\n}\r\nsection.cart_slider,section.product_slider {\r\n    overflow: hidden;\r\n}\r\nsection.duo_banner .row {\r\n    margin: 0;\r\n}\r\nsection.xl_sec img {\r\n    max-width: 100%;\r\n}\r\n\r\n }\r\n\r\n\r\n @media only screen and (min-width: 768px) and (max-width:1000px)\r\n {\r\n    .grid_4>div ,section.two_img .col-md-6.txt_over,.blue_box, .red_box,.duo_banner .row .col-md-6{\r\n    width: 100%;\r\n}\r\n.grid_4>div img {\r\n    max-width: 230px;\r\n    height: 230px;\r\n    object-fit: contain;\r\n}\r\n.grid_4>div:nth-child(3) img {\r\n    max-width: 350px;\r\n}\r\n.grid_4>div>a h2,.col-md-6.txt_over h2 {\r\n    font-size: 68px;\r\n    bottom: 30px;\r\n\r\n}\r\n.red_box .rect, .blue_box .rect {\r\n    padding: 50px;\r\n}\r\n.red_box h2, .blue_box h2 {\r\n    font-size: 70px;\r\n    letter-spacing: -2px;\r\n}\r\n.blue_box p {\r\n    font-size: 18px;\r\n    text-align: left;\r\n}\r\n.red_box a {\r\n    font-size: 18px;\r\n    padding: 10px 0;\r\n}\r\n.blue_box img {\r\n    max-width: 200px;\r\n}\r\n.red_box img {\r\n    position: absolute;\r\n    right: 4px;\r\n    margin-top: 8px;\r\n    max-width: 190px;\r\n}\r\n.over_red {\r\n    background: #e3002b;\r\n    padding: 30px;\r\n    max-width: 260px;\r\n}\r\n.over_red>small {\r\n    font-size: 16px;\r\n}\r\n.over_red h2 {\r\n    font-size: 40px;\r\n    margin: 0;\r\n}\r\n.over_red>a {\r\n    font-size: 14px;\r\n    color: #fff;\r\n    margin-bottom: 10px;\r\n    display: block;\r\n}\r\n.sub_1 {\r\n    padding: 30px;\r\n}\r\n.sub_1>h1 {\r\n    font-size: 50px;\r\n    letter-spacing: -1px;\r\n    color: #fff;\r\n    margin: 0;\r\n}\r\n.sub_1 p {\r\n    font-size: 18px;\r\n}\r\n.sub_1 a {\r\n    font-size: 18px;\r\n    color: #fff;\r\n    font-weight: 400;\r\n    z-index: 1;\r\n    position: relative;\r\n    display: block;\r\n}\r\n.sub_1 img {\r\n    position: absolute;\r\n    left: 0;\r\n    right: 0;\r\n    margin: 0 auto;\r\n    max-width: 260px;\r\n    z-index: 0;\r\n    bottom: 20px;\r\n}\r\n.form_mobile {\r\n    max-width: calc(100% - 150px);\r\n    padding: 0 15px 0 0;\r\n    width: 100%;\r\n}\r\n.container_min {\r\n    max-width: 600px;\r\n}\r\n.two_img + section .container_max .col-md-4 {\r\n    width: 100% !important;\r\n    max-width: 370px;\r\n    margin: 0 auto;\r\n}\r\nsection.xl_sec .desk_only {\r\n    display: block;\r\n}\r\nsection.xl_sec .mobil_only {\r\n    display: none;\r\n}\r\n .div_center {\r\n    max-width: 310px;\r\n    float: right;\r\n    width: 100%;\r\n}\r\n.div_center h3 {\r\n    font-size: 24px;\r\n    margin: 0 0 0px 0;\r\n}\r\n.div_center p {\r\n    font-size: 20px;\r\n    margin: 0 0 10px 0;\r\n}\r\na.btn_grn {\r\n    font-size: 14px;\r\n    display: inline-block;\r\n    margin-top: 10px;\r\n}\r\n }\r\n/************************product view*******************************************/\r\n\r\n.product_view {padding: 50px 0 20px; }\r\n#pr_img .slick-slide img {position: absolute; top: 30px; left: 30px; width: calc(100% - 60px); height: calc(100% - 60px); object-fit: contain; object-position: center; }\r\n#pr_img .slick-slide  {height: 550px; background: #f6f6f6; padding: 30px; position: relative; margin-bottom: 5px;\r\n}div#pr_thumb {margin: 0 -5px; }\r\ndiv#pr_thumb .slick-slide img {max-width: 100%; height: calc(100% - 30px); width: calc(100% - 30px); position: absolute; top: 15px; left: 15px; object-fit: contain; background: #f2f2f2; }\r\ndiv#pr_thumb .slick-slide {min-height: 170px; position: relative; background: #f6f6f6; border: 5px solid #fff; }\r\nul.style_p1 {list-style: none; padding: 0; margin: 10px 0; display: flex; grid-gap: 25px; text-align: center; }\r\nul.style_p1 li label input {position: absolute; width: 100%; height: 100%; left: 0; top: 0; z-index: 1; cursor: pointer; opacity: 0; }\r\nul.style_p1 li label input+span {background: #e1e1e1; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 26px; font-weight: 600; margin: 0 auto; }\r\n.selectedOption {background: #00b7bc !important; }\r\nul.style_p1 li label {position: relative; }\r\n.cart_form input[type=\"number\"], .cart_form input[type=\"text\"], .cart_form input[type=\"select\"] {background: #f6f6f6; border:0px; height: 48px; border-radius: 0px; font-size: 27px; font-weight: 300; }\r\n.quantity_select .number-input {display: flex; align-items: center; }\r\n.quantity_select .number-input input.quantity {width: 57px !important; margin: 0 5px; text-align: center; padding: 0; }\r\n.quantity_select button {border: 1px solid rgba(0,0,0,.3); border-radius: 50px; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; background: #fff; font-size: 21px; padding: 0 0 4px; font-weight: 300; }\r\n.amount_pro input {max-width: 200px; padding: 0 20px; text-align: center; }\r\nbutton.btn_bl {background: #00b7bc; border: 0px; height: 48px; padding: 0 30px; font-size: 20px; font-weight: 300; color: #fff; }\r\n.cart_form {padding: 40px 0; border-top: 1px solid #0000003d; border-bottom: 1px solid #0000003d; margin: 30px 0; }\r\n.cart_form>div {margin: 0; }\r\n/* Chrome, Safari, Edge, Opera */\r\ninput::-webkit-outer-spin-button,\r\ninput::-webkit-inner-spin-button {\r\n -webkit-appearance: none;\r\n margin: 0;\r\n}\r\n\r\n/* Firefox */\r\ninput[type=number] {\r\n -moz-appearance: textfield;\r\n}\r\nh2.pr_title {\r\n   color: #706f6f;\r\n   font-weight: 600;\r\n   font-size: 30px;\r\n   text-transform: capitalize;\r\n}\r\n.prod_rev i {\r\n   color: #e7ba2e;\r\n   display: inline-block;\r\n   margin: 0 5px;\r\n}\r\n.prod_rev {\r\n   font-size: 12px;\r\n   color: #706f6f;\r\n   margin: 25px 0 10px 0;\r\n}\r\np.pro_dec {\r\n   font-size: 14px;\r\n   color: #706f6f;\r\n   font-weight: 400;\r\n}\r\nlabel.line_label {\r\n   font-size: 12px;\r\n   color: #706f6f;\r\n   position: relative;\r\n   display: flex;\r\n   align-items: center;\r\n   flex-grow: 1;\r\n   margin: 10px 0 30px 0;\r\n}\r\nul.style_p1 small\r\n{\r\nfont-size: 12px;\r\n   color: #706f6f;\r\n}\r\nlabel.line_label:after {\r\n   content: \"\";\r\n   height: 1px;\r\n   flex-grow: 1;\r\n   background: #c9c9c9;\r\n   margin-left: 10px;\r\n   max-width: 120px;\r\n}\r\n.quantity_select label.sr-only {\r\n   width: 92%;\r\n   top: -20px;\r\n   height: 20px;\r\n   clip: unset;\r\n   text-align: center;\r\n   font-size: 12px;\r\n   color: #706f6f;\r\n}\r\n.quantity_select {\r\n   position: relative;\r\n}\r\n\r\np.ingr {\r\n font-size: 12px;\r\n   color: #706f6f;\r\n   font-weight: 300;\r\n}\r\np.ingr b {\r\n   font-weight: 600;\r\n}\r\n\r\n\r\n\r\n/* ________ Add New CSS ______________ */\r\n\r\n.m-lr {\r\n   margin-left: 0;\r\n   margin-right: 0;\r\n}\r\n.nutrition_inner {\r\n   background-size: cover;\r\n   background-position: center center;\r\n   background-repeat: no-repeat;\r\n   min-height: 325px;\r\n   padding-top: 9%;\r\n}\r\n.nutrition_inner p {\r\n   color: #fff;\r\n   text-transform: uppercase;\r\n   font-size: 12px;\r\n   font-weight: 400;\r\n   letter-spacing: 1.5px;\r\n   margin: 0;\r\n   text-align: center;\r\n}\r\n.nutrition_inner h2 {\r\n   font-size: 28px;\r\n   text-align: center;\r\n   color: #fff;\r\n   text-transform: capitalize;\r\n   line-height: 1.1;\r\n}\r\n.ingradients-wrap img {\r\n   max-width: 100%;\r\n   width: 100%;\r\n}\r\n.ingradients-wrap {\r\n   margin-top: 35px;\r\n}\r\n.ingradients-inner {\r\n   background: #f6f6f6;\r\n}\r\n.ingradients-inner .textdecoration {\r\n   font-family: 'Gentona';\r\n   font-size: 14px;\r\n   line-height: 1.7;\r\n   color: #706f6f;\r\n   font-weight: 400;\r\n   max-width: 500px;\r\n}\r\n.centered_txt {\r\n   display: flex;\r\n   align-items: center;\r\n   justify-content: center;\r\n}\r\n.about-brand {\r\n   padding-top: 35px;\r\n}\r\n.title-txt {\r\n   font-size: 24px;\r\n   color: #706f6f;\r\n   text-align: center;\r\n   font-weight: 400;\r\n   border-bottom: 1px solid #c6c6c6;\r\n   padding-bottom: 30px;\r\n   margin-bottom: 30px;\r\n}\r\n.light-text {\r\n   font-family: 'Gentona';\r\n   font-size: 14px;\r\n   line-height: 1.3;\r\n   color: #706f6f;\r\n   font-weight: 300;\r\n}\r\n.question-inner .title-txt {\r\n   border-bottom: none;\r\n   padding-bottom: 24px;\r\n   margin-bottom: 0px;\r\n}\r\n.question-inner02 {\r\n   border: 1px solid #c6c6c6;\r\n   padding: 20px 10px;\r\n}\r\n.question-inner02 .col-sm-3 p {\r\n   background: #f6f6f6;\r\n   padding: 12px;\r\n   font-family: 'Gentona';\r\n   font-size: 14px;\r\n   line-height: 1.3;\r\n   margin-bottom: 2px;\r\n   color: #706f6f;\r\n   font-weight: 300;\r\n}\r\n.question-inner02 p:last-child {\r\n   margin-bottom: 0px;\r\n}\r\n.Large-btn-box {\r\n   display: flex;\r\n   flex-direction: column;\r\n   justify-content: flex-start;\r\n}\r\n.Large-btn {\r\n   font-family: 'Gentona';\r\n   width: 100%;\r\n   padding: 20px;\r\n   border: 1px solid #e1e1e1;\r\n   font-size: 14px;\r\n   font-weight: 300;\r\n   text-transform: capitalize;\r\n   background: #fff;\r\n   color: #706f6f;\r\n   position: relative;\r\n}\r\n.Large-btn:not(:last-child)\r\n{\r\n  margin-bottom:10px;\r\n}\r\n.Large-btn::after {\r\n   position: absolute;\r\n   right: 3px;\r\n   bottom: 3px;\r\n   content: \"\";\r\n   width: 0px;\r\n   height: 0px;\r\n   border-bottom: solid 10px #00b1bb;\r\n   border-right: solid 10px #00b1bb;\r\n   border-left: solid 10px transparent;\r\n   border-top: solid 10px transparent;\r\n}\r\n.Large_red_btn {\r\n   background: #e3002b;\r\n   color: #fff;\r\n}\r\n.Large_red_btn::after{\r\n   border-bottom: solid 10px #fff;\r\n   border-right: solid 10px #fff;\r\n}\r\n.bm-wrap {\r\n   display: flex;\r\n   align-items: flex-start;\r\n   grid-column-gap: 10px;\r\n}\r\n.bm-wrap span {\r\n   font-family: 'Gentona';\r\n   font-size: 11px;\r\n   font-weight: 300;\r\n   color: #706f6f;\r\n}\r\n.bm-wrap p span {\r\n   font-size: 14px;\r\n   font-weight: 400;\r\n   display: inline-block;\r\n   margin-bottom: 15px;\r\n}\r\n.bm-wrap div {\r\n   margin-top: -4px;\r\n}\r\n.review-wrap {\r\n   padding-top: 30px;\r\n}\r\n.review-write {\r\n   padding-top: 30px;\r\n}\r\n.light-box2 {\r\n   display: flex;\r\n   min-height: 175px;\r\n   grid-column-gap: 10px;\r\n   flex-wrap: wrap;\r\n   justify-content: space-between;\r\n}\r\n.light-box-inner {\r\n   background: #f6f6f6;\r\n   width: 48%;\r\n   position: relative;\r\n}\r\n.light-box-inner p.light-btm {\r\n   position: absolute;\r\n   bottom: 10px;\r\n   font-size: 11px;\r\n   width: 100%;\r\n   text-align: center;\r\n   margin: 0;\r\n   color: #706f6f;\r\n}\r\n.light-box-inner {\r\n   display: flex;\r\n   align-items: center;\r\n   justify-content: center;\r\n}\r\n.light-box-txt01 {\r\n   font-size: 28px;\r\n   color: #706f6f;\r\n   margin: 0;\r\n   letter-spacing: -1px;\r\n   font-weight: 300;\r\n}\r\n.light-box-txt02 {\r\n   font-size: 48px;\r\n   color: #706f6f;\r\n   margin: 0;\r\n   letter-spacing: -1px;\r\n   font-weight: 300;\r\n}\r\n.reviews-img-section {\r\n   padding: 10px;\r\n   border: 1px solid #c6c6c6;\r\n   display: flex;\r\n   align-items: center;\r\n   justify-content: center;\r\n   flex-wrap: wrap;\r\n   grid-row-gap: 10px;\r\n   grid-column-gap: 15px;\r\n}\r\n.review-wrap .Large-btn {\r\n   padding: 30px;\r\n}\r\n.review-write .Large-btn {\r\n   padding: 30px;\r\n}\r\n.letest-review-title {\r\n   font-size: 13px;\r\n   color: #706f6f;\r\n   font-family: 'Gentona';\r\n   margin: 35px 0 30px 10px;\r\n}\r\n.sort-btn-wrap {\r\n   display: flex;\r\n   align-items: center;\r\n   justify-content: space-between;\r\n}\r\n.sort-btn-wrap button {\r\n   border: 1px solid #aca4a6;\r\n   background: no-repeat;\r\n   font-size: 13px;\r\n   color: #969595;\r\n   font-weight: 300;\r\n   font-family: 'Gentona';\r\n}\r\n.star-box {\r\n   display: flex;\r\n   align-items: center;\r\n   justify-content: start;\r\n   grid-column-gap: 10px;\r\n   margin-left: 20px;\r\n}\r\n.star-box img::after {\r\n   content: \"assets/images/varified-sign.png\";\r\n}\r\n.star-inner-txt h6 {\r\n   font-size: 12px;\r\n   color: #303030;\r\n   font-weight: 600;\r\n   margin: 0;\r\n}\r\n.star-inner-txt h6 span {\r\n   color: #60c370;\r\n}\r\n.star-inner-txt span {\r\n   font-size: 11px;\r\n   color: #c4b3b3;\r\n   padding-left: 5px;\r\n}\r\n.star-rating i {\r\n   color: #e7ba2e;\r\n   margin-right: 3px;\r\n}\r\n.star-inner-txt div {\r\n   line-height: 1;\r\n   margin-bottom: 4px;\r\n}\r\n.thumb-up {\r\n   margin-left: 25px;\r\n}\r\n.thumb-up span {\r\n   font-size: 12px;\r\n   color: #949698;\r\n   padding-left: 5px;\r\n}\r\n.rating-right h3 {\r\n   font-size: 16px;\r\n   color: #706f6f;\r\n   text-transform: uppercase;\r\n   font-weight: 300;\r\n   margin-bottom: 0;\r\n}\r\n.rating-right p {\r\n   font-family: 'Gentona';\r\n   font-size: 14px;\r\n   color: #706f6f;\r\n   font-weight: 300;\r\n   line-height: 1.2;\r\n   margin-top: 3px;\r\n   margin-bottom: -3px;\r\n}\r\n.rating-right a {\r\n   font-family: 'Gentona';\r\n   font-size: 12px;\r\n   color: #706f6f;\r\n   font-weight: 300;\r\n   line-height: 1.2;\r\n}\r\n.rating_row {\r\n   margin-bottom: 30px;\r\n}\r\n.ingradients-txt-03 p {\r\n   max-width: 525px;\r\n}\r\n.light-bg-p p {\r\n   font-size: 15px;\r\n   color: #706f6f;\r\n   margin-bottom: 3px;\r\n   padding: 10px;\r\n   background: #f6f6f6;\r\n   font-weight: 300;\r\n}\r\n\r\n/* _____ CSS for Footer ____________ */\r\nfooter.footer-top {\r\n   background: #f6f6f6;\r\n   padding: 30px 0;\r\n}\r\nul.footer_nav {\r\n   padding-left: 0;\r\n   margin-bottom: 0;\r\n   list-style-type: none;\r\n}\r\nul.foot_nav2 {\r\n   max-width: 100%;\r\n}\r\n.footer_nav li {\r\n   font-size: 14px;\r\n   font-weight: 600;\r\n}\r\n.footer_nav li a {\r\n   color: #706f6f;\r\n   text-decoration: none;\r\n   line-height: 21px;\r\n}\r\n.footer_nav01 {\r\n   border-right: 2px solid #d3cfd0;\r\n}\r\n.foot_nav_shop {\r\n   max-width: 50% !important;\r\n   margin-left: auto;\r\n}\r\nul.social_list.footer_nav {\r\n   margin: 0 !important;\r\n}\r\nfooter.footer-bottom {\r\n   padding: 20px 0;\r\n}\r\n.bottom-footer {\r\n   align-items: center;\r\n}\r\np.copy_p {\r\n   max-width: 100% !important;\r\n}\r\n.gray-strip {\r\n   background: #c6c6c6;\r\n   height: 35px;\r\n}\r\n.Mobile-friendly {\r\n   display: none;\r\n}\r\n\r\n\r\n@media (max-width: 991px) {\r\n   .nutrition_inner {\r\n       padding-top: 14%;\r\n   }\r\n   .ingradients-inner .textdecoration {\r\n       line-height: 1.3;\r\n   }\r\n   .nutrition_wrap .container_max {\r\n       max-width: 100%;\r\n       padding: 0px;\r\n   }\r\n   .ingradients-inner .textdecoration {\r\n       padding: 15px;\r\n   }\r\n   .ingradients-inner .textdecoration br {\r\n       display: none;\r\n   }\r\n}\r\n\r\n@media (max-width: 767px) {\r\n   .ingradients-inner .col-md-4 {\r\n       padding: 0;\r\n   }\r\n   .order-02 {\r\n       order: 2;\r\n   }\r\n   .nutrition_inner {\r\n       min-height: 165px;\r\n       padding-top: 11%;\r\n   }\r\n   .nutrition_inner h2 {\r\n       font-size: 16px;\r\n   }\r\n   .nutrition_inner p {\r\n       font-size: 9px;\r\n       letter-spacing: 1px;\r\n   }\r\n   .question-inner02 {\r\n      border: none;\r\n      border-bottom: 1px solid #c6c6c6;\r\n      padding: 0px;\r\n   }\r\n   .question-inner02 .col-8 {\r\n       padding: 0;\r\n   }\r\n   .question-inner02 .col-4 {\r\n       padding-right: 0;\r\n   }\r\n   .Large-btn {\r\n       padding: 23px 10px;\r\n       font-size: 12px;\r\n   }\r\n   .bm-main {\r\n       margin: 25px 0;\r\n   }\r\n   .bm-wrap {\r\n       grid-column-gap: 5px;\r\n   }\r\n   .bm-main .col-4 {\r\n       padding-left: 0;\r\n       padding-right: 15px;\r\n   }\r\n   .bm-outer-row {\r\n       padding-left: 0;\r\n       padding-right: 15px;\r\n   }\r\n   .review-wrap .Large-btn {\r\n       padding: 28px 10px;\r\n   }\r\n    .review-write .Large-btn {\r\n       padding: 28px 10px;\r\n    }\r\n   .reviews-img-section {\r\n       margin-top: 20px;\r\n       height: 170px;\r\n       overflow: scroll;\r\n   }\r\n   .star-box {\r\n       margin-left: 0px;\r\n   }\r\n   .thumb-up {\r\n       margin-left: 0px;\r\n       margin-bottom: 5px;\r\n   }\r\n   .product_view {\r\n       padding: 23px 0 20px;\r\n   }\r\n   .pe-mobile {\r\n       padding-right: 12px;\r\n   }\r\n   h2.pr_title {\r\n       font-size: 21px;\r\n   }\r\n   .Mobile-friendly {\r\n       display: block;\r\n   }\r\n   ul.style_p1 li label input+span {\r\n       width: 35px;\r\n       height: 35px;\r\n       font-size: 18px;\r\n   }\r\n   ul.style_p1 {\r\n       grid-gap: 6px;\r\n   }\r\n   .quantity_select .number-input input.quantity {\r\n       width: 40px !important;\r\n   }\r\n   .Mobile-friendly .cart_form {\r\n       padding: 0px;\r\n       border-top: none;\r\n       border-bottom: none;\r\n       margin: -5px 0 0;\r\n   }\r\n   .Desktop-friendly {\r\n       display: none;\r\n   }\r\n   .cart_form {\r\n       padding: 25px 0;\r\n       margin: 25px 0;\r\n   }\r\n   .cart_form .col-auto {\r\n       flex: 0 0 50%;\r\n   }\r\n   .reviews-img-section {\r\n       grid-row-gap: 15px;\r\n       grid-column-gap: 15px;\r\n   }\r\n\r\n\r\n\r\n   /* _____ CSS For Footer ______ */\r\n   .footer_nav li {\r\n       text-align: center;\r\n   }\r\n   .footer-top .col {\r\n       flex: 100% 0 0;\r\n   }\r\n   .foot_nav_shop {\r\n       max-width: 100% !important;\r\n   }\r\n   footer.footer-top {\r\n       background: #fff;\r\n   }\r\n   ul.footer_nav {\r\n       margin-bottom: 25px;\r\n   }\r\n   ul.foot_nav2 li a {\r\n       line-height: 26px;\r\n   }\r\n   .order-01 {\r\n       order: 1;\r\n   }\r\n   .order-03 {\r\n       order: 3;\r\n   }\r\n   .order-04 {\r\n       order: 4;\r\n   }\r\n   footer.footer-bottom {\r\n       padding: 0  0 25px;\r\n   }\r\n   ul.social_list.footer_nav {\r\n       margin: 15px auto !important;\r\n   }\r\n   footer.footer-top {\r\n       padding: 30px 0 0;\r\n   }\r\n   .gray-strip {\r\n       display: none;\r\n   }\r\n\r\n\r\n}\r\n\r\n/**************************swiper css start**************************/\r\n\r\n.swiper {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n.swiper-slide {\r\n  text-align: center;\r\n  font-size: 18px;\r\n  background: #fff;\r\n\r\n  /* Center slide text vertically */\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-pack: center;\r\n  -ms-flex-pack: center;\r\n  -webkit-justify-content: center;\r\n  justify-content: center;\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  -webkit-align-items: center;\r\n  align-items: center;\r\n}\r\n\r\n.swiper-slide img {\r\n  display: block;\r\n  width: 100%;\r\n  height: 100%;\r\n  object-fit: cover;\r\n}\r\n\r\nbody {\r\n  background: #000;\r\n  color: #000;\r\n}\r\n\r\n.swiper {\r\n  width: 100%;\r\n  height: 300px;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n}\r\n\r\n.swiper-slide {\r\n  background-size: cover;\r\n  background-position: center;\r\n}\r\n\r\n.mySwiper2 {\r\n  height: 80%;\r\n  width: 100%;\r\n}\r\n\r\n.mySwiper {\r\n  height: 20%;\r\n  box-sizing: border-box;\r\n  padding: 10px 0;\r\n}\r\n\r\n.mySwiper .swiper-slide {\r\n  width: 25%;\r\n  height: 100%;\r\n  opacity: 0.4;\r\n}\r\n\r\n.mySwiper .swiper-slide-thumb-active {\r\n  opacity: 1;\r\n}\r\n\r\n.swiper-slide img {\r\n  display: block;\r\n  width: 100%;\r\n  height: 100%;\r\n  object-fit: cover;\r\n}\r\n\r\n\r\n.thumb-example {\r\n  height: 600px;\r\n  background-color: $black;\r\n  }\r\n.gallery-top {\r\n  height: 80%;\r\n  width: 100%;\r\n}\r\n.gallery-thumbs {\r\n  height: 20%;\r\n  box-sizing: border-box;\r\n  margin-top: 15px;\r\n}\r\n.gallery-thumbs .swiper-slide {\r\n  width: 25%;\r\n  height: 100%;\r\n  opacity: 0.4;\r\n}\r\n.gallery-thumbs .swiper-slide-active {\r\n  opacity: 1;\r\n}\r\n/**************************swiper css end**************************/\r\n.nutrition_inner .col-md-12 img {width: 100%;}\r\n.question_form{display: flex; width: 100%;}\r\n.question_form .form_label{padding: 10px;}\r\n.question_form .form_label label{font-size: 14px; width: 86px;}\r\n.question_form .form_label input,textarea{\r\n  font-size: 14px;\r\n  max-width:calc(100% - 90px);\r\n  width:100%;\r\n  padding: 8px;\r\n}\r\n.question_form .form_label button{\r\n  font-size: 14px;\r\n  width: 25%;\r\n  background: #000;\r\n  color: #fff;\r\n  padding: 8px;\r\n}\r\n.review_form{\r\n  width: 100%;\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n\r\n.review_form .review_form_50{\r\n  display: flex;\r\n  flex-direction: row;\r\n  width: 100%;\r\n}\r\n.review_form .review_form_100{\r\n  display: flex;\r\n  flex-direction: column;\r\n  width: 100%;\r\n}\r\n.review_form .review_form_50 .review_form_label{\r\n  width: 50%;\r\n  margin: 0;\r\n  padding:10px;\r\n}\r\n.review_form .review_form_100 .form_label{\r\n  width: 100%;\r\n  margin: 0;\r\n  padding:10px;\r\n}\r\n.review_form .review_form_100 .form_label lable,input,textarea{\r\n  width: 100%;\r\n  padding: 10px;\r\n}\r\n.review_btn_label{\r\n  width: 100%;\r\n  display: block;\r\n  margin: 15px 0px;\r\n}\r\n\r\n\r\n.bm-wrap.cmnt_txt {\r\n  flex-wrap: wrap;\r\n}\r\n.bm-wrap.cmnt_txt  span {\r\n    font-size: 14px;\r\n    font-weight: 400;\r\n    display: inline-block;\r\n    margin-bottom: 15px;\r\n    margin-left: 2px;\r\n}.faq_list {\r\n  max-height: 280px;\r\n  overflow: auto;\r\n}\r\n.faq_list p {\r\n  cursor: pointer;\r\n}\r\n.question_form .form_label {\r\n  align-items: flex-start;\r\n  display: flex;\r\n}\r\n.for_m_btn {\r\n  justify-content: flex-end;\r\n}\r\n.question_form .error_validation {\r\n  position: absolute;\r\n  right: 0;\r\n  bottom: -5px;\r\n  text-align: right;\r\n  font-size: 11px;\r\n  padding: 0 15px 0 0;\r\n}\r\n\r\n.srch_q {\r\n  position: relative;\r\n}\r\n.srch_q i {\r\n  position: absolute;\r\n  right: 10px;\r\n  top: 10px;\r\n}\r\n.srch_q input {\r\n  height: 35px;\r\n}\r\n\r\n.review_form {\r\n  background: #f6f6f6;\r\n  padding: 30px;\r\n  width: 100%;\r\n}\r\n.review_btn_label button {\r\n  font-size: 14px;\r\n  width: 25%;\r\n  background: #000;\r\n  color: #fff;\r\n  padding: 8px;\r\n}\r\n.review_btn_label {\r\n  text-align: right;\r\n}\r\n.form_label.txt_area textarea {\r\n  max-width: 100%;\r\n}\r\n.review_form > h4 {\r\n  padding: 10px;\r\n  border-bottom: 1px solid rgba(0,0,0,.1);\r\n}\r\n.blg_auth\r\n{\r\n  width:100%;\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".main_container{    max-width: 100%;  margin:0 auto;  min-height: 100vh; background: #fff;}\r\n.free_ship_bar { background: #9d9d9c; padding:15px; text-align: center; margin: 5px 0;}\r\n.free_ship_bar p { margin: 0; color: #fff; font-weight: 300; font-style: italic;font-size: 16px;}\r\n.free_ship_bar img { margin-right: 5px;}\r\n.container_max{max-width: 1170px; padding: 0 15px; margin:0 auto; width: 100%;}\r\nsection.banner_sec {  background: #e1efe3; display: flex; justify-content: flex-end; padding-right: 80px;}\r\n.banner_top>span {  font-size: 13px; color: #84b5c7; letter-spacing: 6px;  font-weight: 600;}\r\n.banner_top>h2 {   font-size: 64px;  line-height: .7; letter-spacing: -2px;  font-weight: 700;  color: #fa6734;}\r\n.banner_top>label {  font-size: 22px;    font-weight: 600; color: #78c8cf;}\r\n.banner_top>label span { font-weight: 400;}\r\n.btn_orng { margin-top: 22px;}\r\nspan.blu { color: #78c8cf;}.btn_orng a { display: inline-block; padding: 8px 14px 13px 14px; border-radius: 50px;  color: #fff;\r\ntext-decoration: none;  background: #fa6734; font-size: 15px;  line-height: .7;}\r\n.baner_1 { display: flex; align-items: center; justify-content: flex-end;}\r\n.treat_bg {    background: #9bb79e;}\r\n.food_bg { background: #89b3b4;}\r\n.litter_bg { background: #decdc0;}\r\n.toy_bg { background: #a28ca8;}\r\nsection.treat_sec { padding: 60px 0 30px 0;}\r\n.grid_4>div { padding-top: 37%;  position: relative;}\r\n.grid_4>div>a h2 { display: block; width: 100%; text-align: center; color: #fff; margin: 0; line-height: 1; font-size: 100px;\r\ntext-transform: uppercase; font-weight: 700;}\r\n.grid_4>div>a{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-decoration: none; text-align: center;}\r\n.grid_4>div>a img { margin-top: 50px;}\r\nsection.product_slider .slick-slide a { color: #706f6f; text-decoration: none;}\r\nsection.product_slider .slick-slide a h3 { font-size: 26px; font-weight: 300; max-width: 313px;}\r\n.product_slider .col-md-4 img {  height: 300px; width: 100%; object-fit: contain;}\r\n.product_slider .row{margin: 0 -32px;}\r\n.product_slider .col-md-4\r\n{padding: 0 32px;}\r\n.slick-prev { border: 1px solid red; width: 40px; height: 40px; }\r\n.slick-prev:before {  width: 40px !important;  height: 40px !important; background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") !important;    color: transparent !important;\r\nbackground-position: center; background-repeat: no-repeat !important;}\r\n.slick-next:before {    width: 40px !important;  height: 40px !important;  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ") !important;\r\ncolor: transparent !important;   background-position: center;  background-repeat: no-repeat !important;}\r\nbutton.slick-prev.slick-arrow { left: 0;}\r\n.slick-next{ right: 0 !important;}\r\n.slick-arrow { z-index: 9;}\r\n.txt_over a { position: relative; text-decoration: none; color: #fff; display: block;}\r\n.txt_over a h2 { position: absolute; bottom: 10px; font-size: 103px; font-weight: 700; text-transform: uppercase; letter-spacing: -4px;\r\npadding: 0 50px; width: 100%;}\r\n.pad_15{padding: 0 15px;}\r\nsection.two_img { padding: 40px 0;}\r\n.gray_panel {text-decoration: none;}\r\na.img_box1 h3 { max-width: 64px; color: #00b7bc; font-size: 33px; font-weight: 700; line-height: .8;}\r\na.img_box2 h3 {  max-width: 150px;  color: #00b7bc;  font-size: 33px; text-transform: uppercase; font-weight: 700; line-height: .8;}\r\nsection.two_img .col-md-6.txt_over {  padding: 0;}\r\nsection.two_img .col-md-6.txt_over a img { position: absolute; top: 0; height: 100%; width: 100%; object-fit: cover;}\r\nsection.two_img .col-md-6.txt_over a {   padding-top: 80%;}\r\n.gray_panel {  background: #f6f6f6;  position: relative; padding: 15px 50px; min-height: 130px; display: flex; flex-wrap: wrap;align-items: center;\r\n}span.re_d { color: #e42930;}\r\n.img_box1 img {position: absolute; top: -5px; right: 50px;}\r\n.img_box2 img { position: absolute;  right: 40px; top: -30px;}\r\n.img_box3 h3 { font-size: 22px; color: #00b7bc; font-weight: 600;  margin: 0; line-height: .7;}\r\n.wrp { width: 165px;}\r\n.wrp a { font-size: 12px;  color: #a4b1b1; text-transform: uppercase;}\r\n.img_box3 img { position: absolute;  right: 40px;}\r\n.red_box {    position: relative;    padding-top: 40%; background: #e3002b;}\r\n.blue_box {  position: relative; padding-top: 40%; background: #00b7bc;}\r\n.red_box h2,.blue_box h2 { font-size: 103px; line-height: .7; font-weight: 700; letter-spacing: -4px; color: #fff;}\r\n.blue_box h2{ text-align: center;}\r\n.red_box h2 span,.blue_box h2 span { font-weight: 300;}\r\n.red_box a { font-size: 18px; color: #fff; font-weight: 400; padding: 20px;}\r\n.red_box .rect ,.blue_box .rect { position: absolute;  top: 0; height: 100%; width: 100%; left: 0; display: flex; align-items: center;\r\nflex-wrap: wrap; padding: 60px;}.blue_box .rect{\r\npadding:50px 60px; align-items: flex-start;}\r\n.red_box img { position: absolute; right: 27px; margin-top: 15px;}\r\n.blue_box p {  font-size: 26px;font-weight: 300;color: #fff; text-align: center;}\r\n.blue_box p a {color: #fff;}\r\n.blue_box sup {font-size: 59px;}\r\n.blue_box img { position: absolute;left: 0; right: 0; margin: 0 auto; bottom: 0;}\r\n.cart_slide li img { max-width: 100%;}\r\n.product_panel { position: relative; overflow: hidden;}\r\n.product_panel .sale_tag { position: absolute; top: 7px; background: #00b7bc; transform: rotate(-33deg); font-size: 16px; font-weight: 600;\r\ntext-transform: uppercase;color: #fff; padding: 0 30px; left: -20px;}\r\n.prod_details h5 { font-size: 16px; color: #706f6f; font-weight: 400; margin: 0;}\r\n.rat_ing i { color: #c6b660;\r\nmargin-left: 15px;}\r\n.rat_ing { display: flex; justify-content: center;  padding: 5px;}\r\n.cart_flex h3 { font-size: 25px; color: #706f6f;  margin: 0;}\r\n.cart_flex a { background: #e3002b; display: inline-block; color: #fff; font-size: 12px;text-transform: uppercase; font-weight: 600;\r\ntext-decoration: none; padding: 4px 12px; border-radius: 50px; letter-spacing: .4px; line-height: 1.8;}\r\n.cart_flex { display: flex; justify-content: space-between; margin-top: 5px;}\r\n.cart_slide li { padding: 0 15px;}\r\n.cart_slide { padding: 0;  margin: 0 -15px;}\r\n.prod_img { padding-top: 85%; position: relative; margin-bottom: 20px;}\r\n.prod_img img { position: absolute; top: 0;  width: 100%; height: 100%; object-fit: contain;}\r\n.cart_slide button.slick-prev.slick-arrow { left: -20px;}\r\n.cart_slide button.slick-next.slick-arrow { right: -20px !important;}\r\nh1.line_heading {  font-size: 25px; color: #706f6f; font-weight: 400; align-items: center; position: relative;display: flex; margin-bottom: 25px;}\r\nh1.line_heading:after { content: \"\";    margin-left: 5px; flex-grow: 1; display: block; height: 1px; background: #3a3a3a;}\r\n.rd_blue { padding-bottom: 40px !important;}\r\n.height_mix { padding-top: 80%;  position: relative;}\r\n.height_mix>img { position: absolute; top: 0; width: 100%; height: 100%;}\r\n.sub_2 { position: absolute; top: 0; height: 100%; width: 100%;    display: flex; align-items: center; justify-content: center;}\r\n.over_red { background: #e3002b; padding: 40px; max-width: 267px;}\r\n.over_red h2 { font-size: 41px;font-weight: 800;text-transform: uppercase;line-height: .8;color: #fff;}\r\n.over_red>small { font-size: 12px; color: #fff; margin-bottom: 10px; display: block;}\r\n.over_red>a { font-size: 12px; color: #fff;  margin-bottom: 10px;  display: block;}\r\n.sub_1 {  position: absolute;  top: 0; left: 0; width: 100%;  height: 100%; background: #76babf; padding: 50px 40px;}\r\n.sub_1>h1 { font-size: 72px; font-weight: 700; line-height: .8; letter-spacing: -4px; color: #fff;}\r\n.sub_1>h1>span { font-weight: 300;}\r\n.sub_1 sup { font-size: 34px; top: -34px;}\r\n.sub_1 p {  font-size: 25px;  color: #fff; font-weight: 300; margin-bottom: 0;}\r\n.sub_1 img { position: absolute; left: 0;  right: 0;  margin: 0 auto;}\r\n.sub_1 a {  font-size: 19px; color: #fff; font-weight: 400;}\r\nsection.duo_banner { padding: 50px 0 25px 0;}\r\nsection.Keep_touch {  background: #f6f6f6;}\r\n.container_min{  max-width: 1000px;    margin: 0 auto; padding: 0 15px; width: 100%;}\r\n.form_text h1 {font-size: 67px; font-weight: bold; line-height: .7; letter-spacing: -3px; color: #00b7bc; }\r\n.form_text h1 span:not(.re_d) {font-weight: 300; }\r\n.form_text p {font-size: 15px; color: #9d9d9c; }\r\n.Keep_touch .from_grp input[type=\"text\"] ,.Keep_touch .from_grp input[type=\"email\"] {\r\nheight: 26px; width: 140px; border: 1px solid #aca4a6; font-size: 14px; font-weight: 300; padding: 0 0 0 10px; }\r\n.Keep_touch .from_grp input[type=\"text\"]::placeholder ,.Keep_touch .from_grp input[type=\"email\"]::placeholder\r\n{color: #9d9d9c; font-size: 14px; }\r\n.radio_check {color: #9d9d9c; font-size: 16px; }\r\n.radio_check input {margin-right: 7px; }\r\n.radio_check span {margin-right: 17px; }\r\nform.touch_form {max-width: 300px; display: flex; flex-wrap: wrap; grid-gap: 10px; }\r\n.Keep_touch .container_min>.row {align-items: center; justify-content: space-between; }\r\n.ab_over {position: absolute; top: 0; width: 100%; height: 100%; display: flex; align-items: center; }\r\n.ab_over {position: absolute; top: 0; height: 100%; display: block; align-items: center; width: 100%; right: 0; margin: 0 auto; left: 0; padding-top: 8%; }\r\nh3.lab_22 {color: #fff; font-weight: 300; }\r\nh3.lab_22 label {display: inline-block; padding: 2px 8px; background: #fff; color: #e3002b; font-weight: bold; }\r\nh3.lab_22 b {font-weight: bold; }\r\np.p_16 {font-size: 20px; font-weight: 300; color: #fff; }\r\na.btn_grn {font-size: 12px; color: #fff; background: #00b7bc; padding: 6px 20px; border-radius: 50px; text-decoration: none; }\r\n.div_center {text-align: center; max-width: 330px; }\r\nsection.xl_sec {position: relative;text-align: center;}\r\nsection.xl_sec {position: relative; padding: 0; background: linear-gradient(90deg , #ffffff 50%, #e3002b 50%); margin: 40px 0; } ul.insta_nails {list-style: none; padding: 0; margin: 0 -10px; display: flex; flex-wrap: wrap; }\r\nul.insta_nails>li{max-width:25%; width: 100%; padding: 10px; }\r\nul.insta_nails>li>a>span {display: block; padding-top: 100%; position: relative; }\r\nul.insta_nails>li>a>span img {position: absolute; left: 0; top: 0; height: 100%; width: 100%; object-fit: cover; }\r\nh3.insta_head span {font-size: 23px; display: inline-block; background: #00b7bc; color: #fff; padding: 5px 15px; border-top-left-radius: 20px; border-top-right-radius: 20px; }\r\nh3.insta_head {text-align: center; border-bottom: 2px solid #00b7bc; }\r\n\r\n/* responsive */\r\n\r\n@media only screen and (max-width: 768px)\r\n{\r\nsection.xl_sec img { width: 100%;}\r\nsection.banner_sec {padding: 10px; }\r\nsection.banner_sec {  padding-bottom: 60px;  position: relative;}\r\n.btn_orng { position: absolute; bottom: 20px; text-align: center; width: 100%;  left: 0;}\r\n.row.grid_4.pad_15 {  display: grid; grid-template-columns: 50% 50%;}\r\n.grid_4>div { padding-top: 90%;}\r\n.grid_4>div img {   max-width: 128px; margin-top: 20px !important;}\r\n.grid_4>div>a h2 {font-size: 45px; position: absolute; bottom: 20px; letter-spacing: -2px;}\r\nsection.treat_sec { padding: 0;}\r\n.row.grid_4.pad_15 { padding: 3px; margin: 0 -15px;}\r\n.blue_box, .red_box {padding-top: 90%; }\r\n.red_box h2, .blue_box h2 { font-size: 40px; letter-spacing: -2px; }\r\n.red_box .rect, .blue_box .rect { padding: 20px;}\r\n.red_box img {position: absolute; right: 4px; margin-top: 8px; max-width: 109px; }\r\n.red_box a { font-size: 10px; padding: 10px 0;}\r\n.blue_box .rect {padding: 20px; align-items: flex-start; }\r\n.blue_box p {font-size: 10px; text-align: left; }\r\n.blue_box img { max-width: 105px;}\r\n.blue_box sup { font-size: 26px;}\r\nsection.two_img.rd_blue .row,section.two_img .row.pad_15,.duo_banner .row {display: grid; grid-template-columns: 50% 50%; padding: 0; }\r\n.row.pad_15 { padding: 0;}\r\nsection.two_img .col-md-6.txt_over a { padding-top: 100%;}\r\n.txt_over a h2 {font-size: 40px; padding: 0 10px; text-align: left;}\r\nsection.two_img {padding: 0px 0; }\r\n.gray_panel {    margin: 20px -15px;}\r\n.sub_1 {padding: 20px;}\r\n.sub_1>h1 {font-size: 27px; letter-spacing: -1px; color: #fff; margin: 0; }\r\nsection.duo_banner, section.duo_banner>div {\r\n    padding: 0;\r\n}\r\n.sub_1 sup {\r\n    font-size: 15px;\r\n    top: -11px;\r\n}\r\n.over_red>small {\r\n    font-size: 10px;\r\n    color: #fff;\r\n    margin-bottom: 5px;\r\n    display: block;\r\n}\r\n\r\n.duo_banner .row .col-md-6 {\r\n    padding: 0;\r\n}\r\n.sub_1 a {font-size: 10px; color: #fff; font-weight: 400; z-index: 1; position: relative; display: block; }\r\n\r\n.sub_1 img {\r\n        position: absolute;\r\n        left: 0;\r\n        right: 0;\r\n        margin: 0 auto;\r\n        max-width: 143px;\r\n        z-index: 0;\r\n        bottom: 5px;\r\n}\r\n.sub_1 p {\r\n    font-size: 11px;\r\n}\r\n.over_red>a {\r\n    font-size: 9px;\r\n    color: #fff;\r\n    margin-bottom: 10px;\r\n    display: block;\r\n}\r\n.over_red h2 {\r\n    font-size: 22px;\r\n   margin: 0;\r\n}\r\n.over_red {\r\n    background: #e3002b;\r\n    padding:15px 20px;\r\n    max-width: 136px;\r\n}\r\nsection.Keep_touch .col-md-2 {\r\n    max-width: 150px;\r\n    width: 100%;\r\n}\r\n.form_mobile h1 {\r\n    font-size: 42px;\r\n    text-align: left;\r\n}\r\n.form_mobile {\r\n    max-width: calc(100% - 150px);\r\n    padding: 0 15px 0 0;\r\n}\r\n.form_mobile p {\r\n    font-size: 14px;\r\n    line-height: .9;\r\n    text-align: left;\r\n    margin: 12px 0 0 0;\r\n}\r\nform.mobil_only input {\r\n    width: 100% !important;\r\n    height: 34px !important;\r\n    margin-top: 10px;\r\n}\r\nsection.Keep_touch {\r\n    background: #f6f6f6;\r\n    padding: 15px 0 0 0;\r\n}\r\nul.insta_nails>li {\r\n    max-width: 50%;\r\n}\r\n.cart_slide li {\r\n    padding: 0 25px;\r\n}\r\nsection.cart_slider {\r\n    padding-bottom: 40px;\r\n}\r\n.product_slider .col-md-4 {\r\n    max-width: 200px;\r\n    padding: 0;\r\n}\r\nsection.product_slider .slick-slide a h3 {\r\n    font-size: 18px;\r\n    font-weight: 300;\r\n    max-width: 313px;\r\n    line-height: 1.1;\r\n}\r\n.product_slider .col-md-4 img {\r\n    height: 200px;\r\n}\r\nsection.two_img.rd_blue {\r\n    padding-bottom: 20px !important;\r\n}\r\nsection.product_slider {\r\n    padding: 20px 0;\r\n}\r\n\r\na.btn_grn {\r\n    font-size: 9px;\r\n}\r\n .div_center p {\r\n    font-size: 14px;\r\n    margin: 0 0 10px 0;\r\n}\r\n.div_center h3 {\r\n    font-size: 15px;\r\n    margin: 0 0 0px 0;\r\n}\r\n.div_center {\r\n    max-width: 200px;\r\n    float: right;\r\n}\r\nsection.cart_slider,section.product_slider {\r\n    overflow: hidden;\r\n}\r\nsection.duo_banner .row {\r\n    margin: 0;\r\n}\r\nsection.xl_sec img {\r\n    max-width: 100%;\r\n}\r\n\r\n }\r\n\r\n\r\n @media only screen and (min-width: 768px) and (max-width:1000px)\r\n {\r\n    .grid_4>div ,section.two_img .col-md-6.txt_over,.blue_box, .red_box,.duo_banner .row .col-md-6{\r\n    width: 100%;\r\n}\r\n.grid_4>div img {\r\n    max-width: 230px;\r\n    height: 230px;\r\n    object-fit: contain;\r\n}\r\n.grid_4>div:nth-child(3) img {\r\n    max-width: 350px;\r\n}\r\n.grid_4>div>a h2,.col-md-6.txt_over h2 {\r\n    font-size: 68px;\r\n    bottom: 30px;\r\n\r\n}\r\n.red_box .rect, .blue_box .rect {\r\n    padding: 50px;\r\n}\r\n.red_box h2, .blue_box h2 {\r\n    font-size: 70px;\r\n    letter-spacing: -2px;\r\n}\r\n.blue_box p {\r\n    font-size: 18px;\r\n    text-align: left;\r\n}\r\n.red_box a {\r\n    font-size: 18px;\r\n    padding: 10px 0;\r\n}\r\n.blue_box img {\r\n    max-width: 200px;\r\n}\r\n.red_box img {\r\n    position: absolute;\r\n    right: 4px;\r\n    margin-top: 8px;\r\n    max-width: 190px;\r\n}\r\n.over_red {\r\n    background: #e3002b;\r\n    padding: 30px;\r\n    max-width: 260px;\r\n}\r\n.over_red>small {\r\n    font-size: 16px;\r\n}\r\n.over_red h2 {\r\n    font-size: 40px;\r\n    margin: 0;\r\n}\r\n.over_red>a {\r\n    font-size: 14px;\r\n    color: #fff;\r\n    margin-bottom: 10px;\r\n    display: block;\r\n}\r\n.sub_1 {\r\n    padding: 30px;\r\n}\r\n.sub_1>h1 {\r\n    font-size: 50px;\r\n    letter-spacing: -1px;\r\n    color: #fff;\r\n    margin: 0;\r\n}\r\n.sub_1 p {\r\n    font-size: 18px;\r\n}\r\n.sub_1 a {\r\n    font-size: 18px;\r\n    color: #fff;\r\n    font-weight: 400;\r\n    z-index: 1;\r\n    position: relative;\r\n    display: block;\r\n}\r\n.sub_1 img {\r\n    position: absolute;\r\n    left: 0;\r\n    right: 0;\r\n    margin: 0 auto;\r\n    max-width: 260px;\r\n    z-index: 0;\r\n    bottom: 20px;\r\n}\r\n.form_mobile {\r\n    max-width: calc(100% - 150px);\r\n    padding: 0 15px 0 0;\r\n    width: 100%;\r\n}\r\n.container_min {\r\n    max-width: 600px;\r\n}\r\n.two_img + section .container_max .col-md-4 {\r\n    width: 100% !important;\r\n    max-width: 370px;\r\n    margin: 0 auto;\r\n}\r\nsection.xl_sec .desk_only {\r\n    display: block;\r\n}\r\nsection.xl_sec .mobil_only {\r\n    display: none;\r\n}\r\n .div_center {\r\n    max-width: 310px;\r\n    float: right;\r\n    width: 100%;\r\n}\r\n.div_center h3 {\r\n    font-size: 24px;\r\n    margin: 0 0 0px 0;\r\n}\r\n.div_center p {\r\n    font-size: 20px;\r\n    margin: 0 0 10px 0;\r\n}\r\na.btn_grn {\r\n    font-size: 14px;\r\n    display: inline-block;\r\n    margin-top: 10px;\r\n}\r\n }\r\n/************************product view*******************************************/\r\n\r\n.product_view {padding: 50px 0 20px; }\r\n#pr_img .slick-slide img {position: absolute; top: 30px; left: 30px; width: calc(100% - 60px); height: calc(100% - 60px); object-fit: contain; object-position: center; }\r\n#pr_img .slick-slide  {height: 550px; background: #f6f6f6; padding: 30px; position: relative; margin-bottom: 5px;\r\n}div#pr_thumb {margin: 0 -5px; }\r\ndiv#pr_thumb .slick-slide img {max-width: 100%; height: calc(100% - 30px); width: calc(100% - 30px); position: absolute; top: 15px; left: 15px; object-fit: contain; background: #f2f2f2; }\r\ndiv#pr_thumb .slick-slide {min-height: 170px; position: relative; background: #f6f6f6; border: 5px solid #fff; }\r\nul.style_p1 {list-style: none; padding: 0; margin: 10px 0; display: flex; grid-gap: 25px; text-align: center; }\r\nul.style_p1 li label input {position: absolute; width: 100%; height: 100%; left: 0; top: 0; z-index: 1; cursor: pointer; opacity: 0; }\r\nul.style_p1 li label input+span {background: #e1e1e1; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 26px; font-weight: 600; margin: 0 auto; }\r\n.selectedOption {background: #00b7bc !important; }\r\nul.style_p1 li label {position: relative; }\r\n.cart_form input[type=\"number\"], .cart_form input[type=\"text\"], .cart_form input[type=\"select\"] {background: #f6f6f6; border:0px; height: 48px; border-radius: 0px; font-size: 27px; font-weight: 300; }\r\n.quantity_select .number-input {display: flex; align-items: center; }\r\n.quantity_select .number-input input.quantity {width: 57px !important; margin: 0 5px; text-align: center; padding: 0; }\r\n.quantity_select button {border: 1px solid rgba(0,0,0,.3); border-radius: 50px; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; background: #fff; font-size: 21px; padding: 0 0 4px; font-weight: 300; }\r\n.amount_pro input {max-width: 200px; padding: 0 20px; text-align: center; }\r\nbutton.btn_bl {background: #00b7bc; border: 0px; height: 48px; padding: 0 30px; font-size: 20px; font-weight: 300; color: #fff; }\r\n.cart_form {padding: 40px 0; border-top: 1px solid #0000003d; border-bottom: 1px solid #0000003d; margin: 30px 0; }\r\n.cart_form>div {margin: 0; }\r\n/* Chrome, Safari, Edge, Opera */\r\ninput::-webkit-outer-spin-button,\r\ninput::-webkit-inner-spin-button {\r\n -webkit-appearance: none;\r\n margin: 0;\r\n}\r\n\r\n/* Firefox */\r\ninput[type=number] {\r\n -moz-appearance: textfield;\r\n}\r\nh2.pr_title {\r\n   color: #706f6f;\r\n   font-weight: 600;\r\n   font-size: 30px;\r\n   text-transform: capitalize;\r\n}\r\n.prod_rev i {\r\n   color: #e7ba2e;\r\n   display: inline-block;\r\n   margin: 0 5px;\r\n}\r\n.prod_rev {\r\n   font-size: 12px;\r\n   color: #706f6f;\r\n   margin: 25px 0 10px 0;\r\n}\r\np.pro_dec {\r\n   font-size: 14px;\r\n   color: #706f6f;\r\n   font-weight: 400;\r\n}\r\nlabel.line_label {\r\n   font-size: 12px;\r\n   color: #706f6f;\r\n   position: relative;\r\n   display: flex;\r\n   align-items: center;\r\n   flex-grow: 1;\r\n   margin: 10px 0 30px 0;\r\n}\r\nul.style_p1 small\r\n{\r\nfont-size: 12px;\r\n   color: #706f6f;\r\n}\r\nlabel.line_label:after {\r\n   content: \"\";\r\n   height: 1px;\r\n   flex-grow: 1;\r\n   background: #c9c9c9;\r\n   margin-left: 10px;\r\n   max-width: 120px;\r\n}\r\n.quantity_select label.sr-only {\r\n   width: 92%;\r\n   top: -20px;\r\n   height: 20px;\r\n   clip: unset;\r\n   text-align: center;\r\n   font-size: 12px;\r\n   color: #706f6f;\r\n}\r\n.quantity_select {\r\n   position: relative;\r\n}\r\n\r\np.ingr {\r\n font-size: 12px;\r\n   color: #706f6f;\r\n   font-weight: 300;\r\n}\r\np.ingr b {\r\n   font-weight: 600;\r\n}\r\n\r\n\r\n\r\n/* ________ Add New CSS ______________ */\r\n\r\n.m-lr {\r\n   margin-left: 0;\r\n   margin-right: 0;\r\n}\r\n.nutrition_inner {\r\n   background-size: cover;\r\n   background-position: center center;\r\n   background-repeat: no-repeat;\r\n   min-height: 325px;\r\n   padding-top: 9%;\r\n}\r\n.nutrition_inner p {\r\n   color: #fff;\r\n   text-transform: uppercase;\r\n   font-size: 12px;\r\n   font-weight: 400;\r\n   letter-spacing: 1.5px;\r\n   margin: 0;\r\n   text-align: center;\r\n}\r\n.nutrition_inner h2 {\r\n   font-size: 28px;\r\n   text-align: center;\r\n   color: #fff;\r\n   text-transform: capitalize;\r\n   line-height: 1.1;\r\n}\r\n.ingradients-wrap img {\r\n   max-width: 100%;\r\n   width: 100%;\r\n}\r\n.ingradients-wrap {\r\n   margin-top: 35px;\r\n}\r\n.ingradients-inner {\r\n   background: #f6f6f6;\r\n}\r\n.ingradients-inner .textdecoration {\r\n   font-family: 'Gentona';\r\n   font-size: 14px;\r\n   line-height: 1.7;\r\n   color: #706f6f;\r\n   font-weight: 400;\r\n   max-width: 500px;\r\n}\r\n.centered_txt {\r\n   display: flex;\r\n   align-items: center;\r\n   justify-content: center;\r\n}\r\n.about-brand {\r\n   padding-top: 35px;\r\n}\r\n.title-txt {\r\n   font-size: 24px;\r\n   color: #706f6f;\r\n   text-align: center;\r\n   font-weight: 400;\r\n   border-bottom: 1px solid #c6c6c6;\r\n   padding-bottom: 30px;\r\n   margin-bottom: 30px;\r\n}\r\n.light-text {\r\n   font-family: 'Gentona';\r\n   font-size: 14px;\r\n   line-height: 1.3;\r\n   color: #706f6f;\r\n   font-weight: 300;\r\n}\r\n.question-inner .title-txt {\r\n   border-bottom: none;\r\n   padding-bottom: 24px;\r\n   margin-bottom: 0px;\r\n}\r\n.question-inner02 {\r\n   border: 1px solid #c6c6c6;\r\n   padding: 20px 10px;\r\n}\r\n.question-inner02 .col-sm-3 p {\r\n   background: #f6f6f6;\r\n   padding: 12px;\r\n   font-family: 'Gentona';\r\n   font-size: 14px;\r\n   line-height: 1.3;\r\n   margin-bottom: 2px;\r\n   color: #706f6f;\r\n   font-weight: 300;\r\n}\r\n.question-inner02 p:last-child {\r\n   margin-bottom: 0px;\r\n}\r\n.Large-btn-box {\r\n   display: flex;\r\n   flex-direction: column;\r\n   justify-content: flex-start;\r\n}\r\n.Large-btn {\r\n   font-family: 'Gentona';\r\n   width: 100%;\r\n   padding: 20px;\r\n   border: 1px solid #e1e1e1;\r\n   font-size: 14px;\r\n   font-weight: 300;\r\n   text-transform: capitalize;\r\n   background: #fff;\r\n   color: #706f6f;\r\n   position: relative;\r\n}\r\n.Large-btn:not(:last-child)\r\n{\r\n  margin-bottom:10px;\r\n}\r\n.Large-btn::after {\r\n   position: absolute;\r\n   right: 3px;\r\n   bottom: 3px;\r\n   content: \"\";\r\n   width: 0px;\r\n   height: 0px;\r\n   border-bottom: solid 10px #00b1bb;\r\n   border-right: solid 10px #00b1bb;\r\n   border-left: solid 10px transparent;\r\n   border-top: solid 10px transparent;\r\n}\r\n.Large_red_btn {\r\n   background: #e3002b;\r\n   color: #fff;\r\n}\r\n.Large_red_btn::after{\r\n   border-bottom: solid 10px #fff;\r\n   border-right: solid 10px #fff;\r\n}\r\n.bm-wrap {\r\n   display: flex;\r\n   align-items: flex-start;\r\n   grid-column-gap: 10px;\r\n}\r\n.bm-wrap span {\r\n   font-family: 'Gentona';\r\n   font-size: 11px;\r\n   font-weight: 300;\r\n   color: #706f6f;\r\n}\r\n.bm-wrap p span {\r\n   font-size: 14px;\r\n   font-weight: 400;\r\n   display: inline-block;\r\n   margin-bottom: 15px;\r\n}\r\n.bm-wrap div {\r\n   margin-top: -4px;\r\n}\r\n.review-wrap {\r\n   padding-top: 30px;\r\n}\r\n.review-write {\r\n   padding-top: 30px;\r\n}\r\n.light-box2 {\r\n   display: flex;\r\n   min-height: 175px;\r\n   grid-column-gap: 10px;\r\n   flex-wrap: wrap;\r\n   justify-content: space-between;\r\n}\r\n.light-box-inner {\r\n   background: #f6f6f6;\r\n   width: 48%;\r\n   position: relative;\r\n}\r\n.light-box-inner p.light-btm {\r\n   position: absolute;\r\n   bottom: 10px;\r\n   font-size: 11px;\r\n   width: 100%;\r\n   text-align: center;\r\n   margin: 0;\r\n   color: #706f6f;\r\n}\r\n.light-box-inner {\r\n   display: flex;\r\n   align-items: center;\r\n   justify-content: center;\r\n}\r\n.light-box-txt01 {\r\n   font-size: 28px;\r\n   color: #706f6f;\r\n   margin: 0;\r\n   letter-spacing: -1px;\r\n   font-weight: 300;\r\n}\r\n.light-box-txt02 {\r\n   font-size: 48px;\r\n   color: #706f6f;\r\n   margin: 0;\r\n   letter-spacing: -1px;\r\n   font-weight: 300;\r\n}\r\n.reviews-img-section {\r\n   padding: 10px;\r\n   border: 1px solid #c6c6c6;\r\n   display: flex;\r\n   align-items: center;\r\n   justify-content: center;\r\n   flex-wrap: wrap;\r\n   grid-row-gap: 10px;\r\n   grid-column-gap: 15px;\r\n}\r\n.review-wrap .Large-btn {\r\n   padding: 30px;\r\n}\r\n.review-write .Large-btn {\r\n   padding: 30px;\r\n}\r\n.letest-review-title {\r\n   font-size: 13px;\r\n   color: #706f6f;\r\n   font-family: 'Gentona';\r\n   margin: 35px 0 30px 10px;\r\n}\r\n.sort-btn-wrap {\r\n   display: flex;\r\n   align-items: center;\r\n   justify-content: space-between;\r\n}\r\n.sort-btn-wrap button {\r\n   border: 1px solid #aca4a6;\r\n   background: no-repeat;\r\n   font-size: 13px;\r\n   color: #969595;\r\n   font-weight: 300;\r\n   font-family: 'Gentona';\r\n}\r\n.star-box {\r\n   display: flex;\r\n   align-items: center;\r\n   justify-content: start;\r\n   grid-column-gap: 10px;\r\n   margin-left: 20px;\r\n}\r\n.star-box img::after {\r\n   content: \"assets/images/varified-sign.png\";\r\n}\r\n.star-inner-txt h6 {\r\n   font-size: 12px;\r\n   color: #303030;\r\n   font-weight: 600;\r\n   margin: 0;\r\n}\r\n.star-inner-txt h6 span {\r\n   color: #60c370;\r\n}\r\n.star-inner-txt span {\r\n   font-size: 11px;\r\n   color: #c4b3b3;\r\n   padding-left: 5px;\r\n}\r\n.star-rating i {\r\n   color: #e7ba2e;\r\n   margin-right: 3px;\r\n}\r\n.star-inner-txt div {\r\n   line-height: 1;\r\n   margin-bottom: 4px;\r\n}\r\n.thumb-up {\r\n   margin-left: 25px;\r\n}\r\n.thumb-up span {\r\n   font-size: 12px;\r\n   color: #949698;\r\n   padding-left: 5px;\r\n}\r\n.rating-right h3 {\r\n   font-size: 16px;\r\n   color: #706f6f;\r\n   text-transform: uppercase;\r\n   font-weight: 300;\r\n   margin-bottom: 0;\r\n}\r\n.rating-right p {\r\n   font-family: 'Gentona';\r\n   font-size: 14px;\r\n   color: #706f6f;\r\n   font-weight: 300;\r\n   line-height: 1.2;\r\n   margin-top: 3px;\r\n   margin-bottom: -3px;\r\n}\r\n.rating-right a {\r\n   font-family: 'Gentona';\r\n   font-size: 12px;\r\n   color: #706f6f;\r\n   font-weight: 300;\r\n   line-height: 1.2;\r\n}\r\n.rating_row {\r\n   margin-bottom: 30px;\r\n}\r\n.ingradients-txt-03 p {\r\n   max-width: 525px;\r\n}\r\n.light-bg-p p {\r\n   font-size: 15px;\r\n   color: #706f6f;\r\n   margin-bottom: 3px;\r\n   padding: 10px;\r\n   background: #f6f6f6;\r\n   font-weight: 300;\r\n}\r\n\r\n/* _____ CSS for Footer ____________ */\r\nfooter.footer-top {\r\n   background: #f6f6f6;\r\n   padding: 30px 0;\r\n}\r\nul.footer_nav {\r\n   padding-left: 0;\r\n   margin-bottom: 0;\r\n   list-style-type: none;\r\n}\r\nul.foot_nav2 {\r\n   max-width: 100%;\r\n}\r\n.footer_nav li {\r\n   font-size: 14px;\r\n   font-weight: 600;\r\n}\r\n.footer_nav li a {\r\n   color: #706f6f;\r\n   text-decoration: none;\r\n   line-height: 21px;\r\n}\r\n.footer_nav01 {\r\n   border-right: 2px solid #d3cfd0;\r\n}\r\n.foot_nav_shop {\r\n   max-width: 50% !important;\r\n   margin-left: auto;\r\n}\r\nul.social_list.footer_nav {\r\n   margin: 0 !important;\r\n}\r\nfooter.footer-bottom {\r\n   padding: 20px 0;\r\n}\r\n.bottom-footer {\r\n   align-items: center;\r\n}\r\np.copy_p {\r\n   max-width: 100% !important;\r\n}\r\n.gray-strip {\r\n   background: #c6c6c6;\r\n   height: 35px;\r\n}\r\n.Mobile-friendly {\r\n   display: none;\r\n}\r\n\r\n\r\n@media (max-width: 991px) {\r\n   .nutrition_inner {\r\n       padding-top: 14%;\r\n   }\r\n   .ingradients-inner .textdecoration {\r\n       line-height: 1.3;\r\n   }\r\n   .nutrition_wrap .container_max {\r\n       max-width: 100%;\r\n       padding: 0px;\r\n   }\r\n   .ingradients-inner .textdecoration {\r\n       padding: 15px;\r\n   }\r\n   .ingradients-inner .textdecoration br {\r\n       display: none;\r\n   }\r\n}\r\n\r\n@media (max-width: 767px) {\r\n   .ingradients-inner .col-md-4 {\r\n       padding: 0;\r\n   }\r\n   .order-02 {\r\n       order: 2;\r\n   }\r\n   .nutrition_inner {\r\n       min-height: 165px;\r\n       padding-top: 11%;\r\n   }\r\n   .nutrition_inner h2 {\r\n       font-size: 16px;\r\n   }\r\n   .nutrition_inner p {\r\n       font-size: 9px;\r\n       letter-spacing: 1px;\r\n   }\r\n   .question-inner02 {\r\n      border: none;\r\n      border-bottom: 1px solid #c6c6c6;\r\n      padding: 0px;\r\n   }\r\n   .question-inner02 .col-8 {\r\n       padding: 0;\r\n   }\r\n   .question-inner02 .col-4 {\r\n       padding-right: 0;\r\n   }\r\n   .Large-btn {\r\n       padding: 23px 10px;\r\n       font-size: 12px;\r\n   }\r\n   .bm-main {\r\n       margin: 25px 0;\r\n   }\r\n   .bm-wrap {\r\n       grid-column-gap: 5px;\r\n   }\r\n   .bm-main .col-4 {\r\n       padding-left: 0;\r\n       padding-right: 15px;\r\n   }\r\n   .bm-outer-row {\r\n       padding-left: 0;\r\n       padding-right: 15px;\r\n   }\r\n   .review-wrap .Large-btn {\r\n       padding: 28px 10px;\r\n   }\r\n    .review-write .Large-btn {\r\n       padding: 28px 10px;\r\n    }\r\n   .reviews-img-section {\r\n       margin-top: 20px;\r\n       height: 170px;\r\n       overflow: scroll;\r\n   }\r\n   .star-box {\r\n       margin-left: 0px;\r\n   }\r\n   .thumb-up {\r\n       margin-left: 0px;\r\n       margin-bottom: 5px;\r\n   }\r\n   .product_view {\r\n       padding: 23px 0 20px;\r\n   }\r\n   .pe-mobile {\r\n       padding-right: 12px;\r\n   }\r\n   h2.pr_title {\r\n       font-size: 21px;\r\n   }\r\n   .Mobile-friendly {\r\n       display: block;\r\n   }\r\n   ul.style_p1 li label input+span {\r\n       width: 35px;\r\n       height: 35px;\r\n       font-size: 18px;\r\n   }\r\n   ul.style_p1 {\r\n       grid-gap: 6px;\r\n   }\r\n   .quantity_select .number-input input.quantity {\r\n       width: 40px !important;\r\n   }\r\n   .Mobile-friendly .cart_form {\r\n       padding: 0px;\r\n       border-top: none;\r\n       border-bottom: none;\r\n       margin: -5px 0 0;\r\n   }\r\n   .Desktop-friendly {\r\n       display: none;\r\n   }\r\n   .cart_form {\r\n       padding: 25px 0;\r\n       margin: 25px 0;\r\n   }\r\n   .cart_form .col-auto {\r\n       flex: 0 0 50%;\r\n   }\r\n   .reviews-img-section {\r\n       grid-row-gap: 15px;\r\n       grid-column-gap: 15px;\r\n   }\r\n\r\n\r\n\r\n   /* _____ CSS For Footer ______ */\r\n   .footer_nav li {\r\n       text-align: center;\r\n   }\r\n   .footer-top .col {\r\n       flex: 100% 0 0;\r\n   }\r\n   .foot_nav_shop {\r\n       max-width: 100% !important;\r\n   }\r\n   footer.footer-top {\r\n       background: #fff;\r\n   }\r\n   ul.footer_nav {\r\n       margin-bottom: 25px;\r\n   }\r\n   ul.foot_nav2 li a {\r\n       line-height: 26px;\r\n   }\r\n   .order-01 {\r\n       order: 1;\r\n   }\r\n   .order-03 {\r\n       order: 3;\r\n   }\r\n   .order-04 {\r\n       order: 4;\r\n   }\r\n   footer.footer-bottom {\r\n       padding: 0  0 25px;\r\n   }\r\n   ul.social_list.footer_nav {\r\n       margin: 15px auto !important;\r\n   }\r\n   footer.footer-top {\r\n       padding: 30px 0 0;\r\n   }\r\n   .gray-strip {\r\n       display: none;\r\n   }\r\n\r\n\r\n}\r\n\r\n/**************************swiper css start**************************/\r\n\r\n.swiper {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n.swiper-slide {\r\n  text-align: center;\r\n  font-size: 18px;\r\n  background: #fff;\r\n\r\n  /* Center slide text vertically */\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: -webkit-flex;\r\n  display: flex;\r\n  -webkit-box-pack: center;\r\n  -ms-flex-pack: center;\r\n  -webkit-justify-content: center;\r\n  justify-content: center;\r\n  -webkit-box-align: center;\r\n  -ms-flex-align: center;\r\n  -webkit-align-items: center;\r\n  align-items: center;\r\n}\r\n\r\n.swiper-slide img {\r\n  display: block;\r\n  width: 100%;\r\n  height: 100%;\r\n  object-fit: cover;\r\n}\r\n\r\nbody {\r\n  background: #000;\r\n  color: #000;\r\n}\r\n\r\n.swiper {\r\n  width: 100%;\r\n  height: 300px;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n}\r\n\r\n.swiper-slide {\r\n  background-size: cover;\r\n  background-position: center;\r\n}\r\n\r\n.mySwiper2 {\r\n  height: 80%;\r\n  width: 100%;\r\n}\r\n\r\n.mySwiper {\r\n  height: 20%;\r\n  box-sizing: border-box;\r\n  padding: 10px 0;\r\n}\r\n\r\n.mySwiper .swiper-slide {\r\n  width: 25%;\r\n  height: 100%;\r\n  opacity: 0.4;\r\n}\r\n\r\n.mySwiper .swiper-slide-thumb-active {\r\n  opacity: 1;\r\n}\r\n\r\n.swiper-slide img {\r\n  display: block;\r\n  width: 100%;\r\n  height: 100%;\r\n  object-fit: cover;\r\n}\r\n\r\n\r\n.thumb-example {\r\n  height: 600px;\r\n  background-color: $black;\r\n  }\r\n.gallery-top {\r\n  height: 80%;\r\n  width: 100%;\r\n}\r\n.gallery-thumbs {\r\n  height: 20%;\r\n  box-sizing: border-box;\r\n  margin-top: 15px;\r\n}\r\n.gallery-thumbs .swiper-slide {\r\n  width: 25%;\r\n  height: 100%;\r\n  opacity: 0.4;\r\n}\r\n.gallery-thumbs .swiper-slide-active {\r\n  opacity: 1;\r\n}\r\n/**************************swiper css end**************************/\r\n.nutrition_inner .col-md-12 img {width: 100%;}\r\n.question_form{display: flex; width: 100%;}\r\n.question_form .form_label{padding: 10px;}\r\n.question_form .form_label label{font-size: 14px; width: 86px;}\r\n.question_form .form_label input,textarea{\r\n  font-size: 14px;\r\n  max-width:calc(100% - 90px);\r\n  width:100%;\r\n  padding: 8px;\r\n}\r\n.question_form .form_label button{\r\n  font-size: 14px;\r\n  width: 25%;\r\n  background: #000;\r\n  color: #fff;\r\n  padding: 8px;\r\n}\r\n.review_form{\r\n  width: 100%;\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n\r\n.review_form .review_form_50{\r\n  display: flex;\r\n  flex-direction: row;\r\n  width: 100%;\r\n}\r\n.review_form .review_form_100{\r\n  display: flex;\r\n  flex-direction: column;\r\n  width: 100%;\r\n}\r\n.review_form .review_form_50 .review_form_label{\r\n  width: 50%;\r\n  margin: 0;\r\n  padding:10px;\r\n}\r\n.review_form .review_form_100 .form_label{\r\n  width: 100%;\r\n  margin: 0;\r\n  padding:10px;\r\n}\r\n.review_form .review_form_100 .form_label lable,input,textarea{\r\n  width: 100%;\r\n  padding: 10px;\r\n}\r\n.review_btn_label{\r\n  width: 100%;\r\n  display: block;\r\n  margin: 15px 0px;\r\n}\r\n\r\n\r\n.bm-wrap.cmnt_txt {\r\n  flex-wrap: wrap;\r\n}\r\n.bm-wrap.cmnt_txt  span {\r\n    font-size: 14px;\r\n    font-weight: 400;\r\n    display: inline-block;\r\n    margin-bottom: 15px;\r\n    margin-left: 2px;\r\n}.faq_list {\r\n  max-height: 280px;\r\n  overflow: auto;\r\n}\r\n.faq_list p {\r\n  cursor: pointer;\r\n}\r\n.question_form .form_label {\r\n  align-items: flex-start;\r\n  display: flex;\r\n}\r\n.for_m_btn {\r\n  justify-content: flex-end;\r\n}\r\n.question_form .error_validation {\r\n  position: absolute;\r\n  right: 0;\r\n  bottom: -5px;\r\n  text-align: right;\r\n  font-size: 11px;\r\n  padding: 0 15px 0 0;\r\n}\r\n\r\n.srch_q {\r\n  position: relative;\r\n}\r\n.srch_q button {\r\n  position: absolute;\r\n  right: 10px;\r\n  top: 10px;\r\n}\r\n.srch_q input {\r\n  height: 35px;\r\n}\r\n\r\n.review_form {\r\n  background: #f6f6f6;\r\n  padding: 30px;\r\n  width: 100%;\r\n}\r\n.review_btn_label button {\r\n  font-size: 14px;\r\n  width: 25%;\r\n  background: #000;\r\n  color: #fff;\r\n  padding: 8px;\r\n}\r\n.review_btn_label {\r\n  text-align: right;\r\n}\r\n.form_label.txt_area textarea {\r\n  max-width: 100%;\r\n}\r\n.review_form > h4 {\r\n  padding: 10px;\r\n  border-bottom: 1px solid rgba(0,0,0,.1);\r\n}\r\n.blg_auth\r\n{\r\n  width:100%;\r\n}\r\n.recommend{\r\n  width: 100%;\r\n  display: flex;\r\n  flex-direction: row;\r\n}\r\n.recommend span{\r\n  display: flex;\r\n  flex-direction: row;\r\n  margin-right: 30px;\r\n}\r\n.recommend span input{\r\n  margin-right: 30px;\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -73398,8 +73408,1441 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render),
 /* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function () {}
-var staticRenderFns = []
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "main_container" }, [
+    _c("div", { staticClass: "free_ship_bar" }, [
+      _c("p", [
+        _c("img", { attrs: { src: _vm.ship } }),
+        _vm._v("\n      Free Shipping on All U.S. Orders Over "),
+        _c("b", [_vm._v("$49")]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("section", { staticClass: "product_view" }, [
+      _c("div", { staticClass: "container_max" }, [
+        _vm.variations && _vm.variations.length > 0
+          ? _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-6 pe-4 " }, [
+                _c("div", { staticClass: "main_img" }, [
+                  _c(
+                    "div",
+                    { staticClass: "thumb-example" },
+                    [
+                      _c(
+                        "swiper",
+                        {
+                          ref: "swiperTop",
+                          staticClass: "swiper gallery-top",
+                          attrs: { options: _vm.swiperOptionTop },
+                        },
+                        [
+                          _vm._l(_vm.variations, function (variation, varky) {
+                            return _c(
+                              "swiper-slide",
+                              { key: varky, class: "slide-" + varky },
+                              [_c("img", { attrs: { src: variation.image } })]
+                            )
+                          }),
+                          _vm._v(" "),
+                          _c("div", {
+                            staticClass:
+                              "swiper-button-next swiper-button-white",
+                            attrs: { slot: "button-next" },
+                            slot: "button-next",
+                          }),
+                          _vm._v(" "),
+                          _c("div", {
+                            staticClass:
+                              "swiper-button-prev swiper-button-white",
+                            attrs: { slot: "button-prev" },
+                            slot: "button-prev",
+                          }),
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "swiper",
+                        {
+                          ref: "swiperThumbs",
+                          staticClass: "swiper gallery-thumbs",
+                          attrs: { options: _vm.swiperOptionThumbs },
+                        },
+                        _vm._l(_vm.variations, function (variation, varky) {
+                          return _c(
+                            "swiper-slide",
+                            { key: varky, class: "slide-" + varky },
+                            [_c("img", { attrs: { src: variation.image } })]
+                          )
+                        }),
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6 ps-4" }, [
+                _c("h2", { staticClass: "pr_title" }, [
+                  _vm._v(
+                    "\n            " + _vm._s(_vm.product.name) + "\n          "
+                  ),
+                ]),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", {
+                  staticClass: "pro_dec",
+                  domProps: { innerHTML: _vm._s(_vm.product.description) },
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "select_type" }, [
+                  _vm.variationAttributes
+                    ? _c(
+                        "div",
+                        { staticClass: "row" },
+                        _vm._l(
+                          _vm.variationAttributes,
+                          function (varitationattr, vakey) {
+                            return _c(
+                              "div",
+                              { key: vakey, staticClass: "col-md-6" },
+                              [
+                                _c("label", { staticClass: "line_label" }, [
+                                  _vm._v(_vm._s(varitationattr.type)),
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "ul",
+                                  { staticClass: "style_p1" },
+                                  _vm._l(
+                                    varitationattr.attributes,
+                                    function (variationAttribute, vak) {
+                                      return _c("li", { key: vak }, [
+                                        _vm.selectedlabel(
+                                          variationAttribute.id
+                                        ) === true
+                                          ? _c("label", [
+                                              _c("input", {
+                                                attrs: {
+                                                  type: "radio",
+                                                  name: "size",
+                                                  vale: "small",
+                                                  checked: "",
+                                                },
+                                                on: {
+                                                  click: function ($event) {
+                                                    return _vm.variationUpdate(
+                                                      $event,
+                                                      variationAttribute.id,
+                                                      varitationattr.id,
+                                                      varitationattr.type
+                                                    )
+                                                  },
+                                                },
+                                              }),
+                                              _vm._v(" "),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass: "selectedOption",
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm
+                                                        .getProductIcon(
+                                                          variationAttribute.name
+                                                        )
+                                                        .toUpperCase()
+                                                    )
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("small", [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    variationAttribute.name
+                                                  )
+                                                ),
+                                              ]),
+                                            ])
+                                          : _c("label", [
+                                              _c("input", {
+                                                attrs: {
+                                                  type: "radio",
+                                                  name: "size",
+                                                  vale: "small",
+                                                },
+                                                on: {
+                                                  click: function ($event) {
+                                                    return _vm.variationUpdate(
+                                                      $event,
+                                                      variationAttribute.id,
+                                                      varitationattr.id,
+                                                      varitationattr.type
+                                                    )
+                                                  },
+                                                },
+                                              }),
+                                              _vm._v(" "),
+                                              _c("span", [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm
+                                                      .getProductIcon(
+                                                        variationAttribute.name
+                                                      )
+                                                      .toUpperCase()
+                                                  )
+                                                ),
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("small", [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    variationAttribute.name
+                                                  )
+                                                ),
+                                              ]),
+                                            ]),
+                                      ])
+                                    }
+                                  ),
+                                  0
+                                ),
+                              ]
+                            )
+                          }
+                        ),
+                        0
+                      )
+                    : _vm._e(),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "row g-3 align-items-center cart_form" },
+                  [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-auto amount_pro" }, [
+                      _c("span", { staticClass: "form-control" }, [
+                        _vm._v("$" + _vm._s(_vm.finalVariant.sale_price)),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-auto add_cart" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn_bl",
+                          on: {
+                            click: function ($event) {
+                              return _vm.addItemInCart(_vm.product.id)
+                            },
+                          },
+                        },
+                        [_vm._v("Add to Cart")]
+                      ),
+                    ]),
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _vm._m(3),
+              ]),
+            ])
+          : _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-6 pe-4 " }, [
+                _c("div", { staticClass: "main_img" }, [
+                  _c(
+                    "div",
+                    { staticClass: "thumb-example" },
+                    [
+                      _c(
+                        "swiper",
+                        {
+                          ref: "swiperTop",
+                          staticClass: "swiper gallery-top",
+                          attrs: { options: _vm.swiperOptionTop },
+                        },
+                        [
+                          _vm._l(_vm.product.gallary, function (gallery, gky) {
+                            return _c(
+                              "swiper-slide",
+                              { key: gky, class: "slide-" + gky },
+                              [
+                                _c("img", {
+                                  attrs: { src: gallery.image_path },
+                                }),
+                              ]
+                            )
+                          }),
+                          _vm._v(" "),
+                          _c("div", {
+                            staticClass:
+                              "swiper-button-next swiper-button-white",
+                            attrs: { slot: "button-next" },
+                            slot: "button-next",
+                          }),
+                          _vm._v(" "),
+                          _c("div", {
+                            staticClass:
+                              "swiper-button-prev swiper-button-white",
+                            attrs: { slot: "button-prev" },
+                            slot: "button-prev",
+                          }),
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "swiper",
+                        {
+                          ref: "swiperThumbs",
+                          staticClass: "swiper gallery-thumbs",
+                          attrs: { options: _vm.swiperOptionThumbs },
+                        },
+                        _vm._l(_vm.product.gallary, function (gallery, gky) {
+                          return _c(
+                            "swiper-slide",
+                            { key: gky, class: "slide-" + gky },
+                            [_c("img", { attrs: { src: gallery.image_path } })]
+                          )
+                        }),
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6 ps-4" }, [
+                _c("h2", { staticClass: "pr_title" }, [
+                  _vm._v(
+                    "\n            " + _vm._s(_vm.product.name) + "\n          "
+                  ),
+                ]),
+                _vm._v(" "),
+                _vm._m(4),
+                _vm._v(" "),
+                _c("div", {
+                  staticClass: "pro_dec",
+                  domProps: { innerHTML: _vm._s(_vm.product.description) },
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "row g-3 align-items-center cart_form" },
+                  [
+                    _vm._m(5),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-auto amount_pro" }, [
+                      _c("div", { staticClass: "form-control" }, [
+                        _vm._v("$" + _vm._s(_vm.product.sale_price)),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-auto add_cart" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn_bl",
+                          on: {
+                            click: function ($event) {
+                              return _vm.addItemInCart(_vm.product.id)
+                            },
+                          },
+                        },
+                        [
+                          _vm._v(
+                            "\n                Add to Cart\n              "
+                          ),
+                        ]
+                      ),
+                    ]),
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(6),
+                _vm._v(" "),
+                _vm._m(7),
+              ]),
+            ]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("section", { staticClass: "nutrition_wrap" }, [
+      _c("div", { staticClass: "container_max" }, [
+        _c("div", { staticClass: "row nutrition_inner m-lr" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("img", { attrs: { src: _vm.product.banner_image } }),
+          ]),
+        ]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _vm.product.product_description_detail
+      ? _c(
+          "section",
+          _vm._l(
+            _vm.product.product_description_detail,
+            function (descbanner, dbkey) {
+              return _c(
+                "div",
+                { key: dbkey, staticClass: "ingradients-wrap" },
+                [
+                  _c("div", { staticClass: "container_max" }, [
+                    dbkey % 2 === 0 || dbkey == 0
+                      ? _c(
+                          "div",
+                          { staticClass: "row ingradients-inner m-lr" },
+                          [
+                            _c("div", { staticClass: "col-md-4 ps-0" }, [
+                              _c("img", {
+                                attrs: { src: descbanner.image_path },
+                              }),
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-md-8 centered_txt" },
+                              [
+                                _c("div", {
+                                  staticClass: "textdecoration",
+                                  domProps: {
+                                    innerHTML: _vm._s(descbanner.value),
+                                  },
+                                }),
+                              ]
+                            ),
+                          ]
+                        )
+                      : _c(
+                          "div",
+                          { staticClass: "row ingradients-inner m-lr" },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "col-md-8 centered_txt order-02" },
+                              [
+                                _c("div", {
+                                  staticClass: "textdecoration",
+                                  domProps: {
+                                    innerHTML: _vm._s(descbanner.value),
+                                  },
+                                }),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-md-4 text-end pe-0" },
+                              [
+                                _c("img", {
+                                  attrs: { src: descbanner.image_path },
+                                }),
+                              ]
+                            ),
+                          ]
+                        ),
+                  ]),
+                ]
+              )
+            }
+          ),
+          0
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _c("section", { staticClass: "about-brand" }, [
+      _c("div", { staticClass: "container_max" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("h3", { staticClass: "title-txt" }, [_vm._v("About the brand")]),
+            _vm._v(" "),
+            _c("div", {
+              domProps: { innerHTML: _vm._s(_vm.product.about_description) },
+            }),
+          ]),
+        ]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("section", { staticClass: "question-wrap" }, [
+      _c("div", { staticClass: "container_max" }, [
+        _vm._m(8),
+        _vm._v(" "),
+        _c("div", { staticClass: "row m-lr question-inner02" }, [
+          _c("div", { staticClass: "col-sm-3 pe-0" }, [
+            !_vm.searchQuestion
+              ? _c(
+                  "div",
+                  { staticClass: "faq_list" },
+                  _vm._l(_vm.faqs, function (faq, fkey) {
+                    return _c(
+                      "p",
+                      {
+                        key: fkey,
+                        on: {
+                          click: function ($event) {
+                            return _vm.openQuestion(fkey)
+                          },
+                        },
+                      },
+                      [_vm._v(_vm._s(faq.title))]
+                    )
+                  }),
+                  0
+                )
+              : _c("div", [
+                  _c("div", { staticClass: "srch_q" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.filterForm.serachtext,
+                          expression: "filterForm.serachtext",
+                        },
+                      ],
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.filterForm.serachtext },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.filterForm,
+                            "serachtext",
+                            $event.target.value
+                          )
+                        },
+                      },
+                    }),
+                    _c(
+                      "button",
+                      {
+                        attrs: { type: "button" },
+                        on: { click: _vm.filterFaq },
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa fa-search",
+                          attrs: { "aria-hidden": "true" },
+                        }),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm.filterForm.errors().has("serachtext")
+                      ? _c("span", { staticClass: "error_validation" }, [
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(
+                                _vm.filterForm.errors().get("serachtext")
+                              ) +
+                              "\n            "
+                          ),
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "faq_list" },
+                      _vm._l(_vm.filterfaqs, function (filterfaq, flkey) {
+                        return _c(
+                          "p",
+                          {
+                            key: flkey,
+                            on: {
+                              click: function ($event) {
+                                return _vm.openQuestion(flkey)
+                              },
+                            },
+                          },
+                          [_vm._v(_vm._s(filterfaq.title))]
+                        )
+                      }),
+                      0
+                    ),
+                  ]),
+                ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-2 Large-btn-box" }, [
+            _c(
+              "button",
+              {
+                staticClass: "Large-btn",
+                class: { Large_red_btn: _vm.askQuestion },
+                on: {
+                  click: function ($event) {
+                    _vm.askQuestion = !_vm.askQuestion
+                  },
+                },
+              },
+              [_vm._v("\n            ask a question\n          ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "Large-btn",
+                class: { Large_red_btn: _vm.searchQuestion },
+                on: {
+                  click: function ($event) {
+                    _vm.searchQuestion = !_vm.searchQuestion
+                  },
+                },
+              },
+              [_vm._v("\n            search question\n          ")]
+            ),
+            _vm._v(" "),
+            _c("button", { staticClass: "Large-btn" }, [_vm._v("filter")]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-7" }, [
+            !_vm.askQuestion
+              ? _c("div", { staticClass: "row" }, [
+                  _vm.faqDetail && _vm.faqDetail.user
+                    ? _c("div", { staticClass: "col-sm-3" }, [
+                        _c("div", { staticClass: "bm-wrap" }, [
+                          _c("img", {
+                            attrs: {
+                              src: _vm.faqDetail.user.profile_image,
+                              width: "60px",
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c("div", [
+                            _c("span", [
+                              _c("b", [
+                                _vm._v(_vm._s(_vm.faqDetail.user.name)),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("span", [
+                              _vm._v(_vm._s(_vm.faqDetail.user.created_at)),
+                            ]),
+                          ]),
+                        ]),
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.faqDetail
+                    ? _c("div", { staticClass: "col-sm-9" }, [
+                        _c("p", { staticClass: "light-text" }, [
+                          _vm._v(_vm._s(_vm.faqDetail.title)),
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "light-text" }, [
+                          _vm._v("Answers"),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "bm-wrap cmnt_txt" }, [
+                          _c("div", { staticClass: "blg_auth" }, [
+                            _c("img", { attrs: { src: _vm.foot_5 } }),
+                            _vm._v(" "),
+                            _c("span", [_vm._v(" Pet Parents® ")]),
+                          ]),
+                          _vm._v(" "),
+                          _c("div", [
+                            _c("div", {
+                              staticClass: "light-text",
+                              domProps: {
+                                innerHTML: _vm._s(_vm.faqDetail.description),
+                              },
+                            }),
+                          ]),
+                        ]),
+                      ])
+                    : _vm._e(),
+                ])
+              : _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-sm-12" }, [
+                    _c("div", { staticClass: "question_form row" }, [
+                      _c("div", { staticClass: "form_label col-md-6" }, [
+                        _c("label", [_vm._v("Name: ")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.faqForm.name,
+                              expression: "faqForm.name",
+                            },
+                          ],
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.faqForm.name },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.faqForm, "name", $event.target.value)
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _vm.faqForm.errors().has("name")
+                          ? _c("span", { staticClass: "error_validation" }, [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(_vm.faqForm.errors().get("name")) +
+                                  "\n                  "
+                              ),
+                            ])
+                          : _vm._e(),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form_label col-md-6" }, [
+                        _c("label", [_vm._v("Email: ")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.faqForm.email,
+                              expression: "faqForm.email",
+                            },
+                          ],
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.faqForm.email },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.faqForm,
+                                "email",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _vm.faqForm.errors().has("email")
+                          ? _c("span", { staticClass: "error_validation" }, [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(_vm.faqForm.errors().get("email")) +
+                                  "\n                  "
+                              ),
+                            ])
+                          : _vm._e(),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form_label col-md-12" }, [
+                        _c("label", [_vm._v("Question: ")]),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.faqForm.question,
+                              expression: "faqForm.question",
+                            },
+                          ],
+                          domProps: { value: _vm.faqForm.question },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.faqForm,
+                                "question",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _vm.faqForm.errors().has("question")
+                          ? _c("span", { staticClass: "error_validation" }, [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(_vm.faqForm.errors().get("question")) +
+                                  "\n                  "
+                              ),
+                            ])
+                          : _vm._e(),
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "form_label col-md-12 for_m_btn" },
+                        [
+                          _c(
+                            "button",
+                            {
+                              attrs: { type: "button" },
+                              on: { click: _vm.faqSubmit },
+                            },
+                            [_vm._v("Submit Question")]
+                          ),
+                        ]
+                      ),
+                    ]),
+                  ]),
+                ]),
+          ]),
+        ]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("section", { staticClass: "review-wrap" }, [
+      _c("div", { staticClass: "container_max" }, [
+        _vm._m(9),
+        _vm._v(" "),
+        _c("div", { staticClass: "row m-lr" }, [
+          _vm._m(10),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-2 Large-btn-box" }, [
+            _c(
+              "button",
+              {
+                staticClass: "Large-btn",
+                class: { Large_red_btn: _vm.writeReview },
+                on: {
+                  click: function ($event) {
+                    _vm.writeReview = !_vm.writeReview
+                  },
+                },
+              },
+              [_vm._v("\n            Write a Review\n          ")]
+            ),
+            _vm._v(" "),
+            _c("button", { staticClass: "Large-btn" }, [
+              _vm._v("Review filter"),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-sm-7 reviews-img-section" }, [
+            _c("img", { attrs: { src: _vm.review_01 } }),
+            _vm._v(" "),
+            _c("img", { attrs: { src: _vm.review_01 } }),
+            _vm._v(" "),
+            _c("img", { attrs: { src: _vm.review_01 } }),
+            _vm._v(" "),
+            _c("img", { attrs: { src: _vm.review_01 } }),
+            _vm._v(" "),
+            _c("img", { attrs: { src: _vm.review_01 } }),
+            _vm._v(" "),
+            _c("img", { attrs: { src: _vm.review_01 } }),
+            _vm._v(" "),
+            _c("img", { attrs: { src: _vm.review_01 } }),
+            _vm._v(" "),
+            _c("img", { attrs: { src: _vm.review_01 } }),
+            _vm._v(" "),
+            _c("img", { attrs: { src: _vm.review_01 } }),
+            _vm._v(" "),
+            _c("img", { attrs: { src: _vm.review_01 } }),
+            _vm._v(" "),
+            _c("img", { attrs: { src: _vm.review_01 } }),
+            _vm._v(" "),
+            _c("img", { attrs: { src: _vm.review_01 } }),
+          ]),
+        ]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _vm.writeReview
+      ? _c("section", { staticClass: "review-write" }, [
+          _c("div", { staticClass: "container_max" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12 question-inner" }, [
+                _c("div", { staticClass: "review_form" }, [
+                  _c("h4", [_vm._v("Reviews")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "review_form_50" }, [
+                    _c("div", { staticClass: "review_form_label" }, [
+                      _c("label", [_vm._v("Name: ")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.reviewForm.name,
+                            expression: "reviewForm.name",
+                          },
+                        ],
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.reviewForm.name },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.reviewForm,
+                              "name",
+                              $event.target.value
+                            )
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _vm.reviewForm.errors().has("name")
+                        ? _c("span", { staticClass: "error_validation" }, [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(_vm.reviewForm.errors().get("name")) +
+                                "\n                "
+                            ),
+                          ])
+                        : _vm._e(),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "review_form_label" }, [
+                      _c("label", [_vm._v("Email ")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.reviewForm.email,
+                            expression: "reviewForm.email",
+                          },
+                        ],
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.reviewForm.email },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.reviewForm,
+                              "email",
+                              $event.target.value
+                            )
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _vm.reviewForm.errors().has("name")
+                        ? _c("span", { staticClass: "error_validation" }, [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(_vm.reviewForm.errors().get("name")) +
+                                "\n                "
+                            ),
+                          ])
+                        : _vm._e(),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "review_form_50" }, [
+                    _c("div", { staticClass: "review_form_label form_label" }, [
+                      _c("label", [_vm._v("Rating ")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.reviewForm.rating,
+                            expression: "reviewForm.rating",
+                          },
+                        ],
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.reviewForm.rating },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.reviewForm,
+                              "rating",
+                              $event.target.value
+                            )
+                          },
+                        },
+                      }),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: " review_form_label form_label" },
+                      [
+                        _c("label", [_vm._v("Title of Review ")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.reviewForm.title,
+                              expression: "reviewForm.title",
+                            },
+                          ],
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.reviewForm.title },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.reviewForm,
+                                "title",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _vm.reviewForm.errors().has("title")
+                          ? _c("span", { staticClass: "error_validation" }, [
+                              _vm._v(
+                                "\n                  " +
+                                  _vm._s(_vm.reviewForm.errors().get("title")) +
+                                  "\n                "
+                              ),
+                            ])
+                          : _vm._e(),
+                      ]
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "review_form_100" }, [
+                    _c("div", { staticClass: "form_label txt_area" }, [
+                      _c("label", [
+                        _vm._v("How was your overall experience? "),
+                      ]),
+                      _vm._v(" "),
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.reviewForm.description,
+                            expression: "reviewForm.description",
+                          },
+                        ],
+                        domProps: { value: _vm.reviewForm.description },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.reviewForm,
+                              "description",
+                              $event.target.value
+                            )
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _vm.reviewForm.errors().has("description")
+                        ? _c("span", { staticClass: "error_validation" }, [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(
+                                  _vm.reviewForm.errors().get("description")
+                                ) +
+                                "\n                "
+                            ),
+                          ])
+                        : _vm._e(),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "review_form_50" }, [
+                    _c("div", { staticClass: "review_form_label form_label" }, [
+                      _c("label", [_vm._v("Are you recommend this product? ")]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "recommend" }, [
+                        _c("span", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.reviewForm.status,
+                                expression: "reviewForm.status",
+                              },
+                            ],
+                            attrs: {
+                              type: "radio",
+                              name: "status",
+                              value: "1",
+                            },
+                            domProps: {
+                              checked: _vm._q(_vm.reviewForm.status, "1"),
+                            },
+                            on: {
+                              change: function ($event) {
+                                return _vm.$set(_vm.reviewForm, "status", "1")
+                              },
+                            },
+                          }),
+                          _vm._v(" Yes"),
+                        ]),
+                        _vm._v(" "),
+                        _c("span", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.reviewForm.status,
+                                expression: "reviewForm.status",
+                              },
+                            ],
+                            attrs: {
+                              type: "radio",
+                              name: "status",
+                              value: "0",
+                            },
+                            domProps: {
+                              checked: _vm._q(_vm.reviewForm.status, "0"),
+                            },
+                            on: {
+                              change: function ($event) {
+                                return _vm.$set(_vm.reviewForm, "status", "0")
+                              },
+                            },
+                          }),
+                          _vm._v(" No"),
+                        ]),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "review_btn_label review_form_label form_label",
+                      },
+                      [
+                        _c("input", {
+                          attrs: {
+                            type: "file",
+                            multiple: "",
+                            accept: "image/*",
+                            id: "reviewImages",
+                          },
+                          on: {
+                            change: function ($event) {
+                              return _vm.reviewImages($event.target.files)
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            attrs: { type: "button" },
+                            on: { click: _vm.submitReview },
+                          },
+                          [_vm._v("Submit Question")]
+                        ),
+                      ]
+                    ),
+                  ]),
+                ]),
+              ]),
+            ]),
+          ]),
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("section", { staticClass: "latest-review" }, [
+      _c("div", { staticClass: "container_max" }, [
+        _vm._m(11),
+        _vm._v(" "),
+        _vm.reviews
+          ? _c(
+              "div",
+              _vm._l(_vm.reviews, function (review, rkey) {
+                return _c("div", { key: rkey, staticClass: "row rating_row" }, [
+                  _c("div", { staticClass: "col-md-4 col-lg-3" }, [
+                    _c("div", { staticClass: "star-box" }, [
+                      _c("div", { staticClass: "varified-img" }, [
+                        _c("img", { attrs: { src: _vm.bm_logo } }),
+                      ]),
+                      _vm._v(" "),
+                      review && review.user
+                        ? _c("div", { staticClass: "star-inner-txt" }, [
+                            _c("h6", [
+                              _vm._v(_vm._s(review.user.name) + " "),
+                              _c("span", { staticClass: "green-txt" }, [
+                                _vm._v("Varified Bayer"),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("div", [
+                              _c("img", { attrs: { src: _vm.u_s } }),
+                              _c("span", [_vm._v("United States")]),
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "star-rating" }, [
+                              _c("i", {
+                                staticClass: "fa fa-star",
+                                attrs: { "aria-hidden": "true" },
+                              }),
+                              _vm._v(" "),
+                              _c("i", {
+                                staticClass: "fa fa-star",
+                                attrs: { "aria-hidden": "true" },
+                              }),
+                              _vm._v(" "),
+                              _c("i", {
+                                staticClass: "fa fa-star",
+                                attrs: { "aria-hidden": "true" },
+                              }),
+                              _vm._v(" "),
+                              _c("i", {
+                                staticClass: "fa fa-star",
+                                attrs: { "aria-hidden": "true" },
+                              }),
+                              _vm._v(" "),
+                              _c("i", {
+                                staticClass: "fa fa-star",
+                                attrs: { "aria-hidden": "true" },
+                              }),
+                              _vm._v(
+                                "\n                           " +
+                                  _vm._s(review.rating) +
+                                  "\n                        "
+                              ),
+                            ]),
+                          ])
+                        : _vm._e(),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "thumb-up" }, [
+                      review.status == 1
+                        ? _c("span", [
+                            _c("img", { attrs: { src: _vm.thumb_up } }),
+                            _vm._v(
+                              "I recommend this product\n                    "
+                            ),
+                          ])
+                        : _c("span", [
+                            _c("i", { staticClass: "fa fa-thumbs-down" }),
+                            _vm._v(
+                              "I recommend this product\n                    "
+                            ),
+                          ]),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8 rating-right" }, [
+                    _c("h3", [_vm._v(_vm._s(review.title))]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v(_vm._s(review.description))]),
+                    _vm._v(" "),
+                    _c("a", { attrs: { href: "#" } }, [_vm._v("read more")]),
+                  ]),
+                ])
+              }),
+              0
+            )
+          : _vm._e(),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "prod_rev" }, [
+      _c("span", [
+        _vm._v("142 "),
+        _c("i", {
+          staticClass: "fa fa-star",
+          attrs: { "aria-hidden": "true" },
+        }),
+        _vm._v(" Reviews"),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-auto quantity_select" }, [
+      _c("label", { staticClass: "sr-only", attrs: { for: "staticEmail2" } }, [
+        _vm._v("Quantity"),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "number-input md-number-input" }, [
+        _c("button", { staticClass: "minus" }, [_vm._v("-")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "quantity",
+          attrs: { min: "0", name: "quantity", value: "1", type: "number" },
+        }),
+        _vm._v(" "),
+        _c("button", { staticClass: "plus" }, [_vm._v("+")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "ingr" }, [
+      _c("b", [_vm._v("Ingredients/Material:")]),
+      _vm._v(
+        " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vestibulum urna felis, eget auctor nisi placerat ac. Vestibulum porttitor faucibus condimentum. In hac habitasse platea dictumst. Praesent scelerisque sapien a eleifend gravida. In hac habitasse platea dictumst. Nam consequat sapien convallis nulla vestibulum, et ornare ipsum hendrerit. Praesent a ante vel mauris dictum lobortis et nec risus.\n          "
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "ingr" }, [
+      _c("b", [_vm._v("Country of origin: United States")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "prod_rev" }, [
+      _c("span", [
+        _vm._v("142 "),
+        _c("i", {
+          staticClass: "fa fa-star",
+          attrs: { "aria-hidden": "true" },
+        }),
+        _vm._v(" Reviews"),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "col-auto quantity_select Desktop-friendly" },
+      [
+        _c(
+          "label",
+          { staticClass: "sr-only", attrs: { for: "staticEmail2" } },
+          [_vm._v("Quantity")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "number-input md-number-input" }, [
+          _c("button", { staticClass: "minus" }, [_vm._v("-")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "quantity",
+            attrs: { min: "0", name: "quantity", value: "1", type: "number" },
+          }),
+          _vm._v(" "),
+          _c("button", { staticClass: "plus" }, [_vm._v("+")]),
+        ]),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "ingr" }, [
+      _c("b", [_vm._v("Ingredients/Material:")]),
+      _vm._v(
+        " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vestibulum urna felis, eget auctor nisi placerat ac. Vestibulum porttitor faucibus condimentum. In hac habitasse platea dictumst. Praesent scelerisque sapien a eleifend gravida. In hac habitasse platea dictumst. Nam consequat sapien convallis nulla vestibulum, et ornare ipsum hendrerit. Praesent a ante vel mauris dictum lobortis et nec risus.\n          "
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "ingr" }, [
+      _c("b", [_vm._v("Country of origin: United States")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 question-inner" }, [
+        _c("h3", { staticClass: "title-txt" }, [_vm._v("Questions")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 question-inner" }, [
+        _c("h3", { staticClass: "title-txt" }, [_vm._v("Reviews")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-3 px-0" }, [
+      _c("div", { staticClass: "light-box2" }, [
+        _c("div", { staticClass: "light-box-inner" }, [
+          _c("p", { staticClass: "light-box-txt01" }, [_vm._v("4.9/5.0")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "light-btm" }, [
+            _vm._v("Based on 259 reviews"),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "light-box-inner" }, [
+          _c("p", { staticClass: "light-box-txt02" }, [_vm._v("97%")]),
+          _vm._v(" "),
+          _c("p", { staticClass: "light-btm" }, [
+            _vm._v("Recommend this product"),
+          ]),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 sort-btn-wrap" }, [
+        _c("p", { staticClass: "letest-review-title" }, [
+          _vm._v("Latest Reviews"),
+        ]),
+        _vm._v(" "),
+        _c("button", [
+          _vm._v("Sort by "),
+          _c("i", { staticClass: "fa fa-angle-down" }),
+        ]),
+      ]),
+    ])
+  },
+]
+render._withStripped = true
 
 
 

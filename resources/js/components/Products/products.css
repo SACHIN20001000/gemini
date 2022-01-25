@@ -1250,7 +1250,7 @@ body {
 .srch_q {
   position: relative;
 }
-.srch_q i {
+.srch_q button {
   position: absolute;
   right: 10px;
   top: 10px;
@@ -1284,4 +1284,17 @@ body {
 .blg_auth
 {
   width:100%;
+}
+.recommend{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.recommend span{
+  display: flex;
+  flex-direction: row;
+  margin-right: 30px;
+}
+.recommend span input{
+  margin-right: 30px;
 }

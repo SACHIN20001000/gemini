@@ -235,11 +235,11 @@
             </div>
             <div v-else>
               <div class="srch_q">
-              <input type="text" v-model="filterForm.search"><i @click="filterFaq()" class="fa fa-search" aria-hidden="true"></i>
-              <span class="error_validation" v-if="filterForm.errors().has('search')">
-                {{ filterForm.errors().get('search') }}
+              <input type="text" v-model="filterForm.serachtext"><button type="button" @click='filterFaq'><i class="fa fa-search" aria-hidden="true"></i></button>
+              <span class="error_validation" v-if="filterForm.errors().has('serachtext')">
+                {{ filterForm.errors().get('serachtext') }}
               </span>
-              <divclass="faq_list">
+              <div class="faq_list">
                 <p
                   v-for="(filterfaq,flkey) in filterfaqs"
                   :key="flkey"
@@ -382,31 +382,53 @@
               <div class="review_form_50">
                 <div class="review_form_label">
                   <label>Name: </label>
-                  <input type="text" />
+                  <input type="text" v-model='reviewForm.name' />
+                  <span class="error_validation" v-if="reviewForm.errors().has('name')">
+                    {{ reviewForm.errors().get('name') }}
+                  </span>
                 </div>
                 <div class="review_form_label">
                   <label>Email </label>
-                  <input type="text" />
+                  <input type="text" v-model='reviewForm.email' />
+                  <span class="error_validation" v-if="reviewForm.errors().has('name')">
+                    {{ reviewForm.errors().get('name') }}
+                  </span>
                 </div>
               </div>
               <div class="review_form_50">
                 <div class="review_form_label form_label">
                   <label>Rating </label>
-                  <input type="text" />
+                  <input type="text" v-model='reviewForm.rating' />
                 </div>
                 <div class=" review_form_label form_label">
                   <label>Title of Review </label>
-                  <input type="text" />
-                </div>
-                </div>
-                <div class="review_form_100">
-                <div class="form_label txt_area">
-                  <label>How was your overall experience? </label>
-                  <textarea></textarea>
+                  <input type="text" v-model='reviewForm.title' />
+                  <span class="error_validation" v-if="reviewForm.errors().has('title')">
+                    {{ reviewForm.errors().get('title') }}
+                  </span>
                 </div>
               </div>
-              <div class="review_btn_label ">
-                <button type="button">Submit Question</button>
+              <div class="review_form_100">
+                <div class="form_label txt_area">
+                  <label>How was your overall experience? </label>
+                  <textarea v-model='reviewForm.description'></textarea>
+                  <span class="error_validation" v-if="reviewForm.errors().has('description')">
+                    {{ reviewForm.errors().get('description') }}
+                  </span>
+                </div>
+              </div>
+              <div class="review_form_50">
+                <div class="review_form_label form_label">
+                  <label>Are you recommend this product? </label>
+                  <div class="recommend">
+                    <span><input type="radio" name="status" v-model='reviewForm.status' value="1" /> Yes</span>
+                    <span><input type="radio" name="status" v-model='reviewForm.status' value="0" /> No</span>
+                  </div>
+                </div>
+                <div class="review_btn_label review_form_label form_label">
+                  <input type="file" multiple accept="image/*" @change="reviewImages($event.target.files)" id="reviewImages">
+                  <button type="button" @click="submitReview" >Submit Question</button>
+                </div>
               </div>
             </div>
           </div>
@@ -421,89 +443,45 @@
                   <button>Sort by <i class="fa fa-angle-down"></i></button>
                </div>
             </div>
-            <div class="row rating_row">
-               <div class="col-md-4 col-lg-3">
-                  <div class="star-box">
-                     <div class="varified-img">
-                        <img :src="bm_logo">
-                     </div>
-                     <div class="star-inner-txt">
-                        <h6>Cindy. K <span class="green-txt">Varified Bayer</span></h6>
-                        <div><img :src="u_s"><span>United States</span></div>
-                        <div class="star-rating">
-                           <i class="fa fa-star" aria-hidden="true"></i>
-                           <i class="fa fa-star" aria-hidden="true"></i>
-                           <i class="fa fa-star" aria-hidden="true"></i>
-                           <i class="fa fa-star" aria-hidden="true"></i>
-                           <i class="fa fa-star" aria-hidden="true"></i>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="thumb-up">
-                     <img :src="thumb_up"><span>I recommend this product</span>
-                  </div>
-               </div>
-               <div class="col-md-8 rating-right">
-                  <h3>Awesome</h3>
-                  <p>I love these blankets, I bought two in the large, one for the back seat of our pickup and one for the trailer, my dogs love to snuggle in them and they seem to be comforting for them.  I only have one major issue with this product!  My husband kept stealing them ...</p>
-                  <a href="#">read more</a>
-               </div>
-            </div>
-            <div class="row rating_row">
-               <div class="col-md-4 col-lg-3">
-                  <div class="star-box">
-                     <div class="varified-img">
-                        <img :src="bm_logo">
-                     </div>
-                     <div class="star-inner-txt">
-                        <h6>Cindy. K <span class="green-txt">Varified Bayer</span></h6>
-                        <div><img :src="u_s"><span>United States</span></div>
-                        <div class="star-rating">
-                           <i class="fa fa-star" aria-hidden="true"></i>
-                           <i class="fa fa-star" aria-hidden="true"></i>
-                           <i class="fa fa-star" aria-hidden="true"></i>
-                           <i class="fa fa-star" aria-hidden="true"></i>
-                           <i class="fa fa-star" aria-hidden="true"></i>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="thumb-up">
-                     <img :src="thumb_up"><span>I recommend this product</span>
-                  </div>
-               </div>
-               <div class="col-md-8 rating-right">
-                  <h3>Awesome</h3>
-                  <p>I love these blankets, I bought two in the large, one for the back seat of our pickup and one for the trailer, my dogs love to snuggle in them and they seem to be comforting for them.  I only have one major issue with this product!  My husband kept stealing them ...</p>
-                  <a href="#">read more</a>
-               </div>
-            </div>
-            <div class="row rating_row">
-               <div class="col-md-4 col-lg-3">
-                  <div class="star-box">
-                     <div class="varified-img">
-                        <img :src="bm_logo">
-                     </div>
-                     <div class="star-inner-txt">
-                        <h6>Cindy. K <span class="green-txt">Varified Bayer</span></h6>
-                        <div><img :src="u_s"><span>United States</span></div>
-                        <div class="star-rating">
-                           <i class="fa fa-star" aria-hidden="true"></i>
-                           <i class="fa fa-star" aria-hidden="true"></i>
-                           <i class="fa fa-star" aria-hidden="true"></i>
-                           <i class="fa fa-star" aria-hidden="true"></i>
-                           <i class="fa fa-star" aria-hidden="true"></i>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="thumb-up">
-                     <img :src="thumb_up"><span>I recommend this product</span>
-                  </div>
-               </div>
-               <div class="col-md-8 rating-right">
-                  <h3>Awesome</h3>
-                  <p>I love these blankets, I bought two in the large, one for the back seat of our pickup and one for the trailer, my dogs love to snuggle in them and they seem to be comforting for them.  I only have one major issue with this product!  My husband kept stealing them ...</p>
-                  <a href="#">read more</a>
-               </div>
+            <div v-if="reviews">
+              <div
+                class="row rating_row"
+                v-for="(review,rkey) in reviews"
+                :key="rkey"
+              >
+                 <div class="col-md-4 col-lg-3">
+                    <div class="star-box">
+                       <div class="varified-img">
+                          <img :src="bm_logo">
+                       </div>
+                       <div class="star-inner-txt" v-if="review && review.user">
+                          <h6>{{review.user.name}} <span class="green-txt">Varified Bayer</span></h6>
+                          <div><img :src="u_s"><span>United States</span></div>
+                          <div class="star-rating">
+                             <i class="fa fa-star" aria-hidden="true"></i>
+                             <i class="fa fa-star" aria-hidden="true"></i>
+                             <i class="fa fa-star" aria-hidden="true"></i>
+                             <i class="fa fa-star" aria-hidden="true"></i>
+                             <i class="fa fa-star" aria-hidden="true"></i>
+                             {{review.rating}}
+                          </div>
+                       </div>
+                    </div>
+                    <div class="thumb-up">
+                      <span v-if="review.status == 1">
+                        <img :src="thumb_up">I recommend this product
+                      </span>
+                      <span v-else>
+                        <i class="fa fa-thumbs-down"></i>I recommend this product
+                      </span>
+                    </div>
+                 </div>
+                 <div class="col-md-8 rating-right">
+                    <h3>{{review.title}}</h3>
+                    <p>{{review.description}}</p>
+                    <a href="#">read more</a>
+                 </div>
+              </div>
             </div>
          </div>
       </section>
@@ -599,7 +577,7 @@ export default {
       email: '',
       question: '',
       product_id:0
-    })
+      })
       .rules({
         name: 'required',
         email: 'email|min:5|required',
@@ -611,20 +589,44 @@ export default {
         'question.question': 'This field is required!'
       }),
     filterForm: form({
-      serach: '',
+      serachtext: '',
       product_id:0
-    })
+      })
       .rules({
-        serach: 'required'
+        serachtext: 'required'
       })
       .messages({
-        'serach': 'This field is required!',
+        'serachtext.serachtext': 'This field is required!',
       }),
+    reviewForm: form({
+      name: '',
+      email: '',
+      rating: '',
+      title: '',
+      description:'',
+      product_id:0,
+      status:'',
+      images:[]
+      })
+      .rules({
+        name: 'required',
+        email: 'email|min:5|required',
+        title: 'required',
+        description: 'required'
+      })
+      .messages({
+        'name': 'This field is required!',
+        'email.email': 'Email field must be an email',
+        'title.title': 'This field is required!',
+        'description.description': 'This field is required!'
+      }),
+    photoFiles: [],
     faqDetail:[]
   }),
   mounted(){
     this.getProdcut()
     this.getFaqs(this.$route.params.id)
+    this.getReviews(this.$route.params.id)
   },
   watch: {
     addCartItems(){
@@ -665,10 +667,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['product', 'catErrors','addCartItems', 'faqs','filterfaqs'])
+    ...mapGetters(['product', 'catErrors','addCartItems', 'faqs','filterfaqs','reviews'])
   },
   methods: {
-    ...mapActions(['getProduct','addCartItem','getCartItems','addFaq','getFaqs','filterFaqs']),
+    ...mapActions(['getProduct','addCartItem','getCartItems','addFaq','getFaqs','filterFaqs','getReviews','addReview']),
     getProdcut(){
       if (this.$route.params.id) {
         this.getProduct(this.$route.params.id)
@@ -799,7 +801,29 @@ export default {
       if (!this.filterForm.validate().errors().any()) {
         var productId = this.$route.params.id
         this.filterForm.data.product_id=productId
-        this.filterFaqs(this.faqForm.data)
+        this.filterFaqs(this.filterForm)
+      }
+    },
+    reviewImages(fileList){
+      this.photoFiles = fileList
+    },
+    submitReview(){
+      this.reviewForm.validate()
+      if (!this.reviewForm.validate().errors().any()) {
+        const formData = new FormData()
+        formData.append('name', this.reviewForm.data.name)
+        formData.append('email', this.reviewForm.data.email)
+        formData.append('rating', this.reviewForm.data.rating)
+        formData.append('title', this.reviewForm.data.title)
+        formData.append('description', this.reviewForm.data.description)
+        formData.append('status', this.reviewForm.data.status)
+        formData.append('product_id', this.$route.params.id)
+        console.log(this.photoFiles);
+        for(var i=0;i<this.photoFiles.length;i++){
+          formData.append('images[' + i + ']', this.photoFiles[i]);
+        }
+
+        this.addReview(formData)
       }
     }
   }
