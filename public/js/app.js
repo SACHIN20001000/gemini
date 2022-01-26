@@ -4510,6 +4510,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -4551,43 +4554,15 @@ __webpack_require__.r(__webpack_exports__);
       imgTouch2: _assets_images_mobile_contact_png__WEBPACK_IMPORTED_MODULE_20__["default"],
       imgBg2: _assets_images_bg2_jpg__WEBPACK_IMPORTED_MODULE_21__["default"],
       imgBg3: _assets_images_bg3_png__WEBPACK_IMPORTED_MODULE_22__["default"],
-      slickOptions: {
+      productPanelOptions: {
         slidesToShow: 3,
         infinite: true,
-        slidesToScroll: 2,
+        slidesToScroll: 1,
         responsive: [{
           breakpoint: 1024,
           settings: {
             slidesToShow: 3,
-            slidesToScroll: 2
-          }
-        }, {
-          breakpoint: 767,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            centerMode: true,
-            centerPadding: '120px'
-          }
-        }, {
-          breakpoint: 639,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            centerMode: true,
-            centerPadding: '120px'
-          }
-        }]
-      },
-      productPanelOptions: {
-        slidesToShow: 5,
-        infinite: true,
-        slidesToScroll: 3,
-        responsive: [{
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 2
+            slidesToScroll: 1
           }
         }, {
           breakpoint: 767,
@@ -4712,54 +4687,17 @@ __webpack_require__.r(__webpack_exports__);
       }))();
     },
     next: function next() {
-      this.$refs.slick.next();
       this.$refs.productPanel.next();
     },
     prev: function prev() {
-      this.$refs.slick.prev();
       this.$refs.productPanel.prev();
     },
     reInit: function reInit() {
       var _this2 = this;
 
       this.$nextTick(function () {
-        _this2.$refs.slick.reSlick();
-
         _this2.$refs.productPanel.reSlick();
       });
-    },
-    handleAfterChange: function handleAfterChange(event, slick, currentSlide) {
-      /*console.log('handleAfterChange', event, slick, currentSlide);*/
-    },
-    handleBeforeChange: function handleBeforeChange(event, slick, currentSlide, nextSlide) {
-      /*console.log('handleBeforeChange', event, slick, currentSlide, nextSlide);*/
-    },
-    handleBreakpoint: function handleBreakpoint(event, slick, breakpoint) {
-      /*console.log('handleBreakpoint', event, slick, breakpoint);*/
-    },
-    handleDestroy: function handleDestroy(event, slick) {
-      /*console.log('handleDestroy', event, slick);*/
-    },
-    handleEdge: function handleEdge(event, slick, direction) {
-      /*console.log('handleEdge', event, slick, direction);*/
-    },
-    handleInit: function handleInit(event, slick) {
-      /*console.log('handleInit', event, slick);*/
-    },
-    handleReInit: function handleReInit(event, slick) {
-      /*console.log('handleReInit', event, slick);*/
-    },
-    handleSetPosition: function handleSetPosition(event, slick) {
-      /*console.log('handleSetPosition', event, slick);*/
-    },
-    handleSwipe: function handleSwipe(event, slick, direction) {
-      /*console.log('handleSwipe', event, slick, direction);*/
-    },
-    handleLazyLoaded: function handleLazyLoaded(event, slick, image, imageSource) {
-      /*console.log('handleLazyLoaded', event, slick, image, imageSource);*/
-    },
-    handleLazeLoadError: function handleLazeLoadError(event, slick, image, imageSource) {
-      /*console.log('handleLazeLoadError', event, slick, image, imageSource);*/
     },
     productSlug: function productSlug(productName) {
       return productName.replace(/\s+/g, '-').toLowerCase();
@@ -5437,9 +5375,9 @@ __webpack_require__.r(__webpack_exports__);
       }),
       swiperOptionTop: {
         loop: true,
-        loopedSlides: 5,
+        loopedSlides: 3,
         // looped slides should be the same
-        spaceBetween: 10,
+        spaceBetween: 15,
         observer: true,
         observeParents: true,
         navigation: {
@@ -5449,11 +5387,11 @@ __webpack_require__.r(__webpack_exports__);
       },
       swiperOptionThumbs: {
         loop: true,
-        loopedSlides: 5,
+        loopedSlides: 3,
         // looped slides should be the same
-        spaceBetween: 10,
+        spaceBetween: 15,
         centeredSlides: false,
-        slidesPerView: 4,
+        slidesPerView: 3,
         observer: true,
         observeParents: true,
         touchRatio: 0.2,
@@ -73004,35 +72942,48 @@ var render = function () {
           _vm._v("Thoughtfully Created & Curated Products"),
         ]),
         _vm._v(" "),
-        _vm.categories && _vm.categories.length > 0
+        _vm.products && _vm.products.length > 0
           ? _c(
               "div",
               { staticClass: "row regular slider margin_row" },
               [
                 _c(
                   "slick",
-                  { ref: "slick", attrs: { options: _vm.slickOptions } },
-                  _vm._l(_vm.categories, function (category, catbkey) {
+                  {
+                    ref: "productPanel",
+                    attrs: { options: _vm.productPanelOptions },
+                  },
+                  _vm._l(_vm.products, function (product, pkey) {
                     return _c(
                       "div",
-                      { key: catbkey, staticClass: "category_loop" },
+                      { key: pkey, staticClass: "category_loop" },
                       [
                         _c(
                           "router-link",
                           {
                             attrs: {
-                              to: { path: "category/" + category.slug },
+                              to: {
+                                path:
+                                  "products/" +
+                                  _vm.productSlug(product.name) +
+                                  "/" +
+                                  product.id,
+                              },
                             },
                           },
                           [
-                            _c("img", {
-                              attrs: {
-                                src: category.feature_image,
-                                alt: category.name,
-                              },
-                            }),
+                            product.gallary && product.gallary.length > 0
+                              ? _c("div", [
+                                  _c("img", {
+                                    attrs: {
+                                      src: product.gallary[0].image_path,
+                                      alt: product.name,
+                                    },
+                                  }),
+                                ])
+                              : _vm._e(),
                             _vm._v(" "),
-                            _c("h3", [_vm._v(_vm._s(category.name))]),
+                            _c("h3", [_vm._v(_vm._s(product.name))]),
                           ]
                         ),
                       ],
