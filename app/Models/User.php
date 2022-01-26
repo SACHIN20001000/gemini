@@ -52,8 +52,8 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'created_at' => 'datetime:d-m-Y',
-        'updated_at' => 'datetime:d-m-Y',
+        'created_at' => 'datetime:M d, Y h:i:s',
+        'updated_at' => 'datetime:M d, Y h:i:s',
     ];
 
     public function posts()

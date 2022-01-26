@@ -11,8 +11,8 @@ class Store extends Model
     use HasFactory;
 
     protected $casts = [
-        'created_at' => 'datetime:d-m-Y',
-        'updated_at' => 'datetime:d-m-Y',
+        'created_at' => 'datetime:M d, Y h:i:s',
+        'updated_at' => 'datetime:M d, Y h:i:s',
     ];
     protected $fillable = [
         'name'

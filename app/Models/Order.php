@@ -21,7 +21,10 @@ class Order extends Model
         'shippingmethod',
         'remark'
     ];
-
+    protected $casts = [
+        'created_at' => 'datetime:M d, Y h:i:s',
+        'updated_at' => 'datetime:M d, Y h:i:s',
+    ];
     public function shipping()
     {
         return $this->belongsTo(Shipping::class, 'shipping_id');

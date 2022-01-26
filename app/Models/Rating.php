@@ -19,8 +19,8 @@ class Rating extends Model
 
     ];
     protected $casts = [
-        'created_at' => 'datetime:d-m-Y',
-        'updated_at' => 'datetime:d-m-Y',
+        'created_at' => 'datetime:M d, Y h:i:s',
+        'updated_at' => 'datetime:M d, Y h:i:s',
     ];
     public function user()
     {

@@ -12,8 +12,8 @@ class Product extends Model
 
     protected $appends = array('availTags');
     protected $casts = [
-        'created_at' => 'datetime:d-m-Y',
-        'updated_at' => 'datetime:d-m-Y',
+        'created_at' => 'datetime:M d, Y h:i:s',
+        'updated_at' => 'datetime:M d, Y h:i:s',
     ];
     protected $fillable = [
         'productName', 'type', 'banner_image', 'about_description', 'feature_image', 'description', 'real_price', 'sale_price', 'category_id', 'status'

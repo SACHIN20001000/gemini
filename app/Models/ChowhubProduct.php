@@ -11,8 +11,8 @@ class ChowhubProduct extends Model
     use HasFactory;
 
     protected $casts = [
-        'created_at' => 'datetime:d-m-Y',
-        'updated_at' => 'datetime:d-m-Y',
+        'created_at' => 'datetime:M d, Y h:i:s',
+        'updated_at' => 'datetime:M d, Y h:i:s',
     ];
     protected $fillable = [
         'productName', 'type', 'feature_image', 'description', 'real_price', 'sale_price', 'category_id', 'status'
