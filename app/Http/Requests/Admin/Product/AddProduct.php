@@ -24,23 +24,18 @@ class AddProduct extends FormRequest
     public function rules()
     {
         return [
-            //  'ProductName' => 'required',
-            //  'description' => 'required',
-            //  'category_id' => 'required',
-            //  'store_id' => 'required',
-            //  'status' => 'required',
-            // // 'attributes["name"]' => 'required',
-            // // 'attributes["value"]' => 'required',
-            // 'weight' => 'required',
-            // 'real_price' => 'required',
-            // 'sale_price' => 'required',
-            //  'sku' => 'required',
-            // 'qty' => 'required',
-            // 'variations["Qty"]' => 'required',
-            // 'variations["Regular Price"]' => 'required',
-            // 'variations["Sale Price"]' => 'required',
-            // 'variations["Sku"]' => 'required',
-            // 'variations["Image"]' => 'required',
+             'productName' => 'required',
+
+             'category_id' => 'required',
+             'store_id' => 'required',
+             'status' => 'required',
+
+            'weight' => 'required',
+            'real_price' => 'required',
+            'sale_price' => 'required',
+             'sku' => 'required',
+            'qty' => 'required',
+
 
 
         ];
