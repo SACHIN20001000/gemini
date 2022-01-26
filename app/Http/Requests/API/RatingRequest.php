@@ -29,7 +29,7 @@ class RatingRequest extends FormRequest
             'rating' => 'required',
             'title' => 'required',
             'description' => 'required',
-            'status' => 'required',
+            // 'status' => 'required',
 
 
 
