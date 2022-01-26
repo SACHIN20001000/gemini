@@ -547,8 +547,8 @@ export default {
     }),
     swiperOptionTop: {
       loop: true,
-      loopedSlides: 5, // looped slides should be the same
-      spaceBetween: 10,
+      loopedSlides: 3, // looped slides should be the same
+      spaceBetween: 15,
       observer: true,
       observeParents: true,
       navigation: {
@@ -558,10 +558,10 @@ export default {
     },
     swiperOptionThumbs: {
       loop: true,
-      loopedSlides: 5, // looped slides should be the same
-      spaceBetween: 10,
+      loopedSlides: 3, // looped slides should be the same
+      spaceBetween: 15,
       centeredSlides: false,
-      slidesPerView: 4,
+      slidesPerView: 3,
       observer: true,
       observeParents: true,
       touchRatio: 0.2,
