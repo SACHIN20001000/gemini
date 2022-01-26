@@ -192,29 +192,39 @@ class PassportAuthController extends AppBaseController
 
 
         $setting = Setting::orderBy('id', 'asc')->first();
-        $updated_at = $setting->updated_at ?? '';
-        $token = $setting->oauth_token ?? '';
-        $currentDate = date('Y-m-d H:i:s');
+        if(!empty($setting)){
+            $updated_at = $setting->updated_at ?? '';
+            $token = $setting->oauth_token ?? '';
+            $currentDate = date('Y-m-d H:i:s');
 
-        if (empty($token))
-        {
-            $setting->oauth_token = Str::random(70);
-            $setting->save();
-        }
+            if (empty($token))
+            {
+                $setting->oauth_token = Str::random(70);
+                $setting->save();
+            }
+            return response()->json([
+                'success' => true, 'Token' => $setting->oauth_token
+    ]);
+        }else{
+            $newSetting=new Setting;
+            $newSetting->oauth_token = Str::random(70);
+            $newSetting->save();
+            return response()->json([
+                'success' => true, 'Token' => $newSetting->oauth_token
+    ]);
+    }
 
 
 
-        $untillDate = date('Y-m-d h:m:s', strtotime($updated_at . ' + 1 days'));
+        // $untillDate = date('Y-m-d h:m:s', strtotime($updated_at . ' + 1 days'));
 
-        if ($currentDate > $untillDate)
-        {
-            $setting->oauth_token = Str::random(70);
-            $setting->save();
-        }
+        // if ($currentDate > $untillDate)
+        // {
+        //     $setting->oauth_token = Str::random(70);
+        //     $setting->save();
+        // }
 
-        return response()->json([
-                    'success' => true, 'Token' => $setting->oauth_token
-        ]);
+
     }
 
 }
