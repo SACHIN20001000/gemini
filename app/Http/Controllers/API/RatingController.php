@@ -112,7 +112,7 @@ class RatingController extends Controller
         $inputs['description']=$request->description;
         $inputs['product_id']=$request->product_id;
         $inputs['rating']=$request->rating;
-        $inputs['status']=$request->status;
+        $inputs['status']=$request->status ?? 0;
 
         $rating= Rating::create($inputs);
             if ($request->file('images'))
