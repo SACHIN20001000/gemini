@@ -50,7 +50,19 @@ class ChowhubRatingController extends Controller
                                 ';
                                 return $action;
                             })
-                            ->rawColumns(['action'])
+                            ->addIndexColumn()
+                            ->addColumn('product', function ($row)
+                            {
+
+                                if(!empty($row['product']->productName)){
+                                    $product = $row['product']->productName;
+                                }else{
+                                    $product = null;
+                                }
+
+                                return $product;
+                            })
+                            ->rawColumns(['action','product'])
                             ->make(true)
             ;
         }
