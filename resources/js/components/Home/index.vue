@@ -181,24 +181,27 @@
       <h1 class="line_aside">Thoughtfully Created & Curated Products</h1>
         <div
           class="row regular slider margin_row"
-          v-if="categories && categories.length>0"
+          v-if="products && products.length>0"
         >
           <slick
-            ref="slick"
-            :options="slickOptions"
+            ref="productPanel"
+            :options="productPanelOptions"
           >
             <div
               class="category_loop"
-              v-for="(category,catbkey) in categories"  :key="catbkey"
+              v-for="(product,pkey) in products"
+              :key="pkey"
             >
               <router-link
-                :to="{ path: 'category/'+category.slug}"
+                :to="{ path: 'products/'+productSlug(product.name)+'/'+product.id}"
               >
-                <img
-                  :src="category.feature_image"
-                  :alt="category.name"
-                >
-                <h3>{{category.name}}</h3>
+                <div v-if="product.gallary && product.gallary.length>0">
+                  <img
+                    :src="product.gallary[0].image_path"
+                    :alt="product.name"
+                  >
+                </div>
+                <h3>{{product.name}}</h3>
               </router-link>
             </div>
           </slick>
@@ -439,50 +442,16 @@ export default {
       imgTouch2: imgTouch2,
       imgBg2: imgBg2,
       imgBg3: imgBg3,
-      slickOptions: {
+      productPanelOptions: {
         slidesToShow: 3,
         infinite: true,
-        slidesToScroll: 2,
+        slidesToScroll: 1,
 		      responsive: [
             {
               breakpoint: 1024,
               settings: {
                 slidesToShow: 3,
-                slidesToScroll: 2
-              }
-            },
-
-            {
-              breakpoint: 767,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                centerMode: true,
-		            centerPadding: '120px'
-
-              }
-            },
-            {
-              breakpoint: 639,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                centerMode: true,
-		            centerPadding: '120px'
-              }
-            },
-          ]
-      },
-      productPanelOptions: {
-        slidesToShow: 5,
-        infinite: true,
-        slidesToScroll: 3,
-		      responsive: [
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 2
+                slidesToScroll: 1
               }
             },
 
@@ -582,51 +551,15 @@ export default {
 
     },
     next() {
-        this.$refs.slick.next()
         this.$refs.productPanel.next()
     },
     prev() {
-        this.$refs.slick.prev();
         this.$refs.productPanel.prev();
     },
     reInit() {
       this.$nextTick(() => {
-        this.$refs.slick.reSlick();
         this.$refs.productPanel.reSlick();
       });
-    },
-    handleAfterChange(event, slick, currentSlide) {
-      /*console.log('handleAfterChange', event, slick, currentSlide);*/
-    },
-    handleBeforeChange(event, slick, currentSlide, nextSlide) {
-      /*console.log('handleBeforeChange', event, slick, currentSlide, nextSlide);*/
-    },
-    handleBreakpoint(event, slick, breakpoint) {
-      /*console.log('handleBreakpoint', event, slick, breakpoint);*/
-    },
-    handleDestroy(event, slick) {
-      /*console.log('handleDestroy', event, slick);*/
-    },
-    handleEdge(event, slick, direction) {
-      /*console.log('handleEdge', event, slick, direction);*/
-    },
-    handleInit(event, slick) {
-      /*console.log('handleInit', event, slick);*/
-    },
-    handleReInit(event, slick) {
-      /*console.log('handleReInit', event, slick);*/
-    },
-    handleSetPosition(event, slick) {
-      /*console.log('handleSetPosition', event, slick);*/
-    },
-    handleSwipe(event, slick, direction) {
-      /*console.log('handleSwipe', event, slick, direction);*/
-    },
-    handleLazyLoaded(event, slick, image, imageSource) {
-      /*console.log('handleLazyLoaded', event, slick, image, imageSource);*/
-    },
-    handleLazeLoadError(event, slick, image, imageSource) {
-      /*console.log('handleLazeLoadError', event, slick, image, imageSource);*/
     },
     productSlug(productName){
       return productName.replace(/\s+/g, '-').toLowerCase()
