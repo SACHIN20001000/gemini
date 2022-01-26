@@ -120,7 +120,7 @@ class ProductController extends Controller
             return new ProductResource($products);
         } else
         {
-            return response()->json(['success' => false, 'message' => "Invailed Id"]);
+            return response()->json(['success' => false, 'message' => "Invalid Id"]);
         }
     }
 
@@ -190,7 +190,7 @@ class ProductController extends Controller
             return ProductResource::collection($products);
         } else
         {
-            return response()->json(['success' => false, 'message' => "Invailed Id"]);
+            return response()->json(['success' => false, 'message' => "Invalid Id"]);
         }
     }
 

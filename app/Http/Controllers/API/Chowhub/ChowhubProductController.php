@@ -85,7 +85,7 @@ class ChowhubProductController extends Controller
      * )
      * Store a newly created resource in storage.
      *
-     * 
+     *
      *
      * @return \Illuminate\Http\Response
      */
@@ -99,7 +99,7 @@ class ChowhubProductController extends Controller
             return new ChowhubProductResource($products);
         } else
         {
-            return response()->json(['success' => false, 'message' => "Invailed Id"]);
+            return response()->json(['success' => false, 'message' => "Invalid Id"]);
         }
     }
 
@@ -136,7 +136,7 @@ class ChowhubProductController extends Controller
      * )
      * Store a newly created resource in storage.
      *
-     * 
+     *
      *
      * @return \Illuminate\Http\Response
      */
@@ -150,7 +150,7 @@ class ChowhubProductController extends Controller
             return ChowhubProductResource::collection($products);
         } else
         {
-            return response()->json(['success' => false, 'message' => "Invailed Id"]);
+            return response()->json(['success' => false, 'message' => "Invalid Id"]);
         }
     }
 
@@ -187,7 +187,7 @@ class ChowhubProductController extends Controller
      * )
      * Store a newly created resource in storage.
      *
-     * 
+     *
      *
      * @return \Illuminate\Http\Response
      */
