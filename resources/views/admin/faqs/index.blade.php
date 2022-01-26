@@ -7,10 +7,10 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Faqs</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ list</span>
+                <h4 class="content-title mb-0 my-auto">Questions</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ list</span>
             </div>
         </div>
-        <a class="btn btn-main-primary ml_auto" href="{{ route('faqs.create') }}">Add New</a>
+        <a class="btn btn-main-primary ml_auto" href="{{ route('questions.create') }}">Add New</a>
     </div>
     <!-- breadcrumb -->
 
@@ -18,7 +18,7 @@
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 grid-margin">
             <div class="card">
                 <div class="card-header pb-0">
-                    <p class="tx-12 tx-gray-500 mb-2">Listing of All Faqs...</p>
+                    <p class="tx-12 tx-gray-500 mb-2">Listing of All Questions...</p>
                 </div>
                 <div class="card-body">
 
@@ -28,7 +28,7 @@
                             <thead>
                                 <tr>
                                 <th class="wd-lg-20p"><span>User Name</span></th>
-                                <th class="wd-lg-20p"><span>Title</span></th>
+                                <th class="wd-lg-20p"><span>Question</span></th>
 
                                 <th class="wd-lg-20p"><span>Created At</span></th>
                                 <th class="wd-lg-20p"><span>Published</span></th>
@@ -62,7 +62,7 @@
         var table = $('#datatable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('faqs.index') }}",
+            ajax: "{{ route('questions.index') }}",
             columns: [
                 {data: 'user.name', name: 'user.name'},
                 {data: 'title', name: 'title'},

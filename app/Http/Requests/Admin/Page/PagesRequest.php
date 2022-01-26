@@ -26,9 +26,9 @@ class PagesRequest extends FormRequest
         return [
             'title'=>'required|string',
             'category'  =>'required',
-            'content'  =>'required',
+
             'status'  =>'required',
-            'css' =>'required'
+           
         ];
     }
 }

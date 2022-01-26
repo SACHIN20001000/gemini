@@ -26,8 +26,7 @@ class UpdateRating extends FormRequest
         return [
           'rating'=>'required',
           'title' => 'required',
-          'description' => 'required',
-        //   'status' => 'required',
+  
         ];
     }
 }

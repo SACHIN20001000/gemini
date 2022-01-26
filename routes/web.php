@@ -75,13 +75,13 @@ Route::prefix('admin')->group(function ()
         Route::resource('products', ProductController::class);
         Route::resource('stores', StoreController::class);
         Route::resource('orders', OrderController::class);
-        Route::resource('faqs', FaqController::class);
-        Route::resource('chowhub-faqs', ChowhubFaqController::class);
-        Route::resource('ratings', RatingController::class);
-        Route::post('save-image', [App\Http\Controllers\Admin\RatingController::class, 'save_photo'])->name('save_photo');
-        Route::post('save-chowhub-image', [App\Http\Controllers\Admin\Chowhub\ChowhubRatingController::class, 'save_photo'])->name('save_photo');
-        Route::resource('chowhub-ratings', ChowhubRatingController::class);
 
+        Route::resource('chowhub-questions', ChowhubFaqController::class);
+        Route::resource('ratings', RatingController::class);
+        Route::post('save-image', [App\Http\Controllers\Admin\RatingController::class, 'save_photo']);
+        Route::post('save-chowhub-image', [App\Http\Controllers\Admin\Chowhub\ChowhubRatingController::class, 'save_photo']);
+        Route::resource('chowhub-ratings', ChowhubRatingController::class);
+        Route::resource('questions', FaqController::class);
 
         //chowhub
         Route::resource('chowhub-categories', ChowhubCategoryController::class);

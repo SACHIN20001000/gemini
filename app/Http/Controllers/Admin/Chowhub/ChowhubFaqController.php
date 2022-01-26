@@ -48,10 +48,10 @@ class ChowhubFaqController extends Controller
                             {
 
                                 $action = '<span class="action-buttons">
-                                    <a  href="'.route("chowhub-faqs.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
+                                    <a  href="'.route("chowhub-questions.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
 
-                                    <a href="'.route("chowhub-faqs.destroy", $row).'"
+                                    <a href="'.route("chowhub-questions.destroy", $row).'"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"
                                             data-toggle="tooltip"
@@ -100,7 +100,7 @@ class ChowhubFaqController extends Controller
         $inputs = $request->all();
         $inputs['user_id']=auth()->user()->id;
         ChowhubFaq::create($inputs);
-         return back()->with('success','Faq addded successfully!');
+         return back()->with('success','Question addded successfully!');
     }
 
     /**
@@ -143,7 +143,7 @@ class ChowhubFaqController extends Controller
         $inputs['user_id']=auth()->user()->id;
         ChowhubFaq::find($id)->update($inputs);
 
-        return back()->with('success','Faq updated successfully!');
+        return back()->with('success','Question updated successfully!');
     }
 
     /**
@@ -155,7 +155,7 @@ class ChowhubFaqController extends Controller
     public function destroy($id)
     {
         ChowhubFaq::find($id)->delete();
-        return back()->with('success','Faq deleted successfully!');
+        return back()->with('success','Question deleted successfully!');
     }
 
 

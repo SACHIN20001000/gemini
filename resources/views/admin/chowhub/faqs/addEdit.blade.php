@@ -5,10 +5,10 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Faqs</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{isset($faq) ? $faq->name : 'Add New' }}</span>
+                <h4 class="content-title mb-0 my-auto">Questions</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{isset($faq) ? $faq->name : 'Add New' }}</span>
             </div>
         </div>
-        <a class="btn btn-main-primary ml_auto" href="{{ route('chowhub-faqs.index') }}">View faqs</a>
+        <a class="btn btn-main-primary ml_auto" href="{{ route('chowhub-questions.index') }}">View Questions</a>
     </div>
     <!-- breadcrumb -->
     <!--Row-->
@@ -23,13 +23,13 @@
 
 
                     <!--  start  -->
-                    <form  id="faq-add-edit" action="{{isset($faq) ? route('chowhub-faqs.update',$faq->id) : route('chowhub-faqs.store')}}" method="POST" enctype="multipart/form-data">
+                    <form  id="faq-add-edit" action="{{isset($faq) ? route('chowhub-questions.update',$faq->id) : route('chowhub-questions.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{ isset($faq) ? method_field('PUT'):'' }}
                         <div class="pd-30 pd-sm-40 bg-gray-200">
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Title</label>
+                                    <label class="form-label mg-b-0">Question</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                 <textarea name="title" class="form-control" id="title" cols="30" rows="10">{{isset($faq) ? $faq->title : '' }}</textarea>
@@ -38,7 +38,7 @@
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Description</label>
+                                    <label class="form-label mg-b-0">Answer</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                   <textarea name="description" class="form-control" id="description" cols="30" rows="10">{{isset($faq) ? $faq->description : '' }}</textarea>

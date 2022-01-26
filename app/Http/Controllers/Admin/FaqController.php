@@ -24,8 +24,6 @@ class FaqController extends Controller
         if ($request->ajax())
         {
             $data = Faq::with('user')->get();
-
-
             return Datatables::of($data)
             ->addIndexColumn()
 
@@ -48,10 +46,10 @@ class FaqController extends Controller
                             {
 
                                 $action = '<span class="action-buttons">
-                                    <a  href="'.route("faqs.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
+                                    <a  href="'.route("questions.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
 
-                                    <a href="'.route("faqs.destroy", $row).'"
+                                    <a href="'.route("questions.destroy", $row).'"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"
                                             data-toggle="tooltip"
@@ -70,7 +68,6 @@ class FaqController extends Controller
                             ->make(true)
                             ;
         }
-
         return view('admin.faqs.index');
     }
 
@@ -100,7 +97,7 @@ class FaqController extends Controller
         $inputs = $request->all();
         $inputs['user_id']=auth()->user()->id;
         Faq::create($inputs);
-         return back()->with('success','Faq addded successfully!');
+         return back()->with('success','Question addded successfully!');
     }
 
     /**
@@ -120,9 +117,10 @@ class FaqController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Faq $faq)
+    public function edit($id)
     {
-        $faqs = Faq::where('id','!=',$faq->id)->get();
+        $faq=Faq::find($id);
+        $faqs = Faq::where('id','!=',$id)->get();
         $products = Product::select('productName','id')->get();
 
         return view('admin.faqs.addEdit',compact('faqs','faq','products'));
@@ -135,14 +133,14 @@ class FaqController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateFaq $request,Faq $faq)
+    public function update(UpdateFaq $request,$id)
     {
-
+        $faq= Faq::find($id);
         $inputs = $request->all();
         $inputs['user_id']=auth()->user()->id;
         $faq->update($inputs);
 
-        return back()->with('success','Faq updated successfully!');
+        return back()->with('success','Question updated successfully!');
     }
 
     /**
@@ -151,10 +149,11 @@ class FaqController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Faq $faq)
+    public function destroy($id)
     {
-        $faq->delete();
-        return back()->with('success','Faq deleted successfully!');
+
+        Faq::find($id)->delete();
+        return back()->with('success','Question deleted successfully!');
     }
 
 
