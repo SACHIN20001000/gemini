@@ -26,19 +26,19 @@ class EnsureApiTokenIsValid
         {
             $token = $setting->oauth_token ?? '';
             $updated_at = $setting->updated_at;
-            if($header ==$token)
+            if($header == $token)
             {
-                $untillDate=  date('Y-m-d h:m:s', strtotime($updated_at. ' + 1 days'));
+                // $untillDate=  date('Y-m-d h:m:s', strtotime($updated_at. ' + 1 days'));
 
-                if($currentDate > $untillDate)
-                {
-                    return response()->json(['success' => false , 'message' => "Api Access Token has been Expired"],400);
-                }
+                // if($currentDate > $untillDate)
+                // {
+                //     return response()->json(['success' => false , 'message' => "Api Access Token has been Expired"],400);
+                // }
 
                 return $next($request);
             }
         }
         return response()->json(['success' => false , 'message' => "Invailed Api Access Token"],400);
-        
+
     }
 }
