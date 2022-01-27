@@ -177,10 +177,25 @@
           </li>
         </ul>
         <div class="petForm" v-if="addMorePet">
-          <h3>Add More Pet</h3>
-          <label>Name: <input type="text" v-model="petname"></label>
+          <label>
+            Name: <input type="text" v-model="petform.name">
+            <span class="error_validation" v-if="petform.errors().has('name')">
+              {{ petform.errors().get('name') }}
+            </span>
+          </label>
+          <label>
+            Type:
+            <select v-model="petform.type">
+              <option value="dog">Dog</option>
+              <option value="cat">Cat</option>
+            </select>
+          </label>
+          <label>
+            Age:
+            <input type="text" v-model="petform.age">
+          </label>
           <label class="uplod_btn">
-            <input type="file" id="myfile" name="myfile" accept="image/*" @change="petImage($event)">
+            <input type="file" id="myfile" name="myfile" accept="image/*" @change="uploadPetImage($event)">
           </label>
           <label><button type="button" @click="addPet">Add Pet</button></label>
         </div>
@@ -296,6 +311,7 @@ export default {
     errorMsg:'',
     shippingMsg:'',
     addMorePet:false,
+    petImage:[],
     shippingFrom: form({
       name: '',
       email: '',
@@ -325,6 +341,17 @@ export default {
         'city.city': 'City is required!',
         'state.state': 'State is required!',
         'country.country': 'Country is required!'
+      }),
+    petform: form({
+      name: '',
+      type: '',
+      age: ''
+    })
+      .rules({
+        name: 'required'
+      })
+      .messages({
+        'name.name': 'Name is required!'
       })
   }),
   beforeMount(){
@@ -388,8 +415,16 @@ export default {
           this.shippingMsg=''
         })
       }
-
-
+    },
+    petRequestData(petData, config){
+      if(config !=''){
+        HTTP.post(process.env.MIX_APP_APIURL+"pet/create", petData,config).then((response) => {
+          this.addMorePet = true
+        }).catch((errors) => {
+          errorMsg = errors
+          this.shippingMsg=''
+        })
+      }
     },
     uploadImage(event) {
       let data = new FormData();
@@ -404,6 +439,28 @@ export default {
         }
       }
       this.requestData(data,config)
+    },
+    uploadPetImage(event){
+      if(event.target.files[0]){
+        this.petImage = event.target.files[0]
+      }
+    },
+    addPet(){
+      this.petform.validate()
+      if (!this.petform.validate().errors().any()) {
+        let data = new FormData()
+        var _this = this
+        Object.keys(this.petform.data).forEach(function(key,index) {
+          data.append(key,_this.petform.data[key])
+        })
+        data.append('image', this.petImage)
+        let config = {
+          header : {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+        this.petRequestData(data,config)
+      }
     }
   }
 }
