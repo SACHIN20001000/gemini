@@ -177,18 +177,18 @@ class PassportAuthController extends AppBaseController
     {
 
 
-        $client_secret = env('API_ACCESS_CLIENT_SECRET');
-        $client_id = env('API_ACCESS_CLIENT_ID');
+        $client_secret = env('API_ACCESS_CLIENT_SECRET')??'8BSSg7qMYw2NAJaiMhQOCYxGlFSs141SLfPRLU';
+        $client_id = env('API_ACCESS_CLIENT_ID') ?? 2;
 
-        // if ($request['client_id'] != $client_id)
-        // {
-        //     return response()->json(['success' => false, 'message' => "Invalid client Id"], 400);
-        // }
+        if ($request['client_id'] != $client_id)
+        {
+            return response()->json(['success' => false, 'message' => "Invalid client Id"], 400);
+        }
 
-        // if ($request['client_secret'] != $client_secret)
-        // {
-        //     return response()->json(['success' => false, 'message' => "Invalid client secret"], 400);
-        // }
+        if ($request['client_secret'] != $client_secret)
+        {
+            return response()->json(['success' => false, 'message' => "Invalid client secret"], 400);
+        }
 
 
         $setting = Setting::orderBy('id', 'asc')->first();
