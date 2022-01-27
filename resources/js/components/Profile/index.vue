@@ -10,9 +10,17 @@
         <div class="row">
           <div class="col-md-8">
             <div class="row">
-              <div class="col-3">
+              <div class="col-3" v-if="accountDetails && accountDetails.profile_image !=null">
+                <img :src="accountDetails.profile_image" width="120px">
+                <label class="uplod_btn">
+                  <input type="file" id="myfile" name="myfile" accept="image/*" @change="uploadImage($event)">
+                </label>
+              </div>
+              <div class="col-3" v-if="accountDetails && accountDetails.profile_image ==''">
                 <img :src="store_profile">
-                <input type="file" accept="image/*" @change="uploadImage($event)" id="file-input">
+                <label class="uplod_btn">
+                  <input type="file" id="myfile" name="myfile" accept="image/*" @change="uploadImage($event)">
+                </label>
               </div>
               <div class="col-9">
                 <h1 class="st_h">Welcome back, Susan M.!</h1>
@@ -164,10 +172,18 @@
           </li>
           <li>
             <label class="uplod_btn">
-              <input type="file" id="myfile" name="myfile">
+              <input type="button" v-on:click="addMorePet = !addMorePet">
             </label>
           </li>
         </ul>
+        <div class="petForm" v-if="addMorePet">
+          <h3>Add More Pet</h3>
+          <label>Name: <input type="text" v-model="petname"></label>
+          <label class="uplod_btn">
+            <input type="file" id="myfile" name="myfile" accept="image/*" @change="petImage($event)">
+          </label>
+          <label><button type="button" @click="addPet">Add Pet</button></label>
+        </div>
       </div>
     </section>
     <section class="st_info mb-5">
@@ -212,11 +228,11 @@
                         :key="oikey"
                       >
                         <td class="pt_img">
-                          <a href="#">{{orderItems.product_id}}</a>
+                          <a href="#"><img :src="orderItems.product.feature_image" width="100px"></a>
                         </td>
                         <td class="t_size">
-                          {{orderItems.product_id}}
-                          <span>Princess | Size: {{orderItems.product_id}}</span>
+                          {{orderItems.product.name}}
+                          <span>Princess: {{orderItems.unit_price}} | Size: {{orderItems.product_id}}</span>
                         </td>
                         <td class="t_price">
                           <span>Item Price:</span>
@@ -279,6 +295,7 @@ export default {
     nameData:{'name':1,'email':1,'password':1},
     errorMsg:'',
     shippingMsg:'',
+    addMorePet:false,
     shippingFrom: form({
       name: '',
       email: '',
@@ -336,44 +353,57 @@ export default {
         this.shippingFrom.validate()
         if (!this.shippingFrom.validate().errors().any()) {
           this.nameData[fieldOpen]=1
-          this.requestData(this.shippingFrom.data)
+          this.requestData(this.shippingFrom.data,'')
         }
       }
     },
     updateShipping(){
       this.shippingFrom.validate()
       if (!this.shippingFrom.validate().errors().any()) {
-        this.requestData(this.shippingFrom.data)
+        this.requestData(this.shippingFrom.data,'')
       }
       this.shippingMsg=''
     },
-    requestData(profileData){
-      HTTP.put(process.env.MIX_APP_APIURL+"update", profileData).then((response) => {
-        this.shippingMsg='Shipping address update is successfully!'
-        var profileDetails= response.data.data
-        Object.keys(profileDetails).reduce((formData, key) => {
-            this.shippingFrom[key]= profileDetails[key]
+    requestData(profileData, config){
+      if(config !=''){
+        HTTP.post(process.env.MIX_APP_APIURL+"update", profileData,config).then((response) => {
+          this.shippingMsg='Shipping address update is successfully!'
+          var profileDetails= response.data.data
+          Object.keys(profileDetails).reduce((formData, key) => {
+              this.shippingFrom[key]= profileDetails[key]
+          })
+        }).catch((errors) => {
+          errorMsg = errors
+          this.shippingMsg=''
         })
-      }).catch((errors) => {
-        errorMsg = errors
-        this.shippingMsg=''
-      })
+      }else{
+        HTTP.post(process.env.MIX_APP_APIURL+"update", profileData).then((response) => {
+          this.shippingMsg='Shipping address update is successfully!'
+          var profileDetails= response.data.data
+          Object.keys(profileDetails).reduce((formData, key) => {
+              this.shippingFrom[key]= profileDetails[key]
+          })
+        }).catch((errors) => {
+          errorMsg = errors
+          this.shippingMsg=''
+        })
+      }
+
+
     },
     uploadImage(event) {
       let data = new FormData();
-      data.append('id', this.accountDetails.id)
-      data.append('name', 'my-picture')
-      data.append('file', event.target.files[0])
+      var _this = this
+      Object.keys(this.shippingFrom.data).forEach(function(key,index) {
+        data.append(key,_this.shippingFrom.data[key])
+      })
+      data.append('profile_image', event.target.files[0])
       let config = {
         header : {
           'Content-Type': 'multipart/form-data'
         }
       }
-      axios.put(process.env.MIX_APP_APIURL+'profileImage',data,config).then(
-        response => {
-          console.log('image upload response > ', response)
-        }
-      )
+      this.requestData(data,config)
     }
   }
 }
