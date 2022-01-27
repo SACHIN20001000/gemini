@@ -414,7 +414,7 @@ import imgGnaw from "../../assets/images/gnaw.png"
 import imgHeat from "../../assets/images/heat.jpg"
 import imgTouch from "../../assets/images/touch.jpg"
 import imgTouch2 from "../../assets/images/mobile_contact.png"
-import imgBg2 from "../../assets/images/bg2.jpg"
+import imgBg2 from "../../assets/images/bg2.png"
 import imgBg3 from "../../assets/images/bg3.png"
 
 
