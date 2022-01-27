@@ -10,8 +10,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Http\Requests\API\PetRequest;
 use App\Http\Resources\Pet\PetResource;
-
-use storage;
+use Storage;
 class PetController extends Controller
 {
     /**
