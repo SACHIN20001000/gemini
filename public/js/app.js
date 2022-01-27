@@ -4827,9 +4827,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var swiper_css_swiper_css__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! swiper/css/swiper.css */ "./node_modules/swiper/css/swiper.css");
 
 
-var _this2 = undefined;
-
-
 
 
 
@@ -5428,7 +5425,7 @@ var _this2 = undefined;
         name: '',
         email: '',
         question: '',
-        product_id: _this2.$route.params.id
+        product_id: 0
       }).rules({
         name: 'required',
         email: 'email|min:5|required',
@@ -5440,7 +5437,7 @@ var _this2 = undefined;
       }),
       filterForm: vuejs_form__WEBPACK_IMPORTED_MODULE_21___default()({
         serachtext: '',
-        product_id: _this2.$route.params.id
+        product_id: 0
       }).rules({
         serachtext: 'required'
       }).messages({
@@ -5452,7 +5449,7 @@ var _this2 = undefined;
         rating: 0,
         title: '',
         description: '',
-        product_id: _this2.$route.params.id,
+        product_id: 0,
         status: '',
         images: []
       }).rules({
@@ -5480,21 +5477,21 @@ var _this2 = undefined;
       this.getCartItems();
     },
     product: function product() {
-      var _this3 = this;
+      var _this = this;
 
       this.variations = this.product.variations;
       var variation_attributes = this.product.variation_attributes;
       var vaarrayCollection = [];
 
-      if (variation_attributes.length > 0) {
-        var _this = this;
+      var _self = this;
 
+      if (variation_attributes.length > 0) {
         variation_attributes.filter(function (varitioonattr, vaindex) {
           var vname = varitioonattr.name;
           var vid = varitioonattr.id;
           var subAttributeArray = [];
 
-          _this.product.attributes.filter(function (attr, attrindex) {
+          _self.product.attributes.filter(function (attr, attrindex) {
             if (varitioonattr.id == attr.attribute_id) {
               subAttributeArray.push({
                 id: attr.id,
@@ -5514,10 +5511,10 @@ var _this2 = undefined;
       this.variationAttributes = vaarrayCollection;
       this.firstTimePrice();
       this.$nextTick(function () {
-        _this3.swiperTop = _this3.$refs.swiperTop.$swiper;
-        _this3.swiperThumbs = _this3.$refs.swiperThumbs.$swiper;
-        _this3.swiperTop.controller.control = _this3.swiperThumbs;
-        _this3.swiperThumbs.controller.control = _this3.swiperTop;
+        _this.swiperTop = _this.$refs.swiperTop.$swiper;
+        _this.swiperThumbs = _this.$refs.swiperThumbs.$swiper;
+        _this.swiperTop.controller.control = _this.swiperThumbs;
+        _this.swiperThumbs.controller.control = _this.swiperTop;
       });
     },
     faqs: function faqs() {
@@ -5554,25 +5551,25 @@ var _this2 = undefined;
     variationUpdate: function variationUpdate(e, attributeId, attnameId, typ) {
       var switchTumnb = 0;
 
-      var _this = this;
+      var _self = this;
 
       this.selectedattrIds.filter(function (selIds, selind) {
         if (selIds.type == typ) {
-          _this.selectedattrIds[selind].id = attributeId;
+          _self.selectedattrIds[selind].id = attributeId;
         }
       });
       var varientsArr = [];
       this.variations.filter(function (varients, varindex) {
         var countMatch = 0;
         varients.variation_attributes.filter(function (varientAttrs, index) {
-          _this.selectedattrIds.filter(function (getarrtibuteId, indx) {
+          _self.selectedattrIds.filter(function (getarrtibuteId, indx) {
             if (getarrtibuteId.id == varientAttrs.attribute_id) {
               countMatch++;
             }
           });
         });
 
-        if (countMatch == _this.selectedattrIds.length) {
+        if (countMatch == _self.selectedattrIds.length) {
           switchTumnb = varindex;
           varientsArr = varients;
         }
@@ -5654,15 +5651,14 @@ var _this2 = undefined;
     faqSubmit: function faqSubmit() {
       this.faqForm.validate();
 
+      var _self = this;
+
       if (!this.faqForm.validate().errors().any()) {
         var productId = this.$route.params.id;
-
-        var _this = this;
-
         this.faqForm.data.product_id = productId;
         this.addFaq(this.faqForm.data);
         Object.keys(this.filterForm.data).forEach(function (key, index) {
-          _this.filterForm.data[key] = '';
+          _self.filterForm.data[key] = '';
         });
         this.$swal({
           title: "Success!",
@@ -5691,17 +5687,16 @@ var _this2 = undefined;
     submitReview: function submitReview() {
       this.reviewForm.validate();
 
+      var _self = this;
+
       if (!this.reviewForm.validate().errors().any()) {
         var formData = new FormData();
-
-        var _this = this;
-
         Object.keys(this.reviewForm.data).forEach(function (key, index) {
-          formData.append(key, _this.reviewForm.data[key]);
+          formData.append(key, _self.reviewForm.data[key]);
         });
         formData.append('product_id', this.$route.params.id);
         Object.keys(this.reviewForm.data).forEach(function (key, index) {
-          _this.reviewForm.data[key] = '';
+          _self.reviewForm.data[key] = '';
         });
 
         for (var i = 0; i < this.photoFiles.length; i++) {
@@ -6032,6 +6027,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6065,6 +6075,7 @@ __webpack_require__.r(__webpack_exports__);
       errorMsg: '',
       shippingMsg: '',
       addMorePet: false,
+      petImage: [],
       shippingFrom: vuejs_form__WEBPACK_IMPORTED_MODULE_6___default()({
         name: '',
         email: '',
@@ -6092,6 +6103,15 @@ __webpack_require__.r(__webpack_exports__);
         'city.city': 'City is required!',
         'state.state': 'State is required!',
         'country.country': 'Country is required!'
+      }),
+      petform: vuejs_form__WEBPACK_IMPORTED_MODULE_6___default()({
+        name: '',
+        type: '',
+        age: ''
+      }).rules({
+        name: 'required'
+      }).messages({
+        'name.name': 'Name is required!'
       })
     };
   },
@@ -6162,6 +6182,18 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
+    petRequestData: function petRequestData(petData, config) {
+      var _this4 = this;
+
+      if (config != '') {
+        _Api_auth__WEBPACK_IMPORTED_MODULE_7__["default"].post("http://3.132.243.209/api/" + "pet/create", petData, config).then(function (response) {
+          _this4.addMorePet = true;
+        })["catch"](function (errors) {
+          errorMsg = errors;
+          _this4.shippingMsg = '';
+        });
+      }
+    },
     uploadImage: function uploadImage(event) {
       var data = new FormData();
 
@@ -6177,6 +6209,31 @@ __webpack_require__.r(__webpack_exports__);
         }
       };
       this.requestData(data, config);
+    },
+    uploadPetImage: function uploadPetImage(event) {
+      if (event.target.files[0]) {
+        this.petImage = event.target.files[0];
+      }
+    },
+    addPet: function addPet() {
+      this.petform.validate();
+
+      if (!this.petform.validate().errors().any()) {
+        var data = new FormData();
+
+        var _this = this;
+
+        Object.keys(this.petform.data).forEach(function (key, index) {
+          data.append(key, _this.petform.data[key]);
+        });
+        data.append('image', this.petImage);
+        var config = {
+          header: {
+            'Content-Type': 'multipart/form-data'
+          }
+        };
+        this.petRequestData(data, config);
+      }
     }
   })
 });
@@ -75532,27 +75589,100 @@ var render = function () {
         _vm._v(" "),
         _vm.addMorePet
           ? _c("div", { staticClass: "petForm" }, [
-              _c("h3", [_vm._v("Add More Pet")]),
-              _vm._v(" "),
               _c("label", [
-                _vm._v("Name: "),
+                _vm._v("\n          Name: "),
                 _c("input", {
                   directives: [
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.petname,
-                      expression: "petname",
+                      value: _vm.petform.name,
+                      expression: "petform.name",
                     },
                   ],
                   attrs: { type: "text" },
-                  domProps: { value: _vm.petname },
+                  domProps: { value: _vm.petform.name },
                   on: {
                     input: function ($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.petname = $event.target.value
+                      _vm.$set(_vm.petform, "name", $event.target.value)
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _vm.petform.errors().has("name")
+                  ? _c("span", { staticClass: "error_validation" }, [
+                      _vm._v(
+                        "\n            " +
+                          _vm._s(_vm.petform.errors().get("name")) +
+                          "\n          "
+                      ),
+                    ])
+                  : _vm._e(),
+              ]),
+              _vm._v(" "),
+              _c("label", [
+                _vm._v("\n          Type:\n          "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.petform.type,
+                        expression: "petform.type",
+                      },
+                    ],
+                    on: {
+                      change: function ($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function (o) {
+                            return o.selected
+                          })
+                          .map(function (o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.petform,
+                          "type",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      },
+                    },
+                  },
+                  [
+                    _c("option", { attrs: { value: "dog" } }, [_vm._v("Dog")]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "cat" } }, [_vm._v("Cat")]),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("label", [
+                _vm._v("\n          Age:\n          "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.petform.age,
+                      expression: "petform.age",
+                    },
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.petform.age },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.petform, "age", $event.target.value)
                     },
                   },
                 }),
@@ -75568,7 +75698,7 @@ var render = function () {
                   },
                   on: {
                     change: function ($event) {
-                      return _vm.petImage($event)
+                      return _vm.uploadPetImage($event)
                     },
                   },
                 }),
