@@ -176,7 +176,7 @@ class PassportAuthController extends AppBaseController
     public function oauth_token(TokenRequest $request)
     {
 
-
+print_r($request->all());die;
         $client_secret = env('API_ACCESS_CLIENT_SECRET');
         $client_id = env('API_ACCESS_CLIENT_ID');
 
