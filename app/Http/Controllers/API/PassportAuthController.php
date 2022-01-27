@@ -185,10 +185,10 @@ class PassportAuthController extends AppBaseController
         //     return response()->json(['success' => false, 'message' => "Invalid client Id"], 400);
         // }
 
-        if ($request->client_secret != $client_secret)
-        {
-            return response()->json(['success' => false, 'message' => "Invalid client secret"], 400);
-        }
+        // if ($request->client_secret != $client_secret)
+        // {
+        //     return response()->json(['success' => false, 'message' => "Invalid client secret"], 400);
+        // }
 
 
         $setting = Setting::orderBy('id', 'asc')->first();
