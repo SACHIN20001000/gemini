@@ -589,7 +589,7 @@ export default {
       name: '',
       email: '',
       question: '',
-      product_id:this.$route.params.id
+      product_id:0
       })
       .rules({
         name: 'required',
@@ -603,7 +603,7 @@ export default {
       }),
     filterForm: form({
       serachtext: '',
-      product_id:this.$route.params.id
+      product_id:0
       })
       .rules({
         serachtext: 'required'
@@ -617,7 +617,7 @@ export default {
       rating: 0,
       title: '',
       description:'',
-      product_id:this.$route.params.id,
+      product_id:0,
       status:'',
       images:[]
       })
@@ -636,7 +636,7 @@ export default {
     photoFiles: [],
     faqDetail:[]
   }),
-  mounted(){
+  mounted: function() {
     this.getProdcut()
     this.getFaqs(this.$route.params.id)
     this.getReviews(this.$route.params.id)
@@ -649,13 +649,14 @@ export default {
       this.variations = this.product.variations
       var variation_attributes = this.product.variation_attributes
       var vaarrayCollection=[]
+      var _self = this
       if(variation_attributes.length>0){
-        const _this = this
+
         variation_attributes.filter(function(varitioonattr,vaindex){
           var vname = varitioonattr.name
           var vid = varitioonattr.id
           var subAttributeArray =[]
-          _this.product.attributes.filter(function(attr,attrindex){
+          _self.product.attributes.filter(function(attr,attrindex){
             if(varitioonattr.id == attr.attribute_id){
               subAttributeArray.push({id:attr.id,name:attr.name})
             }
@@ -708,10 +709,10 @@ export default {
     },
     variationUpdate(e,attributeId,attnameId,typ){
       var switchTumnb=0
-      var _this = this
+      var _self = this
       this.selectedattrIds.filter(function(selIds,selind){
         if(selIds.type == typ){
-          _this.selectedattrIds[selind].id = attributeId
+          _self.selectedattrIds[selind].id = attributeId
         }
       })
       var varientsArr=[]
@@ -719,13 +720,13 @@ export default {
       this.variations.filter(function(varients,varindex){
         var countMatch =0;
         varients.variation_attributes.filter(function(varientAttrs, index){
-          _this.selectedattrIds.filter(function(getarrtibuteId,indx){
+          _self.selectedattrIds.filter(function(getarrtibuteId,indx){
             if(getarrtibuteId.id == varientAttrs.attribute_id){
               countMatch++
             }
           })
         })
-        if(countMatch == _this.selectedattrIds.length){
+        if(countMatch == _self.selectedattrIds.length){
           switchTumnb = varindex
           varientsArr=varients
         }
@@ -799,13 +800,13 @@ export default {
     },
     faqSubmit(){
       this.faqForm.validate()
+      var _self = this
       if (!this.faqForm.validate().errors().any()) {
         var productId = this.$route.params.id
-        var _this = this
         this.faqForm.data.product_id=productId
         this.addFaq(this.faqForm.data)
         Object.keys(this.filterForm.data).forEach(function(key,index) {
-          _this.filterForm.data[key] = ''
+          _self.filterForm.data[key] = ''
         })
         this.$swal({
           title: "Success!",
@@ -832,15 +833,16 @@ export default {
     },
     submitReview(){
       this.reviewForm.validate()
+      var _self = this
       if (!this.reviewForm.validate().errors().any()) {
         const formData = new FormData()
-        var _this =this
+
         Object.keys(this.reviewForm.data).forEach(function(key,index) {
-          formData.append(key,_this.reviewForm.data[key])
+          formData.append(key,_self.reviewForm.data[key])
         })
         formData.append('product_id',this.$route.params.id)
         Object.keys(this.reviewForm.data).forEach(function(key,index) {
-            _this.reviewForm.data[key] = ''
+            _self.reviewForm.data[key] = ''
         })
         for(var i=0;i<this.photoFiles.length;i++){
           formData.append('images[' + i + ']', this.photoFiles[i]);
