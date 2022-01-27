@@ -176,19 +176,19 @@ class PassportAuthController extends AppBaseController
     public function oauth_token(TokenRequest $request)
     {
 
-print_r($request->all());die;
+print_r($request['client_id']);die;
         $client_secret = env('API_ACCESS_CLIENT_SECRET');
         $client_id = env('API_ACCESS_CLIENT_ID');
 
-        // if ($request->client_id != $client_id)
-        // {
-        //     return response()->json(['success' => false, 'message' => "Invalid client Id"], 400);
-        // }
+        if ($request->client_id != $client_id)
+        {
+            return response()->json(['success' => false, 'message' => "Invalid client Id"], 400);
+        }
 
-        // if ($request->client_secret != $client_secret)
-        // {
-        //     return response()->json(['success' => false, 'message' => "Invalid client secret"], 400);
-        // }
+        if ($request->client_secret != $client_secret)
+        {
+            return response()->json(['success' => false, 'message' => "Invalid client secret"], 400);
+        }
 
 
         $setting = Setting::orderBy('id', 'asc')->first();
