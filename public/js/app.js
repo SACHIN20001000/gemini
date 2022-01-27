@@ -5741,24 +5741,46 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var core_js_modules_es_object_keys_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.object.keys.js */ "./node_modules/core-js/modules/es.object.keys.js");
 /* harmony import */ var core_js_modules_es_object_keys_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_keys_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var vuejs_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuejs-form */ "./node_modules/vuejs-form/dist/index.js");
-/* harmony import */ var vuejs_form__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vuejs_form__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _Api_auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../Api/auth */ "./resources/js/Api/auth.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _assets_images_tp3_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../assets/images/tp3.png */ "./resources/js/assets/images/tp3.png");
-/* harmony import */ var _assets_images_tp2_png__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../assets/images/tp2.png */ "./resources/js/assets/images/tp2.png");
-/* harmony import */ var _assets_images_tp1_png__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../assets/images/tp1.png */ "./resources/js/assets/images/tp1.png");
-/* harmony import */ var _assets_images_dog2_png__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../assets/images/dog2.png */ "./resources/js/assets/images/dog2.png");
-/* harmony import */ var _assets_images_dog1_png__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../assets/images/dog1.png */ "./resources/js/assets/images/dog1.png");
-/* harmony import */ var _assets_images_input_edit_png__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../assets/images/input_edit.png */ "./resources/js/assets/images/input_edit.png");
-/* harmony import */ var _assets_images_store_profile_png__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../assets/images/store_profile.png */ "./resources/js/assets/images/store_profile.png");
-/* harmony import */ var _assets_images_ship_png__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../assets/images/ship.png */ "./resources/js/assets/images/ship.png");
+/* harmony import */ var core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.array.for-each.js */ "./node_modules/core-js/modules/es.array.for-each.js");
+/* harmony import */ var core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_for_each_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuejs_form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuejs-form */ "./node_modules/vuejs-form/dist/index.js");
+/* harmony import */ var vuejs_form__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vuejs_form__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _Api_auth__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../Api/auth */ "./resources/js/Api/auth.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _assets_images_tp3_png__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../assets/images/tp3.png */ "./resources/js/assets/images/tp3.png");
+/* harmony import */ var _assets_images_tp2_png__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../assets/images/tp2.png */ "./resources/js/assets/images/tp2.png");
+/* harmony import */ var _assets_images_tp1_png__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../assets/images/tp1.png */ "./resources/js/assets/images/tp1.png");
+/* harmony import */ var _assets_images_dog2_png__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../assets/images/dog2.png */ "./resources/js/assets/images/dog2.png");
+/* harmony import */ var _assets_images_dog1_png__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../assets/images/dog1.png */ "./resources/js/assets/images/dog1.png");
+/* harmony import */ var _assets_images_input_edit_png__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../assets/images/input_edit.png */ "./resources/js/assets/images/input_edit.png");
+/* harmony import */ var _assets_images_store_profile_png__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../assets/images/store_profile.png */ "./resources/js/assets/images/store_profile.png");
+/* harmony import */ var _assets_images_ship_png__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../assets/images/ship.png */ "./resources/js/assets/images/ship.png");
 
 
 
 
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -6026,14 +6048,14 @@ __webpack_require__.r(__webpack_exports__);
   name: "Profile",
   data: function data() {
     return {
-      tp3: _assets_images_tp3_png__WEBPACK_IMPORTED_MODULE_7__["default"],
-      tp2: _assets_images_tp2_png__WEBPACK_IMPORTED_MODULE_8__["default"],
-      tp1: _assets_images_tp1_png__WEBPACK_IMPORTED_MODULE_9__["default"],
-      dog2: _assets_images_dog2_png__WEBPACK_IMPORTED_MODULE_10__["default"],
-      dog1: _assets_images_dog1_png__WEBPACK_IMPORTED_MODULE_11__["default"],
-      input_edit: _assets_images_input_edit_png__WEBPACK_IMPORTED_MODULE_12__["default"],
-      store_profile: _assets_images_store_profile_png__WEBPACK_IMPORTED_MODULE_13__["default"],
-      ship: _assets_images_ship_png__WEBPACK_IMPORTED_MODULE_14__["default"],
+      tp3: _assets_images_tp3_png__WEBPACK_IMPORTED_MODULE_9__["default"],
+      tp2: _assets_images_tp2_png__WEBPACK_IMPORTED_MODULE_10__["default"],
+      tp1: _assets_images_tp1_png__WEBPACK_IMPORTED_MODULE_11__["default"],
+      dog2: _assets_images_dog2_png__WEBPACK_IMPORTED_MODULE_12__["default"],
+      dog1: _assets_images_dog1_png__WEBPACK_IMPORTED_MODULE_13__["default"],
+      input_edit: _assets_images_input_edit_png__WEBPACK_IMPORTED_MODULE_14__["default"],
+      store_profile: _assets_images_store_profile_png__WEBPACK_IMPORTED_MODULE_15__["default"],
+      ship: _assets_images_ship_png__WEBPACK_IMPORTED_MODULE_16__["default"],
       errorMessage: '',
       nameData: {
         'name': 1,
@@ -6042,7 +6064,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       errorMsg: '',
       shippingMsg: '',
-      shippingFrom: vuejs_form__WEBPACK_IMPORTED_MODULE_4___default()({
+      addMorePet: false,
+      shippingFrom: vuejs_form__WEBPACK_IMPORTED_MODULE_6___default()({
         name: '',
         email: '',
         password: '',
@@ -6080,15 +6103,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     accountDetails: function accountDetails() {
-      var _this = this;
+      var _this2 = this;
 
       Object.keys(this.accountDetails).reduce(function (formData, key) {
-        _this.shippingFrom[key] = _this.accountDetails[key];
+        _this2.shippingFrom[key] = _this2.accountDetails[key];
       });
     }
   },
-  computed: (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_15__.mapGetters)(['accountDetails', 'accountErrors', 'upProfile', 'Orders'])),
-  methods: (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])((0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_15__.mapActions)(['getProfile', 'updateProfile', 'getOrders'])), {}, {
+  computed: (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_17__.mapGetters)(['accountDetails', 'accountErrors', 'upProfile', 'Orders'])),
+  methods: (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])((0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_17__.mapActions)(['getProfile', 'updateProfile', 'getOrders'])), {}, {
     displayField: function displayField(fieldOpen) {
       this.shippingMsg = '';
 
@@ -6099,7 +6122,7 @@ __webpack_require__.r(__webpack_exports__);
 
         if (!this.shippingFrom.validate().errors().any()) {
           this.nameData[fieldOpen] = 1;
-          this.requestData(this.shippingFrom.data);
+          this.requestData(this.shippingFrom.data, '');
         }
       }
     },
@@ -6107,38 +6130,53 @@ __webpack_require__.r(__webpack_exports__);
       this.shippingFrom.validate();
 
       if (!this.shippingFrom.validate().errors().any()) {
-        this.requestData(this.shippingFrom.data);
+        this.requestData(this.shippingFrom.data, '');
       }
 
       this.shippingMsg = '';
     },
-    requestData: function requestData(profileData) {
-      var _this2 = this;
+    requestData: function requestData(profileData, config) {
+      var _this3 = this;
 
-      _Api_auth__WEBPACK_IMPORTED_MODULE_5__["default"].put("http://3.132.243.209/api/" + "update", profileData).then(function (response) {
-        _this2.shippingMsg = 'Shipping address update is successfully!';
-        var profileDetails = response.data.data;
-        Object.keys(profileDetails).reduce(function (formData, key) {
-          _this2.shippingFrom[key] = profileDetails[key];
+      if (config != '') {
+        _Api_auth__WEBPACK_IMPORTED_MODULE_7__["default"].post("http://3.132.243.209/api/" + "update", profileData, config).then(function (response) {
+          _this3.shippingMsg = 'Shipping address update is successfully!';
+          var profileDetails = response.data.data;
+          Object.keys(profileDetails).reduce(function (formData, key) {
+            _this3.shippingFrom[key] = profileDetails[key];
+          });
+        })["catch"](function (errors) {
+          errorMsg = errors;
+          _this3.shippingMsg = '';
         });
-      })["catch"](function (errors) {
-        errorMsg = errors;
-        _this2.shippingMsg = '';
-      });
+      } else {
+        _Api_auth__WEBPACK_IMPORTED_MODULE_7__["default"].post("http://3.132.243.209/api/" + "update", profileData).then(function (response) {
+          _this3.shippingMsg = 'Shipping address update is successfully!';
+          var profileDetails = response.data.data;
+          Object.keys(profileDetails).reduce(function (formData, key) {
+            _this3.shippingFrom[key] = profileDetails[key];
+          });
+        })["catch"](function (errors) {
+          errorMsg = errors;
+          _this3.shippingMsg = '';
+        });
+      }
     },
     uploadImage: function uploadImage(event) {
       var data = new FormData();
-      data.append('id', this.accountDetails.id);
-      data.append('name', 'my-picture');
-      data.append('file', event.target.files[0]);
+
+      var _this = this;
+
+      Object.keys(this.shippingFrom.data).forEach(function (key, index) {
+        data.append(key, _this.shippingFrom.data[key]);
+      });
+      data.append('profile_image', event.target.files[0]);
       var config = {
         header: {
           'Content-Type': 'multipart/form-data'
         }
       };
-      axios__WEBPACK_IMPORTED_MODULE_6___default().put("http://3.132.243.209/api/" + 'profileImage', data, config).then(function (response) {
-        console.log('image upload response > ', response);
-      });
+      this.requestData(data, config);
     }
   })
 });
@@ -37751,7 +37789,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\r\n/* Chrome, Safari, Edge, Opera */\r\ninput::-webkit-outer-spin-button,\r\ninput::-webkit-inner-spin-button {\r\n  -webkit-appearance: none;\r\n  margin: 0;\r\n}\r\n\r\n/* Firefox */\r\ninput[type=number] {\r\n  -moz-appearance: textfield;\r\n}\r\n\r\n/* banner*/\r\n.container_990 {max-width: 1050px; margin: 0 auto; padding: 0 15px; }\r\n.st_banner {background: #f6f6f6; padding: 60px 0; }\r\nh1.st_h {font-size: 37px; color: #9d9d9c; font-weight: 300; }\r\nh1.st_h + p {font-size: 18px; color: #9d9d9c; font-weight: 300; max-width: 500px; }\r\n.points {background: #ee343f; color: #fff; padding: 10px 30px; position: relative; display: inline-block; }\r\n.points:before {content: \"\"; border-top: 25px transparent; border-bottom: 25px solid transparent; border-right: 25px solid #ee343f; position: absolute; left: -25px; top: 0; }\r\n.points>span {font-size: 18px; font-weight: 300; display: block; line-height: 1; text-align: center; }\r\n.points>h1 {font-size: 62px; font-weight: 700; display: flex; align-items: center; margin: 0; justify-content: center; line-height: 1; letter-spacing: -2px; }\r\np.tm_p {font-size: 12px; font-weight: 300; text-align: center; margin: 5px 0 0 0; }\r\n.points>h1>label {font-size: 26px; text-transform: uppercase; margin: 0 0 0 10px; letter-spacing:0px; }\r\n\r\n/* forms tabs*/\r\n\r\n.st_tab_list {display: block; list-style: none; margin: 0; padding: 0; }\r\n .st_title { font-size: 27px; color: #9d9d9c; font-weight: 300; margin: 10px 0 15px 0; display: block; }\r\n.st_tab_list li button {font-size: 16px; color: #9d9d9c; font-weight: 300; background: no-repeat; padding: 3px 10px; border: 0; margin: 0 0 5px 0; }\r\n.st_tab_list li button:hover,.st_tab_list li button:focus {color: #666;}\r\n.st_tab_list li button.active{background: #f6f6f6; }\r\n div#profil_detail .lb_small {font-size: 12px; color: #9d9d9c; font-weight: 300; display: block; }\r\n.inp_edt {font-size: 20px; color: #9d9d9c; font-weight: 300; line-height: 1.4; margin: 0 0 15px 0; }\r\n.inp_edt i {margin-left: 10px; display: inline-flex; cursor: pointer; }\r\n.br_1 {border-left: 1px solid #c7c7c7; }\r\n.st_info >.container_990{padding: 50px 15px; }\r\n .bb-1 {border-bottom: 1px solid #c7c7c7; }\r\nul.pet_pro_list {list-style: none; padding: 0; margin: 0; display: flex; grid-gap: 40px; }\r\nul.pet_pro_list li a {display: block; width: 118px; height: 118px; background: #fff; border-radius: 50%; overflow: hidden; }\r\nlabel.uplod_btn {width: 118px; height: 118px; border-radius: 50%; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; position: relative; }\r\nlabel.uplod_btn input{position: absolute; top: 0; cursor: pointer; left: 0; width: 100%; height: 100%; z-index: 2; opacity: 0; }\r\nlabel.uplod_btn:after {content: \"+\"; width: 60px; height: 60px; border: 2px solid #5d5d5d; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 55px; color: #5d5d5d; transition-duration: .20s; font-weight: 300; padding-bottom: 13px; }\r\n.uplod_btn:hover:after{transform: scale(1.1); }\r\nul.pet_pro_list li a + span {color: #9d9d9c; display: block; text-align: center; font-weight: 300; font-size: 20px; }\r\n.srch_order {display: flex; justify-content: flex-end; position: absolute; top: -30px; width: 100%; right: 15px; }\r\ntable.produc_table th, table.produc_table td {padding: 20px; }\r\nth.data_head {font-size: 16px; font-weight: 300; color: #706f6f; line-height: 1.4; }\r\nth.data_head > span b {display: block; width: 100%; }\r\ntd.t_size span {font-size: 12px; display: block; color: #706f6f; font-weight: 300; padding-top: 5px; }\r\ntd.t_size {font-size: 16px; color: #706f6f; line-height: 1.1; font-weight: 400; }\r\ntd.t_price  span {font-size: 16px; color: #706f6f; display: block; line-height: 1.1; }\r\ntd.t_price {font-size: 25px; font-weight: 300; color: #706f6f; line-height: 1.1; }\r\ntd.pt_img a {display: flex; align-items: center; justify-content: center; }\r\ntd.t_btn {padding: 0 !important; }\r\n.src_wrap {position: relative; }\r\n.src_wrap i {position: absolute; right: 10px; top: 7px; opacity: .4; }\r\n.ps_rel {position: relative; }\r\n.src_wrap input {font-size: 14px; font-weight: 300; text-align: right; padding: 0 30px 0 0; height: 30px; border: 2px solid #aca4a6; }\r\ntd.t_btn button {color: #706f6f; background: #fff; border: 1px solid #706f6f; padding: 6px; display: block; width: 100%; }\r\ntd.t_btn button:hover {background: #ee343f; color: #fff; border: 1px solid; }\r\n\r\n\r\n@media only screen and (max-width: 768px)\r\n{\r\n    section.st_banner .row>div {max-width: 100%; width: 100%; text-align: center; }\r\nh1.st_h {font-size: 30px; margin-top: 20px; }\r\nh1.st_h + p br {display: none; }\r\nh1.st_h + p {font-size: 16px; }\r\n.btn_or_mb button {color: #706f6f; background: #fff; border: 1px solid #706f6f; padding: 6px; display: block; width: 220px; margin: 0 auto; }\r\nsection.st_banner {position: relative; margin-bottom: 60px; padding: 40px 0 80px 0; }\r\n.points {position: absolute; bottom: -70px; margin: 0 auto; left: 0; right: 0; max-width: 290px; }\r\nsection.st_info .row> .col-3, section.st_info .row> .col-9 {width: 100%; padding:0 20px !important; }\r\nh1.st_title { text-align: center;}\r\n.st_tab_list {display: flex; justify-content: center; }\r\n.st_tab_content {display: flex; justify-content: center; }\r\n.st_tab_content .form-group {display: flex; align-items: center; margin-bottom: 10px;}\r\n.inp_edt {margin: 0 10px; } label.lb_small {min-width: 60px; }\r\n.st_tab_list {display: flex; justify-content: center; margin-bottom: 20px; }\r\n.st_info >.container_990{padding: 40px 0;}\r\n.srch_order {position: relative; margin: 0 auto; display: flex; justify-content: center; margin: 30px 0 0 0; }\r\nul.pet_pro_list {flex-wrap: wrap; justify-content: center; grid-gap: 10px 40px; }\r\ntable.produc_table th, table.produc_table td {padding:10px 15px; }\r\ntable.produc_table tr th:first-child {width: 36%; }\r\ntd.t_price {padding: 0 !important; }\r\ntd.t_price {font-size: 20px; }\r\ntd.t_price span {font-size: 14px; }\r\n.btn_or_mb {margin-top: 20px; } table.produc_table tr>td:last-child ,table.produc_table tr>th:last-child {display: none; }\r\n .points:before {content: \"\"; border-bottom: 15px solid #ee343f; border-left: 15px solid transparent; border-right: 15px solid transparent; position: absolute; top: -15px; left: calc(50% - 13px); }\r\n}\r\n\r\n/* _______ Add form css _______ */\r\n.add-form {\r\n\twidth: 85%;\r\n  position: relative;\r\n}\r\n.add-form-field {\r\n\tmargin-bottom: 15px;\r\n  font-weight: 300;\r\n  border: 1px solid gainsboro;\r\n}\r\n.add-form-field:focus {\r\n\toutline: none;\r\n  box-shadow: none;\r\n}\r\n.update-btn {\r\n\tbackground: #00b7bc;\r\n\tborder: 0px;\r\n\theight: 42px;\r\n\tpadding: 0 30px;\r\n\tfont-size: 16px;\r\n\tfont-weight: 300;\r\n\tcolor: #fff;\r\n\tborder-radius: 3px;\r\n}\r\n.add-icon {\r\n  position: absolute;\r\n  bottom: 0;\r\n  right: 0;\r\n  font-size: 24px;\r\n  text-decoration: none;\r\n  background: #f6f6f6;\r\n  font-weight: 500;\r\n  color: #666;\r\n  width: 42px;\r\n  height: 42px;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n.add-icon:hover {\r\n  text-decoration: none;\r\n}\r\n\r\n@media only screen and (min-width: 769px)\r\n{\r\n    .btn_or_mb{display: none;}\r\n}\r\n.successMsg{\r\n  width: 100%;\r\n  color: #00FF00;\r\n  font-size: 14px;\r\n}\r\n.errorMsg{\r\n  width: 100%;\r\n  color: #DC143C;\r\n  font-size: 14px;\r\n}\r\n.updatelive{\r\n  display: flex;\r\n  flex-direction: row;\r\n}\r\n.updatelive input{\r\n  width: auto;\r\n  padding: 2px;\r\n}\r\n.readonly{\r\n  pointer-events: none;\r\n}\r\n.heading{\r\n  font-size: 15px;\r\n  color: #000;\r\n  font-weight: bold;\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\r\n/* Chrome, Safari, Edge, Opera */\r\ninput::-webkit-outer-spin-button,\r\ninput::-webkit-inner-spin-button {\r\n  -webkit-appearance: none;\r\n  margin: 0;\r\n}\r\n\r\n/* Firefox */\r\ninput[type=number] {\r\n  -moz-appearance: textfield;\r\n}\r\n\r\n/* banner*/\r\n.container_990 {max-width: 1050px; margin: 0 auto; padding: 0 15px; }\r\n.st_banner {background: #f6f6f6; padding: 60px 0; }\r\nh1.st_h {font-size: 37px; color: #9d9d9c; font-weight: 300; }\r\nh1.st_h + p {font-size: 18px; color: #9d9d9c; font-weight: 300; max-width: 500px; }\r\n.points {background: #ee343f; color: #fff; padding: 10px 30px; position: relative; display: inline-block; }\r\n.points:before {content: \"\"; border-top: 25px transparent; border-bottom: 25px solid transparent; border-right: 25px solid #ee343f; position: absolute; left: -25px; top: 0; }\r\n.points>span {font-size: 18px; font-weight: 300; display: block; line-height: 1; text-align: center; }\r\n.points>h1 {font-size: 62px; font-weight: 700; display: flex; align-items: center; margin: 0; justify-content: center; line-height: 1; letter-spacing: -2px; }\r\np.tm_p {font-size: 12px; font-weight: 300; text-align: center; margin: 5px 0 0 0; }\r\n.points>h1>label {font-size: 26px; text-transform: uppercase; margin: 0 0 0 10px; letter-spacing:0px; }\r\n\r\n/* forms tabs*/\r\n\r\n.st_tab_list {display: block; list-style: none; margin: 0; padding: 0; }\r\n .st_title { font-size: 27px; color: #9d9d9c; font-weight: 300; margin: 10px 0 15px 0; display: block; }\r\n.st_tab_list li button {font-size: 16px; color: #9d9d9c; font-weight: 300; background: no-repeat; padding: 3px 10px; border: 0; margin: 0 0 5px 0; }\r\n.st_tab_list li button:hover,.st_tab_list li button:focus {color: #666;}\r\n.st_tab_list li button.active{background: #f6f6f6; }\r\n div#profil_detail .lb_small {font-size: 12px; color: #9d9d9c; font-weight: 300; display: block; }\r\n.inp_edt {font-size: 20px; color: #9d9d9c; font-weight: 300; line-height: 1.4; margin: 0 0 15px 0; }\r\n.inp_edt i {margin-left: 10px; display: inline-flex; cursor: pointer; }\r\n.br_1 {border-left: 1px solid #c7c7c7; }\r\n.st_info >.container_990{padding: 50px 15px; }\r\n .bb-1 {border-bottom: 1px solid #c7c7c7; }\r\nul.pet_pro_list {list-style: none; padding: 0; margin: 0; display: flex; grid-gap: 40px; }\r\nul.pet_pro_list li a {display: block; width: 118px; height: 118px; background: #fff; border-radius: 50%; overflow: hidden; }\r\nlabel.uplod_btn {width: 118px; height: 118px; border-radius: 50%; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; position: relative; }\r\nlabel.uplod_btn input{position: absolute; top: 0; cursor: pointer; left: 0; width: 100%; height: 100%; z-index: 2; opacity: 0; }\r\nlabel.uplod_btn:after {content: \"+\"; width: 60px; height: 60px; border: 2px solid #5d5d5d; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 55px; color: #5d5d5d; transition-duration: .20s; font-weight: 300; padding-bottom: 13px; }\r\n.uplod_btn:hover:after{transform: scale(1.1); }\r\nul.pet_pro_list li a + span {color: #9d9d9c; display: block; text-align: center; font-weight: 300; font-size: 20px; }\r\n.srch_order {display: flex; justify-content: flex-end; position: absolute; top: -30px; width: 100%; right: 15px; }\r\ntable.produc_table th, table.produc_table td {padding: 20px; }\r\nth.data_head {font-size: 16px; font-weight: 300; color: #706f6f; line-height: 1.4; }\r\nth.data_head > span b {display: block; width: 100%; }\r\ntd.t_size span {font-size: 12px; display: block; color: #706f6f; font-weight: 300; padding-top: 5px; }\r\ntd.t_size {font-size: 16px; color: #706f6f; line-height: 1.1; font-weight: 400; }\r\ntd.t_price  span {font-size: 16px; color: #706f6f; display: block; line-height: 1.1; }\r\ntd.t_price {font-size: 25px; font-weight: 300; color: #706f6f; line-height: 1.1; }\r\ntd.pt_img a {display: flex; align-items: center; justify-content: center; }\r\ntd.t_btn {padding: 0 !important; }\r\n.src_wrap {position: relative; }\r\n.src_wrap i {position: absolute; right: 10px; top: 7px; opacity: .4; }\r\n.ps_rel {position: relative; }\r\n.src_wrap input {font-size: 14px; font-weight: 300; text-align: right; padding: 0 30px 0 0; height: 30px; border: 2px solid #aca4a6; }\r\ntd.t_btn button {color: #706f6f; background: #fff; border: 1px solid #706f6f; padding: 6px; display: block; width: 100%; }\r\ntd.t_btn button:hover {background: #ee343f; color: #fff; border: 1px solid; }\r\n\r\n\r\n@media only screen and (max-width: 768px)\r\n{\r\n    section.st_banner .row>div {max-width: 100%; width: 100%; text-align: center; }\r\nh1.st_h {font-size: 30px; margin-top: 20px; }\r\nh1.st_h + p br {display: none; }\r\nh1.st_h + p {font-size: 16px; }\r\n.btn_or_mb button {color: #706f6f; background: #fff; border: 1px solid #706f6f; padding: 6px; display: block; width: 220px; margin: 0 auto; }\r\nsection.st_banner {position: relative; margin-bottom: 60px; padding: 40px 0 80px 0; }\r\n.points {position: absolute; bottom: -70px; margin: 0 auto; left: 0; right: 0; max-width: 290px; }\r\nsection.st_info .row> .col-3, section.st_info .row> .col-9 {width: 100%; padding:0 20px !important; }\r\nh1.st_title { text-align: center;}\r\n.st_tab_list {display: flex; justify-content: center; }\r\n.st_tab_content {display: flex; justify-content: center; }\r\n.st_tab_content .form-group {display: flex; align-items: center; margin-bottom: 10px;}\r\n.inp_edt {margin: 0 10px; } label.lb_small {min-width: 60px; }\r\n.st_tab_list {display: flex; justify-content: center; margin-bottom: 20px; }\r\n.st_info >.container_990{padding: 40px 0;}\r\n.srch_order {position: relative; margin: 0 auto; display: flex; justify-content: center; margin: 30px 0 0 0; }\r\nul.pet_pro_list {flex-wrap: wrap; justify-content: center; grid-gap: 10px 40px; }\r\ntable.produc_table th, table.produc_table td {padding:10px 15px; }\r\ntable.produc_table tr th:first-child {width: 36%; }\r\ntd.t_price {padding: 0 !important; }\r\ntd.t_price {font-size: 20px; }\r\ntd.t_price span {font-size: 14px; }\r\n.btn_or_mb {margin-top: 20px; } table.produc_table tr>td:last-child ,table.produc_table tr>th:last-child {display: none; }\r\n .points:before {content: \"\"; border-bottom: 15px solid #ee343f; border-left: 15px solid transparent; border-right: 15px solid transparent; position: absolute; top: -15px; left: calc(50% - 13px); }\r\n}\r\n\r\n/* _______ Add form css _______ */\r\n.add-form {\r\n\twidth: 85%;\r\n  position: relative;\r\n}\r\n.add-form-field {\r\n\tmargin-bottom: 15px;\r\n  font-weight: 300;\r\n  border: 1px solid gainsboro;\r\n}\r\n.add-form-field:focus {\r\n\toutline: none;\r\n  box-shadow: none;\r\n}\r\n.update-btn {\r\n\tbackground: #00b7bc;\r\n\tborder: 0px;\r\n\theight: 42px;\r\n\tpadding: 0 30px;\r\n\tfont-size: 16px;\r\n\tfont-weight: 300;\r\n\tcolor: #fff;\r\n\tborder-radius: 3px;\r\n}\r\n.add-icon {\r\n  position: absolute;\r\n  bottom: 0;\r\n  right: 0;\r\n  font-size: 24px;\r\n  text-decoration: none;\r\n  background: #f6f6f6;\r\n  font-weight: 500;\r\n  color: #666;\r\n  width: 42px;\r\n  height: 42px;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n.add-icon:hover {\r\n  text-decoration: none;\r\n}\r\n\r\n@media only screen and (min-width: 769px)\r\n{\r\n    .btn_or_mb{display: none;}\r\n}\r\n.successMsg{\r\n  width: 100%;\r\n  color: #00FF00;\r\n  font-size: 14px;\r\n}\r\n.errorMsg{\r\n  width: 100%;\r\n  color: #DC143C;\r\n  font-size: 14px;\r\n}\r\n.updatelive{\r\n  display: flex;\r\n  flex-direction: row;\r\n}\r\n.updatelive input{\r\n  width: auto;\r\n  padding: 2px;\r\n}\r\n.readonly{\r\n  pointer-events: none;\r\n}\r\n.heading{\r\n  font-size: 15px;\r\n  color: #000;\r\n  font-weight: bold;\r\n}\r\n.petForm {\r\n  width: 100%;\r\n  display: flex;\r\n  flex-direction: row;\r\n}\r\n.petForm label.uplod_btn{\r\n  height: auto !important;\r\n}\r\n.petForm label{\r\n  margin-right: 40px;\r\n}\r\n.petForm label button{\r\n  padding: 10px;\r\n  background: #ccc;\r\n  color: #fff;\r\n  margin-top: 10px;\r\n  \r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -74871,18 +74909,54 @@ var render = function () {
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-8" }, [
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-3" }, [
-                _c("img", { attrs: { src: _vm.store_profile } }),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "file", accept: "image/*", id: "file-input" },
-                  on: {
-                    change: function ($event) {
-                      return _vm.uploadImage($event)
-                    },
-                  },
-                }),
-              ]),
+              _vm.accountDetails && _vm.accountDetails.profile_image != null
+                ? _c("div", { staticClass: "col-3" }, [
+                    _c("img", {
+                      attrs: {
+                        src: _vm.accountDetails.profile_image,
+                        width: "120px",
+                      },
+                    }),
+                    _vm._v(" "),
+                    _c("label", { staticClass: "uplod_btn" }, [
+                      _c("input", {
+                        attrs: {
+                          type: "file",
+                          id: "myfile",
+                          name: "myfile",
+                          accept: "image/*",
+                        },
+                        on: {
+                          change: function ($event) {
+                            return _vm.uploadImage($event)
+                          },
+                        },
+                      }),
+                    ]),
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.accountDetails && _vm.accountDetails.profile_image == ""
+                ? _c("div", { staticClass: "col-3" }, [
+                    _c("img", { attrs: { src: _vm.store_profile } }),
+                    _vm._v(" "),
+                    _c("label", { staticClass: "uplod_btn" }, [
+                      _c("input", {
+                        attrs: {
+                          type: "file",
+                          id: "myfile",
+                          name: "myfile",
+                          accept: "image/*",
+                        },
+                        on: {
+                          change: function ($event) {
+                            return _vm.uploadImage($event)
+                          },
+                        },
+                      }),
+                    ]),
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _vm._m(0),
             ]),
@@ -75442,8 +75516,73 @@ var render = function () {
             _c("span", [_vm._v("Luna")]),
           ]),
           _vm._v(" "),
-          _vm._m(4),
+          _c("li", [
+            _c("label", { staticClass: "uplod_btn" }, [
+              _c("input", {
+                attrs: { type: "button" },
+                on: {
+                  click: function ($event) {
+                    _vm.addMorePet = !_vm.addMorePet
+                  },
+                },
+              }),
+            ]),
+          ]),
         ]),
+        _vm._v(" "),
+        _vm.addMorePet
+          ? _c("div", { staticClass: "petForm" }, [
+              _c("h3", [_vm._v("Add More Pet")]),
+              _vm._v(" "),
+              _c("label", [
+                _vm._v("Name: "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.petname,
+                      expression: "petname",
+                    },
+                  ],
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.petname },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.petname = $event.target.value
+                    },
+                  },
+                }),
+              ]),
+              _vm._v(" "),
+              _c("label", { staticClass: "uplod_btn" }, [
+                _c("input", {
+                  attrs: {
+                    type: "file",
+                    id: "myfile",
+                    name: "myfile",
+                    accept: "image/*",
+                  },
+                  on: {
+                    change: function ($event) {
+                      return _vm.petImage($event)
+                    },
+                  },
+                }),
+              ]),
+              _vm._v(" "),
+              _c("label", [
+                _c(
+                  "button",
+                  { attrs: { type: "button" }, on: { click: _vm.addPet } },
+                  [_vm._v("Add Pet")]
+                ),
+              ]),
+            ])
+          : _vm._e(),
       ]),
     ]),
     _vm._v(" "),
@@ -75452,10 +75591,10 @@ var render = function () {
         _c("h1", { staticClass: "st_title" }, [_vm._v("My Orders")]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _vm._m(5),
+          _vm._m(4),
           _vm._v(" "),
           _c("div", { staticClass: "col-9 br_1 ps-5 ps_rel" }, [
-            _vm._m(6),
+            _vm._m(5),
             _vm._v(" "),
             _c("div", { staticClass: "tab-content st_order_content" }, [
               _c(
@@ -75558,11 +75697,13 @@ var render = function () {
                                                   "a",
                                                   { attrs: { href: "#" } },
                                                   [
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        orderItems.product_id
-                                                      )
-                                                    ),
+                                                    _c("img", {
+                                                      attrs: {
+                                                        src: orderItems.product
+                                                          .feature_image,
+                                                        width: "100px",
+                                                      },
+                                                    }),
                                                   ]
                                                 ),
                                               ]
@@ -75575,13 +75716,17 @@ var render = function () {
                                                 _vm._v(
                                                   "\n                        " +
                                                     _vm._s(
-                                                      orderItems.product_id
+                                                      orderItems.product.name
                                                     ) +
                                                     "\n                        "
                                                 ),
                                                 _c("span", [
                                                   _vm._v(
-                                                    "Princess | Size: " +
+                                                    "Princess: " +
+                                                      _vm._s(
+                                                        orderItems.unit_price
+                                                      ) +
+                                                      " | Size: " +
                                                       _vm._s(
                                                         orderItems.product_id
                                                       )
@@ -75607,7 +75752,7 @@ var render = function () {
                                               ]
                                             ),
                                             _vm._v(" "),
-                                            _vm._m(7, true),
+                                            _vm._m(6, true),
                                           ])
                                         }
                                       ),
@@ -75618,7 +75763,7 @@ var render = function () {
                             )
                           }),
                           _vm._v(" "),
-                          _vm._m(8),
+                          _vm._m(7),
                         ],
                         2
                       )
@@ -75746,16 +75891,6 @@ var staticRenderFns = [
       { staticClass: "tab-pane fade", attrs: { id: "st_payment" } },
       [_c("p", { staticClass: "heading" }, [_vm._v("Payment Details")])]
     )
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("label", { staticClass: "uplod_btn" }, [
-        _c("input", { attrs: { type: "file", id: "myfile", name: "myfile" } }),
-      ]),
-    ])
   },
   function () {
     var _vm = this
