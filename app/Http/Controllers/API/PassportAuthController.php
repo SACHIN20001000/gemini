@@ -180,10 +180,10 @@ class PassportAuthController extends AppBaseController
         $client_secret = env('API_ACCESS_CLIENT_SECRET');
         $client_id = env('API_ACCESS_CLIENT_ID');
 
-        if ($request->client_id != $client_id)
-        {
-            return response()->json(['success' => false, 'message' => "Invalid client Id"], 400);
-        }
+        // if ($request->client_id != $client_id)
+        // {
+        //     return response()->json(['success' => false, 'message' => "Invalid client Id"], 400);
+        // }
 
         if ($request->client_secret != $client_secret)
         {
