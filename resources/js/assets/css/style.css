@@ -140,3 +140,5 @@ html,body
         font-family: 'Gentona',Open Sans;
         background: #eeeeee;
 }
+
+.container_max{max-width:min(100% - 140px,2048px); padding: 0 15px; margin:0 auto; width: 100%;}

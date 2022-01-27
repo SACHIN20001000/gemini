@@ -1,6 +1,6 @@
 /* header*/
 .main_container{    max-width: 100%;  margin:0 auto;  min-height: 100vh; background: #fff;}
-.logo_nav {  max-width: 1150px; padding: 0 15px; margin: 0 auto;}
+.logo_nav {  max-width:min(100% - 140px,2048px); padding: 0 15px; margin: 0 auto;}
 .logo_nav {  display: flex;justify-content: space-between;align-items: center;  padding: 40px 0;}
 .right_info { display: flex; align-items: center;}
 form.srch_form { max-width: 100px; height: 30px; border-radius: 50px;  overflow: hidden; position: relative; margin: 0;}
