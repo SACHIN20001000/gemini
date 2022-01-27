@@ -781,9 +781,12 @@ p.ingr b {
    color: #c4b3b3;
    padding-left: 5px;
 }
+.star-rating{
+  pointer-events: none;
+}
 .star-rating i {
-   color: #e7ba2e;
-   margin-right: 3px;
+  color: #e7ba2e;
+  margin-right: 3px;
 }
 .star-inner-txt div {
    line-height: 1;
@@ -1296,5 +1299,15 @@ body {
   margin-right: 30px;
 }
 .recommend span input{
-  margin-right: 30px;
+  margin-right: 11px;
+  display: block;
+  width: 17px;
+  margin-top: 8px;
+}
+.varified-img span{
+  color: #fff;
+  background: #000;
+  font-size: 18px;
+  padding: 15px;
+  border-radius: 37px;
 }
