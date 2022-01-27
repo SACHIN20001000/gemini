@@ -106,9 +106,9 @@ Route::get('chowhub/rating/overall/{id}', [ChowhubRatingController::class, 'getO
 Route::get('stores/{store}', [StoreController::class, 'show']);
 Route::get('chowhub/stores', [ChowhubStoreController::class, 'index']);
 Route::get('chowhub/stores/{store}', [ChowhubStoreController::class, 'show']);
-
+Route::get('pet', [PetController::class, 'index']);
 Route::post('pet/create', [PetController::class, 'store']);
-Route::any('pet/{id}', [PetController::class, 'index']);
+
 
 
 
