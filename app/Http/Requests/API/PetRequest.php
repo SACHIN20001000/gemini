@@ -28,7 +28,7 @@ class PetRequest extends FormRequest
             'name' => 'required',
             'type' => 'required',
             'age' => 'required',
-            'image' => 'required',
+           
 
 
         ];
