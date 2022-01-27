@@ -398,7 +398,14 @@
               <div class="review_form_50">
                 <div class="review_form_label form_label">
                   <label>Rating </label>
-                  <input type="text" v-model='reviewForm.rating' />
+                  <star-rating
+                    v-model="reviewForm.rating"
+                    v-bind:increment="0.5"
+                    v-bind:max-rating="5"
+                    inactive-color="#ccc"
+                    active-color="#e7ba2e"
+                    v-bind:star-size="30">
+                  </star-rating>
                 </div>
                 <div class=" review_form_label form_label">
                   <label>Title of Review </label>
@@ -450,20 +457,25 @@
                 :key="rkey"
               >
                  <div class="col-md-4 col-lg-3">
-                    <div class="star-box">
+                    <div class="star-box" v-if="review && review.user">
                        <div class="varified-img">
-                          <img :src="bm_logo">
+                        <span>
+                          {{getProductIcon(review.user.name).toUpperCase()}}
+                        </span>
                        </div>
-                       <div class="star-inner-txt" v-if="review && review.user">
+                       <div class="star-inner-txt">
                           <h6>{{review.user.name}} <span class="green-txt">Varified Bayer</span></h6>
-                          <div><img :src="u_s"><span>United States</span></div>
+                          <div><img :src="u_s"><span>{{review.user.country}}</span></div>
                           <div class="star-rating">
-                             <i class="fa fa-star" aria-hidden="true"></i>
-                             <i class="fa fa-star" aria-hidden="true"></i>
-                             <i class="fa fa-star" aria-hidden="true"></i>
-                             <i class="fa fa-star" aria-hidden="true"></i>
-                             <i class="fa fa-star" aria-hidden="true"></i>
-                             {{review.rating}}
+                            <star-rating
+                              v-model="review.rating"
+                              v-bind:increment="0.5"
+                              v-bind:max-rating="5"
+                              inactive-color="#ccc"
+                              active-color="#e7ba2e"
+                              v-bind:star-size="15"
+                            >
+                            </star-rating>
                           </div>
                        </div>
                     </div>
@@ -507,7 +519,7 @@ import thumb_up from "../../assets/images/thumb-up.png"
 import u_s from "../../assets/images/u_s.jpg"
 
 import form from 'vuejs-form'
-
+import StarRating from 'vue-star-rating'
 import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 
@@ -515,7 +527,8 @@ export default {
   name:"Products",
   components: {
     Swiper,
-    SwiperSlide
+    SwiperSlide,
+    StarRating
   },
   directives: {
     swiper: directive
@@ -576,7 +589,7 @@ export default {
       name: '',
       email: '',
       question: '',
-      product_id:0
+      product_id:this.$route.params.id
       })
       .rules({
         name: 'required',
@@ -590,7 +603,7 @@ export default {
       }),
     filterForm: form({
       serachtext: '',
-      product_id:0
+      product_id:this.$route.params.id
       })
       .rules({
         serachtext: 'required'
@@ -601,10 +614,10 @@ export default {
     reviewForm: form({
       name: '',
       email: '',
-      rating: '',
+      rating: 0,
       title: '',
       description:'',
-      product_id:0,
+      product_id:this.$route.params.id,
       status:'',
       images:[]
       })
@@ -788,8 +801,18 @@ export default {
       this.faqForm.validate()
       if (!this.faqForm.validate().errors().any()) {
         var productId = this.$route.params.id
+        var _this = this
         this.faqForm.data.product_id=productId
         this.addFaq(this.faqForm.data)
+        Object.keys(this.filterForm.data).forEach(function(key,index) {
+          _this.filterForm.data[key] = ''
+        })
+        this.$swal({
+          title: "Success!",
+          text: "Question is created successfully.",
+          type: "success",
+          timer: 2000
+        })
         this.askQuestion=false
       }
     },
@@ -811,19 +834,25 @@ export default {
       this.reviewForm.validate()
       if (!this.reviewForm.validate().errors().any()) {
         const formData = new FormData()
-        formData.append('name', this.reviewForm.data.name)
-        formData.append('email', this.reviewForm.data.email)
-        formData.append('rating', this.reviewForm.data.rating)
-        formData.append('title', this.reviewForm.data.title)
-        formData.append('description', this.reviewForm.data.description)
-        formData.append('status', this.reviewForm.data.status)
-        formData.append('product_id', this.$route.params.id)
-        console.log(this.photoFiles);
+        var _this =this
+        Object.keys(this.reviewForm.data).forEach(function(key,index) {
+          formData.append(key,_this.reviewForm.data[key])
+        })
+        formData.append('product_id',this.$route.params.id)
+        Object.keys(this.reviewForm.data).forEach(function(key,index) {
+            _this.reviewForm.data[key] = ''
+        })
         for(var i=0;i<this.photoFiles.length;i++){
           formData.append('images[' + i + ']', this.photoFiles[i]);
         }
-
         this.addReview(formData)
+        this.$swal({
+          title: "Success!",
+          text: "Thanks for giving review.",
+          type: "success",
+          timer: 2000
+        })
+        this.writeReview=false
       }
     }
   }
