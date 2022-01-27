@@ -15,17 +15,12 @@ class PetController extends Controller
 {
     /**
      * @OA\Get(
-     *      path="/pet/{user_id}",
+     *      path="/pet",
      *      operationId="pet",
      *      tags={"Pet"},
-     *
-     *     summary="Pet",
-     *     *      @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         description="3",
-     *         required=true,
-     *      ),
+     *  *      security={
+     *          {"Bearer": {}},
+     *          },
      *     @OA\Response(
      *         response="200",
      *         description="Pages",
@@ -48,12 +43,19 @@ class PetController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function index($id)
+    public function index()
     {
 
-        $pets = Pet::where(['user_id'=>$id])->orderBy('id', 'asc')->get();
+        $user=auth('api')->user();
 
-        return  PetResource::collection($pets);
+        if(!empty($user)){
+            $pets = Pet::where(['user_id'=>$user->id])->orderBy('id', 'asc')->get();
+
+            return  PetResource::collection($pets);
+        }else{
+            return response()->json(['success' => false, 'message' => "No User Found"]);
+        }
+
     }
 
    /**

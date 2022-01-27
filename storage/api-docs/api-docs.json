@@ -1400,21 +1400,12 @@
                 }
             }
         },
-        "/pet/{user_id}": {
+        "/pet": {
             "get": {
                 "tags": [
                     "Pet"
                 ],
-                "summary": "Pet",
                 "operationId": "pet",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "3",
-                        "required": true
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Pages",
@@ -1435,7 +1426,12 @@
                     "500": {
                         "$ref": "#/components/schemas/Forbidden"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
             }
         },
         "/pet/create": {
