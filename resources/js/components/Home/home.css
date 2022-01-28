@@ -596,7 +596,7 @@ footer.main_footer ul li a:hover {
 }
 .grid_4>div>a h2 {
     position: absolute;
-    top: 0;
+    top: 20px;
     padding-top: 15px;
     font-size: 106px;
 }
