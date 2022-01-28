@@ -31,6 +31,9 @@ class CreateProductsTable extends Migration
             $table->integer('weight')->nullable();
             $table->integer('quantity')->nullable();
             $table->string('status')->nullable();
+            $table->string('seo_title')->nullable();
+            $table->longText('meta_description')->nullable();
+
 
             $table->timestamps();
         });

@@ -22,7 +22,7 @@
                     </div>
 
 
-                    <!--  start  --> 
+                    <!--  start  -->
                     <form  id="category-add-edit" action="{{isset($category) ? route('categories.update',$category->id) : route('categories.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{ isset($category) ? method_field('PUT'):'' }}
@@ -45,7 +45,7 @@
                                     <input class="form-control" name="feature_image"  type="file">
                                     @if(!empty($category->feature_image))
                                     <a href="{{$category->feature_image}}" target="_blank"><img src="{{$category->feature_image}}"  height="50" width="50"></a>
-                                    @endif                                    
+                                    @endif
                                 </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
@@ -71,6 +71,16 @@
                                         <option value="1" {{ (isset($category) && $category->status  == 1) ? 'selected' : '' }}>Active</option>
                                         <option value="0" {{ (isset($category) && $category->status  == 0) ? 'selected' : '' }}>Inactive</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Order</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="order"  placeholder="Enter your order" type="number" value="{{isset($category) ? $category->order : '' }}">
+                                   
+
                                 </div>
                             </div>
                             <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($category) ? 'Update' : 'Save' }}</button>

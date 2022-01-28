@@ -20,7 +20,7 @@ class CategoryController extends Controller
      *      security={
      *          {"Token": {}},
      *          },
-     *    
+     *
      *     summary="Categories",
      *     @OA\Response(
      *         response="200",
@@ -46,7 +46,7 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         $limit = $request->limit ? $request->limit : 20;
-        $categories = Category::with('childrens')->where(['parent' => 0, 'type' => 'Product'])->paginate($limit);
+        $categories = Category::with('childrens')->where(['parent' => 0, 'type' => 'Product'])->orderBy('order')->paginate($limit);
 
         return CategoryResource::collection($categories);
     }
@@ -60,7 +60,7 @@ class CategoryController extends Controller
      * security={
      *          {"Token": {}},
      *          },
-     *     
+     *
      *      @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -85,7 +85,7 @@ class CategoryController extends Controller
      * )
      * Store a newly created resource in storage.
      *
-     * 
+     *
      *
      * @return \Illuminate\Http\Response
      */

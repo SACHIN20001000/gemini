@@ -16,15 +16,17 @@ class CategoryResource extends JsonResource
     {
 
         return [
-           
+
             'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
+            'order' => $this->order,
+
             'status' => $this->status,
             'feature_image' => $this->feature_image,
             'status' => $this->status,
             'childrens' => self::collection($this->childrens)
-                               
+
         ];
     }
 }

@@ -32,10 +32,11 @@ class ProductResource extends JsonResource
             'name' => $this->productName,
             'sku' => $this->sku,
             'type' => $this->type,
+            'seo_title' => $this->seo_title,
+            'meta_description' => $this->meta_description,
             'banner_image' => $this->banner_image,
             'about_description' => $this->about_description,
             'feature_image' => $this->feature_image,
-
             'category' => new ProductCategoryResource($this->category),
             'store' => new ProductStoreResource($this->store),
             'variations' => ProductVariationsResource::collection($this->productVariation),

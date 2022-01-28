@@ -136,6 +136,9 @@ class ProductController extends Controller
             $products->category_id = $inputs['category_id'];
             $products->store_id = $inputs['store_id'];
             $products->status = $inputs['status'];
+            $products->seo_title = $inputs['seo_title'];
+            $products->meta_description = $inputs['meta_description'];
+
             if (!empty($inputs['variations']))
             {
                 $products->type = 'Variation';
@@ -319,7 +322,10 @@ class ProductController extends Controller
             $attributes[$data->variationAttributeName->name][] = $data->name;
         }
 
-        return view('admin.products.addEdit', compact('product', 'stores', 'categories', 'attributes', 'variations'));
+
+        $title = strtolower(str_replace(' ', '-', $product->productName));
+
+        return view('admin.products.addEdit', compact('product', 'stores', 'categories', 'attributes', 'variations','title'));
     }
 
     /**
@@ -349,6 +355,8 @@ class ProductController extends Controller
             $products->sku = $inputs['sku'];
             $products->weight = $inputs['weight'];
             $products->quantity = $inputs['qty'];
+            $products->seo_title = $inputs['seo_title'];
+            $products->meta_description = $inputs['meta_description'];
             if (!empty($inputs['banner_image']))
             {
                 $path = Storage::disk('s3')->put('images', $inputs['banner_image']);

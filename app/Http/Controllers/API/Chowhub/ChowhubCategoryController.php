@@ -18,7 +18,7 @@ class ChowhubCategoryController extends Controller
      *      security={
      *          {"Token": {}},
      *          },
-     *    
+     *
      *     summary="Chowhub Categories",
      *     @OA\Response(
      *         response="200",
@@ -44,7 +44,7 @@ class ChowhubCategoryController extends Controller
     public function index(Request $request)
     {
 
-        $categories = Category::with('childrens')->where(['parent' => 0, 'type' => 'Chowhub'])->all();
+        $categories = Category::with('childrens')->where(['parent' => 0, 'type' => 'Chowhub'])->orderBy('order')->all();
 
         return CategoryResource::collection($categories);
     }
@@ -58,7 +58,7 @@ class ChowhubCategoryController extends Controller
      * security={
      *          {"Token": {}},
      *          },
-     *     
+     *
      *      @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -83,7 +83,7 @@ class ChowhubCategoryController extends Controller
      * )
      * Store a newly created resource in storage.
      *
-     * 
+     *
      *
      * @return \Illuminate\Http\Response
      */

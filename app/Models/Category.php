@@ -15,7 +15,7 @@ class Category extends Model
         'updated_at' => 'datetime:M d, Y h:i:s',
     ];
     protected $fillable = [
-        'name', 'slug', 'parent', 'feature_image', 'status', 'type'
+        'name', 'slug', 'parent', 'feature_image', 'status', 'type','order'
     ];
 
     public function getCreatedAtAttribute($value)

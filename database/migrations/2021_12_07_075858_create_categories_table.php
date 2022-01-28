@@ -18,6 +18,8 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('feature_image');
+            $table->integer('order')->nullable();
+
             $table->string('type');
             $table->integer('parent')->default(0);
             $table->integer('status')->default(0);

@@ -16,7 +16,7 @@ class RatingGalleryResource extends JsonResource
         return [
 
             'id' => $this->id,
-            'rating_id' => $this->title,
+            'rating_id' => $this->rating_id,
             'image_path' => $this->image_path,
             'created_at' => $this->created_at,
 

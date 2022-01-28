@@ -16,7 +16,7 @@ class Product extends Model
         'updated_at' => 'datetime:M d, Y h:i:s',
     ];
     protected $fillable = [
-        'productName', 'type', 'banner_image', 'about_description', 'feature_image', 'description', 'real_price', 'sale_price', 'category_id', 'status'
+        'productName', 'type', 'banner_image', 'about_description', 'feature_image','seo_title','meta_description', 'description', 'real_price', 'sale_price', 'category_id', 'status'
     ];
 
     public function category()

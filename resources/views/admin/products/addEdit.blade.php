@@ -11,7 +11,9 @@
                 <span class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{isset($product) ? $product->name : 'Add New' }}</span>
             </div>
         </div>
-        <a class="btn btn-main-primary ml_auto" href="{{ route('products.index') }}">View Products</a>
+        @if(isset($product))
+        <a class="btn btn-main-primary ml_auto" href="{{ url('/products',$title.'/'.$product->id) }}">View Product</a>
+        @endif
     </div>
     <!-- breadcrumb -->
     <!--Row-->
@@ -290,6 +292,30 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>SEO</h4>
+                            <div class="row row-xs align-items-center mg-b-20" >
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">SEO TITLE</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <input class="form-control" name="seo_title" value="{{isset($product) ? $product->seo_title : '' }}" type="text" placeholder="Enter your seo title">
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20" >
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Meta Description</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+
+                                    <input class="form-control" name="meta_description" value="{{isset($product) ? $product->meta_description : '' }}" type="text" placeholder="Enter your meta description" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>
             </form>
             <!-- form end  -->
@@ -502,6 +528,7 @@
                      }
              });
              }
+
              }
              function del_desp_feild(id){
              var data = 'id=' + id;
@@ -513,6 +540,7 @@
                      data: data,
                      success:function(data){
                      $('#delFeild' + id + '').remove();
+
                      }
              });
              }
