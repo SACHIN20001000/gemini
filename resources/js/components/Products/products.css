@@ -134,8 +134,7 @@ ul.insta_nails>li>a>span {display: block; padding-top: 100%; position: relative;
 ul.insta_nails>li>a>span img {position: absolute; left: 0; top: 0; height: 100%; width: 100%; object-fit: cover; }
 h3.insta_head span {font-size: 23px; display: inline-block; background: #00b7bc; color: #fff; padding: 5px 15px; border-top-left-radius: 20px; border-top-right-radius: 20px; }
 h3.insta_head {text-align: center; border-bottom: 2px solid #00b7bc; }
-
-/* responsive */
+.pro_dec {font-weight: 300; font-size: 14px; }/* responsive */
 
 @media only screen and (max-width: 768px)
 {
@@ -442,7 +441,8 @@ ul.style_p1 li label {position: relative; }
 .quantity_select button {border: 1px solid rgba(0,0,0,.3); border-radius: 50px; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; background: #fff; font-size: 21px; padding: 0 0 4px; font-weight: 300; }
 .amount_pro input {max-width: 200px; padding: 0 20px; text-align: center; }
 button.btn_bl {background: #00b7bc; border: 0px; height: 48px; padding: 0 30px; font-size: 20px; font-weight: 300; color: #fff; }
-.cart_form {padding: 40px 0; border-top: 1px solid #0000003d; border-bottom: 1px solid #0000003d; margin: 30px 0; }
+.cart_form {padding: 40px 0; border-top: 1px solid #0000003d; border-bottom: 1px solid #0000003d; margin: 30px 0 !important; }
+.col-auto.amount_pro>span {background: #f6f6f6; border: 0px; height: 48px; border-radius: 0px; font-size: 27px; font-weight: 300; width: 200px; padding: 0 20px; display: block; text-align: center; }
 .cart_form>div {margin: 0; }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

@@ -7,6 +7,7 @@ const state = {
   userDetails:[],
   accountDetails:[],
   accountErrors:[],
+  pets:[],
   tokenStatus: localStorage.getItem("token"),
   tokenError:''
 }
@@ -20,6 +21,7 @@ const getters = {
   accountDetails: state => state.accountDetails,
   accountErrors: state => state.accountErrors,
   tokenStatus: state => state.tokenStatus,
+  pets: state => state.pets,
   tokenError: state => state.tokenError
 }
 
@@ -43,6 +45,13 @@ const actions = {
   async getProfile({commit}){
     HTTP.get(process.env.MIX_APP_APIURL+"profile").then((response) => {
       commit("accountDetails", response.data.data)
+    }).catch((errors) => {
+      commit("accountErrors", errors.response.data.message)
+    })
+  },
+  async getPets({commit}){
+    HTTP.get(process.env.MIX_APP_APIURL+"pet").then((response) => {
+      commit("pets", response.data.data)
     }).catch((errors) => {
       commit("accountErrors", errors.response.data.message)
     })
@@ -74,6 +83,9 @@ const mutations = {
   ),
   accountErrors: (state, accerror) => (
     state.accountErrors = accerror
+  ),
+  pets: (state, payload) => (
+    state.pets = payload
   ),
   tokenStatus: (state, tokenstatus) => (
     state.tokenStatus = tokenstatus

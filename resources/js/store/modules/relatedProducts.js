@@ -9,6 +9,7 @@ const state = {
   reviews: [],
   insertReview: [],
   filterfaqs: [],
+  overAllRating: [],
   reviewError: []
 }
 const getters = {
@@ -17,6 +18,7 @@ const getters = {
   filterfaqs: state => state.filterfaqs,
   reviews: state => state.reviews,
   insertReview: state => state.insertReview,
+  overAllRating: state => state.overAllRating,
   faqError: state => state.faqError,
   reviewError: state => state.reviewError
 }
@@ -50,6 +52,13 @@ const actions = {
       commit("reviewError", errors.response.data.message)
     })
   },
+  getOverAllRating({ commit }, productId) {
+    HTTP.get(process.env.MIX_APP_APIURL+'rating/overall/'+productId).then((response) => {
+      commit('overallRating', response.data)
+    }).catch((errors) => {
+      commit("reviewError", errors.response.data.message)
+    })
+  },
   addReview({ commit }, reviewdata) {
     let config = {
       header : {
@@ -78,6 +87,9 @@ const mutations = {
   ),
   reviewAdd: (state, payload) => (
     state.insertReview = payload
+  ),
+  overallRating: (state, payload) => (
+    state.overAllRating = payload
   ),
   faqError: (state, payload) => (
     state.faqError = payload
