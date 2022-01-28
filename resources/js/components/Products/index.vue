@@ -41,8 +41,20 @@
             <h2 class="pr_title">
               {{product.name}}
             </h2>
-            <div class="prod_rev">
-              <span>142 <i class="fa fa-star" aria-hidden="true"></i> Reviews</span>
+            <div class="prod_rev" v-if="overAllRating">
+              <span>
+                {{overAllRating.total_reviews}}
+                <star-rating
+                  v-model="overAllRating.overAllRating"
+                  v-bind:increment="0.5"
+                  v-bind:max-rating="5"
+                  inactive-color="#ccc"
+                  active-color="#e7ba2e"
+                  v-bind:star-size="15"
+                >
+                </star-rating>
+                Reviews
+              </span>
             </div>
             <div class="pro_dec" v-html="product.description"></div>
             <div class="select_type">
@@ -130,8 +142,20 @@
             <h2 class="pr_title">
               {{product.name}}
             </h2>
-            <div class="prod_rev">
-              <span>142 <i class="fa fa-star" aria-hidden="true"></i> Reviews</span>
+            <div class="prod_rev" v-if="overAllRating">
+              <span>
+                {{overAllRating.total_reviews}}
+                <star-rating
+                  v-model="overAllRating.overAllRating"
+                  v-bind:increment="0.5"
+                  v-bind:max-rating="5"
+                  inactive-color="#ccc"
+                  active-color="#e7ba2e"
+                  v-bind:star-size="15"
+                >
+                </star-rating>
+                Reviews
+              </span>
             </div>
             <div class="pro_dec" v-html="product.description"></div>
             <div class="row g-3 align-items-center cart_form">
@@ -335,13 +359,13 @@
         </div>
         <div class="row m-lr">
           <div class="col-sm-3 px-0">
-            <div class="light-box2">
+            <div class="light-box2" v-if="overAllRating">
               <div class="light-box-inner">
-                <p class="light-box-txt01">4.9/5.0</p>
-                <p class="light-btm">Based on 259 reviews</p>
+                <p class="light-box-txt01">{{overAllRating.overAllRating}}/5.0</p>
+                <p class="light-btm">Based on {{overAllRating.total_reviews}} reviews</p>
               </div>
               <div class="light-box-inner">
-                <p class="light-box-txt02">97%</p>
+                <p class="light-box-txt02">{{((overAllRating.overAllRating)*100)/overAllRating.total_reviews}}%</p>
                 <p class="light-btm">Recommend this product</p>
               </div>
             </div>
@@ -640,6 +664,7 @@ export default {
     this.getProdcut()
     this.getFaqs(this.$route.params.id)
     this.getReviews(this.$route.params.id)
+    this.getOverAllRating(this.$route.params.id)
   },
   watch: {
     addCartItems(){
@@ -681,10 +706,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['product', 'catErrors','addCartItems', 'faqs','filterfaqs','reviews'])
+    ...mapGetters(['product', 'catErrors','addCartItems', 'faqs','filterfaqs','reviews', 'overAllRating'])
   },
   methods: {
-    ...mapActions(['getProduct','addCartItem','getCartItems','addFaq','getFaqs','filterFaqs','getReviews','addReview']),
+    ...mapActions(['getProduct','addCartItem','getCartItems','addFaq','getFaqs','filterFaqs','getReviews','addReview', 'getOverAllRating']),
     getProdcut(){
       if (this.$route.params.id) {
         this.getProduct(this.$route.params.id)
