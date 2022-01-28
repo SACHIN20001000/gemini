@@ -318,6 +318,7 @@ class ProductController extends Controller
         {
             $attributes[$data->variationAttributeName->name][] = $data->name;
         }
+
         return view('admin.products.addEdit', compact('product', 'stores', 'categories', 'attributes', 'variations'));
     }
 
@@ -330,8 +331,12 @@ class ProductController extends Controller
      */
     public function update(UpdateProduct $request, $id)
     {
-
         $inputs = $request->all();
+        if(!isset($inputs['variations'][0]['id'])){
+            ProductVariation::where('product_id', $id)->delete();
+        }
+
+
         $tags = explode(",", $inputs['tag']);
         VariationAttributeValue::where('product_id', $id)->delete();
         if (!empty($inputs['productName']))
