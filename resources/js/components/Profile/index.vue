@@ -157,18 +157,15 @@
       <div class="container_990 bb-1">
         <h1 class="st_title">My Pet Profile</h1>
         <br>
-        <ul class="pet_pro_list">
-          <li>
+        <ul class="pet_pro_list" v-if="pets">
+          <li
+            v-for="(pet, pkey) in pets"
+            :key="pkey"
+          >
             <a href="#">
-              <img :src="dog1">
+              <img :src="pet.image">
             </a>
-            <span>Brutus</span>
-          </li>
-          <li>
-            <a href="#">
-              <img :src="dog2">
-            </a>
-            <span>Luna</span>
+            <span>{{pet.name}}</span>
           </li>
           <li>
             <label class="uplod_btn">
@@ -192,7 +189,7 @@
           </label>
           <label>
             Age:
-            <input type="text" v-model="petform.age">
+            <input type="number" v-model="petform.age">
           </label>
           <label class="uplod_btn">
             <input type="file" id="myfile" name="myfile" accept="image/*" @change="uploadPetImage($event)">
@@ -359,6 +356,7 @@ export default {
   },
   mounted(){
     this.getOrders()
+    this.getPets()
   },
   watch: {
     accountDetails(){
@@ -368,10 +366,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['accountDetails', 'accountErrors', 'upProfile', 'Orders'])
+    ...mapGetters(['accountDetails', 'accountErrors', 'upProfile', 'Orders', 'pets'])
   },
   methods: {
-    ...mapActions(['getProfile','updateProfile','getOrders']),
+    ...mapActions(['getProfile','updateProfile','getOrders', 'getPets']),
     displayField(fieldOpen){
       this.shippingMsg=''
       if(this.nameData[fieldOpen]==1){
@@ -453,6 +451,9 @@ export default {
         Object.keys(this.petform.data).forEach(function(key,index) {
           data.append(key,_this.petform.data[key])
         })
+        Object.keys(this.petform.data).forEach(function(key,index) {
+          this.petform.data[key]=''
+        })
         data.append('image', this.petImage)
         let config = {
           header : {
@@ -460,6 +461,7 @@ export default {
           }
         }
         this.petRequestData(data,config)
+        this.addMorePet=false
       }
     }
   }
