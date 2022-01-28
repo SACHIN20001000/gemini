@@ -333,7 +333,7 @@ class ChowhubProductController extends Controller
     public function update(UpdateProduct $request, $id)
     {
         $inputs = $request->all();
-        //echo '<pre>'; print_r($inputs); die;
+        ChowhubVariationAttributeValue::where('product_id', $id)->delete();
         $tags = explode(",", $inputs['tag']);
         if (!empty($inputs['productName']))
         {
@@ -422,7 +422,7 @@ class ChowhubProductController extends Controller
 
                 $attributeCombinations = [];
                 $attributesName = [];
-                ChowhubVariationAttributeValue::where('product_id', $id)->delete();
+
                 foreach ($inputs['attributes'] as $vakey => $attributeName)
                 {
 
