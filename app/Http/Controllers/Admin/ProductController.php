@@ -323,8 +323,6 @@ class ProductController extends Controller
         }
 
 
-        $title = strtolower(str_replace(' ', '-', $product->productName));
-
         return view('admin.products.addEdit', compact('product', 'stores', 'categories', 'attributes', 'variations','title'));
     }
 
