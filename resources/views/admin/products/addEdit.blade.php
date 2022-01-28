@@ -12,7 +12,7 @@
             </div>
         </div>
         @if(isset($product))
-        <a class="btn btn-main-primary ml_auto" href="/products/<?php echo strtolower(str_replace(' ', '-', $product->productName));?>/{{$product->id}}">View Product</a>
+        <a class="btn btn-main-primary ml_auto" target="_blank" href="/products/<?php echo strtolower(str_replace(' ', '-', $product->productName));?>/{{$product->id}}">View Product</a>
         @endif
     </div>
     <!-- breadcrumb -->
