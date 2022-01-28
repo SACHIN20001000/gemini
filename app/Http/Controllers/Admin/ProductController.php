@@ -323,7 +323,7 @@ class ProductController extends Controller
         }
 
 
-        return view('admin.products.addEdit', compact('product', 'stores', 'categories', 'attributes', 'variations','title'));
+        return view('admin.products.addEdit', compact('product', 'stores', 'categories', 'attributes', 'variations'));
     }
 
     /**
