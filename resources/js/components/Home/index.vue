@@ -91,7 +91,7 @@
             :key="key"
           >
             <router-link
-              v-if="key<2"
+              v-if="category.order==5 || category.order==6"
               :to="{ path: 'category/'+category.slug}"
             >
               <img
@@ -494,11 +494,9 @@ export default {
       const listCategories = this.categories
       var insertCat =[]
       listCategories.filter(function (category,catind) {
-        category.childrens.filter(function (chilsCategory,childCatind) {
-          if(childCatind < 2){
-            insertCat.push(chilsCategory)
-          }
-        })
+        if(catind<4){
+          insertCat.push(category)
+        }
       })
       this.firstCatbanners=insertCat
     },
