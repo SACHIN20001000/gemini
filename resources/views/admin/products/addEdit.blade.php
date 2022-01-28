@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
-<style>.imageSize{height: 100px;width: 100px;} .tag{color:black !important;background-color: aqua;font-size: 15px;}</style>
+<style>.imageSize{height: 100px;width: 100px;} .tag{color:black !important;background-color: aqua;font-size: 15px;}.PD_detail {display: flex; grid-gap: 20px;}.PD_detail .note-editor {width: 100%;}span.trash-icon {width: 50px;height: 50px;border-radius: 5px;border: 1px solid #dde2ef;display: flex;align-items: center;justify-content: center;font-size: 18px; color: #fff; background-color: #ee335e; border-color: #ee335e;}
+ </style>
 <div class="container">
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
@@ -238,6 +239,7 @@
                 </div>
 
                 <div class="col-lg-12 col-md-12">
+
                     <div class="card">
                         <div class="card-body">
                             <h4>Product Description Details</h4>
@@ -252,7 +254,11 @@
                                         <input type="file" name="product_detail[{{$counter}}][image_path]"  class="dropify"  data-default-file="{{$productDescriptionDetail->image_path}}" id="name_description" data-height="200" />
                                     </td>
                                     <td>
-                                        <textarea name="product_detail[{{$counter}}][value]" cols="30" rows="10" class="form-control" id="value_description">{{$productDescriptionDetail->value}}</textarea><i class="fas fa-trash-alt" onclick="del_desp_feild({{$productDescriptionDetail->id}})"></i>
+                                        <div class="PD_detail">
+                                            <textarea name="product_detail[{{$counter}}][value]" cols="30" rows="10" class="form-control" id="value_description">{{$productDescriptionDetail->value}}</textarea>
+                                            <span class="trash-icon"><i class="fas fa-trash-alt" onclick="del_desp_feild({{$productDescriptionDetail->id}})"></i>
+                                            </span>
+                                        </div>
                                     </td>
                                 <input type="hidden" name="product_detail[{{$counter}}][id]" value="{{$productDescriptionDetail->id}}">
                                 </tr>
@@ -500,7 +506,7 @@
              function del_desp_feild(id){
              var data = 'id=' + id;
              if (confirm('Are You Sure You Want To Delete This Feild')) {
-           
+
              $.ajax({
              type:'POST',
                      url:'/admin/delete-desp-feild',
