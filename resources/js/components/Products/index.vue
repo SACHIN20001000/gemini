@@ -90,9 +90,9 @@
               <div class="col-auto quantity_select">
                 <label for="staticEmail2" class="sr-only">Quantity</label>
                 <div class="number-input md-number-input">
-                  <button  class="minus">-</button>
-                  <input class="quantity" min="0" name="quantity" value="1" type="number">
-                  <button class="plus">+</button>
+                  <button  class="minus" @click="quantityMinus">-</button>
+                  <input class="quantity" min="0" v-model="quantity" type="number">
+                  <button class="plus" @click="quantityPlus">+</button>
                 </div>
               </div>
               <div class="col-auto amount_pro">
@@ -166,9 +166,9 @@
               <div class="col-auto quantity_select Desktop-friendly">
                 <label for="staticEmail2" class="sr-only">Quantity</label>
                 <div class="number-input md-number-input">
-                  <button  class="minus">-</button>
-                  <input class="quantity" min="0" name="quantity" value="1" type="number">
-                  <button class="plus">+</button>
+                  <button  class="minus" @click="quantityMinus">-</button>
+                  <input class="quantity" min="0" v-model="quantity" type="number">
+                  <button class="plus" @click="quantityPlus">+</button>
                 </div>
               </div>
               <div class="col-auto amount_pro">
@@ -581,6 +581,7 @@ export default {
     bm_logo:bm_logo,
     foot_5:foot_5,
     thumb_up:thumb_up,
+    quantity:1,
     u_s:u_s,
     review_01:review_01,
     ship:ship,
@@ -755,7 +756,7 @@ export default {
         const itemDetails= {
           key: cartkey,
           product_id: proId,
-          quantity: 1,
+          quantity: this.quantity,
           variation_product_id: vid
         }
         this.addCartItem(itemDetails)
@@ -921,6 +922,14 @@ export default {
     },
     closeViewer: function(){
       this.viewImg = false;
+    },
+    quantityPlus(){
+      this.quantity = this.quantity+1
+    },
+    quantityMinus(){
+      if(this.quantity>1){
+        this.quantity = this.quantity-1
+      }
     }
   }
 }
