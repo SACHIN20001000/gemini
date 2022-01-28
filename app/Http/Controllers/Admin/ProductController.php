@@ -333,7 +333,7 @@ class ProductController extends Controller
 
         $inputs = $request->all();
         $tags = explode(",", $inputs['tag']);
-
+        VariationAttributeValue::where('product_id', $id)->delete();
         if (!empty($inputs['productName']))
         {
             $products = Product::find($id);
@@ -424,13 +424,14 @@ class ProductController extends Controller
                     $tagValue->save();
                 }
             }
+
             if (!empty($inputs['attributes']))
             {
 
 
                 $attributeCombinations = [];
                 $attributesName = [];
-                VariationAttributeValue::where('product_id', $id)->delete();
+
                 foreach ($inputs['attributes'] as $vakey => $attributeName)
                 {
 
@@ -600,6 +601,16 @@ class ProductController extends Controller
     {
 
         Product::find($request->id)->update(['banner_image' => null]);
+
+        return Response()->json([
+                    "success" => 'Deleted Successfully',
+        ]);
+    }
+
+    public function delete_desp_feild(Request $request)
+    {
+
+        ProductDescriptionDetail::find($request->id)->delete();
 
         return Response()->json([
                     "success" => 'Deleted Successfully',

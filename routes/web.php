@@ -104,6 +104,7 @@ Route::prefix('admin')->group(function ()
         Route::post('save-photo', [App\Http\Controllers\Admin\ProductController::class, 'save_photo'])->name('save_photo');
         Route::post('delete-photo', [App\Http\Controllers\Admin\ProductController::class, 'del_photo'])->name('del_photo');
         Route::post('delete-banner-photo', [App\Http\Controllers\Admin\ProductController::class, 'del_banner_photo']);
+        Route::post('delete-desp-feild', [App\Http\Controllers\Admin\ProductController::class, 'delete_desp_feild']);
 
         Route::post('delete-variation-img', [App\Http\Controllers\Admin\ProductController::class, 'del_variationPhoto'])->name('del_variationPhoto');
         Route::resource('brands', BrandsController::class);

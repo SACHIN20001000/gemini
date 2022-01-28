@@ -236,14 +236,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12 col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4>About Description</h4>
-                            <textarea name="about_description"  id="aboutDescription">{{isset($product) ? $product->about_description : '' }}</textarea>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="col-lg-12 col-md-12">
                     <div class="card">
                         <div class="card-body">
@@ -254,12 +247,12 @@
                                 @foreach($product->productDescriptionDetail as $productDescriptionDetail)
 
 
-                                <tr>
+                                <tr id="delFeild{{$productDescriptionDetail->id}}">
                                     <td>
                                         <input type="file" name="product_detail[{{$counter}}][image_path]"  class="dropify"  data-default-file="{{$productDescriptionDetail->image_path}}" id="name_description" data-height="200" />
                                     </td>
                                     <td>
-                                        <textarea name="product_detail[{{$counter}}][value]" cols="30" rows="10" class="form-control" id="value_description">{{$productDescriptionDetail->value}}</textarea>
+                                        <textarea name="product_detail[{{$counter}}][value]" cols="30" rows="10" class="form-control" id="value_description">{{$productDescriptionDetail->value}}</textarea><i class="fas fa-trash-alt" onclick="del_desp_feild({{$productDescriptionDetail->id}})"></i>
                                     </td>
                                 <input type="hidden" name="product_detail[{{$counter}}][id]" value="{{$productDescriptionDetail->id}}">
                                 </tr>
@@ -280,6 +273,14 @@
                             </table>
                             @endif
                             <span class="add-more-button"><button type="button" name="add" onclick="productsEvent.addDescription()"  id="add_desp" data-id="{{isset($product->productDescriptionDetail[0]['image_path']) ? 10 : 0 }}" class="btn btn-success">Add More</button></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>About Description</h4>
+                            <textarea name="about_description"  id="aboutDescription">{{isset($product) ? $product->about_description : '' }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -492,6 +493,20 @@
                      data: data,
                      success:function(data){
                      $('#imgbannerDel' + id + '').remove();
+                     }
+             });
+             }
+             }
+             function del_desp_feild(id){
+             var data = 'id=' + id;
+             if (confirm('Are You Sure You Want To Delete This Feild')) {
+           
+             $.ajax({
+             type:'POST',
+                     url:'/admin/delete-desp-feild',
+                     data: data,
+                     success:function(data){
+                     $('#delFeild' + id + '').remove();
                      }
              });
              }
