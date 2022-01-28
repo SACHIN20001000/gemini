@@ -333,6 +333,9 @@ class ChowhubProductController extends Controller
     public function update(UpdateProduct $request, $id)
     {
         $inputs = $request->all();
+        if(!isset($inputs['variations'][0]['id'])){
+            ChowhubProductVariation::where('product_id', $id)->delete();
+        }
         ChowhubVariationAttributeValue::where('product_id', $id)->delete();
         $tags = explode(",", $inputs['tag']);
         if (!empty($inputs['productName']))
