@@ -12,14 +12,15 @@
           <div class="col-md-6 pe-4 ">
             <div class="main_img">
               <div class="thumb-example">
-                <!-- swiper1 -->
                 <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">
                   <swiper-slide
                     v-for="(variation, varky) in variations"
                     :key="varky"
                     :class="'slide-'+varky"
                   >
-                    <img :src="variation.image" />
+                    <div class="swiper-zoom-container">
+                      <img :src="variation.image" />
+                    </div>
                   </swiper-slide>
                   <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
                   <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
@@ -42,8 +43,8 @@
               {{product.name}}
             </h2>
             <div class="prod_rev" v-if="overAllRating">
-              <span class="rate_flex">
-               <div> {{overAllRating.total_reviews}}</div>
+              <span>
+                {{overAllRating.total_reviews}}
                 <star-rating
                   v-model="overAllRating.overAllRating"
                   v-bind:increment="0.5"
@@ -53,7 +54,7 @@
                   v-bind:star-size="15"
                 >
                 </star-rating>
-                <div>Reviews</div>
+                Reviews
               </span>
             </div>
             <div class="pro_dec" v-html="product.description"></div>
@@ -114,13 +115,16 @@
             <div class="main_img">
               <div class="thumb-example">
                 <!-- swiper1 -->
+                <a class="btn-close f-r"><img :src="thumb_up" @click="closeViewer" alt="" title=""></a>
                 <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">
                   <swiper-slide
                     v-for="(gallery, gky) in product.gallary"
                     :key="gky"
                     :class="'slide-'+gky"
                   >
-                    <img :src="gallery.image_path" />
+                    <div class="swiper-zoom-container">
+                      <img :src="gallery.image_path" />
+                    </div>
                   </swiper-slide>
                   <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
                   <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
@@ -365,7 +369,7 @@
                 <p class="light-btm">Based on {{overAllRating.total_reviews}} reviews</p>
               </div>
               <div class="light-box-inner">
-                <p class="light-box-txt02">{{((overAllRating.overAllRating)*100)/overAllRating.total_reviews}}%</p>
+                <p class="light-box-txt02">{{getPercentage(overAllRating.overAllRating, overAllRating.total_reviews)}}%</p>
                 <p class="light-btm">Recommend this product</p>
               </div>
             </div>
@@ -380,19 +384,27 @@
             </button>
             <button class="Large-btn">Review filter</button>
           </div>
-          <div class="col-sm-7 reviews-img-section">
-            <img :src="review_01">
-            <img :src="review_01">
-            <img :src="review_01">
-            <img :src="review_01">
-            <img :src="review_01">
-            <img :src="review_01">
-            <img :src="review_01">
-            <img :src="review_01">
-            <img :src="review_01">
-            <img :src="review_01">
-            <img :src="review_01">
-            <img :src="review_01">
+          <div class="col-sm-7 reviews-img-section" v-if="reviews">
+            <div
+              v-for="(review,rkey) in reviews"
+              :key="rkey"
+            >
+              <div v-if="review.images">
+                <img
+                  :src="review.images.image_path"
+                  width="90px"
+                >
+                <!--<span
+                  v-for="(img,ikey) in review.images"
+                  :key="ikey"
+                >
+                <img
+                  v-if="img"
+                  :src="img.image_path"
+                >
+              </span>-->
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -526,6 +538,9 @@
 <style>
   @import './products.css';
   @import './swipe.css';
+  .viewImg .swiper-slide img {
+    width: 100%;
+  }
 </style>
 <script>
 import {mapActions,mapGetters} from "vuex"
@@ -588,6 +603,20 @@ export default {
       spaceBetween: 15,
       observer: true,
       observeParents: true,
+      zoom: true,
+      allowTouchMove: true,
+      width: window.innerWidth,
+      notNextTick: false,
+      loadPrevNext: true,
+      lazy: {
+          loadPrevNext: true,
+        },
+      lazyLoading : true,
+      lazyLoadingInPrevNext: true,
+      grabCursor: true,
+      pagination: {
+          el: ".swiper-pagination"
+      },
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
@@ -881,6 +910,17 @@ export default {
         })
         this.writeReview=false
       }
+    },
+    getPercentage(overAllRating, total_reviews){
+      if(overAllRating > 0 && total_reviews > 0){
+        var calval = Number(overAllRating)*100
+        return Number(calval)/5
+      }else{
+        return ''
+      }
+    },
+    closeViewer: function(){
+      this.viewImg = false;
     }
   }
 }

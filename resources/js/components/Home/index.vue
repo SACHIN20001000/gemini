@@ -423,6 +423,7 @@ import {mapActions,mapGetters} from "vuex"
 
 export default {
   name:"Home",
+  title:"Home",
   components: { Slick },
   data: function () {
     return {
