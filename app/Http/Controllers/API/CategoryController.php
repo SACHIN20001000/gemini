@@ -46,7 +46,7 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         $limit = $request->limit ? $request->limit : 20;
-        $categories = Category::with('childrens')->where(['type' => 'Product'])->orderBy('order')->paginate($limit);
+        $categories = Category::with('childrens')->where(['status' => 1, 'type' => 'Product'])->orderBy('order')->paginate($limit);
 
         return CategoryResource::collection($categories);
     }
