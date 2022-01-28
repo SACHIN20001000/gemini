@@ -32,6 +32,6 @@ class Rating extends Model
     }
     public function ratingGallery()
     {
-        return $this->belongsTo(RatingGallery::class,'id','rating_id');
+        return $this->hasMany(RatingGallery::class,'rating_id','id');
     }
 }
