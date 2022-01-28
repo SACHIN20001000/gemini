@@ -22,16 +22,30 @@ h1.st_h + p {font-size: 18px; color: #9d9d9c; font-weight: 300; max-width: 500px
 .points>h1 {font-size: 62px; font-weight: 700; display: flex; align-items: center; margin: 0; justify-content: center; line-height: 1; letter-spacing: -2px; }
 p.tm_p {font-size: 12px; font-weight: 300; text-align: center; margin: 5px 0 0 0; }
 .points>h1>label {font-size: 26px; text-transform: uppercase; margin: 0 0 0 10px; letter-spacing:0px; }
+ul.pet_pro_list img {max-width: 100%; border: 1px solid rgba(0,0,0,.1); border-radius: 50%; }
 
+/*pet form*/
+.petForm>label {position: relative; padding-top: 30px;  flex-grow: 1;}
+.petForm>label>span {position: absolute; top: 0; font-size: 16px; color: #5d5d5d; font-weight: 300; }
+.petForm input, .petForm select {height: 40px; border: 1px solid rgba(0,0,0,.1); }
+.petForm {margin-top: 35px; background: #f6f6f6; padding:10px 20px; }
+label.uplod_btn.upld_small {width: 40px; height: 40px !important; }
+.petForm select {width: 120px; }
+div#profil_detail input {height: 40px; border: 1px solid rgba(0,0,0,.1); font-size: 15px; padding: 0 0 0 15px; }
+p.heading {font-size: 22px; color: #9d9d9c; font-weight: 300; margin: 0px 0 15px 0; display: block; }
+ .petForm label.uplod_btn.upld_small:after {content: "+"; width: 40px; height: 40px; font-size: 43px;}
+.petForm button {background: #00b7bc !important;margin: 0 !important; border: 1px solid #00b7bc; font-size: 15px; height: 40px; padding: 0 40px !important; }
+.inp_edt .fa-check {width: 40px; height: 40px; line-height: 37px; border: 2px solid #00b7bc; text-align: center; justify-content: center; color: #00b7bc; font-size: 18px; }
+.inp_edt .fa-check:hover{background: #00b7bc; color: #fff; }
 /* forms tabs*/
 
-.st_tab_list {display: block; list-style: none; margin: 0; padding: 0; }
+.st_tab_list {display: block !important; list-style: none; margin: 0; padding: 0; }
  .st_title { font-size: 27px; color: #9d9d9c; font-weight: 300; margin: 10px 0 15px 0; display: block; }
 .st_tab_list li button {font-size: 16px; color: #9d9d9c; font-weight: 300; background: no-repeat; padding: 3px 10px; border: 0; margin: 0 0 5px 0; }
 .st_tab_list li button:hover,.st_tab_list li button:focus {color: #666;}
 .st_tab_list li button.active{background: #f6f6f6; }
- div#profil_detail .lb_small {font-size: 12px; color: #9d9d9c; font-weight: 300; display: block; }
-.inp_edt {font-size: 20px; color: #9d9d9c; font-weight: 300; line-height: 1.4; margin: 0 0 15px 0; }
+ div#profil_detail .lb_small {font-size: 12px; color: #9d9d9c; font-weight: 300; display: block;margin:0; }
+.inp_edt {font-size: 20px; color: #9d9d9c; font-weight: 300; line-height: 1.4; margin: 0 0 15px 0;align-items: center; }
 .inp_edt i {margin-left: 10px; display: inline-flex; cursor: pointer; }
 .br_1 {border-left: 1px solid #c7c7c7; }
 .st_info >.container_990{padding: 50px 15px; }

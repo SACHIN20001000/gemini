@@ -175,23 +175,23 @@
         </ul>
         <div class="petForm" v-if="addMorePet">
           <label>
-            Name: <input type="text" v-model="petform.name">
+            <span>Name:</span> <input type="text" v-model="petform.name">
             <span class="error_validation" v-if="petform.errors().has('name')">
               {{ petform.errors().get('name') }}
             </span>
           </label>
           <label>
-            Type:
+            <span>Type:</span>
             <select v-model="petform.type">
               <option value="dog">Dog</option>
               <option value="cat">Cat</option>
             </select>
           </label>
           <label>
-            Age:
+            <span>Age:</span>
             <input type="number" v-model="petform.age">
           </label>
-          <label class="uplod_btn">
+          <label class="uplod_btn upld_small">
             <input type="file" id="myfile" name="myfile" accept="image/*" @change="uploadPetImage($event)">
           </label>
           <label><button type="button" @click="addPet">Add Pet</button></label>

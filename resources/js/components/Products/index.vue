@@ -42,8 +42,8 @@
               {{product.name}}
             </h2>
             <div class="prod_rev" v-if="overAllRating">
-              <span>
-                {{overAllRating.total_reviews}}
+              <span class="rate_flex">
+               <div> {{overAllRating.total_reviews}}</div>
                 <star-rating
                   v-model="overAllRating.overAllRating"
                   v-bind:increment="0.5"
@@ -53,7 +53,7 @@
                   v-bind:star-size="15"
                 >
                 </star-rating>
-                Reviews
+                <div>Reviews</div>
               </span>
             </div>
             <div class="pro_dec" v-html="product.description"></div>

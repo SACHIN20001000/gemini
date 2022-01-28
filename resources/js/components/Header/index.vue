@@ -25,6 +25,7 @@
             <input type="submit" value="">
           </form>
         </div>
+
         <div class="profile_bar" v-if="token && token != null">
           <div class="pr_img">
             <img
@@ -34,18 +35,37 @@
           </div>
           <div class="pr_info">
             <label>Susan M.</label>
+                    <div class="dropdown">
+
+ 
             <router-link
               :to="{ path: '/profile'}"
-              class="alink"
+              class="alink" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
             >
-              MY PROFILE
+              MY PROFILE <i class="fa fa-caret-down" aria-hidden="true"></i>
             </router-link>
-            <router-link
-              :to="{ path: '/signout'}"
-              class="alink"
-            >
-              LogOut
-            </router-link>
+
+              <ul class="dropdown-menu profile_drop" aria-labelledby="dropdownMenuButton1">
+                <li>
+                  <router-link
+                  :to="{ path: '/profile'}"
+                  class="alink"
+                  >
+                  MY ACCOUNT
+                  </router-link>
+                  </li>
+
+                <li>
+                  <router-link
+                  :to="{ path: '/signout'}"
+                  class="alink"
+                  >
+                  LogOut
+                  </router-link>
+                </li>
+              </ul>
+</div>
+            
           </div>
         </div>
         <div class="profile_bar" v-else>
@@ -89,7 +109,7 @@
         <div class="container-fluid">
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-              <li class="nav-item">
+              <li class="nav-item  active">
                 <a class="nav-link " aria-current="page" href="#">SHOP</a>
               </li>
               <li class="nav-item">
