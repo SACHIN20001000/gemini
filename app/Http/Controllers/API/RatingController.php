@@ -182,7 +182,7 @@ class RatingController extends Controller
             $totalCount=count($overall);
                 $overAllRating=$totalSum/$totalCount;
                 return response()->json([
-                    'success' => true,'overAllRating' => $overAllRating,'total-reviews' =>$totalCount
+                    'success' => true,'overAllRating' => $overAllRating,'total_reviews' =>$totalCount
                 ]);
         }
             return response()->json([
