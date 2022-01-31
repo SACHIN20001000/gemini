@@ -9,7 +9,9 @@
                 <h4 class="content-title mb-0 my-auto">User</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{isset($user) ? $user->email : 'Add New' }}</span>
             </div>
         </div>
-        <a class="btn btn-main-primary ml_auto" href="{{ route('users.index') }}">View User</a>
+        <a class="btn btn-main-primary ml_auto" style="margin-left: 740px;" href="{{ route('users.index') }}">View User</a>
+        <a class="btn btn-main-primary ml_auto" href="{{ route('users.show', $user->id ) }}">View Pets</a>
+
     </div>
     <!-- breadcrumb -->
     <!--Row-->
@@ -21,9 +23,9 @@
                     <div class="main-content-label mg-b-5">
                         {{isset($user) ? 'Update # '.$user->id : 'Add New' }}
                     </div>
-                    
 
-                    <!--  start  --> 
+
+                    <!--  start  -->
                     <form  id="user-add-edit" action="{{isset($user) ? route('users.update',$user->id) : route('users.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{ isset($user) ? method_field('PUT'):'' }}
@@ -66,8 +68,8 @@
                                 </div>
                             </div>
 
-                      
-                            
+
+
                             <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($user) ? 'Update' : 'Save' }}</button>
                         </div>
                 </div>
