@@ -35,9 +35,11 @@ class UserController extends Controller
                             ->addColumn('action', function ($row)
                             {
                                 $action = '<span class="action-buttons">
+                                <a  href="' . route("users.show", $row) . '" class="btn btn-sm btn-info btn-b"><i class="fa fa-eye" aria-hidden="true"></i>
+                                </a>
                         <a  href="' . route("users.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                         </a>
-                        
+
                         <a href="' . route("users.destroy", $row) . '"
                                 class="btn btn-sm btn-danger remove_us"
                                 title="Delete User"
@@ -97,7 +99,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        
+
+        return view('admin.pet.index',compact('id'));
     }
 
     /**

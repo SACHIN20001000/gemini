@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\Chowhub\ChowhubProductController;
 
 
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\PetController;
+
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PageCategoriesController;
@@ -111,6 +113,13 @@ Route::prefix('admin')->group(function ()
         Route::resource('settings', SettingController::class);
 
         Route::resource('users', UserController::class);
+        Route::any('pets/{id}', [PetController::class,'show'])->name('pets');
+        Route::any('pets/edit/{id}', [PetController::class,'edit'])->name('edit');
+        Route::any('pets/update/{id}', [PetController::class,'update'])->name('update');
+
+        Route::any('pets/destroy/{id}', [PetController::class,'destroy'])->name('destroy');
+
+
         Route::get('view-profile', [App\Http\Controllers\Admin\AdminController::class, 'viewProfile'])->name('viewProfile');
         Route::get('update-profile', [App\Http\Controllers\Admin\AdminController::class, 'updateProfile'])->name('updateProfile');
         Route::post('update-user-profile/{id}', [App\Http\Controllers\Admin\AdminController::class, 'updateUserProfile'])->name('updateUserProfile');
