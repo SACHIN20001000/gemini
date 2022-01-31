@@ -335,7 +335,7 @@ ul.foot_mobil li a {font-size: 17px; }
 .grid_4>div>a img{max-height:64%; max-width: auto;}
 .gray_panel {min-height: 120px; }
 
-
+.btn_orng {text-align: left !important; }
 
  }
 
@@ -446,7 +446,7 @@ section.xl_sec {margin: 10px 0 20px 0; }
 {
     .grid_4>div>a h2 {font-size: 7vh; }
     .treat_sec_updt .grid_4>div {padding-top: 60% !important; }
-    .btn_orng {text-align: left !important; }
+    
     .txt_over a h2 { font-size: 7vh !important;}
     section.sec_info{margin: 100px 0;}
   section.product_slider.m_v_5 {padding: 10px 30px 30px 30px; }
