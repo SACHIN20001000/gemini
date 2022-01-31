@@ -6,7 +6,7 @@ const state = {
   addFaq: [],
   faqError: [],
   faqs: [],
-  reviews: [],
+  reviewsList: [],
   insertReview: [],
   filterfaqs: [],
   overAllRating: [],
@@ -16,7 +16,7 @@ const getters = {
   addFaq: state => state.addFaq,
   faqs: state => state.faqs,
   filterfaqs: state => state.filterfaqs,
-  reviews: state => state.reviews,
+  reviewsList: state => state.reviewsList,
   insertReview: state => state.insertReview,
   overAllRating: state => state.overAllRating,
   faqError: state => state.faqError,
@@ -39,7 +39,7 @@ const actions = {
     })
   },
   filterFaqs ({ commit }, filterdata) {
-    HTTP.get(process.env.MIX_APP_APIURL+'faq/'+filterdata.data.product_id+'/'+filterdata.data.serachtext).then((response) => {
+    HTTP.get(process.env.MIX_APP_APIURL+'faq/'+filterdata.data.product_id+'?keyword='+filterdata.data.serachtext).then((response) => {
       commit('filterFaqs', response.data.data)
     }).catch((errors) => {
       commit("faqError", errors.response.data.message)
@@ -83,7 +83,7 @@ const mutations = {
     state.filterfaqs = payload
   ),
   getReviews: (state, payload) => (
-    state.reviews = payload
+    state.reviewsList = payload
   ),
   reviewAdd: (state, payload) => (
     state.insertReview = payload

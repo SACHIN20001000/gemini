@@ -187,10 +187,14 @@ td.t_price span {font-size: 14px; }
 .petForm label{
   margin-right: 40px;
 }
+.petForm label{
+  margin-right: 40px;
+}
 .petForm label button{
   padding: 10px;
   background: #ccc;
   color: #fff;
   margin-top: 10px;
-  
+
 }
+.addpetMsg{width: 100%; padding: 10px; color: #00FF00; font-size: 20px;}
