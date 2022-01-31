@@ -27,6 +27,7 @@ class RatingResource extends JsonResource
             'product'=>$this->product_id? new ProductResource($this->product): [],
             'images'=>$this->ratingGallery? RatingGalleryResource::collection($this->ratingGallery): [],
             'status' => $this->status,
+            'verified_buyer' => $this->verified_buyer,
             'created_at' => $this->created_at,
 
 

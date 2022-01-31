@@ -22,6 +22,7 @@ class CreateRatingsTable extends Migration
 
             $table->longText('description');
             $table->boolean('status')->default(0);
+            $table->boolean('verified_buyer')->default(0);
             $table->timestamps();
         });
         Schema::create('rating_galleries', function (Blueprint $table) {

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Rating;
 use App\Models\RatingGallery;
+use App\Models\Order;
 use App\Models\User;
 use App\Http\Resources\Rating\RatingResource;
 use App\Http\Requests\API\RatingRequest;
@@ -92,6 +93,8 @@ class RatingController extends Controller
     {
         $user = auth('api')->user();
 
+        $inputs['verified_buyer']=0;
+
         if (!$user)
         {
             $roleGuest = Role::where(['name' => 'Guest'])->first();
@@ -104,9 +107,15 @@ class RatingController extends Controller
                                 'password' => bcrypt(uniqid(rand(), true))
             ]);
             $user->assignRole($roleGuest);
+            $inputs['verified_buyer']=0;
         }
 
+        $orderCount = Order::where('user_id',$user->id)->count();
 
+        if($orderCount>0)
+        {
+            $inputs['verified_buyer']=1;
+        }
         $inputs['user_id']=$user->id ;
         $inputs['title']=$request->title;
         $inputs['description']=$request->description;
