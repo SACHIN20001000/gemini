@@ -27,6 +27,7 @@ class RatingRequest extends FormRequest
 
             'product_id' => 'required',
             'rating' => 'required',
+            'email' => 'required',
             'title' => 'required',
             'description' => 'required',
             // 'status' => 'required',
