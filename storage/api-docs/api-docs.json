@@ -390,6 +390,258 @@
                 ]
             }
         },
+        "/chowhub/cart": {
+            "get": {
+                "tags": [
+                    "ChowhubCarts"
+                ],
+                "summary": "Create cart key",
+                "operationId": "Create Chowhub cart key",
+                "responses": {
+                    "200": {
+                        "description": "Create cart key",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CartResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/chowhub/cart/{id}": {
+            "get": {
+                "tags": [
+                    "ChowhubCarts"
+                ],
+                "summary": "show cart items",
+                "operationId": "show Chowhub cart items",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CartKeyRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "show cart items",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SingleCartResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "ChowhubCarts"
+                ],
+                "summary": "Delete cart",
+                "operationId": "Delete Chowhub cart",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CartKeyRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Get cart id by key"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/chowhub/cart/{cart}/{itemId}": {
+            "delete": {
+                "tags": [
+                    "ChowhubCarts"
+                ],
+                "summary": "Delete cart item",
+                "operationId": "Delete Chowhub cart item",
+                "parameters": [
+                    {
+                        "name": "cart id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    },
+                    {
+                        "name": "item id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CartKeyRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Delete cart item by key"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "chowhub/cartIdByKey": {
+            "get": {
+                "tags": [
+                    "ChowhubCarts"
+                ],
+                "summary": "Get cart id by key",
+                "operationId": "Get Chowhub cart id by key",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CartKeyRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Get cart id by key",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CartResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/chowhub/cart/{cart}": {
+            "post": {
+                "tags": [
+                    "ChowhubCarts"
+                ],
+                "summary": "Add chowhub Product into cart",
+                "operationId": "Chowhub ProductCart",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CartRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CartResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "chowhub/categories": {
             "get": {
                 "tags": [
@@ -1649,6 +1901,18 @@
                         "name": "id",
                         "in": "path",
                         "description": "1",
+                        "required": true
+                    },
+                    {
+                        "name": "keyword",
+                        "in": "path",
+                        "description": "search title/description",
+                        "required": true
+                    },
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "ASC/DESC",
                         "required": true
                     }
                 ],

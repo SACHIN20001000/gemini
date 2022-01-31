@@ -27,6 +27,17 @@ class RatingController extends Controller
      *         description="1",
      *         required=true,
      *      ),
+     * *         @OA\Parameter(
+     *         name="keyword",
+     *         in="path",
+     *         description="search title/description",
+     *         required=true,
+     *      ),*         @OA\Parameter(
+     *         name="type",
+     *         in="path",
+     *         description="ASC/DESC",
+     *         required=true,
+     *      ),
      *     @OA\Response(
      *         response="200",
      *         description="Pages",
@@ -49,9 +60,18 @@ class RatingController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function index($id)
+    public function index($id , Request $request)
     {
-        $rating = Rating::with('user','product','ratingGallery')->where('product_id',$id)->orderBy('id', 'asc')->get();
+
+        $search= $request['keyword']?? null;
+        $order= $request['type'] ?? 'asc';
+
+        $rating = Rating::with('user','product','ratingGallery')
+        ->where('product_id',$id)
+        ->where(function ($query) use ($search) {
+            $query->where('title', "like", "%" . $search . "%");
+            $query->orWhere('description', "like", "%" . $search . "%");})
+        ->orderBy('id',$order)->get();
 
         return  RatingResource::collection($rating);
 
@@ -244,4 +264,7 @@ class RatingController extends Controller
     {
         //
     }
+
+
+
 }
