@@ -15,6 +15,7 @@ class Rating extends Model
         'description',
         'status',
         'title',
+        'verified_buyer'
 
 
     ];
