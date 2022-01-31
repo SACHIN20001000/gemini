@@ -63,8 +63,9 @@ button.navbar-toggler:focus { border: none; outline: none; box-shadow: none;}
 .logo_nav {padding: 20px 15px; max-width: 100%;}
 .menu_nav .container-fluid { padding: 0;}
 .menu_nav ul.navbar-nav>li:not(:last-child)>a { border-right: 0; display: block;}
-
+.right_info {padding-right: 20px;
  }
+}
 
 @media only screen and (max-width: 400px)
 {
@@ -90,7 +91,7 @@ img{max-width: 100%;}
      .menu_nav .container-fluid {max-width: 1060px !important; } 
 }
 
-@media only screen and (min-width: 769px)
+@media only screen and (min-width:1000px)
 {
     .mobil_only{display: none;}
 }
