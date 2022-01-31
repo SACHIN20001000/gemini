@@ -43,8 +43,7 @@
               {{product.name}}
             </h2>
             <div class="prod_rev" v-if="overAllRating">
-              <span>
-                {{overAllRating.total_reviews}}
+              <span class="star-rating">
                 <star-rating
                   v-model="overAllRating.overAllRating"
                   v-bind:increment="0.5"
@@ -54,7 +53,12 @@
                   v-bind:star-size="15"
                 >
                 </star-rating>
-                Reviews
+              </span>
+              <span>
+                <a href="javascript:;" @click="questionPosstion">{{overAllRating.total_reviews}} Ratings</a>
+              </span>
+              <span>
+                &nbsp;|&nbsp;<a href="javascript:;" @click="reviewPosstion">{{overAllRating.total_reviews}} Answered Questions</a>
               </span>
             </div>
             <div class="pro_dec" v-html="product.description"></div>
@@ -147,8 +151,7 @@
               {{product.name}}
             </h2>
             <div class="prod_rev" v-if="overAllRating">
-              <span>
-                {{overAllRating.total_reviews}}
+              <span class="star-rating">
                 <star-rating
                   v-model="overAllRating.overAllRating"
                   v-bind:increment="0.5"
@@ -158,7 +161,12 @@
                   v-bind:star-size="15"
                 >
                 </star-rating>
-                Reviews
+              </span>
+              <span>
+                <a href="javascript:;" @click="questionPosstion">{{overAllRating.total_reviews}} Ratings</a>
+              </span>
+              <span>
+                &nbsp;|&nbsp;<a href="javascript:;" @click="reviewPosstion">{{overAllRating.total_reviews}} Answered Questions</a>
               </span>
             </div>
             <div class="pro_dec" v-html="product.description"></div>
@@ -292,7 +300,7 @@
             >
               search question
             </button>
-            <button class="Large-btn">filter</button>
+            <!--<button class="Large-btn">filter</button>-->
           </div>
           <div class="col-sm-7">
             <div class="row" v-if="!askQuestion">
@@ -357,7 +365,7 @@
     <section class="review-wrap">
       <div class="container_max">
         <div class="row">
-          <div class="col-md-12 question-inner">
+          <div class="col-md-12 question-inner reviewPosstion">
             <h3 class="title-txt">Reviews</h3>
           </div>
         </div>
@@ -365,7 +373,7 @@
           <div class="col-sm-3 px-0">
             <div class="light-box2" v-if="overAllRating">
               <div class="light-box-inner">
-                <p class="light-box-txt01">{{overAllRating.overAllRating}}/5.0</p>
+                <p class="light-box-txt01">{{overAllRatings(overAllRating.overAllRating)}}/5.0</p>
                 <p class="light-btm">Based on {{overAllRating.total_reviews}} reviews</p>
               </div>
               <div class="light-box-inner">
@@ -382,7 +390,13 @@
             >
               Write a Review
             </button>
-            <button class="Large-btn">Review filter</button>
+            <button
+              class="Large-btn"
+              v-on:click="reviewFilter = !reviewFilter"
+              v-bind:class="{Large_red_btn: reviewFilter}"
+            >
+              Review filter
+            </button>
           </div>
           <div class="col-sm-7 reviews-img-section" v-if="reviews">
             <div
@@ -478,6 +492,38 @@
         </div>
       </div>
     </section>
+    <section class="review-write" v-if="reviewFilter">
+      <div class="container_max">
+        <div class="row">
+          <div class="col-md-12 question-inner">
+            <div class="review_form">
+              <h4>Reviews Filter</h4>
+              <div class="review_form_50">
+                <div class="review_form_label">
+                  <label>Search: </label>
+                  <input type="text" v-model='reviewFilterForm.search' />
+                  <span class="error_validation" v-if="reviewFilterForm.errors().has('search')">
+                    {{ reviewFilterForm.errors().get('search') }}
+                  </span>
+                </div>
+                <div class="review_form_label">
+                  <label>Sort </label>
+                  <select v-model='reviewFilterForm.filterSort'>
+                    <option value="ASC">Low To High</option>
+                    <option value="DESC">High To Low</option>
+                  </select>
+                </div>
+              </div>
+              <div class="review_form_50">
+                <div class="review_btn_label review_form_label form_label">
+                  <button type="button" @click="submitReviewFilter" >Filter</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="latest-review">
          <div class="container_max">
             <div class="row">
@@ -500,7 +546,11 @@
                         </span>
                        </div>
                        <div class="star-inner-txt">
-                          <h6>{{review.user.name}} <span class="green-txt">Varified Bayer</span></h6>
+                          <h6>
+                            {{review.user.name}}
+                            <span v-if="review.verified_buyer==1" class="green-txt">Verified Bayer</span>
+                            <span v-else class="red-txt">Unverified Bayer</span>
+                          </h6>
                           <div><img :src="u_s"><span>{{review.user.country}}</span></div>
                           <div class="star-rating">
                             <star-rating
@@ -520,15 +570,17 @@
                         <img :src="thumb_up">I recommend this product
                       </span>
                       <span v-else>
-                        <i class="fa fa-thumbs-down"></i>I recommend this product
+                        <i class="fa fa-thumbs-down"></i>I don't recommend this product
                       </span>
                     </div>
                  </div>
-                 <div class="col-md-8 rating-right">
-                    <h3>{{review.title}}</h3>
-                    <p>{{review.description}}</p>
-                    <a href="#">read more</a>
-                 </div>
+                <div class="col-md-8 rating-right">
+                  <h3>{{review.title}}</h3>
+                  <p v-if="readMoreActivated.indexOf(review.id) == -1">{{review.description.substring(0, 200)}}</p>
+                  <a v-if="readMoreActivated.indexOf(review.id) == -1 && review.description.length>200" @click="activateReadMore(review.id)" href="javascript:;">read more</a>
+                  <p v-if="readMoreActivated.indexOf(review.id) !== -1" v-html="review.description"></p>
+                  <a v-if="readMoreActivated.indexOf(review.id) !== -1" @click="deactiveReadMore(review.id)" href="javascript:;">read less</a>
+                </div>
               </div>
             </div>
          </div>
@@ -544,7 +596,7 @@
 </style>
 <script>
 import {mapActions,mapGetters} from "vuex"
-
+import HTTP from './../../Api/auth'
 import ship from "../../assets/images/ship.png"
 import product_img from "../../assets/images/product.png"
 import product_t from "../../assets/images/product_t.png"
@@ -564,6 +616,12 @@ import 'swiper/css/swiper.css'
 
 export default {
   name:"Products",
+  metaInfo() {
+      return {
+        title: this.pagetitle,
+        titleTemplate: '%s | The Pet Parent Store'
+      }
+  },
   components: {
     Swiper,
     SwiperSlide,
@@ -639,6 +697,7 @@ export default {
     askQuestion: false,
     searchQuestion: false,
     writeReview: false,
+    reviewFilter: false,
     faqForm: form({
       name: '',
       email: '',
@@ -687,8 +746,23 @@ export default {
         'title.title': 'This field is required!',
         'description.description': 'This field is required!'
       }),
+    reviewFilterForm: form({
+      search: '',
+      filterSort: 'DESC',
+      product_id:0
+      })
+      .rules({
+        search: 'required'
+      })
+      .messages({
+        'search.search': 'This field is required!'
+      }),
     photoFiles: [],
-    faqDetail:[]
+    faqDetail:[],
+    pagetitle:'Product Page',
+    readMoreActivated:[],
+    reviewError:'',
+    reviews:[]
   }),
   mounted: function() {
     this.getProdcut()
@@ -701,6 +775,7 @@ export default {
       this.getCartItems()
     },
     product(){
+      this.pagetitle = this.product.name
       this.variations = this.product.variations
       var variation_attributes = this.product.variation_attributes
       var vaarrayCollection=[]
@@ -733,10 +808,13 @@ export default {
       if(this.faqs.length>0){
         this.faqDetail = this.faqs[0]
       }
+    },
+    reviewsList(){
+      this.reviews = this.reviewsList
     }
   },
   computed: {
-    ...mapGetters(['product', 'catErrors','addCartItems', 'faqs','filterfaqs','reviews', 'overAllRating'])
+    ...mapGetters(['product', 'catErrors','addCartItems', 'faqs','filterfaqs','reviewsList', 'overAllRating'])
   },
   methods: {
     ...mapActions(['getProduct','addCartItem','getCartItems','addFaq','getFaqs','filterFaqs','getReviews','addReview', 'getOverAllRating']),
@@ -915,9 +993,15 @@ export default {
     getPercentage(overAllRating, total_reviews){
       if(overAllRating > 0 && total_reviews > 0){
         var calval = Number(overAllRating)*100
-        return Number(calval)/5
+        var totalPercentage = Number(calval)/5
+        return totalPercentage.toFixed(2)
       }else{
         return ''
+      }
+    },
+    overAllRatings(overrating){
+      if(overrating && overrating != null){
+        return overrating.toFixed(2)
       }
     },
     closeViewer: function(){
@@ -930,6 +1014,31 @@ export default {
       if(this.quantity>1){
         this.quantity = this.quantity-1
       }
+    },
+    submitReviewFilter(){
+      this.reviewFilterForm.validate()
+      if (!this.reviewFilterForm.validate().errors().any()) {
+        var productId = this.$route.params.id
+        HTTP.get(process.env.MIX_APP_APIURL+'rating/'+productId+'?keyword='+this.reviewFilterForm.data.search+'&type='+this.reviewFilterForm.data.filterSort).then((response) => {
+          this.reviews = response.data.data
+        }).catch((errors) => {
+          this.reviewError= errors.response.data.message
+        })
+      }
+    },
+    activateReadMore(ind){
+      this.readMoreActivated.push(ind)
+    },
+    deactiveReadMore(ind){
+      this.readMoreActivated.splice(this.readMoreActivated.indexOf(ind), 1)
+    },
+    questionPosstion(){
+      var el = this.$el.getElementsByClassName("question-inner")[0];
+      el.scrollIntoView()
+    },
+    reviewPosstion(){
+      var el = this.$el.getElementsByClassName("reviewPosstion")[0];
+      el.scrollIntoView()
     }
   }
 }
