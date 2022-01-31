@@ -113,7 +113,7 @@ Route::get('chowhub/stores/{store}', [ChowhubStoreController::class, 'show']);
 Route::get('pet', [PetController::class, 'index']);
 Route::post('pet/create', [PetController::class, 'store']);
 
-Route::resource('/chowhub/cart', ChowhubCartController::class);
+Route::resource('chowhub/cart', ChowhubCartController::class, ['as' => 'chowhubcart']);
 Route::get('/chowhub/cartIdByKey', [ChowhubCartController::class, 'getCartIDUsingKey']);
 Route::delete('/chowhub/cart/{cart}/{itemId}', [ChowhubCartController::class, 'deleteCartItem']);
 Route::post('/chowhub/cart/{cart}',[ChowhubCartController::class, 'addProducts']);
