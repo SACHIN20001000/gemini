@@ -29,6 +29,13 @@ class FaqController extends Controller
      *         description="3",
      *         required=true,
      *      ),
+     *       @OA\Parameter(
+     *         name="keyword",
+     *         in="query",
+     *         description="search title/description",
+     *         required=false,
+     *      ),
+
      *     @OA\Response(
      *         response="200",
      *         description="Pages",
@@ -51,61 +58,21 @@ class FaqController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function index($id)
+    public function index($id,Request $request)
     {
-        $faqs = Faq::with('user','product')->where(['product_id'=>$id,'published'=>1])->orderBy('id', 'asc')->get();
+        $search= $request['keyword']?? null;
+        $faqs = Faq::with('user','product')
+                ->where(['product_id'=>$id,'published'=>1])
+                ->where(function ($query) use ($search) {
+                $query->where('title', "like", "%" . $search . "%");
+                $query->orWhere('description', "like", "%" . $search . "%");})
+                ->orderBy('id', 'asc')
+                ->get();
 
         return  FaqResource::collection($faqs);
 
     }
 
-    /**
-     * @OA\Get(
-     *      path="/faq/{product_id}/{string}",
-     *      operationId="faqs search",
-     *      tags={"Faqs"},
-     *
-     *     summary="Faqs get",
-     *     *      @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         description="3",
-     *         required=true,
-     *      ),
-     *     @OA\Parameter(
-     *         name="string",
-     *         in="path",
-     *         description="test",
-     *         required=true,
-     *      ),
-     *     @OA\Response(
-     *         response="200",
-     *         description="Pages",
-     *         @OA\JsonContent(ref="#/components/schemas/FaqResponse")
-     *     ),
-     *    @OA\Response(
-     *      response=400,ref="#/components/schemas/BadRequest"
-     *    ),
-     *    @OA\Response(
-     *      response=404,ref="#/components/schemas/Notfound"
-     *    ),
-     *    @OA\Response(
-     *      response=500,ref="#/components/schemas/Forbidden"
-     *    )
-     * )
-     * Store a newly created resource in storage.
-     *
-     * @param \App\Http\Requests\ExampleStoreRequest $request
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getFaqByString($id,$string)
-    {
-        $faqs = Faq::with('user','product')->where(['product_id'=>$id,'published'=>1])->Where('title', 'like', '%' . $string . '%')->orderBy('id', 'asc')->get();
-
-        return  FaqResource::collection($faqs);
-
-    }
   /**
      * @OA\Post(
      *      path="/faq/store",
@@ -183,6 +150,13 @@ class FaqController extends Controller
      *         description="3",
      *         required=true,
      *      ),
+     *       @OA\Parameter(
+     *         name="keyword",
+     *         in="query",
+     *         description="search title/description",
+     *         required=false,
+     *      ),
+
      *     @OA\Response(
      *         response="200",
      *         description="Pages",
@@ -205,63 +179,21 @@ class FaqController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function chouhubIndex($id)
+    public function chouhubIndex($id,Request $request)
     {
-
-        $faqs = ChowhubFaq::with('user','product')->where(['product_id'=>$id,'published'=>1])->orderBy('id', 'asc')->get();
+        $search= $request['keyword']?? null;
+        $faqs = ChowhubFaq::with('user','product')
+        ->where(['product_id'=>$id,'published'=>1])
+        ->where(function ($query) use ($search) {
+                $query->where('title', "like", "%" . $search . "%");
+                $query->orWhere('description', "like", "%" . $search . "%");})
+        ->orderBy('id', 'asc')->get();
 
         return  ChowhubFaqResource::collection($faqs);
 
     }
 
-    /**
-     * @OA\Get(
-     *      path="/chowhub/faq/{product_id}/{string}",
-     *      operationId="faqs search by string",
-     *      tags={"Faqs"},
-     *
-     *     summary="Faqs get by string",
-     *     *      @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         description="3",
-     *         required=true,
-     *      ),
-     *     @OA\Parameter(
-     *         name="string",
-     *         in="path",
-     *         description="test",
-     *         required=true,
-     *      ),
-     *     @OA\Response(
-     *         response="200",
-     *         description="Pages",
-     *         @OA\JsonContent(ref="#/components/schemas/FaqResponse")
-     *     ),
-     *    @OA\Response(
-     *      response=400,ref="#/components/schemas/BadRequest"
-     *    ),
-     *    @OA\Response(
-     *      response=404,ref="#/components/schemas/Notfound"
-     *    ),
-     *    @OA\Response(
-     *      response=500,ref="#/components/schemas/Forbidden"
-     *    )
-     * )
-     * Store a newly created resource in storage.
-     *
-     * @param \App\Http\Requests\ExampleStoreRequest $request
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getChowhubFaqByString($id,$string)
-    {
-
-        $faqs = ChowhubFaq::with('user','product')->where(['product_id'=>$id,'published'=>1])->Where('title', 'like', '%' . $string . '%')->orderBy('id', 'asc')->get();
-
-        return  ChowhubFaqResource::collection($faqs);
-
-    }
+    
   /**
      * @OA\Post(
      *      path="/chowhub/faq/store",
