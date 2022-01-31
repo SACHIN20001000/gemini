@@ -9,6 +9,8 @@ use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\Chowhub\ChowhubProductController;
 use App\Http\Controllers\API\Chowhub\ChowhubCategoryController;
 use App\Http\Controllers\API\Chowhub\ChowhubStoreController;
+use App\Http\Controllers\API\Chowhub\ChowhubCartController;
+
 
 use App\Http\Controllers\API\PageController;
 use App\Http\Controllers\API\CartController;
@@ -99,6 +101,8 @@ Route::post('rating/create', [RatingController::class, 'create']);
 Route::get('rating/overall/{id}', [RatingController::class, 'getOverallRating']);
 
 Route::get('rating/{id}', [RatingController::class, 'index']);
+
+
 Route::post('chowhub/rating/create', [ChowhubRatingController::class, 'create']);
 Route::get('chowhub/rating/{id}', [ChowhubRatingController::class, 'index']);
 Route::get('chowhub/rating/overall/{id}', [ChowhubRatingController::class, 'getOverallRating']);
@@ -109,6 +113,11 @@ Route::get('chowhub/stores/{store}', [ChowhubStoreController::class, 'show']);
 Route::get('pet', [PetController::class, 'index']);
 Route::post('pet/create', [PetController::class, 'store']);
 
+Route::resource('/chowhub/cart', ChowhubCartController::class);
+Route::get('/chowhub/cartIdByKey', [ChowhubCartController::class, 'getCartIDUsingKey']);
+Route::delete('/chowhub/cart/{cart}/{itemId}', [ChowhubCartController::class, 'deleteCartItem']);
+Route::post('/chowhub/cart/{cart}',[ChowhubCartController::class, 'addProducts']);
+Route::post('/chowhub/checkout/{cart}',[ChowhubCartController::class, 'checkout']);
 
 
 
