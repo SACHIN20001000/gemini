@@ -26,16 +26,17 @@
           </form>
         </div>
 
-        <div class="profile_bar" v-if="token && token != null">
+        <div class="profile_bar" v-if="token && token != null && accountDetails">
           <div class="pr_img">
             <img
-              :src="imgProfile"
+              :src="accountDetails.profile_image"
               alt="Profile"
+              width="50px"
             >
           </div>
           <div class="pr_info">
-            <label>Susan M.</label>
-                    <div class="dropdown">
+            <label>{{accountDetails.name}}</label>
+            <div class="dropdown">
 
 
             <router-link
@@ -167,7 +168,6 @@
 </style>
 <script>
 import imgLogo from "../../assets/images/logo.png"
-import imgProfile from "../../assets/images/profile.png"
 import imgCartIcon from "../../assets/images/cart_icon.png"
 import search_mobile from "../../assets/images/search_mobile.png"
 import menuLines from "../../assets/images/menu_lines.svg"
@@ -179,7 +179,6 @@ export default {
   data: function () {
     return {
       imgLogo: imgLogo,
-      imgProfile: imgProfile,
       imgCartIcon: imgCartIcon,
       search_mobile: search_mobile,
       menuLines: menuLines,
@@ -190,13 +189,16 @@ export default {
   created(){
     if(localStorage.getItem('cartKey') != null){
       this.getCartItems()
+      if(localStorage.getItem('userauth')){
+        this.getProfile()
+      }
     }
   },
   computed: {
-    ...mapGetters(['cartQuantity'])
+    ...mapGetters(['cartQuantity','accountDetails'])
   },
   methods: {
-    ...mapActions(['getCartItems'])
+    ...mapActions(['getCartItems','getProfile'])
   }
 }
 </script>
