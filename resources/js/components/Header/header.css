@@ -40,7 +40,7 @@ div#navbarNavDropdown li>a:before,.menu_nav li.nav-item.active>a:before{ content
 div#navbarNavDropdown li:hover:before,div#navbarNavDropdown li.active:before{content: ""; width: 1px; height: 98%; background:#e4022d; position: absolute; left: -1px; top: 1; }
 div#navbarNavDropdown li:hover ,div#navbarNavDropdown li.active {background: #e4022d; }
 div#navbarNavDropdown li:hover>a,div#navbarNavDropdown li.active>a{border: 0px;}
-li.nav-itemnv.mobil_only{text-align: center;}
+
 .btn_log_sign a {font-size: 14px; padding: 4px 5px; color: #858583; text-decoration: none; border-radius: 50px; text-transform: capitalize; }
 .btn_log_sign a:hover{color: }
 .btn_log_sign a:hover {color: #e4022d; text-decoration: underline; }
