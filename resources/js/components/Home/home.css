@@ -34,7 +34,7 @@ background-position: center !important; background-repeat: no-repeat !important;
 .slick-next:before {    width: 40px !important;  height: 40px !important;  background: url(../../assets/images/arrow_right.png) !important;
 color: transparent !important;   background-position: center;  background-repeat: no-repeat !important;}
 button.slick-prev.slick-arrow { left: 0;}
-.slick-next{ right: 0 !important;}
+.slick-next{ right: 0 !important; width: 40px !important; height: 40px }
 .slick-prev:before, .slick-next:before{font-size: 40px !important;}
 .slick-arrow { z-index: 9;}
 .lb_no a {border-right: 0 !important; }
@@ -67,7 +67,7 @@ span.re_d {color: #e42930; }
 .red_box a {font-size: min(1.5vw, 32px); color: #fff; font-weight: 400; padding: 20px; }
 .red_box a:hover{color: #fff;}
 .red_box .rect ,.blue_box .rect {position: absolute; top: 0; height: 100%; width: 100%; left: 0; display: flex; align-items: center; flex-wrap: wrap; padding: 60px; }
-.blue_box .rect {padding:50px 60px; align-items: flex-start; }
+.blue_box .rect {padding:50px 60px; align-items: flex-start; justify-content: center;}
 .red_box img {position: absolute; right: 27px; margin-top: 15px; min-height:55%; z-index: 11; }
 .blue_box p {font-size: min(2.1vw, 47px); font-weight: 300; color: #fff; text-align: center; position: relative;z-index: 1;}
 .blue_box p a {color: #fff;}
@@ -182,19 +182,18 @@ section.two_img.rd_blue a:hover.section.duo_banner a:hover,.sub_1 a:hover {color
 
 @media only screen and (max-width: 768px)
 {
-.slick-arrow {display: none; }
+.slick-arrow {display: none !important; }
 .grid_4>div>a {display: flex; align-items: flex-start; justify-content: center; }
 .cart_slide .slick-slide {max-width: 100%; }
 section.xl_sec img { width: 100%;}
 section.banner_sec {padding: 10px; }
-section.banner_sec {  padding-bottom: 60px;  position: relative;}
 .btn_orng { position: absolute; bottom: 20px; text-align: center; width: 100%;  left: 0;}
 .col-md-5.baner_1 { position: unset;}
 .row.grid_4 {  display: grid; grid-template-columns: 50% 50%;}
 .treat_sec_updt .grid_4>div { padding-top: 90% !important;}
 .grid_4>div img {   max-height: 80px !important; margin-top: 20px !important;}
 section.treat_sec_updt img {  max-width: unset !important;}
-.grid_4>div>a h2 {font-size: 45px; position: absolute; bottom: 20px;  letter-spacing: -2px; top: unset; }
+.grid_4>div>a h2 {position: absolute; bottom: 20px;  letter-spacing: -2px; top: unset;font-size: min(10.5vw, 180px); }
 section.treat_sec { padding: 0;}
 .row.grid_4.pad_15 { padding: 3px; margin: 0 -15px;}
 .blue_box, .red_box {padding-top: 90%; }
@@ -211,19 +210,20 @@ section.two_img.rd_blue .row,section.two_img .row.pad_15,.duo_banner .row {displ
 section.two_img .col-md-6.txt_over a { padding-top: 100%;}
 .txt_over a h2 {font-size: 40px; padding: 0 10px; text-align: left;}
 section.two_img {padding: 0px 0; }
-.gray_panel {    margin: 20px -15px;}
+.gray_panel {     min-height: 130px; max-width: 400px; position: relative; width: 100%; margin: 0 auto !important; padding: 0 50% 0 10%;} 
+.col-md-4.gb_box {display: flex; flex-direction: column; background: #f6f6f6; margin: 20px auto !important; }
 .sub_1 {padding: 20px;}
 .sub_1>h1 {font-size: 34px; letter-spacing: -1px; color: #fff; margin: 0; }
 section.duo_banner, section.duo_banner>div {padding: 0; }
 .sub_1 sup {font-size: 15px; top: -11px; }
 .over_red>small {font-size: 10px; color: #fff; margin-bottom: 5px; display: block; }
 .duo_banner .row .col-md-6 {padding: 0; }
-.sub_1 a {font-size: 10px; color: #fff; font-weight: 400; z-index: 1; position: relative; display: block; }
+.sub_1 a {font-size:min(3vw,40px); color: #fff; font-weight: 400; z-index: 1; position: relative; display: block; }
 .sub_1 img {position: absolute; left: 0; right: 0; margin: 0 auto; max-width: 143px; z-index: 0; bottom: 5px; }
 .sub_1 p {font-size: 13px; }
-.over_red>a {font-size: 9px; color: #fff; margin-bottom: 10px; display: block; }
+.over_red>a {font-size: min(3vw,40px); color: #fff; margin-bottom: 10px; display: block; }
 .over_red h2 {font-size: 22px; margin: 0; }
-.over_red {background: #e3002b; padding:15px 20px; max-width: 136px; }
+.over_red {background: #e3002b; padding:6vw; max-width: 136px; }
 section.Keep_touch .col-md-2 {max-width: 150px; width: 100%; }
 .form_mobile h1 {font-size: 42px; text-align: left; }
 .form_mobile {max-width: calc(100% - 150px) !important    ; padding: 0 15px 0 0; }
@@ -254,7 +254,7 @@ section.xl_sec img {max-width: 100%; }
 a.btn_grn {padding: 4px 16px; }
 .join_btn >a {margin: 5px auto; font-size: 10px; max-width: 160px; }
 ul.foot_mobil li a {font-size: 17px; }
-.banner_top>h2 {font-size: 56px; }
+.banner_top>h2 {font-size: min(15vw,60px); }
 .col-md-6.litter_bg img {max-width: 200px; }
 .baner_1 {justify-content: center;}
 
@@ -266,6 +266,7 @@ ul.foot_mobil li a {font-size: 17px; }
     .container_max.ab_over {position: relative; justify-content: center; margin: 0; height: auto; }
     section.xl_sec {background: #e3002b !important; position: relative !important; padding: 40px !important; }
     .right_info{justify-content: flex-end;}
+    section.banner_sec {  padding-bottom: 60px;  position: relative;}
 }
 
 
@@ -294,8 +295,8 @@ ul.foot_mobil li a {font-size: 17px; }
   .grid_4>div:nth-child(3) img {max-width: 350px; }
   .red_box .rect, .blue_box .rect {padding: 30px !important; }
   .blue_box sup {font-size: 42px; }
-  .red_box h2, .blue_box h2 {font-size: 70px; letter-spacing: -2px; }
-  .blue_box p {font-size: 18px; text-align: left; }
+  .red_box h2, .blue_box h2 { letter-spacing: -2px; }
+  .blue_box p { text-align: left; }
   .red_box a {font-size: 18px; padding: 10px 0; }
   .blue_box img {max-width: 200px; }
   .red_box img {position: absolute; right: 4px; margin-top: 8px; max-width: 190px; }
@@ -304,9 +305,9 @@ ul.foot_mobil li a {font-size: 17px; }
   .over_red h2 {font-size: 40px; margin: 0; }
   .over_red>a {font-size: 14px; color: #fff; margin-bottom: 10px; display: block; }
   .sub_1 {padding: 30px !important; }
-  .sub_1>h1 {font-size: 50px; letter-spacing: -1px; color: #fff; margin: 0; }
+  .sub_1>h1 {letter-spacing: -1px; color: #fff; margin: 0; }
   .sub_1 p {font-size: 18px; }
-  .sub_1 a {font-size: 18px; color: #fff; font-weight: 400; z-index: 1; position: relative; display: block; }
+  .sub_1 a { color: #fff; font-weight: 400; z-index: 1; position: relative; display: block; }
   .sub_1 img {position: absolute; left: 0; right: 0; margin: 0 auto; max-width: 260px; z-index: 0; bottom: 20px;  }
   .form_mobile {max-width: calc(100% - 150px); padding: 0 15px 0 0; width: 100%; }
   .container_min {max-width: 600px; }
@@ -325,7 +326,6 @@ ul.foot_mobil li a {font-size: 17px; }
   .blue_box, .red_box {padding-top: 70% !important; }
   .height_mix {padding-top: 80%; position: relative; }
   .btn_orng {position: relative !important; }
-  .banner_top>h2 {font-size: 52px; }
   section.treat_sec {padding: 0; }
   .gray_panel {margin: 20px -15px; }
   .img_box3.gray_panel {margin-top: 0; }
@@ -335,10 +335,10 @@ ul.foot_mobil li a {font-size: 17px; }
 .treat_sec_updt .grid_4>div {padding-top: 50%; }
 .grid_4>div>a img{max-height:64%; max-width: auto;}
 .gray_panel {min-height: 120px; }
-
 .btn_orng {text-align: left !important; }
-
- }
+.logo_nav {    max-width: 100% !important; }
+ .container_max{max-width: min(100% - 60px,2048px) !important;}
+}
 
 
 
@@ -399,24 +399,24 @@ section.sec_info p {font-size: 20px; max-width: 320px; margin: 0 auto; }
 .blue_box img
 {right: 20px !important; left: unset !important; }
 .red_box .rect, .blue_box .rect {padding: 20px 40% 20px 20px !important; }
-.red_box h2, .blue_box h2 {font-size: 50px !important; letter-spacing: -2px; }
+.red_box h2, .blue_box h2 {font-size:min(14vw,120px) !important; letter-spacing: -2px; }
 .blue_box p ,.red_box a{font-size: 14px; }
-section.two_img.rd_blue img {max-width: 130px !important; }
+section.two_img.rd_blue img {max-width: 35% !important; }
 .col-md-6.blue_box h2 {z-index: 1; position: relative; }
 .m_v_5 {margin: 0px auto; }
 h1.line_aside {text-align: left; font-size: 35px; margin: 0; }
 .height_mix {padding: 0 !important; }
-.height_mix .sub_1 {position: relative !important; padding:30px 40% 30px 20px !important; }
+.height_mix .sub_1 {position: relative !important; padding:10vw 7vw !important; }
 .height_mix .sub_1 img {position: absolute; right: 20px; max-width: 40%; left: auto; top: 8%; }
 .sub_2 {position: relative !important; padding: 0 !important; justify-content: flex-start !important; }
 .height_mix>img {position: absolute !important; top: 0 !important; width: 50% !important; height: 100% !important; object-fit: cover; right: 0; }
 .over_red {max-width: 50% !important; }
-.sub_1>h1 {font-size: 33px !important; }
-.sub_1 p {font-size: 12px !important; }
-.over_red h2 {font-size: 30px !important; font-weight: 700; }
+.sub_1>h1 {font-size:min(8vw,100px) !important; }
+.sub_1 p {font-size:min(3.2vw,40px) !important; }
+.over_red h2 {font-size:min(8vw,120px) !important; font-weight: 700; }
 .over_red>a {font-size: 11px; margin: 5px 0 5px 0; }
-.over_red>small {font-size: 12px; margin-bottom: 2px; }
-.blue_box p, .red_box a {font-size: 14px !important; }
+.over_red>small {font-size: min(3vw,40px); margin-bottom: 2px; }
+.blue_box p, .red_box a {font-size: min(3.7vw, 40px) !important; }
 
 
 
@@ -430,9 +430,8 @@ a.btn_grn {font-size: 12px !important; }
 .btn_orng a {    font-size: 14px;}
 a.img_box1 h3,a.img_box2 h3{font-size: 33px;}
 .img_box3 h3{font-size: 22px;}
-.gray_panel{min-height: 120px;}
-.img_box2 img {top: -4%; max-width: fit-content;}
-.img_box1 img{top: 0; max-width: fit-content;}
+.img_box2 img {top: -14%; max-width: fit-content;}
+.img_box1 img{top: -4%; max-width: fit-content;}
 section.sec_info + section.two_img {margin-bottom: 20px; }
 .blue_box .con_box.rect img {bottom: 0 !important; }
 h1.line_aside{margin: 0 0 20px 0; }
@@ -445,13 +444,14 @@ section.xl_sec {margin: 10px 0 20px 0; }
 
 @media only screen and  (min-width: 520px) and (max-width: 820px)
 {
-    .grid_4>div>a h2 {font-size: 7vh; }
+    .grid_4>div>a h2 {font-size: 10vw; }
     .treat_sec_updt .grid_4>div {padding-top: 60% !important; }
     
-    .txt_over a h2 { font-size: 7vh !important;}
+    .txt_over a h2 { font-size: 10vw !important;}
     section.sec_info{margin: 100px 0;}
   section.product_slider.m_v_5 {padding: 10px 30px 30px 30px; }
   .right_info{justify-content: flex-end;}
+.container_max{max-width:min(100% - 40px,2048px)!important ;}
 
 }
 

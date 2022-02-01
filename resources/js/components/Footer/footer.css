@@ -114,7 +114,8 @@ p.copy_p {
     .gray-strip {
         display: none;
     }
-
+    .row.bottom-footer{justify-content: center;
+    text-align: center;}
 
 }
 

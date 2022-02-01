@@ -8,7 +8,6 @@
 {
 section.xl_sec img { width: 100%;}
 section.banner_sec {padding: 10px; }
-section.banner_sec {  padding-bottom: 60px;  position: relative;}
 .btn_orng { position: absolute; bottom: 20px; text-align: center; width: 100%;  left: 0;}
 .row.grid_4.pad_15 {  display: grid; grid-template-columns: 50% 50%;}
 .grid_4>div { padding-top: 90%;}
@@ -16,7 +15,7 @@ section.banner_sec {  padding-bottom: 60px;  position: relative;}
 section.treat_sec { padding: 0;}
 .row.grid_4.pad_15 { padding: 3px; margin: 0 -15px;}
 .blue_box, .red_box {padding-top: 90%; }
-.red_box h2, .blue_box h2 { font-size: 40px; letter-spacing: -2px; }
+
 .red_box .rect, .blue_box .rect { padding: 20px;}
 .red_box img {position: absolute; right: 4px; margin-top: 8px; max-width: 109px; }
 .red_box a { font-size: 10px; padding: 10px 0;}
@@ -44,7 +43,7 @@ section.duo_banner, section.duo_banner>div {
 .duo_banner .row .col-md-6 {
     padding: 0;
 }
-.sub_1 a {font-size: 10px; color: #fff; font-weight: 400; z-index: 1; position: relative; display: block; }
+
 
 .sub_1 img {
         position: absolute;
@@ -68,11 +67,7 @@ section.duo_banner, section.duo_banner>div {
     font-size: 22px;
    margin: 0;
 }
-.over_red {
-    background: #e3002b;
-    padding:15px 20px;
-    max-width: 136px;
-}
+
 section.Keep_touch .col-md-2 {
     max-width: 150px;
     width: 100%;
@@ -170,10 +165,7 @@ section.xl_sec img {
 .red_box .rect, .blue_box .rect {
     padding: 50px;
 }
-.red_box h2, .blue_box h2 {
-    font-size: 70px;
-    letter-spacing: -2px;
-}
+
 .blue_box p {
     font-size: 18px;
     text-align: left;
@@ -212,17 +204,11 @@ section.xl_sec img {
 .sub_1 {
     padding: 30px;
 }
-.sub_1>h1 {
-    font-size: 50px;
-    letter-spacing: -1px;
-    color: #fff;
-    margin: 0;
-}
+
 .sub_1 p {
     font-size: 18px;
 }
 .sub_1 a {
-    font-size: 18px;
     color: #fff;
     font-weight: 400;
     z-index: 1;
