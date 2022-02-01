@@ -58,7 +58,7 @@
                 <a href="javascript:;" @click="questionPosstion">{{overAllRating.total_reviews}} Ratings</a>
               </span>
               <span>
-                &nbsp;|&nbsp;<a href="javascript:;" @click="reviewPosstion">{{overAllRating.total_reviews}} Answered Questions</a>
+                &nbsp;|&nbsp;<a href="javascript:;" @click="reviewPosstion">{{faqs.length}} Answered Questions</a>
               </span>
             </div>
             <div class="pro_dec" v-html="product.description"></div>
@@ -256,7 +256,7 @@
     <section class="question-wrap">
       <div class="container_max">
         <div class="row">
-          <div class="col-md-12 question-inner">
+          <div class="col-md-12 question-inner questionPosstion">
             <h3 class="title-txt">Questions</h3>
           </div>
         </div>
@@ -271,18 +271,12 @@
             </div>
             <div v-else>
               <div class="srch_q">
-              <input type="text" v-model="filterForm.serachtext"><button type="button" @click='filterFaq'><i class="fa fa-search" aria-hidden="true"></i></button>
-              <span class="error_validation" v-if="filterForm.errors().has('serachtext')">
-                {{ filterForm.errors().get('serachtext') }}
-              </span>
-              <div class="faq_list">
-                <p
-                  v-for="(filterfaq,flkey) in filterfaqs"
-                  :key="flkey"
-                  @click="openQuestion(flkey)"
-                >{{filterfaq.title}}</p>
-              </div>
-              </div>
+              <vue-infinite-autocomplete
+                :data-source=currentOptions
+                :value=currentValue
+                v-on:select="handleOnSelect">
+              </vue-infinite-autocomplete>
+            </div>
             </div>
           </div>
           <div class="col-sm-2 Large-btn-box">
@@ -403,20 +397,17 @@
               v-for="(review,rkey) in reviews"
               :key="rkey"
             >
-              <div v-if="review.images">
-                <img
-                  :src="review.images.image_path"
-                  width="90px"
-                >
-                <!--<span
-                  v-for="(img,ikey) in review.images"
-                  :key="ikey"
-                >
+              <div v-if="review.images && rkey<11">
+              <span
+                v-for="(img,ikey) in review.images"
+                :key="ikey"
+              >
                 <img
                   v-if="img"
                   :src="img.image_path"
+                  width="90px"
                 >
-              </span>-->
+              </span>
               </div>
             </div>
           </div>
@@ -525,17 +516,23 @@
       </div>
     </section>
     <section class="latest-review">
-         <div class="container_max">
-            <div class="row">
-               <div class="col-md-12 sort-btn-wrap">
-                  <p class="letest-review-title">Latest Reviews</p>
-                  <button>Sort by <i class="fa fa-angle-down"></i></button>
-               </div>
-            </div>
-            <div v-if="reviews">
+      <div class="container_max">
+        <div class="row">
+           <div class="col-md-12 sort-btn-wrap">
+              <p class="letest-review-title">Latest Reviews</p>
+              <select @change="sortRatings($event)" name="sortreviews">
+                <option value="">Select</option>
+                <option value="ASC">Low To High Ratings</option>
+                <option value="DESC">High To Low Ratings</option>
+              </select>
+           </div>
+        </div>
+        <div v-if="paginationReviews && paginationReviews.length>0">
+          <div class="card text-center m-3">
+            <div class="card-body">
               <div
                 class="row rating_row"
-                v-for="(review,rkey) in reviews"
+                v-for="(review,rkey) in paginationReviews"
                 :key="rkey"
               >
                  <div class="col-md-4 col-lg-3">
@@ -583,7 +580,12 @@
                 </div>
               </div>
             </div>
-         </div>
+            <div class="card-footer pb-0 pt-3" v-if="reviews.length>10">
+                <jw-pagination :items="exampleItems" @changePage="onChangePage"></jw-pagination>
+            </div>
+          </div>
+        </div>
+      </div>
       </section>
   </div>
 </template>
@@ -613,7 +615,9 @@ import form from 'vuejs-form'
 import StarRating from 'vue-star-rating'
 import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
-
+import VueInfiniteAutocomplete from 'vue-infinite-autocomplete'
+import JwPagination from 'jw-vue-pagination'
+const exampleItems = [...Array(1).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }))
 export default {
   name:"Products",
   metaInfo() {
@@ -625,12 +629,15 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
-    StarRating
+    StarRating,
+    "vue-infinite-autocomplete": VueInfiniteAutocomplete,
+    JwPagination
   },
   directives: {
     swiper: directive
   },
   data: () => ({
+    exampleItems:[],
     product_img:product_img,
     product_t:product_t,
     product_t2:product_t2,
@@ -714,16 +721,6 @@ export default {
         'email.email': 'Email field must be an email',
         'question.question': 'This field is required!'
       }),
-    filterForm: form({
-      serachtext: '',
-      product_id:0
-      })
-      .rules({
-        serachtext: 'required'
-      })
-      .messages({
-        'serachtext.serachtext': 'This field is required!',
-      }),
     reviewForm: form({
       name: '',
       email: '',
@@ -762,7 +759,10 @@ export default {
     pagetitle:'Product Page',
     readMoreActivated:[],
     reviewError:'',
-    reviews:[]
+    reviews:[],
+    paginationReviews:[],
+    currentValue: "",
+    currentOptions: []
   }),
   mounted: function() {
     this.getProdcut()
@@ -807,17 +807,29 @@ export default {
     faqs(){
       if(this.faqs.length>0){
         this.faqDetail = this.faqs[0]
+        var _this=this
+        this.faqs.filter(function(val,ind){
+          _this.currentOptions.push({'text':val.title,'id':ind})
+        })
       }
     },
     reviewsList(){
       this.reviews = this.reviewsList
+      if(this.reviews.length>10){
+        for(var i=0;i<10;i++){
+          this.paginationReviews.push(this.reviewsList[i])
+        }
+      }else{
+        this.paginationReviews=this.reviews
+      }
+      this.exampleItems = [...Array(this.reviewsList.length).keys()].map(i => ({ id: i, name: (i+1) }))
     }
   },
   computed: {
-    ...mapGetters(['product', 'catErrors','addCartItems', 'faqs','filterfaqs','reviewsList', 'overAllRating'])
+    ...mapGetters(['product', 'catErrors','addCartItems', 'faqs','reviewsList', 'overAllRating'])
   },
   methods: {
-    ...mapActions(['getProduct','addCartItem','getCartItems','addFaq','getFaqs','filterFaqs','getReviews','addReview', 'getOverAllRating']),
+    ...mapActions(['getProduct','addCartItem','getCartItems','addFaq','getFaqs','getReviews','addReview', 'getOverAllRating']),
     getProdcut(){
       if (this.$route.params.id) {
         this.getProduct(this.$route.params.id)
@@ -953,14 +965,6 @@ export default {
     openQuestion(arrayIndex){
       this.faqDetail = this.faqs[arrayIndex]
     },
-    filterFaq(){
-      this.filterForm.validate()
-      if (!this.filterForm.validate().errors().any()) {
-        var productId = this.$route.params.id
-        this.filterForm.data.product_id=productId
-        this.filterFaqs(this.filterForm)
-      }
-    },
     reviewImages(fileList){
       this.photoFiles = fileList
     },
@@ -1021,6 +1025,14 @@ export default {
         var productId = this.$route.params.id
         HTTP.get(process.env.MIX_APP_APIURL+'rating/'+productId+'?keyword='+this.reviewFilterForm.data.search+'&type='+this.reviewFilterForm.data.filterSort).then((response) => {
           this.reviews = response.data.data
+          if(this.reviews.length>10){
+            for(var i=0;i<10;i++){
+              this.paginationReviews.push(this.reviewsList[i])
+            }
+          }else{
+            this.paginationReviews=this.reviews
+          }
+          this.exampleItems = [...Array(this.reviewsList.length).keys()].map(i => ({ id: i, name: (i+1) }))
         }).catch((errors) => {
           this.reviewError= errors.response.data.message
         })
@@ -1033,12 +1045,41 @@ export default {
       this.readMoreActivated.splice(this.readMoreActivated.indexOf(ind), 1)
     },
     questionPosstion(){
-      var el = this.$el.getElementsByClassName("question-inner")[0];
+      var el = this.$el.getElementsByClassName("questionPosstion")[0];
       el.scrollIntoView()
     },
     reviewPosstion(){
       var el = this.$el.getElementsByClassName("reviewPosstion")[0];
       el.scrollIntoView()
+    },
+    handleOnSelect(selectedValue) {
+      this.openQuestion(selectedValue.id)
+    },
+    sortRatings(event){
+      if(event.target.value !=''){
+        var sortby = event.target.value
+        var productId = this.$route.params.id
+        HTTP.get(process.env.MIX_APP_APIURL+'rating/'+productId+'?keyword=&type='+sortby).then((response) => {
+          this.reviews = response.data.data
+          if(this.reviews.length>10){
+            for(var i=0;i<10;i++){
+              this.paginationReviews.push(this.reviews[i])
+            }
+          }else{
+            this.paginationReviews=this.reviews
+          }
+          this.exampleItems = [...Array(this.reviews.length).keys()].map(i => ({ id: i, name: (i+1) }))
+        }).catch((errors) => {
+          this.reviewError= errors.response.data.message
+        })
+      }
+    },
+    onChangePage(pageOfItems) {
+      var _this = this
+      this.paginationReviews=[]
+      pageOfItems.filter(function(currentval,currentkey){
+        _this.paginationReviews.push(_this.reviewsList[currentkey])
+      })
     }
   }
 }
