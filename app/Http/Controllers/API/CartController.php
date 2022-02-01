@@ -82,7 +82,7 @@ class CartController extends Controller
 
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -230,7 +230,7 @@ class CartController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="cart/{cart}/{itemId}",
+     *      path="/cart/{cart}/{itemId}",
      *      operationId="Delete cart item",
      *      tags={"Carts"},
      *     summary="Delete cart item",
