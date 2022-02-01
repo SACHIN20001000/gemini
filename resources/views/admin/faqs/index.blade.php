@@ -65,7 +65,7 @@
             ajax: "{{ route('questions.index') }}",
             columns: [
                 {data: 'user.name', name: 'user.name'},
-                {data: 'title', name: 'title'},
+                {data: 'question', name: 'question'},
 
                 {data: 'created_at', name: 'created_at'},
                 {data: 'published', name: 'published'},

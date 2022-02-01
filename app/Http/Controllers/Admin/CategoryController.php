@@ -10,6 +10,7 @@ use App\Http\Requests\Admin\Category\AddCategory;
 use App\Http\Requests\Admin\Category\UpdateCategory;
 use Illuminate\Support\Str;
 use Storage;
+use Intervention\Image\Facades\Image;
 
 class CategoryController extends Controller
 {
@@ -48,7 +49,7 @@ class CategoryController extends Controller
                                 $action = '<span class="action-buttons">
                                     <a  href="' . route("categories.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
-                                    
+
                                     <a href="' . route("categories.destroy", $row) . '"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"
@@ -94,9 +95,12 @@ class CategoryController extends Controller
         $inputs = $request->all();
         if ($request->hasFile('feature_image'))
         {
-            $path = Storage::disk('s3')->put('images/categories', $request->feature_image);
-            $path = Storage::disk('s3')->url($path);
-            $inputs['feature_image'] = $path;
+            $filename = $request->feature_image->hashname();
+            $image = Image::make($request->feature_image)->resize(800, 850);
+            Storage::disk('s3')->put('/images/categories/'.$filename, $image->stream(), 'public');
+            $image_path = Storage::disk('s3')->url('images/categories/'.$filename);
+
+            $inputs['feature_image'] = $image_path;
         }
 
         $inputs['slug'] = $slug;
@@ -142,9 +146,11 @@ class CategoryController extends Controller
         $inputs = $request->all();
         if ($request->hasFile('feature_image'))
         {
-            $path = Storage::disk('s3')->put('images/categories', $request->feature_image);
-            $path = Storage::disk('s3')->url($path);
-            $inputs['feature_image'] = $path;
+            $filename = $request->feature_image->hashname();
+            $image = Image::make($request->feature_image)->resize(800, 850);
+            Storage::disk('s3')->put('/images/categories/'.$filename, $image->stream(), 'public');
+            $image_path = Storage::disk('s3')->url('images/categories/'.$filename);
+            $inputs['feature_image'] = $image_path;
         }
         $inputs['slug'] = $slug;
         $category->update($inputs);

@@ -43,6 +43,14 @@ class ChowhubFaqController extends Controller
 
                 return $published;
             })
+            ->addColumn('question', function ($row)
+            {
+                if(isset($row->title)){
+                    $question =  strip_tags($row->title);
+                }
+                return $question;
+            })
+
 
                     ->addColumn('action', function ($row)
                             {
@@ -66,7 +74,7 @@ class ChowhubFaqController extends Controller
                                 return $action;
                             })
 
-                            ->rawColumns(['action','published'])
+                            ->rawColumns(['action','published','question'])
                             ->make(true)
                             ;
         }
