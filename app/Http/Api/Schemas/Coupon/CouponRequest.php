@@ -14,7 +14,7 @@ class CouponRequest
      * @OA\Property(
      *     title="name",
      *     description="name for storring",
-     *     example="test",
+     *     example="TPPSHGN0DJZRHGN0DJZR",
      * )
      *
      * @var string

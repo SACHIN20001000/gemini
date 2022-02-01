@@ -18,6 +18,10 @@ class CouponController extends Controller
      *      tags={"coupon"},
      *
      *     summary="coupon",
+     *   *    @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CouponRequest")
+     *     ),
      *     @OA\Response(
      *         response="200",
      *         description="Pages",

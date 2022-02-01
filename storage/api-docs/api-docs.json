@@ -1109,6 +1109,16 @@
                 ],
                 "summary": "coupon",
                 "operationId": "coupon",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CouponRequest"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Pages",
@@ -2382,7 +2392,7 @@
                         "title": "name",
                         "description": "name for storring",
                         "type": "string",
-                        "example": "test"
+                        "example": "TPPSHGN0DJZRHGN0DJZR"
                     }
                 },
                 "type": "object"
@@ -3073,9 +3083,9 @@
             "scheme": "https",
             "flows": {
                 "password": {
-                    "authorizationUrl": "http://localhost/oauth/authorize",
-                    "tokenUrl": "http://localhost/oauth/token",
-                    "refreshUrl": "http://localhost/token/refresh",
+                    "authorizationUrl": "http://127.0.0.1:8000//oauth/authorize",
+                    "tokenUrl": "http://127.0.0.1:8000//oauth/token",
+                    "refreshUrl": "http://127.0.0.1:8000//token/refresh",
                     "scopes": []
                 }
             }
