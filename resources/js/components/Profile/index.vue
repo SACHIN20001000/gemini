@@ -11,10 +11,12 @@
           <div class="col-md-8">
             <div class="row">
               <div class="col-3" v-if="accountDetails && accountDetails.profile_image !=null">
+              <div class="profile_banner">
                 <img :src="accountDetails.profile_image" width="120px">
                 <label class="uplod_btn">
                   <input type="file" id="myfile" name="myfile" accept="image/*" @change="uploadImage($event)">
                 </label>
+                </div>
               </div>
               <div class="col-3" v-if="accountDetails && accountDetails.profile_image ==''">
                 <img :src="store_profile">
