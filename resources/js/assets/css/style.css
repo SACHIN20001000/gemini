@@ -171,6 +171,27 @@ textarea
   font-weight: 300;
   border: 1px solid rgba(0,0,0,.1);
 }
+.card-footer {
+    background: no-repeat;
+    border: 0;
+    margin-bottom: 25px;
+}
+ul.pagination li a {
+    font-weight: 300 !important;
+    color: #706f6f;
+    font-weight: 300;
+    height: 40px;
+    border: 1px solid rgba(0,0,0,.1);
+    line-height: 38px;
+    padding: 0 15px !important;
+}
+ul.pagination li a:hover{
+      color: #706f6f;
+}
+.page-item.active .page-link {
+    background: #00b7bc;
+    border: 1px solid #00b7bc;
+}
 
 @media only screen and (max-width: 768px)
 {

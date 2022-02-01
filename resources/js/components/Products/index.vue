@@ -397,13 +397,13 @@
               v-for="(review,rkey) in reviews"
               :key="rkey"
             >
-              <div v-if="review.images && rkey<11">
+              <div v-if="review.images">
               <span
                 v-for="(img,ikey) in review.images"
                 :key="ikey"
               >
                 <img
-                  v-if="img"
+                  v-if="img && ikey==0"
                   :src="img.image_path"
                   width="90px"
                 >
@@ -528,8 +528,7 @@
            </div>
         </div>
         <div v-if="paginationReviews && paginationReviews.length>0">
-          <div class="card text-center m-3">
-            <div class="card-body">
+        
               <div
                 class="row rating_row"
                 v-for="(review,rkey) in paginationReviews"
@@ -584,8 +583,7 @@
                 <jw-pagination :items="exampleItems" @changePage="onChangePage"></jw-pagination>
             </div>
           </div>
-        </div>
-      </div>
+        
       </section>
   </div>
 </template>
