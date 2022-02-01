@@ -32,7 +32,7 @@ section.product_slider .slick-slide a h3 { font-size: 26px; font-weight: 300; ma
 .slick-prev:before {  width: 40px !important;  height: 40px !important; background: url(../../assets/images/arrow_left.png) !important;    color: transparent !important;
 background-position: center !important; background-repeat: no-repeat !important;}
 .slick-next:before {    width: 40px !important;  height: 40px !important;  background: url(../../assets/images/arrow_right.png) !important;
-color: transparent !important;   background-position: center;  background-repeat: no-repeat !important;}
+color: transparent !important;   background-position: center !important;  background-repeat: no-repeat !important;}
 button.slick-prev.slick-arrow { left: 0;}
 .slick-next{ right: 0 !important; width: 40px !important; height: 40px }
 .slick-prev:before, .slick-next:before{font-size: 40px !important;}
