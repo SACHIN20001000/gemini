@@ -18,6 +18,7 @@ use DataTables;
 use Illuminate\Support\Str;
 use App\Http\Requests\Admin\Product\AddProduct;
 use App\Http\Requests\Admin\Product\UpdateProduct;
+use Intervention\Image\Facades\Image;
 use Storage;
 
 class ProductController extends Controller
@@ -103,7 +104,7 @@ class ProductController extends Controller
      */
     public function store(AddProduct $request)
     {
-        // echo '<pre>'; print_r($request->all());die;
+
         $inputs = $request->all();
 
         $tags = explode(",", $inputs['tag']);
@@ -118,9 +119,10 @@ class ProductController extends Controller
             $products->sale_price = $inputs['sale_price'];
             if (!empty($inputs['banner_image']))
             {
-                $path = Storage::disk('s3')->put('images', $inputs['banner_image']);
-                $image_path = Storage::disk('s3')->url($path);
-                $products->banner_image = $image_path;
+              $path = Storage::disk('s3')->put('images', $inputs['banner_image']);
+              $image_path = Storage::disk('s3')->url($path);
+              $products->banner_image = $image_path;
+
             }
             if (!empty($inputs['feature_image']))
             {
@@ -152,8 +154,12 @@ class ProductController extends Controller
                 $productDespImage = new ProductDescriptionDetail();
                 if (!empty($product_detail['image_path']))
                 {
-                    $path = Storage::disk('s3')->put('images', $product_detail['image_path']);
-                    $image_path = Storage::disk('s3')->url($path);
+                    $filename = $product_detail['image_path']->hashname();
+                      $image = Image::make($product_detail['image_path'])->resize(600, 600);
+                      Storage::disk('s3')->put('/images/'.$filename, $image->stream(), 'public');
+                      $image_path = Storage::disk('s3')->url('images/'.$filename);
+                    // $path = Storage::disk('s3')->put('images', $product_detail['image_path']);
+                    // $image_path = Storage::disk('s3')->url($path);
                     $productDespImage->image_path = $image_path;
                 }
                 $productDespImage->product_id = $products->id;
@@ -230,8 +236,11 @@ class ProductController extends Controller
                         $Imagepath = '';
                         if (!empty($variation['image']))
                         {
-                            $path = Storage::disk('s3')->put('images', $variation['image']);
-                            $Imagepath = Storage::disk('s3')->url($path);
+                          $filename = $variation['image']->hashname();
+                          $image = Image::make($variation['image'])->resize(800, 850);
+                          Storage::disk('s3')->put('/images/'.$filename, $image->stream(), 'public');
+                          $Imagepath = Storage::disk('s3')->url('images/'.$filename);
+
                         }
 
                         $productVariation = new ProductVariation;
@@ -357,8 +366,9 @@ class ProductController extends Controller
             $products->meta_description = $inputs['meta_description'];
             if (!empty($inputs['banner_image']))
             {
-                $path = Storage::disk('s3')->put('images', $inputs['banner_image']);
-                $image_path = Storage::disk('s3')->url($path);
+
+              $path = Storage::disk('s3')->put('images', $inputs['feature_image']);
+              $image_path = Storage::disk('s3')->url($path);
                 $products->banner_image = $image_path;
             }
             if (!empty($inputs['feature_image']))
@@ -386,8 +396,10 @@ class ProductController extends Controller
                 {
                     if (!empty($product_detail['image_path']))
                     {
-                        $path = Storage::disk('s3')->put('images', $product_detail['image_path']);
-                        $image_path = Storage::disk('s3')->url($path);
+                      $filename = $product_detail['image_path']->hashname();
+                        $image = Image::make($product_detail['image_path'])->resize(600, 600);
+                        Storage::disk('s3')->put('/images/'.$filename, $image->stream(), 'public');
+                        $image_path = Storage::disk('s3')->url('images/'.$filename);
                         $productDespImage->image_path = $image_path;
                     }
                     $productDespImage->product_id = $products->id;
@@ -496,8 +508,10 @@ class ProductController extends Controller
                             }
                             if (!empty($variation['image']))
                             {
-                                $path = Storage::disk('s3')->put('images', $variation['image']);
-                                $Imagepath = Storage::disk('s3')->url($path);
+                              $filename = $variation['image']->hashname();
+                              $image = Image::make($variation['image'])->resize(800, 850);
+                              Storage::disk('s3')->put('/images/'.$filename, $image->stream(), 'public');
+                              $Imagepath = Storage::disk('s3')->url('images/'.$filename);
                                 $productVariation->image = $Imagepath;
                             }
                             $productVariation->real_price = $variation['regular_price'];
@@ -572,8 +586,12 @@ class ProductController extends Controller
 
         if ($request->file('images'))
         {
-            $path = Storage::disk('s3')->put('images/products', $request->images);
-            $path = Storage::disk('s3')->url($path);
+          $filename = $request->images->hashname();
+          $image = Image::make($request->images)->resize(800, 850);
+          Storage::disk('s3')->put('/images/'.$filename, $image->stream(), 'public');
+          $path = Storage::disk('s3')->url('images/'.$filename);
+            // $path = Storage::disk('s3')->put('images/products', $request->images);
+            // $path = Storage::disk('s3')->url($path);
             $id = substr($path, -8, 1);
             return Response()->json([
                         "success" => true,

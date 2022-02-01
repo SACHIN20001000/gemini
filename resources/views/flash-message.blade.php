@@ -11,7 +11,7 @@
 </div>
 @endif
 
-  
+
 
 @if ($message = Session::get('error'))
 <br>
@@ -26,7 +26,7 @@
 
 @endif
 
-   
+
 
 @if ($message = Session::get('warning'))
 <br>
@@ -38,11 +38,11 @@
         <strong>Warning!</strong> {{ $message }}
 </div>
 </div>
-    
+
 
 @endif
 
-   
+
 
 @if ($message = Session::get('info'))
 <br>
@@ -56,17 +56,14 @@
     </div>
 @endif
 
-  
+
 
 @if ($errors->any())
-<br>
-<div class="container">
-<div class="alert alert-solid-danger">
-
-    <button type="button" class="close" data-dismiss="alert">×</button>    
-
-    Please check the form below for errors
-
-</div>
-</div>
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif

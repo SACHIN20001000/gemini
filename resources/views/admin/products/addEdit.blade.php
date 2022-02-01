@@ -61,6 +61,7 @@
                                             <label class="form-label mg-b-0">Feature Image </label>
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                          <span style="color: red;">Image size should be width=800px and height=850px</span>
                                             @if(!empty($product->feature_image))
                                             <input type="file" class="dropify" data-default-file="{{$product->feature_image}}" name="feature_image"  id="feature_image">
 
@@ -228,9 +229,10 @@
                 <div class="col-lg-12 col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4>Banner image</h4>
+                            <h4>Banner image(  <span style="color: red;">Image size should be width=1500px and height=450px</span>)</h4>
                             @if(!empty($product->banner_image))
                             <input id="product-bannerr" type="file" class="dropify"  name="banner_image" accept=".jpg, .png, image/jpeg, image/png" data-default-file="{{$product->banner_image}}">
+
                             @else
                             <input id="product-bannerr" type="file" class="dropify"  name="banner_image" accept=".jpg, .png, image/jpeg, image/png" >
 
@@ -598,4 +600,3 @@
 {!! JsValidator::formRequest('App\Http\Requests\Admin\Product\AddProduct','#product-add-edit') !!}
 @endif
 @endsection
-
