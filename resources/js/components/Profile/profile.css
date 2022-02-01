@@ -74,6 +74,13 @@ td.t_btn {padding: 0 !important; }
 td.t_btn button {color: #706f6f; background: #fff; border: 1px solid #706f6f; padding: 6px; display: block; width: 100%; }
 td.t_btn button:hover {background: #ee343f; color: #fff; border: 1px solid; }
 
+.profile_banner img {width: 130px; height: 130px; object-fit: cover; border-radius: 50%; overflow: hidden; }
+.profile_banner {position: relative; }
+.profile_banner .uplod_btn:after {height: 25px; width: 25px !important; font-size: 34px; padding-bottom: 10px; color: #fff; border-color: #00b7bc; background: #00b7bc; }
+.profile_banner label.uplod_btn {height: 25px; width: 25px; display: block; top: 0; right: 0; position: absolute; top: 20px; right: 20px; }
+ .profile_banner input {height: 40px; width: 40px; cursor: pointer; top: 0; left: 0; padding: 0; z-index: 999; }
+
+
 
 @media only screen and (max-width: 768px)
 {
@@ -102,6 +109,7 @@ td.t_price span {font-size: 14px; }
 .btn_or_mb {margin-top: 20px; } table.produc_table tr>td:last-child ,table.produc_table tr>th:last-child {display: none; }
  .points:before {content: ""; border-bottom: 15px solid #ee343f; border-left: 15px solid transparent; border-right: 15px solid transparent; position: absolute; top: -15px; left: calc(50% - 13px); }
 }
+
 
 /* _______ Add form css _______ */
 .add-form {
@@ -187,10 +195,14 @@ td.t_price span {font-size: 14px; }
 .petForm label{
   margin-right: 40px;
 }
+.petForm label{
+  margin-right: 40px;
+}
 .petForm label button{
   padding: 10px;
   background: #ccc;
   color: #fff;
   margin-top: 10px;
-  
+
 }
+.addpetMsg{width: 100%; padding: 10px; color: #00FF00; font-size: 20px;}

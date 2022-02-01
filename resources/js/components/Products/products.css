@@ -3,21 +3,19 @@
 
 
 .pro_dec {font-weight: 300; font-size: 14px; }/* responsive */
-.srch_q button {border: 0; background: none; position: absolute; height: 100%; top: 0; width: 40px; right: 0; }
+.srch_q button {border: 0; background: none; position: absolute; top: 13px; width: 40px; right: 0; }
 @media only screen and (max-width: 768px)
 {
 section.xl_sec img { width: 100%;}
 section.banner_sec {padding: 10px; }
-section.banner_sec {  padding-bottom: 60px;  position: relative;}
 .btn_orng { position: absolute; bottom: 20px; text-align: center; width: 100%;  left: 0;}
 .row.grid_4.pad_15 {  display: grid; grid-template-columns: 50% 50%;}
 .grid_4>div { padding-top: 90%;}
 .grid_4>div img {   max-width: 128px; margin-top: 20px !important;}
-.grid_4>div>a h2 {font-size: 45px; position: absolute; bottom: 20px; letter-spacing: -2px;}
 section.treat_sec { padding: 0;}
 .row.grid_4.pad_15 { padding: 3px; margin: 0 -15px;}
 .blue_box, .red_box {padding-top: 90%; }
-.red_box h2, .blue_box h2 { font-size: 40px; letter-spacing: -2px; }
+
 .red_box .rect, .blue_box .rect { padding: 20px;}
 .red_box img {position: absolute; right: 4px; margin-top: 8px; max-width: 109px; }
 .red_box a { font-size: 10px; padding: 10px 0;}
@@ -45,7 +43,7 @@ section.duo_banner, section.duo_banner>div {
 .duo_banner .row .col-md-6 {
     padding: 0;
 }
-.sub_1 a {font-size: 10px; color: #fff; font-weight: 400; z-index: 1; position: relative; display: block; }
+
 
 .sub_1 img {
         position: absolute;
@@ -69,11 +67,7 @@ section.duo_banner, section.duo_banner>div {
     font-size: 22px;
    margin: 0;
 }
-.over_red {
-    background: #e3002b;
-    padding:15px 20px;
-    max-width: 136px;
-}
+
 section.Keep_touch .col-md-2 {
     max-width: 150px;
     width: 100%;
@@ -163,26 +157,15 @@ section.xl_sec img {
     .grid_4>div ,section.two_img .col-md-6.txt_over,.blue_box, .red_box,.duo_banner .row .col-md-6{
     width: 100%;
 }
-.grid_4>div img {
-    max-width: 230px;
-    height: 230px;
-    object-fit: contain;
-}
+
 .grid_4>div:nth-child(3) img {
     max-width: 350px;
 }
-.grid_4>div>a h2,.col-md-6.txt_over h2 {
-    font-size: 68px;
-    bottom: 30px;
 
-}
 .red_box .rect, .blue_box .rect {
     padding: 50px;
 }
-.red_box h2, .blue_box h2 {
-    font-size: 70px;
-    letter-spacing: -2px;
-}
+
 .blue_box p {
     font-size: 18px;
     text-align: left;
@@ -206,7 +189,7 @@ section.xl_sec img {
     max-width: 260px;
 }
 .over_red>small {
-    font-size: 16px;
+    font-size: 15px;
 }
 .over_red h2 {
     font-size: 40px;
@@ -221,17 +204,11 @@ section.xl_sec img {
 .sub_1 {
     padding: 30px;
 }
-.sub_1>h1 {
-    font-size: 50px;
-    letter-spacing: -1px;
-    color: #fff;
-    margin: 0;
-}
+
 .sub_1 p {
     font-size: 18px;
 }
 .sub_1 a {
-    font-size: 18px;
     color: #fff;
     font-weight: 400;
     z-index: 1;
@@ -330,9 +307,11 @@ h2.pr_title {
    margin: 0 5px;
 }
 .prod_rev {
-   font-size: 12px;
-   color: #706f6f;
-   margin: 25px 0 10px 0;
+  font-size: 12px;
+  color: #706f6f;
+  margin: 25px 0 10px 0;
+  display: flex;
+  flex-direction: row;
 }
 p.pro_dec {
    font-size: 14px;
@@ -1044,7 +1023,7 @@ body {
 .review_form .review_form_100{display: flex; flex-direction: column; width: 100%; }
 .review_form .review_form_50 .review_form_label{width: 50%; margin: 0; padding:10px; }
 .review_form .review_form_100 .form_label{width: 100%; margin: 0; padding:10px; }
-.review_form .review_form_100 .form_label lable,input,textarea{width: 100%; padding: 10px; }
+.review_form .review_form_100 .form_label lable,input,textarea,select{width: 100%; padding: 10px; }
 .review_btn_label{width: 100%; display: block; margin: 15px 0px; }
 .bm-wrap.cmnt_txt {flex-wrap: wrap; }
 .bm-wrap.cmnt_txt  span {font-size: 14px; font-weight: 400; display: inline-block; margin-bottom: 15px; margin-left: 2px; }
@@ -1066,4 +1045,4 @@ span.rate_flex {display: flex; justify-content: space-between; max-width: 168px;
 .recommend span{display: flex; flex-direction: row; margin-right: 30px; }
 .recommend span input{margin-right: 11px; display: block; width: 17px; margin-top: 8px; }
 .varified-img span{color: #fff; background: #000; font-size: 18px; padding: 15px; border-radius: 37px; }
-
+.vue-star-rating-rating-text{display: none !important;}

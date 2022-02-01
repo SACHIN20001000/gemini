@@ -2,6 +2,7 @@ import Vue from "vue"
 import VueRouter from "vue-router"
 import router from "./router"
 import App from "./App.vue"
+import VueMeta from 'vue-meta'
 import store from "./store"
 import Notifications from "vue-notification"
 import VueSweetalert2 from "vue-sweetalert2"
@@ -27,6 +28,7 @@ Vue.use(Notifications)
 Vue.use(store)
 Vue.use(VueAwesomeSwiper)
 Vue.use(StripePlugin, options)
+Vue.use(VueMeta)
 
 import './assets/js/jquery-3.6.0.min.js'
 import './assets/js/bootstrap.bundle.min.js'

@@ -11,10 +11,12 @@
           <div class="col-md-8">
             <div class="row">
               <div class="col-3" v-if="accountDetails && accountDetails.profile_image !=null">
+              <div class="profile_banner">
                 <img :src="accountDetails.profile_image" width="120px">
                 <label class="uplod_btn">
                   <input type="file" id="myfile" name="myfile" accept="image/*" @change="uploadImage($event)">
                 </label>
+                </div>
               </div>
               <div class="col-3" v-if="accountDetails && accountDetails.profile_image ==''">
                 <img :src="store_profile">
@@ -176,9 +178,9 @@
         <div class="petForm" v-if="addMorePet">
           <label>
             <span>Name:</span> <input type="text" v-model="petform.name">
-            <span class="error_validation" v-if="petform.errors().has('name')">
+            <div class="error_validation" v-if="petform.errors().has('name')">
               {{ petform.errors().get('name') }}
-            </span>
+            </div>
           </label>
           <label>
             <span>Type:</span>
@@ -196,6 +198,7 @@
           </label>
           <label><button type="button" @click="addPet">Add Pet</button></label>
         </div>
+        <p class="addpetMsg">{{addpetMsg}}</p>
       </div>
     </section>
     <section class="st_info mb-5">
@@ -265,7 +268,51 @@
                   </div>
                 </div>
               </div>
-              <div class="tab-pane fade" id="or_all">1
+              <div class="tab-pane fade" id="or_all">
+                <div class="tb_responsive" v-if="Orders">
+                  <table
+                    class="produc_table"
+                    v-for="(orderslist, olkey) in Orders"
+                    :key="olkey"
+                  >
+                    <thead>
+                      <tr>
+                        <th class="data_head" width=25%><span class="tb_sm">Order Date</span> <b>{{orderslist.created_at | formatDate}}</b></th>
+                        <th class="data_head" width=25%>Order Number  #{{orderslist.id}}</th>
+                        <th  class="data_head" width=25%>Transaction Id: {{orderslist.transaction_id}}</th>
+                        <th  class="data_head" width=25%>Status: {{orderslist.status}}</th>
+                      </tr>
+                    </thead>
+                    <tbody v-if="orderslist.orderItems">
+                      <tr
+                        v-for="(orderItems, oikey) in orderslist.orderItems"
+                        :key="oikey"
+                      >
+                        <td class="pt_img">
+                          <a href="#"><img :src="orderItems.product.feature_image" width="100px"></a>
+                        </td>
+                        <td class="t_size">
+                          {{orderItems.product.name}}
+                          <span>Princess: {{orderItems.unit_price}} | Size: {{orderItems.product_id}}</span>
+                        </td>
+                        <td class="t_price">
+                          <span>Item Price:</span>
+                          ${{orderItems.total_price}}
+                        </td>
+                        <td class="t_btn">
+                          <button>
+                          Re-Order
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="btn_or_mb">
+                    <button>
+                    Re-Order
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -349,7 +396,8 @@ export default {
       })
       .messages({
         'name.name': 'Name is required!'
-      })
+      }),
+    addpetMsg:''
   }),
   beforeMount(){
     this.getProfile()
@@ -417,7 +465,8 @@ export default {
     petRequestData(petData, config){
       if(config !=''){
         HTTP.post(process.env.MIX_APP_APIURL+"pet/create", petData,config).then((response) => {
-          this.addMorePet = true
+          this.addpetMsg = response.data.message
+          this.addMorePet = false
         }).catch((errors) => {
           errorMsg = errors
           this.shippingMsg=''
@@ -448,11 +497,11 @@ export default {
       if (!this.petform.validate().errors().any()) {
         let data = new FormData()
         var _this = this
-        Object.keys(this.petform.data).forEach(function(key,index) {
+        Object.keys(_this.petform.data).forEach(function(key,index) {
           data.append(key,_this.petform.data[key])
         })
-        Object.keys(this.petform.data).forEach(function(key,index) {
-          this.petform.data[key]=''
+        Object.keys(_this.petform.data).forEach(function(key,index) {
+          _this.petform.data[key]=''
         })
         data.append('image', this.petImage)
         let config = {
@@ -461,7 +510,6 @@ export default {
           }
         }
         this.petRequestData(data,config)
-        this.addMorePet=false
       }
     }
   }

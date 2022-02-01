@@ -15,6 +15,10 @@ import PETFooter from "./components/Footer"
 import {mapActions} from "vuex"
 export default {
   name: "App",
+  metaInfo: {
+    title: 'The Pet parents Store',
+    titleTemplate: 'The Pet parents Store'
+  },
   components: {
     PETHeader,
     PETFooter
