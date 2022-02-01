@@ -50,7 +50,7 @@ p.heading {font-size: 22px; color: #9d9d9c; font-weight: 300; margin: 0px 0 15px
 .br_1 {border-left: 1px solid #c7c7c7; }
 .st_info >.container_990{padding: 50px 15px; }
  .bb-1 {border-bottom: 1px solid #c7c7c7; }
-ul.pet_pro_list {list-style: none; padding: 0; margin: 0; display: flex; grid-gap: 40px; }
+ul.pet_pro_list {list-style: none; padding: 0; margin: 0; display: flex; flex-direction: row; flex-wrap: wrap; width: 100%; grid-gap: 40px; }
 ul.pet_pro_list li a {display: block; width: 118px; height: 118px; background: #fff; border-radius: 50%; overflow: hidden; }
 label.uplod_btn {width: 118px; height: 118px; border-radius: 50%; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; position: relative; }
 label.uplod_btn input{position: absolute; top: 0; cursor: pointer; left: 0; width: 100%; height: 100%; z-index: 2; opacity: 0; }
