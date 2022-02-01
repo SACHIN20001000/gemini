@@ -28,13 +28,14 @@ section.product_slider .slick-slide a h3 { font-size: 26px; font-weight: 300; ma
 .product_slider .row{margin: 0 -32px;}
 .product_slider .col-md-4
 {padding: 0 32px;}
-.slick-prev { border: none !important; width: 40px; height: 40px; background: url(../../assets/images/arrow_left.png);}
+.slick-prev { border: none !important; width: 40px !important; height: 40px !important; background: url(../../assets/images/arrow_left.png);}
 .slick-prev:before {  width: 40px !important;  height: 40px !important; background: url(../../assets/images/arrow_left.png) !important;    color: transparent !important;
-background-position: center; background-repeat: no-repeat !important;}
+background-position: center !important; background-repeat: no-repeat !important;}
 .slick-next:before {    width: 40px !important;  height: 40px !important;  background: url(../../assets/images/arrow_right.png) !important;
 color: transparent !important;   background-position: center;  background-repeat: no-repeat !important;}
 button.slick-prev.slick-arrow { left: 0;}
 .slick-next{ right: 0 !important;}
+.slick-prev:before, .slick-next:before{font-size: 40px !important;}
 .slick-arrow { z-index: 9;}
 .lb_no a {border-right: 0 !important; }
 section.xl_sec img{max-width: 100%; }
