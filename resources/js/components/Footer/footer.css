@@ -114,7 +114,8 @@ p.copy_p {
     .gray-strip {
         display: none;
     }
-
+    .row.bottom-footer{justify-content: center;
+    text-align: center;}
 
 }
 
@@ -162,4 +163,10 @@ p.copy_p {
     }
 
 
+}
+
+
+@media only screen and (max-width: 1024px)
+{
+      footer.footer-top {max-width: calc(100% - 20px) !important; }
 }

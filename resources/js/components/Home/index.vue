@@ -423,7 +423,10 @@ import {mapActions,mapGetters} from "vuex"
 
 export default {
   name:"Home",
-  title:"Home",
+  metaInfo: {
+    title: 'The Pet parents Store',
+    titleTemplate: 'The Pet parents Store'
+  },
   components: { Slick },
   data: function () {
     return {
