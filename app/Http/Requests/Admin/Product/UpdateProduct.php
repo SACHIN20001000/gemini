@@ -33,7 +33,19 @@ class UpdateProduct extends FormRequest
             'sale_price' => 'required',
             'sku' => 'required',
             'qty' => 'required',
+            'qty' => 'required',
+            'banner_image' => 'dimensions:width=1500,height=450',
+            'feature_image' => 'dimensions:width=800,height=850'
+
 
         ];
     }
+    public function messages()
+   {
+       return [
+             'banner_image.dimensions' => 'Banner Image must be width=1500px and height=450px',
+             'feature_image.dimensions' => 'Feature Image must be width=800px and height=850px',
+
+       ];
+   }
 }
