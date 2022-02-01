@@ -10,15 +10,15 @@
         <div class="row">
           <div class="col-md-8">
             <div class="row">
-              <div class="col-3" v-if="accountDetails && accountDetails.profile_image !=null">
+              <div class="col-3" v-if="profileDetails && profileDetails.profile_image !=null">
               <div class="profile_banner">
-                <img :src="accountDetails.profile_image" width="120px">
+                <img :src="profileDetails.profile_image" width="120px">
                 <label class="uplod_btn">
                   <input type="file" id="myfile" name="myfile" accept="image/*" @change="uploadImage($event)">
                 </label>
                 </div>
               </div>
-              <div class="col-3" v-if="accountDetails && accountDetails.profile_image ==''">
+              <div class="col-3" v-if="profileDetails && profileDetails.profile_image ==''">
                 <img :src="store_profile">
                 <label class="uplod_btn">
                   <input type="file" id="myfile" name="myfile" accept="image/*" @change="uploadImage($event)">
@@ -62,7 +62,7 @@
               <div
                 class="tab-pane fade show active"
                 id="st_info"
-                v-if="accountDetails"
+                v-if="profileDetails"
               >
                 <div class="form-group">
                   <label class="lb_small">Name</label>
@@ -159,9 +159,9 @@
       <div class="container_990 bb-1">
         <h1 class="st_title">My Pet Profile</h1>
         <br>
-        <ul class="pet_pro_list" v-if="pets">
+        <ul class="pet_pro_list" v-if="petprofiles">
           <li
-            v-for="(pet, pkey) in pets"
+            v-for="(pet, pkey) in petprofiles"
             :key="pkey"
           >
             <a href="#">
@@ -397,7 +397,9 @@ export default {
       .messages({
         'name.name': 'Name is required!'
       }),
-    addpetMsg:''
+    addpetMsg:'',
+    petprofiles:[],
+    profileDetails:[]
   }),
   beforeMount(){
     this.getProfile()
@@ -408,9 +410,13 @@ export default {
   },
   watch: {
     accountDetails(){
+      this.profileDetails=this.accountDetails
       Object.keys(this.accountDetails).reduce((formData, key) => {
            this.shippingFrom[key]= this.accountDetails[key]
       })
+    },
+    pets(){
+      this.petprofiles = this.pets
     }
   },
   computed: {
@@ -441,9 +447,10 @@ export default {
       if(config !=''){
         HTTP.post(process.env.MIX_APP_APIURL+"update", profileData,config).then((response) => {
           this.shippingMsg='Shipping address update is successfully!'
-          var profileDetails= response.data.data
-          Object.keys(profileDetails).reduce((formData, key) => {
-              this.shippingFrom[key]= profileDetails[key]
+          this.profileDetails= response.data.data
+          var _this = this
+          Object.keys(_this.profileDetails).reduce((formData, key) => {
+              this.shippingFrom[key]= _this.profileDetails[key]
           })
         }).catch((errors) => {
           errorMsg = errors
@@ -452,9 +459,10 @@ export default {
       }else{
         HTTP.post(process.env.MIX_APP_APIURL+"update", profileData).then((response) => {
           this.shippingMsg='Shipping address update is successfully!'
-          var profileDetails= response.data.data
-          Object.keys(profileDetails).reduce((formData, key) => {
-              this.shippingFrom[key]= profileDetails[key]
+          this.profileDetails= response.data.data
+          var _this = this
+          Object.keys(_this.profileDetails).reduce((formData, key) => {
+              this.shippingFrom[key]= _this.profileDetails[key]
           })
         }).catch((errors) => {
           errorMsg = errors
@@ -466,6 +474,7 @@ export default {
       if(config !=''){
         HTTP.post(process.env.MIX_APP_APIURL+"pet/create", petData,config).then((response) => {
           this.addpetMsg = response.data.message
+          this.getPetslist()
           this.addMorePet = false
         }).catch((errors) => {
           errorMsg = errors
@@ -511,6 +520,12 @@ export default {
         }
         this.petRequestData(data,config)
       }
+    },
+    getPetslist(){
+      HTTP.get(process.env.MIX_APP_APIURL+"pet").then((response) => {
+        this.petprofiles= response.data.data
+        this.addpetMsg=''
+      })
     }
   }
 }
