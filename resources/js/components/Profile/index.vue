@@ -25,7 +25,7 @@
                 </label>
               </div>
               <div class="col-9">
-                <h1 class="st_h">Welcome back, Susan M.!</h1>
+                <h1 class="st_h">Welcome back, {{profileDetails.name}}!</h1>
                 <p>Welcome to your The Pet Parents Store™ profile <br>account page. Here you can manage your account<br> infos, order status and check your points.</p>
               </div>
             </div>
@@ -81,7 +81,7 @@
                 <div class="form-group readonly" v-bind:readonly="true">
                   <label class="lb_small">E-mail</label>
                   <div class="inp_edt" v-if="nameData.email==1">
-                    {{shippingFrom.email}} <i @click="displayField('email')"><img :src="input_edit"></i>
+                    {{shippingFrom.email}} <!--<i @click="displayField('email')"><img :src="input_edit"></i>-->
                   </div>
                   <div class="inp_edt updatelive" v-else>
                     <input type="text" v-model="shippingFrom.email"> <i class="fa fa-check" @click="displayField('email')" aria-hidden="true"></i>
@@ -243,7 +243,11 @@
                         :key="oikey"
                       >
                         <td class="pt_img">
-                          <a href="#"><img :src="orderItems.product.feature_image" width="100px"></a>
+                          <router-link
+                            :to="{ path: 'products/'+productSlug(orderItems.product.name)+'/'+orderItems.product.id}"
+                          >
+                            <img :src="orderItems.product.feature_image" width="100px">
+                          </router-link>
                         </td>
                         <td class="t_size">
                           {{orderItems.product.name}}
@@ -526,6 +530,9 @@ export default {
         this.petprofiles= response.data.data
         this.addpetMsg=''
       })
+    },
+    productSlug(productName){
+      return productName.replace(/\s+/g, '-').toLowerCase()
     }
   }
 }
