@@ -7191,9 +7191,6 @@ API.interceptors.response.use(function (response) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
 /* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.filter.js */ "./node_modules/core-js/modules/es.array.filter.js");
 /* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
@@ -7256,13 +7253,14 @@ vue__WEBPACK_IMPORTED_MODULE_12__["default"].use(vue_meta__WEBPACK_IMPORTED_MODU
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vue__WEBPACK_IMPORTED_MODULE_12__["default"]({
-  render: function render(h) {
-    return h(_App_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
+new vue__WEBPACK_IMPORTED_MODULE_12__["default"]({
+  el: "#app",
+  components: {
+    App: _App_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   store: _store__WEBPACK_IMPORTED_MODULE_5__["default"],
   router: _router__WEBPACK_IMPORTED_MODULE_2__["default"]
-}));
+});
 
 /***/ }),
 
