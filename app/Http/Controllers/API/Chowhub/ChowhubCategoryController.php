@@ -12,7 +12,7 @@ class ChowhubCategoryController extends Controller
 
     /**
      * @OA\Get(
-     *      path="chowhub/categories",
+     *      path="/chowhub/categories",
      *      operationId="Chowhub Categories",
      *      tags={"ChowhubProducts"},
      *      security={
@@ -51,7 +51,7 @@ class ChowhubCategoryController extends Controller
 
     /**
      * @OA\Get(
-     *      path="chowhub/categories/{id}",
+     *      path="/chowhub/categories/{id}",
      *      operationId="Chowhub Categories By Id",
      * summary="Chowhub_Categories_by_id",
      *      tags={"ChowhubProducts"},

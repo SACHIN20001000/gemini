@@ -15,7 +15,7 @@ class ChowhubStoreController extends Controller
      *      path="/chowhub/stores",
      *      operationId="chowhub stores",
      *      tags={"ChowhubStores"},
-     *    
+     *
      *     summary="Chowhub stores",
      *     @OA\Response(
      *         response="200",
@@ -46,11 +46,11 @@ class ChowhubStoreController extends Controller
 
     /**
      * @OA\Get(
-     *      path="chowhub/stores/{store}",
+     *      path="/chowhub/stores/{store}",
      *      operationId="chowhub store By Id",
      * summary="store by id",
      *      tags={"ChowhubStores"},
-     *     
+     *
      *      @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -75,7 +75,7 @@ class ChowhubStoreController extends Controller
      * )
      * Store a newly created resource in storage.
      *
-     * 
+     *
      *
      * @return \Illuminate\Http\Response
      */
