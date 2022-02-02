@@ -58,15 +58,15 @@
 
                                     <div class="row row-xs align-items-center mg-b-20">
                                         <div class="col-md-4">
-                                            <label class="form-label mg-b-0">Feature Image </label>
+                                            <label class="form-label mg-b-0">Feature Image (   <span style="color: red;">800px * 850px</span>) </label>
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                          <span style="color: red;">Image size should be width=800px and height=850px</span>
+
                                             @if(!empty($product->feature_image))
-                                            <input type="file" class="dropify" data-default-file="{{$product->feature_image}}" name="feature_image"  id="feature_image">
+                                            <input type="file" class="dropify" data-default-file="{{$product->feature_image}}"  onchange="return CheckDimensionFeatureImage()" name="feature_image"  id="feature_image">
 
                                             @else
-                                            <input type="file" class="dropify"  name="feature_image"  id="feature_image">
+                                            <input type="file" class="dropify"  name="feature_image" onchange="return CheckDimensionFeatureImage()"  id="feature_image">
 
 
                                             @endif
@@ -229,13 +229,13 @@
                 <div class="col-lg-12 col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4>Banner image(  <span style="color: red;">Image size should be width=1500px and height=450px</span>)</h4>
+                            <h4>Banner image(  <span style="color: red;">1500px * 450px</span>)</h4>
                             @if(!empty($product->banner_image))
-                            <input id="product-bannerr" type="file" class="dropify"  name="banner_image" accept=".jpg, .png, image/jpeg, image/png" data-default-file="{{$product->banner_image}}">
+                            <input id="product-bannerr" type="file" class="dropify" id="image_Validate" onchange="return CheckDimensionBannerImage()" name="banner_image" accept=".jpg, .png, image/jpeg, image/png" data-default-file="{{$product->banner_image}}">
 
                             @else
-                            <input id="product-bannerr" type="file" class="dropify"  name="banner_image" accept=".jpg, .png, image/jpeg, image/png" >
-
+                            <input  type="file" onchange="return CheckDimensionBannerImage()"  class="dropify" id="image_Validate"  name="banner_image" accept=".jpg, .png, image/jpeg, image/png" >
+                            <!-- <span id='error' style="color:red; font-size: 20px"></span> -->
                             @endif
 
                         </div>
@@ -246,7 +246,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h4>Product Description Details</h4>
+                            <h4>Product Description Details(600px * 600px)</h4>
                             @if(!empty($product->productDescriptionDetail[0]['image_path']))
                             <table class="table table-bordered" id="description_fields">
                                 <?php $counter = 0; ?>
@@ -318,6 +318,9 @@
                         </div>
                     </div>
                 </div>
+
+
+
                 <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>
             </form>
             <!-- form end  -->
@@ -333,8 +336,62 @@
 <!-- summernote css/js -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 
+ function CheckDimensionBannerImage() {
+     var fileUpload = document.getElementById("image_Validate");
+        if (typeof (fileUpload.files) != "undefined") {
+            var reader = new FileReader();
+            reader.readAsDataURL(fileUpload.files[0]);
+            reader.onload = function (e) {
+                var image = new Image();
+                image.src = e.target.result;
+                image.onload = function () {
+                    var height = this.height;
+                    var width = this.width;
+                    if (height != 450  || width != 1500) {
+                        // $("span").remove();
+
+                        swal("Image size should be 1500px*450px.Please again upload image!");
+                        $("#banner_image").val('');
+                        return false;
+                    }
+                    return true;
+                };
+            }
+        } else {
+            alert("This browser does not support HTML5.");
+            return false;
+        }
+}
+function CheckDimensionFeatureImage() {
+     var fileUpload = document.getElementById("feature_image");
+        if (typeof (fileUpload.files) != "undefined") {
+            var reader = new FileReader();
+            reader.readAsDataURL(fileUpload.files[0]);
+            reader.onload = function (e) {
+                var image = new Image();
+                image.src = e.target.result;
+                image.onload = function () {
+                    var height = this.height;
+                    var width = this.width;
+                    if (height != 850  || width != 800) {
+                        swal("Image size should be 850px*800px.Please again upload image! ");
+
+                       alert($(".dropify-preview  .dropify-render  img").attr('src')) ;
+
+                        $("#feature_image").val('');
+                        return false;
+                    }
+                    return true;
+                };
+            }
+        } else {
+            alert("This browser does not support HTML5.");
+            return false;
+        }
+}
              $('textarea').summernote({
              height: 400
              });
@@ -401,7 +458,7 @@
                      attrs[index]['Regular Price'] = {value:0, name:'regular_price', placeholder:"Regular Price", type:'number', customClass:""};
                      attrs[index]['Sale Price'] = {value:0, name:'sale_price', placeholder:"Sale Price", type:'number', customClass:""};
                      attrs[index]['Sku'] = {value:0, name:'sku', placeholder:"Sku", type:'text', customClass:""};
-                     attrs[index]['Image'] = {value:null, name:'image', placeholder:"Image", type:'file', customClass:"dropify"};
+                     attrs[index]['Image(800px * 850px)'] = {value:null, name:'image', placeholder:"Image", type:'file', customClass:"dropify"};
                      });
                      variations = attrs;
                      productsEvent.displayVariations();
