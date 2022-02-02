@@ -20,6 +20,7 @@ use Illuminate\Support\Str;
 use App\Http\Requests\Admin\Chowhub\Product\AddProduct;
 use App\Http\Requests\Admin\Chowhub\Product\UpdateProduct;
 use Storage;
+use Intervention\Image\Facades\Image;
 
 class ChowhubProductController extends Controller
 {
@@ -232,8 +233,10 @@ class ChowhubProductController extends Controller
                         $Imagepath = '';
                         if (!empty($variation['image']))
                         {
-                            $path = Storage::disk('s3')->put('images', $variation['image']);
-                            $Imagepath = Storage::disk('s3')->url($path);
+                            $filename = $variation['image']->hashname();
+                            $image = Image::make($variation['image'])->resize(360, 360);
+                            Storage::disk('s3')->put('/images/'.$filename, $image->stream(), 'public');
+                            $Imagepath = Storage::disk('s3')->url('images/'.$filename);
                         }
 
                         $productVariation = new ChowhubProductVariation;
@@ -479,8 +482,10 @@ class ChowhubProductController extends Controller
                             }
                             if (!empty($variation['image']))
                             {
-                                $path = Storage::disk('s3')->put('images', $variation['image']);
-                                $Imagepath = Storage::disk('s3')->url($path);
+                                $filename = $variation['image']->hashname();
+                                $image = Image::make($variation['image'])->resize(360, 360);
+                                Storage::disk('s3')->put('/images/'.$filename, $image->stream(), 'public');
+                                $Imagepath = Storage::disk('s3')->url('images/'.$filename);
                                 $productVariation->image = $Imagepath;
                             }
                             $productVariation->real_price = $variation['regular_price'];
