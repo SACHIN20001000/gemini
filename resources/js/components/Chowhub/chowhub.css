@@ -1,0 +1,66 @@
+.errorMsg{
+  width: 100%;
+  color: red;
+  font-size: 14px;
+  font-weight: normal;
+}
+.button{
+  color: #fff;
+  background: red;
+  border-radius: 4px;
+  padding: 5px;
+  list-style: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+.button:hover{
+  color: #fff;
+  list-style: none;
+  text-decoration: none;
+}
+.button strong{
+  color: #fff;
+}
+.main table tr td {font-weight: normal;}
+.totalamount{text-align: right;}
+.proccedtocheckout{
+  padding: 10px 0px;
+  text-align: right;
+}
+.proccedtocheckout a{
+  padding: 10px 0px;
+  background: blue;
+  color: #fff;
+  text-align: right;
+  text-decoration: none;
+}
+.proccedtocheckout a:hover{
+  list-style: none;
+  background: blue;
+  color: #fff;
+}
+.listcartItem{
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+.listcartItem li{
+  width: 100%;
+  display:flex;
+  flex-direction: column;
+  list-style: none;
+  margin-bottom: 10px;
+}
+.listcartItem li .cartlabel{
+  width: 100%;
+  display:flex;
+  flex-direction: row;
+}
+.listcartItem li .cartlabel span{
+  width: 18%;
+  display: block;
+  text-align: center;
+}
+.headingcart tr th{
+  text-align: center;
+}
