@@ -18,7 +18,7 @@
           </span>
           <span>
             <router-link
-              :to="{ path: 'products/'+productSlug(productsbycat.name)+'/'+productsbycat.id}"
+              :to="{ path: '/products/'+productSlug(productsbycat.name)+'/'+productsbycat.id}"
             >
               {{productsbycat.name}}
             </router-link>
