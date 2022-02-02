@@ -106,7 +106,7 @@ class ProductController extends Controller
     {
 
         $inputs = $request->all();
-        print_r($inputs);die;
+     
         if(!empty($inputs['product_detail'])){
             foreach($inputs['product_detail'] as $key => $value)
             {
