@@ -363,8 +363,8 @@ function CheckDimensionFeatureImage() {
                 image.onload = function () {
                     var height = this.height;
                     var width = this.width;
-                    if (height != 850  || width != 800) {
-                        swal("Image size should be 850px*800px.Please again upload image! ");
+                    if (height != 619  || width != 577) {
+                        swal("Image size should be 619px*577px.Please again upload image! ");
 
                         // $("span").remove();
 
@@ -616,14 +616,17 @@ function CheckDimensionFeatureImage() {
                                                             data.ff_info.RemoveFile();
                                                     }
                                             });
+
                                             });
                                             $(function() {
                                             var counter = 1;
+
                                             $('#feature-page-image').FancyFileUpload({
                                             url:'/admin/save-description-photo',
                                                     fileupload : {
                                                     maxChunkSize : 1000000
                                                     },
+
                                                     uploadcompleted : function(e, data) {
 
                                                     $("#feature-page-image-items").prepend('<div class="card-draggable"><li id="feature-page-item' + counter + '"><img class="imageSize" src="' + data.result.image + '" /><i class="fas fa-trash-alt" onclick="productsEvent.removeFeatureDescriptionImage(' + counter + ')"></i><input type="hidden"  value="' + data.result.image + '" name="feature_page_images[]"  /></li></div>');

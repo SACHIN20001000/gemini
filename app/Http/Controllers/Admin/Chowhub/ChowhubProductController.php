@@ -563,8 +563,12 @@ class ChowhubProductController extends Controller
 
         if ($request->file('images'))
         {
-            $path = Storage::disk('s3')->put('images/products', $request->images);
-            $path = Storage::disk('s3')->url($path);
+            $filename = $request->images->hashname();
+            $image = Image::make($request->images)->resize(619, 577);
+            Storage::disk('s3')->put('/images/products/'.$filename, $image->stream(), 'public');
+            $path = Storage::disk('s3')->url('images/products/'.$filename);
+            // $path = Storage::disk('s3')->put('images/products', $request->images);
+            // $path = Storage::disk('s3')->url($path);
             $id = substr($path, -8, 1);
             return Response()->json([
                         "success" => true,
@@ -585,8 +589,10 @@ class ChowhubProductController extends Controller
 
         if ($request->file('description_images'))
         {
-            $path = Storage::disk('s3')->put('images/products', $request->description_images);
-            $path = Storage::disk('s3')->url($path);
+            $filename = $request->description_images->hashname();
+            $image = Image::make($request->description_images)->resize(1238, 652);
+            Storage::disk('s3')->put('/images/products/'.$filename, $image->stream(), 'public');
+            $path = Storage::disk('s3')->url('images/products/'.$filename);
             $id = substr($path, -8, 1);
             return Response()->json([
                         "success" => true,
