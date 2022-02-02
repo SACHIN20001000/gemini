@@ -229,7 +229,7 @@
                 <div class="col-lg-12 col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4>Banner image(  <span style="color: red;">1500px * 450px</span>)</h4>
+                            <h4>Banner image(  <span style="color: red; font-size: 14px;">1500px * 450px</span>)</h4>
                             @if(!empty($product->banner_image))
                             <input id="product-bannerr" type="file" class="dropify" id="image_Validate" onchange="return CheckDimensionBannerImage()" name="banner_image" accept=".jpg, .png, image/jpeg, image/png" data-default-file="{{$product->banner_image}}">
 
@@ -379,7 +379,7 @@ function CheckDimensionFeatureImage() {
                     if (height != 850  || width != 800) {
                         swal("Image size should be 850px*800px.Please again upload image! ");
 
-                       alert($(".dropify-preview  .dropify-render  img").attr('src')) ;
+                    //   $(".dropify-preview  .dropify-render  img").attr('src','') ;
 
                         $("#feature_image").val('');
                         return false;
