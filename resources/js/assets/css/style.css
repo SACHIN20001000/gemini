@@ -159,7 +159,7 @@ input[type="email"] ,
 input[type="submit"] ,
 input[type="range"] ,
 select 
-{
+{ 
   color: #706f6f;
   font-weight: 300;
   height: 40px;
