@@ -106,6 +106,7 @@ class ProductController extends Controller
     {
 
         $inputs = $request->all();
+        print_r($inputs);die;
         if(!empty($inputs['product_detail'])){
             foreach($inputs['product_detail'] as $key => $value)
             {
@@ -328,7 +329,7 @@ class ProductController extends Controller
             $viewData['Regular Price'] = array('value' => $variation->real_price, 'name' => 'regular_price', 'placeholder' => 'Regular Price', 'type' => 'number', 'customClass' => '');
             $viewData['Sale Price'] = array('value' => $variation->sale_price, 'name' => 'sale_price', 'placeholder' => 'Sale Price', 'type' => 'number', 'customClass' => '');
             $viewData['Sku'] = array('value' => $variation->sku, 'name' => 'sku', 'placeholder' => 'Sku', 'type' => 'text', 'customClass' => '');
-            $viewData['Image'] = array('value' => '', 'name' => 'image', 'placeholder' => 'Image', 'type' => 'file', 'datafile' => $variation->image, 'customClass' => 'dropify');
+            $viewData['Image(800PX * 850PX)'] = array('value' => '', 'name' => 'image', 'placeholder' => 'Image', 'type' => 'file', 'datafile' => $variation->image, 'customClass' => 'dropify');
 
             array_push($variations, $viewData);
         }
@@ -385,7 +386,7 @@ class ProductController extends Controller
             if (!empty($inputs['banner_image']))
             {
 
-              $path = Storage::disk('s3')->put('images', $inputs['feature_image']);
+              $path = Storage::disk('s3')->put('images', $inputs['banner_image']);
               $image_path = Storage::disk('s3')->url($path);
                 $products->banner_image = $image_path;
             }
