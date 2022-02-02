@@ -60,14 +60,14 @@
 
                                     <div class="row row-xs align-items-center mg-b-20">
                                         <div class="col-md-4">
-                                            <label class="form-label mg-b-0">Feature Image </label>
+                                            <label class="form-label mg-b-0">Feature Image(619px*577px) </label>
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
                                             @if(!empty($product->feature_image))
-                                            <input type="file" class="dropify" data-default-file="{{$product->feature_image}}" name="feature_image"  id="feature_image">
+                                            <input type="file" class="dropify" data-default-file="{{$product->feature_image}}"  onchange="return CheckDimensionFeatureImage()" name="feature_image"  id="feature_image">
 
                                             @else
-                                            <input type="file" class="dropify"  name="feature_image"  id="feature_image">
+                                            <input type="file" class="dropify"  name="feature_image"  onchange="return CheckDimensionFeatureImage()" id="feature_image">
 
 
                                             @endif
@@ -75,7 +75,7 @@
                                     </div>
                                     <div class="row row-xs align-items-center mg-b-20">
                                         <div class="col-md-4">
-                                            <label class="form-label mg-b-0">Media </label>
+                                            <label class="form-label mg-b-0">Media (619px*577px) </label>
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
                                             <div class="row">
@@ -247,7 +247,7 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4>Description Image</h4>
+                                    <h4>Description Image(1238px*653px)</h4>
 
                                     <div class="row row-xs align-items-center mg-b-20">
 
@@ -290,7 +290,7 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4>Experiential Page Images</h4>
+                                    <h4>Experiential Page Images(1238px*653px)</h4>
 
                                     <div class="row row-xs align-items-center mg-b-20">
 
@@ -349,8 +349,36 @@
     <script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
 
+function CheckDimensionFeatureImage() {
+     var fileUpload = document.getElementById("feature_image");
+        if (typeof (fileUpload.files) != "undefined") {
+            var reader = new FileReader();
+            reader.readAsDataURL(fileUpload.files[0]);
+            reader.onload = function (e) {
+                var image = new Image();
+                image.src = e.target.result;
+                image.onload = function () {
+                    var height = this.height;
+                    var width = this.width;
+                    if (height != 850  || width != 800) {
+                        swal("Image size should be 850px*800px.Please again upload image! ");
+
+                        // $("span").remove();
+
+                        $("#feature_image").val('');
+                        return false;
+                    }
+                    return true;
+                };
+            }
+        } else {
+            alert("This browser does not support HTML5.");
+            return false;
+        }
+}
                                             $('#hiddenDescription').summernote({
                                             height: 400
                                             });
@@ -415,7 +443,7 @@
                                                     attrs[index]['Regular Price'] = {value:0, name:'regular_price', placeholder:"Regular Price", type:'number', customClass:""};
                                                     attrs[index]['Sale Price'] = {value:0, name:'sale_price', placeholder:"Sale Price", type:'number', customClass:""};
                                                     attrs[index]['Sku'] = {value:0, name:'sku', placeholder:"Sku", type:'text', customClass:""};
-                                                    attrs[index]['Image'] = {value:null, name:'image', placeholder:"Image", type:'file', customClass:"dropify   "};
+                                                    attrs[index]['Image(360px*360px)'] = {value:null, name:'image', placeholder:"Image", type:'file', customClass:"dropify   "};
                                                     });
                                                     variations = attrs;
                                                     productsEvent.displayVariations();
