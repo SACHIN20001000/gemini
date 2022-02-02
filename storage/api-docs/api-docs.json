@@ -136,7 +136,7 @@
                 }
             }
         },
-        "cart/{cart}/{itemId}": {
+        "/cart/{cart}/{itemId}": {
             "delete": {
                 "tags": [
                     "Carts"
@@ -642,7 +642,7 @@
                 }
             }
         },
-        "chowhub/categories": {
+        "/chowhub/categories": {
             "get": {
                 "tags": [
                     "ChowhubProducts"
@@ -677,7 +677,7 @@
                 ]
             }
         },
-        "chowhub/categories/{id}": {
+        "/chowhub/categories/{id}": {
             "get": {
                 "tags": [
                     "ChowhubProducts"
@@ -996,7 +996,7 @@
                 }
             }
         },
-        "chowhub/rating/overall/{product_id}": {
+        "/chowhub/rating/overall/{product_id}": {
             "get": {
                 "tags": [
                     "Rating"
@@ -1064,7 +1064,7 @@
                 }
             }
         },
-        "chowhub/stores/{store}": {
+        "/chowhub/stores/{store}": {
             "get": {
                 "tags": [
                     "ChowhubStores"
@@ -2306,7 +2306,7 @@
                         "type": "string",
                         "example": "2"
                     },
-                    "variation_id": {
+                    "variation_product_id": {
                         "title": "Variation",
                         "description": "Variation id for storring",
                         "type": "string",

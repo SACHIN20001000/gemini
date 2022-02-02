@@ -131,7 +131,7 @@ class ChowhubRatingController extends Controller
 
   /**
      * @OA\Get(
-     *      path="chowhub/rating/overall/{product_id}",
+     *      path="/chowhub/rating/overall/{product_id}",
      *      operationId="overall rating",
      *      tags={"Rating"},
      *

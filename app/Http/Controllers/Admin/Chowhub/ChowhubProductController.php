@@ -20,6 +20,7 @@ use Illuminate\Support\Str;
 use App\Http\Requests\Admin\Chowhub\Product\AddProduct;
 use App\Http\Requests\Admin\Chowhub\Product\UpdateProduct;
 use Storage;
+use Intervention\Image\Facades\Image;
 
 class ChowhubProductController extends Controller
 {
@@ -232,8 +233,10 @@ class ChowhubProductController extends Controller
                         $Imagepath = '';
                         if (!empty($variation['image']))
                         {
-                            $path = Storage::disk('s3')->put('images', $variation['image']);
-                            $Imagepath = Storage::disk('s3')->url($path);
+                            $filename = $variation['image']->hashname();
+                            $image = Image::make($variation['image'])->resize(360, 360);
+                            Storage::disk('s3')->put('/images/'.$filename, $image->stream(), 'public');
+                            $Imagepath = Storage::disk('s3')->url('images/'.$filename);
                         }
 
                         $productVariation = new ChowhubProductVariation;
@@ -308,7 +311,7 @@ class ChowhubProductController extends Controller
             $viewData['Regular Price'] = array('value' => $variation->real_price, 'name' => 'regular_price', 'placeholder' => 'Regular Price', 'type' => 'number', 'customClass' => '');
             $viewData['Sale Price'] = array('value' => $variation->sale_price, 'name' => 'sale_price', 'placeholder' => 'Sale Price', 'type' => 'number', 'customClass' => '');
             $viewData['Sku'] = array('value' => $variation->sku, 'name' => 'sku', 'placeholder' => 'Sku', 'type' => 'text', 'customClass' => '');
-            $viewData['Image'] = array('value' => '', 'name' => 'image', 'placeholder' => 'Image', 'type' => 'file', 'dataitem' => $variation->image, 'customClass' => 'dropify');
+            $viewData['Image(360px*360px)'] = array('value' => '', 'name' => 'image', 'placeholder' => 'Image', 'type' => 'file', 'dataitem' => $variation->image, 'customClass' => 'dropify');
             $viewData['hidden_id'] = array('value' => $variation->id, 'name' => 'id', 'placeholder' => '', 'type' => 'hidden', 'customClass' => '');
 
             array_push($variations, $viewData);
@@ -479,8 +482,10 @@ class ChowhubProductController extends Controller
                             }
                             if (!empty($variation['image']))
                             {
-                                $path = Storage::disk('s3')->put('images', $variation['image']);
-                                $Imagepath = Storage::disk('s3')->url($path);
+                                $filename = $variation['image']->hashname();
+                                $image = Image::make($variation['image'])->resize(360, 360);
+                                Storage::disk('s3')->put('/images/'.$filename, $image->stream(), 'public');
+                                $Imagepath = Storage::disk('s3')->url('images/'.$filename);
                                 $productVariation->image = $Imagepath;
                             }
                             $productVariation->real_price = $variation['regular_price'];

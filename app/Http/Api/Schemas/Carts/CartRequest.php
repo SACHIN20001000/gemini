@@ -51,5 +51,5 @@ class CartRequest
      *
      * @var string
      */
-    public $variation_id;
+    public $variation_product_id;
 }
