@@ -106,7 +106,15 @@ class ProductController extends Controller
     {
 
         $inputs = $request->all();
+        if(!empty($inputs['product_detail'])){
+            foreach($inputs['product_detail'] as $key => $value)
+            {
+                if(empty($value['value'])){
+                    unset($inputs['product_detail'][$key]);
+                }
 
+            }
+        }
         $tags = explode(",", $inputs['tag']);
 
         // ADD PRODUCT TABLE DATA
@@ -345,6 +353,16 @@ class ProductController extends Controller
     public function update(UpdateProduct $request, $id)
     {
         $inputs = $request->all();
+        if(!empty($inputs['product_detail'])){
+            foreach($inputs['product_detail'] as $key => $value)
+            {
+                if(empty($value['value'])){
+                    unset($inputs['product_detail'][$key]);
+                }
+
+            }
+        }
+
         if(!isset($inputs['variations'][0]['id'])){
             ProductVariation::where('product_id', $id)->delete();
         }
