@@ -102,10 +102,22 @@
   $(document).ready(function () {
     $("select").select2();
     $('#description').summernote({
+
+    toolbar: [
+  	['font', ['bold', 'italic', 'underline', 'clear']],
+	['insert', ['link','image', 'doc', 'video']],
+	['misc', ['codeview']],
+    ],
       height: 300
    });
    $('#title').summernote({
+    toolbar: [
+  	['font', ['bold', 'italic', 'underline', 'clear']],
+	['insert', ['link','image', 'doc', 'video']],
+	['misc', ['codeview']],
+    ],
       height: 200
+
    });
   });
 

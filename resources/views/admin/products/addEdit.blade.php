@@ -355,6 +355,7 @@
 
                         swal("Image size should be 1500px*450px.Please again upload image!");
                         $("#banner_image").val('');
+
                         return false;
                     }
                     return true;
@@ -379,8 +380,6 @@ function CheckDimensionFeatureImage() {
                     if (height != 850  || width != 800) {
                         swal("Image size should be 850px*800px.Please again upload image! ");
 
-                    //   $(".dropify-preview  .dropify-render  img").attr('src','') ;
-
                         $("#feature_image").val('');
                         return false;
                     }
@@ -393,6 +392,11 @@ function CheckDimensionFeatureImage() {
         }
 }
              $('textarea').summernote({
+                toolbar: [
+  	['font', ['bold', 'italic', 'underline', 'clear']],
+	['insert', ['link','image', 'doc', 'video']],
+	['misc', ['codeview']],
+    ],
              height: 400
              });
 
