@@ -1,5 +1,50 @@
 <template>
   <div class="main">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "Product_TITLE",
+      "image": [
+        "https://petparent.s3.ap-south-1.amazonaws.com/images/CRaQNtLHGgEk7ymtYhyT8hjDgTY8pIY1ccLLdw29.png",
+        "https://petparent.s3.ap-south-1.amazonaws.com/images/CRaQNtLHGgEk7ymtYhyT8hjDgTY8pIY1ccLLdw29.png",
+        "https://petparent.s3.ap-south-1.amazonaws.com/images/CRaQNtLHGgEk7ymtYhyT8hjDgTY8pIY1ccLLdw29.png"
+       ],
+      "description": "Product Description",
+      "sku": "0446310786",
+      "mpn": "925872",
+      "brand": {
+        "@type": "Brand",
+        "name": "ACME"
+      },
+      "review": {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "4",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Fred Benson"
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.4",
+        "reviewCount": "89"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://example.com/anvil",
+        "priceCurrency": "USD",
+        "price": "119.99",
+        "priceValidUntil": "2020-11-20",
+        "itemCondition": "https://schema.org/UsedCondition",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+  </script>
     <!--<div id="map" v-cloak>
       <p>
         Let us locate you for better results...

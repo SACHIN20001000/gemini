@@ -4539,6 +4539,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -73792,6 +73837,12 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "main" }, [
+    _c("script", { attrs: { type: "application/ld+json" } }, [
+      _vm._v(
+        '\n  {\n    "@context": "https://schema.org/",\n    "@type": "Product",\n    "name": "Product_TITLE",\n    "image": [\n      "https://petparent.s3.ap-south-1.amazonaws.com/images/CRaQNtLHGgEk7ymtYhyT8hjDgTY8pIY1ccLLdw29.png",\n      "https://petparent.s3.ap-south-1.amazonaws.com/images/CRaQNtLHGgEk7ymtYhyT8hjDgTY8pIY1ccLLdw29.png",\n      "https://petparent.s3.ap-south-1.amazonaws.com/images/CRaQNtLHGgEk7ymtYhyT8hjDgTY8pIY1ccLLdw29.png"\n     ],\n    "description": "Product Description",\n    "sku": "0446310786",\n    "mpn": "925872",\n    "brand": {\n      "@type": "Brand",\n      "name": "ACME"\n    },\n    "review": {\n      "@type": "Review",\n      "reviewRating": {\n        "@type": "Rating",\n        "ratingValue": "4",\n        "bestRating": "5"\n      },\n      "author": {\n        "@type": "Person",\n        "name": "Fred Benson"\n      }\n    },\n    "aggregateRating": {\n      "@type": "AggregateRating",\n      "ratingValue": "4.4",\n      "reviewCount": "89"\n    },\n    "offers": {\n      "@type": "Offer",\n      "url": "https://example.com/anvil",\n      "priceCurrency": "USD",\n      "price": "119.99",\n      "priceValidUntil": "2020-11-20",\n      "itemCondition": "https://schema.org/UsedCondition",\n      "availability": "https://schema.org/InStock"\n    }\n  }\n'
+      ),
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "free_ship_bar" }, [
       _c("p", [
         _c("img", { attrs: { src: _vm.imgShip, alt: "Ship" } }),
