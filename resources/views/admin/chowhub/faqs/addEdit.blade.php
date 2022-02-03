@@ -100,7 +100,9 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 <script>
   $(document).ready(function () {
+      //betify select dropdown
     $("select").select2();
+    //text editor code
     $('#description').summernote({
         toolbar: [
   	['font', ['bold', 'italic', 'underline', 'clear']],

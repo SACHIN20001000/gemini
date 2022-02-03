@@ -351,7 +351,7 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
-
+//validate image height width
 function CheckDimensionFeatureImage() {
      var fileUpload = document.getElementById("feature_image");
         if (typeof (fileUpload.files) != "undefined") {
@@ -365,9 +365,6 @@ function CheckDimensionFeatureImage() {
                     var width = this.width;
                     if (height != 619  || width != 577) {
                         swal("Image size should be 619px*577px.Please again upload image! ");
-
-                        // $("span").remove();
-
                         $("#feature_image").val('');
                         return false;
                     }
@@ -379,6 +376,7 @@ function CheckDimensionFeatureImage() {
             return false;
         }
 }
+// trext editor section
                                             $('#hiddenDescription').summernote({
                                                 toolbar: [
                                                 ['font', ['bold', 'italic', 'underline', 'clear']],
@@ -387,6 +385,7 @@ function CheckDimensionFeatureImage() {
                                                 ],
                                             height: 400
                                             });
+                                            //product js 
                                             var productsEvent;
                                             (function() {
                                             var attributes = [];
