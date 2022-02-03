@@ -28,14 +28,14 @@ class OrderController extends Controller
                             ->addColumn('action', function ($row)
                             {
                                 $action = '
-                                
+
                                 <span class="action-buttons">
                                 <a  href="' . route("orders.show", $row) . '" class="btn btn-sm btn-info btn-b"><i class="fa fa-eye" aria-hidden="true"></i>
 
                                 </a>
                                 <a  href="' . route("orders.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                 </a>
-                                    
+
                                     <a href="' . route("orders.destroy", $row) . '"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"
@@ -98,9 +98,10 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit($id)
     {
-        $order = $order->with('user', 'shipping', 'orderItems')->first();
+        $order = Order::with('user', 'shipping', 'orderItems')->where('id',$id)->first();
+
         $orders = Order::where('id', '!=', $order->id)->get();
         return view('admin.orders.addEdit', compact('order', 'orders'));
     }
