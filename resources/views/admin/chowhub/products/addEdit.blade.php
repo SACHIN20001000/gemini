@@ -350,6 +350,7 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script type="text/javascript">
 //validate image height width
 function CheckDimensionFeatureImage() {
@@ -385,7 +386,7 @@ function CheckDimensionFeatureImage() {
                                                 ],
                                             height: 400
                                             });
-                                            //product js 
+                                            //product js
                                             var productsEvent;
                                             (function() {
                                             var attributes = [];
@@ -414,12 +415,14 @@ function CheckDimensionFeatureImage() {
                                                     productsEvent.displayAttributes();
                                                     productsEvent.createVariations();
                                                     } else(
-                                                            alert('Their is not (,) at the last of your value')
+                                                        swal("Their is not (,) at the last of your value ")
+
                                                             )
 
 
                                                     } else{
-                                                    alert('Both Feild is Required')
+                                                        swal("Both Feild is Required ")
+
                                                     }
 
 

@@ -426,12 +426,12 @@ function CheckDimensionFeatureImage() {
                      productsEvent.displayAttributes();
                      productsEvent.createVariations();
                      } else(
-                             alert('Their is not (,) at the last of your value')
+                             swal('Their is not (,) at the last of your value')
                              )
 
 
                      } else{
-                     alert('Both Feild is Required')
+                        swal("Both Feild is Required ")
                      }
 
 
