@@ -528,7 +528,7 @@
            </div>
         </div>
         <div v-if="paginationReviews && paginationReviews.length>0">
-        
+
               <div
                 class="row rating_row"
                 v-for="(review,rkey) in paginationReviews"
@@ -583,7 +583,7 @@
                 <jw-pagination :items="exampleItems" @changePage="onChangePage"></jw-pagination>
             </div>
           </div>
-        
+
       </section>
   </div>
 </template>
@@ -848,6 +848,10 @@ export default {
           variation_product_id: vid
         }
         this.addCartItem(itemDetails)
+        const cartId = localStorage.getItem('cartId')
+        HTTP.post(process.env.MIX_APP_APIURL+'cart/'+cartId, itemDetails).then((response) => {
+          this.getCartItems()
+        })
       }
     },
     variationUpdate(e,attributeId,attnameId,typ){
