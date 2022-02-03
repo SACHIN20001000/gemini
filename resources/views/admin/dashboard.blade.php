@@ -22,7 +22,7 @@
            <div>
                <a href="{{route('users.index')}}">
             <label class="tx-13">Total Users</label>
-            <h5>{{$user}}</h5>
+            <h5>{{$user}} </h5>
             </a>
         </div>
     </div>
@@ -42,7 +42,7 @@
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
                             <div class="">
-                                <h4 class="tx-20 fw-bold mb-1 text-white">{{$category}}</h4>
+                                <h4 class="tx-20 fw-bold mb-1 text-white">{{$category}} Records</h4>
                                 <!-- <p class="mb-0 tx-12 text-white op-7">Compared to last week</p> -->
                             </div>
                             <span class="float-end my-auto ms-auto">
@@ -66,7 +66,7 @@
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
                             <div class="">
-                                <h4 class="tx-20 fw-bold mb-1 text-white">{{$product}}</h4>
+                                <h4 class="tx-20 fw-bold mb-1 text-white">{{$product}} Records</h4>
                                 <!-- <p class="mb-0 tx-12 text-white op-7">Compared to last week</p> -->
                             </div>
                             <span class="float-end my-auto ms-auto">
@@ -90,7 +90,7 @@
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
                             <div class="">
-                                <h4 class="tx-20 fw-bold mb-1 text-white">{{$chowhubproduct}}</h4>
+                                <h4 class="tx-20 fw-bold mb-1 text-white">{{$chowhubproduct}} Records</h4>
                                 <!-- <p class="mb-0 tx-12 text-white op-7">Compared to last week</p> -->
                             </div>
                             <span class="float-end my-auto ms-auto">
@@ -114,7 +114,7 @@
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
                             <div class="">
-                                <h4 class="tx-20 fw-bold mb-1 text-white">{{$order}}</h4>
+                                <h4 class="tx-20 fw-bold mb-1 text-white">{{$order}} Records</h4>
                                 <!-- <p class="mb-0 tx-12 text-white op-7">Compared to last week</p> -->
                             </div>
                             <span class="float-end my-auto ms-auto">
@@ -176,7 +176,7 @@
 
 
 
-   
+
 </div>
 <!-- /Container -->
 @endsection
