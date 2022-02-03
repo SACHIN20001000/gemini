@@ -351,11 +351,8 @@
                     var height = this.height;
                     var width = this.width;
                     if (height != 450  || width != 1500) {
-                        // $("span").remove();
-
                         swal("Image size should be 1500px*450px.Please again upload image!");
                         $("#banner_image").val('');
-
                         return false;
                     }
                     return true;
@@ -379,7 +376,6 @@ function CheckDimensionFeatureImage() {
                     var width = this.width;
                     if (height != 850  || width != 800) {
                         swal("Image size should be 850px*800px.Please again upload image! ");
-
                         $("#feature_image").val('');
                         return false;
                     }
@@ -391,16 +387,17 @@ function CheckDimensionFeatureImage() {
             return false;
         }
 }
+//text editor code
              $('textarea').summernote({
                 toolbar: [
-  	['font', ['bold', 'italic', 'underline', 'clear']],
-	['insert', ['link','image', 'doc', 'video']],
-	['misc', ['codeview']],
-    ],
+        ['font', ['bold', 'italic', 'underline', 'clear']],
+        ['insert', ['link','image', 'doc', 'video']],
+        ['misc', ['codeview']],
+        ],
              height: 400
              });
 
-
+//product section js code
              var productsEvent;
              (function() {
              var attributes = [];
