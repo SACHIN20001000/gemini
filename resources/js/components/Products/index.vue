@@ -668,6 +668,7 @@ export default {
       observer: true,
       observeParents: true,
       zoom: true,
+      height:850,
       allowTouchMove: true,
       notNextTick: false,
       loadPrevNext: true,
@@ -768,9 +769,6 @@ export default {
     this.getOverAllRating(this.$route.params.id)
   },
   watch: {
-    addCartItems(){
-      this.getCartItems()
-    },
     product(){
       this.pagetitle = this.product.name
       this.variations = this.product.variations
@@ -846,7 +844,7 @@ export default {
           quantity: this.quantity,
           variation_product_id: vid
         }
-        this.addCartItem(itemDetails)
+        /*this.addCartItem(itemDetails)*/
         const cartId = localStorage.getItem('cartId')
         HTTP.post(process.env.MIX_APP_APIURL+'cart/'+cartId, itemDetails).then((response) => {
           this.getCartItems()
