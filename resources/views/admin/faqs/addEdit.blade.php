@@ -100,12 +100,26 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 <script>
   $(document).ready(function () {
+      //beutify select dropdown
     $("select").select2();
+    //text edtior code
     $('#description').summernote({
+
+    toolbar: [
+  	['font', ['bold', 'italic', 'underline', 'clear']],
+	['insert', ['link','image', 'doc', 'video']],
+	['misc', ['codeview']],
+    ],
       height: 300
    });
    $('#title').summernote({
+    toolbar: [
+  	['font', ['bold', 'italic', 'underline', 'clear']],
+	['insert', ['link','image', 'doc', 'video']],
+	['misc', ['codeview']],
+    ],
       height: 200
+
    });
   });
 
