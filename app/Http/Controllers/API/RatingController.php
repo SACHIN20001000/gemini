@@ -64,7 +64,7 @@ class RatingController extends Controller
     {
 
         $search= $request['keyword']?? null;
-        $order= $request['type'] ?? 'asc';
+        $order= $request['type'] ?? 'DESC';
 
         $rating = Rating::with('user','product','ratingGallery')
         ->where('product_id',$id)

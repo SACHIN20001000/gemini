@@ -49,7 +49,7 @@ class ChowhubRatingController extends Controller
 
     public function index($id)
     {
-        $rating = ChowhubRating::with('user','product')->where('product_id',$id)->orderBy('id', 'asc')->get();
+        $rating = ChowhubRating::with('user','product')->where('product_id',$id)->orderBy('id', 'DESC')->get();
 
         return  ChowhubRatingResource::collection($rating);
 
