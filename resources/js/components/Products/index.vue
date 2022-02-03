@@ -669,7 +669,6 @@ export default {
       observeParents: true,
       zoom: true,
       allowTouchMove: true,
-      width: window.innerWidth,
       notNextTick: false,
       loadPrevNext: true,
       lazy: {
@@ -952,7 +951,7 @@ export default {
         var productId = this.$route.params.id
         this.faqForm.data.product_id=productId
         this.addFaq(this.faqForm.data)
-        
+
         this.$swal({
           title: "Success!",
           text: "Question is created successfully.",
