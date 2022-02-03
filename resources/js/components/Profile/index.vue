@@ -47,7 +47,7 @@
           <div class="col-3">
             <ul class="nav st_tab_list" id="profil_info">
               <li class="nav-item" role="presentation">
-                <button class="nav-link active"  data-bs-toggle="tab" data-bs-target="#st_info">Infos</button>
+                <button class="nav-link active"  data-bs-toggle="tab" data-bs-target="#st_info">Info</button>
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#st_shipping" >Shipping Address</button>

@@ -18,7 +18,7 @@
             name="email"
             v-model='form.email'
             class="form-control"
-            placeholder="email"
+            placeholder="Email"
             aria-label=".form-control-lg example"
           >
           <span
@@ -41,7 +41,7 @@
             name="password"
             v-model='form.password'
             class="form-control"
-            placeholder="password"
+            placeholder="Password"
             aria-label=".form-control-lg example"
           >
           <span
