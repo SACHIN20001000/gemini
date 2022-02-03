@@ -299,10 +299,10 @@
           <div class="col-sm-7">
             <div class="row" v-if="!askQuestion">
               <div class="col-sm-3" v-if="faqDetail && faqDetail.user">
-                <div class="bm-wrap cmnt_img">
+                <div class="bm-wrap">
                   <img :src="faqDetail.user.profile_image" width="60px">
                   <div>
-                    <span class="u_cmmnt"><b>{{faqDetail.user.name}}</b></span>
+                    <span><b>{{faqDetail.user.name}}</b></span>
                     <span>{{faqDetail.user.created_at}}</span>
                   </div>
                 </div>
