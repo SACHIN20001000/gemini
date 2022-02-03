@@ -299,10 +299,10 @@
           <div class="col-sm-7">
             <div class="row" v-if="!askQuestion">
               <div class="col-sm-3" v-if="faqDetail && faqDetail.user">
-                <div class="bm-wrap cmnt_img">
+                <div class="bm-wrap">
                   <img :src="faqDetail.user.profile_image" width="60px">
                   <div>
-                    <span class="u_cmmnt"><b>{{faqDetail.user.name}}</b></span>
+                    <span><b>{{faqDetail.user.name}}</b></span>
                     <span>{{faqDetail.user.created_at}}</span>
                   </div>
                 </div>
@@ -528,7 +528,7 @@
            </div>
         </div>
         <div v-if="paginationReviews && paginationReviews.length>0">
-        
+
               <div
                 class="row rating_row"
                 v-for="(review,rkey) in paginationReviews"
@@ -583,7 +583,7 @@
                 <jw-pagination :items="exampleItems" @changePage="onChangePage"></jw-pagination>
             </div>
           </div>
-        
+
       </section>
   </div>
 </template>
@@ -669,7 +669,6 @@ export default {
       observeParents: true,
       zoom: true,
       allowTouchMove: true,
-      width: window.innerWidth,
       notNextTick: false,
       loadPrevNext: true,
       lazy: {
@@ -848,6 +847,10 @@ export default {
           variation_product_id: vid
         }
         this.addCartItem(itemDetails)
+        const cartId = localStorage.getItem('cartId')
+        HTTP.post(process.env.MIX_APP_APIURL+'cart/'+cartId, itemDetails).then((response) => {
+          this.getCartItems()
+        })
       }
     },
     variationUpdate(e,attributeId,attnameId,typ){
@@ -948,9 +951,7 @@ export default {
         var productId = this.$route.params.id
         this.faqForm.data.product_id=productId
         this.addFaq(this.faqForm.data)
-        Object.keys(this.filterForm.data).forEach(function(key,index) {
-          _self.filterForm.data[key] = ''
-        })
+
         this.$swal({
           title: "Success!",
           text: "Question is created successfully.",

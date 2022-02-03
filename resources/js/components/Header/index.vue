@@ -41,9 +41,13 @@
 
             <router-link
               :to="{ path: '/profile'}"
-              class="alink" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
+              class="alink dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
             >
-              MY PROFILE <i class="fa fa-caret-down" aria-hidden="true"></i>
+              MY PROFILE
             </router-link>
 
               <ul class="dropdown-menu profile_drop" aria-labelledby="dropdownMenuButton1">
