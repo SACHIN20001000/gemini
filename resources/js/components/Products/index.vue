@@ -952,9 +952,7 @@ export default {
         var productId = this.$route.params.id
         this.faqForm.data.product_id=productId
         this.addFaq(this.faqForm.data)
-        Object.keys(this.filterForm.data).forEach(function(key,index) {
-          _self.filterForm.data[key] = ''
-        })
+        
         this.$swal({
           title: "Success!",
           text: "Question is created successfully.",
