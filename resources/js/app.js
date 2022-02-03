@@ -35,8 +35,9 @@ import './assets/js/bootstrap.bundle.min.js'
 import './assets/css/bootstrap.min.css'
 import './assets/css/style.css'
 
-export default new Vue({
-    render: h => h(App),
+new Vue({
+    el: "#app",
+    components: { App },
     store,
     router
 });
