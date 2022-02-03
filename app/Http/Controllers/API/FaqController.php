@@ -187,13 +187,13 @@ class FaqController extends Controller
         ->where(function ($query) use ($search) {
                 $query->where('title', "like", "%" . $search . "%");
                 $query->orWhere('description', "like", "%" . $search . "%");})
-        ->orderBy('id', 'asc')->get();
+        ->orderBy('id', 'DESC')->get();
 
         return  ChowhubFaqResource::collection($faqs);
 
     }
 
-    
+
   /**
      * @OA\Post(
      *      path="/chowhub/faq/store",
