@@ -380,6 +380,11 @@ function CheckDimensionFeatureImage() {
         }
 }
                                             $('#hiddenDescription').summernote({
+                                                toolbar: [
+                                                ['font', ['bold', 'italic', 'underline', 'clear']],
+                                                ['insert', ['link','image', 'doc', 'video']],
+                                                ['misc', ['codeview']],
+                                                ],
                                             height: 400
                                             });
                                             var productsEvent;

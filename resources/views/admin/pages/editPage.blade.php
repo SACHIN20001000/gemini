@@ -24,7 +24,7 @@
 									</div>
 
 									<p class="mg-b-20">Edit Pages</p>
- 				
+
 					<!-- form start  -->
                   <form action="{{route('updatePage')}}" method="post" id="page-edit">
                   @csrf
@@ -35,18 +35,18 @@
 											</div>
 											<div class="col-md-10 mg-t-5 mg-md-t-0">
                       <input  name="id" value="{{$post->id}}"  type="hidden">
-											
+
                       <input class="form-control" name="title" value="{{$post->title}}"  placeholder="Enter your Page Title" type="text">
 											</div>
 										</div>
-									
+
 										<div class="row row-xs align-items-center mg-b-20">
 											<div class="col-md-2">
 												<label class="form-label mg-b-0">Content</label>
 											</div>
 											<div class="col-md-10 mg-t-5 mg-md-t-0">
                         <textarea name="content" class="form-control"  id="content" cols="30" rows="10">{{$post->content}}</textarea>
-												
+
 											</div>
 										</div>
 										<div class="row row-xs align-items-center mg-b-20">
@@ -55,7 +55,7 @@
 											</div>
 											<div class="col-md-10 mg-t-5 mg-md-t-0">
                         <textarea name="css" class="form-control"  id="css" cols="30" rows="10">{{$post->css}}</textarea>
-												
+
 											</div>
 										</div>
 										<div class="row row-xs align-items-center mg-b-20">
@@ -67,9 +67,9 @@
 													<option value="">Choose Below..</option>
 													@foreach($category as $categories)
 													<option value="{{$categories->id}}" {{ $post->category == $categories->id  ? 'selected' : '' }}>{{$categories->name}}</option>
-                         
+
 													@endforeach
-												
+
 												</select>
                 </div>
 </div>
@@ -93,11 +93,11 @@
 											<input class="form-control" name="feature_image"  type="file">
 											@if(!empty($post->feature_image))
                                     <a href="{{$post->feature_image}}" target="_blank"><img src="{{$post->feature_image}}"  height="50" width="50"></a>
-                                    @endif             
+                                    @endif
                 </div>
 								</div>
 										<button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">Update</button>
-								
+
                   </div>
 								</div>
 </form>
@@ -111,9 +111,19 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script type="text/javascript">
      $('#content').summernote({
+        toolbar: [
+  	['font', ['bold', 'italic', 'underline', 'clear']],
+	['insert', ['link','image', 'doc', 'video']],
+	['misc', ['codeview']],
+    ],
         height: 400
     });
     $('#css').summernote({
+        toolbar: [
+  	['font', ['bold', 'italic', 'underline', 'clear']],
+	['insert', ['link','image', 'doc', 'video']],
+	['misc', ['codeview']],
+    ],
         height: 400
     });
 </script>

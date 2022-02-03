@@ -37,14 +37,14 @@
 												<input class="form-control" name="title"  placeholder="Enter your Page Title" type="text">
 											</div>
 										</div>
-									
+
 										<div class="row row-xs align-items-center mg-b-20">
 											<div class="col-md-2">
 												<label class="form-label mg-b-0">Content</label>
 											</div>
 											<div class="col-md-10 mg-t-5 mg-md-t-0">
                         <textarea name="content" id="content" class="form-control content"  cols="30" rows="10"></textarea>
-												
+
 											</div>
 										</div>
 										<div class="row row-xs align-items-center mg-b-20">
@@ -53,7 +53,7 @@
 											</div>
 											<div class="col-md-10 mg-t-5 mg-md-t-0">
                         <textarea name="css" id="css" class="form-control content"  cols="30" rows="10"></textarea>
-												
+
 											</div>
 										</div>
 										<div class="row row-xs align-items-center mg-b-20">
@@ -65,7 +65,7 @@
 													<option value="">Choose Below..</option>
 													@foreach($category as $categories)
 													<option value="{{$categories->id}}">{{$categories->name}}</option>
-                         
+
 													@endforeach
 												</select>
                 </div>
@@ -88,11 +88,11 @@
 											</div>
                       <div class="col-md-10 mg-t-5 mg-md-t-0">
 											<input class="form-control" name="feature_image"  type="file">
-                                    
+
                 </div>
 								</div>
 										<button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">Add</button>
-								
+
                   </div>
 								</div>
 </form>
@@ -105,9 +105,19 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script type="text/javascript">
      $('#content').summernote({
+        toolbar: [
+        ['font', ['bold', 'italic', 'underline', 'clear']],
+        ['insert', ['link','image', 'doc', 'video']],
+        ['misc', ['codeview']],
+        ],
         height: 400
     });
 		$('#css').summernote({
+            toolbar: [
+        ['font', ['bold', 'italic', 'underline', 'clear']],
+        ['insert', ['link','image', 'doc', 'video']],
+        ['misc', ['codeview']],
+        ],
         height: 400
     });
  </script>
