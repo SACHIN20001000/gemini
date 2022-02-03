@@ -18,7 +18,7 @@
             name="name"
             v-model='form.name'
             class="form-control"
-            placeholder="name"
+            placeholder="Name"
             aria-describedby="basic-addon1"
             aria-label="Name"
           >
@@ -42,7 +42,7 @@
             name="email"
             v-model='form.email'
             class="form-control"
-            placeholder="email"
+            placeholder="Email"
             aria-label=".form-control-lg example"
           >
           <span
@@ -65,7 +65,7 @@
             name="password"
             v-model='form.password'
             class="form-control"
-            placeholder="password"
+            placeholder="Password"
             aria-label=".form-control-lg example"
           >
           <span
