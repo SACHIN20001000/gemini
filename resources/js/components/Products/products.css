@@ -306,6 +306,7 @@ input::-webkit-inner-spin-button {
  margin: 0;
 }
 
+
 span.u_cmmnt{display: block;}
 /* Firefox */
 input[type=number] {
@@ -1078,3 +1079,33 @@ select[name="sortreviews"] {max-width: 120px; height: 30px; padding: 0 0 0 10px;
 .reviews-img-section img {max-width: 100px; width: 100%; height: 80px; object-fit: cover; }
 section.about-brand p {font-family: 'Gentona'; font-size: 14px; line-height: 1.3; color: #706f6f; font-weight: 300; }
 .swiper-button-prev.swiper-button-white, .swiper-button-next.swiper-button-white{--swiper-navigation-color:#e1e1e1 !important;}
+
+
+
+/*.swiper-container.swiper.gallery-top .swiper-zoom-container {
+    position: relative;
+    padding-top: 130%;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.1);
+    height: auto;
+}
+.thumb-example {
+    height: auto !important;
+} 
+.swiper-container.swiper.gallery-top .swiper-slide {
+    align-items: flex-start;
+}
+
+
+.swiper-container.swiper.gallery-top .swiper-zoom-container>img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.swiper-container.swiper.gallery-top {
+    height: auto !important;
+}*/

@@ -1,66 +1,61 @@
-.errorMsg{
-  width: 100%;
-  color: red;
-  font-size: 14px;
-  font-weight: normal;
+.cart_head img{max-width: 200px; }
+.cart_head {text-align: center; padding: 20px; margin: 0 0 30px 0; }
+ul.cart_header {list-style: none; padding: 0 0 10px; margin: 0 0 10px 0; border-bottom: 1px solid rgba(0,0,0,.1);} .cart_grid {display: grid !important; grid-template-columns:minmax(160px,10%) minmax(160px,30%) minmax(100px,15%) minmax(200px,15%) minmax(100px,15%) minmax(100px,15%);}
+.listcartItem li .cartlabel span{max-width: 100%; width: 100% !important; margin: 0;}
+.img_ratio {padding-top: 100%; display: block; position: relative; border-radius: 10px; overflow: hidden; border: 1px solid rgba(0,0,0,.1); max-width: 200px; } .img_ratio img {position: absolute; left: 0; top: 0; height: 100%; width: 100%; object-fit: contain; }
+.cart_grid>span {display: block; padding: 10px 20px; text-align: center; }
+.cart_grid>li {display: block; padding: 10px 20px; text-align: center; }
+ul.cart_header>li {  text-transform: uppercase;  color: #6d6e71;}
+.cartlabel.cart_grid span {color: #575758; font-weight: 300; }
+span.prod_remove a {width: 30px; height: 30px;border: 1px solid #00b7bd; background: #00b7bd; border-radius: 0px; display: flex; align-items: center; justify-content: center; font-weight: 500; margin: 0 auto; }
+span.prod_price,span.prod_items {color: #e4002b !important; font-weight: 500 !important; }
+span.prod_remove a:hover{ color:#00b7bd; background: #fff;} 
+.img_ratio img {position: absolute; left: 5px; top: 5px; height: calc(100% - 10px); width: calc(100% - 10px); object-fit: contain; }
+li.pr_tile, span.prod_name {text-align: left !important; }
+.btn_left a {margin-right: 10px; }
+.row.update_row {padding: 20px 0; border-top: 1px solid rgba(0,0,0,.1); border-bottom: 1px solid rgba(0,0,0,.1); margin: 0 0 20px 0; }
+ul.listcartItem li:not(:last-child) {border-bottom: 1px solid rgba(0,0,0,.1);padding-bottom: 10px; }
+span.prod_quant input {text-align: center; }
+p.totalamount.cart_total {color: #6d6e71; }
+span.prod_name {font-size: 16px; font-weight: 400 !important; color: #6d6e71; }
+p.totalamount.cart_total span {font-size: 30px; color: #ed1b3c; }
+p.msg_offer {font-size: 14px; color: #ed1b3c; max-width: 300px; margin-left: auto; }
+.msg_blu >span {max-width: 300px; height: auto; line-height: 1.2; font-size: 15px; text-align: center; padding: 10px; margin-bottom: 10px; }
+.msg_blu >span:hover {background: #11b6bd; color: #fff; }
+.msg_blu + a {max-width: 300px; width: 100%; text-align: center; }
+.pay_type img {max-width: 307px; margin-top: 10px; }
+
+@media only screen and (min-width:700px) and (max-width: 890px)
+{
+    .cart_grid {
+    display: grid !important;
+    grid-template-columns: minmax(90px,10%) minmax(160px,30%) minmax(100px,15%) minmax(90px,15%) minmax(100px,15%) minmax(50px,15%);
 }
-.button{
-  color: #fff;
-  background: red;
-  border-radius: 4px;
-  padding: 5px;
-  list-style: none;
-  text-decoration: none;
-  cursor: pointer;
 }
-.button:hover{
-  color: #fff;
-  list-style: none;
-  text-decoration: none;
-}
-.button strong{
-  color: #fff;
-}
-.main table tr td {font-weight: normal;}
-.totalamount{text-align: right;}
-.proccedtocheckout{
-  padding: 10px 0px;
-  text-align: right;
-}
-.proccedtocheckout a{
-  padding: 10px 0px;
-  background: blue;
-  color: #fff;
-  text-align: right;
-  text-decoration: none;
-}
-.proccedtocheckout a:hover{
-  list-style: none;
-  background: blue;
-  color: #fff;
-}
-.listcartItem{
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
-}
-.listcartItem li{
-  width: 100%;
-  display:flex;
-  flex-direction: column;
-  list-style: none;
-  margin-bottom: 10px;
-}
-.listcartItem li .cartlabel{
-  width: 100%;
-  display:flex;
-  flex-direction: row;
-}
-.listcartItem li .cartlabel span{
-  width: 18%;
-  display: block;
-  text-align: center;
-}
-.headingcart tr th{
-  text-align: center;
+
+@media only screen and (max-width: 699px)
+{
+
+.cartlabel.cart_grid {grid-template-areas: 'p1 p1 p2 p2 p2 p2''p3 p3 p4 p5 p5 p6'; grid-template-columns: 16.66% 16.66% 16.66% 16.66% 16.66% 16.66%; }
+span.prod_img {grid-area: p1; }
+span.prod_name {grid-area: p2; }
+span.prod_price {grid-area: p3; }
+span.prod_quant {grid-area: p4; }
+span.prod_items {grid-area: p5; }
+span.prod_remove {grid-area: p6; }
+ul.cart_header.cart_grid {display: none !important; }
+.cart_head {border-bottom: 1px solid rgba(0,0,0,.1); padding-bottom: 30px; margin-bottom: 20px; }
+span.prod_name {font-size: clamp(16px,3.3vw,32px); }
+span.prod_price:before {content: "Price"; display:block; line-height: 1; color: #fff; background: #00b7bd; padding: 2px 14px; border-radius: 50px; max-width: 80px; font-size: 14px; margin: 0 auto; }
+span.prod_items:before {content: "Total"; display: block; line-height: 1; color: #fff; font-size: 14px; background: #00b7bd; padding: 2px 14px; border-radius: 50px; max-width: 80px; margin: 0 auto; }
+.btn_left {display: flex; text-align: center; margin-bottom: 10px; justify-content: center; }
+.btn_right.text-right {text-align: center !important; margin-top: 10px; }
+p.msg_offer {margin: 0 auto; }
+.msg_blu {text-align: center; margin-top: 10px; }
+.msg_blu + a {margin: 0 auto; display: block; }
+.pay_type {text-align: center; }
+p.totalamount.cart_total {text-align: center; }
+span.prod_items, span.prod_price {font-size: 18px; }
+.totalamount{text-align: center;}
+.cart_grid>span {padding: 10px !important; }
 }
