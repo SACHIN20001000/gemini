@@ -14,9 +14,9 @@ use App\Http\Resources\Carts\CartItemsResource;
 use App\Http\Requests\API\CartIdRequest;
 use App\Http\Requests\API\CheckoutRequest;
 use App\Http\Requests\API\ChargesRequest;
-use Stripe\Stripe;
-use Stripe\Customer;
-use Stripe\Charge;
+use \Stripe\Stripe;
+use \Stripe\Customer;
+use \Stripe\Charge;
 
 use App\Http\Requests\API\CartAddProductRequest;
 use Spatie\Permission\Models\Role;
