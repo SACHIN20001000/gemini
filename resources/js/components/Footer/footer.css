@@ -181,7 +181,7 @@ p.copy_p {
       footer.footer-top {max-width: calc(100% - 20px) !important; }
 }
 
-@media only screen and (min-width:1024px) and (max-width:1480px)
+@media only screen and (min-width:1024px) and (max-width:1460px)
 
 {
 .row.footer_col {
