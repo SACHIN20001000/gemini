@@ -190,9 +190,10 @@ export default {
           })
         }
       })
-      console.log(itemDetails);
+      var cartItems = {'cartitems':itemDetails}
+      console.log(cartItems);
       const cartId = localStorage.getItem('cartId')
-      axios.post(process.env.MIX_APP_APIURL+'cart/'+cartId, itemDetails).then(res => {
+      axios.post(process.env.MIX_APP_APIURL+'cart/'+cartId, cartItems).then(res => {
         this.updateMessage = res.data.message;
         axios.get(process.env.MIX_APP_APIURL+'cart/'+cartId+'?key='+catkey).then((response) => {
           this.cartItemsList = response.data.data
