@@ -17,15 +17,15 @@
       <li>Total Price</li>
       <li>Action</li>
       </ul>
-   
+
     </div>
 
-    <ul class="listcartItem " v-if="getCartItem">
+    <ul class="listcartItem " v-if="cartItemsList">
       <li
-        v-for="(cartItem,keygetCartItem) in getCartItem"
+        v-for="(cartItem,keygetCartItem) in cartItemsList"
         :key="keygetCartItem"
       >
-        <div 
+        <div
           v-if="cartItem.variationProduct"
           class="cartlabel cart_grid"
         >
@@ -36,8 +36,7 @@
             <input
               type="number"
               name="qtyproduct"
-              :value="cartItem.quantity"
-              v-on:blur="updateQuantity($event,cartItem.id)"
+              v-model="cartItemsList[keygetCartItem].quantity"
             >
           </span>
           <span class="prod_items">{{cartItem.variationProduct.sale_price*cartItem.quantity}}</span>
@@ -61,8 +60,7 @@
             <input
               type="number"
               name="qtyproduct"
-              :value="cartItem.quantity"
-              v-on:blur="updateQuantity($event,cartItem.id)"
+              v-model="cartItemsList[keygetCartItem].quantity"
             >
           </span>
           <span class="prod_items">{{cartItem.product.sale_price*cartItem.quantity}}</span>
@@ -81,13 +79,23 @@
        <div class="row update_row">
         <div class="col-md-7">
           <div class="btn_left">
-            <a href="#" class="btn_blu">Continue Shopping</a>
-            <a href="#" class="btn_red">Check Out <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+            <router-link
+              :to="{ path: '/'}"
+              class="btn_blu"
+            >
+              Continue Shopping
+            </router-link>
+            <router-link
+              :to="{ path: 'checkout'}"
+              class="btn_red"
+            >
+              Check Out <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+            </router-link>
           </div>
         </div>
-         <div class="col-md-5">          
+         <div class="col-md-5">
           <div class="btn_right text-right">
-            <a href="#" class="btn_blu_blank">Update Cart</a>
+            <a href="javascript:;" @click="updateCart" class="btn_blu_blank">Update Cart</a>
           </div>
         </div>
        </div>
@@ -161,34 +169,34 @@ export default {
         this.removeCartItem(cartId)
       })
     },
-    updateQuantity(e,cartItemId){
+    updateCart(){
       const _this = this
       const catkey = localStorage.getItem('cartKey')
-      let itemDetails = {}
-      this.getCartItem.filter(function (cartitem,itemId) {
-        if(cartitem.id == cartItemId ){
-          if(cartitem.variationProduct){
-            itemDetails = {
-              key: catkey,
-              product_id: cartitem.product_id,
-              quantity: e.target.value,
-              variation_product_id: cartitem.variationProduct.id,
-            }
-          }else {
-            itemDetails = {
-              key: catkey,
-              product_id: cartitem.product_id,
-              quantity: e.target.value,
-              variation_product_id: 0,
-            }
-          }
+      let itemDetails = []
+      this.cartItemsList.filter(function (cartitem,itemId) {
+        if(cartitem.variationProduct){
+          itemDetails.push({
+            key: catkey,
+            product_id: cartitem.product_id,
+            quantity: cartitem.quantity,
+            variation_product_id: cartitem.variationProduct.id,
+          })
+        }else {
+          itemDetails.push({
+            key: catkey,
+            product_id: cartitem.product_id,
+            quantity: cartitem.quantity,
+            variation_product_id: 0,
+          })
         }
       })
-      /*this.addCartItem(itemDetails)*/
+      console.log(itemDetails);
       const cartId = localStorage.getItem('cartId')
       axios.post(process.env.MIX_APP_APIURL+'cart/'+cartId, itemDetails).then(res => {
         this.updateMessage = res.data.message;
-        this.getCartItems()
+        axios.get(process.env.MIX_APP_APIURL+'cart/'+cartId+'?key='+catkey).then((response) => {
+          this.cartItemsList = response.data.data
+        })
       })
     }
   }
