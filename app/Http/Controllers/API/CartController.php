@@ -378,11 +378,7 @@ class CartController extends Controller
      */
     public function addProducts(Cart $cart, CartAddProductRequest $request)
     {
-
-        $product_id = $request->product_id;
-        $quantity = $request->quantity;
-
-        $variation_product_id = $request->variation_product_id ?? 0;
+        $cartitems=$request->cartitems;
         //Check if the CarKey is Valid
         if ($cart->key == $request->key)
         {
@@ -396,17 +392,20 @@ class CartController extends Controller
                             'message' => 'The Product you\'re trying to add does not exist.',
                                 ], 404);
             }
+                    foreach ($cartitems as $key => $cartitem) {
+                        //check if the the same product is already in the Cart, if true update the quantity, if not create a new one.
+                        $cartItem = CartItem::where(['cart_id' => $cart->id, 'product_id' => $cartitem->product_id, 'variation_product_id' => $cartitem->variation_product_id])->first();
+                        if (!empty($cartItem))
+                        {
+                            $updatequantity = $cartItem->quantity + $cartitem->quantity;
+                            $cartItem->update(['quantity' =>  $updatequantity]);
+                        } else
+                        {
+                            CartItem::create(['cart_id' => $cart->id, 'product_id' => $cartitem->product_id, 'variation_product_id' => $cartitem->variation_product_id, 'quantity' => $cartitem->quantity]);
+                        }
+                    }
 
-            //check if the the same product is already in the Cart, if true update the quantity, if not create a new one.
-            $cartItem = CartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id, 'variation_product_id' => $variation_product_id])->first();
-            if (!empty($cartItem))
-            {
-                $updatequantity = $cartItem->quantity + $quantity;
-                $cartItem->update(['quantity' =>  $updatequantity]);
-            } else
-            {
-                CartItem::create(['cart_id' => $cart->id, 'product_id' => $product_id, 'variation_product_id' => $variation_product_id, 'quantity' => $quantity]);
-            }
+
 
             return response()->json(['message' => 'The Cart was updated with the given product information successfully'], 200);
         } else
