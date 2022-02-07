@@ -710,10 +710,7 @@ padding: 10px;
 }
 
 /* _____ CSS for Footer ____________ */
-footer.footer-top {
-   background: #f6f6f6;
-   padding: 30px 0;
-}
+
 ul.footer_nav {
    padding-left: 0;
    margin-bottom: 0;
@@ -731,9 +728,7 @@ ul.foot_nav2 {
    text-decoration: none;
    line-height: 21px;
 }
-.footer_nav01 {
-   border-right: 2px solid #d3cfd0;
-}
+
 .foot_nav_shop {
    max-width: 50% !important;
    margin-left: auto;
