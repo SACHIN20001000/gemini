@@ -150,8 +150,8 @@
       </div>
     </section>
     <section>
-      <div class="container_max">
-        <div class="row">
+      <div class="container_min">
+        <div class="row out_30">
           <div class="col-md-4 gb_box">
             <a href="#" class="img_box1 gray_panel">
               <h3>GET THE <span class="re_d">APP</span></h3>
@@ -187,8 +187,8 @@
       </div>
     </section>
     <section class="two_img rd_blue">
-      <div class="container_max">
-        <div class="row pad_15">
+      <div class="container-fluid">
+        <div class="row">
           <div class="col-md-6 red_box">
             <div class="con_box rect">
               <div>
@@ -317,7 +317,7 @@
       <div class="container_max">
         <div class="row">
           <div class="col-md-6">
-            <div class="height_mix">
+            <div class="height_mix bl_mix">
               <div class="sub_1">
                 <h1>SUBSCRIPTION <span>PAWGRAM<sup>®</sup></span></h1>
                 <p>Convenience + Savings. Yes please.</p>
@@ -330,7 +330,7 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="height_mix">
+            <div class="height_mix img_mix">
               <img
                 :src="imgHeat"
                 alt="heat"
@@ -419,7 +419,7 @@
     </section>
     <section class="insta_Sec">
       <div class="container_max">
-        <h3 class="insta_head"><span>@pet.parents</span></h3>
+        <h3 class="insta_head"><span>@thepetparentsstore</span></h3>
         <ul class="insta_nails" v-if="listPages">
           <li
             v-for="(listPage,pkey) in listPages"  :key="pkey"
@@ -492,7 +492,7 @@ export default {
       imgBg2: imgBg2,
       imgBg3: imgBg3,
       productPanelOptions: {
-        slidesToShow: 3,
+        slidesToShow: 4,
         infinite: true,
         slidesToScroll: 1,
 		      responsive: [
