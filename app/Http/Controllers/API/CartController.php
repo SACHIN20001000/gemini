@@ -378,8 +378,8 @@ class CartController extends Controller
      */
     public function addProducts(Cart $cart, CartAddProductRequest $request)
     {
-
-        $cartitems=json_decode($request->cartitems);
+print_r($request->all());die;
+        // $cartitems=json_decode($request->cartitems);
         //Check if the CarKey is Valid
         foreach ($cartitems as $key => $cartitem) {
         if ($cart->key == $cartitem->key)
