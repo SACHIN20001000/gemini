@@ -402,7 +402,7 @@ class CartController extends Controller
             if ($cartItem)
             {
                 $updatequantity = $cartItem->quantity + $quantity;
-                CartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id, 'variation_product_id' => $variation_product_id])->update(['quantity' =>  $updatequantity]);
+                $cartItem->update(['quantity' =>  $updatequantity]);
             } else
             {
                 CartItem::create(['cart_id' => $cart->id, 'product_id' => $product_id, 'variation_product_id' => $variation_product_id, 'quantity' => $quantity]);
