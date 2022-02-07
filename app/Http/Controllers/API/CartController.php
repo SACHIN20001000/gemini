@@ -399,7 +399,7 @@ class CartController extends Controller
 
             //check if the the same product is already in the Cart, if true update the quantity, if not create a new one.
             $cartItem = CartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id, 'variation_product_id' => $variation_product_id])->first();
-            if ($cartItem)
+            if (!empty($cartItem))
             {
                 $updatequantity = $cartItem->quantity + $quantity;
                 $cartItem->update(['quantity' =>  $updatequantity]);
