@@ -378,7 +378,7 @@ class CartController extends Controller
      */
     public function addProducts(Cart $cart, CartAddProductRequest $request)
     {
-        print_r($request->all());die;
+        // print_r($request->all());die;
         $cartitems=$request->cartitems;
         //Check if the CarKey is Valid
         foreach ($cartitems as $key => $cartitem) {
