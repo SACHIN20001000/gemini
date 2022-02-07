@@ -378,16 +378,16 @@ class CartController extends Controller
      */
     public function addProducts(Cart $cart, CartAddProductRequest $request)
     {
-print_r($request->all());die;
-        // $cartitems=json_decode($request->cartitems);
+
+        $cartitems=$request->cartitems;
         //Check if the CarKey is Valid
-        foreach ($cartitems as $key => $cartitem) {
-        if ($cart->key == $cartitem->key)
+        foreach ($cartitems as  $cartitem) {
+        if ($cart->key == $cartitem['key'])
         {
             //Check if the proudct exist or return 404 not found.
             try
             {
-                $Product = Product::findOrFail($cartitem->product_id);
+                $Product = Product::findOrFail($cartitem['product_id']);
             } catch (ModelNotFoundException $e)
             {
                 return response()->json([
@@ -396,14 +396,14 @@ print_r($request->all());die;
             }
 
                         //check if the the same product is already in the Cart, if true update the quantity, if not create a new one.
-                        $cartItem = CartItem::where(['cart_id' => $cart->id, 'product_id' => $cartitem->product_id, 'variation_product_id' => $cartitem->variation_product_id])->first();
+                        $cartItem = CartItem::where(['cart_id' => $cart->id, 'product_id' => $cartitem['product_id'], 'variation_product_id' => $cartitem['variation_product_id']])->first();
                         if (!empty($cartItem))
                         {
-                            $updatequantity = $cartItem->quantity + $cartitem->quantity;
+                            $updatequantity = $cartItem->quantity + $cartitem['quantity'];
                             $cartItem->update(['quantity' =>  $updatequantity]);
                         } else
                         {
-                            CartItem::create(['cart_id' => $cart->id, 'product_id' => $cartitem->product_id, 'variation_product_id' => $cartitem->variation_product_id, 'quantity' => $cartitem->quantity]);
+                            CartItem::create(['cart_id' => $cart->id, 'product_id' => $cartitem['product_id'], 'variation_product_id' => $cartitem['variation_product_id'], 'quantity' => $cartitem['quantity']]);
                         }
 
 
