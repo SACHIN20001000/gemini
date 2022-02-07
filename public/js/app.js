@@ -3039,9 +3039,12 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       });
-      console.log(itemDetails);
+      var cartItems = {
+        'cartitems': itemDetails
+      };
+      console.log(cartItems);
       var cartId = localStorage.getItem('cartId');
-      axios__WEBPACK_IMPORTED_MODULE_5___default().post("http://3.132.243.209/api/" + 'cart/' + cartId, itemDetails).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_5___default().post("http://3.132.243.209/api/" + 'cart/' + cartId, cartItems).then(function (res) {
         _this3.updateMessage = res.data.message;
         axios__WEBPACK_IMPORTED_MODULE_5___default().get("http://3.132.243.209/api/" + 'cart/' + cartId + '?key=' + catkey).then(function (response) {
           _this3.cartItemsList = response.data.data;
@@ -5875,16 +5878,20 @@ var exampleItems = (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_
           vid = this.finalVariant.id;
         }
 
-        var itemDetails = {
+        var itemDetails = [];
+        itemDetails.push({
           key: cartkey,
           product_id: proId,
           quantity: this.quantity,
           variation_product_id: vid
+        });
+        var cartItems = {
+          'cartitems': itemDetails
         };
         /*this.addCartItem(itemDetails)*/
 
         var cartId = localStorage.getItem('cartId');
-        _Api_auth__WEBPACK_IMPORTED_MODULE_17__["default"].post("http://3.132.243.209/api/" + 'cart/' + cartId, itemDetails).then(function (response) {
+        _Api_auth__WEBPACK_IMPORTED_MODULE_17__["default"].post("http://3.132.243.209/api/" + 'cart/' + cartId, cartItems).then(function (response) {
           _this3.getCartItems();
         });
       }
