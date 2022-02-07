@@ -380,19 +380,20 @@ class CartController extends Controller
     {
         $cartitems=$request->cartitems;
         //Check if the CarKey is Valid
-        if ($cart->key == $request->key)
+        foreach ($cartitems as $key => $cartitem) {
+        if ($cart->key == $cartitem->key)
         {
             //Check if the proudct exist or return 404 not found.
             try
             {
-                $Product = Product::findOrFail($product_id);
+                $Product = Product::findOrFail($cartitem->product_id);
             } catch (ModelNotFoundException $e)
             {
                 return response()->json([
                             'message' => 'The Product you\'re trying to add does not exist.',
                                 ], 404);
             }
-                    foreach ($cartitems as $key => $cartitem) {
+
                         //check if the the same product is already in the Cart, if true update the quantity, if not create a new one.
                         $cartItem = CartItem::where(['cart_id' => $cart->id, 'product_id' => $cartitem->product_id, 'variation_product_id' => $cartitem->variation_product_id])->first();
                         if (!empty($cartItem))
@@ -403,7 +404,7 @@ class CartController extends Controller
                         {
                             CartItem::create(['cart_id' => $cart->id, 'product_id' => $cartitem->product_id, 'variation_product_id' => $cartitem->variation_product_id, 'quantity' => $cartitem->quantity]);
                         }
-                    }
+
 
 
 
@@ -415,6 +416,7 @@ class CartController extends Controller
                         'message' => 'The CarKey you provided does not match the Cart Key for this Cart.',
                             ], 400);
         }
+    }
     }
 
     /**
