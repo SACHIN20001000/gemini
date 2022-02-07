@@ -181,7 +181,7 @@ p.copy_p {
       footer.footer-top {max-width: calc(100% - 20px) !important; }
 }
 
-@media only screen and (min-width:1024px) and (max-width:1460px)
+@media only screen and (min-width:1024px) and (max-width:1400px)
 
 {
 .row.footer_col {
@@ -199,6 +199,13 @@ p.copy_p {
     width: 100% !important;
     justify-content: space-between;
     align-items: center;
+}
+}
+
+@media only screen and (min-width: 1400px) and (max-width: 1500px)
+{
+    .row.footer_col>div {
+    padding:30px 20px;
 }
 }
 
