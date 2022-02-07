@@ -33,8 +33,8 @@ class ChargesRequest extends FormRequest
             'country' => 'required',
             'product_id' => 'required',
             'amount' => 'required',
-            'strip_token ' => 'required',
-            'currency ' => 'required',
+            'strip_token' => 'required',
+            'currency' => 'required',
 
 
 
