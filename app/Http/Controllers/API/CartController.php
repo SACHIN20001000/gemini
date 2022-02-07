@@ -13,6 +13,8 @@ use App\Http\Resources\Carts\CartResource;
 use App\Http\Resources\Carts\CartItemsResource;
 use App\Http\Requests\API\CartIdRequest;
 use App\Http\Requests\API\CheckoutRequest;
+use App\Http\Requests\API\ChargesRequest;
+
 use App\Http\Requests\API\CartAddProductRequest;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -20,7 +22,7 @@ use App\Models\User;
 use App\Models\Coupon;
 use App\Models\OrderItem;
 use App\Models\Shipping;
-
+use Stripe;
 class CartController extends Controller
 {
 
@@ -456,7 +458,7 @@ class CartController extends Controller
         {
 
             $user = auth('api')->user();
-
+            $stripToken= $request->strip_token;
             if (!$user)
             {
                 $roleGuest = Role::where(['name' => 'Guest'])->first();
@@ -499,7 +501,6 @@ class CartController extends Controller
             );
 
             $order = Order::create([
-                        'transaction_id' => md5(uniqid(rand(), true)),
                         'grand_total' => $grand_total,
                         'item_count' => count($items),
                         'remark' => $request->remark,
@@ -519,7 +520,7 @@ class CartController extends Controller
                 if ($item->variation_product_id != 0)
                 {
                     $productvariation = ProductVariation::find($variation_id);
-// print_r($productvariation);die;
+
                     $quantity = $item->quantity;
                     $unitPrice = $productvariation->sale_price;
 
@@ -579,12 +580,34 @@ class CartController extends Controller
                 $coupon->count = $coupon->count - 1;
                 $coupon->save();
             }
-
-
             $order->save();
+            // stripe payment integration
+            // if(isset($stripToken)){
+            //     Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            //     $customer = \Stripe\Customer::create(array(
+            //         'name' => $request->name,
+            //         'email' => $request->email,
+            //         'source' => $stripToken,
+            //         "address" => ["city" =>$request->city ?? null,
+            //         "country" => $request->country ?? null,
+            //         "line1" => $request->address ?? null,
+            //         "postal_code" => $request->zip_code ?? null,
+            //         "state" => $request->state ?? null]
+            //     ));
+            //     $charge = \Stripe\Charge::create(array(
+            //             'customer' => $customer->id,
+            //             'amount'   => $order->grand_total,
+            //             'currency' => $request->currency,
+            //             'description' =>  $request->remark,
+            //     ));
+            // }
+            $order->transaction_id = $request->transaction ?? null;
+            $order->save();
+
 
             return response()->json([
                         'message' => 'Order created successfully',
+
                             ], 200);
         } else
         {
@@ -593,5 +616,90 @@ class CartController extends Controller
                             ], 400);
         }
     }
+        /**
+     * @OA\Post(
+     * * path="/payment",
+     *   tags={"Carts"},
+     *   summary="Add payment for order from cart",
+     *   operationId="payment",
+     *      *    @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/ChargesRequest")
+     *     ),
+     *      @OA\Response(
+     *         response="200",
+     *         description="Everything is fine",
+     *         @OA\JsonContent(ref="#/components/schemas/ChargesResponse")
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
+     * */
+    public function payment(ChargesRequest $request)
+    {
 
+
+            $user = auth('api')->user();
+            $stripToken= $request->strip_token;
+            $amount= $request->amount;
+            $product_id= $request->product_id;
+
+            if (!$user)
+            {
+                $roleGuest = Role::where(['name' => 'Guest'])->first();
+                $user = User::updateOrCreate(
+                                [
+                                    'email' => $request->email ?? null,
+                                ],
+                                [
+                                    'name' => $request->name ?? null,
+                                    'address' => $request->address ?? null,
+                                    'zip_code' => $request->zip_code ?? null,
+                                    'state' => $request->state ?? null,
+                                    'city' => $request->city ?? null,
+                                    'country' => $request->country ?? null,
+                                    'phone' => $request->phone ?? null,
+                                    'password' => bcrypt(uniqid(rand(), true))
+                ]);
+                $user->assignRole($roleGuest);
+            }
+            if(isset($product_id)){
+                $product = Product::find($product_id);
+            }
+            // stripe payment integration
+            if(isset($stripToken)){
+                Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+                $customer = \Stripe\Customer::create(array(
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'source' => $stripToken,
+                    "address" => ["city" =>$request->city ?? null,
+                    "country" => $request->country ?? null,
+                    "line1" => $request->address ?? null,
+                    "postal_code" => $request->zip_code ?? null,
+                    "state" => $request->state ?? null]
+                ));
+                $charge = \Stripe\Charge::create(array(
+                        'customer' => $customer->id,
+                        'amount'   => $amount ?? null,
+                        'currency' => $request->currency ?? null,
+                        'description' =>  $product->productName ?? null,
+                ));
+                return response()->json([
+                    'message' => 'Payment Successfull',
+                    'transaction_id' => $charge['balance_transaction'],
+                    'amount' => $charge['amount']
+                        ], 200);
+            }
+            
+
+
+    }
 }

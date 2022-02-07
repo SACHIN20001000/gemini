@@ -312,6 +312,46 @@
                 }
             }
         },
+        "/payment": {
+            "post": {
+                "tags": [
+                    "Carts"
+                ],
+                "summary": "Add payment for order from cart",
+                "operationId": "payment",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChargesRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChargesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "/categories": {
             "get": {
                 "tags": [
@@ -2324,6 +2364,94 @@
                         "example": {
                             "id": "2",
                             "key": "a88483e72092f83baee46349fef80e9661cc3e5d4cba2"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ChargesRequest": {
+                "title": "Create new checkout",
+                "description": "Request for create a new checkout for a cart",
+                "properties": {
+                    "name": {
+                        "title": "name ",
+                        "description": "name for storing",
+                        "type": "string",
+                        "example": "john"
+                    },
+                    "email": {
+                        "title": "email",
+                        "description": "email for storing",
+                        "type": "string",
+                        "example": "john@gmail.com"
+                    },
+                    "address": {
+                        "title": "address",
+                        "description": "address  for storing",
+                        "type": "string",
+                        "example": "los angle"
+                    },
+                    "zip_code": {
+                        "title": "zip_code",
+                        "description": "zip_code  for storing",
+                        "type": "string",
+                        "example": "343334"
+                    },
+                    "city": {
+                        "title": "city",
+                        "description": "city  for storing",
+                        "type": "string",
+                        "example": "chd"
+                    },
+                    "state": {
+                        "title": "state",
+                        "description": "state  for storing",
+                        "type": "string",
+                        "example": "hp"
+                    },
+                    "country": {
+                        "title": "country",
+                        "description": "country  for storing",
+                        "type": "string",
+                        "example": "india"
+                    },
+                    "product_id": {
+                        "title": "product_id",
+                        "description": "product_id  for storing",
+                        "type": "string",
+                        "example": "2"
+                    },
+                    "strip_token": {
+                        "title": "strip_token ",
+                        "description": "strip_token   for storing",
+                        "type": "string",
+                        "example": "9RQo4Vq7b5CZwlsoJGlq4fEWkqg2Kt54LzigE6Y0ov"
+                    },
+                    "amount": {
+                        "title": "amount",
+                        "description": "amount  for storing",
+                        "type": "string",
+                        "example": "33"
+                    },
+                    "currency": {
+                        "title": "amount",
+                        "description": "currency  for storing",
+                        "type": "string",
+                        "example": "$"
+                    }
+                },
+                "type": "object"
+            },
+            "ChargesResponse": {
+                "title": "Charges Response",
+                "description": "Charges Response",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "example": {
+                            "message": "payment successfull",
+                            "transaction_id": "txn_46349fef80e9661cc3e5d4cba2",
+                            "amount": "45"
                         }
                     }
                 },
