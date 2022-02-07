@@ -95,12 +95,9 @@ class CategoryController extends Controller
         $inputs = $request->all();
         if ($request->hasFile('feature_image'))
         {
-            $filename = $request->feature_image->hashname();
-            $image = Image::make($request->feature_image)->resize(800, 850);
-            Storage::disk('s3')->put('/images/categories/'.$filename, $image->stream(), 'public');
-            $image_path = Storage::disk('s3')->url('images/categories/'.$filename);
-
-            $inputs['feature_image'] = $image_path;
+            $path = Storage::disk('s3')->put('images/categories', $request->feature_image);
+            $path = Storage::disk('s3')->url($path);
+            $inputs['feature_image'] = $path;
         }
 
         $inputs['slug'] = $slug;
@@ -146,11 +143,9 @@ class CategoryController extends Controller
         $inputs = $request->all();
         if ($request->hasFile('feature_image'))
         {
-            $filename = $request->feature_image->hashname();
-            $image = Image::make($request->feature_image)->resize(800, 850);
-            Storage::disk('s3')->put('/images/categories/'.$filename, $image->stream(), 'public');
-            $image_path = Storage::disk('s3')->url('images/categories/'.$filename);
-            $inputs['feature_image'] = $image_path;
+            $path = Storage::disk('s3')->put('images/categories', $request->feature_image);
+            $path = Storage::disk('s3')->url($path);
+            $inputs['feature_image'] = $path;
         }
         $inputs['slug'] = $slug;
         $category->update($inputs);

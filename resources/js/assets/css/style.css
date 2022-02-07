@@ -165,6 +165,23 @@ select
   height: 40px;
   border: 1px solid rgba(0,0,0,.1);
 }
+
+.btn_blu,.btn_red,.btn,.btn_blu_blank,.btn_red_blank
+{height: 40px;  color: #fff; padding: 0 30px; line-height:38px; text-decoration: none; display: inline-block; transition-duration: .20s; }
+.btn{color: #706f6f; font-weight: 300; height: 40px; border: 1px solid rgba(0,0,0,.1); }
+.btn_blu:hover,.btn_red:hover,.btn:hover,.btn_blu_blank:hover,.btn_red_blank:hover{text-decoration: none;}
+.btn_blu ,.btn_blu_blank:hover{background: #11b6bd; border: 1px solid #11b6bd;color:#fff; }
+.btn_blu:hover,.btn_blu_blank{background: transparent; color:#11b6bd ; border: 1px solid #11b6bd; }
+ .btn_red,.btn_red_blank:hover{background: #ed1b3c; border: 1px solid #ed1b3c; color:#fff; }
+.btn_red:hover,.btn_red_blank{background: transparent; color:#ed1b3c ; border: 1px solid #ed1b3c;  }
+
+.btn_blu i,.btn_red i,.btn i,.btn_blu_blank i,.btn_red_blank i{margin: 0 5px;}
+
+.swal2-confirm{
+height: 40px !important;  color: #fff !important; padding: 0 30px !important; line-height:38px !important; text-decoration: none; display: inline-block; border-radius: 0 !important; 
+    background: #11b6bd !important; border: 1px solid #11b6bd !important ;color:#fff !important; }
+.swal2-confirm:hover{background: transparent !important; color:#11b6bd !important; border: 1px solid #11b6bd !important; }
+
 textarea
 {
     color: #706f6f;

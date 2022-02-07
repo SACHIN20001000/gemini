@@ -1,29 +1,38 @@
 <template>
   <div class="main">
-    <p>Cart</p>
-    <table width="100%" class="headingcart">
-      <tr>
-        <th>Image</th>
-        <th>Product Name</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Total Price</th>
-        <th>Action</th>
-      </tr>
-    </table>
-    <ul class="listcartItem" v-if="getCartItem">
+  <div class="container_max">
+        <div class="cart_head">
+            <img
+            :src="cart_logo"
+            alt="cart_logo"
+            />
+        </div>
+    <div class="row">
+      <div class="col-md-12">
+      <ul class="cart_header cart_grid">
+      <li>Image</li>
+      <li class="pr_tile">Product Name</li>
+      <li>Price</li>
+      <li>Quantity</li>
+      <li>Total Price</li>
+      <li>Action</li>
+      </ul>
+   
+    </div>
+
+    <ul class="listcartItem " v-if="getCartItem">
       <li
         v-for="(cartItem,keygetCartItem) in getCartItem"
         :key="keygetCartItem"
       >
-        <div
+        <div 
           v-if="cartItem.variationProduct"
-          class="cartlabel"
+          class="cartlabel cart_grid"
         >
-          <span><img :src="cartItem.variationProduct.image" width="100px" /></span>
-          <span>{{cartItem.product.productName}}</span>
-          <span>{{cartItem.variationProduct.sale_price}}</span>
-          <span>
+          <span class="prod_img"><div class="img_ratio"><img :src="cartItem.variationProduct.image" /></div></span>
+          <span class="prod_name">{{cartItem.product.productName}}</span>
+          <span class="prod_price">{{cartItem.variationProduct.sale_price}}</span>
+          <span class="prod_quant">
             <input
               type="number"
               name="qtyproduct"
@@ -31,8 +40,8 @@
               v-on:blur="updateQuantity($event,cartItem.id)"
             >
           </span>
-          <span>{{cartItem.variationProduct.sale_price*cartItem.quantity}}</span>
-          <span>
+          <span class="prod_items">{{cartItem.variationProduct.sale_price*cartItem.quantity}}</span>
+          <span class="prod_remove">
             <a
               class="button"
               href="javascript:;" @click="showAlert(cartItem.id)"
@@ -45,10 +54,10 @@
           v-else
           class="cartlabel"
         >
-          <span><img :src="cartItem.product.image_path" width="100px" /></span>
-          <span>{{cartItem.product.productName}}</span>
-          <span>{{cartItem.product.sale_price}}</span>
-          <span>
+          <span class="prod_img"><div class="img_ratio"><img :src="cartItem.product.image_path" /></div></span>
+          <span class="prod_name">{{cartItem.product.productName}}</span>
+          <span class="prod_price">{{cartItem.product.sale_price}}</span>
+          <span class="prod_quant">
             <input
               type="number"
               name="qtyproduct"
@@ -56,8 +65,8 @@
               v-on:blur="updateQuantity($event,cartItem.id)"
             >
           </span>
-          <span>{{cartItem.product.sale_price*cartItem.quantity}}</span>
-          <span>
+          <span class="prod_items">{{cartItem.product.sale_price*cartItem.quantity}}</span>
+          <span class="prod_remove">
             <a
               class="button"
               href="javascript:;" @click="showAlert(cartItem.id)"
@@ -68,16 +77,42 @@
         </div>
       </li>
     </ul>
-    <p class="totalamount">Total Cart Price: {{cartTotal}}</p>
-    <div class="proccedtocheckout">
-      <router-link
+       </div>
+       <div class="row update_row">
+        <div class="col-md-7">
+          <div class="btn_left">
+            <a href="#" class="btn_blu">Continue Shopping</a>
+            <a href="#" class="btn_red">Check Out <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </div>
+         <div class="col-md-5">          
+          <div class="btn_right text-right">
+            <a href="#" class="btn_blu_blank">Update Cart</a>
+          </div>
+        </div>
+       </div>
+
+    <p class="totalamount cart_total">Total Cart Price: <span>{{cartTotal}}</span></p>
+    <div class="proccedtocheckout1 text-right">
+      <p class="msg_offer">YOU ARE $13.01 AWAY FROM FREE SHIPPING</p>
+      <div class="msg_blu"> <span class="btn_blu">FREE 3 DAY SHIPPING ON U.S. ORDERS OVER $45</span></div>
+      <router-link class="btn_red"
         :to="{ path: 'checkout'}"
       >
-        Proceed To Checkout
+        Proceed To Checkout <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
       </router-link>
+      <div class="pay_type">
+      <a href="#">
+       <img
+            :src="cart_pay"
+            alt="cart_pay"
+            />
+          </a>
+        </div>
     </div>
     <div class="proccedtocheckout">
       <p>{{updateMessage}}</p>
+    </div>
     </div>
   </div>
 </template>
@@ -85,6 +120,8 @@
   @import './carts.css';
 </style>
 <script>
+import cart_logo from "../../assets/images/cart_logo.png"
+import cart_pay from "../../assets/images/pay.png"
 import {mapActions,mapGetters} from "vuex"
 import axios from 'axios';
 
@@ -93,6 +130,8 @@ export default {
   data: function () {
     return {
       cartItemsList:{},
+      cart_logo: cart_logo,
+      cart_pay: cart_pay,
       updateMessage:''
     }
   },
