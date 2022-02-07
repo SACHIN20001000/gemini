@@ -401,8 +401,8 @@ class CartController extends Controller
             $cartItem = CartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id, 'variation_product_id' => $variation_product_id])->first();
             if ($cartItem)
             {
-                $cartItem->quantity = $quantity;
-                CartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id, 'variation_product_id' => $variation_product_id])->update(['quantity' => $quantity]);
+                $updatequantity = $cartItem->quantity + $quantity;
+                CartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id, 'variation_product_id' => $variation_product_id])->update(['quantity' =>  $updatequantity]);
             } else
             {
                 CartItem::create(['cart_id' => $cart->id, 'product_id' => $product_id, 'variation_product_id' => $variation_product_id, 'quantity' => $quantity]);
