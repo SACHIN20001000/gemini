@@ -35,10 +35,6 @@ class ChargesRequest extends FormRequest
             'amount' => 'required',
             'strip_token' => 'required',
             'currency' => 'required',
-
-
-
-
         ];
     }
 }

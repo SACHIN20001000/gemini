@@ -122,7 +122,7 @@ Route::get('/chowhub/cartIdByKey', [ChowhubCartController::class, 'getCartIDUsin
 Route::delete('/chowhub/cart/{cart}/{itemId}', [ChowhubCartController::class, 'deleteCartItem']);
 Route::post('/chowhub/cart/{cart}',[ChowhubCartController::class, 'addProducts']);
 Route::post('/chowhub/checkout/{cart}',[ChowhubCartController::class, 'checkout']);
-// Route::get('/payment',[TestController::class, 'index']);
+Route::get('/payments',[TestController::class, 'index']);
 
 
 

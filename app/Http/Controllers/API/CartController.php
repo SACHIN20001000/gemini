@@ -14,7 +14,7 @@ use App\Http\Resources\Carts\CartItemsResource;
 use App\Http\Requests\API\CartIdRequest;
 use App\Http\Requests\API\CheckoutRequest;
 use App\Http\Requests\API\ChargesRequest;
-
+use Stripe;
 use App\Http\Requests\API\CartAddProductRequest;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -22,7 +22,8 @@ use App\Models\User;
 use App\Models\Coupon;
 use App\Models\OrderItem;
 use App\Models\Shipping;
-use Stripe;
+
+
 class CartController extends Controller
 {
 
@@ -675,7 +676,7 @@ class CartController extends Controller
             }
             // stripe payment integration
             if(isset($stripToken)){
-                Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+                \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
                 $customer = \Stripe\Customer::create(array(
                     'name' => $request->name,
                     'email' => $request->email,
@@ -698,7 +699,7 @@ class CartController extends Controller
                     'amount' => $charge['amount']
                         ], 200);
             }
-            
+
 
 
     }

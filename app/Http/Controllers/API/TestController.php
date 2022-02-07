@@ -29,9 +29,10 @@ class TestController extends Controller
           'cvc' => '314',
         ],
       ]);
+      print($token);die;
       $customer = \Stripe\Customer::create(array(
         'name' => 'test',
-     
+
         'email' => 'murali@jytra.com',
         'source' => $token['id'],
         "address" => ["city" => "hyd", "country" => "india", "line1" => "adsafd werew", "postal_code" => "500090", "state" => "telangana"]
