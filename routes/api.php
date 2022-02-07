@@ -20,6 +20,8 @@ use App\Http\Controllers\API\CouponController;
 use App\Http\Controllers\API\FaqController;
 use App\Http\Controllers\API\RatingController;
 use App\Http\Controllers\API\PetController;
+use App\Http\Controllers\API\TestController;
+
 
 use App\Http\Controllers\API\Chowhub\ChowhubRatingController;
 
@@ -86,6 +88,8 @@ Route::get('cartIdByKey', [CartController::class, 'getCartIDUsingKey']);
 Route::delete('cart/{cart}/{itemId}', [CartController::class, 'deleteCartItem']);
 Route::post('/cart/{cart}',[CartController::class, 'addProducts']);
 Route::post('/checkout/{cart}',[CartController::class, 'checkout']);
+Route::post('/payment',[CartController::class, 'payment']);
+
 Route::get('settings', [SettingController::class, 'index']);
 Route::post('coupon', [CouponController::class, 'index']);
 
@@ -118,6 +122,8 @@ Route::get('/chowhub/cartIdByKey', [ChowhubCartController::class, 'getCartIDUsin
 Route::delete('/chowhub/cart/{cart}/{itemId}', [ChowhubCartController::class, 'deleteCartItem']);
 Route::post('/chowhub/cart/{cart}',[ChowhubCartController::class, 'addProducts']);
 Route::post('/chowhub/checkout/{cart}',[ChowhubCartController::class, 'checkout']);
+// Route::get('/payment',[TestController::class, 'index']);
+
 
 
 
