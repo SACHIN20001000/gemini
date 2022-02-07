@@ -201,13 +201,26 @@
               <div id="card-error"></div>
               <button id="custom-button" @click="createToken">Generate Token</button>
             </div>
+
           </li>
         </ul>
-        <p class="totalamount">Total Cart Price: {{cartTotalValue+shippingval}}</p>
+        <p class="totalamount" v-if="cartTotal">Total Cart Price: {{cartTotalValue+shippingval}}</p>
         <div class="placeorder">
           <button type="button" @click='submit'>Submit</button>
         </div>
       </div>
+    </div>
+    <div>
+      <stripe-checkout
+        ref="checkoutRef"
+        mode="payment"
+        :pk="publishableKey"
+        :line-items="lineItems"
+        :success-url="successURL"
+        :cancel-url="cancelURL"
+        @loading="v => loading = v"
+      />
+      <button @click="submit">Pay now!</button>
     </div>
   </div>
 </template>
@@ -218,11 +231,12 @@
 import {mapGetters,mapActions} from "vuex"
 import form from 'vuejs-form'
 import { StripeElementCard } from '@vue-stripe/vue-stripe'
+import { StripeCheckout } from '@vue-stripe/vue-stripe'
 
 export default {
   name:"Checkout",
   components: {
-    StripeElementCard,
+    StripeElementCard
   },
   data: () => ({
     form: form({
@@ -304,7 +318,17 @@ export default {
     token: null,
     cardNumber: null,
     cardExpiry: null,
-    cardCvc: null
+    cardCvc: null,
+    publishableKey: process.env.MIX_STRIPE_PUBLISHABLE_KEY,
+    loading: false,
+    lineItems: [
+      {
+        price: 'some-price-id',
+        quantity: 1,
+      },
+    ],
+    successURL: 'http://127.0.0.1:8000/payment',
+    cancelURL: 'http://127.0.0.1:8000/payment'
   }),
   watch:{
     orderResponse(){
@@ -323,6 +347,12 @@ export default {
     }
   },
   mounted () {
+    this.cardNumber = this.stripeElements.create('cardNumber', { style })
+    this.cardNumber.mount('#card-number')
+    this.cardExpiry = this.stripeElements.create('cardExpiry', { style })
+    this.cardExpiry.mount('#card-expiry')
+    this.cardCvc = this.stripeElements.create('cardCvc', { style })
+    this.cardCvc.mount('#card-cvc')
     const style = {
       base: {
         color: 'black',
@@ -338,13 +368,6 @@ export default {
         iconColor: '#fa755a',
       },
     }
-
-    this.cardNumber = this.stripeElements.create('cardNumber', { style });
-    this.cardNumber.mount('#card-number');
-    this.cardExpiry = this.stripeElements.create('cardExpiry', { style });
-    this.cardExpiry.mount('#card-expiry');
-    this.cardCvc = this.stripeElements.create('cardCvc', { style });
-    this.cardCvc.mount('#card-cvc');
   },
   beforeDestroy () {
     this.cardNumber.destroy();
@@ -395,9 +418,14 @@ export default {
         return;
       }
       console.log(token);
+      /*await this.$stripe.createCharges(this.cardNumber)*/
       // handle the token
       // send it to your server
+    },
+    submit () {
+      // You will be redirected to Stripe's secure checkout page
+      this.$refs.checkoutRef.redirectToCheckout();
     }
   }
-} 
+}
 </script>

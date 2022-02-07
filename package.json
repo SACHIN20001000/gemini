@@ -35,7 +35,8 @@
     "vuejs-validators": "^1.1.8"
   },
   "dependencies": {
-    "@vue-stripe/vue-stripe": "^4.2.9",
+    "@stripe/stripe-js": "^1.22.0",
+    "@vue-stripe/vue-stripe": "^4.4.1",
     "axios": "^0.23.0",
     "jw-vue-pagination": "^1.0.3",
     "moment": "^2.29.1",
@@ -50,6 +51,7 @@
     "vue-router": "^3.5.2",
     "vue-slick": "^1.1.16",
     "vue-star-rating": "^1.7.0",
+    "vue-stripe": "^0.1.52",
     "vue-sweetalert2": "^5.0.2",
     "vuex": "^3.6.2"
   },

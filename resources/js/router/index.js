@@ -13,8 +13,6 @@ import Cart from "../components/Cart";
 import Checkout from "../components/Checkout";
 import Payment from "../components/Payment";
 import Chowhub from "../components/chowhub";
-import checkoutDesign from "../components/checkoutDesign";
-import cartDesign from "../components/cartDesign";
 
 Vue.use(VueRouter)
 
@@ -83,18 +81,6 @@ routes: [
 		beforeEnter : guardMyroute,
 		name: 'Checkout',
 		component: Checkout
-	},
-  {
-		path: '/checkoutdesign',
-		beforeEnter : guardMyroute,
-		name: 'checkoutDesign',
-		component: checkoutDesign
-	},
-  {
-		path: '/cartdesign',
-		beforeEnter : guardMyroute,
-		name: 'cartDesign',
-		component: cartDesign
 	},
   {
 		path: '/blog/:slug',
