@@ -2,8 +2,8 @@
   <section>
     <footer class="footer-top">
        <div class="container_max">
-          <div class="row">
-             <div class="col-md-3 footer_nav01">
+          <div class="row footer_col">
+             <div class="col-md-2 footer_nav01">
                 <ul class="footer_nav">
                    <li><a href="#">Get the App</a></li>
                    <li><a href="#">Pet Parents+®</a></li>
@@ -12,7 +12,7 @@
                    <li><a href="#">Careers</a></li>
                 </ul>
              </div>
-             <div class="col-md-9">
+             <div class="col-md-5 footer_nav02">
                 <div class="row">
                    <div class="col">
                       <ul class="footer_nav foot_nav2 foot_nav_shop">
@@ -57,36 +57,32 @@
                    </div>
                 </div>
              </div>
-          </div>
-       </div>
-    </footer>
-
-    <footer class="footer-bottom">
-       <div class="container_max">
-          <div class="row bottom-footer">
-             <div class="col-sm-2 order-03">
-                <ul class="social_list footer_nav">
+             <div class="col-md-5 meta_footer">
+               <div class="row v_center">
+                 <div class="col-md-2"><a href="#" class="paw_logo"><img :src="imgPaw"></a></div>
+                 <div class="col-md-5">
+                  <div class="join_btn">
+                   <a href="#" class="btn_bl">CLICK FOR OUR EMAIL LIST</a>
+                   <a href="#" class="btn_rd">JOIN OUR AFFILIATE PROGRAM</a>
+                </div></div>
+                 <div class="col-md-5">
+                  <ul class="social_list footer_nav">
                    <li><a href="#"><img :src="imgFb"></a></li>
                    <li><a href="#"><img :src="imgInsta"></a></li>
                    <li><a href="#"><img :src="imgUtube"></a></li>
                    <li><a href="#"><img :src="imgLink"></a></li>
-                </ul>
-             </div>
-             <div class="col-md-5 order-02">
-                <div class="join_btn">
-                   <a href="#" class="btn_bl">CLICK FOR OUR EMAIL LIST</a>
-                   <a href="#" class="btn_rd">JOIN OUR AFFILIATE PROGRAM</a>
+                </ul></div>
+               </div>
+                <div class="row">
+                 <div class="col-md-12">
+                  <p class="copy_p">© 2021 Pet Parents LLC. All Logos and Trademarks belong to their respective owners.</p>
+                 </div>
                 </div>
-             </div>
-             <div class="col-md-4 order-04">
-                <p class="copy_p">© 2021 Pet Parents LLC. All Logos and Trademarks belong to their respective owners.</p>
-             </div>
-             <div class="col-md-1 order-01">
-                <a href="#" class="paw_logo"><img :src="imgPaw"></a>
              </div>
           </div>
        </div>
     </footer>
+
     <footer class="gray-strip">
     </footer>
   </section>
