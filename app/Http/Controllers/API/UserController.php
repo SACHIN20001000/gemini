@@ -97,8 +97,7 @@ class UserController extends Controller
         {
             $user->password = bcrypt($request->password);
         }
-        if (!empty($request['profile_image']))
-            {
+        if ($request->hasFile('profile_image')){
                 $path = Storage::disk('s3')->put('images/profile', $request['profile_image']);
                 $image_path = Storage::disk('s3')->url($path);
                 $user->profile = $image_path;
