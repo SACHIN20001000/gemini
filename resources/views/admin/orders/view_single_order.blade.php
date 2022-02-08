@@ -86,7 +86,11 @@
                                     <td class="valign-middle" colspan="2" rowspan="4">
                                         <div class="invoice-notes">
                                             <label class="main-content-label tx-13">Notes</label>
+                                            @if($order->remark)
+                                            <p>{{$order->remark}}</p>
+                                            @else
                                             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                                            @endif
                                         </div><!-- invoice-notes -->
                                     </td>
                                     <td class="tx-right">Sub-Total</td>
