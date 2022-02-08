@@ -92,11 +92,12 @@
                                     <td class="tx-right">Sub-Total</td>
                                     <td class="tx-right" colspan="2">${{$order->sub_total}}</td>
                                 </tr>
-                            
+                            @if(!empty($order->discount))
                                 <tr>
                                     <td class="tx-right">Discount</td>
                                     <td class="tx-right" colspan="2">-${{$order->discount}}</td>
                                 </tr>
+                                @endif
                                 <tr>
                                     <td class="tx-right tx-uppercase tx-bold tx-inverse">Total</td>
                                     <td class="tx-right" colspan="2">
