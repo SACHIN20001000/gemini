@@ -459,7 +459,7 @@ class CartController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function updateProducts(Cart $cart, CartAddProductRequest $request){
+    public function updateProducts(Cart $cart, Request $request){
 
         $cartitems     = $request->cartitems;
         $cartErrors    = [];
