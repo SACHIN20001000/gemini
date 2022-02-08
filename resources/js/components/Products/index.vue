@@ -838,17 +838,14 @@ export default {
         if(this.finalVariant && this.finalVariant.id){
           vid = this.finalVariant.id
         }
-        const itemDetails= []
-        itemDetails.push({
-          key: cartkey,
-          product_id: proId,
-          quantity: this.quantity,
-          variation_product_id: vid
-        })
-        var cartItems = {'cartitems':itemDetails}
-        /*this.addCartItem(itemDetails)*/
+        const itemDetails= {
+                          key: cartkey,
+                          product_id: proId,
+                          quantity: Number(this.quantity),
+                          variation_product_id: vid
+                        }
         const cartId = localStorage.getItem('cartId')
-        HTTP.post(process.env.MIX_APP_APIURL+'cart/'+cartId, cartItems).then((response) => {
+        HTTP.post(process.env.MIX_APP_APIURL+'cart/'+cartId, itemDetails).then((response) => {
           this.getCartItems()
         })
       }
