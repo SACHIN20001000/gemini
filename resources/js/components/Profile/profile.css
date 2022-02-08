@@ -75,16 +75,15 @@ td.t_btn button {color: #706f6f; background: #fff; border: 1px solid #706f6f; pa
 td.t_btn button:hover {background: #ee343f; color: #fff; border: 1px solid; }
 
 .profile_banner img {width: 130px; height: 130px; object-fit: cover; border-radius: 50%; overflow: hidden; }
-.profile_banner {position: relative; }
+.profile_banner {position: relative;width: 130px; height: 130px; margin:0 auto; position: relative; }
 .profile_banner .uplod_btn:after {height: 25px; width: 25px !important; font-size: 34px; padding-bottom: 10px; color: #fff; border-color: #00b7bc; background: #00b7bc; }
-.profile_banner label.uplod_btn {height: 25px; width: 25px; display: block; top: 0; right: 0; position: absolute; top: 20px; right: 20px; }
- .profile_banner input {height: 40px; width: 40px; cursor: pointer; top: 0; left: 0; padding: 0; z-index: 999; }
+.profile_banner label.uplod_btn {    height: 25px; width: 25px; display: block; top: 15px; right: 0px; position: absolute; } .profile_banner input {height: 40px; width: 40px; cursor: pointer; top: 0; left: 0; padding: 0; z-index: 999; }
 ul.pet_pro_list li a img{width: 118px; height: 118px; object-fit: contain; border-radius: 50%; background: #f6f6f6; }
 
 
 @media only screen and (max-width: 768px)
 {
-    section.st_banner .row>div {max-width: 100%; width: 100%; text-align: center; }
+    section.st_banner .row>div {max-width: 100%; width: 100%; text-align: center; position: unset;}
 h1.st_h {font-size: 30px; margin-top: 20px; }
 h1.st_h + p br {display: none; }
 h1.st_h + p {font-size: 16px; }
@@ -93,11 +92,10 @@ section.st_banner {position: relative; margin-bottom: 60px; padding: 40px 0 80px
 .points {position: absolute; bottom: -70px; margin: 0 auto; left: 0; right: 0; max-width: 290px; }
 section.st_info .row> .col-3, section.st_info .row> .col-9 {width: 100%; padding:0 20px !important; }
 h1.st_title { text-align: center;}
-.st_tab_list {display: flex; justify-content: center; }
 .st_tab_content {display: flex; justify-content: center; }
 .st_tab_content .form-group {display: flex; align-items: center; margin-bottom: 10px;}
 .inp_edt {margin: 0 10px; } label.lb_small {min-width: 60px; }
-.st_tab_list {display: flex; justify-content: center; margin-bottom: 20px; }
+.st_tab_list {display: flex !important; justify-content: center; margin-bottom: 20px !important; }
 .st_info >.container_990{padding: 40px 0;}
 .srch_order {position: relative; margin: 0 auto; display: flex; justify-content: center; margin: 30px 0 0 0; }
 ul.pet_pro_list {flex-wrap: wrap; justify-content: center; grid-gap: 10px 40px; }
