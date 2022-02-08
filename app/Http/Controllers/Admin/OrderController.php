@@ -87,9 +87,9 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $orders = $order->with('user', 'shipping', 'orderItems')->first();
+        $order = $order->with('user', 'shipping', 'orderItems', 'orderItems.products')->first();
 
-        return view('admin.orders.view_single_order', compact('orders'));
+        return view('admin.orders.view_single_order', compact('order'));
     }
 
     /**
@@ -100,7 +100,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        $order = Order::with('user', 'shipping', 'orderItems')->where('id',$id)->first();
+        $order = Order::with('user', 'shipping', 'orderItems', 'orderItems.products')->where('id',$id)->first();
 
         $orders = Order::where('id', '!=', $order->id)->get();
         return view('admin.orders.addEdit', compact('order', 'orders'));
