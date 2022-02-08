@@ -656,26 +656,7 @@ class CartController extends Controller
                 $coupon->save();
             }
             $order->save();
-            // stripe payment integration
-            // if(isset($stripToken)){
-            //     Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-            //     $customer = \Stripe\Customer::create(array(
-            //         'name' => $request->name,
-            //         'email' => $request->email,
-            //         'source' => $stripToken,
-            //         "address" => ["city" =>$request->city ?? null,
-            //         "country" => $request->country ?? null,
-            //         "line1" => $request->address ?? null,
-            //         "postal_code" => $request->zip_code ?? null,
-            //         "state" => $request->state ?? null]
-            //     ));
-            //     $charge = \Stripe\Charge::create(array(
-            //             'customer' => $customer->id,
-            //             'amount'   => $order->grand_total,
-            //             'currency' => $request->currency,
-            //             'description' =>  $request->remark,
-            //     ));
-            // }
+  
             $order->transaction_id = $request->transaction ?? null;
             $order->save();
 
