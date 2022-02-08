@@ -85,9 +85,9 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show($id)
     {
-        $order = $order->with('user', 'shipping', 'orderItems', 'orderItems.products')->first();
+        $order = Order::with('user', 'shipping', 'orderItems', 'orderItems.products')->where('id',$id)->first();
 
         return view('admin.orders.view_single_order', compact('order'));
     }
