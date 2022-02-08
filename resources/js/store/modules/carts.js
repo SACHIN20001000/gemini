@@ -53,7 +53,7 @@ const actions = {
   removeCartItem ({ commit }, cartId) {
     const cartKey = localStorage.getItem('cartKey')
     const cartkeyId = localStorage.getItem('cartId')
-    HTTP.delete(process.env.MIX_APP_APIURL+'cart/'+cartkeyId+'/'+cartId, {
+    HTTP.delete(process.env.MIX_APP_APIURL+'cart/'+cartkeyId, {
       data: {
         key: cartKey
       }
