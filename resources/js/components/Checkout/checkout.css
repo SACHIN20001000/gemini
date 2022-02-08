@@ -1,81 +1,79 @@
-.errorMsg{
-  width: 100%;
-  color: red;
-  font-size: 14px;
-  font-weight: normal;
-}
-.button{
-  color: #fff;
-  background: red;
-  border-radius: 4px;
-  padding: 5px;
-  list-style: none;
-  text-decoration: none;
-  cursor: pointer;
-}
-.button:hover{
-  color: #fff;
-  list-style: none;
-  text-decoration: none;
-}
-.button strong{
-  color: #fff;
-}
-.main table tr td {font-weight: normal;}
-.totalamount{text-align: right;}
-.checkoutform{
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-}
-.twobythree{
-  width: 50%;
-  padding: 10px;
-}
-.onebythree{
-  width: 50%;
-  padding: 10px;
-}
-.listItem{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-.listItem li{
-  width: 100%;
-  list-style: none;
-  margin: 10px 0px;
-}
-.listItem li label{
-  width: 150px
-}
-.subtotal li{ list-style: none;}
 
-.placeorder{
-  width: 100%;
-  padding: 10px;
-  text-align: right;
-}
-.placeorder button{
-  background: blue;
-  padding: 10px;
-  color: #fff;
-}
-.error_validation{
-  width: 100%;
-  color: red;
-}
-.stripeCard{
-  width: 100%;
-}
-#custom-button {
-  height: 30px;
-  outline: 1px solid grey;
-  background-color: green;
-  padding: 5px;
-  color: white;
-}
+ul.listItem {list-style: none; padding: 0; margin: 0; }
+.checkoutform {max-width: 1120px; margin: 0 auto 0px auto; padding: 40px 0 20px 0;display: flex; flex-wrap: wrap; justify-content: space-between;gap: 50px; }
+.checkout_btn{max-width: 1120px; margin: 0 auto; width: 100%; padding: 0 30px ;}
+.twobythree{max-width: calc(55% - 40px); }
+.onebythree{max-width: calc(45% - 40px); }
+.checkoutform>div { width: 100%; padding:  0 30px;}
+.grad_bg {background: linear-gradient(90deg, #fff 54%, #fafafa 46%);position: relative; }
+.grad_bg:before {content: ""; position: absolute; left: 54%; width: 1px; background: rgba(0,0,0,.1); height: 100%; }
+.legend_body {border: 1px solid rgba(0,0,0,.1); border-radius: 3px; position: relative; padding: 20px; }
+.legend_body legend {text-align: center; font-size: 14px; position: absolute; top: -12px; left: 0; margin: 0 auto; background: #fff; display: inline-block; width: 120px; right: 0; }
+.pay_btns {text-align: center; }
+.row.pay_btns a {display: inline-block; max-width: 190px; height: 36px; width: 100%; line-height: 35px; border-radius: 3px; color: #fff; text-decoration: none; }
+.btn_purp a {background: #5a31f4; border: 1px solid #4919ff; }
+.btn_yelo a {background: #6058f7; border: 1px solid #6058f7; }
+.btn_black a {background: #000; border: 1px solid #000; }
+ul.pay_steps {margin: 20px auto; padding: 0; list-style: none; display: flex; justify-content: center; font-size: 13px; }
+ul.pay_steps>li {display: inline-flex; align-items: center; color: #777 }
+ul.pay_steps {margin: 20px auto 35px auto; padding: 0; list-style: none; display: flex; justify-content: center; font-size: 13px; align-items: center; }
+.check_logo a {display: inline-block; }
+ul.pay_steps>li.active{color: #444;}
+ul.pay_steps>li:not(:last-child):after {content: ">"; margin: 0 10px; font-size: 25px; display: inline-block; line-height: 0px; transform: translatey(-2px); color: #777; }
 
-#card-error {
-  color: red;
+/* form design */
+.form_list>li label {display: none; }
+.or:before, .or:after {content: ""; flex-grow: 1; height: 1px; background: rgba(0,0,0,.1); margin: 10px; }
+.or {font-size: 14px; display: flex; justify-content: center; margin: 25px -10px; color: #888; align-items: center; }
+.form_list h3 {font-size: 18px; font-weight: 400; }
+.form_list>li:not(:last-child) {margin-bottom: 15px; }
+.form_list>li{margin: 0 -15px;     display: flex;    flex-wrap: wrap;}
+.checkbox {position: relative; height: 30px; display: flex; }
+.checkbox input {position: absolute; top: 0; left: 0; height: 100%; width: 100%; opacity: 0; z-index: 999; cursor: pointer; }
+.checkbox {position: relative; height: 30px; display: flex; margin: 0 0 15px 0; font-size: 15px; font-weight: 300; }
+span.checkbox input[type="checkbox"] + span:before {content: "\f00c"; width: 30px; height: 30px; position: absolute; font: normal normal normal 14px/1 FontAwesome; right: 0; border: 2px solid #00b1bb; border-radius: 3px; display: flex; align-items: center; justify-content: center; color: transparent; }
+span.checkbox input[type="checkbox"]:checked + span:before {color: #00b1bb; }
+.border_tb {border: 1px solid rgba(0,0,0,.1); margin: 20px 0 !important; background: #fafafa; padding: 20px 20 0px 20 !important; }
+button.btn_blu.btn_md {height: 50px; border-radius: 4px; max-width: 160px; width: 100%; }
+span.checkbox input[type="radio"] + span:before {content: "\f00c"; width: 20px; height: 20px; position: absolute; font: normal normal normal 14px/1 FontAwesome; right: 0; border: 2px solid #00b1bb; border-radius: 50px; display: flex; align-items: center; justify-content: center; color: transparent; }
+span.checkbox input[type="radio"]:checked + span:before {color:#fff  ; background: #00b1bb ; }
+/* side form */
+.onebythree ul {padding: 0; margin: 0; list-style: none; }
+.pro_thumb {position: relative; width: 65px; height: 65px; border: 1px solid rgba(0,0,0,.1); border-radius: 4px; }
+.pro_thumb img{width: 63px; height: 63px; object-fit: cover; border-radius: 4px;}
+span.p_quant {position: absolute; width: 20px; height: 20px; background: #e42930; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; top: -10px; right: -15px; font-size: 12px; }
+.fl_div {display: flex; justify-content: space-between; align-items: center; }
+.coupon_cart {display: flex; gap: 10px; margin: 20px 0; padding: 20px 0; border-top: 1px solid rgba(0,0,0,.1); border-bottom: 1px solid rgba(0,0,0,.1); }
+.fl_left {display: inline-flex; align-items: center; gap: 12px; }
+.prod_name label {display: block; margin: 0; line-height: 1; color: #444; }
+.prod_name span {font-size: 12px; color: #888; }
+.coupon_cart input {font-size: 14px; }
+ul.subtotal span {font-weight: 300; }
+label.m_big {font-size: 30px; line-height: 1; }
+h3.md_h {font-size: 18px; margin-bottom:10px; }
+.onebythree hr {opacity: .1; }
+ul.shippingmethods .checkbox,ul.paymentmethods .checkbox {height: 20px; margin-bottom: 15px; }
+ul.paymentmethods i {width: 25px; color: #000;}
+.btn_token {margin: 15px 0; }
+.dv_input {color: #706f6f; font-weight: 300; height: 40px; border: 1px solid rgba(0,0,0,.1); padding: 10px 0 0 15px; }
+.stripeCard {padding: 20px; border: 1px solid rgba(0,0,0,.1); background: #fff; border-radius: 5px; margin-top: 20px; }
+div#card-error {font-size: 13px; color: red; }
+.stripeCard>label {font-size: 14px; margin: 10px 0 5px 0; color: #444; }
+
+@media only screen and (min-width:320px) and (max-width: 940px)
+{
+.checkoutform>div {max-width: 600px; margin: 0 auto; }
+.grad_bg {background: #fff; }
+.grad_bg:before{display: none;}
+.checkout_btn {text-align: center; }
+.checkout_btn {position: fixed; bottom: 0; left: 0; right: 0; background: #fff; text-align: center; padding: 10px; box-shadow: -6px -3px 5px rgb(0 0 0 / 10%); z-index: 999; }
+.placeorder.text-right {text-align: center !important; }
+.form_list>li>.col-md-4:not(:last-child) {margin-bottom: 15px; }
+
+ }
+
+
+@media only screen and (max-width: 768px)
+{
+  .container_max {max-width: 100% !important; }
 }

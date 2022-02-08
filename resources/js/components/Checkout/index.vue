@@ -1,217 +1,308 @@
 <template>
-  <div class="main">
-    <h1>Checkout</h1>
+  <div class="main grad_bg">
+    <!--<h1>Checkout</h1>-->
     <div class="checkoutform">
       <div class="twobythree">
-        <ul class="listItem">
-          <li><h3>Billing Address</h3></li>
+        <div class="text-center check_logo">
+        <a href="#"><img src="images/paw.png"></a>
+      </div>
+        <ul class="pay_steps">
+          <li class="active">Information</li>
+          <li>Shipping</li>
+          <li>Payment</li>
+        </ul>
+          <!--<fieldset class="legend_body">
+          <legend>Express checkout</legend>
+          <div class="row pay_btns ">
+           <div class="col btn_purp"><a href="#">Shop Pay</a></div>
+           <div class="col btn_yelo"><a href="#">PayPal</a></div>
+           <div class="col btn_black"><a href="#">Gpay</a></div>
+          </div>
+          </fieldset>-->
+          <div class="or">Contact Information</div>
+        <ul class="listItem form_list">
+          <li><div class="col-md-12"><h3>Billing Address</h3></div></li>
           <li>
-            <label>First Name:</label>
-            <input name="text" v-model='form.name' placeholder="Full Name">
-            <span v-if="form.errors().has('name')">
-              {{ form.errors().get('name') }}
-            </span>
+            <div class="col-md-12">
+              <label>First Name:</label>
+              <input name="text" v-model='form.name' placeholder="Full Name">
+              <span v-if="form.errors().has('name')">
+                {{ form.errors().get('name') }}
+              </span>
+            </div>
           </li>
           <li>
-            <label>Address:</label>
-            <input name="text" v-model='form.address' placeholder="Address">
-            <span v-if="form.errors().has('address')">
-              {{ form.errors().get('address') }}
-            </span>
+            <div class="col-md-12">
+              <label>Address:</label>
+              <input name="text" v-model='form.address' placeholder="Address">
+              <span v-if="form.errors().has('address')">
+                {{ form.errors().get('address') }}
+              </span>
+           </div>
           </li>
           <li>
-            <label>City:</label>
-            <input name="text" v-model='form.city' placeholder="City">
-            <span v-if="form.errors().has('city')">
-              {{ form.errors().get('city') }}
-            </span>
+            <div class="col-md-12">
+              <label>City:</label>
+              <input name="text" v-model='form.city' placeholder="City">
+              <span v-if="form.errors().has('city')">
+                {{ form.errors().get('city') }}
+              </span>
+            </div>
           </li>
           <li>
-            <label>State:</label>
-            <input name="text" v-model='form.state' placeholder="State">
-            <span v-if="form.errors().has('state')">
-              {{ form.errors().get('state') }}
-            </span>
+            <div class="col-md-4">
+              <label>State:</label>
+              <input name="text" v-model='form.state' placeholder="State">
+              <span v-if="form.errors().has('state')">
+                {{ form.errors().get('state') }}
+              </span>
+            </div>
+            <div class="col-md-4">
+              <label>Country:</label>
+              <input name="text" v-model='form.country' placeholder="Country">
+              <span v-if="form.errors().has('country')">
+                {{ form.errors().get('country') }}
+              </span>
+            </div>
+             <div class="col-md-4">
+              <label>Zip:</label>
+              <input name="text" v-model='form.zip_code' placeholder="Zip">
+              <span v-if="form.errors().has('zip_code')" >
+                {{ form.errors().get('zip_code') }}
+              </span>
+            </div> 
           </li>
           <li>
-            <label>Country:</label>
-            <input name="text" v-model='form.country' placeholder="Country">
-            <span v-if="form.errors().has('country')">
-              {{ form.errors().get('country') }}
-            </span>
+            <div class="col-md-12">
+              <label>Phone:</label>
+              <input name="text" v-model='form.phone' placeholder="Phone">
+              <span v-if="form.errors().has('phone')">
+                {{ form.errors().get('phone') }}
+              </span>
+            </div>
           </li>
           <li>
-            <label>Zip:</label>
-            <input name="text" v-model='form.zip_code' placeholder="Zip">
-            <span v-if="form.errors().has('zip_code')" >
-              {{ form.errors().get('zip_code') }}
-            </span>
+            <div class="col-md-12">
+              <label>Email:</label>
+              <input name="text" v-model='form.email' placeholder="Email">
+              <span v-if="form.errors().has('email')">
+                {{ form.errors().get('email') }}
+              </span>
+            </div>
           </li>
           <li>
-            <label>Phone:</label>
-            <input name="text" v-model='form.phone' placeholder="Phone">
-            <span v-if="form.errors().has('phone')">
-              {{ form.errors().get('phone') }}
-            </span>
-          </li>
-          <li>
-            <label>Email:</label>
-            <input name="text" v-model='form.email' placeholder="Email">
-            <span v-if="form.errors().has('email')">
-              {{ form.errors().get('email') }}
-            </span>
-          </li>
-          <li>
-            <label>Remark:</label>
-            <input name="text" v-model='form.remark' placeholder="Remark">
-            <span v-if="form.errors().has('remark')">
-              {{ form.errors().get('remark') }}
-            </span>
+          <div class="col-md-12">
+              <label>Remark:</label>
+              <input name="text" v-model='form.remark' placeholder="Remark">
+              <span v-if="form.errors().has('remark')">
+                {{ form.errors().get('remark') }}
+              </span>
+          </div>
           </li>
         </ul>
-        <hr />
-        <ul class="listItem">
-          <li><h3>Shipping Address</h3></li>
-          <li><input type="checkbox" class="samebillingaddress" v-on:click="isShippingFormDisabled($event)" /> Use same address in shipping address.</li>
+        <ul class="listItem form_list border_tb">
+          <li style="margin-bottom: 0; ">
+            <div class="col-md-12">
+             <h3>Shipping Address</h3>
+            </div>
+          </li>
+          <li class="check_list">
+             <div class="col-md-12">
+              <span class="checkbox">
+            <input type="checkbox" class="samebillingaddress" v-on:click="isShippingFormDisabled($event)" /> <span>Use same address in shipping address.</span>
+            </span>
+           </div>
+           </li>
         </ul>
-        <ul class="listItem" v-if="disableShippingForm>0">
+        <ul class="listItem form_list" v-if="disableShippingForm>0">
           <li>
-            <label>First Name:</label>
-            <input name="text" v-model='form.sh_name' placeholder="Full Name">
-            <span v-if="form.errors().has('sh_name')">
-              {{ form.errors().get('sh_name') }}
-            </span>
+            <div class="col-md-12">
+              <label>First Name:</label>
+              <input name="text" v-model='form.sh_name' placeholder="Full Name">
+              <span v-if="form.errors().has('sh_name')">
+                {{ form.errors().get('sh_name') }}
+              </span>
+            </div>
           </li>
           <li>
-            <label>Address:</label>
-            <input name="text" v-model='form.sh_address' placeholder="Address">
-            <span v-if="form.errors().has('sh_address')">
-              {{ form.errors().get('sh_address') }}
-            </span>
+            <div class="col-md-12">
+              <label>Address:</label>
+              <input name="text" v-model='form.sh_address' placeholder="Address">
+              <span v-if="form.errors().has('sh_address')">
+                {{ form.errors().get('sh_address') }}
+              </span>
+          </div>
           </li>
           <li>
-            <label>City:</label>
-            <input name="text" v-model='form.sh_city' placeholder="City">
-            <span v-if="form.errors().has('sh_city')">
-              {{ form.errors().get('sh_city') }}
-            </span>
+            <div class="col-md-12">
+              <label>City:</label>
+              <input name="text" v-model='form.sh_city' placeholder="City">
+              <span v-if="form.errors().has('sh_city')">
+                {{ form.errors().get('sh_city') }}
+              </span>
+             </div> 
           </li>
           <li>
-            <label>State:</label>
-            <input name="text" v-model='form.sh_state' placeholder="State">
-            <span v-if="form.errors().has('sh_state')">
-              {{ form.errors().get('sh_state') }}
-            </span>
+            <div class="col-md-4">
+              <label>State:</label>
+              <input name="text" v-model='form.sh_state' placeholder="State">
+              <span v-if="form.errors().has('sh_state')">
+                {{ form.errors().get('sh_state') }}
+              </span>
+            </div>
+            <div class="col-md-4">
+              <label>Country:</label>
+              <input name="text" v-model='form.sh_country' placeholder="Country">
+              <span v-if="form.errors().has('sh_country')">
+                {{ form.errors().get('sh_country') }}
+              </span>
+            </div>
+
+            <div class="col-md-4">
+              <label>Zip:</label>
+              <input name="text" v-model='form.sh_zip_code' placeholder="Zip">
+              <span v-if="form.errors().has('sh_zip_code')" >
+                {{ form.errors().get('sh_zip_code') }}
+              </span>
+            </div>
           </li>
           <li>
-            <label>Country:</label>
-            <input name="text" v-model='form.sh_country' placeholder="Country">
-            <span v-if="form.errors().has('sh_country')">
-              {{ form.errors().get('sh_country') }}
-            </span>
+            <div class="col-md-12">
+              <label>Phone:</label>
+              <input name="text" v-model='form.sh_phone' placeholder="Phone">
+              <span v-if="form.errors().has('sh_phone')">
+                {{ form.errors().get('sh_phone') }}
+              </span>
+            </div>
           </li>
           <li>
-            <label>Zip:</label>
-            <input name="text" v-model='form.sh_zip_code' placeholder="Zip">
-            <span v-if="form.errors().has('sh_zip_code')" >
-              {{ form.errors().get('sh_zip_code') }}
-            </span>
+            <div class="col-md-12">
+              <label>Email:</label>
+              <input name="text" v-model='form.sh_email' placeholder="Email">
+              <span v-if="form.errors().has('sh_email')">
+                {{ form.errors().get('sh_email') }}
+              </span>
+            </div>
           </li>
           <li>
-            <label>Phone:</label>
-            <input name="text" v-model='form.sh_phone' placeholder="Phone">
-            <span v-if="form.errors().has('sh_phone')">
-              {{ form.errors().get('sh_phone') }}
-            </span>
-          </li>
-          <li>
-            <label>Email:</label>
-            <input name="text" v-model='form.sh_email' placeholder="Email">
-            <span v-if="form.errors().has('sh_email')">
-              {{ form.errors().get('sh_email') }}
-            </span>
-          </li>
-          <li>
-            <label>Remark:</label>
-            <input name="text" v-model='form.sh_remark' placeholder="Remark">
-            <span v-if="form.errors().has('sh_remark')">
-              {{ form.errors().get('sh_remark') }}
-            </span>
+            <div class="col-md-12">
+              <label>Remark:</label>
+              <input name="text" v-model='form.sh_remark' placeholder="Remark">
+              <span v-if="form.errors().has('sh_remark')">
+                {{ form.errors().get('sh_remark') }}
+              </span>
+            </div>
           </li>
         </ul>
       </div>
       <div class="onebythree">
-        <ul class="subtotal">
-          <li>Sub Total: {{cartTotal}}</li>
-          <li>Tax : 5%</li>
+
+        <div class="product_check fl_div">
+          <div class="fl_left">
+          <div class="pro_thumb">
+            <img src="images/pro3.jpg"><span class="p_quant">2</span>
+          </div>
+          <div class="prod_name">
+            <label>Pet Blanket</label>
+            <span>Chocolate / S</span> 
+          </div>
+        </div>
+        <div class="fl_right">
+          <label class="bd">$11.99</label>
+        </div>
+      </div>
+      <div class="coupon_cart">
+        <input type="text" placeholder="Gift cards and discount code">
+        <button class="btn_red">Apply</button>
+      </div>
+
+        <ul class="subtotal ">
+          <li class="fl_div"><span>Sub Total:</span> <label>{{cartTotal}}</label></li>
+          <li class="fl_div"><span>Tax :</span> <label> 5%</label></li>
         </ul>
+        <hr>
+           <p class="totalamount fl_div" v-if="cartTotal"><span>Total Cart Price:</span> <label class="m_big">{{cartTotalValue+shippingval}}</label></p>
+           <hr>
         <ul class="shippingmethods">
-          <li><h3>Shipping Methods</h3></li>
-          <li>
-            <input type="radio" v-model='order_form.shippingmethods' name="shippingmethods" @change="calculateShipping($event,0)" value="free">
-            &nbsp; Free Shipping (7 day delivery, cost $0)
+          <li><h3 class="md_h">Shipping Methods</h3></li>
+          <li><span class="checkbox"> <input type="radio" v-model='order_form.shippingmethods' name="shippingmethods" @change="calculateShipping($event,0)" value="free">
+            <span> Shipping (7 day delivery, cost $0)</span>
+          </span>            
             <span class="error_validation" v-if="order_form.errors().has('shippingmethods')">
               {{ order_form.errors().get('shippingmethods') }}
             </span>
           </li>
           <li>
+            <span class="checkbox">
             <input type="radio" v-model='order_form.shippingmethods' name="shippingmethods" @change="calculateShipping($event,10)" value="express">
-            &nbsp; Express Shipping (1 day delivery, cost $10)
+            <span>Express Shipping (1 day delivery, cost $10)</span>
+          </span>
             <span class="error_validation" v-if="order_form.errors().has('shippingmethods')">
               {{ order_form.errors().get('shippingmethods') }}
             </span>
           </li>
           <li>
+            <span class="checkbox">
             <input type="radio" v-model='order_form.shippingmethods' name="shippingmethods" @change="calculateShipping($event,5)" value="standard">
-            &nbsp; Standard Shipping (3 day delivery, cost $5)
+           <span> Standard Shipping (3 day delivery, cost $5)</span>
+          </span>
             <span class="error_validation" v-if="order_form.errors().has('shippingmethods')">
               {{ order_form.errors().get('shippingmethods') }}
             </span>
           </li>
         </ul>
+        <hr>
         <ul class="paymentmethods">
-          <li><h3>Payment Methods</h3></li>
+          <li><h3 class="md_h">Payment Methods</h3></li>
           <li>
+            <span class="checkbox">
             <input type="radio" v-model='order_form.paymentmethods' name="paymentmethods" value="COD">
-            &nbsp; COD
+           <span><i class="fa fa-money" aria-hidden="true"></i> COD</span>
+          </span>
             <span class="error_validation" v-if="order_form.errors().has('paymentmethods')">
               {{ order_form.errors().get('paymentmethods') }}
             </span>
           </li>
           <li>
+            <span class="checkbox">
             <input type="radio" v-model='order_form.paymentmethods' name="paymentmethods" value="paypal">
-            &nbsp; Paypal Gateway
+            <span><i class="fa fa-paypal" aria-hidden="true"></i> Paypal Gateway</span>
+          </span>
             <span class="error_validation" v-if="order_form.errors().has('paymentmethods')">
               {{ order_form.errors().get('paymentmethods') }}
             </span>
           </li>
           <li>
+            <span class="checkbox">
             <input type="radio" v-model='order_form.paymentmethods' name="paymentmethods" value="stripe">
-            &nbsp; Stripe Gateway
+            <span><i class="fa fa-cc-stripe" aria-hidden="true"></i>Stripe Gateway</span>
+           </span>
             <span class="error_validation" v-if="order_form.errors().has('paymentmethods')">
               {{ order_form.errors().get('paymentmethods') }}
             </span>
-            <div class="stripeCard">
+            <div class="stripeCard ">
               <label>Card Number</label>
-              <div id="card-number"></div>
+              <div id="card-number" class="dv_input"></div>
               <label>Card Expiry</label>
-              <div id="card-expiry"></div>
+              <div id="card-expiry" class="dv_input"></div>
               <label>Card CVC</label>
-              <div id="card-cvc"></div>
+              <div id="card-cvc" class="dv_input"></div>
               <div id="card-error"></div>
-              <button id="custom-button" @click="createToken">Generate Token</button>
+              <div class="btn_token">
+              <button id="custom-button" @click="createToken" class="btn_red">Generate Token</button>
+            </div>
             </div>
 
           </li>
         </ul>
-        <p class="totalamount" v-if="cartTotal">Total Cart Price: {{cartTotalValue+shippingval}}</p>
-        <div class="placeorder">
-          <button type="button" @click='submit'>Submit</button>
+     <hr>
+        <div class="placeorder text-right">
+          <button type="button" @click='submit' class="btn_blu btn_md">Submit</button>
         </div>
       </div>
     </div>
-    <div>
-      <stripe-checkout
+    <div class="checkout_btn">
+      <stripe-checkout      
         ref="checkoutRef"
         mode="payment"
         :pk="publishableKey"
@@ -220,7 +311,7 @@
         :cancel-url="cancelURL"
         @loading="v => loading = v"
       />
-      <button @click="submit">Pay now!</button>
+      <button @click="submit" class="btn_blu btn_md">Pay now!</button>
     </div>
   </div>
 </template>
