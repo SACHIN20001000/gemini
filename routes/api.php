@@ -87,6 +87,8 @@ Route::resource('cart', CartController::class);
 Route::get('cartIdByKey', [CartController::class, 'getCartIDUsingKey']);
 Route::delete('cart/{cart}/{itemId}', [CartController::class, 'deleteCartItem']);
 Route::post('/cart/{cart}',[CartController::class, 'addProducts']);
+Route::post('/update-cart/{cart}',[CartController::class, 'updateProducts']);
+
 Route::post('/checkout/{cart}',[CartController::class, 'checkout']);
 Route::post('/payment',[CartController::class, 'payment']);
 

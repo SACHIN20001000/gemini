@@ -379,12 +379,96 @@ class CartController extends Controller
     public function addProducts(Cart $cart, CartAddProductRequest $request)
     {
 
-        $cartitems=$request->cartitems;
+
+            $inputs=$request->all();
         //Check if the CarKey is Valid
-        foreach ($cartitems as  $cartitem) {
-        if ($cart->key == $cartitem['key'])
+
+        if ($cart->key == $inputs['key'])
         {
             //Check if the proudct exist or return 404 not found.
+            try
+            {
+                $Product = Product::findOrFail($inputs['product_id']);
+            } catch (ModelNotFoundException $e)
+            {
+                return response()->json([
+                            'message' => 'The Product you\'re trying to add does not exist.',
+                                ], 404);
+            }
+
+                        //check if the the same product is already in the Cart, if true update the quantity, if not create a new one.
+                        $cartItem = CartItem::where(['cart_id' => $cart->id, 'product_id' => $inputs['product_id'], 'variation_product_id' => $inputs['variation_product_id']])->first();
+                        if (!empty($cartItem))
+                        {
+                            $updatequantity = $cartItem->quantity + $inputs['quantity'];
+                            $cartItem->update(['quantity' =>  $updatequantity]);
+                        } else
+                        {
+                            CartItem::create(['cart_id' => $cart->id, 'product_id' => $inputs['product_id'], 'variation_product_id' => $inputs['variation_product_id'], 'quantity' => $inputs['quantity']]);
+                        }
+
+
+
+
+            return response()->json(['message' => 'The Cart was updated with the given product information successfully'], 200);
+        } else
+        {
+
+            return response()->json([
+                        'message' => 'The CarKey you provided does not match the Cart Key for this Cart.',
+                            ], 400);
+        }
+
+    }
+/**
+     * @OA\Post(
+     * * path="/update-cart/{cart}",
+     *   tags={"Carts"},
+     *   summary="update cart Product into cart",
+     *   operationId="ProductCart",
+     * *        *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="3",
+     *         required=true,
+     *      ),
+     *      *    @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CartRequest")
+     *     ),
+     *    @OA\Response(
+     *         response="200",
+     *         description="Everything is fine",
+     *         @OA\JsonContent(ref="#/components/schemas/CartResponse")
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
+     * */
+
+    /**
+     * Add Product into cart api
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function updateProducts(Cart $cart, CartAddProductRequest $request){
+
+        $cartitems=$request->cartitems;
+
+        //Check if the CarKey is Valid
+        foreach ($cartitems as  $cartitem) {
+
+        if ($cart->key == $cartitem['key'])
+        {
+            // Check if the proudct exist or return 404 not found.
             try
             {
                 $Product = Product::findOrFail($cartitem['product_id']);
@@ -396,10 +480,10 @@ class CartController extends Controller
             }
 
                         //check if the the same product is already in the Cart, if true update the quantity, if not create a new one.
-                        $cartItem = CartItem::where(['cart_id' => $cart->id, 'product_id' => $cartitem['product_id'], 'variation_product_id' => $cartitem['variation_product_id']])->first();
+                        $cartItem = CartItem::where('cart_id', $cart->id)->where( 'product_id' , $cartitem['product_id'])->where('variation_product_id' , $cartitem['variation_product_id'])->first();
                         if (!empty($cartItem))
                         {
-                            $updatequantity = $cartItem->quantity + $cartitem['quantity'];
+                            $updatequantity = $cartitem['quantity'];
                             $cartItem->update(['quantity' =>  $updatequantity]);
                         } else
                         {
@@ -419,7 +503,6 @@ class CartController extends Controller
         }
     }
     }
-
     /**
      * @OA\Post(
      * * path="/checkout/{cart}",
