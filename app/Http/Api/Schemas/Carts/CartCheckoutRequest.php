@@ -225,4 +225,14 @@ class CartCheckoutRequest
      * @var string
      */
     public $remark;
+    /**
+     * @OA\Property(
+     *     title="transaction",
+     *     description="transaction  for storing",
+     *     example="txn_fserrt54gfhhfdfd",
+     * )
+     *
+     * @var string
+     */
+    public $transaction;
 }
