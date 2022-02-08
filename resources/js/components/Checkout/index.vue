@@ -251,7 +251,7 @@
           </li>
         </ul>
         <hr>
-           <p class="totalamount fl_div" v-if="cartTotal"><span>Total Cart Price:</span> <label class="m_big">{{cartTotalValue+shippingval}}</label></p>
+           <p class="totalamount fl_div" v-if="cartTotal"><span>Total Cart Price:</span> <label class="m_big">{{Number(cartTotalValue)+Number(shippingval)}}</label></p>
         <hr>
         <ul class="paymentmethods">
           <li><h3 class="md_h">Payment Methods</h3></li>
@@ -305,6 +305,13 @@
         <div class="placeorder text-right">
           <button type="button" @click='paymentProcessed' class="btn_blu btn_md">Submit</button>
         </div>
+      <hr>
+      <div class="successMsg" v-if="transactionResponse && transactionResponse.length>0">
+        <p>{{transactionResponse.message}}. Transaction ID : {{transactionResponse.transaction_id}}</p>
+      </div>
+      <div class="errorMsg" v-if="tranerror">
+        <p>{{tranerror}}</p>
+      </div>
       </div>
     </div>
   </div>
@@ -408,6 +415,9 @@ export default {
     tranerror:'',
     paymentMode:true
   }),
+  created(){
+    this.getProfile()
+  },
   watch:{
     orderResponse(){
       if (this.orderResponse) {
@@ -415,7 +425,7 @@ export default {
       }
     },
     cartTotal(){
-      this.cartTotalValue = parseFloat(Number(this.cartTotal) + Number((this.cartTotal*this.tax)/100))
+      this.cartTotalValue = Number(this.cartTotal) + Number((this.cartTotal*this.tax)/100)
     },
     accountDetails(){
       var _this = this
@@ -464,10 +474,10 @@ export default {
     this.cardCvc.destroy();
   },
   methods:{
-    ...mapActions(['addOrder','generatePay']),
+    ...mapActions(['addOrder','generatePay','removeCartItem','getProfile']),
     calculateShipping(e,cost){
       this.shippingval = 0
-      this.shippingval = cost
+      this.shippingval = cost.toFixed(2)
     },
     activePaymentMode(modekey){
       if(modekey == 'card'){
@@ -505,6 +515,7 @@ export default {
         return;
       } else {
         var totalAmount = this.form.data.total.toFixed(2)
+        var finalPrice = totalAmount*100
         var transactionArray = {
                                 "name": this.form.data.name,
                                 "email": this.form.data.email,
@@ -515,16 +526,18 @@ export default {
                                 "country": this.form.data.country,
                                 "product_id": localStorage.getItem('cartId'),
                                 "strip_token": token.id,
-                                "amount": totalAmount,
+                                "amount": finalPrice,
                                 "currency": "INR"
                               }
-        this.generatePay(transactionArray)
-        HTTP.post(process.env.MIX_APP_APIURL+'payment', cartItem).then((response) => {
-          this.transactionResponse=response.data.data
-          this.form.data.transaction_id = this.transactionResponse.transaction_id
-          this.addOrder(this.form.data)
+        HTTP.post(process.env.MIX_APP_APIURL+'payment', transactionArray).then((response) => {
+          this.transactionResponse=response.data
+          if(this.transactionResponse.transaction_id){
+            this.form.data.transaction_id = this.transactionResponse.transaction_id
+            this.addOrder(this.form.data)
+            this.removeCartItem()
+          }
         }).catch((errors) => {
-          this.tranerror = errors.response.data.message
+          this.tranerror = errors+'Something was wrong!'
         })
       }
     }
