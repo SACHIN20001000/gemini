@@ -422,7 +422,7 @@ class CartController extends Controller
     }
 /**
      * @OA\Post(
-     * * path="/update-cart/{cart}",
+     * * path="/cart/update/{cart}",
      *   tags={"Carts"},
      *   summary="update cart Product into cart",
      *   operationId="ProductCart",
@@ -461,47 +461,33 @@ class CartController extends Controller
 
     public function updateProducts(Cart $cart, CartAddProductRequest $request){
 
-        $cartitems=$request->cartitems;
+        $cartitems     = $request->cartitems;
+        $cartErrors    = [];
+        $productErrors = [];
 
-        //Check if the CarKey is Valid
         foreach ($cartitems as  $cartitem) {
+            if ($cart->key == $cartitem['key']){
+                $Product = Product::find($cartitem['product_id']);
+                if($Product) {
+                    $cartItem = CartItem::where(['cart_id' => $cart->id, 'product_id' => $cartitem['product_id'], 'variation_product_id' => $cartitem['variation_product_id']])->first();
 
-        if ($cart->key == $cartitem['key'])
-        {
-            // Check if the proudct exist or return 404 not found.
-            try
-            {
-                $Product = Product::findOrFail($cartitem['product_id']);
-            } catch (ModelNotFoundException $e)
-            {
-                return response()->json([
-                            'message' => 'The Product you\'re trying to add does not exist.',
-                                ], 404);
+                    CartItem::updateOrCreate(['cart_id' => $cart->id, 'product_id' => $cartitem['product_id'], 'variation_product_id' => $cartitem['variation_product_id']], ['quantity' => $cartitem['quantity']]);
+                } else {
+                    array_push($productErrors, $cartitem['product_id']. ' The Product you\'re trying to add does not exist.');
+                }
+            } else {
+                array_push($cartErrors, $cartitem['key'].'The CarKey you provided does not match the Cart Key for this Cart.');
             }
-
-                        //check if the the same product is already in the Cart, if true update the quantity, if not create a new one.
-                        $cartItem = CartItem::where('cart_id', $cart->id)->where( 'product_id' , $cartitem['product_id'])->where('variation_product_id' , $cartitem['variation_product_id'])->first();
-                        if (!empty($cartItem))
-                        {
-                            $updatequantity = $cartitem['quantity'];
-                            $cartItem->update(['quantity' =>  $updatequantity]);
-                        } else
-                        {
-                            CartItem::create(['cart_id' => $cart->id, 'product_id' => $cartitem['product_id'], 'variation_product_id' => $cartitem['variation_product_id'], 'quantity' => $cartitem['quantity']]);
-                        }
-
-
-
-
-            return response()->json(['message' => 'The Cart was updated with the given product information successfully'], 200);
-        } else
-        {
-
-            return response()->json([
-                        'message' => 'The CarKey you provided does not match the Cart Key for this Cart.',
-                            ], 400);
         }
-    }
+        if(count($cartErrors) || count($productErrors)) {
+            return response()->json([
+                'cartError' => $cartErrors,
+                'productErrors' => $productErrors,
+                'status' => 'False'
+                    ], 400);
+        }
+        return response()->json(['message' => 'The Cart was updated with the given product information successfully'], 200);
+
     }
     /**
      * @OA\Post(
