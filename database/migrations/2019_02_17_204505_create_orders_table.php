@@ -24,6 +24,10 @@ class CreateOrdersTable extends Migration
             $table->boolean('is_paid')->default(false);
             $table->string('payment_method')->default('cash_on_delivery');
             $table->string('shippingmethod')->nullable();
+            $table->string('discount')->nullable();
+            $table->string('sub_total')->nullable();
+
+
             $table->text('remark')->nullable();
 
             $table->timestamps();
@@ -37,7 +41,7 @@ class CreateOrdersTable extends Migration
             $table->float('unit_price')->nullable();;
             $table->integer('quantity')->nullable();;
             $table->float('total_price')->nullable();;
-            
+
             $table->timestamps();
         });
 

@@ -90,22 +90,19 @@
                                         </div><!-- invoice-notes -->
                                     </td>
                                     <td class="tx-right">Sub-Total</td>
-                                    <td class="tx-right" colspan="2">${{$order->grand_total}}</td>
+                                    <td class="tx-right" colspan="2">${{$order->sub_total}}</td>
                                 </tr>
-                                <!-- <tr>
-                                    <td class="tx-right">Tax (5%)</td>
-                                    <td class="tx-right" colspan="2">$287.50</td>
-                                </tr>
+                            
                                 <tr>
                                     <td class="tx-right">Discount</td>
-                                    <td class="tx-right" colspan="2">-$50.00</td>
-                                </tr> -->
-                                <!-- <tr>
-                                    <td class="tx-right tx-uppercase tx-bold tx-inverse">Total Due</td>
+                                    <td class="tx-right" colspan="2">-${{$order->discount}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="tx-right tx-uppercase tx-bold tx-inverse">Total</td>
                                     <td class="tx-right" colspan="2">
-                                        <h4 class="tx-primary tx-bold">$5,987.50</h4>
+                                        <h4 class="tx-primary tx-bold">${{$order->grand_total}}</h4>
                                     </td>
-                                </tr> -->
+                                </tr>
                             </tbody>
                         </table>
                     </div>

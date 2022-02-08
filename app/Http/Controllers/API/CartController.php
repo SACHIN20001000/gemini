@@ -557,6 +557,8 @@ class CartController extends Controller
 
             $totalPrice = (float) 0.0;
             $grand_total = 0;
+            $sub_total = 0;
+
             $items = $cart->items;
 
             $shipping = Shipping::updateOrCreate(
@@ -577,6 +579,7 @@ class CartController extends Controller
 
             $order = Order::create([
                         'grand_total' => $grand_total,
+                        'sub_total' => $sub_total,
                         'item_count' => count($items),
                         'remark' => $request->remark,
                         'user_id' => $user->id ?? 0,
@@ -584,7 +587,7 @@ class CartController extends Controller
                         'shippingmethod' => $request->shippingmethod,
                         'shipping_id' => $shipping->id ?? 0,
             ]);
-            $grand_total = 0;
+
             foreach ($items as $item)
             {
                 $product_id = $item->product_id;
@@ -621,6 +624,8 @@ class CartController extends Controller
             }
 
             $order->grand_total = $order->grand_total + $totalPrice;
+            $order->sub_total = $order->sub_total + $totalPrice;
+
             if (!empty($request->code))
             {
                 $coupon = Coupon::where('code', $request->code)->first();
@@ -647,16 +652,19 @@ class CartController extends Controller
                 {
                     $coupon_discount = $order->grand_total * $code / 100;
                     $order->grand_total = $order->grand_total - $coupon_discount;
+                    $order->discount = $coupon_discount;
+
                 } else
                 {
 
                     $order->grand_total = $order->grand_total - $code;
+                    $order->discount = $code;
                 }
                 $coupon->count = $coupon->count - 1;
                 $coupon->save();
             }
             $order->save();
-  
+
             $order->transaction_id = $request->transaction ?? null;
             $order->save();
 
