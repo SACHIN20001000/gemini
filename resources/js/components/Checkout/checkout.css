@@ -1,11 +1,11 @@
 
 ul.listItem {list-style: none; padding: 0; margin: 0; }
 .checkoutform {max-width: 1120px; margin: 0 auto 0px auto; padding: 40px 0 20px 0;display: flex; flex-wrap: wrap; justify-content: space-between;gap: 50px; }
-.checkout_btn{max-width: 1120px; margin: 0 auto; width: 100%; padding: 0 30px ;}
+.checkout_btn{max-width: 1120px; margin: 0 auto 50px auto; width: 100%; padding: 0 30px ;}
 .twobythree{max-width: calc(55% - 40px); }
 .onebythree{max-width: calc(45% - 40px); }
 .checkoutform>div { width: 100%; padding:  0 30px;}
-.grad_bg {background: linear-gradient(90deg, #fff 54%, #fafafa 46%);position: relative; }
+.grad_bg {background: linear-gradient(90deg, #fff 54%, #fafafa 46%);position: relative;border-bottom: 1px solid rgba(0,0,0,.1); }
 .grad_bg:before {content: ""; position: absolute; left: 54%; width: 1px; background: rgba(0,0,0,.1); height: 100%; }
 .legend_body {border: 1px solid rgba(0,0,0,.1); border-radius: 3px; position: relative; padding: 20px; }
 .legend_body legend {text-align: center; font-size: 14px; position: absolute; top: -12px; left: 0; margin: 0 auto; background: #fff; display: inline-block; width: 120px; right: 0; }
@@ -23,6 +23,8 @@ ul.pay_steps>li:not(:last-child):after {content: ">"; margin: 0 10px; font-size:
 
 /* form design */
 .form_list>li label {display: none; }
+.form_list>li input{font-size: 14px;}
+.form_list li input:not([type="radio"],[type="checkbox"]) + span {font-size: 12px; font-weight: 400; color: #ed1b3c; }
 .or:before, .or:after {content: ""; flex-grow: 1; height: 1px; background: rgba(0,0,0,.1); margin: 10px; }
 .or {font-size: 14px; display: flex; justify-content: center; margin: 25px -10px; color: #888; align-items: center; }
 .form_list h3 {font-size: 18px; font-weight: 400; }
