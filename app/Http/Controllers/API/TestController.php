@@ -16,26 +16,26 @@ class TestController extends Controller
     $stripe = new \Stripe\StripeClient(
         $key
       );
-   $product=   $stripe->products->create([
-        'name' => 'Gold Special',
-        'description' => 'testing description',
+//    $product=   $stripe->products->create([
+//         'name' => 'Gold Special',
+//         'description' => 'testing description',
 
-        'unit_label' => '45',
-        'tax_code' => 'txcd_99999999'
+//         'unit_label' => '45',
+//         'tax_code' => 'txcd_99999999'
+//       ]);
+//      $charge= $stripe->balanceTransactions->retrieve(
+//         'txn_3KQQQZSHhSBkVxnb19YQjHhN',
+//         []
+//       );
+    $token=  $stripe->tokens->create([
+        'card' => [
+          'number' => '4242424242424242',
+          'exp_month' => 2,
+          'exp_year' => 2023,
+          'cvc' => '314',
+        ],
       ]);
-    //  $charge= $stripe->balanceTransactions->retrieve(
-    //     'txn_3KQQQZSHhSBkVxnb19YQjHhN',
-    //     []
-    //   );
-    // $token=  $stripe->tokens->create([
-    //     'card' => [
-    //       'number' => '4242424242424242',
-    //       'exp_month' => 2,
-    //       'exp_year' => 2023,
-    //       'cvc' => '314',
-    //     ],
-    //   ]);
-      print($product);die;
+      print($token);die;
       $customer = \Stripe\Customer::create(array(
         'name' => 'test',
 
