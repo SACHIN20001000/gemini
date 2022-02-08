@@ -5,12 +5,14 @@ const state = {
   Orders: [],
   getOrder: [],
   orderResponse: [],
+  transaction: [],
   orderErrors: []
 }
 const getters = {
   Orders: state => state.Orders,
   getOrder: state => state.getOrder,
   orderResponse: state => state.orderResponse,
+  transaction: state => state.transaction,
   orderErrors: state => state.orderErrors
 }
 
@@ -36,6 +38,13 @@ const actions = {
     }).catch((errors) => {
       commit("orderErrors", errors.response.data.message)
     })
+  },
+  generatePay({ commit }, cartItem) {
+    HTTP.post(process.env.MIX_APP_APIURL+'payment', cartItem).then((response) => {
+      commit('generateTransaction', response.data.message)
+    }).catch((errors) => {
+      commit("orderErrors", errors.response.data.message)
+    })
   }
 }
 const mutations = {
@@ -50,6 +59,9 @@ const mutations = {
   ),
   orderErrors: (state, payload) => (
     state.orderErrors = payload
+  ),
+  generateTransaction: (state, payload) => (
+    state.transaction = payload
   )
 }
 

@@ -70,7 +70,7 @@
               <span v-if="form.errors().has('zip_code')" >
                 {{ form.errors().get('zip_code') }}
               </span>
-            </div> 
+            </div>
           </li>
           <li>
             <div class="col-md-12">
@@ -140,7 +140,7 @@
               <span v-if="form.errors().has('sh_city')">
                 {{ form.errors().get('sh_city') }}
               </span>
-             </div> 
+             </div>
           </li>
           <li>
             <div class="col-md-4">
@@ -204,7 +204,7 @@
           </div>
           <div class="prod_name">
             <label>Pet Blanket</label>
-            <span>Chocolate / S</span> 
+            <span>Chocolate / S</span>
           </div>
         </div>
         <div class="fl_right">
@@ -221,13 +221,12 @@
           <li class="fl_div"><span>Tax :</span> <label> 5%</label></li>
         </ul>
         <hr>
-           <p class="totalamount fl_div" v-if="cartTotal"><span>Total Cart Price:</span> <label class="m_big">{{cartTotalValue+shippingval}}</label></p>
-           <hr>
         <ul class="shippingmethods">
           <li><h3 class="md_h">Shipping Methods</h3></li>
-          <li><span class="checkbox"> <input type="radio" v-model='order_form.shippingmethods' name="shippingmethods" @change="calculateShipping($event,0)" value="free">
+          <li><span class="checkbox">
+            <input type="radio" v-model='order_form.shippingmethods' name="shippingmethods" @change="calculateShipping($event,0)" value="free" checked="checked">
             <span> Shipping (7 day delivery, cost $0)</span>
-          </span>            
+          </span>
             <span class="error_validation" v-if="order_form.errors().has('shippingmethods')">
               {{ order_form.errors().get('shippingmethods') }}
             </span>
@@ -252,11 +251,13 @@
           </li>
         </ul>
         <hr>
+           <p class="totalamount fl_div" v-if="cartTotal"><span>Total Cart Price:</span> <label class="m_big">{{cartTotalValue+shippingval}}</label></p>
+        <hr>
         <ul class="paymentmethods">
           <li><h3 class="md_h">Payment Methods</h3></li>
           <li>
             <span class="checkbox">
-            <input type="radio" v-model='order_form.paymentmethods' name="paymentmethods" value="COD">
+            <input type="radio" v-model='order_form.paymentmethods' @change="activePaymentMode('COD')" name="paymentmethods" value="COD">
            <span><i class="fa fa-money" aria-hidden="true"></i> COD</span>
           </span>
             <span class="error_validation" v-if="order_form.errors().has('paymentmethods')">
@@ -265,8 +266,8 @@
           </li>
           <li>
             <span class="checkbox">
-            <input type="radio" v-model='order_form.paymentmethods' name="paymentmethods" value="paypal">
-            <span><i class="fa fa-paypal" aria-hidden="true"></i> Paypal Gateway</span>
+            <input type="radio" v-model='order_form.paymentmethods' @change="activePaymentMode('gpay')" name="paymentmethods" value="gpay">
+            <span><i class="fa fa-paypal" aria-hidden="true"></i>Gpay</span>
           </span>
             <span class="error_validation" v-if="order_form.errors().has('paymentmethods')">
               {{ order_form.errors().get('paymentmethods') }}
@@ -274,13 +275,22 @@
           </li>
           <li>
             <span class="checkbox">
-            <input type="radio" v-model='order_form.paymentmethods' name="paymentmethods" value="stripe">
-            <span><i class="fa fa-cc-stripe" aria-hidden="true"></i>Stripe Gateway</span>
+            <input type="radio" v-model='order_form.paymentmethods' @change="activePaymentMode('apple')" name="paymentmethods" value="apple">
+            <span><i class="fa fa-paypal" aria-hidden="true"></i>Apple Pay</span>
+          </span>
+            <span class="error_validation" v-if="order_form.errors().has('paymentmethods')">
+              {{ order_form.errors().get('paymentmethods') }}
+            </span>
+          </li>
+          <li>
+            <span class="checkbox">
+            <input type="radio" v-model='order_form.paymentmethods' name="paymentmethods" value="stripe" @change="activePaymentMode('card')" checked="checked">
+            <span><i class="fa fa-cc-stripe" aria-hidden="true"></i>Card (Debit/Credit)</span>
            </span>
             <span class="error_validation" v-if="order_form.errors().has('paymentmethods')">
               {{ order_form.errors().get('paymentmethods') }}
             </span>
-            <div class="stripeCard ">
+            <div class="stripeCard" v-if="paymentMode">
               <label>Card Number</label>
               <div id="card-number" class="dv_input"></div>
               <label>Card Expiry</label>
@@ -288,30 +298,14 @@
               <label>Card CVC</label>
               <div id="card-cvc" class="dv_input"></div>
               <div id="card-error"></div>
-              <div class="btn_token">
-              <button id="custom-button" @click="createToken" class="btn_red">Generate Token</button>
             </div>
-            </div>
-
           </li>
         </ul>
      <hr>
         <div class="placeorder text-right">
-          <button type="button" @click='submit' class="btn_blu btn_md">Submit</button>
+          <button type="button" @click='paymentProcessed' class="btn_blu btn_md">Submit</button>
         </div>
       </div>
-    </div>
-    <div class="checkout_btn">
-      <stripe-checkout      
-        ref="checkoutRef"
-        mode="payment"
-        :pk="publishableKey"
-        :line-items="lineItems"
-        :success-url="successURL"
-        :cancel-url="cancelURL"
-        @loading="v => loading = v"
-      />
-      <button @click="submit" class="btn_blu btn_md">Pay now!</button>
     </div>
   </div>
 </template>
@@ -322,7 +316,7 @@
 import {mapGetters,mapActions} from "vuex"
 import form from 'vuejs-form'
 import { StripeElementCard } from '@vue-stripe/vue-stripe'
-import { StripeCheckout } from '@vue-stripe/vue-stripe'
+import HTTP from './../../Api/auth'
 
 export default {
   name:"Checkout",
@@ -410,16 +404,9 @@ export default {
     cardNumber: null,
     cardExpiry: null,
     cardCvc: null,
-    publishableKey: process.env.MIX_STRIPE_PUBLISHABLE_KEY,
-    loading: false,
-    lineItems: [
-      {
-        price: 'some-price-id',
-        quantity: 1,
-      },
-    ],
-    successURL: 'http://127.0.0.1:8000/payment',
-    cancelURL: 'http://127.0.0.1:8000/payment'
+    transactionResponse:[],
+    tranerror:'',
+    paymentMode:true
   }),
   watch:{
     orderResponse(){
@@ -429,10 +416,21 @@ export default {
     },
     cartTotal(){
       this.cartTotalValue = parseFloat(Number(this.cartTotal) + Number((this.cartTotal*this.tax)/100))
+    },
+    accountDetails(){
+      var _this = this
+      Object.keys(_this.accountDetails).forEach(function(key,index) {
+        if(key!='id' && key!='profile_image' && key!='created_at' ){
+          _this.form.data[key] = _this.accountDetails[key]
+        }
+      })
+    },
+    transaction(){
+      this.transactionResponse=this.transaction
     }
   },
   computed: {
-    ...mapGetters(['cartTotal','orderResponse']),
+    ...mapGetters(['cartTotal','orderResponse','transaction','accountDetails']),
     stripeElements () {
       return this.$stripe.elements()
     }
@@ -466,33 +464,17 @@ export default {
     this.cardCvc.destroy();
   },
   methods:{
-    ...mapActions(['addOrder']),
-    submit() {
-      if(this.disableShippingForm==0){
-        this.form.data.sh_name = this.form.data.name
-        this.form.data.sh_address = this.form.data.address
-        this.form.data.sh_city = this.form.data.city
-        this.form.data.sh_state = this.form.data.state
-        this.form.data.sh_country = this.form.data.country
-        this.form.data.sh_zip_code = this.form.data.zip_code
-        this.form.data.sh_phone = this.form.data.phone
-        this.form.data.sh_email = this.form.data.email
-        this.form.data.sh_remark = this.form.data.remark
-      }
-      if (this.form.validate().errors().any() || this.order_form.validate().errors().any()) return;
-      /*if(this.disableShippingForm>0){
-        if (this.sh_form.validate().errors().any()) return;
-      }*/
-      /*this.form.data.shipping =this.sh_form.data*/
-      this.form.data.payment_method = this.order_form.data.paymentmethods
-      this.form.data.total = Number(this.cartTotalValue) + Number(this.shippingval)
-      this.form.data.shippingmethod = this.order_form.data.shippingmethods
-      this.form.data.key = localStorage.getItem('cartKey')
-      this.addOrder(this.form.data)
-    },
+    ...mapActions(['addOrder','generatePay']),
     calculateShipping(e,cost){
       this.shippingval = 0
       this.shippingval = cost
+    },
+    activePaymentMode(modekey){
+      if(modekey == 'card'){
+        this.paymentMode=true
+      }else{
+        this.paymentMode=false
+      }
     },
     isShippingFormDisabled(e) {
       if (e.target.checked) {
@@ -501,21 +483,50 @@ export default {
         this.disableShippingForm = 1
       }
     },
-    async createToken () {
+    async paymentProcessed () {
+      var _this = this
+      if(this.disableShippingForm==0){
+        Object.keys(_this.form.data).forEach(function(key,index) {
+          if(!key.includes('sh_')){
+            _this.form.data['sh_'+key] = _this.form.data[key]
+          }
+        })
+      }
+      if (this.form.validate().errors().any() || this.order_form.validate().errors().any()) return;
+
+      this.form.data.payment_method = this.order_form.data.paymentmethods
+      this.form.data.total = Number(this.cartTotalValue) + Number(this.shippingval)
+      this.form.data.shippingmethod = this.order_form.data.shippingmethods
+      this.form.data.key = localStorage.getItem('cartKey')
+
       const { token, error } = await this.$stripe.createToken(this.cardNumber);
       if (error) {
-        // handle error here
         document.getElementById('card-error').innerHTML = error.message;
         return;
+      } else {
+        var totalAmount = this.form.data.total.toFixed(2)
+        var transactionArray = {
+                                "name": this.form.data.name,
+                                "email": this.form.data.email,
+                                "address": this.form.data.address,
+                                "zip_code": this.form.data.zip_code,
+                                "city": this.form.data.city,
+                                "state": this.form.data.state,
+                                "country": this.form.data.country,
+                                "product_id": localStorage.getItem('cartId'),
+                                "strip_token": token.id,
+                                "amount": totalAmount,
+                                "currency": "INR"
+                              }
+        this.generatePay(transactionArray)
+        HTTP.post(process.env.MIX_APP_APIURL+'payment', cartItem).then((response) => {
+          this.transactionResponse=response.data.data
+          this.form.data.transaction_id = this.transactionResponse.transaction_id
+          this.addOrder(this.form.data)
+        }).catch((errors) => {
+          this.tranerror = errors.response.data.message
+        })
       }
-      console.log(token);
-      /*await this.$stripe.createCharges(this.cardNumber)*/
-      // handle the token
-      // send it to your server
-    },
-    submit () {
-      // You will be redirected to Stripe's secure checkout page
-      this.$refs.checkoutRef.redirectToCheckout();
     }
   }
 }
