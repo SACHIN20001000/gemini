@@ -23,6 +23,7 @@ class CreateCouponsTable extends Migration
             $table->integer('apply_for')->nullable();
             $table->integer('category_id')->nullable();
             $table->integer('product_id')->nullable();
+            $table->string('product_type')->nullable();;
 
             $table->integer('value');
             $table->integer('count')->nullable();
