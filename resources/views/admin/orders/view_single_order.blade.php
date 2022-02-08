@@ -52,6 +52,8 @@
                             @endif
                             <p class="invoice-info-row"><span>Status</span> <span>{{$order->status}}</span></p>
                             <p class="invoice-info-row"><span>Shipping Method</span> <span>{{$order->shippingmethod}}</span></p>
+                            <p class="invoice-info-row"><span>Payment Method</span> <span>{{$order->payment_method}}</span></p>
+
 
                         </div>
                     </div>
