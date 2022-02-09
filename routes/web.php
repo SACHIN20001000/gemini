@@ -26,6 +26,11 @@ use App\Http\Controllers\Admin\RatingController;
 use App\Http\Controllers\Admin\Chowhub\ChowhubRatingController;
 
 
+use App\Http\Controllers\Admin\LitterHub\LitterHubStoreController;
+use App\Http\Controllers\Admin\LitterHub\LitterHubProductController;
+use App\Http\Controllers\Admin\LitterHub\LitterHubCouponController;
+
+
 
 
 
@@ -89,6 +94,18 @@ Route::prefix('admin')->group(function ()
         //Solutionhub
 
         Route::resource('solutionhub-products', SolutionhubProductController::class);
+        //litterhub
+        Route::resource('litterhub-store', LitterHubStoreController::class);
+        Route::resource('litterhub-coupons', LitterHubCouponController::class);
+
+        Route::resource('litterhub-products', LitterHubProductController::class);
+        Route::post('save-litterhub-photo', [App\Http\Controllers\Admin\LitterHub\LitterHubProductController::class, 'save_photo']);
+        Route::post('save-litterhub-description-photo', [App\Http\Controllers\Admin\LitterHub\LitterHubProductController::class, 'save_description_photo']);
+
+        Route::post('delete-litterhub-photo', [App\Http\Controllers\Admin\LitterHub\LitterHubProductController::class, 'del_photo']);
+        Route::post('delete-litterhub-description-photo', [App\Http\Controllers\Admin\LitterHub\LitterHubProductController::class, 'del_description_photo']);
+        Route::post('delete-litterhub-feature-page-photo', [App\Http\Controllers\Admin\LitterHub\LitterHubProductController::class, 'del_feature_page_photo']);
+        Route::post('delete-litterhub-variation-img', [App\Http\Controllers\Admin\LitterHub\LitterHubProductController::class, 'del_variationPhoto']);
 
 
         //chowhub
