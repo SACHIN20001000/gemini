@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models\LitterHub;
+namespace App\Models\Litterhub;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class LitterhubRatingGallery extends Model
 {
-    protected $table = 'LitterHub_rating_galleries';
+    protected $table = 'litterhub_rating_galleries';
     use HasFactory;
     protected $fillable = [
         'rating_id',

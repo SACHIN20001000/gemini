@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\LitterHub;
+namespace App\Models\Litterhub;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -27,6 +27,6 @@ class LitterhubRating extends Model
     }
     public function product()
     {
-        return $this->belongsTo(LitterHubProduct::class,'product_id','id');
+        return $this->belongsTo(LitterhubProduct::class,'product_id','id');
     }
 }

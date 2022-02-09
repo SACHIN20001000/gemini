@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\LitterHub;
+namespace App\Models\Litterhub;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LitterhubVariationAttribute extends Model
 {
 
-    protected $table = 'LitterHub_variations_attributes';
+    protected $table = 'litterhub_variations_attributes';
 
     use HasFactory;
 
