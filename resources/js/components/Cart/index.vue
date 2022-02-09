@@ -30,7 +30,19 @@
           class="cartlabel cart_grid"
         >
           <span class="prod_img"><div class="img_ratio"><img :src="cartItem.variationProduct.image" /></div></span>
-          <span class="prod_name">{{cartItem.product.productName}}</span>
+          <span class="prod_name">
+            {{cartItem.product.productName}}
+            <span v-if="cartItem.variationProduct && cartItem.variationProduct.variation_attributes_name_id">
+              <!--<ul class="itenVarient">
+                <li
+                  v-for="(varientItem, vikey) in cartItem.variationProduct.variation_attributes_name_id"
+                  :key=""
+                >
+                  {{varientItem.attribute_id}}
+                </li>
+              </ul>-->
+            </span>
+          </span>
           <span class="prod_price">{{cartItem.variationProduct.sale_price}}</span>
           <span class="prod_quant">
             <input
