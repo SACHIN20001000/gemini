@@ -1,7 +1,9 @@
 <template>
   <div class="main">
-    <h1>Order List</h1>
-    <table class="ordertable">
+  <div class="container_max">
+    <h1 class="page_title">Order List</h1>
+    <table class="ordertable table_style1">
+      <thead>
       <tr>
         <th>Transaction Id</th>
         <th>Email</th>
@@ -13,6 +15,7 @@
         <th>Order Cost</th>
         <th>Created At</th>
       </tr>
+    </thead>
       <tbody>
         <tr
           v-for="(Order,orderkey) in Orders"
@@ -36,6 +39,7 @@
         </tr>
       </tbody>
     </table>
+  </div>
   </div>
 </template>
 <style>

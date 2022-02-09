@@ -144,7 +144,7 @@ html,body
 .container_max{max-width:min(100% - 130px,1600px); padding: 0 15px; margin:0 auto; width: 100%;}
 .main_container{    max-width: 100%;  margin:0 auto;  min-height: 100vh; background: #fff;}
 .free_ship_bar { background: #9d9d9c; padding:12px; text-align: center; margin: 5px 0;}
-.free_ship_bar p { margin: 0; color: #fff; font-weight: 300; font-style: italic;font-size: 16px;}
+.free_ship_bar p { margin: 0; color: #fff; font-weight: 300; font-style: italic;font-size: 16.35px;}
 .free_ship_bar img { margin-right: 5px;}
 .container_min{max-width:1280px; padding: 0 15px; margin:0 auto; width: 100%;}
 input[type="text"]:focus,select:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="submit"]:focus, input[type="range"]:focus, textarea:focus {
@@ -165,6 +165,7 @@ select
   height: 40px;
   border: 1px solid rgba(0,0,0,.1);
 }
+.container_1280{    max-width: 1280px !important; padding: 0;}
 
 .btn_blu,.btn_red,.btn,.btn_blu_blank,.btn_red_blank
 {height: 40px;  color: #fff; padding: 0 30px; line-height:38px; text-decoration: none; display: inline-block; transition-duration: .20s; }

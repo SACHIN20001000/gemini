@@ -2,7 +2,7 @@
 
 .logo_nav {  max-width:min(100% - 140px,1150px); padding: 0 15px; margin: 0 auto;}
 .logo_nav {  display: flex;justify-content: space-between;align-items: center;  padding: 40px 0 20px 0;}
-.right_info { display: flex; align-items: center;}
+.right_info { display: flex; align-items: center; padding-right: 15px;}
 form.srch_form { max-width: 100px; height: 30px; border-radius: 50px;  overflow: hidden; position: relative; margin: 0;}
 form.srch_form { height: 25px;  position: relative;  width: 100px;}
 form.srch_form>input[type="text"], form.srch_form>input[type="search"] { position: absolute; width: 100%; height: 100%; border-radius: 50px;
@@ -11,16 +11,16 @@ form.srch_form input[type="submit"], form.srch_form button { width: 20px;  heigh
 right: 4px;  border: 0px; border-radius: 50%; top: 2px; background-image: url('../../assets/images/search.png'); background-size: auto;
 background-position: center; background-repeat: no-repeat;}
 .right_info>div {  margin-left: 15px;}
-.profile_bar { display: flex; align-items: center;}
+.profile_bar { display: flex; align-items: center; min-width: 130px;}
 .pr_info>label { font-size: 15px; color: #303030; font-family: 'Open Sans'; font-weight: 500; display: block; line-height: 1.3; margin: 0;}
 .pr_info a {  display: block; font-size: 9px; color: #9d9d9d; text-decoration: underline;}
 .pr_info a:hover{color: #000;}
 .pr_info { margin-left: 15px;}
 .cart_bar a { position: relative; display: block;}
-.cart_bar a .cart_items {  position: absolute; background: #e4022d; width: 18px; height: 18px; display: flex; top: 0; right: -10px; border-radius: 50%;
+.cart_bar a .cart_items {  position: absolute; background: #e4022d; width: 20px; height: 20px; display: flex; top: 0; right: -10px; border-radius: 50%;
 align-items: center; justify-content: center; color: #fff; font-size: 11px; font-weight: 600;}
-.menu_nav .navbar-nav li a { font-size: 16px; font-weight: 600; color: #fff !important; padding: 0px 24px  !important; display: inline-block;
-line-height: 1;}
+.menu_nav .navbar-nav li a { font-size: 16px; font-weight: 600; color: #fff !important; padding: 0px 25px  !important; display: inline-block;
+line-height: 1; letter-spacing: .2px;}
 .menu_nav .navbar-nav li{ padding: 15px 0px !important; position: relative;}
 .menu_nav { background: #00b7bc;}
 ul.navbar-nav { justify-content: center; width: 100%;}
@@ -65,6 +65,12 @@ button.navbar-toggler:focus { border: none; outline: none; box-shadow: none;}
 .menu_nav ul.navbar-nav>li:not(:last-child)>a { border-right: 0; display: block;}
 .right_info {padding-right: 20px;
  }
+ .top_devider{max-width: 100%;}
+ .menu_nav ul.navbar-nav>li:first-child{margin: 0; min-width: auto;}
+ section.banner_sec img{margin: 0 auto;}
+ a.alink.sign_btn {display: block !important; text-align: center; }
+
+
 }
 
 @media only screen and (max-width: 400px)

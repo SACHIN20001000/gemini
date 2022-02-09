@@ -1,44 +1,56 @@
-.errorMsg{
-  width: 100%;
-  color: red;
-  font-size: 14px;
-  font-weight: normal;
+.table_style1 {
+    width: 100%;
+    border: 1px solid rgba(0,0,0,.1);
 }
-.button{
-  color: #fff;
-  background: red;
-  border-radius: 4px;
-  padding: 5px;
-  list-style: none;
-  text-decoration: none;
-  cursor: pointer;
+.table_style1 td, .table_style1 th {
+    padding: 10px;
+    border: 1px solid rgba(0,0,0,.1);
 }
-.button:hover{
-  color: #fff;
-  list-style: none;
-  text-decoration: none;
+.table_style1 td, .table_style1 th {
+    padding: 10px;
+    border: 1px solid rgba(0,0,0,.1);
+    color: #444;
 }
-.button strong{
-  color: #fff;
+.table_style1 tbody>tr:nth-child(even) {
+    background: #fafafa;
 }
-.main table tr td {font-weight: normal;}
-.totalamount{text-align: right;}
-.proccedtocheckout{
-  padding: 10px 0px;
-  text-align: right;
+.table_style1 thead {
+    background: #e5e3e3;
 }
-.proccedtocheckout a{
-  padding: 10px 0px;
-  background: blue;
-  color: #fff;
-  text-align: right;
-  text-decoration: none;
+.table_style1 th {
+    font-weight: 600;
+    font-size: 14px;
 }
-.proccedtocheckout a:hover{
-  list-style: none;
-  background: blue;
-  color: #fff;
+.table_style1 td {
+    font-weight: 300 !important;
+    font-size: 14px;
 }
-.ordertable{
-  width: 100%;
+.table_style1 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+h1.page_title {
+    font-size: 24px;
+    margin: 20px 0;
+    color: #444;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+h1.page_title:after {
+    content: "";
+    height: 1px;
+    flex-grow: 1;
+    background: #444;
+    margin:0 10px;
+    opacity: .2;
+}
+h1.page_title:before {
+    content: "";
+    height: 1px;
+    flex-grow: 1;
+    background: #444;
+    margin:0 10px;
+    opacity: .2;
 }

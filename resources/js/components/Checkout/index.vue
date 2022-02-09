@@ -197,12 +197,11 @@
       </div>
       <div class="onebythree">
         <div v-if="getCartItem">
-          <div
-            class="product_check fl_div"
+          <div class="mb_2"
             v-for="(cartItem,cikey) in getCartItem"
             :key="cikey"
           >
-            <div v-if="cartItem.variationProduct">
+            <div v-if="cartItem.variationProduct" class="fl_div product_check">
               <div class="fl_left">
                 <div class="pro_thumb">
                   <img :src="cartItem.variationProduct.image"><span class="p_quant">{{cartItem.quantity}}</span>
@@ -419,8 +418,8 @@ export default {
         'sh_remark.sh_remark': 'This field is required!'
       }),
     order_form: form({
-      shippingmethods: 'free',
-      paymentmethods: 'card'
+      shippingmethods: '',
+      paymentmethods: ''
     })
       .rules({
         shippingmethods: 'required',

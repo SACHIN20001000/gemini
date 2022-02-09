@@ -43,9 +43,10 @@ span.checkbox input[type="radio"]:checked + span:before {color:#fff  ; backgroun
 .onebythree ul {padding: 0; margin: 0; list-style: none; }
 .pro_thumb {position: relative; width: 65px; height: 65px; border: 1px solid rgba(0,0,0,.1); border-radius: 4px; }
 .pro_thumb img{width: 63px; height: 63px; object-fit: cover; border-radius: 4px;}
-span.p_quant {position: absolute; width: 20px; height: 20px; background: #e42930; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; top: -10px; right: -15px; font-size: 12px; }
+span.p_quant {position: absolute; width: 20px; height: 20px; background: #e42930; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; top: -9px; right: -7px; font-size: 12px; }
 .fl_div {display: flex; justify-content: space-between; align-items: center; }
-.coupon_cart {display: flex; gap: 10px; margin: 20px 0; padding: 20px 0; border-top: 1px solid rgba(0,0,0,.1); border-bottom: 1px solid rgba(0,0,0,.1); }
+.coupon_cart {display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; padding: 20px 0; border-top: 1px solid rgba(0,0,0,.1); border-bottom: 1px solid rgba(0,0,0,.1); }
+.coupon_cart>input {max-width: calc(100% - 115px); }
 .fl_left {display: inline-flex; align-items: center; gap: 12px; }
 .prod_name label {display: block; margin: 0; line-height: 1; color: #444; }
 .prod_name span {font-size: 12px; color: #888; }
@@ -61,7 +62,12 @@ ul.paymentmethods i {width: 25px; color: #000;}
 .stripeCard {padding: 20px; border: 1px solid rgba(0,0,0,.1); background: #fff; border-radius: 5px; margin-top: 20px; }
 div#card-error {font-size: 13px; color: red; }
 .stripeCard>label {font-size: 14px; margin: 10px 0 5px 0; color: #444; }
-
+.mb_2:not(:last-child) {margin-bottom: 20px; }
+.product_check .prod_name>label {font-weight: 400; font-size: 14px; }
+.product_check .fl_left {max-width: 70%; }
+ul.paymentmethods>li ,ul.shippingmethods>li{position: relative; }
+ul.paymentmethods span.error_validation, .coupon_cart span.error_validation,ul.shippingmethods span.error_validation {font-size: 12px; color: red;display: block; margin: -10px 0 5px 0;}
+.coupon_cart {position: relative; }
 @media only screen and (min-width:320px) and (max-width: 940px)
 {
 .checkoutform>div {max-width: 600px; margin: 0 auto; }
