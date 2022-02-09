@@ -76,7 +76,7 @@ Route::middleware([EnsureApiTokenIsValid::class])->group(function () {
 });
 
 Route::get('chowhub/tags', [ChowhubProductController::class, 'allTags']);
-
+Route::get('litterhub/tags', [LitterhubProductController::class, 'allTags']);
 Route::middleware('auth:api')->group(function ()
 {
     Route::get('profile', [UserController::class, 'userProfile']);

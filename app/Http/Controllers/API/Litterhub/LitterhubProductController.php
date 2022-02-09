@@ -152,42 +152,42 @@ class LitterhubProductController extends Controller
         return AttributesResource::collection($attributes);
     }
 
-    // /**
-    //  * @OA\Get(
-    //  *      path="/litterhub/tags",
-    //  *      operationId="litterhub tags",
-    //  *      tags={"Litterhubtags"},
-    //  *     summary="litterhub tags",
-    //  *         security={
-    //  *          {"Token": {}},
-    //  *          },
-    //  *     @OA\Response(
-    //  *         response="200",
-    //  *         description="tags",
-    //  *         @OA\JsonContent(ref="#/components/schemas/TagResponse")
-    //  *     ),
-    //  *    @OA\Response(
-    //  *      response=400,ref="#/components/schemas/BadRequest"
-    //  *    ),
-    //  *    @OA\Response(
-    //  *      response=404,ref="#/components/schemas/Notfound"
-    //  *    ),
-    //  *    @OA\Response(
-    //  *      response=500,ref="#/components/schemas/Forbidden"
-    //  *    )
-    //  * )
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param \App\Http\Requests\ExampleStoreRequest $request
-    //  *
-    //  * @return \Illuminate\Http\JsonResponse
-    //  */
-    // public function allTags(Request $request)
-    // {
+    /**
+     * @OA\Get(
+     *      path="/litterhub/tags",
+     *      operationId="litterhub tags",
+     *      tags={"Litterhubtags"},
+     *     summary="litterhub tags",
+     *         security={
+     *          {"Token": {}},
+     *          },
+     *     @OA\Response(
+     *         response="200",
+     *         description="tags",
+     *         @OA\JsonContent(ref="#/components/schemas/TagResponse")
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
+     * Store a newly created resource in storage.
+     *
+     * @param \App\Http\Requests\ExampleStoreRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function allTags(Request $request)
+    {
 
-    //     $tags = LitterhubTag::all();
+        $tags = LitterhubTag::all();
 
-    //     return LitterhubTagResource::collection($tags);
-    // }
+        return LitterhubTagResource::collection($tags);
+    }
 
 }
