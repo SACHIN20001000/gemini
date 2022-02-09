@@ -129,7 +129,7 @@ class ChowhubCouponController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCoupon $request, Coupon $coupon)
+    public function update(UpdateCoupon $request, $id)
     {
 
         $inputs = $request->all();
@@ -139,7 +139,7 @@ class ChowhubCouponController extends Controller
             $inputs['product_id'] = $value;
             $inputs['product_type'] = 'chowhub';
 
-            $coupon->update($inputs);
+            Coupon::find($id)->update($inputs);
         }
         return back()->with('success', 'Coupon updated successfully!');
     }
@@ -152,7 +152,7 @@ class ChowhubCouponController extends Controller
      */
     public function destroy($id)
     {
-      
+
         Coupon::find($id)->delete();
 
         return back()->with('success', 'Coupon deleted successfully!');
