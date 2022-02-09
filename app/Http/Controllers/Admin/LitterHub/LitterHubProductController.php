@@ -364,7 +364,7 @@ public function store(AddProduct $request)
             $products->cat_count = $inputs['cat_count'];
             $products->litter_material = json_encode($inputs['litter_material']);
             $products->quantity = $inputs['qty'];
-           
+
             $products->store_id = $inputs['store_id'];
             $products->status = $inputs['status'];
             if (!empty($inputs['variations']))

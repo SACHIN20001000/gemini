@@ -700,9 +700,9 @@ function CheckDimensionFeatureImage() {
     </script>
 
     @if(isset($product))
-    {!! JsValidator::formRequest('App\Http\Requests\Admin\Chowhub\Product\UpdateProduct','#product-add-edit') !!}
+    {!! JsValidator::formRequest('App\Http\Requests\Admin\Litterhub\Product\UpdateProduct','#product-add-edit') !!}
     @else
-    {!! JsValidator::formRequest('App\Http\Requests\Admin\Chowhub\Product\AddProduct','#product-add-edit') !!}
+    {!! JsValidator::formRequest('App\Http\Requests\Admin\Litterhub\Product\AddProduct','#product-add-edit') !!}
     @endif
 
     @endsection

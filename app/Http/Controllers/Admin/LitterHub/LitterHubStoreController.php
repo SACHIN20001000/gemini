@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Litterhub\LitterhubStore;
 use DataTables;
-use App\Http\Requests\Admin\LitterHub\Stores\AddStores;
-use App\Http\Requests\Admin\LitterHub\Stores\UpdateStores;
+use App\Http\Requests\Admin\Litterhub\Stores\AddStores;
+use App\Http\Requests\Admin\Litterhub\Stores\UpdateStores;
 use Storage;
 
 class LitterHubStoreController extends Controller
