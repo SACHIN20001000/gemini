@@ -15,12 +15,24 @@ ul.listItem {list-style: none; padding: 0; margin: 0; }
 .btn_yelo a {background: #6058f7; border: 1px solid #6058f7; }
 .btn_black a {background: #000; border: 1px solid #000; }
 ul.pay_steps {margin: 20px auto; padding: 0; list-style: none; display: flex; justify-content: center; font-size: 13px; }
-ul.pay_steps>li {display: inline-flex; align-items: center; color: #777 }
+ul.pay_steps>li ,ul.pay_steps  a{display: inline-flex; align-items: center; color: #777;color: #777;
+text-decoration: none; }
 ul.pay_steps {margin: 20px auto 35px auto; padding: 0; list-style: none; display: flex; justify-content: center; font-size: 13px; align-items: center; }
 .check_logo a {display: inline-block; }
-ul.pay_steps>li.active{color: #444;}
+ul.pay_steps>li.active {color: #444;}
 ul.pay_steps>li:not(:last-child):after {content: ">"; margin: 0 10px; font-size: 25px; display: inline-block; line-height: 0px; transform: translatey(-2px); color: #777; }
-
+.load_img img {
+  max-width: 40px;
+}
+.load_img {
+  margin: 5px 0 0 0;
+}
+.btn_load {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  align-content: center;
+}
 /* form design */
 .form_list>li label {display: none; }
 .form_list>li input{font-size: 14px;}

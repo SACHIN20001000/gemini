@@ -37,8 +37,6 @@
           <div class="pr_info">
             <label>{{accountDetails.name}}</label>
             <div class="dropdown">
-
-
             <router-link
               :to="{ path: '/profile'}"
               class="alink dropdown-toggle"
