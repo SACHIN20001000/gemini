@@ -14,7 +14,7 @@
              </div>
              <div class="col-md-5 footer_nav02">
                 <div class="row">
-                   <div class="col">
+                   <div class="col max_100">
                       <ul class="footer_nav foot_nav2 foot_nav_shop">
                          <li><label>Shop</label></li>
                          <li><a href="#">Dog</a></li>
@@ -29,7 +29,7 @@
                          <li><a href="#">DaySpaw®</a></li>
                          <li><a href="#">Chowologist™</a></li>
                          <li><a href="#">Click & Pick</a></li>
-                         <li><a href="#">Coming_Soon...</a></li>
+                         <li><a href="#">Coming Soon...</a></li>
                       </ul>
                    </div>
                    <div class="col">
@@ -67,15 +67,15 @@
                 </div></div>
                  <div class="col-md-5">
                   <ul class="social_list footer_nav">
-                   <li><a href="#"><img :src="imgFb"></a></li>
-                   <li><a href="#"><img :src="imgInsta"></a></li>
-                   <li><a href="#"><img :src="imgUtube"></a></li>
-                   <li><a href="#"><img :src="imgLink"></a></li>
+                   <li><a href="https://www.facebook.com/petparentsbrand" target="_blank"><img :src="imgFb"></a></li>
+                   <li><a href="https://www.instagram.com/officialpetparents/" target="_blank"><img :src="imgInsta"></a></li>
+                   <li><a href="https://www.youtube.com/channel/UCe8MRqPp0A2vo1ZAFStKmYg?disable_polymer=true" target="_blank"><img :src="imgUtube"></a></li>
+                   <li><a href="https://www.linkedin.com/company/petparents" target="_blank"><img :src="imgLink"></a></li>
                 </ul></div>
                </div>
                 <div class="row">
                  <div class="col-md-12">
-                  <p class="copy_p">© 2021 Pet Parents LLC. All Logos and Trademarks belong to their respective owners.</p>
+                  <p class="copy_p">© 2020 Pet Parents LLC. All Logos and Trademarks belong to their respective owners.</p>
                  </div>
                 </div>
              </div>
@@ -183,7 +183,7 @@
           </div>
           <ul class="social_list">
             <li>
-              <a href="#">
+              <a href="https://www.facebook.com/petparentsbrand">
                 <img
                   :src="imgFb"
                   alt="FB"
@@ -191,7 +191,7 @@
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="https://www.instagram.com/officialpetparents/">
                 <img
                   :src="imgInsta"
                   alt="insta"
@@ -199,7 +199,7 @@
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="https://www.youtube.com/channel/UCe8MRqPp0A2vo1ZAFStKmYg?disable_polymer=true">
                 <img
                   :src="imgUtube"
                   alt="utube"
@@ -207,7 +207,7 @@
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="https://www.linkedin.com/company/petparents">
                 <img
                   :src="imgLink"
                   alt="Link"

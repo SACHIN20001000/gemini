@@ -1077,9 +1077,16 @@ section.about-brand p {font-family: 'Gentona'; font-size: 14px; line-height: 1.3
 
 
 
-/*.swiper-container.swiper.gallery-top .swiper-zoom-container {
+.swiper-container.swiper.gallery-top .swiper-zoom-container {
     position: relative;
-    padding-top: 130%;
+    padding-top: 103%;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.1);
+    height: auto;
+}
+.gallery-thumbs  .swiper-slide {
+    position: relative;
+    padding-top: 30%;
     background: #fff;
     border: 1px solid rgba(0,0,0,.1);
     height: auto;
@@ -1090,9 +1097,11 @@ section.about-brand p {font-family: 'Gentona'; font-size: 14px; line-height: 1.3
 .swiper-container.swiper.gallery-top .swiper-slide {
     align-items: flex-start;
 }
+.gallery-thumbs {
+    height: auto;
+}
 
-
-.swiper-container.swiper.gallery-top .swiper-zoom-container>img {
+.swiper-container.swiper.gallery-top .swiper-zoom-container>img ,.gallery-thumbs  .swiper-slide >img{
     position: absolute;
     top: 0;
     left: 0;
@@ -1101,6 +1110,17 @@ section.about-brand p {font-family: 'Gentona'; font-size: 14px; line-height: 1.3
     object-fit: contain;
 }
 
-.swiper-container.swiper.gallery-top {
+.swiper-container.swiper.gallery-top,.swiper-wrapper {
     height: auto !important;
-}*/
+}
+.col-md-6.max_530 {
+    max-width: 530px;
+}
+.col-md-6.max_530 + .col-md-6 {
+    max-width: calc(100% - 580px);
+    width: 100%;
+}
+.row.pr_slide {
+    gap: 50px;
+    justify-content: space-between;
+}

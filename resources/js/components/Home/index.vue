@@ -71,7 +71,7 @@
       </p>
     </div>
     <section class="banner_sec">
-      <div class="container_max">
+      <div class="container_max container_1280">
         <div class="row">
           <div class="col-md-5 baner_1">
             <div class="banner_top">

@@ -8,8 +8,8 @@
     </div>
     <section class="product_view">
       <div class="container_max">
-        <div class="row" v-if="variations && variations.length>0">
-          <div class="col-md-6 pe-4 ">
+        <div class="row pr_slide" v-if="variations && variations.length>0">
+          <div class="col-md-6 max_530">
             <div class="main_img">
               <div class="thumb-example">
                 <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">
@@ -38,7 +38,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 ps-4">
+          <div class="col-md-6">
             <h2 class="pr_title">
               {{product.name}}
             </h2>
