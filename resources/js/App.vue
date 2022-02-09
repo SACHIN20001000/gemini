@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="main_container">
+    <div class="main_container" id="mainContent" v-if="routeName() == 'Checkout'">
+      <router-view />
+    </div>
+    <div class="main_container" id="mainContent" v-else>
       <PETHeader/>
       <router-view />
       <PETFooter/>
@@ -35,6 +38,9 @@ export default {
       if(localStorage.getItem('cartId') === null || localStorage.getItem('cartId') =='undefined') {
         this.getCartToken()
       }
+    },
+    routeName(){
+      return this.$route.name
     }
   }
 }
