@@ -106,7 +106,7 @@ class LitterHubStoreController extends Controller
         $store = LitterhubStore::find($id);
 
         $stores = LitterhubStore::where('id', '!=', $id)->get();
-        return view('admin.LitterHub.stores.addEdit', compact('stores', 'store'));
+        return view('admin.litterhub.stores.addEdit', compact('stores', 'store'));
     }
 
     /**
