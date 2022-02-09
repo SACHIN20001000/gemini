@@ -8,7 +8,7 @@
                 <h4 class="content-title mb-0 my-auto">Coupons</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{isset($coupon) ? $coupon->name : 'Add New' }}</span>
             </div>
         </div>
-        <a class="btn btn-main-primary ml_auto" href="{{ route('coupons.index') }}">View Coupons</a>
+        <a class="btn btn-main-primary ml_auto" href="{{ route('chowhub-coupons.index') }}">View Coupons</a>
     </div>
     <!-- breadcrumb -->
     <!--Row-->
@@ -23,7 +23,7 @@
 
 
                     <!--  start  -->
-                    <form  id="coupon-add-edit" action="{{isset($coupon) ? route('coupons.update',$coupon->id) : route('coupons.store')}}" method="POST" enctype="multipart/form-data">
+                    <form  id="coupon-add-edit" action="{{isset($coupon) ? route('chowhub-coupons.update',$coupon->id) : route('chowhub-coupons.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{ isset($coupon) ? method_field('PUT'):'' }}
                         <div class="pd-30 pd-sm-40 bg-gray-200">

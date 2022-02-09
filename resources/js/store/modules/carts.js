@@ -16,15 +16,15 @@ const getters = {
   deleteCartItems: state => state.deleteCartItems,
   cartQuantity: state => {
     return state.getCartItem.reduce((acc, cartItem) => {
-      return cartItem.quantity + acc;
+      return Number(cartItem.quantity) + Number(acc);
     }, 0);
   },
   cartTotal: state => {
     return state.getCartItem.reduce((acc, cartItem) => {
       if(cartItem.variationProduct){
-        return (cartItem.quantity * cartItem.variationProduct.sale_price) + acc;
+        return Number(cartItem.quantity * cartItem.variationProduct.sale_price) + Number(acc);
       }else{
-        return (cartItem.quantity * cartItem.product.sale_price) + acc;
+        return Number(cartItem.quantity * cartItem.product.sale_price) + Number(acc);
       }
 
     }, 0).toFixed(2);
@@ -53,12 +53,14 @@ const actions = {
   removeCartItem ({ commit }, cartId) {
     const cartKey = localStorage.getItem('cartKey')
     const cartkeyId = localStorage.getItem('cartId')
-    HTTP.delete(process.env.MIX_APP_APIURL+'cart/'+cartkeyId+'/'+cartId, {
+    HTTP.delete(process.env.MIX_APP_APIURL+'cart/'+cartkeyId, {
       data: {
         key: cartKey
       }
     }).then(() => {
       commit('deleteCartItem', cartId)
+      localStorage.removeItem('cartKey')
+      localStorage.removeItem('cartId')
     });
   },
   removeAllCartItems ({ commit }) {

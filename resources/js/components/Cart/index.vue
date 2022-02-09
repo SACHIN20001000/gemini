@@ -30,7 +30,19 @@
           class="cartlabel cart_grid"
         >
           <span class="prod_img"><div class="img_ratio"><img :src="cartItem.variationProduct.image" /></div></span>
-          <span class="prod_name">{{cartItem.product.productName}}</span>
+          <span class="prod_name">
+            {{cartItem.product.productName}}
+            <span v-if="cartItem.variationProduct && cartItem.variationProduct.variation_attributes_name_id">
+              <!--<ul class="itenVarient">
+                <li
+                  v-for="(varientItem, vikey) in cartItem.variationProduct.variation_attributes_name_id"
+                  :key=""
+                >
+                  {{varientItem.attribute_id}}
+                </li>
+              </ul>-->
+            </span>
+          </span>
           <span class="prod_price">{{cartItem.variationProduct.sale_price}}</span>
           <span class="prod_quant">
             <input
@@ -39,7 +51,7 @@
               v-model="cartItemsList[keygetCartItem].quantity"
             >
           </span>
-          <span class="prod_items">{{cartItem.variationProduct.sale_price*cartItem.quantity}}</span>
+          <span class="prod_items">{{currencyFormat(cartItem.variationProduct.sale_price*cartItem.quantity)}} </span>
           <span class="prod_remove">
             <a
               class="button"
@@ -169,6 +181,9 @@ export default {
         this.removeCartItem(cartId)
       })
     },
+    currencyFormat(priceVal){
+      return priceVal.toFixed(2)
+    },
     updateCart(){
       const _this = this
       const catkey = localStorage.getItem('cartKey')
@@ -178,22 +193,21 @@ export default {
           itemDetails.push({
             key: catkey,
             product_id: cartitem.product_id,
-            quantity: cartitem.quantity,
+            quantity: Number(cartitem.quantity),
             variation_product_id: cartitem.variationProduct.id,
           })
         }else {
           itemDetails.push({
             key: catkey,
             product_id: cartitem.product_id,
-            quantity: cartitem.quantity,
+            quantity: Number(cartitem.quantity),
             variation_product_id: 0,
           })
         }
       })
       var cartItems = {'cartitems':itemDetails}
-      console.log(cartItems);
       const cartId = localStorage.getItem('cartId')
-      axios.post(process.env.MIX_APP_APIURL+'cart/'+cartId, cartItems).then(res => {
+      axios.post(process.env.MIX_APP_APIURL+'cart/update/'+cartId, cartItems).then(res => {
         this.updateMessage = res.data.message;
         axios.get(process.env.MIX_APP_APIURL+'cart/'+cartId+'?key='+catkey).then((response) => {
           this.cartItemsList = response.data.data

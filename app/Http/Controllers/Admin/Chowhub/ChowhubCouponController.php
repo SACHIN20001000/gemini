@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Chowhub;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Coupon;
 use App\Models\Category;
-use App\Models\Product;
 use App\Models\ChowhubProduct;
 use DataTables;
 use App\Http\Requests\Admin\Coupon\AddCoupon;
 use App\Http\Requests\Admin\Coupon\UpdateCoupon;
 use Storage;
 
-class CouponController extends Controller
+class ChowhubCouponController extends Controller
 {
 
     /**
@@ -26,7 +25,7 @@ class CouponController extends Controller
 
         if ($request->ajax())
         {
-            $data = Coupon::where('product_type', '=' ,'product')->get();
+            $data = Coupon::where('product_type', '=' ,'Chowhub')->get();
 
             return Datatables::of($data)
                             ->addIndexColumn()
@@ -34,10 +33,10 @@ class CouponController extends Controller
                             {
 
                                 $action = '<span class="action-buttons">
-                                    <a  href="' . route("coupons.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
+                                    <a  href="' . route("chowhub-coupons.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
 
-                                    <a href="' . route("coupons.destroy", $row) . '"
+                                    <a href="' . route("chowhub-coupons.destroy", $row) . '"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"
                                             data-toggle="tooltip"
@@ -56,7 +55,7 @@ class CouponController extends Controller
             ;
         }
 
-        return view('admin.coupons.index');
+        return view('admin.chowhub.coupons.index');
     }
 
     /**
@@ -66,10 +65,10 @@ class CouponController extends Controller
      */
     public function create()
     {
-        $categories = Category::select('name', 'id')->where(['parent' => 0, 'type' => 'Product'])->get();
-        $products = Product::select('productName', 'id')->get();
+        $categories = Category::select('name', 'id')->where(['parent' => 0, 'type' => 'Chowhub'])->get();
+        $products = ChowhubProduct::select('productName', 'id')->get();
 
-        return view('admin.coupons.addEdit', compact('categories','products'));
+        return view('admin.chowhub.coupons.addEdit', compact('categories','products'));
     }
 
     /**
@@ -83,9 +82,10 @@ class CouponController extends Controller
 
 
         $inputs = $request->all();
+
         foreach ($inputs['product_id'] as $key => $value)
         {
-
+            $inputs['product_type'] = 'chowhub';
             $inputs['product_id'] = $value;
             Coupon::create($inputs);
         }
@@ -114,12 +114,12 @@ class CouponController extends Controller
     public function edit($id)
     {
         $coupon = Coupon::find($id);
-        $categories = Category::with('childrens')->where(['parent' => 0, 'type' => 'Product'])->get();
+        $categories = Category::with('childrens')->where(['parent' => 0, 'type' => 'Chowhub'])->get();
 
         $coupons = Coupon::where('id', '!=', $id)->get();
-       $products = Product::select('productName', 'id')->get();
+       $products = ChowhubProduct::select('productName', 'id')->get();
 
-        return view('admin.coupons.addEdit', compact('coupons', 'coupon', 'categories', 'products'));
+        return view('admin.chowhub.coupons.addEdit', compact('coupons', 'coupon', 'categories', 'products'));
     }
 
     /**
@@ -129,7 +129,7 @@ class CouponController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCoupon $request, Coupon $coupon)
+    public function update(UpdateCoupon $request, $id)
     {
 
         $inputs = $request->all();
@@ -137,7 +137,9 @@ class CouponController extends Controller
         {
 
             $inputs['product_id'] = $value;
-            $coupon->update($inputs);
+            $inputs['product_type'] = 'chowhub';
+
+            Coupon::find($id)->update($inputs);
         }
         return back()->with('success', 'Coupon updated successfully!');
     }
@@ -150,7 +152,9 @@ class CouponController extends Controller
      */
     public function destroy($id)
     {
+
         Coupon::find($id)->delete();
+
         return back()->with('success', 'Coupon deleted successfully!');
     }
 

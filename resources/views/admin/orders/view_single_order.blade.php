@@ -25,10 +25,12 @@
                     <div class="invoice-header">
                         <h1 class="invoice-title">Order Detail</h1>
                         <div class="billed-from">
-                            <h6>Pet Parent .</h6>
-                            <p>201 Something St., Something Town, YT 242, Country 6546<br>
-                            Tel No: 324 445-4544<br>
-                            Email: admin@admin.com</p>
+                            <h6>{{$order->user->name}}</h6>
+                            <p>{{$order->user->address}}<br>
+                            @if(!empty($order->user->phone))
+                            Tel No: {{$order->user->phone}} <br>
+                            @endif
+                            Email: {{$order->user->email}}</p>
                         </div><!-- billed-from -->
                     </div><!-- invoice-header -->
                     <div class="row mg-t-20">
@@ -43,16 +45,24 @@
                         </div>
                         <div class="col-md">
                             <label class="tx-gray-600">Invoice Information</label>
-                            <p class="invoice-info-row"><span>Invoice No</span> <span>{{$order->id}}</span></p>
-                            <p class="invoice-info-row"><span>Issue Date:</span> <span>{{$order->created_at}}</span></p>
+                            <p class="invoice-info-row"><span>Order No</span> <span>{{$order->id}}</span></p>
+                            <p class="invoice-info-row"><span>Order Date:</span> <span>{{$order->created_at}}</span></p>
+                           @if(!empty($order->transaction_id))
+                            <p class="invoice-info-row"><span>Transaction No:</span> <span>{{$order->transaction_id}}</span></p>
+                            @endif
+                            <p class="invoice-info-row"><span>Status</span> <span>{{$order->status}}</span></p>
+                            <p class="invoice-info-row"><span>Shipping Method</span> <span>{{$order->shippingmethod}}</span></p>
+                            <p class="invoice-info-row"><span>Payment Method</span> <span>{{$order->payment_method}}</span></p>
+
+
                         </div>
                     </div>
                     <div class="table-responsive mg-t-40">
                         <table class="table table-invoice border text-md-nowrap mb-0">
                             <thead>
                                 <tr>
-                                    <th class="wd-20p">Type</th>
-                                    <th class="wd-40p">Description</th>
+                                <th class="wd-40p">Image</th>
+                                    <th class="wd-20p">Name</th>
                                     <th class="tx-center">QNTY</th>
                                     <th class="tx-right">Unit Price</th>
                                     <th class="tx-right">Amount</th>
@@ -61,8 +71,11 @@
                             <tbody>
                                 @foreach($order->orderItems as $orderItem)
                                 <tr>
+                                <td class="tx-12">
+                                    <img src="{{$orderItem->products->feature_image}}" height = 100 width = 100 alt="">
+                                </td>
                                     <td>{{$orderItem->products->productName}}</td>
-                                    <td class="tx-12">{{strip_tags($orderItem->products->description)}}</td>
+
                                     <td class="tx-center">{{$orderItem->quantity}}</td>
                                     <td class="tx-right">${{$orderItem->unit_price}}</td>
                                     <td class="tx-right">${{$orderItem->total_price}}</td>
@@ -73,26 +86,28 @@
                                     <td class="valign-middle" colspan="2" rowspan="4">
                                         <div class="invoice-notes">
                                             <label class="main-content-label tx-13">Notes</label>
+                                            @if($order->remark)
+                                            <p>{{$order->remark}}</p>
+                                            @else
                                             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                                            @endif
                                         </div><!-- invoice-notes -->
                                     </td>
                                     <td class="tx-right">Sub-Total</td>
-                                    <td class="tx-right" colspan="2">${{$order->grand_total}}</td>
+                                    <td class="tx-right" colspan="2">${{$order->sub_total}}</td>
                                 </tr>
-                                <!-- <tr>
-                                    <td class="tx-right">Tax (5%)</td>
-                                    <td class="tx-right" colspan="2">$287.50</td>
-                                </tr>
+                            @if(!empty($order->discount))
                                 <tr>
                                     <td class="tx-right">Discount</td>
-                                    <td class="tx-right" colspan="2">-$50.00</td>
-                                </tr> -->
-                                <!-- <tr>
-                                    <td class="tx-right tx-uppercase tx-bold tx-inverse">Total Due</td>
+                                    <td class="tx-right" colspan="2">-${{$order->discount}}</td>
+                                </tr>
+                                @endif
+                                <tr>
+                                    <td class="tx-right tx-uppercase tx-bold tx-inverse">Total</td>
                                     <td class="tx-right" colspan="2">
-                                        <h4 class="tx-primary tx-bold">$5,987.50</h4>
+                                        <h4 class="tx-primary tx-bold">${{$order->grand_total}}</h4>
                                     </td>
-                                </tr> -->
+                                </tr>
                             </tbody>
                         </table>
                     </div>

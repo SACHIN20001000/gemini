@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\Chowhub\ChowhubCategoryController;
 use App\Http\Controllers\Admin\Chowhub\ChowhubStoreController;
 use App\Http\Controllers\Admin\Chowhub\ChowhubProductController;
+use App\Http\Controllers\Admin\Chowhub\ChowhubCouponController;
+
 
 
 
@@ -70,6 +72,8 @@ Route::prefix('admin')->group(function ()
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('categories', CategoryController::class);
         Route::resource('coupons', CouponController::class);
+        Route::resource('chowhub-coupons', ChowhubCouponController::class);
+
         Route::post('getProductByAjax', [CouponController::class,'getProductByAjax'])->name('getProductByAjax');
 
 

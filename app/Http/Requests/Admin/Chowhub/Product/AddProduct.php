@@ -33,6 +33,11 @@ class AddProduct extends FormRequest
             'sale_price' => 'required',
             'sku' => 'required',
             'qty' => 'required',
+            'pet_type' => 'required',
+            'age' => 'required',
+            'food_type' => 'required',
+            'protein_type' => 'required',
+
             'feature_image' => 'dimensions:width=619,height=577',
             // 'image' => 'dimensions:width=619,height=577',
             // 'description_images' => 'dimensions:width=1238,height=652',

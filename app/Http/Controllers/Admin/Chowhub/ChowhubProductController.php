@@ -103,10 +103,9 @@ class ChowhubProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AddProduct $request)
+public function store(AddProduct $request)
     {
         $inputs = $request->all();
-// print_r($inputs);die;
         $tags = explode(",", $inputs['tag']);
         // ADD PRODUCT TABLE DATA
 
@@ -119,6 +118,10 @@ class ChowhubProductController extends Controller
             $products->real_price = $inputs['real_price'];
             $products->sale_price = $inputs['sale_price'];
             $products->sku = $inputs['sku'];
+            $products->pet_type = $inputs['pet_type'];
+            $products->age = $inputs['age'];
+            $products->food_type = $inputs['food_type'];
+            $products->protein_type = json_encode($inputs['protein_type']);
             $products->weight = $inputs['weight'];
             if (!empty($inputs['feature_image']))
             {
@@ -356,6 +359,10 @@ class ChowhubProductController extends Controller
             }
             $products->sku = $inputs['sku'];
             $products->weight = $inputs['weight'];
+            $products->pet_type = $inputs['pet_type'];
+            $products->age = $inputs['age'];
+            $products->food_type = $inputs['food_type'];
+            $products->protein_type = json_encode($inputs['protein_type']);
             $products->quantity = $inputs['qty'];
             $products->category_id = $inputs['category_id'];
             $products->store_id = $inputs['store_id'];

@@ -19,6 +19,10 @@ class Order extends Model
         'is_paid',
         'payment_method',
         'shippingmethod',
+        'discount',
+        'sub_total',
+
+
         'remark'
     ];
     protected $casts = [
