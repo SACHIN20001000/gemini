@@ -4,12 +4,28 @@
     <div class="checkoutform">
       <div class="twobythree">
         <div class="text-center check_logo">
-        <a href="#"><img src="images/paw.png"></a>
+          <router-link
+            :to="{ path: '/'}"
+          >
+            <img :src="paw">
+          </router-link>
       </div>
         <ul class="pay_steps">
-          <li class="active">Information</li>
-          <li>Shipping</li>
-          <li>Payment</li>
+          <li>
+            <router-link
+              :to="{ path: '/'}"
+            >
+              Information
+            </router-link>
+          </li>
+          <li>
+            <router-link
+              :to="{ path: 'cart'}"
+            >
+              Cart
+            </router-link>
+          </li>
+          <li class="active">Payment<li/>
         </ul>
           <!--<fieldset class="legend_body">
           <legend>Express checkout</legend>
@@ -197,18 +213,28 @@
       </div>
       <div class="onebythree">
         <div v-if="getCartItem">
-          <div class="mb_2"
+          <div
+            class="product_check fl_div"
             v-for="(cartItem,cikey) in getCartItem"
             :key="cikey"
           >
-            <div v-if="cartItem.variationProduct" class="fl_div product_check">
+            <div v-if="cartItem.variationProduct">
               <div class="fl_left">
                 <div class="pro_thumb">
                   <img :src="cartItem.variationProduct.image"><span class="p_quant">{{cartItem.quantity}}</span>
                 </div>
                 <div class="prod_name">
                   <label>{{cartItem.product.productName}}</label>
-                  <span>Chocolate / S</span>
+                  <span v-if="cartItem.variationProduct && cartItem.variationProduct.variation_attributes_name_id">
+                    <ul class="itenVarient">
+                      <li
+                        v-for="(varientItem, vikey) in cartItem.variationProduct.variation_attributes_name_id"
+                        :key="vikey"
+                      >
+                        {{getVarientName(cartItem.product.attributes,varientItem.attribute_id)}}
+                      </li>
+                    </ul>
+                  </span>
                 </div>
               </div>
               <div class="fl_right">
@@ -331,6 +357,9 @@
         <div class="placeorder text-right">
           <button type="button" @click='paymentProcessed' class="btn_blu btn_md">Submit</button>
         </div>
+      <p v-if="loadingDisplay">
+        <img :src="loading">
+      </p>
       <hr>
       <div class="successMsg" v-if="transactionResponse && transactionResponse.length>0">
         <p>{{transactionResponse.message}}. Transaction ID : {{transactionResponse.transaction_id}}</p>
@@ -350,6 +379,8 @@ import {mapGetters,mapActions} from "vuex"
 import form from 'vuejs-form'
 import { StripeElementCard } from '@vue-stripe/vue-stripe'
 import HTTP from './../../Api/auth'
+import loading from "../../assets/images/loading.gif"
+import paw from "../../assets/images/paw.png"
 
 export default {
   name:"Checkout",
@@ -418,8 +449,8 @@ export default {
         'sh_remark.sh_remark': 'This field is required!'
       }),
     order_form: form({
-      shippingmethods: '',
-      paymentmethods: ''
+      shippingmethods: 'free',
+      paymentmethods: 'card'
     })
       .rules({
         shippingmethods: 'required',
@@ -450,27 +481,20 @@ export default {
     tranerror:'',
     paymentMode:true,
     couponCodeInfo:[],
-    CouponCode:[]
+    CouponCode:[],
+    loading:loading,
+    paw:paw,
+    loadingDisplay:false
   }),
   created(){
     this.getProfile()
+    this.cartTotalInfo()
   },
   watch:{
     orderResponse(){
       if (this.orderResponse) {
         this.$router.push('/payment')
       }
-    },
-    cartTotal(){
-      this.cartTotalValue = Number(this.cartTotal) + Number((this.cartTotal*this.tax)/100)
-    },
-    accountDetails(){
-      var _this = this
-      Object.keys(_this.accountDetails).forEach(function(key,index) {
-        if(key!='id' && key!='profile_image' && key!='created_at' ){
-          _this.form.data[key] = _this.accountDetails[key]
-        }
-      })
     },
     transaction(){
       this.transactionResponse=this.transaction
@@ -532,6 +556,7 @@ export default {
     },
     applyCode(){
       if (this.coupon_form.validate().errors().any()) return;
+      this.loadingDisplay=true
       HTTP.post(process.env.MIX_APP_APIURL+'coupon', this.coupon_form.data).then((response) => {
         this.CouponCode=response.data.data
         this.couponCodeInfo =[]
@@ -546,7 +571,7 @@ export default {
           if(this.cartTotalValue>discountVal){
             var doscountprice = Number(this.cartTotalValue)-Number(this.CouponCode.value)
             this.cartTotalValue = doscountprice.toFixed(2)
-          }          
+          }
         }
       }).catch((errors) => {
         this.couponCodeInfo = errors.response.data
@@ -594,11 +619,34 @@ export default {
             this.form.data.transaction_id = this.transactionResponse.transaction_id
             this.addOrder(this.form.data)
             this.removeCartItem()
+            this.loadingDisplay=false
           }
         }).catch((errors) => {
           this.tranerror = errors+'Something was wrong!'
         })
       }
+    },
+    cartTotalInfo(){
+      if(this.cartTotal){
+        this.cartTotalValue = Number(this.cartTotal) + Number((this.cartTotal*this.tax)/100)
+      }
+      if(this.accountDetails){
+        var _this = this
+        Object.keys(_this.accountDetails).forEach(function(key,index) {
+          if(key!='id' && key!='profile_image' && key!='created_at' ){
+            _this.form.data[key] = _this.accountDetails[key]
+          }
+        })
+      }
+    },
+    getVarientName(attrArrs,attId){
+      var attname=''
+      attrArrs.filter(function(val,ind){
+        if(val.id == attId){
+          attname=val.name
+        }
+      })
+      return attname
     }
   }
 }
