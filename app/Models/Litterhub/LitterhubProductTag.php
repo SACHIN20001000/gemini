@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\LitterHub;
+namespace App\Models\Litterhub;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -20,7 +20,7 @@ class LitterhubProductTag extends Model
 
     public function tagName()
     {
-        return $this->belongsTo(LitterHubTag::class, 'tag_id');
+        return $this->belongsTo(LitterhubTag::class, 'tag_id');
     }
 
 }
