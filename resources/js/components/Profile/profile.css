@@ -78,8 +78,8 @@ td.t_btn button:hover {background: #ee343f; color: #fff; border: 1px solid; }
 .profile_banner {position: relative;width: 130px; height: 130px; margin:0 auto; position: relative; }
 .profile_banner .uplod_btn:after {height: 25px; width: 25px !important; font-size: 34px; padding-bottom: 10px; color: #fff; border-color: #00b7bc; background: #00b7bc; }
 .profile_banner label.uplod_btn {    height: 25px; width: 25px; display: block; top: 15px; right: 0px; position: absolute; } .profile_banner input {height: 40px; width: 40px; cursor: pointer; top: 0; left: 0; padding: 0; z-index: 999; }
-ul.pet_pro_list li a img{width: 118px; height: 118px; object-fit: contain; border-radius: 50%; background: #f6f6f6; }
-
+ul.pet_pro_list li a img{width: 118px; height: 118px; object-fit: cover; border-radius: 50%; background: #f6f6f6; }
+section.st_banner .col-9 {padding-right: 50px; }
 
 @media only screen and (max-width: 768px)
 {

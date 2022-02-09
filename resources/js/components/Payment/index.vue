@@ -1,6 +1,14 @@
 <template>
   <div class="main">
-  <div class="container_max">
+
+<div class="thanks">
+  <div>
+  <img src="images/paw.png">
+  <h1>Thank <span>You!</span></h1>
+</div>
+</div>
+
+  <!--<div class="container_max">
     <h1 class="page_title">Order List</h1>
     <table class="ordertable table_style1">
       <thead>
@@ -39,7 +47,7 @@
         </tr>
       </tbody>
     </table>
-  </div>
+  </div>-->
   </div>
 </template>
 <style>
