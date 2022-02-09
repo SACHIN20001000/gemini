@@ -33,14 +33,14 @@
           <span class="prod_name">
             {{cartItem.product.productName}}
             <span v-if="cartItem.variationProduct && cartItem.variationProduct.variation_attributes_name_id">
-              <!--<ul class="itenVarient">
+              <ul class="itenVarient">
                 <li
                   v-for="(varientItem, vikey) in cartItem.variationProduct.variation_attributes_name_id"
-                  :key=""
+                  :key="vikey"
                 >
-                  {{varientItem.attribute_id}}
+                  {{getVarientName(cartItem.product.attributes,varientItem.attribute_id)}}
                 </li>
-              </ul>-->
+              </ul>
             </span>
           </span>
           <span class="prod_price">{{cartItem.variationProduct.sale_price}}</span>
@@ -213,6 +213,15 @@ export default {
           this.cartItemsList = response.data.data
         })
       })
+    },
+    getVarientName(attrArrs,attId){
+      var attname=''
+      attrArrs.filter(function(val,ind){
+        if(val.id == attId){
+          attname=val.name
+        }
+      })
+      return attname
     }
   }
 }
