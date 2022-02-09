@@ -5,16 +5,8 @@ namespace App\Http\Controllers\Admin\Solutionhub;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Solutionhub\SolutionhubProduct;
-use App\Models\Solutionhub\SolutionhubProductVariation;
-use App\Models\Solutionhub\SolutionhubProductGallery;
-use App\Models\Solutionhub\SolutionhubVariationAttribute;
-use App\Models\Solutionhub\SolutionhubVariationAttributeValue;
-use App\Models\Category;
 use App\Models\Solutionhub\SolutionhubTag;
 use App\Models\Solutionhub\SolutionhubProductTag;
-use App\Models\Solutionhub\SolutionhubProductDescriptionImage;
-use App\Models\Solutionhub\SolutionhubProductFeaturePageImage;
-use App\Models\Solutionhub\SolutionhubStore;
 use DataTables;
 use Illuminate\Support\Str;
 use App\Http\Requests\Admin\Solutionhub\Product\AddProduct;
@@ -103,14 +95,33 @@ public function store(AddProduct $request)
     {
 
         $inputs = $request->all();
+
         if (!empty($inputs['feature_image']))
         {
             $path = Storage::disk('s3')->put('images', $inputs['feature_image']);
             $image_path = Storage::disk('s3')->url($path);
             $inputs['feature_image'] = $image_path;
         }
+        $products=SolutionhubProduct::create($inputs);
+        $tags = explode(",", $inputs['tag']);
+        if (!empty($tags))
+        {
+            foreach ($tags as $vakey => $tagName)
+            {
 
-        SolutionhubProduct::create($inputs);
+                $tag = SolutionhubTag::updateOrCreate([
+                            'name' => $tagName
+                                ], [
+                            'name' => $tagName
+                ]);
+
+                $tagValue = new SolutionhubProductTag;
+                $tagValue->tag_id = $tag->id;
+                $tagValue->product_id = $products->id;
+                $tagValue->save();
+            }
+        }
+
         return back()->with('success', 'Product added successfully!');
     }
 
@@ -151,8 +162,26 @@ public function store(AddProduct $request)
             $inputs['feature_image'] = $image_path;
         }
 
-        SolutionhubProduct::find($id)->update($inputs);
+       SolutionhubProduct::find($id)->update($inputs);
+        $tags = explode(",", $inputs['tag']);
+        if (!empty($tags))
+        {
+            SolutionhubProductTag::where('product_id', $id)->delete();
+            foreach ($tags as $vakey => $tagName)
+            {
 
+                $tag = SolutionhubTag::updateOrCreate([
+                            'name' => $tagName
+                                ], [
+                            'name' => $tagName
+                ]);
+
+                $tagValue = new SolutionhubProductTag;
+                $tagValue->tag_id = $tag->id;
+                $tagValue->product_id = $id;
+                $tagValue->save();
+            }
+        }
         return back()->with('success', 'Product Updated successfully!');
     }
 
@@ -164,9 +193,10 @@ public function store(AddProduct $request)
      */
     public function destroy($id)
     {
+        SolutionhubProductTag::where('product_id', $id)->delete();
         SolutionhubProduct::find($id)->delete();
         return back()->with('success', 'Product deleted successfully!');
     }
 
-   
+
 }

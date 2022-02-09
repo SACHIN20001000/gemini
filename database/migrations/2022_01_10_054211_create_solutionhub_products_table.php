@@ -20,8 +20,6 @@ class CreateSolutionHubProductsTable extends Migration
             $table->string('tag')->nullable();
             $table->string('status')->nullable();
             $table->string('feature_image')->nullable();
-            $table->float('real_price', 8, 2)->nullable();
-            $table->float('sale_price', 8, 2)->nullable();
             $table->integer('separation_anxiety')->nullable();
             $table->integer('teething')->nullable();
             $table->integer('boredom')->nullable();
@@ -30,7 +28,17 @@ class CreateSolutionHubProductsTable extends Migration
             $table->timestamps();
         });
 
-
+        Schema::create('solutionhub_tags', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
+        Schema::create('solutionhub_product_tags', function (Blueprint $table) {
+            $table->id();
+			$table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('tag_id');
+            $table->timestamps();
+        });
     }
 
     /**

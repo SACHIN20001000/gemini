@@ -5,7 +5,7 @@ namespace App\Models\Solutionhub;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SolutionhubProduct extends Model
+class SolutionhubTag extends Model
 {
 
     use HasFactory;
@@ -15,6 +15,7 @@ class SolutionhubProduct extends Model
         'updated_at' => 'datetime:M d, Y h:i:s',
     ];
     protected $fillable = [
-        'productName', 'description', 'tag', 'feature_image', 'status',  'separation_anxiety','teething','boredom','disabled','energetic'
+        'name'
     ];
+
 }
