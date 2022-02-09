@@ -139,7 +139,8 @@ class CartController extends Controller
     {
         if ($cart->key == $request->key)
         {
-            $items = CartItem::where('cart_id', $cart->id)->with(['product', 'variationProduct'])->get();
+            $items = CartItem::where('cart_id', $cart->id)->with(['product.variationAttributesValue', 'variationProduct'])->get();
+
             return CartItemsResource::collection($items);
         } else
         {
