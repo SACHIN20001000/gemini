@@ -59,6 +59,8 @@ const actions = {
       }
     }).then(() => {
       commit('deleteCartItem', cartId)
+      localStorage.removeItem('cartKey')
+      localStorage.removeItem('cartId')
     });
   },
   removeAllCartItems ({ commit }) {

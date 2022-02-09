@@ -196,24 +196,51 @@
         </ul>
       </div>
       <div class="onebythree">
-
-        <div class="product_check fl_div">
-          <div class="fl_left">
-          <div class="pro_thumb">
-            <img src="images/pro3.jpg"><span class="p_quant">2</span>
-          </div>
-          <div class="prod_name">
-            <label>Pet Blanket</label>
-            <span>Chocolate / S</span>
+        <div v-if="getCartItem">
+          <div
+            class="product_check fl_div"
+            v-for="(cartItem,cikey) in getCartItem"
+            :key="cikey"
+          >
+            <div v-if="cartItem.variationProduct">
+              <div class="fl_left">
+                <div class="pro_thumb">
+                  <img :src="cartItem.variationProduct.image"><span class="p_quant">{{cartItem.quantity}}</span>
+                </div>
+                <div class="prod_name">
+                  <label>{{cartItem.product.productName}}</label>
+                  <span>Chocolate / S</span>
+                </div>
+              </div>
+              <div class="fl_right">
+                <label class="bd">${{cartItem.variationProduct.sale_price*cartItem.quantity}}</label>
+              </div>
+            </div>
+            <div v-else>
+              <div class="fl_left">
+                <div class="pro_thumb">
+                  <img :src="cartItem.product.image_path"><span class="p_quant">{{cartItem.quantity}}</span>
+                </div>
+                <div class="prod_name">
+                  <label>{{cartItem.product.productName}}</label>
+                  <span>Chocolate / S</span>
+                </div>
+              </div>
+              <div class="fl_right">
+                <label class="bd">${{cartItem.product.sale_price*cartItem.quantity}}</label>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="fl_right">
-          <label class="bd">$11.99</label>
-        </div>
-      </div>
       <div class="coupon_cart">
-        <input type="text" placeholder="Gift cards and discount code">
-        <button class="btn_red">Apply</button>
+        <input type="text" placeholder="Gift cards and discount code" v-model='coupon_form.name'>
+        <button type="button" class="btn_red" @click="applyCode">Apply</button>
+        <span class="error_validation" v-if="coupon_form.errors().has('name')">
+          {{ coupon_form.errors().get('name') }}
+        </span>
+        <span class="error_validation" v-if="couponCodeInfo && couponCodeInfo.message">
+          {{couponCodeInfo.message}}
+        </span>
       </div>
 
         <ul class="subtotal ">
@@ -284,7 +311,7 @@
           </li>
           <li>
             <span class="checkbox">
-            <input type="radio" v-model='order_form.paymentmethods' name="paymentmethods" value="stripe" @change="activePaymentMode('card')" checked="checked">
+            <input type="radio" v-model='order_form.paymentmethods' name="paymentmethods" value="card" @change="activePaymentMode('card')" checked="checked">
             <span><i class="fa fa-cc-stripe" aria-hidden="true"></i>Card (Debit/Credit)</span>
            </span>
             <span class="error_validation" v-if="order_form.errors().has('paymentmethods')">
@@ -392,8 +419,8 @@ export default {
         'sh_remark.sh_remark': 'This field is required!'
       }),
     order_form: form({
-      shippingmethods: '',
-      paymentmethods: ''
+      shippingmethods: 'free',
+      paymentmethods: 'card'
     })
       .rules({
         shippingmethods: 'required',
@@ -402,6 +429,15 @@ export default {
       .messages({
         'shippingmethods.shippingmethods': 'This field is required!',
         'paymentmethods.paymentmethods': 'This field is required!'
+      }),
+    coupon_form: form({
+      name: ''
+    })
+      .rules({
+        name: 'required'
+      })
+      .messages({
+        'name.name': 'This field is required!'
       }),
     cartTotalValue:0,
     tax:5,
@@ -413,7 +449,9 @@ export default {
     cardCvc: null,
     transactionResponse:[],
     tranerror:'',
-    paymentMode:true
+    paymentMode:true,
+    couponCodeInfo:[],
+    CouponCode:[]
   }),
   created(){
     this.getProfile()
@@ -440,7 +478,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['cartTotal','orderResponse','transaction','accountDetails']),
+    ...mapGetters(['cartTotal','orderResponse','transaction','accountDetails','getCartItem']),
     stripeElements () {
       return this.$stripe.elements()
     }
@@ -492,6 +530,28 @@ export default {
       }else{
         this.disableShippingForm = 1
       }
+    },
+    applyCode(){
+      if (this.coupon_form.validate().errors().any()) return;
+      HTTP.post(process.env.MIX_APP_APIURL+'coupon', this.coupon_form.data).then((response) => {
+        this.CouponCode=response.data.data
+        this.couponCodeInfo =[]
+        if(this.CouponCode.type == 'percentage'){
+          var discountVal = Number(this.cartTotalValue*this.CouponCode.value)/100
+          if(this.cartTotalValue>discountVal){
+            var doscountprice = Number(this.cartTotalValue)-Number(discountVal)
+            this.cartTotalValue = doscountprice.toFixed(2)
+          }
+        }else{
+          var discountVal = Number(this.CouponCode.value)
+          if(this.cartTotalValue>discountVal){
+            var doscountprice = Number(this.cartTotalValue)-Number(this.CouponCode.value)
+            this.cartTotalValue = doscountprice.toFixed(2)
+          }          
+        }
+      }).catch((errors) => {
+        this.couponCodeInfo = errors.response.data
+      })
     },
     async paymentProcessed () {
       var _this = this
