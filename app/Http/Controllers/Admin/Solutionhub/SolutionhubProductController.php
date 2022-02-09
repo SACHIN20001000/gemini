@@ -142,7 +142,7 @@ public function store(AddProduct $request)
     {
 
         $product = SolutionhubProduct::where('id', $id)->first();
-        return view('admin.Solutionhub.products.addEdit', compact('product'));
+        return view('admin.solutionhub.products.addEdit', compact('product'));
     }
 
     /**
