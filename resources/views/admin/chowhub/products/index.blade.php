@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('content') 
+@section('content')
 
 <div class="container">
     <!-- breadcrumb -->
@@ -13,7 +13,7 @@
         <a class="btn btn-main-primary ml_auto" href="{{ route('chowhub-products.create') }}">Add New</a>
     </div>
     <!-- breadcrumb -->
-   
+
     <div class="row row-sm">
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 grid-margin">
             <div class="card">
@@ -28,7 +28,7 @@
                             <thead>
                                 <tr>
                                     <th class="wd-lg-20p"><span>Name</span></th>
-                                    <th class="wd-lg-20p"><span>Store</span></th> 
+                                    <th class="wd-lg-20p"><span>Store</span></th>
                                     <th class="wd-lg-20p"><span>Category</span></th>
                                     <th class="wd-lg-20p"><span>Status</span></th>
 
@@ -65,7 +65,7 @@
             serverSide: true,
             ajax: "{{ route('chowhub-products.index') }}",
             columns: [
-                {data: 'productName', name: 'productName'},   
+                {data: 'productName', name: 'productName' },
                 {data: 'store.name', name: 'store.name'},
                 {data: 'category.name', name: 'category.name'},
                 {data: 'status', name: 'status'},

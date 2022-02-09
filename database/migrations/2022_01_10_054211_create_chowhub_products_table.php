@@ -18,19 +18,25 @@ class CreateChowhubProductsTable extends Migration
             $table->string('productName')->nullable();
             $table->longText('description')->nullable();
             $table->string('sku')->nullable();
+            $table->string('pet_type')->nullable();
+
+            $table->string('age')->nullable();
+            $table->string('food_type')->nullable();
+            $table->string('protein_type')->nullable();
+
             $table->set('type', ['Single Product', 'Variation'])->default('Single Product');
             $table->unsignedBigInteger('store_id')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
             $table->string('feature_image')->nullable();
             $table->float('real_price', 8, 2)->nullable();
             $table->float('sale_price', 8, 2)->nullable();
-            $table->integer('weight')->nullable();
+            $table->string('weight')->nullable();
             $table->integer('quantity')->nullable();
             $table->string('status')->nullable();
 
             $table->timestamps();
         });
-		
+
         Schema::create('chowhub_product_galleries', function (Blueprint $table) {
             $table->id();
 			$table->unsignedBigInteger('product_id');
@@ -71,7 +77,7 @@ class CreateChowhubProductsTable extends Migration
             $table->string('name')->nullable();
             $table->timestamps();
         });
-		
+
 		Schema::create('chowhub_variations_attributes_values', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('attribute_id')->nullable();
@@ -79,7 +85,7 @@ class CreateChowhubProductsTable extends Migration
             $table->string('name')->nullable();
             $table->timestamps();
         });
-		
+
         Schema::create('chowhub_product_variations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id')->nullable();

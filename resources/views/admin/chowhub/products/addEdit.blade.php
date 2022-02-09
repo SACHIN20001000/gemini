@@ -1,3 +1,4 @@
+
 @extends('admin.layouts.app')
 @section('content')
 
@@ -164,6 +165,73 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="card">
                                 <div class="card-body">
+                                    <h4>Shipping</h4>
+                                    <div class="row row-xs align-items-center mg-b-20" >
+                                        <div class="col-md-4">
+                                            <label class="form-label mg-b-0">Pet Type</label>
+                                        </div>
+                                        <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                          <select name="pet_type" class="form-control dog" id="">
+                                              <option value="">Select Below</option>
+                                              <option value="dog"{{ (isset($product) && $product->pet_type  == 'dog') ? 'selected' : '' }}>Dog</option>
+                                              <option value="cat"{{ (isset($product) && $product->pet_type  == 'cat') ? 'selected' : '' }}>Cat</option>
+                                          </select>
+                                        </div>
+                                    </div>
+                                    <div class="row row-xs align-items-center mg-b-20">
+                                        <div class="col-md-4">
+                                            <label class="form-label mg-b-0">Weight</label>
+                                        </div>
+                                        <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                            <input class="form-control" name="weight" value="{{isset($product) ? $product->weight : '' }}" placeholder="0-22lbs, 23-59lbs, 60+lbs" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="row row-xs align-items-center mg-b-20">
+                                        <div class="col-md-4">
+                                            <label class="form-label mg-b-0">Age</label>
+                                        </div>
+                                        <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                            <input class="form-control" name="age" value="{{isset($product) ? $product->age : '' }}" placeholder="0-1yrs, 1-10yrs, 10+yrs" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="row row-xs align-items-center mg-b-20">
+                                        <div class="col-md-4">
+                                            <label class="form-label mg-b-0">Food Type</label>
+                                        </div>
+                                        <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                        <select name="food_type" class="form-control dog" >
+                                              <option value="">Select Below</option>
+                                              <option value="food" {{ (isset($product) && $product->food_type  == 'food') ? 'selected' : '' }}>Food</option>
+                                              <option value="treats" {{ (isset($product) && $product->food_type  == 'treats') ? 'selected' : '' }}>Treats</option>
+                                              <option value="supps" {{ (isset($product) && $product->food_type  == 'supps') ? 'selected' : '' }}>Supps</option>
+
+                                          </select>
+                                        </div>
+                                    </div>
+                                    <div class="row row-xs align-items-center mg-b-20">
+                                        <div class="col-md-4">
+                                            <label class="form-label mg-b-0">Protein</label>
+                                        </div>
+                                        <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                        <select name="protein_type[]" class="form-control select2"id="select" multiple="multiple" >
+                                              <option value="">Select Below</option>
+                                              <option value="turkey" <?php if(in_array('turkey', json_decode($product->protein_type))){echo "Selected";}?>>Turkey</option>
+                                              <option value="chicken"<?php if(in_array('chicken', json_decode($product->protein_type))){echo "Selected";}?>>Chicken</option>
+                                              <option value="beef"<?php if(in_array('beef', json_decode($product->protein_type))){echo "Selected";}?>>Beef</option>
+                                              <option value="lamb"<?php if(in_array('lamb', json_decode($product->protein_type))){echo "Selected";}?>>Lamb</option>
+                                              <option value="duck"<?php if(in_array('duck', json_decode($product->protein_type))){echo "Selected";}?>>Duck</option>
+                                              <option value="salmon"<?php if(in_array('salmon', json_decode($product->protein_type))){echo "Selected";}?>>Salmon</option>
+                                              <option value="pork"<?php if(in_array('pork', json_decode($product->protein_type))){echo "Selected";}?>>Pork</option>
+                                              <option value="venison"<?php if(in_array('venison', json_decode($product->protein_type))){echo "Selected";}?>>Venison</option>
+                                          </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="card">
+                                <div class="card-body">
                                     <h4>Inventory</h4>
                                     <div class="row row-xs align-items-center mg-b-20" id="sku">
                                         <div class="col-md-4">
@@ -185,7 +253,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-12 col-md-12">
+                        <!-- <div class="col-lg-12 col-md-12">
                             <div class="card">
                                 <div class="card-body">
                                     <h4>Shipping</h4>
@@ -200,7 +268,7 @@
 
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-lg-12 col-md-12">
                             <div class="card">
                                 <div class="card-body">
@@ -352,6 +420,13 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script type="text/javascript">
+         $(document).ready(function() {
+             $("#select").select2({
+                multiple:true
+                });
+                $(".dog").select2({ });
+
+  });
 //validate image height width
 function CheckDimensionFeatureImage() {
      var fileUpload = document.getElementById("feature_image");

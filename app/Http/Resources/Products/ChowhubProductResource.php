@@ -29,9 +29,19 @@ class ChowhubProductResource extends JsonResource
             'id' => $this->id,
             'name' => $this->productName,
             'sku' => $this->sku,
+            'pet_type' => $this->pet_type,
+            'age' => $this->age,
+            'food_type' => $this->food_type,
+            'protein_type' => json_decode($this->protein_type),
             'type' => $this->type,
             'feature_image' => $this->feature_image,
-
+            'status' => $this->status,
+            'weight' => $this->weight,
+            'description' => $this->description,
+            'quantity' => $this->quantity,
+            'real_price' => $this->real_price,
+            'sale_price' => $this->sale_price,
+            'feature_image' => $this->feature_image,
             'category' => new ProductCategoryResource($this->category),
             'store' => new ProductStoreResource($this->store),
             'variations' => ProductVariationsResource::collection($this->productVariation),
@@ -40,13 +50,7 @@ class ChowhubProductResource extends JsonResource
             'experiential_page_image' =>  ProductFeaturePageImageResource::collection($this->productFeaturePageImage) ,
             'attributes' => ProductAttributesResource::collection($this->variationAttributesValue),
             'tags'=>$this->tags?TagsResource::collection($this->tags):null,
-            'status' => $this->status,
-            'weight' => $this->weight,
-            'description' => $this->description,
-            'quantity' => $this->quantity,
-            'real_price' => $this->real_price,
-            'sale_price' => $this->sale_price,
-            'feature_image' => $this->feature_image,
+
             'variation_attributes'=>  $this->getAttributeByProduct($this->id)
 
         ];
