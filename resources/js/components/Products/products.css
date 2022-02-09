@@ -1114,13 +1114,31 @@ section.about-brand p {font-family: 'Gentona'; font-size: 14px; line-height: 1.3
     height: auto !important;
 }
 .col-md-6.max_530 {
-    max-width: 530px;
+ max-width: 530px;
+ 
 }
 .col-md-6.max_530 + .col-md-6 {
-    max-width: calc(100% - 580px);
+ max-width: calc(100% - 580px);
     width: 100%;
 }
 .row.pr_slide {
     gap: 50px;
     justify-content: space-between;
+}
+
+@media only screen and (min-width:1400px) and (max-width:3000px)
+{
+.col-md-6.max_530 {
+/*    max-width: 530px;*/
+ max-width: calc(45% - 25px);
+}
+.col-md-6.max_530 + .col-md-6 {
+/* max-width: calc(100% - 580px);*/
+ max-width: calc(55% - 25px);
+    width: 100%;
+}
+.row.pr_slide {
+    gap: 50px;
+    justify-content: space-between;
+}
 }

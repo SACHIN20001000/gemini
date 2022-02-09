@@ -29,7 +29,7 @@
                          <li><a href="#">DaySpaw®</a></li>
                          <li><a href="#">Chowologist™</a></li>
                          <li><a href="#">Click & Pick</a></li>
-                         <li><a href="#">Coming Soon...</a></li>
+                         <li><a href="#">Coming Soon</a></li>
                       </ul>
                    </div>
                    <div class="col">
@@ -75,7 +75,7 @@
                </div>
                 <div class="row">
                  <div class="col-md-12">
-                  <p class="copy_p">© 2020 Pet Parents LLC. All Logos and Trademarks belong to their respective owners.</p>
+                  <p class="copy_p">© 2022 Pet Parents LLC. All Logos and Trademarks belong to their respective owners.</p>
                  </div>
                 </div>
              </div>
