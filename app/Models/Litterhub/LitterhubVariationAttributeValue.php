@@ -22,7 +22,7 @@ class LitterhubVariationAttributeValue extends Model
 
     public function variationAttributeName()
     {
-        return $this->belongsTo(LitterHubVariationAttribute::class, 'attribute_id');
+        return $this->belongsTo(LitterhubVariationAttribute::class, 'attribute_id');
     }
 
 }

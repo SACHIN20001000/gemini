@@ -11,6 +11,9 @@ use App\Http\Controllers\API\Chowhub\ChowhubCategoryController;
 use App\Http\Controllers\API\Chowhub\ChowhubStoreController;
 use App\Http\Controllers\API\Chowhub\ChowhubCartController;
 
+use App\Http\Controllers\API\Litterhub\LitterhubStoreController;
+use App\Http\Controllers\API\Litterhub\LitterhubProductController;
+
 
 use App\Http\Controllers\API\PageController;
 use App\Http\Controllers\API\CartController;
@@ -61,6 +64,10 @@ Route::middleware([EnsureApiTokenIsValid::class])->group(function () {
   Route::get('chowhub/products/attributes/{id}', [ChowhubProductController::class, 'getAttributeByProduct']);
   Route::get('chowhub/categories', [ChowhubCategoryController::class, 'index']);
   Route::any('chowhub/categories/{id}', [ChowhubCategoryController::class, 'category_by_id']);
+//litterhub
+  Route::get('litterhub/products', [LitterhubProductController::class, 'index']);
+  Route::any('litterhub/products/{id}', [LitterhubProductController::class, 'productById']);
+  Route::get('litterhub/products/attributes/{id}', [LitterhubProductController::class, 'getAttributeByProduct']);
 
   Route::get('pages', [PageController::class, 'index']);
   Route::any('pages/{id}', [PageController::class, 'pageByID']);
@@ -125,8 +132,9 @@ Route::delete('/chowhub/cart/{cart}/{itemId}', [ChowhubCartController::class, 'd
 Route::post('/chowhub/cart/{cart}',[ChowhubCartController::class, 'addProducts']);
 Route::post('/chowhub/checkout/{cart}',[ChowhubCartController::class, 'checkout']);
 Route::get('/payments',[TestController::class, 'index']);
-
-
+//litterhub
+Route::get('litterhub/stores', [LitterhubStoreController::class, 'index']);
+Route::get('litterhub/stores/{store}', [LitterhubStoreController::class, 'show']);
 
 
 
