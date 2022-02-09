@@ -20,7 +20,7 @@ class SolutionhubProductTag extends Model
 
     public function tagName()
     {
-        return $this->belongsTo(Tag::class, 'tag_id');
+        return $this->belongsTo(SolutionhubTag::class, 'tag_id');
     }
 
 }
