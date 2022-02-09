@@ -45,84 +45,87 @@ function loginRoute(to, from, next)
 }*/
 export default new VueRouter({
 	mode: 'history',
-routes: [
-  {
-		path: '/',
-		// beforeEnter : guardMyroute,
-		name: 'Home',
-		component: Home
-	},
-  {
-		path: '/category/:slug',
-		beforeEnter : guardMyroute,
-		name: 'Category',
-		component: Category
-	},
-  {
-		path: '/products/:slug/:id',
-		beforeEnter : guardMyroute,
-		name: 'Products',
-		component: Products
-	},
-  {
-		path: '/cart',
-		beforeEnter : guardMyroute,
-		name: 'Cart',
-		component: Cart
-	},
-  {
-		path: '/payment',
-		beforeEnter : guardMyroute,
-		name: 'Payment',
-		component: Payment
-	},
-  {
-		path: '/checkout',
-		beforeEnter : guardMyroute,
-		name: 'Checkout',
-		component: Checkout
-	},
-  {
-		path: '/blog/:slug',
-		beforeEnter : guardMyroute,
-		name: 'Blog',
-		component: Blog
-	},
-	{
-		path: '/dashboard',
-		beforeEnter : loginRoute,
-		name: 'Dashboard',
-		component: Dashboard
-	},
-	{
-		path: '/register',
-		beforeEnter : guardMyroute,
-		name: 'Register',
-		component: Register
-	},
-	{
-		path: '/signin',
-		beforeEnter : guardMyroute,
-		name: 'Login',
-		component: Login
-	},
-	{
-		path: '/profile',
-		beforeEnter : loginRoute,
-		name: 'Profile',
-		component: Profile
-	},
-	{
-		path: '/signout',
-		// beforeEnter : guardMyroute,
-		name: 'Logout',
-		component: Logout
-	},
-  {
-		path: '/chowhub/:cartid/:cartkey',
-		beforeEnter : guardMyroute,
-		name: 'Chowhub',
-		component: Chowhub
-	}
-]
+  routes: [
+    {
+      path: '/',
+      // beforeEnter : guardMyroute,
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/category/:slug',
+      beforeEnter : guardMyroute,
+      name: 'Category',
+      component: Category
+    },
+    {
+      path: '/products/:slug/:id',
+      beforeEnter : guardMyroute,
+      name: 'Products',
+      component: Products
+    },
+    {
+      path: '/cart',
+      beforeEnter : guardMyroute,
+      name: 'Cart',
+      component: Cart
+    },
+    {
+      path: '/payment',
+      beforeEnter : guardMyroute,
+      name: 'Payment',
+      component: Payment
+    },
+    {
+      path: '/checkout',
+      beforeEnter : guardMyroute,
+      name: 'Checkout',
+      component: Checkout
+    },
+    {
+      path: '/blog/:slug',
+      beforeEnter : guardMyroute,
+      name: 'Blog',
+      component: Blog
+    },
+    {
+      path: '/dashboard',
+      beforeEnter : loginRoute,
+      name: 'Dashboard',
+      component: Dashboard
+    },
+    {
+      path: '/register',
+      beforeEnter : guardMyroute,
+      name: 'Register',
+      component: Register
+    },
+    {
+      path: '/signin',
+      beforeEnter : guardMyroute,
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/profile',
+      beforeEnter : loginRoute,
+      name: 'Profile',
+      component: Profile
+    },
+    {
+      path: '/signout',
+      // beforeEnter : guardMyroute,
+      name: 'Logout',
+      component: Logout
+    },
+    {
+      path: '/chowhub/:cartid/:cartkey',
+      beforeEnter : guardMyroute,
+      name: 'Chowhub',
+      component: Chowhub
+    }
+  ],
+  scrollBehavior() {
+    window.scrollTo(0, 0)
+  }
 })
