@@ -13,6 +13,8 @@ use App\Http\Controllers\API\Chowhub\ChowhubCartController;
 
 use App\Http\Controllers\API\Litterhub\LitterhubStoreController;
 use App\Http\Controllers\API\Litterhub\LitterhubProductController;
+use App\Http\Controllers\API\Litterhub\LitterhubCartController;
+
 
 
 use App\Http\Controllers\API\PageController;
@@ -135,6 +137,10 @@ Route::get('/payments',[TestController::class, 'index']);
 //litterhub
 Route::get('litterhub/stores', [LitterhubStoreController::class, 'index']);
 Route::get('litterhub/stores/{store}', [LitterhubStoreController::class, 'show']);
-
+Route::resource('litterhub/cart', LitterhubCartController::class, ['as' => 'litterhubcart']);
+Route::get('/litterhub/cartIdByKey', [LitterhubCartController::class, 'getCartIDUsingKey']);
+Route::delete('/litterhub/cart/{cart}/{itemId}', [LitterhubCartController::class, 'deleteCartItem']);
+Route::post('/litterhub/cart/{cart}',[LitterhubCartController::class, 'addProducts']);
+Route::post('/litterhub/checkout/{cart}',[LitterhubCartController::class, 'checkout']);
 
 

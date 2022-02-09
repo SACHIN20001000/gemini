@@ -135,6 +135,7 @@
                                 <div style="overflow: auto;" >
                                    <select class="form-control select2"   id="specific_product"  name="product_id[]"  >
                                      @if(isset($products))
+                                     <option value="0">Select Below</option>
                                      @foreach($products as $product)
                                             <option value="{{$product->id}}" {{ (isset($coupon) && $coupon->product_id  == $product->id) ? 'Selected' : '' }}>{{$product->productName}}</option>
                                       @endforeach
@@ -193,7 +194,7 @@
 
     $("#entire").click(function () {
         $("#product_id").hide();
-
+        $("#specific_product option").prop("selected", false);
      $("#category_id").hide();
     });
     if($("#categories").is(":checked")) {

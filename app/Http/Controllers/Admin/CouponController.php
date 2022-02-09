@@ -85,7 +85,7 @@ class CouponController extends Controller
         $inputs = $request->all();
         foreach ($inputs['product_id'] as $key => $value)
         {
-
+            $inputs['product_type'] = 'product';
             $inputs['product_id'] = $value;
             Coupon::create($inputs);
         }
@@ -135,7 +135,7 @@ class CouponController extends Controller
         $inputs = $request->all();
         foreach ($inputs['product_id'] as $key => $value)
         {
-
+            $inputs['product_type'] = 'product';
             $inputs['product_id'] = $value;
             $coupon->update($inputs);
         }
