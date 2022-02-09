@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\LitterHub\Stores;
+namespace App\Http\Requests\Admin\Litterhub\Stores;
 
 use Illuminate\Foundation\Http\FormRequest;
 
