@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Coupon;
 use App\Models\Category;
-use App\Models\LitterHub\LitterhubProduct;
+use App\Models\Litterhub\LitterhubProduct;
 use DataTables;
 use App\Http\Requests\Admin\Coupon\AddCoupon;
 use App\Http\Requests\Admin\Coupon\UpdateCoupon;
