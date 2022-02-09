@@ -327,7 +327,7 @@ public function store(AddProduct $request)
             $attributes[$data->variationAttributeName->name][] = $data->name;
         }
 
-        return view('admin.Litterhub.products.addEdit', compact('product', 'stores',  'attributes', 'variations'));
+        return view('admin.litterhub.products.addEdit', compact('product', 'stores',  'attributes', 'variations'));
     }
 
     /**
