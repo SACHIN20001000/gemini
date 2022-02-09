@@ -54,3 +54,25 @@ h1.page_title:before {
     margin:0 10px;
     opacity: .2;
 }
+
+
+.thanks {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    min-height: calc(100vh - 460px);
+}
+.thanks h1 {
+    font-size: 6vw;
+    font-weight: 700;
+    display: block;
+    text-align: center;
+    color: #e42930;
+}
+.thanks div {
+    text-align: center;
+}
+.thanks h1 span {
+    color: #00b7bc;
+}
