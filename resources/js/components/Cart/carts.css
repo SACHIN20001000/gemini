@@ -9,7 +9,7 @@ ul.cart_header>li {  text-transform: uppercase;  color: #6d6e71;}
 .cartlabel.cart_grid span {color: #575758; font-weight: 300; }
 span.prod_remove a {width: 30px; height: 30px;border: 1px solid #00b7bd; background: #00b7bd; border-radius: 0px; display: flex; align-items: center; justify-content: center; font-weight: 500; margin: 0 auto; }
 span.prod_price,span.prod_items {color: #e4002b !important; font-weight: 500 !important; }
-span.prod_remove a:hover{ color:#00b7bd; background: #fff;} 
+span.prod_remove a:hover{ color:#00b7bd; background: #fff;}
 .img_ratio img {position: absolute; left: 5px; top: 5px; height: calc(100% - 10px); width: calc(100% - 10px); object-fit: contain; }
 li.pr_tile, span.prod_name {text-align: left !important; }
 .btn_left a {margin-right: 10px; }
@@ -24,6 +24,34 @@ p.msg_offer {font-size: 14px; color: #ed1b3c; max-width: 300px; margin-left: aut
 .msg_blu >span:hover {background: #11b6bd; color: #fff; }
 .msg_blu + a {max-width: 300px; width: 100%; text-align: center; }
 .pay_type img {max-width: 307px; margin-top: 10px; }
+.itenVarient > li {
+  width: auto !important;
+  font-weight: 500;
+  border: 0px !important;
+  margin: 0;
+  position: relative;
+  color: #8c8c8c;
+  text-transform: uppercase;
+}
+.itenVarient {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0;
+  gap: 10px;
+}
+
+.itenVarient > li:not(:last-child)::after {
+
+    content: "";
+    width: 1px;
+    height: 10px;
+    background: #8c8c8c;
+    display: inline-block;
+    position: absolute;
+    right: -6px;
+    top: 5px;
+
+}
 
 @media only screen and (min-width:700px) and (max-width: 890px)
 {

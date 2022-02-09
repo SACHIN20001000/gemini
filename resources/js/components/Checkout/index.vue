@@ -25,7 +25,7 @@
               Cart
             </router-link>
           </li>
-          <li class="active">Payment<li/>
+          <li class="active">Payment</li>
         </ul>
           <!--<fieldset class="legend_body">
           <legend>Express checkout</legend>
@@ -214,11 +214,11 @@
       <div class="onebythree">
         <div v-if="getCartItem">
           <div
-            class="product_check fl_div"
+            class="mb_2"
             v-for="(cartItem,cikey) in getCartItem"
             :key="cikey"
           >
-            <div v-if="cartItem.variationProduct">
+            <div v-if="cartItem.variationProduct" class="fl_div product_check">
               <div class="fl_left">
                 <div class="pro_thumb">
                   <img :src="cartItem.variationProduct.image"><span class="p_quant">{{cartItem.quantity}}</span>
@@ -354,12 +354,12 @@
           </li>
         </ul>
      <hr>
-        <div class="placeorder text-right">
+        <div class="placeorder text-right btn_load">
+          <p class="load_img" v-if="loadingDisplay">
+            <img :src="loading">
+          </p>
           <button type="button" @click='paymentProcessed' class="btn_blu btn_md">Submit</button>
         </div>
-      <p v-if="loadingDisplay">
-        <img :src="loading">
-      </p>
       <hr>
       <div class="successMsg" v-if="transactionResponse && transactionResponse.length>0">
         <p>{{transactionResponse.message}}. Transaction ID : {{transactionResponse.transaction_id}}</p>
@@ -556,7 +556,7 @@ export default {
     },
     applyCode(){
       if (this.coupon_form.validate().errors().any()) return;
-      this.loadingDisplay=true
+
       HTTP.post(process.env.MIX_APP_APIURL+'coupon', this.coupon_form.data).then((response) => {
         this.CouponCode=response.data.data
         this.couponCodeInfo =[]
@@ -578,6 +578,7 @@ export default {
       })
     },
     async paymentProcessed () {
+      this.loadingDisplay=true
       var _this = this
       if(this.disableShippingForm==0){
         Object.keys(_this.form.data).forEach(function(key,index) {
