@@ -48,7 +48,7 @@ class UpdateProduct extends FormRequest
     {
         return [
             //   'description_images.dimensions' => 'Description Image must be width=1238px and height=652px',
-              'feature_image.dimensions' => 'Feature Image must be width=619px and height=577px',
+            //   'feature_image.dimensions' => 'Feature Image must be width=619px and height=577px',
             //   'image.dimensions' => 'Image must be width=619px and height=577px',
             //   'feature_page_images.dimensions' => 'Experiential Page Image must be width=1238px and height=652px',
 
