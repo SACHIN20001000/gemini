@@ -246,7 +246,7 @@ ul.foot_nav2 li a,ul.foot_nav2 li label {  font-size: 14px;}
     width: 100% !important;
     justify-content: space-between;
     align-items: center;
-} 
+}
 .meta_footer>div {
     width: 100% !important;
 }
@@ -260,12 +260,12 @@ ul.foot_nav2 li a,ul.foot_nav2 li label {  font-size: 14px;}
     width: 66%;
         justify-content: center;
     display: flex;
-} 
+}
 .meta_footer .v_center>.col-md-2 + .col-md-5 + .col-md-5 {
     width: 33%;
         justify-content: center;
     display: flex;
-}   
+}
 .meta_footer {
     padding: 20px 0 !important;
 }
