@@ -25,7 +25,10 @@ class UpdateCoupon extends FormRequest
     {
         return [
             'name' => 'required',
-            'code' => 'required',
+            'code' => [
+                'required',
+                'unique:coupons,code'
+                ],
             'type' => 'required',
             'apply_to' => 'required',
             'value' => 'required',
