@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\LitterHub;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\LitterHub\LitterHubStore;
+use App\Models\Litterhub\LitterhubStore;
 use DataTables;
 use App\Http\Requests\Admin\LitterHub\Stores\AddStores;
 use App\Http\Requests\Admin\LitterHub\Stores\UpdateStores;
@@ -23,7 +23,7 @@ class LitterHubStoreController extends Controller
 
         if ($request->ajax())
         {
-            $data = LitterHubStore::all();
+            $data = LitterhubStore::all();
 
             return Datatables::of($data)
                             ->addIndexColumn()
@@ -77,7 +77,7 @@ class LitterHubStoreController extends Controller
     {
 
 
-        $Store = new LitterHubStore;
+        $Store = new LitterhubStore;
         $Store->name = $request->name;
         $Store->save();
 
@@ -103,9 +103,9 @@ class LitterHubStoreController extends Controller
      */
     public function edit($id)
     {
-        $store = LitterHubStore::find($id);
+        $store = LitterhubStore::find($id);
 
-        $stores = LitterHubStore::where('id', '!=', $id)->get();
+        $stores = LitterhubStore::where('id', '!=', $id)->get();
         return view('admin.LitterHub.stores.addEdit', compact('stores', 'store'));
     }
 
@@ -119,7 +119,7 @@ class LitterHubStoreController extends Controller
     public function update(UpdateStores $request, $id)
     {
 
-        $Store = LitterHubStore::find($id);
+        $Store = LitterhubStore::find($id);
         $Store->name = $request->name;
         $Store->save();
 
@@ -134,7 +134,7 @@ class LitterHubStoreController extends Controller
      */
     public function destroy($id)
     {
-        LitterHubStore::find($id)->delete();
+        LitterhubStore::find($id)->delete();
 
         return back()->with('success', 'Store deleted successfully!');
     }
