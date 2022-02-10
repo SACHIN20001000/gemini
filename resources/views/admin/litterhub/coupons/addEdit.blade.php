@@ -114,7 +114,7 @@
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                 <p id="validation_show" style="color: green;"></p>
-                                    <input  name="lifetime_coupon" value="1"  type="checkbox"> if checked, Coupon Don't expire
+                                    <input  name="lifetime_coupon" value="1" {{ (isset($coupon) && $coupon->lifetime_coupon  == 1) ? 'Checked' : '' }} type="checkbox"> if checked, Coupon Don't expire
                                 </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
