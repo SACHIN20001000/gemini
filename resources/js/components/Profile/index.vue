@@ -1,5 +1,6 @@
 <template>
   <div class="main_container">
+    <Notification ref="notifications"/>
     <div class="free_ship_bar">
       <p>
         <img :src="ship">Free Shipping on All U.S. Orders Over <b>$49</b>
@@ -11,18 +12,24 @@
           <div class="col-md-8">
             <div class="row">
               <div class="col-3" v-if="profileDetails && profileDetails.profile_image !=null">
-              <div class="profile_banner">
-                <img :src="profileDetails.profile_image" width="120px">
-                <label class="uplod_btn">
-                  <input type="file" id="myfile" name="myfile" accept="image/*" @change="uploadImage($event)">
-                </label>
+                <div class="profile_banner">
+                  <img :src="profileDetails.profile_image" width="120px">
+                  <label class="uplod_btn">
+                    <input type="file" id="myfile" name="myfile" accept="image/*" @change="uploadImage($event)">
+                  </label>
+                </div>
+                <div class="loadingGif" v-if="imageloading">
+                  <img :src="loading" width="40px">
                 </div>
               </div>
-              <div class="col-3" v-if="profileDetails && profileDetails.profile_image ==''">
+              <div class="col-3" v-else>
                 <img :src="store_profile">
                 <label class="uplod_btn">
                   <input type="file" id="myfile" name="myfile" accept="image/*" @change="uploadImage($event)">
                 </label>
+                <div class="loadingGif" v-if="imageloading">
+                  <img :src="paw" width="30px">
+                </div>
               </div>
               <div class="col-9">
                 <h1 class="st_h">Welcome back, {{profileDetails.name}}!</h1>
@@ -144,8 +151,6 @@
                   <button type="button" class="update-btn" @click="updateShipping">Update</button>
                   <!--<a class="add-icon" href="#">+</a>-->
                 </form>
-                <p class="successMsg">{{shippingMsg}}</p>
-                <p class="errorMsg">{{errorMsg}}</p>
               </div>
               <div class="tab-pane fade" id="st_payment">
                 <p class="heading">Payment Details</p>
@@ -197,8 +202,12 @@
             <input type="file" id="myfile" name="myfile" accept="image/*" @change="uploadPetImage($event)">
           </label>
           <label><button type="button" @click="addPet">Add Pet</button></label>
+          <label>
+            <div class="loadingGif" v-if="petloading">
+              <img :src="loading" width="40px">
+            </div>
+          </label>
         </div>
-        <p class="addpetMsg">{{addpetMsg}}</p>
       </div>
     </section>
     <section class="st_info mb-5">
@@ -333,31 +342,25 @@ import {mapActions,mapGetters} from "vuex"
 import form from 'vuejs-form'
 import HTTP from './../../Api/auth'
 import axios from 'axios'
+import Notification from '../Notification'
 
-import tp3 from "../../assets/images/tp3.png"
-import tp2 from "../../assets/images/tp2.png"
-import tp1 from "../../assets/images/tp1.png"
-import dog2 from "../../assets/images/dog2.png"
-import dog1 from "../../assets/images/dog1.png"
+import loading from "../../assets/images/loading.gif"
 import input_edit from "../../assets/images/input_edit.png"
 import store_profile from "../../assets/images/store_profile.png"
 import ship from "../../assets/images/ship.png"
 
 export default {
   name:"Profile",
+  components: {
+    Notification
+  },
   data: () => ({
-    tp3:tp3,
-    tp2:tp2,
-    tp1:tp1,
-    dog2:dog2,
-    dog1:dog1,
+    loading:loading,
     input_edit:input_edit,
     store_profile:store_profile,
     ship:ship,
     errorMessage:'',
     nameData:{'name':1,'email':1,'password':1},
-    errorMsg:'',
-    shippingMsg:'',
     addMorePet:false,
     petImage:[],
     shippingFrom: form({
@@ -401,9 +404,10 @@ export default {
       .messages({
         'name.name': 'Name is required!'
       }),
-    addpetMsg:'',
     petprofiles:[],
-    profileDetails:[]
+    profileDetails:[],
+    imageloading:false,
+    petloading:false
   }),
   beforeMount(){
     this.getProfile()
@@ -429,64 +433,66 @@ export default {
   methods: {
     ...mapActions(['getProfile','updateProfile','getOrders', 'getPets']),
     displayField(fieldOpen){
-      this.shippingMsg=''
       if(this.nameData[fieldOpen]==1){
         this.nameData[fieldOpen]=0
       }else{
-        this.shippingFrom.validate()
-        if (!this.shippingFrom.validate().errors().any()) {
-          this.nameData[fieldOpen]=1
-          this.requestData(this.shippingFrom.data,'')
-        }
+        this.nameData[fieldOpen]=1
+        var userInfo = this.shippingFrom.data
+        delete userInfo['profile_image']
+        this.requestData(userInfo,'')
       }
     },
     updateShipping(){
       this.shippingFrom.validate()
       if (!this.shippingFrom.validate().errors().any()) {
-        this.requestData(this.shippingFrom.data,'')
+        var userInfo = this.shippingFrom.data
+        delete userInfo['profile_image']
+        this.requestData(userInfo,'')
       }
-      this.shippingMsg=''
     },
     requestData(profileData, config){
       if(config !=''){
         HTTP.post(process.env.MIX_APP_APIURL+"update", profileData,config).then((response) => {
-          this.shippingMsg='Shipping address update is successfully!'
+
           this.profileDetails= response.data.data
           var _this = this
           Object.keys(_this.profileDetails).reduce((formData, key) => {
               this.shippingFrom[key]= _this.profileDetails[key]
           })
+          this.$refs.notifications.displayNotification('success','UserInfo','User Details is updated.')
+          this.imageloading=false
         }).catch((errors) => {
-          errorMsg = errors
-          this.shippingMsg=''
+          this.$refs.notifications.displayNotification('error','UserInfo',errors.response.data.message)
         })
       }else{
         HTTP.post(process.env.MIX_APP_APIURL+"update", profileData).then((response) => {
-          this.shippingMsg='Shipping address update is successfully!'
           this.profileDetails= response.data.data
           var _this = this
           Object.keys(_this.profileDetails).reduce((formData, key) => {
               this.shippingFrom[key]= _this.profileDetails[key]
           })
+          this.$refs.notifications.displayNotification('success','UserInfo','User Details is updated.')
+          this.imageloading=false
         }).catch((errors) => {
-          errorMsg = errors
-          this.shippingMsg=''
+          this.$refs.notifications.displayNotification('error','UserInfo',errors.response.data.message)
         })
       }
     },
     petRequestData(petData, config){
       if(config !=''){
         HTTP.post(process.env.MIX_APP_APIURL+"pet/create", petData,config).then((response) => {
-          this.addpetMsg = response.data.message
           this.getPetslist()
           this.addMorePet = false
+          this.$refs.notifications.displayNotification('success','Pet','Pet is added.')
+          this.petloading=false
         }).catch((errors) => {
-          errorMsg = errors
-          this.shippingMsg=''
+          this.$refs.notifications.displayNotification('error','Pet',errors.response.data.message)
+          this.petloading=false
         })
       }
     },
     uploadImage(event) {
+      this.imageloading=true
       let data = new FormData();
       var _this = this
       Object.keys(this.shippingFrom.data).forEach(function(key,index) {
@@ -506,6 +512,7 @@ export default {
       }
     },
     addPet(){
+      this.petloading=true
       this.petform.validate()
       if (!this.petform.validate().errors().any()) {
         let data = new FormData()
@@ -528,7 +535,6 @@ export default {
     getPetslist(){
       HTTP.get(process.env.MIX_APP_APIURL+"pet").then((response) => {
         this.petprofiles= response.data.data
-        this.addpetMsg=''
       })
     },
     productSlug(productName){

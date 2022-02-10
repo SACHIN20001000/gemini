@@ -59,13 +59,18 @@ import {mapGetters,mapActions} from "vuex"
 export default {
   name:"Payments",
   created(){
-    this.getOrders()
+    this.removeCartOnLocal()
+    this.getCartToken()
   },
   computed: {
     ...mapGetters(['Orders'])
   },
   methods:{
-    ...mapActions(['getOrders'])
+    ...mapActions(['getCartToken']),
+    removeCartOnLocal(){
+      localStorage.removeItem('cartKey')
+      localStorage.removeItem('cartId')
+    }
   }
 }
 </script>

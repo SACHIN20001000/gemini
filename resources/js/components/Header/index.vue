@@ -44,24 +44,24 @@
               id="dropdownMenuButton1"
               data-bs-toggle="dropdown"
               aria-expanded="false"
+              data-toggle="dropdown"
+              aria-haspopup="true"
             >
               MY PROFILE
             </router-link>
-
               <ul class="dropdown-menu profile_drop" aria-labelledby="dropdownMenuButton1">
                 <li>
                   <router-link
                   :to="{ path: '/profile'}"
-                  class="alink"
+                  class="alink dropdown-item"
                   >
                   MY ACCOUNT
                   </router-link>
-                  </li>
-
+                </li>
                 <li>
                   <router-link
                   :to="{ path: '/signout'}"
-                  class="alink"
+                  class="alink dropdown-item"
                   >
                   LogOut
                   </router-link>

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <notifications group="foo"  position="top right" />
     <div class="main_container" id="mainContent" v-if="routeName() == 'Checkout'">
       <router-view />
     </div>
