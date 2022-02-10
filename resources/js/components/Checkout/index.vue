@@ -1,5 +1,6 @@
 <template>
   <div class="main grad_bg">
+    <Notification ref="notifications"/>
     <!--<h1>Checkout</h1>-->
     <div class="checkoutform">
       <div class="twobythree">
@@ -381,11 +382,13 @@ import { StripeElementCard } from '@vue-stripe/vue-stripe'
 import HTTP from './../../Api/auth'
 import loading from "../../assets/images/loading.gif"
 import paw from "../../assets/images/paw.png"
+import Notification from '../Notification'
 
 export default {
   name:"Checkout",
   components: {
-    StripeElementCard
+    StripeElementCard,
+    Notification
   },
   data: () => ({
     form: form({
@@ -488,6 +491,7 @@ export default {
   }),
   created(){
     this.getProfile()
+    this.getCartItems()
     this.cartTotalInfo()
   },
   watch:{
@@ -498,6 +502,21 @@ export default {
     },
     transaction(){
       this.transactionResponse=this.transaction
+    },
+    accountDetails(){
+      if(this.accountDetails){
+        var _this = this
+        Object.keys(_this.accountDetails).forEach(function(key,index) {
+          if(key!='id' && key!='profile_image' && key!='created_at' ){
+            _this.form.data[key] = _this.accountDetails[key]
+          }
+        })
+      }
+    },
+    cartTotal(){
+      if(this.cartTotal){
+        this.cartTotalValue = Number(this.cartTotal) + Number((this.cartTotal*this.tax)/100)
+      }
     }
   },
   computed: {
@@ -535,7 +554,7 @@ export default {
     this.cardCvc.destroy();
   },
   methods:{
-    ...mapActions(['addOrder','generatePay','removeCartItem','getProfile']),
+    ...mapActions(['addOrder','generatePay','getProfile','getCartItems']),
     calculateShipping(e,cost){
       this.shippingval = 0
       this.shippingval = cost.toFixed(2)
@@ -573,8 +592,10 @@ export default {
             this.cartTotalValue = doscountprice.toFixed(2)
           }
         }
+        this.$refs.notifications.displayNotification('success','Coupon Code','Coupon Code is applied.')
       }).catch((errors) => {
         this.couponCodeInfo = errors.response.data
+        this.$refs.notifications.displayNotification('error','Coupon Code',this.couponCodeInfo.message)
       })
     },
     async paymentProcessed () {
@@ -597,6 +618,7 @@ export default {
       const { token, error } = await this.$stripe.createToken(this.cardNumber);
       if (error) {
         document.getElementById('card-error').innerHTML = error.message;
+        this.$refs.notifications.displayNotification('error','Card','This card is invalid.')
         return;
       } else {
         var totalAmount = this.form.data.total.toFixed(2)
@@ -619,10 +641,11 @@ export default {
           if(this.transactionResponse.transaction_id){
             this.form.data.transaction_id = this.transactionResponse.transaction_id
             this.addOrder(this.form.data)
-            this.removeCartItem()
+            this.$refs.notifications.displayNotification('success','Payment','Payment is received.')
             this.loadingDisplay=false
           }
         }).catch((errors) => {
+          this.$refs.notifications.displayNotification('error','Payment','Payment is not received.')
           this.tranerror = errors+'Something was wrong!'
         })
       }

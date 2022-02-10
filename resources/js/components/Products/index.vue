@@ -1,5 +1,6 @@
 <template>
   <div class="main_container">
+    <Notification ref="notifications"/>
     <div class="free_ship_bar">
       <p>
         <img :src="ship">
@@ -102,8 +103,11 @@
               <div class="col-auto amount_pro">
                 <span  class="form-control">${{finalVariant.sale_price}}</span>
               </div>
-              <div class="col-auto add_cart">
+              <div class="col-auto add_cart" v-if="cartbtn">
                 <button class="btn_bl" @click="addItemInCart(product.id)" >Add to Cart</button>
+              </div>
+              <div class="col-auto add_cart" v-else>
+                <img :src="loading" width="30">
               </div>
             </div>
             <p class="ingr">
@@ -346,8 +350,11 @@
                       {{ faqForm.errors().get('question') }}
                     </span>
                   </div>
-                  <div class="form_label col-md-12 for_m_btn">
+                  <div class="form_label col-md-12 for_m_btn" v-if="subquestion">
                     <button type="button" @click='faqSubmit'>Submit Question</button>
+                  </div>
+                  <div class="form_label col-md-12 for_m_btn" v-else>
+                    <img :src="loading" width="30">
                   </div>
                 </div>
               </div>
@@ -475,7 +482,12 @@
                 </div>
                 <div class="review_btn_label review_form_label form_label">
                   <input type="file" multiple accept="image/*" @change="reviewImages($event.target.files)" id="reviewImages">
-                  <button type="button" @click="submitReview" >Submit Question</button>
+                  <span v-if="subreview">
+                    <button type="button" @click="submitReview" >Submit Review</button>
+                  </span>
+                  <span v-else>
+                    <img :src="loading" width="30">
+                  </span>
                 </div>
               </div>
             </div>
@@ -608,6 +620,7 @@ import foot_5 from "../../assets/images/foot-5.jpg"
 import review_01 from "../../assets/images/review-01.jpg"
 import thumb_up from "../../assets/images/thumb-up.png"
 import u_s from "../../assets/images/u_s.jpg"
+import loading from "../../assets/images/loading.gif"
 
 import form from 'vuejs-form'
 import StarRating from 'vue-star-rating'
@@ -615,6 +628,7 @@ import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 import VueInfiniteAutocomplete from 'vue-infinite-autocomplete'
 import JwPagination from 'jw-vue-pagination'
+import Notification from '../Notification'
 const exampleItems = [...Array(1).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }))
 export default {
   name:"Products",
@@ -629,7 +643,8 @@ export default {
     SwiperSlide,
     StarRating,
     "vue-infinite-autocomplete": VueInfiniteAutocomplete,
-    JwPagination
+    JwPagination,
+    Notification
   },
   directives: {
     swiper: directive
@@ -760,7 +775,11 @@ export default {
     reviews:[],
     paginationReviews:[],
     currentValue: "",
-    currentOptions: []
+    currentOptions: [],
+    loading:loading,
+    cartbtn:true,
+    subquestion:true,
+    subreview:true
   }),
   mounted: function() {
     this.getProdcut()
@@ -831,6 +850,7 @@ export default {
       }
     },
     addItemInCart(proId){
+      this.cartbtn=false
       if(proId){
         const cartkey = localStorage.getItem('cartKey')
         var vid=0
@@ -846,7 +866,12 @@ export default {
                         }
         const cartId = localStorage.getItem('cartId')
         HTTP.post(process.env.MIX_APP_APIURL+'cart/'+cartId, itemDetails).then((response) => {
+          this.$refs.notifications.displayNotification('success','Cart Update!','Cart is updated.')
           this.getCartItems()
+          this.cartbtn=true
+        }).catch((errors) => {
+          this.$refs.notifications.displayNotification('error','Cart Error!',errors.response.data.message)
+          this.cartbtn=true
         })
       }
     },
@@ -942,19 +967,15 @@ export default {
       }
     },
     faqSubmit(){
+      this.subquestion=false
       this.faqForm.validate()
       var _self = this
       if (!this.faqForm.validate().errors().any()) {
         var productId = this.$route.params.id
         this.faqForm.data.product_id=productId
         this.addFaq(this.faqForm.data)
-
-        this.$swal({
-          title: "Success!",
-          text: "Question is created successfully.",
-          type: "success",
-          timer: 2000
-        })
+        this.$refs.notifications.displayNotification('success','Question Added','Question is added.')
+        this.subquestion=true
         this.askQuestion=false
       }
     },
@@ -965,6 +986,7 @@ export default {
       this.photoFiles = fileList
     },
     submitReview(){
+      this.subreview=false
       this.reviewForm.validate()
       var _self = this
       if (!this.reviewForm.validate().errors().any()) {
@@ -981,12 +1003,8 @@ export default {
           formData.append('images[' + i + ']', this.photoFiles[i]);
         }
         this.addReview(formData)
-        this.$swal({
-          title: "Success!",
-          text: "Thanks for giving review.",
-          type: "success",
-          timer: 2000
-        })
+        this.$refs.notifications.displayNotification('success','Review Added','Review is added.')
+        this.subreview=true
         this.writeReview=false
       }
     },
