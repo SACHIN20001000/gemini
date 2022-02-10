@@ -165,7 +165,7 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4>Shipping</h4>
+                                    <h4>Product Specifications</h4>
                                     <div class="row row-xs align-items-center mg-b-20" >
                                         <div class="col-md-4">
                                             <label class="form-label mg-b-0">Pet Type</label>
