@@ -17,4 +17,9 @@ class SolutionhubProduct extends Model
     protected $fillable = [
         'productName', 'description', 'tag', 'feature_image', 'status',  'separation_anxiety','teething','boredom','disabled','energetic'
     ];
+    public function tags()
+    {
+
+        return $this->hasMany(SolutionhubProductTag::class, 'product_id', 'id');
+    }
 }
