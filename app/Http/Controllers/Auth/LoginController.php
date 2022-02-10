@@ -7,7 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
+use Session;
 class LoginController extends Controller
 {
     /*
@@ -40,8 +40,10 @@ use AuthenticatesUsers;
             return '/iot-admin/dashboard';
         } else
         {
-
-            return '/home';
+            Auth::logout();
+            Session::flash('message', 'User does not have the right permissions'); 
+            Session::flash('alert-class', 'alert-danger'); 
+            return '/admin';
         }
     }
 

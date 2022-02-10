@@ -28,6 +28,9 @@
 												<div class="main-signup-header">
 													<h2>Welcome back!</h2>
 													<h5 class="fw-semibold mb-4">Please sign in to continue.</h5>
+													@if(Session::has('message'))
+													<p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+													@endif
 										@if ($errors->any())
 											@foreach ($errors->all() as $error)
 											<div class="container">

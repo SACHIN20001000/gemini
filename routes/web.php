@@ -56,8 +56,17 @@ use App\Http\Controllers\Admin\SettingController;
 Route::get('logout', function ()
 {
     Auth::logout();
-    return "Logout Auth";
+    return redirect('/admin');
 });
+
+Route::get('home', function ()
+{
+    Auth::logout();
+   return redirect('/admin');
+});
+
+
+
 Route::prefix('admin')->group(function ()
 {
     Route::get('/', function ()
