@@ -171,7 +171,7 @@
                                             <label class="form-label mg-b-0">Pet Type</label>
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                          <select name="pet_type" class="form-control dog" id="">
+                                          <select name="pet_type" class="form-control dog" >
                                               <option value="">Select Below</option>
                                               <option value="dog"{{ (isset($product) && $product->pet_type  == 'dog') ? 'selected' : '' }}>Dog</option>
                                               <option value="cat"{{ (isset($product) && $product->pet_type  == 'cat') ? 'selected' : '' }}>Cat</option>
@@ -183,7 +183,13 @@
                                             <label class="form-label mg-b-0">Weight</label>
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                            <input class="form-control" name="weight" value="{{isset($product) ? $product->weight : '' }}" placeholder="0-22lbs, 23-59lbs, 60+lbs" type="text">
+
+                                            <select name="weight[]" class="form-control select2 multi" multiple="multiple" >
+                                              <option value="">Select Below</option>
+                                              <option value="0-22lbs" <?php if(isset($product->weight)){ if(in_array('0-22lbs', json_decode($product->weight))){echo "Selected";}}?>>0-22lbs</option>
+                                              <option value="23-59lbs"<?php  if(isset($product->weight)){ if(in_array('23-59lbs', json_decode($product->weight))){echo "Selected";}}?>>23-59lbs</option>
+                                              <option value="60+lbs"<?php  if(isset($product->weight)){ if(in_array('60+lbs', json_decode($product->weight))){echo "Selected";}}?>>60+lbs</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="row row-xs align-items-center mg-b-20">
@@ -191,7 +197,13 @@
                                             <label class="form-label mg-b-0">Age</label>
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                            <input class="form-control" name="age" value="{{isset($product) ? $product->age : '' }}" placeholder="0-1yrs, 1-10yrs, 10+yrs" type="text">
+
+                                            <select name="age[]" class="form-control select2 multi" multiple="multiple" >
+                                              <option value="">Select Below</option>
+                                              <option value="0-1yrs" <?php if(isset($product->age)){ if(in_array('0-1yrs', json_decode($product->age))){echo "Selected";}}?>>0-1yrs</option>
+                                              <option value="1-10yrs"<?php  if(isset($product->age)){ if(in_array('1-10yrs', json_decode($product->age))){echo "Selected";}}?>>1-10yrs</option>
+                                              <option value="10+yrs"<?php  if(isset($product->age)){ if(in_array('10+yrs', json_decode($product->age))){echo "Selected";}}?>>10+yrs</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="row row-xs align-items-center mg-b-20">
@@ -213,7 +225,7 @@
                                             <label class="form-label mg-b-0">Protein</label>
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                        <select name="protein_type[]" class="form-control select2"id="select" multiple="multiple" >
+                                        <select name="protein_type[]" class="form-control select2 multi" multiple="multiple" >
                                               <option value="">Select Below</option>
                                               <option value="turkey" <?php if(isset($product->protein_type)){ if(in_array('turkey', json_decode($product->protein_type))){echo "Selected";}}?>>Turkey</option>
                                               <option value="chicken"<?php  if(isset($product->protein_type)){ if(in_array('chicken', json_decode($product->protein_type))){echo "Selected";}}?>>Chicken</option>
@@ -421,7 +433,7 @@
 
     <script type="text/javascript">
          $(document).ready(function() {
-             $("#select").select2({
+             $(".multi").select2({
                 multiple:true
                 });
                 $(".dog").select2({ });

@@ -24,9 +24,11 @@ class CreateCouponsTable extends Migration
             $table->integer('category_id')->nullable();
             $table->integer('product_id')->nullable();
             $table->string('product_type')->nullable();;
-
+            $table->boolean('lifetime_coupon')->default(0);
             $table->integer('value');
             $table->integer('count')->nullable();
+            $table->date('started_at')->nullable();
+
             $table->date('expired_at')->nullable();
             $table->timestamps();
       });
