@@ -451,7 +451,7 @@ function CheckDimensionFeatureImage() {
                 image.onload = function () {
                     var height = this.height;
                     var width = this.width;
-                    if (height != 619  || width != 577) {
+                    if (width != 619  || height != 577) {
                         swal("Image size should be 619px*577px.Please again upload image! ");
                         $("#feature_image").val('');
                         return false;
