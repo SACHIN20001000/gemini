@@ -33,7 +33,7 @@ div#navbarNavDropdown li:hover a, div#navbarNavDropdown li.active a {font-weight
 .profile_drop li a {text-decoration: none; display: block; font-size: 12px; text-transform: uppercase; padding: 7px 15px; }
 .profile_drop {right: 0 !important; left: unset !important; margin-top: 5px !important; padding: 0 !important; box-shadow: -2px 6px 9px rgb(0 0 0 / 20%); }.menu_nav .navbar-nav li a img { margin-left: 5px;} .menu_nav li.nav-item.active {background: #e4022d;}
 .menu_nav li.nav-item.active a{ border: 0px !important; }
-.top_devider { height: 1px; max-width: min(100% - 160px,1280px); margin: 0 auto 10px auto;display: block; width: 100%; background: rgba(0,0,0,.1);}
+.top_devider { height: 1px; max-width:100%; margin: 0 auto 10px auto;display: block; width: 100%; background: rgba(0,0,0,.1);}
 .menu_nav .container-fluid {  max-width: min(100% - 160px,1600px);}
 .pr_img img {width: 45px; height: 45px; border-radius: 50%; object-fit: cover; }
 div#navbarNavDropdown li>a:before,.menu_nav li.nav-item.active>a:before{ content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
