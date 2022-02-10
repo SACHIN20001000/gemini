@@ -92,11 +92,29 @@
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Started From</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <p id="validation_show" style="color: green;"></p>
+                                    <input class="form-control" name="started_at"   placeholder="Enter your starting date " type="date" value="{{isset($coupon) ? $coupon->started_at : '' }}">
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
                                     <label class="form-label mg-b-0">Expired Date</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                 <p id="validation_show" style="color: green;"></p>
                                     <input class="form-control" name="expired_at" id="expired_at"   placeholder="Enter your expired date " type="date" value="{{isset($coupon) ? $coupon->expired_at : '' }}">
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Coupon Don't expire</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <p id="validation_show" style="color: green;"></p>
+                                    <input  name="lifetime_coupon" value="1"  type="checkbox"> if checked, Coupon Don't expire
                                 </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">

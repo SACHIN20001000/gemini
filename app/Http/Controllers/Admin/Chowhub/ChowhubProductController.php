@@ -119,10 +119,10 @@ public function store(AddProduct $request)
             $products->sale_price = $inputs['sale_price'];
             $products->sku = $inputs['sku'];
             $products->pet_type = $inputs['pet_type'];
-            $products->age = $inputs['age'];
+            $products->age =json_encode($inputs['age']);
             $products->food_type = $inputs['food_type'];
             $products->protein_type = json_encode($inputs['protein_type']);
-            $products->weight = $inputs['weight'];
+            $products->weight = json_encode($inputs['weight']);
             if (!empty($inputs['feature_image']))
             {
                 $path = Storage::disk('s3')->put('images', $inputs['feature_image']);
@@ -339,6 +339,7 @@ public function store(AddProduct $request)
     public function update(UpdateProduct $request, $id)
     {
         $inputs = $request->all();
+
         if(!isset($inputs['variations'][0]['id'])){
             ChowhubProductVariation::where('product_id', $id)->delete();
         }
@@ -358,9 +359,10 @@ public function store(AddProduct $request)
                 $products->feature_image = $image_path;
             }
             $products->sku = $inputs['sku'];
-            $products->weight = $inputs['weight'];
+
             $products->pet_type = $inputs['pet_type'];
-            $products->age = $inputs['age'];
+            $products->weight = json_encode($inputs['weight']);
+            $products->age =json_encode($inputs['age']);
             $products->food_type = $inputs['food_type'];
             $products->protein_type = json_encode($inputs['protein_type']);
             $products->quantity = $inputs['qty'];

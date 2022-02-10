@@ -4,16 +4,16 @@ namespace App\Http\Controllers\API\Litterhub;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\ChowhubCart;
-use App\Models\ChowhubProduct;
-use App\Models\ChowhubProductVariation;
-use App\Models\ChowhubCartItem;
+use App\Models\Litterhub\LitterhubCart;
+use App\Models\Litterhub\LitterhubProduct;
+use App\Models\Litterhub\LitterhubProductVariation;
+use App\Models\Litterhub\LitterhubCartItem;
 use App\Models\Order;
-use App\Http\Resources\Carts\ChowhubCartResource;
-use App\Http\Resources\Carts\ChowhubCartItemsResource;
-use App\Http\Requests\API\ChowhubCartIdRequest;
+use App\Http\Resources\Carts\LitterhubCartResource;
+use App\Http\Resources\Carts\LitterhubCartItemsResource;
+use App\Http\Requests\API\LitterhubCartIdRequest;
 use App\Http\Requests\API\CheckoutRequest;
-use App\Http\Requests\API\ChowhubCartAddProductRequest;
+use App\Http\Requests\API\LitterhubCartAddProductRequest;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
@@ -272,7 +272,7 @@ class LitterhubCartController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function deleteCartItem(ChowhubCart $cart, ChowhubCartItem $itemId, ChowhubCartIdRequest $request)
+    public function deleteCartItem(LitterhubCart $cart, LitterhubCartItem $itemId, LitterhubCartIdRequest $request)
     {
         if ($cart->key == $request->key)
         {
@@ -291,9 +291,9 @@ class LitterhubCartController extends Controller
 
     /**
      * @OA\Get(
-     *      path="chowhub/cartIdByKey",
-     *      operationId="Get Chowhub cart id by key",
-     *      tags={"ChowhubCarts"},
+     *      path="litterhub/cartIdByKey",
+     *      operationId="Get Litterhub cart id by key",
+     *      tags={"LitterhubCartS"},
      *     summary="Get cart id by key",
      *      *    @OA\RequestBody(
      *         required=true,
@@ -320,12 +320,12 @@ class LitterhubCartController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getCartIDUsingKey(ChowhubCartIdRequest $request)
+    public function getCartIDUsingKey(LitterhubCartIdRequest $request)
     {
-        $cart = ChowhubCart::where('key', $request->key)->first();
+        $cart = LitterhubCart::where('key', $request->key)->first();
         if ($cart)
         {
-            return new ChowhubCartResource($cart);
+            return new LitterhubCartResource($cart);
         }
 
         return response()->json([
@@ -335,10 +335,10 @@ class LitterhubCartController extends Controller
 
     /**
      * @OA\Post(
-     * * path="/chowhub/cart/{cart}",
-     *   tags={"ChowhubCarts"},
-     *   summary="Add chowhub Product into cart",
-     *   operationId="Chowhub ProductCart",
+     * * path="/litterhub/cart/{cart}",
+     *   tags={"LitterhubCarts"},
+     *   summary="Add Litterhub Product into cart",
+     *   operationId="Litterhub ProductCart",
      * *        *      @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -371,7 +371,7 @@ class LitterhubCartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addProducts(ChowhubCart $cart, ChowhubCartAddProductRequest $request)
+    public function addProducts(LitterhubCart $cart, LitterhubCartAddProductRequest $request)
     {
 
         $product_id = $request->product_id;
@@ -384,7 +384,7 @@ class LitterhubCartController extends Controller
             //Check if the proudct exist or return 404 not found.
             try
             {
-                $Product = ChowhubProduct::findOrFail($product_id);
+                $Product = LitterhubProduct::findOrFail($product_id);
             } catch (ModelNotFoundException $e)
             {
                 return response()->json([
@@ -393,14 +393,14 @@ class LitterhubCartController extends Controller
             }
 
             //check if the the same product is already in the Cart, if true update the quantity, if not create a new one.
-            $cartItem = ChowhubCartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id, 'variation_product_id' => $variation_product_id])->first();
+            $cartItem = LitterhubCartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id, 'variation_product_id' => $variation_product_id])->first();
             if ($cartItem)
             {
                 $cartItem->quantity = $quantity;
-                ChowhubCartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id, 'variation_product_id' => $variation_product_id])->update(['quantity' => $quantity]);
+                LitterhubCartItem::where(['cart_id' => $cart->id, 'product_id' => $product_id, 'variation_product_id' => $variation_product_id])->update(['quantity' => $quantity]);
             } else
             {
-                ChowhubCartItem::create(['cart_id' => $cart->id, 'product_id' => $product_id, 'variation_product_id' => $variation_product_id, 'quantity' => $quantity]);
+                LitterhubCartItem::create(['cart_id' => $cart->id, 'product_id' => $product_id, 'variation_product_id' => $variation_product_id, 'quantity' => $quantity]);
             }
 
             return response()->json(['message' => 'The Cart was updated with the given product information successfully'], 200);
