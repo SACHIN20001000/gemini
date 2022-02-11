@@ -29,6 +29,11 @@ class AlterOrdersTable extends Migration
      */
     public function down()
     {
-        
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropColumn('is_paid');
+            $table->dropColumn('discount');
+            $table->dropColumn('sub_total');
+        });
+
     }
 }
