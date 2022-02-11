@@ -145,7 +145,7 @@
                                     <h4>Pricing</h4>
                                     <div class="row row-xs align-items-center mg-b-20" >
                                         <div class="col-md-4">
-                                            <label class="form-label mg-b-0">Regular price (₹)</label>
+                                            <label class="form-label mg-b-0">Regular price ($)</label>
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
                                             <input class="form-control" name="real_price" value="{{isset($product) ? $product->real_price : '' }}" type="number" >
@@ -153,7 +153,7 @@
                                     </div>
                                     <div class="row row-xs align-items-center mg-b-20" >
                                         <div class="col-md-4">
-                                            <label class="form-label mg-b-0">Sale Price</label>
+                                            <label class="form-label mg-b-0">Sale Price ($)</label>
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
                                             <input class="form-control" name="sale_price" value="{{isset($product) ? $product->sale_price : '' }}" type="number" >
