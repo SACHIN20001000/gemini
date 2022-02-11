@@ -240,7 +240,8 @@
                   <table class="produc_table">
                     <thead>
                       <tr>
-                        <th class="data_head" width=25%><span class="tb_sm">Order Date</span> <b>{{orderslist.created_at | formatDate}}</b></th>
+                        <th class="data_head" width=25%><span class="tb_sm">Order Date</span>
+                          <b class="datefor">{{orderslist.created_at | formatDate}}</b></th>
                         <th class="data_head ord_num" width=25%>Order Number  <span>#{{orderslist.id}}</span></th>
                         <th  class="data_head" width=25%>Transaction Id:  <span class="tans_id ">{{orderslist.transaction_id}}</span></th>
                         <th  class="data_head ord_num" width=25%>Status: <span>{{orderslist.status}}</span></th>
@@ -260,11 +261,11 @@
                         </td>
                         <td class="t_size">
                           {{orderItems.product.name}}
-                          <span>Princess: {{orderItems.unit_price}} | Size: {{orderItems.product_id}}</span>
+                          <span>Princess: ${{priceRap(orderItems.unit_price)}} | Size: {{orderItems.product_id}}</span>
                         </td>
                         <td class="t_price">
                           <span>Item Price:</span>
-                          ${{orderItems.total_price}}
+                          ${{priceRap(orderItems.total_price)}}
                         </td>
                         <td class="t_btn">
                           <button>
@@ -306,11 +307,11 @@
                         </td>
                         <td class="t_size">
                           {{orderItems.product.name}}
-                          <span>Princess: {{orderItems.unit_price}} | Size: {{orderItems.product_id}}</span>
+                          <span>Princess: ${{priceRap(orderItems.unit_price)}} | Size: {{orderItems.product_id}}</span>
                         </td>
                         <td class="t_price">
                           <span>Item Price:</span>
-                          ${{orderItems.total_price}}
+                          ${{priceRap(orderItems.total_price)}}
                         </td>
                         <td class="t_btn">
                           <button>
@@ -539,6 +540,9 @@ export default {
     },
     productSlug(productName){
       return productName.replace(/\s+/g, '-').toLowerCase()
+    },
+    priceRap(orderPrice){
+      return orderPrice.toFixed(2)
     }
   }
 }
