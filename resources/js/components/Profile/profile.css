@@ -33,7 +33,7 @@ label.uplod_btn.upld_small {width: 40px; height: 40px !important; }
 .petForm select {width: 120px; }
 div#profil_detail input {height: 40px; border: 1px solid rgba(0,0,0,.1); font-size: 15px; padding: 0 0 0 15px; }
 p.heading {font-size: 22px; color: #9d9d9c; font-weight: 300; margin: 0px 0 15px 0; display: block; }
- .petForm label.uplod_btn.upld_small:after {content: "+"; width: 40px; height: 40px; font-size: 43px;}
+ .petForm label.uplod_btn.upld_small:after {content: ""; width: 40px; height: 40px; font-size: 43px;}
 .petForm button {background: #00b7bc !important;margin: 0 !important; border: 1px solid #00b7bc; font-size: 15px; height: 40px; padding: 0 40px !important; }
 .inp_edt .fa-check {width: 40px; height: 40px; line-height: 37px; border: 2px solid #00b7bc; text-align: center; justify-content: center; color: #00b7bc; font-size: 18px; }
 .inp_edt .fa-check:hover{background: #00b7bc; color: #fff; }
@@ -59,10 +59,10 @@ section.st_info.mb-5 .br_1:before {position: absolute; left: 0; top: 30px; heigh
 span.tans_id {    display: block; word-break: break-word; font-size: 12px; font-weight: 400; padding-top: 5px; font-style: italic; color: #706f6f;} .bb-1 {border-bottom: 1px solid #c7c7c7; }
 ul.pet_pro_list {list-style: none; padding: 0; margin: 0; display: flex; flex-direction: row; flex-wrap: wrap; width: 100%; grid-gap: 40px; }
 ul.pet_pro_list li a {display: block; width: 118px; height: 118px; background: #fff; border-radius: 50%; overflow: hidden; }
-label.uplod_btn {width: 118px; height: 118px; border-radius: 50%; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; position: relative; }
+label.uplod_btn { width: 118px; height: 118px; border-radius: 50%; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; position: relative; }
 label.uplod_btn input{position: absolute; top: 0; cursor: pointer; left: 0; width: 100%; height: 100%; z-index: 2; opacity: 0; }
-label.uplod_btn:after {content: "+"; width: 60px; height: 60px; border: 2px solid #5d5d5d; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 55px; color: #5d5d5d; transition-duration: .20s; font-weight: 300; padding-bottom: 13px; }
-.uplod_btn:hover:after{transform: scale(1.1); }
+label.uplod_btn:after {content: "";  background:url(../../assets/images/add.png) ;width: 66px; height: 66px;  border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 55px; color: #5d5d5d; transition-duration: .20s; background-size: 100%; font-weight: 300; }
+.uplod_btn:hover:after{transform: scale(1.1);} 
 ul.pet_pro_list li a + span {color: #9d9d9c; display: block; text-align: center; font-weight: 300; font-size: 20px; }
 .srch_order {display: flex; justify-content: flex-end; position: absolute; top: -30px; width: 100%; right: 15px; }
 table.produc_table th, table.produc_table td {padding: 20px; }
@@ -83,14 +83,14 @@ td.t_btn button:hover {background: #ee343f; color: #fff; border: 1px solid; }
 div#or_latest> .tb_responsive:not(:last-child) {margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,.1); }
 .profile_banner img {width: 130px; height: 130px; object-fit: cover; border-radius: 50%; overflow: hidden; }
 .profile_banner {position: relative;width: 130px; height: 130px; margin:0 auto; position: relative; }
-.profile_banner .uplod_btn:after {height: 25px; width: 25px !important; font-size: 34px; padding-bottom: 10px; color: #fff; border-color: #00b7bc; background: #00b7bc; }
-.profile_banner label.uplod_btn {    height: 25px; width: 25px; display: block; top: 15px; right: 0px; position: absolute; } .profile_banner input {height: 40px; width: 40px; cursor: pointer; top: 0; left: 0; padding: 0; z-index: 999; }
+.profile_banner .uplod_btn:after { background:url(../../assets/images/plus_m.png) !important ; height: 25px; width: 25px !important; font-size: 34px;color: #fff; border-color: #00b7bc; background: #00b7bc; }
+.profile_banner label.uplod_btn {    height: 26px; width: 26px; display: block; top: 15px; right: 0px; position: absolute; } .profile_banner input {height: 40px; width: 40px; cursor: pointer; top: 0; left: 0; padding: 0; z-index: 999; }
 ul.pet_pro_list li a img{width: 118px; height: 118px; object-fit: cover; border-radius: 50%; background: #f6f6f6; }
 section.st_banner .col-9 {padding-right: 50px; }
-
+b.datefor {max-width: 100px; display: block; }
 @media only screen and (max-width: 768px)
 {
-    section.st_banner .row>div {max-width: 100%; width: 100%; text-align: center; position: unset;}
+section.st_banner .row>div {max-width: 100%; width: 100%; text-align: center; position: unset;}
 h1.st_h {font-size: 30px; margin-top: 20px; }
 h1.st_h + p br {display: none; }
 h1.st_h + p {font-size: 16px; }
