@@ -47,7 +47,7 @@
         </div>
       </div>
     </section>
-    <section class="st_info">
+    <section class="st_info sf_1">
       <div class="container_990 bb-1">
         <h1 class="st_title">My Profile</h1>
         <div class="row">
@@ -160,7 +160,7 @@
         </div>
       </div>
     </section>
-    <section class="st_info">
+    <section class="st_info sf_2">
       <div class="container_990 bb-1">
         <h1 class="st_title">My Pet Profile</h1>
         <br>
@@ -241,9 +241,9 @@
                     <thead>
                       <tr>
                         <th class="data_head" width=25%><span class="tb_sm">Order Date</span> <b>{{orderslist.created_at | formatDate}}</b></th>
-                        <th class="data_head" width=25%>Order Number  #{{orderslist.id}}</th>
-                        <th  class="data_head" width=25%>Transaction Id: {{orderslist.transaction_id}}</th>
-                        <th  class="data_head" width=25%>Status: {{orderslist.status}}</th>
+                        <th class="data_head ord_num" width=25%>Order Number  <span>#{{orderslist.id}}</span></th>
+                        <th  class="data_head" width=25%>Transaction Id:  <span class="tans_id ">{{orderslist.transaction_id}}</span></th>
+                        <th  class="data_head ord_num" width=25%>Status: <span>{{orderslist.status}}</span></th>
                       </tr>
                     </thead>
                     <tbody v-if="orderslist.orderItems">
@@ -260,7 +260,7 @@
                         </td>
                         <td class="t_size">
                           {{orderItems.product.name}}
-                          <span>Princess: ${{orderItems.unit_price}} | Size: {{orderItems.product_id}}</span>
+                          <span>Princess: {{orderItems.unit_price}} | Size: {{orderItems.product_id}}</span>
                         </td>
                         <td class="t_price">
                           <span>Item Price:</span>
@@ -291,8 +291,8 @@
                     <thead>
                       <tr>
                         <th class="data_head" width=25%><span class="tb_sm">Order Date</span> <b>{{orderslist.created_at | formatDate}}</b></th>
-                        <th class="data_head" width=25%>Order Number  #{{orderslist.id}}</th>
-                        <th  class="data_head" width=25%>Transaction Id: {{orderslist.transaction_id}}</th>
+                        <th class="data_head ord_num " width=25%>Order Number  <span>#{{orderslist.id}}</span></th>
+                        <th  class="data_head" width=25%>Transaction Id: <span class="tans_id ">{{orderslist.transaction_id}}</span></th>
                         <th  class="data_head" width=25%>Status: {{orderslist.status}}</th>
                       </tr>
                     </thead>
@@ -306,7 +306,7 @@
                         </td>
                         <td class="t_size">
                           {{orderItems.product.name}}
-                          <span>Princess: ${{orderItems.unit_price}} | Size: {{orderItems.product_id}}</span>
+                          <span>Princess: {{orderItems.unit_price}} | Size: {{orderItems.product_id}}</span>
                         </td>
                         <td class="t_price">
                           <span>Item Price:</span>
