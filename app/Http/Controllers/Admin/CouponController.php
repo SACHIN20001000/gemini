@@ -95,14 +95,14 @@ class CouponController extends Controller
 
 
        $coupon= Coupon::create(['name' => $inputs['name'],
-       'code' => $inputs['code'],
-       'type' => $inputs['type'],
-       'value' => $inputs['value'],
-       'count' => $inputs['count'],
-       'started_at' => $inputs['started_at'],
-       'expired_at' => $inputs['expired_at'],
-       'lifetime_coupon' => $inputs['lifetime_coupon'],
-       'apply_to' => $inputs['apply_to'],
+       'code' => $inputs['code']??null,
+       'type' => $inputs['type'] ??null,
+       'value' => $inputs['value'] ??null,
+       'count' => $inputs['count'] ??null,
+       'started_at' => $inputs['started_at'] ??null,
+       'expired_at' => $inputs['expired_at'] ??null,
+       'lifetime_coupon' => $inputs['lifetime_coupon'] ??null,
+       'apply_to' => $inputs['apply_to'] ??null,
        'category_id' =>  (isset($inputs['category_id'])) ? json_encode($inputs['category_id']) : null,
        'user_id' => json_encode($inputs['user_id']) ?? null,
        'product_id' => (isset($inputs['product_id'])) ? json_encode($inputs['product_id']) : null,
@@ -157,16 +157,16 @@ class CouponController extends Controller
     {
 
         $inputs = $request->all();
-   
+
        $coupon->update(['name' => $inputs['name'],
-       'code' => $inputs['code'],
-       'type' => $inputs['type'],
-       'value' => $inputs['value'],
-       'count' => $inputs['count'],
-       'started_at' => $inputs['started_at'],
-       'expired_at' => $inputs['expired_at'],
-       'lifetime_coupon' => $inputs['lifetime_coupon'],
-       'apply_to' => $inputs['apply_to'],
+       'code' => $inputs['code']??null,
+        'type' => $inputs['type'] ??null,
+        'value' => $inputs['value'] ??null,
+        'count' => $inputs['count'] ??null,
+        'started_at' => $inputs['started_at'] ??null,
+        'expired_at' => $inputs['expired_at'] ??null,
+        'lifetime_coupon' => $inputs['lifetime_coupon'] ??null,
+        'apply_to' => $inputs['apply_to'] ??null,
        'category_id' => (isset($inputs['category_id'])) ? json_encode($inputs['category_id']) : null,
        'user_id' => (isset($inputs['user_id'])) ? json_encode($inputs['user_id']) : null,
        'product_id' => (isset($inputs['product_id'])) ? json_encode($inputs['product_id']) : null,
