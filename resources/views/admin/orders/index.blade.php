@@ -32,11 +32,12 @@
                                     <th class="wd-lg-20p"><span>Total</span></th>
                                     <th class="wd-lg-20p"><span>Discount</span></th>
                                     <th class="wd-lg-20p"><span>Item Count</span></th>
+                                    <th class="wd-lg-20p"><span>Fulfillment Status</span></th>
+                                    <th class="wd-lg-20p"><span>Payment Status</span></th>
                                     <th class="wd-lg-20p"><span>Payment Method</span></th>
 
                                     <th class="wd-lg-20p"><span>Shippping Method</span></th>
-                                    <th class="wd-lg-20p"><span>Fulfillment Status</span></th>
-                                    <th class="wd-lg-20p"><span>Payment Status</span></th>
+                                    
 
 
                                     
@@ -80,7 +81,6 @@
                 {data: 'status', name: 'status'},            
                 {data: 'is_paid', name: 'is_paid'}, 
                 {data: 'payment_method', name: 'payment_method'},
-
                 {data: 'shippingmethod', name: 'shippingmethod'},            
                            
 
