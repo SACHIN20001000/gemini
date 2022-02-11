@@ -100,8 +100,7 @@
                                 </tr>
                                     <tr>
                                         <td class="tx-right">Discount</td>
-                                        @
-                                        <td class="tx-right" colspan="2">-${{$order->discount}}</td>
+                                                                                <td class="tx-right" colspan="2">-${{$order->discount}}</td>
                                     </tr>
                                 <tr>
                                     <td class="tx-right tx-uppercase tx-bold tx-inverse">Total</td>
