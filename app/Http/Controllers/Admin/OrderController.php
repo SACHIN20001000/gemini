@@ -33,20 +33,18 @@ class OrderController extends Controller
                                 <a  href="' . route("orders.show", $row) . '" class="btn btn-sm btn-info btn-b"><i class="fa fa-eye" aria-hidden="true"></i>
 
                                 </a>
-                                <a  href="' . route("orders.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
-                                </a>
 
-                                    <a href="' . route("orders.destroy", $row) . '"
-                                            class="btn btn-sm btn-danger remove_us"
-                                            title="Delete User"
-                                            data-toggle="tooltip"
-                                            data-placement="top"
-                                            data-method="DELETE"
-                                            data-confirm-title="Please Confirm"
-                                            data-confirm-text="Are you sure that you want to delete this Order?"
-                                            data-confirm-delete="Yes, delete it!">
-                                            <i class="las la-trash"></i>
-                                        </a>
+                                <a href="' . route("orders.destroy", $row) . '"
+                                        class="btn btn-sm btn-danger remove_us"
+                                        title="Delete User"
+                                        data-toggle="tooltip"
+                                        data-placement="top"
+                                        data-method="DELETE"
+                                        data-confirm-title="Please Confirm"
+                                        data-confirm-text="Are you sure that you want to delete this Order?"
+                                        data-confirm-delete="Yes, delete it!">
+                                        <i class="las la-trash"></i>
+                                    </a>
                                 ';
                                 return $action;
                             })
