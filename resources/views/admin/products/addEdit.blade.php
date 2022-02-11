@@ -1,3 +1,5 @@
+
+
 @extends('admin.layouts.app')
 @section('content')
 <style>.imageSize{height: 100px;width: 100px;} .tag{color:black !important;background-color: aqua;font-size: 15px;}.PD_detail {display: flex; grid-gap: 20px;}.PD_detail .note-editor {width: 100%;}span.trash-icon {width: 50px;height: 50px;border-radius: 5px;border: 1px solid #dde2ef;display: flex;align-items: center;justify-content: center;font-size: 18px; color: #fff; background-color: #ee335e; border-color: #ee335e;}
@@ -141,7 +143,7 @@
                             <h4>Pricing</h4>
                             <div class="row row-xs align-items-center mg-b-20" >
                                 <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Regular price (₹)</label>
+                                    <label class="form-label mg-b-0">Regular price ($)</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                     <input class="form-control" name="real_price" value="{{isset($product) ? $product->real_price : '' }}" type="number" >
@@ -149,7 +151,7 @@
                             </div>
                             <div class="row row-xs align-items-center mg-b-20" >
                                 <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Sale Price</label>
+                                    <label class="form-label mg-b-0">Sale Price ($)</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                     <input class="form-control" name="sale_price" value="{{isset($product) ? $product->sale_price : '' }}" type="number" >
