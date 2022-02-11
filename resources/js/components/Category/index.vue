@@ -1,5 +1,6 @@
 <template>
   <div class="main">
+    <NavBar />
     <p>Category</p>
     <div v-if="category">
       <img
@@ -36,9 +37,13 @@
 </style>
 <script>
 import {mapActions,mapGetters} from "vuex"
+import NavBar from "../NavBar"
 
 export default {
   name:"Category",
+  components: {
+    NavBar
+  },
   data: function () {
     return {
       category:[]
