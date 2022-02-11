@@ -18,7 +18,7 @@ class AlterOrdersTable extends Migration
         Schema::table('orders', function (Blueprint $table) {
             $table->enum('is_paid', ['Paid','Unpaid','Authorised','Expiring','Failed'])->after('shippingmethod')->default('Unpaid');
             $table->float('discount')->after('is_paid')->nullable();
-            $table->float('sub_total')->after('sub_total')->nullable();
+            $table->float('sub_total')->after('discount')->nullable();
         });
     }
 
