@@ -13,19 +13,20 @@
     </div>
 
     </div>
-</div>
+
 <!-- breadcrumb -->
 
 <!-- row -->
 <div class="row row-sm">
-    <div class="col-md-12 col-xl-12">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 grid-margin">
         <div class=" main-content-body-invoice">
             <div class="card card-invoice">
                 <div class="card-body">
                     <div class="invoice-header">
                         <h1 class="invoice-title">Order Detail</h1>
                         <div class="billed-from">
-                            <h6>{{$order->user->name}}</h6>
+                            <h6>Billing Address</h6>
+                            <p>{{$order->user->name}}</p>
                             <p>{{$order->user->address}}<br>
                             @if(!empty($order->user->phone))
                             Tel No: {{$order->user->phone}} <br>
@@ -35,9 +36,9 @@
                     </div><!-- invoice-header -->
                     <div class="row mg-t-20">
                         <div class="col-md">
-                            <label class="tx-gray-600">Billed To</label>
+                            <h6 class="tx-gray-600">Shipping Address</h6>
                             <div class="billed-to">
-                                <h6>{{$order->shipping->sh_name}}</h6>
+                                <p>{{$order->shipping->sh_name}}</p>
                                 <p>{{$order->shipping->sh_address}}<br>
                                 Tel No: {{$order->shipping->sh_phone}}<br>
                                 Email: {{$order->shipping->sh_email}}</p>
@@ -50,7 +51,8 @@
                            @if(!empty($order->transaction_id))
                             <p class="invoice-info-row"><span>Transaction No:</span> <span>{{$order->transaction_id}}</span></p>
                             @endif
-                            <p class="invoice-info-row"><span>Status</span> <span>{{$order->status}}</span></p>
+                            <p class="invoice-info-row"><span>Fullfillment Status</span> <span>{{$order->status}}</span></p>
+                            <p class="invoice-info-row"><span>Payment Status</span> <span>{{$order->is_paid}}</span></p>
                             <p class="invoice-info-row"><span>Shipping Method</span> <span>{{$order->shippingmethod}}</span></p>
                             <p class="invoice-info-row"><span>Payment Method</span> <span>{{$order->payment_method}}</span></p>
 
@@ -94,14 +96,13 @@
                                         </div><!-- invoice-notes -->
                                     </td>
                                     <td class="tx-right">Sub-Total</td>
-                                    <td class="tx-right" colspan="2">${{$order->sub_total}}</td>
+                                    <td class="tx-right" colspan="2">${{$order->grand_total}}</td>
                                 </tr>
-                            @if(!empty($order->discount))
-                                <tr>
-                                    <td class="tx-right">Discount</td>
-                                    <td class="tx-right" colspan="2">-${{$order->discount}}</td>
-                                </tr>
-                                @endif
+                                    <tr>
+                                        <td class="tx-right">Discount</td>
+                                        @
+                                        <td class="tx-right" colspan="2">-${{$order->discount}}</td>
+                                    </tr>
                                 <tr>
                                     <td class="tx-right tx-uppercase tx-bold tx-inverse">Total</td>
                                     <td class="tx-right" colspan="2">
