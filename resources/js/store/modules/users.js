@@ -4,6 +4,7 @@ import HTTP from './../../Api/auth'
 
 const state = {
   errors: [],
+  loginErrors: [],
   userDetails:[],
   accountDetails:[],
   accountErrors:[],
@@ -18,6 +19,7 @@ formData.append('client_secret', '8BSSg7qMYw2NAJaiMhQOCYxGlFSs141SLfPRLU')
 const getters = {
   userDetails: state => state.userDetails,
   errors: state => state.errors,
+  loginErrors: state => state.loginErrors,
   accountDetails: state => state.accountDetails,
   accountErrors: state => state.accountErrors,
   tokenStatus: state => state.tokenStatus,
@@ -31,7 +33,7 @@ const actions = {
       localStorage.setItem('userauth', response.data.data.token)
       commit("userInfo", response.data.data)
     }).catch((errors) => {
-      commit("userErrors", errors.response.data.message)
+      commit("userErrors", errors.response.data)
     })
   },
   async loginUser({commit},data){
@@ -39,7 +41,7 @@ const actions = {
       localStorage.setItem('userauth', response.data.data.token)
       commit("userInfo", response.data.data)
     }).catch((errors) => {
-      commit("userErrors", errors.response.data.message)
+      commit("loginErrors", errors.response.data.message)
     })
   },
   async getProfile({commit}){
@@ -77,6 +79,9 @@ const mutations = {
   ),
   userErrors: (state, error) => (
     state.errors = error
+  ),
+  loginErrors: (state, error) => (
+    state.loginErrors = error
   ),
   accountDetails: (state, account) => (
     state.accountDetails = account
