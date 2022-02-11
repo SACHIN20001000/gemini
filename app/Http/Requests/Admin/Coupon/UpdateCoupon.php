@@ -32,7 +32,7 @@ class UpdateCoupon extends FormRequest
             'apply_to' => 'required',
             'value' => 'required',
             'count' => 'required',
-            'expired_at' => 'required',
+            // 'expired_at' => 'required',
         ];
     }
 }
