@@ -70,16 +70,12 @@ class CouponController extends Controller
      */
     public function create()
     {
-        $users = User::with('roles')->whereHas(
-            'roles', function($q){
-                $q->where('name','=','Customer');
-            })
-        ->get();
+
 
         $categories = Category::select('name', 'id')->where(['parent' => 0, 'type' => 'Product'])->get();
         $products = Product::select('productName', 'id')->get();
 
-        return view('admin.coupons.addEdit', compact('categories','products','users'));
+        return view('admin.coupons.addEdit', compact('categories','products'));
     }
 
     /**
@@ -104,7 +100,7 @@ class CouponController extends Controller
        'lifetime_coupon' => $inputs['lifetime_coupon'] ??0,
        'apply_to' => $inputs['apply_to'] ??null,
        'category_id' =>  (isset($inputs['category_id'])) ? json_encode($inputs['category_id']) : null,
-       'user_id' => json_encode($inputs['user_id']) ?? null,
+
        'product_id' => (isset($inputs['product_id'])) ? json_encode($inputs['product_id']) : null,
        'product_type' => 'product' ]);
 
@@ -130,11 +126,7 @@ class CouponController extends Controller
      */
     public function edit($id)
     {
-        $users = User::with('roles')->whereHas(
-            'roles', function($q){
-                $q->where('name','=','Customer');
-            })
-        ->get();
+
 
         $coupon = Coupon::find($id);
 
@@ -143,7 +135,7 @@ class CouponController extends Controller
         $coupons = Coupon::where('id', '!=', $id)->get();
        $products = Product::select('productName', 'id')->get();
 
-        return view('admin.coupons.addEdit', compact('coupons', 'users','coupon', 'categories', 'products'));
+        return view('admin.coupons.addEdit', compact('coupons', 'coupon', 'categories', 'products'));
     }
 
     /**
@@ -168,7 +160,7 @@ class CouponController extends Controller
         'lifetime_coupon' => $inputs['lifetime_coupon'] ??0,
         'apply_to' => $inputs['apply_to'] ??null,
        'category_id' => (isset($inputs['category_id'])) ? json_encode($inputs['category_id']) : null,
-       'user_id' => (isset($inputs['user_id'])) ? json_encode($inputs['user_id']) : null,
+     
        'product_id' => (isset($inputs['product_id'])) ? json_encode($inputs['product_id']) : null,
        'product_type' => 'product' ]);
         return back()->with('success', 'Coupon updated successfully!');

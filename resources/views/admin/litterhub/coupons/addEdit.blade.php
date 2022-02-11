@@ -113,8 +113,7 @@
                                     <label for="age2">Specific Category</label><br>
                                     <input type="radio"  id="products"   {{ (isset($coupon) && $coupon->apply_to  == 'specific_product') ? 'Checked' : '' }} name="apply_to" value="specific_product">
                                     <label for="age3">Specific Products</label><br>
-                                    <input type="radio"  id="users"   {{ (isset($coupon) && $coupon->apply_to  == 'specific_user') ? 'Checked' : '' }} name="apply_to" value="specific_user">
-                                    <label for="age3">Specific User</label><br>
+                                   
 
                                 </div>
                             </div>
@@ -149,23 +148,7 @@
                                     </div>
                                   </div>
                             </div>
-                            <div class="row row-xs align-items-center mg-b-20" id="user_id">
-                                    <div class="col-md-4">
-                                        <label class="form-label mg-b-0">Specific User</label>
-                                    </div>
-                                    <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <div style="overflow: auto;" >
-                                    <select class="form-control select2 multi" multiple  id="user_id"  name="user_id[]"  >
-                                        @if(isset($users))
-                                        <option value="0">Select Below</option>
-                                        @foreach($users as $user)
-                                                <option value="{{$user->id}}" <?php if(isset($coupon->user_id)){ if(in_array($user->id, json_decode($coupon->user_id))){echo "selected";}}?>>{{$user->name}}</option>
-                                        @endforeach
-                                        @endif
-                                    </select>
-                                    </div>
-                                  </div>
-                            </div>
+
                             <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($coupon) ? 'Update' : 'Save' }}</button>
                         </div>
                 </div>
@@ -190,15 +173,15 @@
     $("select").select2();
     $("#product_id").hide();
      $("#category_id").hide();
-     $("#user_id").hide();
+
 
 
     $("#categories").click(function () {
         $("#product_id").hide();
         $("#specific_product option").prop("selected", false);
-        $("#specific_user option").prop("selected", false);
+
         $("#category_id").show();
-        $("#user_id").hide();
+
     });
     $("#users").click(function () {
         $("#product_id").hide();
@@ -209,14 +192,14 @@
 
     });
     $("#products").click(function () {
-        $("#user_id").hide();
+
         $("#specific_category option").prop("selected", false);
         $("#product_id").show();
-        $("#specific_user option").prop("selected", false);
+
         $("#category_id").hide();
     });
     $(".chownhub").click(function () {
-        $("#user_id").hide();
+
         $("#specific_category option").prop("selected", false);
         $("#product_id").show();
         $("#category_id").hide();
@@ -224,27 +207,27 @@
 
     $("#entire").click(function () {
         $("#product_id").hide();
-        $("#user_id").hide();
+
         $("#specific_category option").prop("selected", false);
         $("#specific_product option").prop("selected", false);
-        $("#specific_user option").prop("selected", false);
+
         $("#category_id").hide();
     });
     if($("#categories").is(":checked")) {
         $("#product_id").hide();
         $("#category_id").show();
-        $("#user_id").hide();
+
   }
   if($("#products").is(":checked")) {
      $("#product_id").show();
      $("#category_id").hide();
-     $("#user_id").hide();
+
 
   }
   if($("#users").is(":checked")) {
      $("#product_id").hide();
      $("#category_id").hide();
-     $("#user_id").show();
+
 
   }
   $(".multi").select2({

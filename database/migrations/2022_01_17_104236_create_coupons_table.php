@@ -26,7 +26,7 @@ class CreateCouponsTable extends Migration
             $table->integer('value');
             $table->integer('count')->nullable();
             $table->date('started_at')->nullable();
-            $table->string('user_id')->nullable();
+
             $table->string('category_id')->nullable();
             $table->string('product_id')->nullable();
             $table->date('expired_at')->nullable();

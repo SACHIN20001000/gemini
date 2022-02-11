@@ -29,9 +29,12 @@
                                 <tr>
                                 <th class="wd-lg-20p"><span>Name</span></th>
                                     <th class="wd-lg-20p"><span>Code</span></th>
+                                    <th class="wd-lg-20p"><span>Code type</span></th>
+
                                     <th class="wd-lg-20p"><span>Value</span></th>
 
                                     <th class="wd-lg-20p"><span>Created At</span></th>
+                                    <th class="wd-lg-20p"><span>Expired At</span></th>
 
                                     <th class="wd-lg-20p">Action</th>
                                 </tr>
@@ -66,10 +69,13 @@
             ajax: "{{ route('chowhub-coupons.index') }}",
             columns: [
                 {data: 'name', name: 'name'},
+                {data: 'apply_to', name: 'apply_to'},
+
                 {data: 'code', name: 'code'},
                 {data: 'value', name: 'value'},
 
                 {data: 'created_at', name: 'created_at'},
+                {data: 'expired_at', name: 'expired_at'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
