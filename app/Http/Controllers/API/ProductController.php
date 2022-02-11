@@ -63,12 +63,13 @@ class ProductController extends Controller
                         $query->where('name', 'like', "%{$data}%");
                         $query->where('tag_id', 'like', "%{$data}%");
                     })
+                   -> orderBy('id','DESC')
                     ->paginate($limit);
 
             return ProductResource::collection($search_product);
         }
 
-        $products = Product::with(['category', 'productDescriptionDetail', 'store', 'productVariation', 'productGallery', 'variationAttributesValue', 'tags.tagName'])->paginate($limit);
+        $products = Product::with(['category', 'productDescriptionDetail', 'store', 'productVariation', 'productGallery', 'variationAttributesValue', 'tags.tagName'])->orderBy('id','DESC')->paginate($limit);
 
         return ProductResource::collection($products);
     }
@@ -179,11 +180,12 @@ class ProductController extends Controller
                         $query->where('name', 'like', "%{$data}%");
                         $query->where('tag_id', 'like', "%{$data}%");
                     })
+                    ->orderBy('id','DESC')
                     ->paginate($limit);
 
             return ProductResource::collection($search_product);
         }
-        $products = Product::with(['category', 'store', 'productVariation', 'productGallery', 'variationAttributesValue'])->where('category_id', $id)->paginate($limit);
+        $products = Product::with(['category', 'store', 'productVariation', 'productGallery', 'variationAttributesValue'])->where('category_id', $id)->orderBy('id','DESC')->paginate($limit);
 
         if ($products)
         {
@@ -236,7 +238,8 @@ class ProductController extends Controller
         $attributes = VariationAttribute::whereHas('variationAttributeName', function ($query) use ($id)
                 {
                     return $query->where('product_id', '=', $id);
-                })->get();
+                })
+                ->get();
 
         return AttributesResource::collection($attributes);
     }

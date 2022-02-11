@@ -19,7 +19,7 @@ class PageController extends Controller
      *      security={
      *          {"Token": {}},
      *          },
-     *    
+     *
      *     summary="Pages",
      *     @OA\Response(
      *         response="200",
@@ -50,7 +50,7 @@ class PageController extends Controller
         if ($header == $token)
         {
             $limit = $request->limit ? $request->limit : 20;
-            $pages = Post::with(['users', 'categories'])->where('status', 1)->paginate($limit);
+            $pages = Post::with(['users', 'categories'])->where('status', 1)->orderBy('id','DESC')->paginate($limit);
             //   print_r($pages);die;
             return PageResource::collection($pages);
         } else
@@ -68,7 +68,7 @@ class PageController extends Controller
      *      security={
      *          {"Token": {}},
      *          },
-     *     
+     *
      *      @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -93,7 +93,7 @@ class PageController extends Controller
      * )
      * Store a newly created resource in storage.
      *
-     * 
+     *
      *
      * @return \Illuminate\Http\Response
      */

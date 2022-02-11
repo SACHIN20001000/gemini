@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\Chowhub;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Coupon;
+use App\Models\User;
+
 use App\Models\Category;
 use App\Models\ChowhubProduct;
 use DataTables;
@@ -67,8 +69,12 @@ class ChowhubCouponController extends Controller
     {
         $categories = Category::select('name', 'id')->where(['parent' => 0, 'type' => 'Chowhub'])->get();
         $products = ChowhubProduct::select('productName', 'id')->get();
-
-        return view('admin.chowhub.coupons.addEdit', compact('categories','products'));
+        $users = User::with('roles')->whereHas(
+            'roles', function($q){
+                $q->where('name','=','Customer');
+            })
+        ->get();
+        return view('admin.chowhub.coupons.addEdit', compact('categories','users','products'));
     }
 
     /**
@@ -80,15 +86,25 @@ class ChowhubCouponController extends Controller
     public function store(AddCoupon $request)
     {
 
-
         $inputs = $request->all();
 
-        foreach ($inputs['product_id'] as $key => $value)
-        {
-            $inputs['product_type'] = 'chowhub';
-            $inputs['product_id'] = $value;
-            Coupon::create($inputs);
-        }
+
+
+        $coupon= Coupon::create(['name' => $inputs['name'],
+        'code' => $inputs['code'],
+        'type' => $inputs['type'],
+        'value' => $inputs['value'],
+        'count' => $inputs['count'],
+        'started_at' => $inputs['started_at'],
+        'expired_at' => $inputs['expired_at'],
+        'lifetime_coupon' => $inputs['lifetime_coupon'],
+        'apply_to' => $inputs['apply_to'],
+        'category_id' => (isset($inputs['category_id'])) ? json_encode($inputs['category_id']) : null,
+        'user_id' =>    (isset($inputs['user_id'])) ? json_encode($inputs['user_id']) : null,
+        'product_id' => (isset($inputs['product_id'])) ? json_encode($inputs['product_id']) : null,
+        'product_type' => 'chowhub' ]);
+
+
 
 
         return back()->with('success', 'Coupon addded successfully!');
@@ -115,11 +131,16 @@ class ChowhubCouponController extends Controller
     {
         $coupon = Coupon::find($id);
         $categories = Category::with('childrens')->where(['parent' => 0, 'type' => 'Chowhub'])->get();
+        $users = User::with('roles')->whereHas(
+            'roles', function($q){
+                $q->where('name','=','Customer');
+            })
+        ->get();
 
         $coupons = Coupon::where('id', '!=', $id)->get();
        $products = ChowhubProduct::select('productName', 'id')->get();
 
-        return view('admin.chowhub.coupons.addEdit', compact('coupons', 'coupon', 'categories', 'products'));
+        return view('admin.chowhub.coupons.addEdit', compact('coupons','users', 'coupon', 'categories', 'products'));
     }
 
     /**
@@ -129,18 +150,25 @@ class ChowhubCouponController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCoupon $request, $id)
+    public function update(UpdateCoupon $request,$id)
     {
 
+
         $inputs = $request->all();
-        foreach ($inputs['product_id'] as $key => $value)
-        {
 
-            $inputs['product_id'] = $value;
-            $inputs['product_type'] = 'chowhub';
-
-            Coupon::find($id)->update($inputs);
-        }
+       Coupon::find($id)->update(['name' => $inputs['name'],
+       'code' => $inputs['code'],
+       'type' => $inputs['type'],
+       'value' => $inputs['value'],
+       'count' => $inputs['count'],
+       'started_at' => $inputs['started_at'],
+       'expired_at' => $inputs['expired_at'],
+       'lifetime_coupon' => $inputs['lifetime_coupon'],
+       'apply_to' => $inputs['apply_to'],
+       'category_id' => (isset($inputs['category_id'])) ? json_encode($inputs['category_id']) : null,
+       'user_id' => (isset($inputs['user_id'])) ? json_encode($inputs['user_id']) : null,
+       'product_id' => (isset($inputs['product_id'])) ? json_encode($inputs['product_id']) : null,
+       'product_type' => 'product' ]);
         return back()->with('success', 'Coupon updated successfully!');
     }
 

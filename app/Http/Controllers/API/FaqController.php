@@ -66,7 +66,7 @@ class FaqController extends Controller
                 ->where(function ($query) use ($search) {
                 $query->where('title', "like", "%" . $search . "%");
                 $query->orWhere('description', "like", "%" . $search . "%");})
-                ->orderBy('id', 'asc')
+                ->orderBy('id', 'DESC')
                 ->get();
 
         return  FaqResource::collection($faqs);

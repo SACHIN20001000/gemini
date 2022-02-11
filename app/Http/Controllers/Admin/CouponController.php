@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Coupon;
+use App\Models\CouponAssign;
+
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
+
 use App\Models\ChowhubProduct;
 use DataTables;
 use App\Http\Requests\Admin\Coupon\AddCoupon;
@@ -66,10 +70,16 @@ class CouponController extends Controller
      */
     public function create()
     {
+        $users = User::with('roles')->whereHas(
+            'roles', function($q){
+                $q->where('name','=','Customer');
+            })
+        ->get();
+
         $categories = Category::select('name', 'id')->where(['parent' => 0, 'type' => 'Product'])->get();
         $products = Product::select('productName', 'id')->get();
 
-        return view('admin.coupons.addEdit', compact('categories','products'));
+        return view('admin.coupons.addEdit', compact('categories','products','users'));
     }
 
     /**
@@ -80,16 +90,23 @@ class CouponController extends Controller
      */
     public function store(AddCoupon $request)
     {
-
-
         $inputs = $request->all();
-        foreach ($inputs['product_id'] as $key => $value)
-        {
-            $inputs['product_type'] = 'product';
-            $inputs['product_id'] = $value;
-            Coupon::create($inputs);
-        }
 
+
+
+       $coupon= Coupon::create(['name' => $inputs['name'],
+       'code' => $inputs['code'],
+       'type' => $inputs['type'],
+       'value' => $inputs['value'],
+       'count' => $inputs['count'],
+       'started_at' => $inputs['started_at'],
+       'expired_at' => $inputs['expired_at'],
+       'lifetime_coupon' => $inputs['lifetime_coupon'],
+       'apply_to' => $inputs['apply_to'],
+       'category_id' =>  (isset($inputs['category_id'])) ? json_encode($inputs['category_id']) : null,
+       'user_id' => json_encode($inputs['user_id']) ?? null,
+       'product_id' => (isset($inputs['product_id'])) ? json_encode($inputs['product_id']) : null,
+       'product_type' => 'product' ]);
 
         return back()->with('success', 'Coupon addded successfully!');
     }
@@ -113,13 +130,20 @@ class CouponController extends Controller
      */
     public function edit($id)
     {
+        $users = User::with('roles')->whereHas(
+            'roles', function($q){
+                $q->where('name','=','Customer');
+            })
+        ->get();
+
         $coupon = Coupon::find($id);
+
         $categories = Category::with('childrens')->where(['parent' => 0, 'type' => 'Product'])->get();
 
         $coupons = Coupon::where('id', '!=', $id)->get();
        $products = Product::select('productName', 'id')->get();
 
-        return view('admin.coupons.addEdit', compact('coupons', 'coupon', 'categories', 'products'));
+        return view('admin.coupons.addEdit', compact('coupons', 'users','coupon', 'categories', 'products'));
     }
 
     /**
@@ -133,12 +157,20 @@ class CouponController extends Controller
     {
 
         $inputs = $request->all();
-        foreach ($inputs['product_id'] as $key => $value)
-        {
-            $inputs['product_type'] = 'product';
-            $inputs['product_id'] = $value;
-            $coupon->update($inputs);
-        }
+   
+       $coupon->update(['name' => $inputs['name'],
+       'code' => $inputs['code'],
+       'type' => $inputs['type'],
+       'value' => $inputs['value'],
+       'count' => $inputs['count'],
+       'started_at' => $inputs['started_at'],
+       'expired_at' => $inputs['expired_at'],
+       'lifetime_coupon' => $inputs['lifetime_coupon'],
+       'apply_to' => $inputs['apply_to'],
+       'category_id' => (isset($inputs['category_id'])) ? json_encode($inputs['category_id']) : null,
+       'user_id' => (isset($inputs['user_id'])) ? json_encode($inputs['user_id']) : null,
+       'product_id' => (isset($inputs['product_id'])) ? json_encode($inputs['product_id']) : null,
+       'product_type' => 'product' ]);
         return back()->with('success', 'Coupon updated successfully!');
     }
 
@@ -160,23 +192,6 @@ class CouponController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getProductByAjax(Request $request)
-    {
 
-      if($request->product_type == 'product'){
-            $product=Product::Select('id','productName')->get();
-            return Response()->json([
-                        "success" => true,
-                        "data" => $product,
-            ]);
-        } else
-        {
-            $product = ChowhubProduct::Select('id', 'productName')->get();
-            return Response()->json([
-                        "success" => true,
-                        "data" => $product,
-            ]);
-        }
-    }
 
 }

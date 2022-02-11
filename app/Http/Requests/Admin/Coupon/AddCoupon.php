@@ -24,16 +24,16 @@ class AddCoupon extends FormRequest
     public function rules()
     {
         return [
-             'name' => 'required',
-             'code' => [
-                'required',
-                'unique:coupons,code'
-                ],
-             'type' => 'required',
-             'apply_to' => 'required',
-             'value' => 'required',
-             'count' => 'required',
-             'expired_at' => 'required',
+            //  'name' => 'required',
+            //  'code' => [
+            //     'required',
+            //     'unique:coupons,code'
+            //     ],
+            //  'type' => 'required',
+            //  'apply_to' => 'required',
+            //  'value' => 'required',
+            //  'count' => 'required',
+            //  'expired_at' => 'required',
 
 
 

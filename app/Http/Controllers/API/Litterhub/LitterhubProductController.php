@@ -46,8 +46,8 @@ class LitterhubProductController extends Controller
      */
     public function index(Request $request)
     {
-
-        $products = LitterhubProduct::with([ 'store', 'productVariation', 'productDescriptionImage', 'productGallery', 'variationAttributesValue', 'tags.tagName'])->get();
+        $limit = $request->limit ? $request->limit : 20;
+        $products = LitterhubProduct::with([ 'store', 'productVariation', 'productDescriptionImage', 'productGallery', 'variationAttributesValue', 'tags.tagName'])->orderBy('id','DESC')->paginate($limit);
 
         return LitterhubProductResource::collection($products);
     }

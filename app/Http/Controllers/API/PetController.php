@@ -49,7 +49,7 @@ class PetController extends Controller
         $user=auth('api')->user();
 
         if(!empty($user)){
-            $pets = Pet::where(['user_id'=>$user->id])->orderBy('id', 'asc')->get();
+            $pets = Pet::where(['user_id'=>$user->id])->orderBy('id', 'DESC')->get();
 
             return  PetResource::collection($pets);
         }else{

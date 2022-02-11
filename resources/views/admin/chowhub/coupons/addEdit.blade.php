@@ -24,7 +24,7 @@
 
                     <!--  start  -->
                     <form  id="coupon-add-edit" action="{{isset($coupon) ? route('chowhub-coupons.update',$coupon->id) : route('chowhub-coupons.store')}}" method="POST" enctype="multipart/form-data">
-                        @csrf
+                    @csrf
                         {{ isset($coupon) ? method_field('PUT'):'' }}
                         <div class="pd-30 pd-sm-40 bg-gray-200">
                         <div class="row row-xs align-items-center mg-b-20">
@@ -36,27 +36,12 @@
 
                                 </div>
                             </div>
-                            <!-- <div class="row row-xs align-items-center mg-b-20" id="product_type">
-                                <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Product Type</label>
-                                </div>
-                                <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                <input type="radio" class="chownhub" {{ (isset($coupon) && $coupon->product_type  == 'chownhub') ? 'Checked' : '' }} name="product_type" value="chownhub">
-                                    <label for="age1">Chownhub Product</label><br>
-                                    <input type="radio" class="chownhub" {{ (isset($coupon) && $coupon->product_type  == 'product') ? 'Checked' : '' }} name="product_type" value="product">
-                                    <label for="age2">Product</label><br>
-
-
-                                </div>
-                            </div> -->
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">Code</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                     <input class="form-control" name="code" id="code"  placeholder="Enter your code" type="text" value="{{isset($coupon) ? $coupon->code : '' }}">
-                                    <!-- <i class="fas fa-sync" onClick="generateRandomString(8)"></i> -->
-
                                 </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
@@ -127,39 +112,59 @@
                                     <input type="radio" id="categories" {{ (isset($coupon) && $coupon->apply_to  == 'specific_category') ? 'Checked' : '' }} name="apply_to" value="specific_category">
                                     <label for="age2">Specific Category</label><br>
                                     <input type="radio"  id="products"   {{ (isset($coupon) && $coupon->apply_to  == 'specific_product') ? 'Checked' : '' }} name="apply_to" value="specific_product">
-                                    <label for="age3">Specific products</label><br>
+                                    <label for="age3">Specific Products</label><br>
+                                    <input type="radio"  id="users"   {{ (isset($coupon) && $coupon->apply_to  == 'specific_user') ? 'Checked' : '' }} name="apply_to" value="specific_user">
+                                    <label for="age3">Specific User</label><br>
 
                                 </div>
                             </div>
 
                             <div class="row row-xs align-items-center mg-b-20" id="category_id">
                                 <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Category</label>
+                                    <label class="form-label mg-b-0">Specific Category</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                   <select  class="form-control" id="specific_category" name="category_id" >
+                                   <select  class="form-control multi" id="specific_category" multiple name="category_id[]" >
                                         <option value="">Select Below</option>
                                       @foreach($categories as $category)
-                                            <option value="{{$category->id}}" {{ (isset($coupon) && $coupon->category_id  == $category->id) ? 'Selected' : '' }}>{{$category->name}}</option>
+                                            <option value="{{$category->id}}" <?php if(isset($coupon->category_id)){ if(in_array($category->id, json_decode($coupon->category_id))){echo "Selected";}}?>>{{$category->name}}</option>
                                       @endforeach
                                    </select>
                                 </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20" id="product_id">
-                                <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Specific Product</label>
-                                </div>
-                                <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                <div style="overflow: auto;" >
-                                   <select class="form-control select2"   id="specific_product"  name="product_id[]"  >
-                                     @if(isset($products))
-                                     @foreach($products as $product)
-                                            <option value="{{$product->id}}" {{ (isset($coupon) && $coupon->product_id  == $product->id) ? 'Selected' : '' }}>{{$product->productName}}</option>
-                                      @endforeach
-                                      @endif
-                                </select>
-                                </div>
-                                </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label mg-b-0">Specific Product</label>
+                                    </div>
+                                    <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <div style="overflow: auto;" >
+                                    <select class="form-control select2 multi" multiple  id="specific_product"  name="product_id[]"  >
+                                        @if(isset($products))
+                                        <option value="0">Select Below</option>
+                                        @foreach($products as $product)
+                                                <option  value="{{$product->id}}" <?php if(isset($coupon->product_id)){ if(in_array($product->id, json_decode($coupon->product_id))){echo "selected";}}?>>{{$product->productName}}</option>
+                                        @endforeach
+                                        @endif
+                                    </select>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20" id="user_id">
+                                    <div class="col-md-4">
+                                        <label class="form-label mg-b-0">Specific User</label>
+                                    </div>
+                                    <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <div style="overflow: auto;" >
+                                    <select class="form-control select2 multi" multiple  id="user_id"  name="user_id[]"  >
+                                        @if(isset($users))
+                                        <option value="0">Select Below</option>
+                                        @foreach($users as $user)
+                                                <option value="{{$user->id}}" <?php if(isset($coupon->user_id)){ if(in_array($user->id, json_decode($coupon->user_id))){echo "selected";}}?>>{{$user->name}}</option>
+                                        @endforeach
+                                        @endif
+                                    </select>
+                                    </div>
+                                  </div>
                             </div>
                             <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($coupon) ? 'Update' : 'Save' }}</button>
                         </div>
@@ -179,31 +184,39 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 <script>
 
+
     // hide show feild
-  $(document).ready(function () {
+    $(document).ready(function () {
     $("select").select2();
     $("#product_id").hide();
      $("#category_id").hide();
+     $("#user_id").hide();
+
 
     $("#categories").click(function () {
         $("#product_id").hide();
-
-
         $("#specific_product option").prop("selected", false);
-
-
+        $("#specific_user option").prop("selected", false);
         $("#category_id").show();
+        $("#user_id").hide();
+    });
+    $("#users").click(function () {
+        $("#product_id").hide();
+        $("#specific_product option").prop("selected", false);
+        $("#category_id").hide();
+        $("#specific_category option").prop("selected", false);
+        $("#user_id").show();
+
     });
     $("#products").click(function () {
-
+        $("#user_id").hide();
         $("#specific_category option").prop("selected", false);
         $("#product_id").show();
-
-
-     $("#category_id").hide();
+        $("#specific_user option").prop("selected", false);
+        $("#category_id").hide();
     });
     $(".chownhub").click(function () {
-
+        $("#user_id").hide();
         $("#specific_category option").prop("selected", false);
         $("#product_id").show();
         $("#category_id").hide();
@@ -211,22 +224,32 @@
 
     $("#entire").click(function () {
         $("#product_id").hide();
-
-     $("#category_id").hide();
+        $("#user_id").hide();
+        $("#specific_category option").prop("selected", false);
+        $("#specific_product option").prop("selected", false);
+        $("#specific_user option").prop("selected", false);
+        $("#category_id").hide();
     });
     if($("#categories").is(":checked")) {
         $("#product_id").hide();
-
-
-     $("#category_id").show();
-
+        $("#category_id").show();
+        $("#user_id").hide();
   }
   if($("#products").is(":checked")) {
-    $("#product_id").show();
+     $("#product_id").show();
      $("#category_id").hide();
-
+     $("#user_id").hide();
 
   }
+  if($("#users").is(":checked")) {
+     $("#product_id").hide();
+     $("#category_id").hide();
+     $("#user_id").show();
+
+  }
+  $(".multi").select2({
+                multiple:true
+                });
   //search
 
 

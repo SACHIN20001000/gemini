@@ -49,8 +49,8 @@ class SolutionhubProductController extends Controller
      */
     public function index(Request $request)
     {
-
-        $products = SolutionhubProduct::with( ['tags.tagName'])->get();
+        $limit = $request->limit ? $request->limit : 20;
+        $products = SolutionhubProduct::with( ['tags.tagName'])->orderBy('id','DESC')->paginate($limit);
 
         return SolutionhubProductResource::collection($products);
     }

@@ -40,7 +40,7 @@ class ChowhubStoreController extends Controller
      */
     public function index(Request $request)
     {
-        $stores = ChowhubStore::orderBy('id', 'asc')->get();
+        $stores = ChowhubStore::orderBy('id', 'DESC')->get();
         return StoreResource::collection($stores);
     }
 

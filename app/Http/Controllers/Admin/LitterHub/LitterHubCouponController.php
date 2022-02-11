@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\LitterHub;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Coupon;
+use App\Models\User;
+
 use App\Models\Category;
 use App\Models\Litterhub\LitterhubProduct;
 use DataTables;
@@ -65,10 +67,15 @@ class LitterHubCouponController extends Controller
      */
     public function create()
     {
+        $users = User::with('roles')->whereHas(
+            'roles', function($q){
+                $q->where('name','=','Customer');
+            })
+        ->get();
         $categories = Category::select('name', 'id')->where(['parent' => 0, 'type' => 'Chowhub'])->get();
         $products = LitterhubProduct::select('productName', 'id')->get();
 
-        return view('admin.litterhub.coupons.addEdit', compact('categories','products'));
+        return view('admin.litterhub.coupons.addEdit', compact('users','categories','products'));
     }
 
     /**
@@ -79,19 +86,28 @@ class LitterHubCouponController extends Controller
      */
     public function store(AddCoupon $request)
     {
-
-
         $inputs = $request->all();
-            if(!empty($inputs['product_id'])){
-                foreach ($inputs['product_id'] as $key => $value)
-                {
-                    $inputs['product_id'] = $value;
-                }
-            }
 
-        $inputs['product_type'] = 'litterhub';
-        Coupon::create($inputs);
-        return back()->with('success', 'Coupon addded successfully!');
+
+
+        $coupon= Coupon::create(['name' => $inputs['name'],
+        'code' => $inputs['code'],
+        'type' => $inputs['type'],
+        'value' => $inputs['value'],
+        'count' => $inputs['count'],
+        'started_at' => $inputs['started_at'],
+        'expired_at' => $inputs['expired_at'],
+        'lifetime_coupon' => $inputs['lifetime_coupon'],
+        'apply_to' => $inputs['apply_to'],
+        'category_id' =>  (isset($inputs['category_id'])) ? json_encode($inputs['category_id']) : null,
+        'user_id' => (isset($inputs['user_id'])) ? json_encode($inputs['user_id']) : null,
+        'product_id' => (isset($inputs['product_id'])) ? json_encode($inputs['product_id']) : null,
+        'product_type' => 'litterhub' ]);
+
+         return back()->with('success', 'Coupon addded successfully!');
+
+
+
     }
 
     /**
@@ -113,13 +129,18 @@ class LitterHubCouponController extends Controller
      */
     public function edit($id)
     {
+        $users = User::with('roles')->whereHas(
+            'roles', function($q){
+                $q->where('name','=','Customer');
+            })
+        ->get();
         $coupon = Coupon::find($id);
         $categories = Category::with('childrens')->where(['parent' => 0, 'type' => 'Chowhub'])->get();
 
         $coupons = Coupon::where('id', '!=', $id)->get();
        $products = LitterhubProduct::select('productName', 'id')->get();
 
-        return view('admin.litterhub.coupons.addEdit', compact('coupons', 'coupon', 'categories', 'products'));
+        return view('admin.litterhub.coupons.addEdit', compact('users','coupons', 'coupon', 'categories', 'products'));
     }
 
     /**
@@ -133,17 +154,21 @@ class LitterHubCouponController extends Controller
     {
 
         $inputs = $request->all();
-        if(!empty($inputs['product_id'])){
-            foreach ($inputs['product_id'] as $key => $value)
-            {
-                $inputs['product_id'] = $value;
-            }
-        }
 
-            $inputs['product_type'] = 'litterhub';
-            Coupon::find($id)->update($inputs);
-
-        return back()->with('success', 'Coupon updated successfully!');
+        Coupon::find($id)->update(['name' => $inputs['name'],
+        'code' => $inputs['code'],
+        'type' => $inputs['type'],
+        'value' => $inputs['value'],
+        'count' => $inputs['count'],
+        'started_at' => $inputs['started_at'],
+        'expired_at' => $inputs['expired_at'],
+        'lifetime_coupon' => $inputs['lifetime_coupon'],
+        'apply_to' => $inputs['apply_to'],
+        'category_id' => (isset($inputs['category_id'])) ? json_encode($inputs['category_id']) : null,
+        'user_id' => (isset($inputs['user_id'])) ? json_encode($inputs['user_id']) : null,
+        'product_id' => (isset($inputs['product_id'])) ? json_encode($inputs['product_id']) : null,
+        'product_type' => 'litterhub' ]);
+         return back()->with('success', 'Coupon updated successfully!');
     }
 
     /**

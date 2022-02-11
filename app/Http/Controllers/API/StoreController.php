@@ -15,7 +15,7 @@ class StoreController extends Controller
      *      path="/stores",
      *      operationId="stores",
      *      tags={"Stores"},
-     *    
+     *
      *     summary="stores",
      *     @OA\Response(
      *         response="200",
@@ -40,7 +40,7 @@ class StoreController extends Controller
      */
     public function index(Request $request)
     {
-        $stores = Store::orderBy('id', 'asc')->get();
+        $stores = Store::orderBy('id', 'DESC')->get();
         return StoreResource::collection($stores);
     }
 
@@ -50,7 +50,7 @@ class StoreController extends Controller
      *      operationId="store By Id",
      * summary="store by id",
      *      tags={"Stores"},
-     *     
+     *
      *      @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -75,7 +75,7 @@ class StoreController extends Controller
      * )
      * Store a newly created resource in storage.
      *
-     * 
+     *
      *
      * @return \Illuminate\Http\Response
      */
