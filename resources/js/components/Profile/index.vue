@@ -260,7 +260,7 @@
                         </td>
                         <td class="t_size">
                           {{orderItems.product.name}}
-                          <span>Princess: {{orderItems.unit_price}} | Size: {{orderItems.product_id}}</span>
+                          <span>Princess: ${{orderItems.unit_price}} | Size: {{orderItems.product_id}}</span>
                         </td>
                         <td class="t_price">
                           <span>Item Price:</span>
@@ -306,7 +306,7 @@
                         </td>
                         <td class="t_size">
                           {{orderItems.product.name}}
-                          <span>Princess: {{orderItems.unit_price}} | Size: {{orderItems.product_id}}</span>
+                          <span>Princess: ${{orderItems.unit_price}} | Size: {{orderItems.product_id}}</span>
                         </td>
                         <td class="t_price">
                           <span>Item Price:</span>
