@@ -231,13 +231,13 @@
               </div>
             </div>
             <div class="tab-content st_order_content">
-              <div class="tab-pane fade show active" id="or_latest">
-                <div class="tb_responsive" v-if="Orders">
-                  <table
-                    class="produc_table"
-                    v-for="(orderslist, olkey) in Orders"
-                    :key="olkey"
-                  >
+              <div class="tab-pane fade show active" id="or_latest"  v-if="Orders">
+                <div
+                  class="tb_responsive"
+                  v-for="(orderslist, olkey) in Orders"
+                  :key="olkey"
+                >
+                  <table class="produc_table">
                     <thead>
                       <tr>
                         <th class="data_head" width=25%><span class="tb_sm">Order Date</span> <b>{{orderslist.created_at | formatDate}}</b></th>
@@ -281,13 +281,13 @@
                   </div>
                 </div>
               </div>
-              <div class="tab-pane fade" id="or_all">
-                <div class="tb_responsive" v-if="Orders">
-                  <table
-                    class="produc_table"
-                    v-for="(orderslist, olkey) in Orders"
-                    :key="olkey"
-                  >
+              <div class="tab-pane fade" id="or_all" v-if="Orders">
+                <div
+                  class="tb_responsive"
+                  v-for="(orderslist, olkey) in Orders"
+                  :key="olkey"
+                >
+                  <table class="produc_table">
                     <thead>
                       <tr>
                         <th class="data_head" width=25%><span class="tb_sm">Order Date</span> <b>{{orderslist.created_at | formatDate}}</b></th>

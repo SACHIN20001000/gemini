@@ -10,7 +10,9 @@
             </div>
         </div>
         <a class="btn btn-main-primary ml_auto" style="margin-left: 740px;" href="{{ route('users.index') }}">View User</a>
+        @isset($user)
         <a class="btn btn-main-primary ml_auto" href="{{ route('users.show', $user->id ) }}">View Pets</a>
+        @endisset
 
     </div>
     <!-- breadcrumb -->
@@ -51,7 +53,7 @@
                                     <label class="form-label mg-b-0">Password</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="password"  placeholder="Enter your password" type="password" value="{{isset($user) ? $user->password : '' }}">
+                                    <input class="form-control" name="password"  placeholder="Enter your password" type="password" value="">
                                 </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
