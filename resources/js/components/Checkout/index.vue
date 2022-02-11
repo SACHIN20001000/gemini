@@ -304,7 +304,7 @@
           </li>
         </ul>
         <hr>
-           <p class="totalamount fl_div" v-if="cartTotal"><span>Total Cart Price:</span> <label class="m_big">{{Number(cartTotalValue)+Number(shippingval)}}</label></p>
+           <p class="totalamount fl_div" v-if="cartTotal"><span>Total Cart Price:</span> <label class="m_big">${{this.form.data.total}}</label></p>
         <hr>
         <ul class="paymentmethods">
           <li><h3 class="md_h">Payment Methods</h3></li>
@@ -472,9 +472,7 @@ export default {
       .messages({
         'name.name': 'This field is required!'
       }),
-    cartTotalValue:0,
     tax:5,
-    shippingval:0,
     disableShippingForm:1,
     token: null,
     cardNumber: null,
@@ -495,11 +493,6 @@ export default {
     this.cartTotalInfo()
   },
   watch:{
-    orderResponse(){
-      if (this.orderResponse) {
-        this.$router.push('/payment')
-      }
-    },
     transaction(){
       this.transactionResponse=this.transaction
     },
@@ -515,12 +508,13 @@ export default {
     },
     cartTotal(){
       if(this.cartTotal){
-        this.cartTotalValue = Number(this.cartTotal) + Number((this.cartTotal*this.tax)/100)
+        var cartTotalValue = Number(this.cartTotal) + Number((this.cartTotal*this.tax)/100)
+        this.form.data.total=cartTotalValue
       }
     }
   },
   computed: {
-    ...mapGetters(['cartTotal','orderResponse','transaction','accountDetails','getCartItem']),
+    ...mapGetters(['cartTotal','transaction','accountDetails','getCartItem']),
     stripeElements () {
       return this.$stripe.elements()
     }
@@ -554,10 +548,10 @@ export default {
     this.cardCvc.destroy();
   },
   methods:{
-    ...mapActions(['addOrder','generatePay','getProfile','getCartItems']),
+    ...mapActions(['generatePay','getProfile','getCartItems','removeCartItem']),
     calculateShipping(e,cost){
-      this.shippingval = 0
-      this.shippingval = cost.toFixed(2)
+      var shippingval = Number(this.form.data.total)+cost
+      this.form.data.total = shippingval.toFixed(2)
     },
     activePaymentMode(modekey){
       if(modekey == 'card'){
@@ -580,16 +574,16 @@ export default {
         this.CouponCode=response.data.data
         this.couponCodeInfo =[]
         if(this.CouponCode.type == 'percentage'){
-          var discountVal = Number(this.cartTotalValue*this.CouponCode.value)/100
-          if(this.cartTotalValue>discountVal){
-            var doscountprice = Number(this.cartTotalValue)-Number(discountVal)
-            this.cartTotalValue = doscountprice.toFixed(2)
+          var discountVal = Number(this.form.data.total*this.CouponCode.value)/100
+          if(this.form.data.total>discountVal){
+            var doscountprice = Number(this.form.data.total)-Number(discountVal)
+            this.form.data.total = doscountprice.toFixed(2)
           }
         }else{
           var discountVal = Number(this.CouponCode.value)
-          if(this.cartTotalValue>discountVal){
-            var doscountprice = Number(this.cartTotalValue)-Number(this.CouponCode.value)
-            this.cartTotalValue = doscountprice.toFixed(2)
+          if(this.form.data.total>discountVal){
+            var doscountprice = Number(this.form.data.total)-Number(this.CouponCode.value)
+            this.form.data.total = doscountprice.toFixed(2)
           }
         }
         this.$refs.notifications.displayNotification('success','Coupon Code','Coupon Code is applied.')
@@ -598,7 +592,7 @@ export default {
         this.$refs.notifications.displayNotification('error','Coupon Code',this.couponCodeInfo.message)
       })
     },
-    async paymentProcessed () {
+    paymentProcessed () {
       this.loadingDisplay=true
       var _this = this
       if(this.disableShippingForm==0){
@@ -608,13 +602,48 @@ export default {
           }
         })
       }
-      if (this.form.validate().errors().any() || this.order_form.validate().errors().any()) return;
-
-      this.form.data.payment_method = this.order_form.data.paymentmethods
-      this.form.data.total = Number(this.cartTotalValue) + Number(this.shippingval)
-      this.form.data.shippingmethod = this.order_form.data.shippingmethods
-      this.form.data.key = localStorage.getItem('cartKey')
-
+      if (this.form.validate().errors().any() || this.order_form.validate().errors().any()){
+        this.loadingDisplay=false
+        return;
+      }else{
+        this.form.data.payment_method = this.order_form.data.paymentmethods
+        this.form.data.shippingmethod = this.order_form.data.shippingmethods
+        this.form.data.key = localStorage.getItem('cartKey')
+        if(this.order_form.data.paymentmethods == 'card'){
+          this.cardPayment()
+        }else if (this.order_form.data.paymentmethods == 'gpay') {
+          this.gPay()
+        }else if (this.order_form.data.paymentmethods == 'apple') {
+          this.ApplePay()
+        }else{
+          this.codPayment()
+        }
+      }
+    },
+    cartTotalInfo(){
+      if(this.cartTotal){
+        var cartTotalValue = Number(this.cartTotal) + Number((this.cartTotal*this.tax)/100)
+        this.form.data.total = cartTotalValue
+      }
+      if(this.accountDetails){
+        var _this = this
+        Object.keys(_this.accountDetails).forEach(function(key,index) {
+          if(key!='id' && key!='profile_image' && key!='created_at' ){
+            _this.form.data[key] = _this.accountDetails[key]
+          }
+        })
+      }
+    },
+    getVarientName(attrArrs,attId){
+      var attname=''
+      attrArrs.filter(function(val,ind){
+        if(val.id == attId){
+          attname=val.name
+        }
+      })
+      return attname
+    },
+    async cardPayment(){
       const { token, error } = await this.$stripe.createToken(this.cardNumber);
       if (error) {
         document.getElementById('card-error').innerHTML = error.message;
@@ -640,9 +669,7 @@ export default {
           this.transactionResponse=response.data
           if(this.transactionResponse.transaction_id){
             this.form.data.transaction_id = this.transactionResponse.transaction_id
-            this.addOrder(this.form.data)
-            this.$refs.notifications.displayNotification('success','Payment','Payment is received.')
-            this.loadingDisplay=false
+            this.createOrder(this.form.data)
           }
         }).catch((errors) => {
           this.$refs.notifications.displayNotification('error','Payment','Payment is not received.')
@@ -650,27 +677,26 @@ export default {
         })
       }
     },
-    cartTotalInfo(){
-      if(this.cartTotal){
-        this.cartTotalValue = Number(this.cartTotal) + Number((this.cartTotal*this.tax)/100)
-      }
-      if(this.accountDetails){
-        var _this = this
-        Object.keys(_this.accountDetails).forEach(function(key,index) {
-          if(key!='id' && key!='profile_image' && key!='created_at' ){
-            _this.form.data[key] = _this.accountDetails[key]
-          }
-        })
-      }
+    codPayment(){
+      this.createOrder(this.form.data)
     },
-    getVarientName(attrArrs,attId){
-      var attname=''
-      attrArrs.filter(function(val,ind){
-        if(val.id == attId){
-          attname=val.name
-        }
+    ApplePay(){
+      this.codPayment()
+    },
+    gPay(){
+      this.codPayment()
+    },
+    createOrder(orderInfo){
+      const cartId = localStorage.getItem('cartId')
+      HTTP.post(process.env.MIX_APP_APIURL+'checkout/'+cartId, orderInfo).then((response) => {
+        this.$refs.notifications.displayNotification('success','Payment','Payment is received.')
+        this.loadingDisplay=false
+        this.removeCartItem()
+        this.$router.push('/payment')
+      }).catch((errors) => {
+        this.$refs.notifications.displayNotification('error','Payment',errors.response.data.message)
+        this.loadingDisplay=false
       })
-      return attname
     }
   }
 }

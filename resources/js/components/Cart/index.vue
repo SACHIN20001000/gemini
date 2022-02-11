@@ -44,7 +44,7 @@
                 </ul>
               </span>
             </span>
-            <span class="prod_price">{{cartItem.variationProduct.sale_price}}</span>
+            <span class="prod_price">${{cartItem.variationProduct.sale_price}}</span>
             <span class="prod_quant">
               <input
                 type="number"
@@ -52,7 +52,7 @@
                 v-model="cartItemsList[keygetCartItem].quantity"
               >
             </span>
-            <span class="prod_items">{{currencyFormat(cartItem.variationProduct.sale_price*cartItem.quantity)}} </span>
+            <span class="prod_items">${{currencyFormat(cartItem.variationProduct.sale_price*cartItem.quantity)}} </span>
             <span class="prod_remove">
               <a
                 class="button"
@@ -68,7 +68,7 @@
           >
             <span class="prod_img"><div class="img_ratio"><img :src="cartItem.product.image_path" /></div></span>
             <span class="prod_name">{{cartItem.product.productName}}</span>
-            <span class="prod_price">{{cartItem.product.sale_price}}</span>
+            <span class="prod_price">${{cartItem.product.sale_price}}</span>
             <span class="prod_quant">
               <input
                 type="number"
@@ -76,7 +76,7 @@
                 v-model="cartItemsList[keygetCartItem].quantity"
               >
             </span>
-            <span class="prod_items">{{cartItem.product.sale_price*cartItem.quantity}}</span>
+            <span class="prod_items">${{cartItem.product.sale_price*cartItem.quantity}}</span>
             <span class="prod_remove">
               <a
                 class="button"
@@ -116,7 +116,7 @@
           </div>
          </div>
 
-      <p class="totalamount cart_total">Total Cart Price: <span>{{cartTotal}}</span></p>
+      <p class="totalamount cart_total">Total Cart Price: <span>${{cartTotal}}</span></p>
       <div class="proccedtocheckout1 text-right">
         <p class="msg_offer">YOU ARE $13.01 AWAY FROM FREE SHIPPING</p>
         <div class="msg_blu"> <span class="btn_blu">FREE 3 DAY SHIPPING ON U.S. ORDERS OVER $45</span></div>

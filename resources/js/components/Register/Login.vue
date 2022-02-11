@@ -3,7 +3,7 @@
     <p>Login Page</p>
     <form>
       <template>
-        <div class="errorMsg" v-if="errors && errors != null && errors != ''">{{errors}} </div>
+        <div class="errorMsg" v-if="loginErrors && loginErrors != null && loginErrors != ''">{{loginErrors}} </div>
         <div class="input-group mt-3">
           <div class="input-group-prepend">
             <span
@@ -97,7 +97,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['userDetails', 'errors'])
+    ...mapGetters(['userDetails', 'loginErrors'])
   },
   methods: {
     ...mapActions(['loginUser']),

@@ -959,9 +959,10 @@ export default {
     getProductIcon(fullName) {
       let arrName = fullName.split(" ")
       if(arrName.length>1){
-        let iniName = fullName.charAt(0)
+        return fullName.charAt(0)+fullName.charAt(1)
+        /*let iniName = fullName.charAt(0)
         let iniLname = arrName[arrName.length - 1].charAt(0)
-        return iniName + iniLname
+        return iniName + iniLname*/
       }else{
         return fullName.charAt(0)+fullName.charAt(1)
       }
