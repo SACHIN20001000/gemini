@@ -176,6 +176,7 @@ import menuLines from "../../assets/images/menu_lines.svg"
 import imgDownload from "../../assets/images/download.png"
 import {mapActions,mapGetters} from "vuex"
 
+
 export default {
   name:"Dashboard",
   data: function () {
