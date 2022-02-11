@@ -52,7 +52,7 @@
       </div>
 
     </div>
-    <div class="sub-categories">
+    <div class="sub-categories" v-if="activeMainCategory==1">
       <div class="sub-category">
         <div class="icon"><img :src="subCategory" /></div>
         <div class="label">
@@ -113,7 +113,192 @@
           Sub-category {{ activeMainCategory }}/10
         </div>
       </div>
-
+    </div>
+    <div class="sub-categories" v-if="activeMainCategory==2">
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/1
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/2
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/3
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/4
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/5
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/6
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/7
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/8
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/9
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/10
+        </div>
+      </div>
+    </div>
+    <div class="sub-categories" v-if="activeMainCategory==3">
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/1
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/2
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/3
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/4
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/5
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/6
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/7
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/8
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/9
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/10
+        </div>
+      </div>
+    </div>
+    <div class="sub-categories" v-if="activeMainCategory==4">
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/1
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/2
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/3
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/4
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/5
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/6
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/7
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/8
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/9
+        </div>
+      </div>
+      <div class="sub-category">
+        <div class="icon"><img :src="subCategory" /></div>
+        <div class="label">
+          Sub-category {{ activeMainCategory }}/10
+        </div>
+      </div>
     </div>
   </div>
 </template>
