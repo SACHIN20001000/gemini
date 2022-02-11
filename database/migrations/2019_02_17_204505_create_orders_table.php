@@ -21,13 +21,8 @@ class CreateOrdersTable extends Migration
             $table->enum('status', ['pending','processing','completed','decline'])->default('pending');
             $table->float('grand_total');
             $table->integer('item_count');
-            $table->boolean('is_paid')->default(false);
             $table->string('payment_method')->default('cash_on_delivery');
             $table->string('shippingmethod')->nullable();
-            $table->string('discount')->nullable();
-            $table->string('sub_total')->nullable();
-
-
             $table->text('remark')->nullable();
 
             $table->timestamps();
