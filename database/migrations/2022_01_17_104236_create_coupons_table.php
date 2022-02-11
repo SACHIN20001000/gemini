@@ -19,7 +19,7 @@ class CreateCouponsTable extends Migration
 
             $table->string('code');
             $table->enum('type', ['percentage', 'numeric']);
-            $table->enum('apply_to', ['entire_orders', 'specific_category','specific_product']);
+            $table->enum('apply_to', ['entire_orders', 'specific_category','specific_product','specific_user']);
             $table->integer('apply_for')->nullable();
             $table->string('product_type')->nullable();;
             $table->boolean('lifetime_coupon')->default(0);
@@ -43,7 +43,7 @@ class CreateCouponsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('coupons');
-    
+
 
     }
 }
