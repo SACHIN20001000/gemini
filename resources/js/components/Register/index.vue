@@ -3,7 +3,20 @@
     <p>Register Page</p>
     <form>
       <template>
-        <div class="errorMsg" v-if="errors && errors != null && errors != ''">{{errors}} </div>
+        <div
+          class="errorMsg"
+          v-if="errors && errors != null && errors != ''"
+        >
+          <p>{{errors.message}} </p>
+          <ul v-if="errors && errors.errors">
+            <li
+              v-for="(fieldError,fekey) in errors.errors"
+              :key="fekey"
+            >
+            {{fieldError[0]}}
+            </li>
+          </ul>
+        </div>
         <div class="input-group">
           <div class="input-group-prepend">
             <span

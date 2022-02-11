@@ -55,21 +55,34 @@
 </style>
 <script>
 import {mapGetters,mapActions} from "vuex"
+import HTTP from './../../Api/auth'
 
 export default {
   name:"Payments",
   created(){
     this.removeCartOnLocal()
-    this.getCartToken()
+    this.refreshCard()
   },
   computed: {
     ...mapGetters(['Orders'])
   },
   methods:{
-    ...mapActions(['getCartToken']),
+    ...mapActions(['getCartItems']),
     removeCartOnLocal(){
       localStorage.removeItem('cartKey')
       localStorage.removeItem('cartId')
+    },
+    refreshCard(){
+      HTTP.get(process.env.MIX_APP_APIURL+"cart").then((response) => {
+        const cartToken = response.data.data;
+        if(cartToken.key){
+          localStorage.setItem('cartKey', cartToken.key)
+          localStorage.setItem('cartId', cartToken.id)
+          this.getCartItems()
+        }
+      }).catch((errors) => {
+        commit("pageErrors", errors.response.data.message)
+      })
     }
   }
 }
