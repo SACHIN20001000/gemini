@@ -135,7 +135,6 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #a4a4a4;
 }
 
 .logo {
