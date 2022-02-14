@@ -886,49 +886,6 @@
                 ]
             }
         },
-        "/chowhub/products/category/{id}": {
-            "get": {
-                "tags": [
-                    "ChowhubProducts"
-                ],
-                "summary": "Chowhub Products By Category Id",
-                "operationId": "Chowhub Product By categoryId",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "1",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "products",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ProductResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/components/schemas/BadRequest"
-                    },
-                    "404": {
-                        "$ref": "#/components/schemas/Notfound"
-                    },
-                    "500": {
-                        "$ref": "#/components/schemas/Forbidden"
-                    }
-                },
-                "security": [
-                    {
-                        "Token": []
-                    }
-                ]
-            }
-        },
         "/chowhub/products/attributes/{id}": {
             "get": {
                 "tags": [
@@ -1382,6 +1339,258 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/FaqResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/litterhub/cart": {
+            "get": {
+                "tags": [
+                    "LitterhubCarts"
+                ],
+                "summary": "Create cart key",
+                "operationId": "Create litterhub cart key",
+                "responses": {
+                    "200": {
+                        "description": "Create cart key",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CartResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/litterhub/cart/{id}": {
+            "get": {
+                "tags": [
+                    "LitterhubCarts"
+                ],
+                "summary": "show cart items",
+                "operationId": "show litterhub cart items",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CartKeyRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "show cart items",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SingleCartResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "LitterhubCarts"
+                ],
+                "summary": "Delete cart",
+                "operationId": "Delete litterhub cart",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CartKeyRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Get cart id by key"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/litterhub/cart/{cart}/{itemId}": {
+            "delete": {
+                "tags": [
+                    "LitterhubCarts"
+                ],
+                "summary": "Delete cart item",
+                "operationId": "Delete litterhub cart item",
+                "parameters": [
+                    {
+                        "name": "cart id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    },
+                    {
+                        "name": "item id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CartKeyRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Delete cart item by key"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "litterhub/cartIdByKey": {
+            "get": {
+                "tags": [
+                    "LitterhubCartS"
+                ],
+                "summary": "Get cart id by key",
+                "operationId": "Get Litterhub cart id by key",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CartKeyRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Get cart id by key",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CartResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/litterhub/cart/{cart}": {
+            "post": {
+                "tags": [
+                    "LitterhubCarts"
+                ],
+                "summary": "Add Litterhub Product into cart",
+                "operationId": "Litterhub ProductCart",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CartRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CartResponse"
                                 }
                             }
                         }
@@ -2291,6 +2500,119 @@
                         "$ref": "#/components/schemas/Forbidden"
                     }
                 }
+            }
+        },
+        "/solutionhub/products": {
+            "get": {
+                "tags": [
+                    "SolutionhubProducts"
+                ],
+                "summary": "Solutionhub Products",
+                "operationId": "Solutionhub Products",
+                "responses": {
+                    "200": {
+                        "description": "Products",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Token": []
+                    }
+                ]
+            }
+        },
+        "/solutionhub/products/{id}": {
+            "get": {
+                "tags": [
+                    "SolutionhubProducts"
+                ],
+                "summary": "Solutionhub Products By Id",
+                "operationId": "Solutionhub Product By Id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "1",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "products",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Token": []
+                    }
+                ]
+            }
+        },
+        "/solutionhub/tags": {
+            "get": {
+                "tags": [
+                    "SolutionhubProducts"
+                ],
+                "summary": "Solutionhub tags",
+                "operationId": "Solutionhub tags",
+                "responses": {
+                    "200": {
+                        "description": "tags",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TagResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Token": []
+                    }
+                ]
             }
         },
         "/stores": {
