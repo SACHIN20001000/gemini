@@ -21,7 +21,7 @@ class PageController extends Controller
 
         if ($request->ajax())
         {
-            $data = Post::with('users')->with('categories')->orderby('id','DESC');
+            $data = Post::with('users')->with('categories')->orderby('posts.id','DESC');
 
             return Datatables::of($data)
                             ->addIndexColumn()
