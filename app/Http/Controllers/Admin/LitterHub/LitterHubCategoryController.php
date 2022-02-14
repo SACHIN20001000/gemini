@@ -23,7 +23,7 @@ class ChowhubCategoryController extends Controller
     {
         if ($request->ajax())
         {
-            $data = Category::where('type', 'Chowhub')->get();
+            $data = Category::where('type', 'Chowhub')->orderby('id','DESC');
 
             return Datatables::of($data)
                             ->addIndexColumn()
@@ -48,7 +48,7 @@ class ChowhubCategoryController extends Controller
                                 $action = '<span class="action-buttons">
                                     <a  href="' . route("chowhub-categories.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
-                                    
+
                                     <a href="' . route("chowhub-categories.destroy", $row) . '"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"

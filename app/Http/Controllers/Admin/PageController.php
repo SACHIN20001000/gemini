@@ -21,7 +21,7 @@ class PageController extends Controller
 
         if ($request->ajax())
         {
-            $data = Post::with('users')->with('categories')->get();
+            $data = Post::with('users')->with('categories')->orderby('id','DESC');
 
             return Datatables::of($data)
                             ->addIndexColumn()
@@ -46,7 +46,7 @@ class PageController extends Controller
                                 $action = '<span class="action-buttons">
                                     <a  href="' . route("editPage", $row->id) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
-                                    
+
                                     <a href="' . route("deletePage", $row->id) . '"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"
@@ -70,7 +70,7 @@ class PageController extends Controller
         return view("admin.pages.pageList");
     }
 
-    //below function used for add page 
+    //below function used for add page
     public function addPages()
     {
         $category = Category::where(['type' => 'Page', 'status' => 1])->get();
@@ -86,7 +86,7 @@ class PageController extends Controller
             $path = Storage::disk('s3')->url($path);
         }
 
-        // minified css code 
+        // minified css code
 
 
         $request->css = str_replace(': ', ':', $request->css);
@@ -132,7 +132,7 @@ class PageController extends Controller
         return view('admin.pages.editPage', compact('post', 'category'));
     }
 
-    //below function update the data 
+    //below function update the data
     public function updatePage(PagesRequest $request)
     {
         $post = Post::find($request->id);
@@ -145,7 +145,7 @@ class PageController extends Controller
 
 
 
-        // minified css code 
+        // minified css code
 
 
         $request->css = str_replace(': ', ':', $request->css);
@@ -184,7 +184,7 @@ class PageController extends Controller
         return redirect('admin/page')->with('success', 'Page Updated Successfully');
     }
 
-    //  below function delete the data 
+    //  below function delete the data
     public function deletePage($id)
     {
         $post = Post::find($id)->delete();

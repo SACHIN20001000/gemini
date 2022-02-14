@@ -170,7 +170,7 @@
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
                                           <select name="scented" class="form-control dog" id="">
-                                              <option value="">Select Below</option>
+                                            
                                               <option value="scented"{{ (isset($product) && $product->scented  == 'scented') ? 'selected' : '' }}>Scented</option>
                                               <option value="unscented"{{ (isset($product) && $product->scented  == 'unscented') ? 'selected' : '' }}>Unscented</option>
                                           </select>
@@ -182,7 +182,7 @@
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
                                         <select name="clumping" class="form-control dog" id="">
-                                              <option value="">Select Below</option>
+                                            
                                               <option value="clumping"{{ (isset($product) && $product->clumping  == 'clumping') ? 'selected' : '' }}>Clumping</option>
                                               <option value="non-clumping"{{ (isset($product) && $product->clumping  == 'non-clumping') ? 'selected' : '' }}>Non-Clumping</option>
                                           </select>
@@ -203,7 +203,7 @@
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
                                         <select name="litter_material[]" class="form-control select2"id="select" multiple="multiple" >
-                                              <option value="">Select Below</option>
+                                            
                                               <option value="crystal" <?php if(isset($product->litter_material)){ if(in_array('crystal', json_decode($product->litter_material))){echo "Selected";}}?>>Crystal</option>
                                               <option value="wood"<?php  if(isset($product->litter_material)){ if(in_array('wood', json_decode($product->litter_material))){echo "Selected";}}?>>Wood</option>
                                               <option value="clay"<?php  if(isset($product->litter_material)){ if(in_array('clay', json_decode($product->litter_material))){echo "Selected";}}?>>Clay</option>

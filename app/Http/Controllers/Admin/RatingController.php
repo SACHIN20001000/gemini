@@ -26,7 +26,7 @@ class RatingController extends Controller
 
         if ($request->ajax())
         {
-            $data = Rating::with('user','product')->get();
+            $data = Rating::with('user','product')->orderby('id','DESC');
 
             return Datatables::of($data)
                             ->addIndexColumn()
@@ -53,7 +53,7 @@ class RatingController extends Controller
                             ->addIndexColumn()
                             ->addColumn('product', function ($row)
                             {
-                               
+
                                 if(!empty($row['product']->productName)){
                                     $product = $row['product']->productName;
                                 }else{

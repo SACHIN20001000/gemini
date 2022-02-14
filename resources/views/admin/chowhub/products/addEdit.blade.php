@@ -181,7 +181,7 @@
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
                                           <select name="pet_type" class="form-control dog" >
-                                              <option value="">Select Below</option>
+                                             
                                               <option value="dog"{{ (isset($product) && $product->pet_type  == 'dog') ? 'selected' : '' }}>Dog</option>
                                               <option value="cat"{{ (isset($product) && $product->pet_type  == 'cat') ? 'selected' : '' }}>Cat</option>
                                           </select>
@@ -194,7 +194,7 @@
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
 
                                             <select name="weight[]" class="form-control select2 multi" multiple="multiple" >
-                                              <option value="">Select Below</option>
+                                             
                                               <option value="0-22lbs" <?php if(isset($product->weight)){ if(in_array('0-22lbs', json_decode($product->weight))){echo "Selected";}}?>>0-22lbs</option>
                                               <option value="23-59lbs"<?php  if(isset($product->weight)){ if(in_array('23-59lbs', json_decode($product->weight))){echo "Selected";}}?>>23-59lbs</option>
                                               <option value="60+lbs"<?php  if(isset($product->weight)){ if(in_array('60+lbs', json_decode($product->weight))){echo "Selected";}}?>>60+lbs</option>
@@ -208,7 +208,7 @@
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
 
                                             <select name="age[]" class="form-control select2 multi" multiple="multiple" >
-                                              <option value="">Select Below</option>
+                                             
                                               <option value="0-1yrs" <?php if(isset($product->age)){ if(in_array('0-1yrs', json_decode($product->age))){echo "Selected";}}?>>0-1yrs</option>
                                               <option value="1-10yrs"<?php  if(isset($product->age)){ if(in_array('1-10yrs', json_decode($product->age))){echo "Selected";}}?>>1-10yrs</option>
                                               <option value="10+yrs"<?php  if(isset($product->age)){ if(in_array('10+yrs', json_decode($product->age))){echo "Selected";}}?>>10+yrs</option>
@@ -221,7 +221,7 @@
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
                                         <select name="food_type" class="form-control dog" >
-                                              <option value="">Select Below</option>
+                                             
                                               <option value="food" {{ (isset($product) && $product->food_type  == 'food') ? 'selected' : '' }}>Food</option>
                                               <option value="treats" {{ (isset($product) && $product->food_type  == 'treats') ? 'selected' : '' }}>Treats</option>
                                               <option value="supps" {{ (isset($product) && $product->food_type  == 'supps') ? 'selected' : '' }}>Supps</option>
@@ -235,7 +235,7 @@
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
                                         <select name="protein_type[]" class="form-control select2 multi" multiple="multiple" >
-                                              <option value="">Select Below</option>
+                                             
                                               <option value="turkey" <?php if(isset($product->protein_type)){ if(in_array('turkey', json_decode($product->protein_type))){echo "Selected";}}?>>Turkey</option>
                                               <option value="chicken"<?php  if(isset($product->protein_type)){ if(in_array('chicken', json_decode($product->protein_type))){echo "Selected";}}?>>Chicken</option>
                                               <option value="beef"<?php  if(isset($product->protein_type)){ if(in_array('beef', json_decode($product->protein_type))){echo "Selected";}}?>>Beef</option>

@@ -24,7 +24,7 @@ class CategoryController extends Controller
     {
         if ($request->ajax())
         {
-            $data = Category::where('type', 'Product')->get();
+            $data = Category::where('type', 'Product')->orderby('id','DESC');
 
             return Datatables::of($data)
                             ->addIndexColumn()

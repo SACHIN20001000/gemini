@@ -27,7 +27,7 @@ class ChowhubCouponController extends Controller
 
         if ($request->ajax())
         {
-            $data = Coupon::where('product_type', '=' ,'Chowhub')->get();
+            $data = Coupon::where('product_type', '=' ,'Chowhub')->orderby('id','DESC');
 
             return Datatables::of($data)
                             ->addIndexColumn()

@@ -28,7 +28,7 @@ class UserController extends Controller
                             {
                                 $q->where('name', '!=', 'IotAdmin');
                             })
-                    ->get();
+                            ->orderby('id','DESC');
 
             return Datatables::of($data)
                             ->addIndexColumn()

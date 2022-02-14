@@ -34,7 +34,7 @@ class ProductController extends Controller
 
         if ($request->ajax())
         {
-            $data = Product::with('store', 'category')->get();
+            $data = Product::with('store', 'category')->orderby('id','DESC');
 
             return Datatables::of($data)
                             ->addIndexColumn()
@@ -106,7 +106,7 @@ class ProductController extends Controller
     {
 
         $inputs = $request->all();
-     
+
         if(!empty($inputs['product_detail'])){
             foreach($inputs['product_detail'] as $key => $value)
             {

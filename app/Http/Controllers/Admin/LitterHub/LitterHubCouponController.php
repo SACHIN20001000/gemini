@@ -27,7 +27,7 @@ class LitterHubCouponController extends Controller
 
         if ($request->ajax())
         {
-            $data = Coupon::where('product_type', '=' ,'litterhub')->get();
+            $data = Coupon::where('product_type', '=' ,'litterhub')->orderby('id','DESC');
 
             return Datatables::of($data)
                             ->addIndexColumn()
@@ -157,7 +157,7 @@ class LitterHubCouponController extends Controller
         'lifetime_coupon' => $inputs['lifetime_coupon'] ??0,
         'apply_to' => $inputs['apply_to'] ??null,
         'category_id' => (isset($inputs['category_id'])) ? json_encode($inputs['category_id']) : null,
-      
+
         'product_id' => (isset($inputs['product_id'])) ? json_encode($inputs['product_id']) : null,
         'product_type' => 'litterhub' ]);
          return back()->with('success', 'Coupon updated successfully!');

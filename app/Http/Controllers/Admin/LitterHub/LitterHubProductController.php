@@ -37,7 +37,7 @@ class LitterhubProductController extends Controller
 
         if ($request->ajax())
         {
-            $data = LitterhubProduct::with('store')->get();
+            $data = LitterhubProduct::with('store')->orderby('id','DESC');
 
             return Datatables::of($data)
                             ->addIndexColumn()
