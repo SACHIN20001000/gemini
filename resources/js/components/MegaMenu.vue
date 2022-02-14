@@ -1,5 +1,5 @@
 <template>
-  <div @mouseleave="hideMegaMenus()" class="megamenu-wrapper">
+  <div @mouseleave="hideMegaMenu()" class="megamenu-wrapper">
     <div class="main-categories">
       <div
         @mouseover="changeMainCategory(1)"
