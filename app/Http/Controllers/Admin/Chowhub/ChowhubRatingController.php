@@ -26,7 +26,7 @@ class ChowhubRatingController extends Controller
 
         if ($request->ajax())
         {
-            $data = ChowhubRating::with('user','product')->orderby('id','DESC');
+            $data = ChowhubRating::with('user','product')->orderby('chowhub_ratings.id','DESC');
 
             return Datatables::of($data)
                             ->addIndexColumn()
