@@ -23,7 +23,7 @@ class ChowhubStoreController extends Controller
 
         if ($request->ajax())
         {
-            $data = ChowhubStore::all();
+            $data = ChowhubStore::orderby('id','DESC');
 
             return Datatables::of($data)
                             ->addIndexColumn()
@@ -33,7 +33,7 @@ class ChowhubStoreController extends Controller
                                 $action = '<span class="action-buttons">
                                     <a  href="' . route("chowhub-store.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
-                                    
+
                                     <a href="' . route("chowhub-store.destroy", $row) . '"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"

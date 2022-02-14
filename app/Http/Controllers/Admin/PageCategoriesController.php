@@ -23,7 +23,7 @@ class PageCategoriesController extends Controller
     {
         if ($request->ajax())
         {
-            $data = Category::where('type', 'Page')->get();
+            $data = Category::where('type', 'Page')->orderby('id','DESC');
 
             return Datatables::of($data)
                             ->addIndexColumn()
@@ -48,7 +48,7 @@ class PageCategoriesController extends Controller
                                 $action = '<span class="action-buttons">
                                     <a  href="' . route("page-categories.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
-                                    
+
                                     <a href="' . route("page-categories.destroy", $row) . '"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"

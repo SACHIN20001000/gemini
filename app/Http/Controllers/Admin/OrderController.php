@@ -21,7 +21,7 @@ class OrderController extends Controller
     {
         if ($request->ajax())
         {
-            $data = Order::with('user');
+            $data = Order::with('user')->orderby('id','DESC');
 
             return Datatables::of($data)
                             ->addIndexColumn()

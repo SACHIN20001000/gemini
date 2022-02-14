@@ -30,7 +30,7 @@ class CouponController extends Controller
 
         if ($request->ajax())
         {
-            $data = Coupon::where('product_type', '=' ,'product')->get();
+            $data = Coupon::where('product_type', '=' ,'product')->orderby('id','DESC');
 
             return Datatables::of($data)
                             ->addIndexColumn()
@@ -160,7 +160,7 @@ class CouponController extends Controller
         'lifetime_coupon' => $inputs['lifetime_coupon'] ??0,
         'apply_to' => $inputs['apply_to'] ??null,
        'category_id' => (isset($inputs['category_id'])) ? json_encode($inputs['category_id']) : null,
-     
+
        'product_id' => (isset($inputs['product_id'])) ? json_encode($inputs['product_id']) : null,
        'product_type' => 'product' ]);
         return back()->with('success', 'Coupon updated successfully!');

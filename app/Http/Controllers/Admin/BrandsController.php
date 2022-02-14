@@ -23,7 +23,7 @@ class BrandsController extends Controller
 
         if ($request->ajax())
         {
-            $data = Brand::all();
+            $data = Brand::orderby('id','DESC');
 
             return Datatables::of($data)
                             ->addIndexColumn()
@@ -32,7 +32,7 @@ class BrandsController extends Controller
                                 $action = '<span class="action-buttons">
                                     <a  href="' . route("brands.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
-                                    
+
                                     <a href="' . route("brands.destroy", $row) . '"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"

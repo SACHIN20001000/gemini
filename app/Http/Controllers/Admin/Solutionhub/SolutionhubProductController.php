@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Solutionhub\SolutionhubProduct;
 use App\Models\Solutionhub\SolutionhubTag;
 use App\Models\Solutionhub\SolutionhubProductTag;
+use App\Models\Solutionhub\SolutionhubBackendTag;
+use App\Models\Solutionhub\SolutionhubProductBackendTag;
 use DataTables;
 use Illuminate\Support\Str;
 use App\Http\Requests\Admin\Solutionhub\Product\AddProduct;
@@ -27,7 +29,7 @@ class SolutionhubProductController extends Controller
 
         if ($request->ajax())
         {
-            $data = SolutionhubProduct::all();
+            $data = SolutionhubProduct::orderby('id','DESC');
 
             return Datatables::of($data)
                             ->addIndexColumn()
@@ -104,6 +106,7 @@ public function store(AddProduct $request)
         }
         $products=SolutionhubProduct::create($inputs);
         $tags = explode(",", $inputs['tag']);
+        $backendtags = explode(",", $inputs['backend_tag']);
         if (!empty($tags))
         {
             foreach ($tags as $vakey => $tagName)
@@ -116,6 +119,23 @@ public function store(AddProduct $request)
                 ]);
 
                 $tagValue = new SolutionhubProductTag;
+                $tagValue->tag_id = $tag->id;
+                $tagValue->product_id = $products->id;
+                $tagValue->save();
+            }
+        }
+        if (!empty($backendtags))
+        {
+            foreach ($backendtags as $vakey => $tagName)
+            {
+
+                $tag = SolutionhubBackendTag::updateOrCreate([
+                            'name' => $tagName
+                                ], [
+                            'name' => $tagName
+                ]);
+
+                $tagValue = new SolutionhubProductBackendTag;
                 $tagValue->tag_id = $tag->id;
                 $tagValue->product_id = $products->id;
                 $tagValue->save();
@@ -162,8 +182,9 @@ public function store(AddProduct $request)
             $inputs['feature_image'] = $image_path;
         }
 
-       SolutionhubProduct::find($id)->update($inputs);
+      SolutionhubProduct::find($id)->update($inputs);
         $tags = explode(",", $inputs['tag']);
+        $backendtags = explode(",", $inputs['backend_tag']);
         if (!empty($tags))
         {
             SolutionhubProductTag::where('product_id', $id)->delete();
@@ -182,6 +203,24 @@ public function store(AddProduct $request)
                 $tagValue->save();
             }
         }
+        if (!empty($backendtags))
+        {
+            SolutionhubProductBackendTag::where('product_id', $id)->delete();
+            foreach ($backendtags as $vakey => $tagName)
+            {
+
+                $tag = SolutionhubBackendTag::updateOrCreate([
+                            'name' => $tagName
+                                ], [
+                            'name' => $tagName
+                ]);
+
+                $tagValue = new SolutionhubProductBackendTag;
+                $tagValue->tag_id = $tag->id;
+                $tagValue->product_id = $id;
+                $tagValue->save();
+            }
+        }
         return back()->with('success', 'Product Updated successfully!');
     }
 
@@ -194,6 +233,7 @@ public function store(AddProduct $request)
     public function destroy($id)
     {
         SolutionhubProductTag::where('product_id', $id)->delete();
+        SolutionhubProductBackendTag::where('product_id', $id)->delete();
         SolutionhubProduct::find($id)->delete();
         return back()->with('success', 'Product deleted successfully!');
     }

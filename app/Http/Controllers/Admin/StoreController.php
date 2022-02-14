@@ -23,7 +23,7 @@ class StoreController extends Controller
 
         if ($request->ajax())
         {
-            $data = Store::all();
+            $data = Store::orderby('id','DESC');
 
             return Datatables::of($data)
                             ->addIndexColumn()
@@ -33,7 +33,7 @@ class StoreController extends Controller
                                 $action = '<span class="action-buttons">
                                     <a  href="' . route("stores.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
-                                    
+
                                     <a href="' . route("stores.destroy", $row) . '"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"

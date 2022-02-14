@@ -17,7 +17,9 @@ class ChowhubProduct extends Model
     protected $fillable = [
         'productName', 'type', 'feature_image', 'description', 'real_price', 'sale_price', 'category_id', 'status','food_type','age','pet_type','protein_type'
     ];
-    protected $appends = array('availTags');
+    protected $appends = array('availTags','availBackendTags');
+
+
 
     public function category()
     {
@@ -49,7 +51,11 @@ class ChowhubProduct extends Model
 
         return $this->hasMany(ChowhubProductTag::class, 'product_id', 'id');
     }
+    public function backendtags()
+    {
 
+        return $this->hasMany(ChowhubProductBackendTag::class, 'product_id', 'id');
+    }
     public function productDescriptionImage()
     {
         return $this->hasMany(ChowhubProductDescriptionImage::class, 'product_id', 'id');
@@ -72,5 +78,16 @@ class ChowhubProduct extends Model
         $tagsData = implode(',', $tagsData);
         return $tagsData;
     }
-
+    public function getAvailBackendTagsAttribute()
+    {
+        $tags = $this->backendtags;
+        $tagsData = [];
+        foreach ($tags as $key => $tag)
+        {
+            $tagName = $tag->tagName;
+            array_push($tagsData, $tagName->name);
+        }
+        $tagsData = implode(',', $tagsData);
+        return $tagsData;
+    }
 }
