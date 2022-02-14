@@ -182,7 +182,7 @@ public function store(AddProduct $request)
             $inputs['feature_image'] = $image_path;
         }
 
-       SolutionhubProduct::find($id)->update($inputs);
+      SolutionhubProduct::find($id)->update($inputs);
         $tags = explode(",", $inputs['tag']);
         $backendtags = explode(",", $inputs['backend_tag']);
         if (!empty($tags))
@@ -217,7 +217,7 @@ public function store(AddProduct $request)
 
                 $tagValue = new SolutionhubProductBackendTag;
                 $tagValue->tag_id = $tag->id;
-                $tagValue->product_id = $products->id;
+                $tagValue->product_id = $id;
                 $tagValue->save();
             }
         }
