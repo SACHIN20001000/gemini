@@ -233,6 +233,7 @@ public function store(AddProduct $request)
     public function destroy($id)
     {
         SolutionhubProductTag::where('product_id', $id)->delete();
+        SolutionhubProductBackendTag::where('product_id', $id)->delete();
         SolutionhubProduct::find($id)->delete();
         return back()->with('success', 'Product deleted successfully!');
     }

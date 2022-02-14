@@ -595,6 +595,8 @@ public function store(AddProduct $request)
         LitterhubProductGallery::where('product_id', $id)->delete();
         LitterhubVariationAttributeValue::where('product_id', $id)->delete();
         LitterhubProductTag::where('product_id', $id)->delete();
+        LitterhubProductBackendTag::where('product_id', $id)->delete();
+
         LitterhubProduct::find($id)->delete();
 
         LitterhubProductFeaturePageImage::where('product_id', $id)->delete();
