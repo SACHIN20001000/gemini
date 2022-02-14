@@ -22,15 +22,18 @@ class CouponResource extends JsonResource
             'type' => $this->type,
             'apply_to' => $this->apply_to,
             'count' => $this->count,
+            'lifetime_coupon' => $this->lifetime_coupon,
 
+
+            'started_at' => $this->started_at,
 
             'expired_at' => $this->expired_at,
 
 
 
-            'category_id' => $this->category_id,
+            'category_id' => json_decode($this->category_id) ?? [],
             'product_type' => $this->product_type,
-            'product_id' => $this->product_id,
+            'product_id' => json_decode($this->product_id) ??  [],
             'value' => $this->value,
 
 
