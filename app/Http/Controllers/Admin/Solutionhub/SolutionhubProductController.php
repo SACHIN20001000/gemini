@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Solutionhub\SolutionhubProduct;
 use App\Models\Solutionhub\SolutionhubTag;
 use App\Models\Solutionhub\SolutionhubProductTag;
+use App\Models\Solutionhub\SolutionhubBackendTag;
+use App\Models\Solutionhub\SolutionhubProductBackendTag;
 use DataTables;
 use Illuminate\Support\Str;
 use App\Http\Requests\Admin\Solutionhub\Product\AddProduct;
@@ -104,6 +106,7 @@ public function store(AddProduct $request)
         }
         $products=SolutionhubProduct::create($inputs);
         $tags = explode(",", $inputs['tag']);
+        $backendtags = explode(",", $inputs['backend_tag']);
         if (!empty($tags))
         {
             foreach ($tags as $vakey => $tagName)
@@ -116,6 +119,23 @@ public function store(AddProduct $request)
                 ]);
 
                 $tagValue = new SolutionhubProductTag;
+                $tagValue->tag_id = $tag->id;
+                $tagValue->product_id = $products->id;
+                $tagValue->save();
+            }
+        }
+        if (!empty($backendtags))
+        {
+            foreach ($backendtags as $vakey => $tagName)
+            {
+
+                $tag = SolutionhubBackendTag::updateOrCreate([
+                            'name' => $tagName
+                                ], [
+                            'name' => $tagName
+                ]);
+
+                $tagValue = new SolutionhubProductBackendTag;
                 $tagValue->tag_id = $tag->id;
                 $tagValue->product_id = $products->id;
                 $tagValue->save();
@@ -164,6 +184,7 @@ public function store(AddProduct $request)
 
        SolutionhubProduct::find($id)->update($inputs);
         $tags = explode(",", $inputs['tag']);
+        $backendtags = explode(",", $inputs['backend_tag']);
         if (!empty($tags))
         {
             SolutionhubProductTag::where('product_id', $id)->delete();
@@ -179,6 +200,24 @@ public function store(AddProduct $request)
                 $tagValue = new SolutionhubProductTag;
                 $tagValue->tag_id = $tag->id;
                 $tagValue->product_id = $id;
+                $tagValue->save();
+            }
+        }
+        if (!empty($backendtags))
+        {
+            SolutionhubProductBackendTag::where('product_id', $id)->delete();
+            foreach ($backendtags as $vakey => $tagName)
+            {
+
+                $tag = SolutionhubBackendTag::updateOrCreate([
+                            'name' => $tagName
+                                ], [
+                            'name' => $tagName
+                ]);
+
+                $tagValue = new SolutionhubProductBackendTag;
+                $tagValue->tag_id = $tag->id;
+                $tagValue->product_id = $products->id;
                 $tagValue->save();
             }
         }

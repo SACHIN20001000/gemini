@@ -11,6 +11,8 @@ use App\Models\ChowhubVariationAttribute;
 use App\Models\ChowhubVariationAttributeValue;
 use App\Models\Category;
 use App\Models\ChowhubTag;
+use App\Models\ChowhubBackendTag;
+use App\Models\ChowhubProductBackendTag;
 use App\Models\ChowhubProductTag;
 use App\Models\ChowhubProductDescriptionImage;
 use App\Models\ChowhubProductFeaturePageImage;
@@ -107,6 +109,7 @@ public function store(AddProduct $request)
     {
         $inputs = $request->all();
         $tags = explode(",", $inputs['tag']);
+        $backendtags = explode(",", $inputs['backend_tag']);
         // ADD PRODUCT TABLE DATA
 
 
@@ -195,7 +198,23 @@ public function store(AddProduct $request)
                     $tagValue->save();
                 }
             }
+            if (!empty($backendtags))
+            {
+                foreach ($backendtags as $vakey => $tagName)
+                {
 
+                    $tag = ChowhubBackendTag::updateOrCreate([
+                                'name' => $tagName
+                                    ], [
+                                'name' => $tagName
+                    ]);
+
+                    $tagValue = new ChowhubProductBackendTag;
+                    $tagValue->tag_id = $tag->id;
+                    $tagValue->product_id = $products->id;
+                    $tagValue->save();
+                }
+            }
 
             if (!empty($inputs['attributes']))
             {
@@ -345,6 +364,7 @@ public function store(AddProduct $request)
         }
         ChowhubVariationAttributeValue::where('product_id', $id)->delete();
         $tags = explode(",", $inputs['tag']);
+        $backendtags = explode(",", $inputs['backend_tag']);
         if (!empty($inputs['productName']))
         {
             $products = ChowhubProduct::find($id);
@@ -389,6 +409,23 @@ public function store(AddProduct $request)
                                 'name' => $tagName
                     ]);
                     $tagValue = new ChowhubProductTag;
+                    $tagValue->tag_id = $tag->id;
+                    $tagValue->product_id = $products->id;
+                    $tagValue->save();
+                }
+            }
+            if (!empty($backendtags))
+            { ChowhubProductBackendTag::where('product_id', $id)->delete();
+                foreach ($backendtags as $vakey => $tagName)
+                {
+
+                    $tag = ChowhubBackendTag::updateOrCreate([
+                                'name' => $tagName
+                                    ], [
+                                'name' => $tagName
+                    ]);
+
+                    $tagValue = new ChowhubProductBackendTag;
                     $tagValue->tag_id = $tag->id;
                     $tagValue->product_id = $products->id;
                     $tagValue->save();
@@ -559,6 +596,8 @@ public function store(AddProduct $request)
         ChowhubProductGallery::where('product_id', $id)->delete();
         ChowhubVariationAttributeValue::where('product_id', $id)->delete();
         ChowhubProductTag::where('product_id', $id)->delete();
+        ChowhubProductBackendTag::where('product_id', $id)->delete();
+
         ChowhubProduct::find($id)->delete();
 
         ChowhubProductFeaturePageImage::where('product_id', $id)->delete();

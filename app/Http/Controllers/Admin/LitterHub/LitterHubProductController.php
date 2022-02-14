@@ -12,6 +12,8 @@ use App\Models\Litterhub\LitterhubVariationAttributeValue;
 use App\Models\Litterhub\Litterhuby;
 use App\Models\Litterhub\LitterhubTag;
 use App\Models\Litterhub\LitterhubProductTag;
+use App\Models\Litterhub\LitterhubBackendTag;
+use App\Models\Litterhub\LitterhubProductBackendTag;
 use App\Models\Litterhub\LitterhubProductDescriptionImage;
 use App\Models\Litterhub\LitterhubProductFeaturePageImage;
 use App\Models\Litterhub\LitterhubStore;
@@ -107,6 +109,7 @@ public function store(AddProduct $request)
     {
         $inputs = $request->all();
         $tags = explode(",", $inputs['tag']);
+        $backendtags = explode(",", $inputs['backend_tag']);
         // ADD PRODUCT TABLE DATA
 //         echo"<pre>";
 // print_r($inputs);die;
@@ -197,7 +200,23 @@ public function store(AddProduct $request)
                 }
             }
 
+            if (!empty($backendtags))
+            {
+                foreach ($backendtags as $vakey => $tagName)
+                {
 
+                    $tag = LitterhubBackendTag::updateOrCreate([
+                                'name' => $tagName
+                                    ], [
+                                'name' => $tagName
+                    ]);
+
+                    $tagValue = new LitterhubProductBackendTag;
+                    $tagValue->tag_id = $tag->id;
+                    $tagValue->product_id = $products->id;
+                    $tagValue->save();
+                }
+            }
             if (!empty($inputs['attributes']))
             {
 
@@ -345,6 +364,7 @@ public function store(AddProduct $request)
         }
         LitterhubVariationAttributeValue::where('product_id', $id)->delete();
         $tags = explode(",", $inputs['tag']);
+        $backendtags = explode(",", $inputs['backend_tag']);
         if (!empty($inputs['productName']))
         {
             $products = LitterhubProduct::find($id);
@@ -387,6 +407,24 @@ public function store(AddProduct $request)
                                 'name' => $tagName
                     ]);
                     $tagValue = new LitterhubProductTag;
+                    $tagValue->tag_id = $tag->id;
+                    $tagValue->product_id = $products->id;
+                    $tagValue->save();
+                }
+            }
+            if (!empty($backendtags))
+            {
+                LitterhubProductBackendTag::where('product_id', $id)->delete();
+                foreach ($backendtags as $vakey => $tagName)
+                {
+
+                    $tag = LitterhubBackendTag::updateOrCreate([
+                                'name' => $tagName
+                                    ], [
+                                'name' => $tagName
+                    ]);
+
+                    $tagValue = new LitterhubProductBackendTag;
                     $tagValue->tag_id = $tag->id;
                     $tagValue->product_id = $products->id;
                     $tagValue->save();
