@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LitterhubVariationAttribute extends Model
 {
 
-    protected $table = 'chowhub_variations_attributes';
+    protected $table = 'litterhub_variations_attributes';
 
     use HasFactory;
 
