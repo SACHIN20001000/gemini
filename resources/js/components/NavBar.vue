@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="header_mega">
     <div class="menu-container" @mouseover="mouseEvent($event, 'wrapper')">
       <div class="menu_nav">
         <nav class="navbar navbar-expand-lg">
-          <div class="container-fluid">
+          <div class="">
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
               <ul class="navbar-nav">
                 <li class="nav-item">
@@ -17,9 +17,20 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">SERVICES</a>
+                  <ul class="sub_menu min_300">
+                      <li><a href="#">DaySpaw™</a></li>
+                      <li><a href="#">Chowologist™ Nutrition Consultation</a></li>
+                      <li><a href="#">Click & Pick</a></li>
+                      <li><a href="#">Coming Soon…</a></li>
+                  </ul>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">ABOUT US </a>
+                  <ul class="sub_menu">
+                      <li><a href="#">Our Why</a></li>
+                      <li><a href="#">Philantropy</a></li>
+                      <li><a href="#">Careers</a></li>
+                  </ul>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">SUBSCRIPTION PAWGRAM<sup>®</sup></a>
@@ -33,9 +44,17 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">LEARN</a>
+                  <ul class="sub_menu">
+                      <li><a href="#">Blog</a></li>
+                      <li><a href="#">Guids</a></li>
+                  </ul>
                 </li>
                 <li class="nav-item lb_no">
                   <a class="nav-link" href="#">HELP</a>
+                  <ul class="sub_menu min_160">
+                      <li><a href="#">Blog</a></li>
+                      <li><a href="#">Guids</a></li>
+                  </ul>
                 </li>
                  </li>
                 <li class="nav-item nv mobil_only">
@@ -168,9 +187,6 @@ export default {
   padding: 0 15px;
 }
 
-.item:hover {
-  background: #efefef;
-}
 
 .viewport-warning {
   width: 100%;
@@ -192,4 +208,15 @@ export default {
     padding: 15px;
   }
 }
+
+.header_mega {
+    margin: 0 auto;
+    justify-content: center;
+    display: flex;
+    flex-wrap:wrap; 
+    position:relative;
+    z-index:99;
+    background: #00b7bc;
+}
+
 </style>
