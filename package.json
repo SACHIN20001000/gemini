@@ -46,6 +46,7 @@
     "vue-axios": "^3.4.0",
     "vue-infinite-autocomplete": "^4.1.1",
     "vue-meta": "^2.4.0",
+    "vue-nested-menu": "^1.0.0",
     "vue-notification": "^1.3.20",
     "vue-product-slider": "^0.2.0",
     "vue-router": "^3.5.2",
