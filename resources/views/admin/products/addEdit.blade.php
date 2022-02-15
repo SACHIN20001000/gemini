@@ -1,5 +1,4 @@
 
-
 @extends('admin.layouts.app')
 @section('content')
 <style>.imageSize{height: 100px;width: 100px;} .tag{color:black !important;background-color: aqua;font-size: 15px;}.PD_detail {display: flex; grid-gap: 20px;}.PD_detail .note-editor {width: 100%;}span.trash-icon {width: 50px;height: 50px;border-radius: 5px;border: 1px solid #dde2ef;display: flex;align-items: center;justify-content: center;font-size: 18px; color: #fff; background-color: #ee335e; border-color: #ee335e;}
@@ -14,6 +13,9 @@
             </div>
         </div>
         @if(isset($product))
+        <a class="btn btn-main-primary ml_auto" style="margin-left: 745px;"  href="{{route('duplicate','id='.$product->id)}}">Duplicate Product</a>
+        @endif
+        @if(isset($product))
         <a class="btn btn-main-primary ml_auto" target="_blank" href="/products/<?php echo strtolower(str_replace(' ', '-', $product->productName));?>/{{$product->id}}">View Product</a>
         @endif
     </div>
@@ -22,14 +24,22 @@
     <!-- row -->
     <div class="row">
         <div class="col-lg-12 col-md-12">
+            @if(isset($type))
+            <form  id="product-add-edit" action="{{route('products.store')}}" method="POST" enctype="multipart/form-data">
+            @else
             <form  id="product-add-edit" action="{{isset($product) ? route('products.update',$product->id) : route('products.store')}}" method="POST" enctype="multipart/form-data">
+            @endif
+
                 <div class="card">
                     <div class="card-body">
                         <div class="main-content-label mg-b-5">
                             {{isset($product) ? 'Update # '.$product->id : 'Add New' }}
                         </div>
                         @csrf
+                        @if(empty($type))
                         {{ isset($product) ? method_field('PUT'):'' }}
+                        @endif
+
                         <div class="col-lg-12 col-md-12">
                             <div class="card">
                                 <div class="card-body">
@@ -41,7 +51,7 @@
                                             <input class="form-control" name="productName"  placeholder="Enter your name" type="text" value="{{isset($product) ? $product->productName : '' }}">
                                         </div>
                                     </div>
-                                    <div class="row row-xs align-items-center mg-b-20">
+                                    <!-- <div class="row row-xs align-items-center mg-b-20">
                                         <div class="col-md-4">
                                             <label class="form-label mg-b-0">Backend Tags</label>
                                         </div>
@@ -49,7 +59,7 @@
 
                                             <input type="text" name="backend_tag" placeholder="Tags" value="{{isset($product) ? $product->availBackendTags : '' }}" data-role="tagsinput" class="form-control"/>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="row row-xs align-items-center mg-b-20">
                                         <div class="col-md-4">
                                             <label class="form-label mg-b-0">Tags</label>
@@ -331,8 +341,12 @@
                 </div>
 
 
+                @if(isset($type))
+                <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">Save</button>
+            @else
+            <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>
+            @endif
 
-                <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>
             </form>
             <!-- form end  -->
         </div>

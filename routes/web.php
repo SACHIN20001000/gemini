@@ -91,6 +91,7 @@ Route::prefix('admin')->group(function ()
 
         Route::resource('page-categories', PageCategoriesController::class);
         Route::resource('products', ProductController::class);
+        Route::any('/product/duplicate', [App\Http\Controllers\Admin\ProductController::class, 'duplicate'])->name('duplicate');
         Route::resource('stores', StoreController::class);
         Route::resource('orders', OrderController::class);
 
