@@ -18,7 +18,7 @@
             </div>
         </div>
         @if(isset($product))
-        <a class="btn btn-main-primary ml_auto" style=" margin-left: 682px;"  href="{{route('solutionhub_duplicate','id='.$product->id)}}">Duplicate Product</a>
+        <a class="btn btn-main-primary ml_auto" style=" margin-left: 730px;"  href="{{route('solutionhub_duplicate','id='.$product->id)}}">Duplicate Product</a>
         @endif
         <a class="btn btn-main-primary ml_auto" href="{{ route('solutionhub-products.index') }}">View Products</a>
     </div>
