@@ -521,7 +521,7 @@ public function store(AddProduct $request)
                             $variationAttributeIds = [];
                             foreach ($attributesName as $key => $attribute)
                             {
-                                if($attribute && $variation[$attribute])
+                                if($attribute && isset($variation[$attribute]))
                                 {
                                     array_push($variationIds,$variation['id']);
                                     $selectedAttrubutes = ChowhubVariationAttributeValue::select('id', 'attribute_id')->where(['product_id' => $products->id, 'name' => $variation[$attribute]])->first();

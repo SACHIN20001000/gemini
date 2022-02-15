@@ -555,7 +555,7 @@ class ProductController extends Controller
                             $variationAttributeIds = [];
                             foreach ($attributesName as $key => $attribute)
                             {
-                                if($attribute && $variation[$attribute])
+                                if($attribute && isset($variation[$attribute]))
                                 {
                                 $selectedAttrubutes = VariationAttributeValue::select('id', 'attribute_id')->where(['product_id' => $products->id, 'name' => $variation[$attribute]])->first();
                                 if ($selectedAttrubutes)
