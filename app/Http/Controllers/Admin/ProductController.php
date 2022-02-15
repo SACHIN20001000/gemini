@@ -517,7 +517,7 @@ class ProductController extends Controller
                             $variationAttributeIds = [];
                             foreach ($attributesName as $key => $attribute)
                             {
-                                if($variation[$attribute])
+                                if($attribute && $variation[$attribute])
                                 {
                                     array_push($variationIds,$variation['id']);
                                     $selectedAttrubutes = VariationAttributeValue::select('id', 'attribute_id')->where(['product_id' => $products->id, 'name' => $variation[$attribute]])->first();
@@ -555,6 +555,8 @@ class ProductController extends Controller
                             $variationAttributeIds = [];
                             foreach ($attributesName as $key => $attribute)
                             {
+                                if($attribute && $variation[$attribute])
+                                {
                                 $selectedAttrubutes = VariationAttributeValue::select('id', 'attribute_id')->where(['product_id' => $products->id, 'name' => $variation[$attribute]])->first();
                                 if ($selectedAttrubutes)
                                 {
@@ -562,6 +564,7 @@ class ProductController extends Controller
                                     $AttributesArray['attribute_id'] = $selectedAttrubutes->id;
                                     $AttributesArray['attribute_name_id'] = $selectedAttrubutes->attribute_id;
                                     array_push($variationAttributeIds, $AttributesArray);
+                                }
                                 }
                             }
                             if (!empty($variation['image']))
