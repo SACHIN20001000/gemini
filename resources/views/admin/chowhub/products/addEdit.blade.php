@@ -74,10 +74,10 @@
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
                                             @if(!empty($product->feature_image))
-                                            <input type="file" class="dropify" data-default-file="{{$product->feature_image}}"  onchange="return CheckDimensionFeatureImage()" name="feature_image"  id="feature_image">
+                                            <input type="file" class="dropify" data-default-file="{{$product->feature_image}}" name="feature_image"  id="feature_image">
 
                                             @else
-                                            <input type="file" class="dropify"  name="feature_image"  onchange="return CheckDimensionFeatureImage()" id="feature_image">
+                                            <input type="file" class="dropify"  name="feature_image" id="feature_image">
 
 
                                             @endif
