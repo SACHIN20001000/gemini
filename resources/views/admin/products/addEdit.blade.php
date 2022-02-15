@@ -9,11 +9,15 @@
         <div class="my-auto">
             <div class="d-flex">
                 <h4 class="content-title mb-0 my-auto">Products</h4>
+                @if(isset($type))
+                <span class="text-muted mt-1 tx-13 ms-2 mb-0">/Add New</span>
+                @else
                 <span class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{isset($product) ? $product->name : 'Add New' }}</span>
+                @endif
             </div>
         </div>
         @if(isset($product))
-        <a class="btn btn-main-primary ml_auto" style="margin-left: 745px;"  href="{{route('duplicate','id='.$product->id)}}">Duplicate Product</a>
+        <a class="btn btn-main-primary ml_auto" style=" margin-left: 682px;" href="{{route('duplicate','id='.$product->id)}}">Duplicate Product</a>
         @endif
         @if(isset($product))
         <a class="btn btn-main-primary ml_auto" target="_blank" href="/products/<?php echo strtolower(str_replace(' ', '-', $product->productName));?>/{{$product->id}}">View Product</a>
@@ -33,7 +37,12 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="main-content-label mg-b-5">
-                            {{isset($product) ? 'Update # '.$product->id : 'Add New' }}
+                        @if(isset($type))
+                        Add New
+                        @else
+                        {{isset($product) ? 'Update # '.$product->id : 'Add New' }}
+                        @endif
+
                         </div>
                         @csrf
                         @if(empty($type))

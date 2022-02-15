@@ -104,12 +104,17 @@ Route::prefix('admin')->group(function ()
         //Solutionhub
 
         Route::resource('solutionhub-products', SolutionhubProductController::class);
+        Route::any('/solutionhub-product/duplicate', [App\Http\Controllers\Admin\Solutionhub\SolutionhubProductController::class, 'duplicate'])->name('solutionhub_duplicate');
+
         //litterhub
         Route::resource('litterhub-store', LitterHubStoreController::class);
         Route::resource('litterhub-coupons', LitterHubCouponController::class);
 
         Route::resource('litterhub-products', LitterHubProductController::class);
         Route::post('save-litterhub-photo', [App\Http\Controllers\Admin\LitterHub\LitterHubProductController::class, 'save_photo']);
+        Route::any('/litterhub-product/duplicate', [App\Http\Controllers\Admin\LitterHub\LitterHubProductController::class, 'duplicate'])->name('litterhub_duplicate');
+
+
         Route::post('save-litterhub-description-photo', [App\Http\Controllers\Admin\LitterHub\LitterHubProductController::class, 'save_description_photo']);
 
         Route::post('delete-litterhub-photo', [App\Http\Controllers\Admin\LitterHub\LitterHubProductController::class, 'del_photo']);
@@ -122,6 +127,7 @@ Route::prefix('admin')->group(function ()
         Route::resource('chowhub-categories', ChowhubCategoryController::class);
         Route::resource('chowhub-store', ChowhubStoreController::class);
         Route::resource('chowhub-products', ChowhubProductController::class);
+        Route::any('/chowhub-product/duplicate', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'duplicate'])->name('chowhub_duplicate');
         Route::post('save-chowhub-photo', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'save_photo']);
         Route::post('save-description-photo', [App\Http\Controllers\Admin\Chowhub\ChowhubProductController::class, 'save_description_photo']);
 
