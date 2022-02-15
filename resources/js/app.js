@@ -10,6 +10,7 @@ import "sweetalert2/dist/sweetalert2.min.css"
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import { StripePlugin } from '@vue-stripe/vue-stripe'
 import moment from 'moment'
+import VueNestedMenu from 'vue-nested-menu'
 
 Vue.filter('formatDate', function(value) {
     if (value) {
@@ -29,6 +30,7 @@ Vue.use(store)
 Vue.use(VueAwesomeSwiper)
 Vue.use(StripePlugin, options)
 Vue.use(VueMeta)
+Vue.use(VueNestedMenu)
 
 import './assets/js/jquery-3.6.0.min.js'
 import './assets/js/bootstrap.bundle.min.js'
