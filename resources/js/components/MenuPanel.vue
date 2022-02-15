@@ -7,6 +7,12 @@
                 (isTranslating) ? transitionStyle : {}
             ]"
         >
+        <div class="back_prev">
+            <div  v-if="list.title" @click="handleHeaderClicked" > prev </div>
+            <a href="#">X</a>
+
+    </div>
+        
             <div v-if="list.title" @click="handleHeaderClicked" class="Menu__header">
                 <span v-show="showHeaderArrow" class="arrow">
                     <LeftArrowIcon />
@@ -18,6 +24,7 @@
                 <li v-for="item in list.children"
                     @click="handleItemClicked(item)"
                     class="Menu__item"
+                    :class="item.class?item.class:''"
                 >
                     <template v-if="item.children.length > 0" :href="item.link">
                         <div class="text">{{ item.title }}</div>
@@ -30,7 +37,15 @@
                     </a>
                 </li>
             </ul>
+            <div class="bottom_menu">
+               <ul>
+                   <li><a href="#"><img src="/../../assets/images/paw.png">Cart</a></li>
+                   <li><a href="#">Orders</a></li>
+                   <li><a href="#">Help</a></li>
+               </ul> 
+            </div>
         </div>
+
     </div>
 </template>
 
@@ -94,9 +109,8 @@ ul, li {
     align-items: center;
     padding-left: 35px;
     height: 50px;
-    color: #fff;
+    color: #444;
     font-size: 16px;
-    background-color: #232f3e;
     cursor: pointer;
 
     .arrow {

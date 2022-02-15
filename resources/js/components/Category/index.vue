@@ -1,7 +1,6 @@
 <template>
   <div class="main">
-    <p>Category</p>
-    <div class="Menu">
+       <div class="Menu">
         <MenuBurger :handleBurgerClicked="clickBurger" />
         <MenuShadow :isActive="isActive" :handleShadowClicked="clickShadow" />
         <div class="Menu__panel-wrapper"
@@ -265,3 +264,96 @@ export default {
   }
 }
 </script>
+<style>
+  .viewport-warning {
+    display: none !important;
+}
+
+.lv_0 a, .lv_0 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #9d9d9c !important;
+}
+.bottom_menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+    clear: both;
+    position: absolute;
+    bottom: 40px;
+}
+.Menu__list
+{padding:  0 20px !important;}
+
+ .Menu__list li {  padding: 0!important;}
+.bottom_menu ul li a {
+    font-size: 18px;
+    text-decoration: none;
+    color: #9d9d9c;
+    padding:  0 20px;
+    font-weight: 300;
+    line-height: 41px;
+}
+.lv_0:before {
+    content: "";
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 10px solid #00b3ba;
+    position: absolute;
+    right: 17px;
+}
+li.Menu__item.lv_1:before {
+    content: "";
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 7px solid #00b3ba;
+    position: absolute;
+    right: 17px;
+}
+.Menu__header .arrow {
+    display: none !important;
+}
+.Menu__panel {
+    padding-top: 30px;
+}
+.Menu__header {
+    padding: 20px !important;
+    font-size: 24px !important;
+    font-weight: 700;
+    margin: 30px 0 0 0 !important;
+    color: #9d9d9c !important;
+}
+.bottom_menu ul li a img {
+    margin-right: 10px;
+    display: inline-block;
+}
+.lv_0:after ,li.Menu__item.lv_1:after{
+    content: "";
+    flex-grow: 1;
+    height: 1px;
+    background: #ededed;
+    margin-left: 10px;
+}
+.lv_0 a, .lv_0 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #9d9d9c !important;
+    margin: 30px 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between;
+
+}
+li.Menu__item.lv_1 a, li.Menu__item.lv_1 {
+    font-size: 18px;
+    color: #9d9d9c;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between;
+    font-weight: 500;
+    line-height: 1.9 !important;
+    height: auto;
+}
+  </style>
+
