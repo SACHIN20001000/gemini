@@ -238,5 +238,15 @@ public function store(AddProduct $request)
         return back()->with('success', 'Product deleted successfully!');
     }
 
+    public function duplicate(Request $request)
+    {
 
+        $id=$request->id;
+        $type='Duplicate';
+        $product = SolutionhubProduct::where('id', $id)->first();
+        return view('admin.solutionhub.products.addEdit', compact('product','type'));
+
+      
+
+    }
 }
