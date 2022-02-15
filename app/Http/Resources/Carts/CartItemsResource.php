@@ -24,6 +24,7 @@ class CartItemsResource extends JsonResource
             'product_id' => $this->product_id,
             'cart_id' => $this->cart_id,
             'quantity' => $this->quantity,
+            'discountPrice' => 0,
             'product' => new ProductCartResource($this->product),
             'variationProduct'=>new VariationCartResource($this->variationProduct),
             'variation_attributes'=>  $this->getAttributeByProduct($this->product_id)
