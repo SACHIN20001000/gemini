@@ -262,7 +262,15 @@
         </div>
       <div class="coupon_cart">
         <input type="text" placeholder="Gift cards and discount code" v-model='coupon_form.name'>
-        <button type="button" class="btn_red" @click="applyCode">Apply</button>
+        <span class="applycodebtn" v-if="loadingCopon">
+          <button type="button" class="btn_red" @click="applyCode">
+            Apply
+          </button>
+        </span>
+        <span v-else class="applycodebtn">
+          <img :src="loading" width="30">
+        </span>
+
         <span class="error_validation" v-if="coupon_form.errors().has('name')">
           {{ coupon_form.errors().get('name') }}
         </span>
@@ -490,6 +498,7 @@ export default {
     loading:loading,
     paw:paw,
     loadingDisplay:false,
+    loadingCopon:true,
     cartItems:[]
   }),
   created(){
@@ -577,7 +586,7 @@ export default {
     },
     applyCode(){
       if (this.coupon_form.validate().errors().any()) return;
-
+      this.loadingCopon=false
       HTTP.post(process.env.MIX_APP_APIURL+'coupon', this.coupon_form.data).then((response) => {
         this.CouponCode=response.data.data
         this.couponCodeInfo =[]
@@ -588,9 +597,11 @@ export default {
         }else {
           this.couponEntireOrder(this.CouponCode)
         }
+        this.loadingCopon=true
       }).catch((errors) => {
         this.couponCodeInfo = errors.response.data
         this.$refs.notifications.displayNotification('error','Coupon Code',this.couponCodeInfo.message)
+        this.loadingCopon=true
       })
     },
     paymentProcessed () {
@@ -609,6 +620,8 @@ export default {
       }else{
         this.form.data.payment_method = this.order_form.data.paymentmethods
         this.form.data.shippingmethod = this.order_form.data.shippingmethods
+        this.form.data.discountCode = this.order_form.data.discountCode
+        this.form.data.discountAmount = this.order_form.data.discountAmount
         this.form.data.key = localStorage.getItem('cartKey')
         if(this.order_form.data.paymentmethods == 'card'){
           this.cardPayment()
@@ -651,7 +664,7 @@ export default {
         this.$refs.notifications.displayNotification('error','Card','This card is invalid.')
         return;
       } else {
-        var totalAmount = this.form.data.total.toFixed(2)
+        var totalAmount = this.form.data.total
         var finalPrice = totalAmount*100
         var transactionArray = {
                                 "name": this.form.data.name,
@@ -701,12 +714,12 @@ export default {
     },
     couponEntireOrder(couponDetails){
       if(couponDetails.count>0){
-        this.form.data.discountCode=couponDetails.code
+        this.order_form.data.discountCode=couponDetails.code
 
         if(couponDetails.type == 'percentage'){
           var discountVal = Number(this.form.data.total*couponDetails.value)/100
           if(this.form.data.total>discountVal){
-            this.form.data.discountAmount=discountVal
+            this.order_form.data.discountAmount=discountVal
             var doscountprice = Number(this.form.data.total)-Number(discountVal)
             this.form.data.total = doscountprice.toFixed(2)
             this.$refs.notifications.displayNotification('success','Coupon Code','Coupon Code is applied.')
@@ -718,7 +731,7 @@ export default {
         }else{
           var discountVal = Number(couponDetails.value)
           if(this.form.data.total>discountVal){
-            this.form.data.discountAmount=discountVal
+            this.order_form.data.discountAmount=discountVal
             var doscountprice = Number(this.form.data.total)-Number(couponDetails.value)
             this.form.data.total = doscountprice.toFixed(2)
             this.$refs.notifications.displayNotification('success','Coupon Code','Coupon Code is applied.')
@@ -739,62 +752,19 @@ export default {
       couponDetails.category_id.filter(function(cid,cind){
         categoryIds.push(Number(cid))
       })
-      this.form.data.discountCode=couponDetails.code
+      this.order_form.data.discountCode=couponDetails.code
       if(couponDetails.type == 'percentage'){
         this.cartItems.filter(function(cartitem,ciind){
-          Object.assign({}, _this.cartItems[ciind], { discountPrice: 0})
           if(categoryIds.includes(cartitem.product.category_id)){
-            if(cartitem.variationProduct){
-              var discountVal = Number(cartitem.variationProduct.sale_price*couponDetails.value)/100
-              var discountPrice = discountVal.toFixed(2)
-              if(cartitem.variationProduct.sale_price>discountPrice){
-                var multiPrice = (discountPrice*cartitem.quantity).toFixed(2)
-                _this.form.data.total = (_this.form.data.total-Number(multiPrice)).toFixed(2)
-                _this.form.data.discountAmount=_this.form.data.discountAmount+Number(multiPrice)
-                var afterDiscount = Number(cartitem.variationProduct.sale_price)-Number(discountPrice)
-                _this.cartItems[ciind].discountPrice=afterDiscount
-              }
-            }else{
-              var discountVal = Number(cartitem.product.sale_price*couponDetails.value)/100
-              if(cartitem.product.sale_price>discountVal){
-                var discountPrice = discountVal.toFixed(2)
-                var multiPrice = (discountPrice*cartitem.quantity).toFixed(2)
-                _this.form.data.total = (_this.form.data.total-Number(multiPrice)).toFixed(2)
-                _this.form.data.discountAmount=(_this.form.data.discountAmount+Number(multiPrice)).toFixed(2)
-                var afterDiscount = Number(cartitem.product.sale_price)-Number(discountPrice)
-                _this.cartItems[ciind].discountPrice=afterDiscount
-              }
-            }
+            _this.productPercentageDiscount(cartitem,couponDetails,ciind)
           }
         })
         this.$refs.notifications.displayNotification('success','Coupon Code','Coupon Code is applied.')
         this.loadingDisplay=false
       }else {
         this.cartItems.filter(function(cartitem,ciind){
-          Object.assign({}, _this.cartItems[ciind], { discountPrice: 0})
           if(categoryIds.includes(cartitem.product.category_id)){
-            if(cartitem.variationProduct){
-              var discountVal = Number(cartitem.variationProduct.sale_price)-Number(couponDetails.value)
-              if(discountVal>0){
-                var discountPrice = discountVal.toFixed(2)
-                var multiPrice = (discountPrice*cartitem.quantity).toFixed(2)
-                _this.form.data.total = (_this.form.data.total-Number(multiPrice)).toFixed(2)
-                _this.form.data.discountAmount=(_this.form.data.discountAmount+Number(multiPrice)).toFixed(2)
-                var afterDiscount = Number(cartitem.variationProduct.sale_price)-Number(discountPrice)
-
-                _this.cartItems[ciind].discountPrice=afterDiscount
-              }
-            }else{
-              var discountVal = Number(cartitem.product.sale_price)-Number(couponDetails.value)
-              if(discountVal>0){
-                var discountPrice = discountVal.toFixed(2)
-                var multiPrice = (discountPrice*cartitem.quantity).toFixed(2)
-                _this.form.data.total = (_this.form.data.total-Number(multiPrice)).toFixed(2)
-                _this.form.data.discountAmount=(_this.form.data.discountAmount+Number(multiPrice)).toFixed(2)
-                var afterDiscount = Number(cartitem.product.sale_price)-Number(discountPrice)
-                _this.cartItems[ciind].discountPrice=afterDiscount
-              }
-            }
+            this.productFixedDiscount(cartitem,couponDetails,ciind)
           }
         })
         this.$refs.notifications.displayNotification('success','Coupon Code','Coupon Code is applied.')
@@ -802,71 +772,74 @@ export default {
       }
     },
     couponSpecificProducts(couponDetails){
-
       var _this = this
       var productIds=[]
       couponDetails.product_id.filter(function(pid,pind){
         productIds.push(Number(pid))
       })
-      this.form.data.discountCode=couponDetails.code
+      this.order_form.data.discountCode=couponDetails.code
       if(couponDetails.type == 'percentage'){
         this.cartItems.filter(function(cartitem,ciind){
-          Object.assign({}, _this.cartItems[ciind], { discountPrice: 0})
           if(productIds.includes(cartitem.product_id)){
-            if(cartitem.variationProduct){
-              var discountVal = Number(cartitem.variationProduct.sale_price*couponDetails.value)/100
-              var discountPrice = discountVal.toFixed(2)
-              if(cartitem.variationProduct.sale_price>discountPrice){
-                var multiPrice = (discountPrice*cartitem.quantity).toFixed(2)
-                _this.form.data.total = (_this.form.data.total-Number(multiPrice)).toFixed(2)
-                _this.form.data.discountAmount=(_this.form.data.discountAmount+Number(multiPrice)).toFixed(2)
-                var afterDiscount = Number(cartitem.variationProduct.sale_price)-Number(discountPrice)
-                _this.cartItems[ciind].discountPrice=afterDiscount
-              }
-            }else{
-              var discountVal = Number(cartitem.product.sale_price*couponDetails.value)/100
-              if(cartitem.product.sale_price>discountVal){
-                var discountPrice = discountVal.toFixed(2)
-                var multiPrice = (discountPrice*cartitem.quantity).toFixed(2)
-                _this.form.data.total = (_this.form.data.total-Number(multiPrice)).toFixed(2)
-                _this.form.data.discountAmount=(_this.form.data.discountAmount+Number(multiPrice)).toFixed(2)
-                var afterDiscount = Number(cartitem.product.sale_price)-Number(discountPrice)
-                _this.cartItems[ciind].discountPrice=afterDiscount
-              }
-            }
+            _this.productPercentageDiscount(cartitem,couponDetails,ciind)
           }
         })
         this.$refs.notifications.displayNotification('success','Coupon Code','Coupon Code is applied.')
         this.loadingDisplay=false
       }else{
         this.cartItems.filter(function(cartitem,ciind){
-          Object.assign({}, _this.cartItems[ciind], { discountPrice: 0})
           if(productIds.includes(cartitem.product_id)){
-            if(cartitem.variationProduct){
-              var discountVal = Number(cartitem.variationProduct.sale_price)-Number(couponDetails.value)
-              if(discountVal>0){
-                var discountPrice = discountVal.toFixed(2)
-                var multiPrice = (discountPrice*cartitem.quantity).toFixed(2)
-                _this.form.data.total = (_this.form.data.total-Number(multiPrice)).toFixed(2)
-                _this.form.data.discountAmount=(_this.form.data.discountAmount+Number(multiPrice)).toFixed(2)
-                var afterDiscount = Number(cartitem.variationProduct.sale_price)-Number(discountPrice)
-                _this.cartItems[ciind].discountPrice=afterDiscount
-              }
-            }else{
-              var discountVal = Number(cartitem.product.sale_price)-Number(couponDetails.value)
-              if(discountVal>0){
-                var discountPrice = discountVal.toFixed(2)
-                var multiPrice = (discountPrice*cartitem.quantity).toFixed(2)
-                _this.form.data.total = (_this.form.data.total-Number(multiPrice)).toFixed(2)
-                _this.form.data.discountAmount=(_this.form.data.discountAmount+Number(multiPrice)).toFixed(2)
-                var afterDiscount = Number(cartitem.product.sale_price)-Number(discountPrice)
-                _this.cartItems[ciind].discountPrice=afterDiscount
-              }
-            }
+            this.productFixedDiscount(cartitem,couponDetails,ciind)
           }
         })
         this.$refs.notifications.displayNotification('success','Coupon Code','Coupon Code is applied.')
         this.loadingDisplay=false
+      }
+    },
+    productPercentageDiscount(cartitem,couponDetails,ciind){
+      if(cartitem.variationProduct){
+        var discountVal = Number(cartitem.variationProduct.sale_price*couponDetails.value)/100
+        var discountPrice = discountVal.toFixed(2)
+        if(cartitem.variationProduct.sale_price>discountPrice){
+          var multiPrice = (discountPrice*cartitem.quantity).toFixed(2)
+          this.form.data.total = (this.form.data.total-Number(multiPrice)).toFixed(2)
+          this.order_form.data.discountAmount=Number(this.order_form.data.discountAmount)+Number(multiPrice)
+          var afterDiscount = Number(cartitem.variationProduct.sale_price)-Number(discountPrice)
+          this.cartItems[ciind].discountPrice=afterDiscount
+        }
+      }else{
+        var discountVal = Number(cartitem.product.sale_price*couponDetails.value)/100
+        if(cartitem.product.sale_price>discountVal){
+          var discountPrice = discountVal.toFixed(2)
+          var multiPrice = (discountPrice*cartitem.quantity).toFixed(2)
+          this.form.data.total = (this.form.data.total-Number(multiPrice)).toFixed(2)
+          this.order_form.data.discountAmount=Number(this.order_form.data.discountAmount)+Number(multiPrice)
+          var afterDiscount = Number(cartitem.product.sale_price)-Number(discountPrice)
+          this.cartItems[ciind].discountPrice=afterDiscount
+        }
+      }
+    },
+    productFixedDiscount(cartitem,couponDetails,ciind){
+      if(cartitem.variationProduct){
+        var discountVal = Number(cartitem.variationProduct.sale_price)-Number(couponDetails.value)
+        if(discountVal>0){
+          var discountPrice = discountVal.toFixed(2)
+          var multiPrice = (discountPrice*cartitem.quantity).toFixed(2)
+          this.form.data.total = (this.form.data.total-Number(multiPrice)).toFixed(2)
+          this.order_form.data.discountAmount=Number(this.order_form.data.discountAmount)+Number(multiPrice)
+          var afterDiscount = Number(cartitem.variationProduct.sale_price)-Number(discountPrice)
+          this.cartItems[ciind].discountPrice=afterDiscount
+        }
+      }else{
+        var discountVal = Number(cartitem.product.sale_price)-Number(couponDetails.value)
+        if(discountVal>0){
+          var discountPrice = discountVal.toFixed(2)
+          var multiPrice = (discountPrice*cartitem.quantity).toFixed(2)
+          this.form.data.total = (this.form.data.total-Number(multiPrice)).toFixed(2)
+          this.order_form.data.discountAmount=Number(this.order_form.data.discountAmount)+Number(multiPrice)
+          var afterDiscount = Number(cartitem.product.sale_price)-Number(discountPrice)
+          this.cartItems[ciind].discountPrice=afterDiscount
+        }
       }
     }
   }
