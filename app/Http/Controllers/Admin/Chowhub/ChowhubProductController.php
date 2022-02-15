@@ -325,7 +325,7 @@ public function store(AddProduct $request)
 
                 $attr_name = ChowhubVariationAttribute::where('id', $data->attribute_name_id)->pluck('name')->first();
                 $attrValue = ChowhubVariationAttributeValue::where('id', $data->attribute_id)->pluck('name')->first();
-                $viewData[$attr_name] = $attrValue;
+                $viewData[$attr_name] = $attrValue??'';
             }
 
             $viewData['Qty'] = array('value' => $variation->quantity, 'name' => 'qty', 'placeholder' => 'Qty', 'type' => 'number', 'customClass' => '');
@@ -359,7 +359,7 @@ public function store(AddProduct $request)
     {
         $inputs = $request->all();
 
-        //echo '<pre>'; print_r($inputs['variations'][0]['id']); die;
+       // echo '<pre>'; print_r($inputs); die;
 
         if(!isset($inputs['variations'][0]['id'])){
             ChowhubProductVariation::where('product_id', $id)->delete();
@@ -514,14 +514,17 @@ public function store(AddProduct $request)
                         
                         if (!empty($variation['id']))
                         {
-                            array_push($variationIds,$variation['id']);
+                            
                             $productVariation = ChowhubProductVariation::find($variation['id']);
                             $productVariation->product_id = $products->id;
 
                             $variationAttributeIds = [];
                             foreach ($attributesName as $key => $attribute)
                             {
-                                $selectedAttrubutes = ChowhubVariationAttributeValue::select('id', 'attribute_id')->where(['product_id' => $products->id, 'name' => $variation[$attribute]])->first();
+                                if($variation[$attribute])
+                                {
+                                    array_push($variationIds,$variation['id']);
+                                    $selectedAttrubutes = ChowhubVariationAttributeValue::select('id', 'attribute_id')->where(['product_id' => $products->id, 'name' => $variation[$attribute]])->first();
                                 if ($selectedAttrubutes)
                                 {
                                     $AttributesArray = [];
@@ -529,6 +532,8 @@ public function store(AddProduct $request)
                                     $AttributesArray['attribute_name_id'] = $selectedAttrubutes->attribute_id;
                                     array_push($variationAttributeIds, $AttributesArray);
                                 }
+                                }
+                                
                             }
                             if (!empty($variation['image']))
                             {
@@ -580,7 +585,7 @@ public function store(AddProduct $request)
                             array_push($variationIds,$productVariation->id);
                         }
                     }
-                    ChowhubProductVariation::where('product_id',$products->id)->whereNotIn('id', $variationIds)->delete();
+                    ChowhubProductVariation::where('product_id',$products->id)->whereNotIn('id', array_unique($variationIds))->delete();
                 }
             }
         }

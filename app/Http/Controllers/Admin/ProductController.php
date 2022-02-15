@@ -510,21 +510,26 @@ class ProductController extends Controller
 
                         if (!empty($variation['id']))
                         {
-                            array_push($variationIds,$variation['id']);
+                            
                             $productVariation = ProductVariation::find($variation['id']);
                             $productVariation->product_id = $products->id;
 
                             $variationAttributeIds = [];
                             foreach ($attributesName as $key => $attribute)
                             {
-                                $selectedAttrubutes = VariationAttributeValue::select('id', 'attribute_id')->where(['product_id' => $products->id, 'name' => $variation[$attribute]])->first();
-                                if ($selectedAttrubutes)
+                                if($variation[$attribute])
                                 {
-                                    $AttributesArray = [];
-                                    $AttributesArray['attribute_id'] = $selectedAttrubutes->id;
-                                    $AttributesArray['attribute_name_id'] = $selectedAttrubutes->attribute_id;
-                                    array_push($variationAttributeIds, $AttributesArray);
+                                    array_push($variationIds,$variation['id']);
+                                    $selectedAttrubutes = VariationAttributeValue::select('id', 'attribute_id')->where(['product_id' => $products->id, 'name' => $variation[$attribute]])->first();
+                                    if ($selectedAttrubutes)
+                                    {
+                                        $AttributesArray = [];
+                                        $AttributesArray['attribute_id'] = $selectedAttrubutes->id;
+                                        $AttributesArray['attribute_name_id'] = $selectedAttrubutes->attribute_id;
+                                        array_push($variationAttributeIds, $AttributesArray);
+                                    }
                                 }
+                                
                             }
                             if (!empty($variation['image']))
                             {
@@ -576,7 +581,8 @@ class ProductController extends Controller
                             array_push($variationIds,$productVariation->id);
                         }
                     }
-                    ProductVariation::where('product_id',$products->id)->whereNotIn('id', $variationIds)->delete();
+
+                    ProductVariation::where('product_id',$products->id)->whereNotIn('id', array_unique($variationIds))->delete();
                 }
             }
         }
