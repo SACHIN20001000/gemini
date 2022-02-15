@@ -107,62 +107,7 @@
       </div>
     </div>
     <div class="top_devider"></div>
-    <div class="menu_nav">
-      <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="#">SHOP</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">SERVICES</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">ABOUT US </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">SUBSCRIPTION PAWGRAM<sup>®</sup></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link "  href="#">PET PARENTS+<sup>®</sup> </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">APP
-                  <img
-                    :src="imgDownload"
-                    alt="Download"
-                  >
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">LEARN</a>
-              </li>
-              <li class="nav-item lb_no">
-                <a class="nav-link" href="#">HELP</a>
-              </li>
-               </li>
-              <li class="nav-item nv mobil_only">
-                <router-link
-                  :to="{ path: '/signin'}"
-                  class="alink log_btn"
-                >
-                  Login
-                </router-link>
-
-                <li class="nav-itemnv mobil_only">
-                <router-link
-              :to="{ path: '/register'}"
-              class="alink sign_btn"
-            >
-              register
-            </router-link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
+    <NavBar />
   </header>
 </template>
 <style>
@@ -175,10 +120,13 @@ import search_mobile from "../../assets/images/search_mobile.png"
 import menuLines from "../../assets/images/menu_lines.svg"
 import imgDownload from "../../assets/images/download.png"
 import {mapActions,mapGetters} from "vuex"
-
+import NavBar from "../NavBar"
 
 export default {
   name:"Dashboard",
+  components: {
+    NavBar
+  },
   data: function () {
     return {
       imgLogo: imgLogo,
