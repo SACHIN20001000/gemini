@@ -17,7 +17,7 @@
             </div>
         </div>
         @if(isset($product))
-        <a class="btn btn-main-primary ml_auto" style=" margin-left: 682px;" href="{{route('duplicate','id='.$product->id)}}">Duplicate Product</a>
+        <a class="btn btn-main-primary ml_auto" style=" margin-left: 730px;" href="{{route('duplicate','id='.$product->id)}}">Duplicate Product</a>
         @endif
         @if(isset($product))
         <a class="btn btn-main-primary ml_auto" target="_blank" href="/products/<?php echo strtolower(str_replace(' ', '-', $product->productName));?>/{{$product->id}}">View Product</a>
