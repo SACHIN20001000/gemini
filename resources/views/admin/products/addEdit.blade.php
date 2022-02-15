@@ -489,11 +489,15 @@ function CheckDimensionFeatureImage() {
                      variations = attrs;
                      productsEvent.displayVariations();
                      }
+                     else
+                        {
+                            variations = [];
+                            productsEvent.displayVariations();
+                        }
                      },
                      displayVariations:function() {
                      $("#variations_fields").empty();
                      $("#variations_heading").empty();
-                     console.log(variations);
                      if (variations && Object.keys(variations).length)
                      {
                      let headings = Object.keys(variations[0]);

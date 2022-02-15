@@ -551,6 +551,11 @@ function CheckDimensionFeatureImage() {
                                                     variations = attrs;
                                                     productsEvent.displayVariations();
                                                     }
+                                                    else
+                                                    {
+                                                        variations = [];
+                                                        productsEvent.displayVariations();
+                                                    }
                                                     },
                                                     displayVariations:function() {
                                                     $("#variations_fields").empty();
