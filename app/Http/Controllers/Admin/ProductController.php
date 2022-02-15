@@ -503,13 +503,14 @@ class ProductController extends Controller
 
                 if (!empty($inputs['variations']))
                 {
-
+                    $variationIds =[];
                     foreach ($inputs['variations'] as $variation)
                     {
                         $Imagepath = '';
 
                         if (!empty($variation['id']))
                         {
+                            array_push($variationIds,$variation['id']);
                             $productVariation = ProductVariation::find($variation['id']);
                             $productVariation->product_id = $products->id;
 
@@ -572,8 +573,10 @@ class ProductController extends Controller
                             $productVariation->variation_attributes_name_id = json_encode($variationAttributeIds);
                             $productVariation->sku = $variation['sku'];
                             $productVariation->save();
+                            array_push($variationIds,$productVariation->id);
                         }
                     }
+                    ProductVariation::where('product_id',$products->id)->whereNotIn('id', $variationIds)->delete();
                 }
             }
         }

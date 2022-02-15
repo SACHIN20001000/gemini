@@ -359,6 +359,8 @@ public function store(AddProduct $request)
     {
         $inputs = $request->all();
 
+        //echo '<pre>'; print_r($inputs['variations'][0]['id']); die;
+
         if(!isset($inputs['variations'][0]['id'])){
             ChowhubProductVariation::where('product_id', $id)->delete();
         }
@@ -474,7 +476,6 @@ public function store(AddProduct $request)
 
                 $attributeCombinations = [];
                 $attributesName = [];
-
                 foreach ($inputs['attributes'] as $vakey => $attributeName)
                 {
 
@@ -504,13 +505,16 @@ public function store(AddProduct $request)
 
                 if (!empty($inputs['variations']))
                 {
-
+                   
+                    $variationIds =[];
                     foreach ($inputs['variations'] as $variation)
                     {
                         $Imagepath = '';
 
+                        
                         if (!empty($variation['id']))
                         {
+                            array_push($variationIds,$variation['id']);
                             $productVariation = ChowhubProductVariation::find($variation['id']);
                             $productVariation->product_id = $products->id;
 
@@ -573,8 +577,10 @@ public function store(AddProduct $request)
                             $productVariation->variation_attributes_name_id = json_encode($variationAttributeIds);
                             $productVariation->sku = $variation['sku'];
                             $productVariation->save();
+                            array_push($variationIds,$productVariation->id);
                         }
                     }
+                    ChowhubProductVariation::where('product_id',$products->id)->whereNotIn('id', $variationIds)->delete();
                 }
             }
         }
