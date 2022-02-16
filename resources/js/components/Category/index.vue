@@ -8,6 +8,7 @@
             :style="[style_wrapperStyle, isActive ? style_wrapperActiveStyle : {}]"
         >
         <!-- prev -->
+        <a href="#" class="btn_bck"  style="position:relative;z-index:999999" @click="clickBurger"> <img :src="m_close"></a>
         <MenuPanel
             :list="content_prevItem"
             :functionalityStyle="style_panelStyle"
@@ -84,6 +85,7 @@ import LeftArrowIcon from '../icons/LeftArrowIcon.vue';
 import MenuBurger from '../MenuBurger.vue';
 import MenuShadow from '../MenuShadow.vue';
 import MenuPanel from '../MenuPanel.vue';
+import m_close from "../../assets/images/m_close.png";
 
 export default {
   name:"Category",
@@ -121,7 +123,8 @@ export default {
     return {
       category:[],
       isActive: false,
-      isTranslating: false
+      isTranslating: false,
+      m_close:m_close
     }
   },
   mounted() {

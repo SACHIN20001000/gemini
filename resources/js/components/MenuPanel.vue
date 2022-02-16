@@ -8,8 +8,7 @@
             ]"
         >
         <div class="back_prev">
-            <div> <span v-if="list.title" @click="handleHeaderClicked"> <img :src="m_prev"></span> </div>
-            <a href="#" class="btn_bck"> <img :src="m_close"></a>
+            <div> <span v-if="list.title" @click="handleHeaderClicked"> <img :src="m_prev"></span> </div>           
 
     </div>
         

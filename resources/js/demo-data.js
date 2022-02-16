@@ -169,13 +169,13 @@ const data = {
                                     title: `test1`,
                                     link: '/',
                                     children: [],
-                                    class:'lv_3'
+                                    class:'lv_2'
                                 },
                                 {
                                     title: `test2`,
                                     link: '/',
                                     children: [],
-                                    class:'lv_3'
+                                    class:'lv_2'
                                 },
                             ],
                         },
