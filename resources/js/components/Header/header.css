@@ -45,7 +45,7 @@ form.srch_form.desk_only input[type="text"]::placeholder {color: #b5b5b5; }
 .btn_log_sign a:hover{color: }
 .btn_log_sign a:hover {color: #e4022d; text-decoration: underline; }
 .menu_nav .navbar-nav>li:hover .sub_menu {opacity: 1; visibility: visible;}
-
+a.btn_bck {position: absolute; z-index: 999999; width: calc(100% - 50px); text-align: right; padding: 0 20px; right: 0; top: 31px; }
 
 ul.sub_menu {
     position: absolute;
@@ -88,7 +88,7 @@ ul.sub_menu > li > a:hover {
 
 @media only screen and (max-width: 768px)
 {
-.right_info{flex-grow: 1; } img{max-width: 100%;}
+.right_info{flex-grow: 1; padding-right: 0;} img{max-width: 100%;}
 .menu_nav .container-fluid {  max-width: 100%;}
 body{overflow-x:hidden ;}
 .profile_bar { display: none;}
@@ -100,13 +100,11 @@ button.navbar-toggler:focus { border: none; outline: none; box-shadow: none;}
 .logo_nav {padding: 20px 15px; max-width: 100%;}
 .menu_nav .container-fluid { padding: 0;}
 .menu_nav ul.navbar-nav>li:not(:last-child)>a { border-right: 0; display: block;}
-.right_info {padding-right: 20px;
- }
  .top_devider{max-width: 100%;}
  .menu_nav ul.navbar-nav>li:first-child{margin: 0; min-width: auto;}
  section.banner_sec img{margin: 0 auto;}
  a.alink.sign_btn {display: block !important; text-align: center; }
-
+.Menu {margin-left: 20px !important; }
 
 }
 
@@ -137,4 +135,11 @@ img{max-width: 100%;}
 @media only screen and (min-width:1000px)
 {
     .mobil_only{display: none;}
+}
+
+@media only screen and (min-width: 990px)
+{
+    .Menu{
+        display: none;
+    }
 }

@@ -10,48 +10,15 @@
           alt="logo"
         />
       </router-link>
-      <div class="right_info">
-        <div class="search_bar">
-          <div class="mobil_searc mobil_only">
-            <div class="Menu">
-              <MenuBurger :handleBurgerClicked="clickBurger" />
-              <MenuShadow :isActive="isActive" :handleShadowClicked="clickShadow" />
-              <div class="Menu__panel-wrapper"
-                 :class="{'isActive': isActive}"
-                 :style="[style_wrapperStyle, isActive ? style_wrapperActiveStyle : {}]"
-              >
-              <!-- prev -->
-                <a href="#" class="btn_bck"  style="position:relative;z-index:999999" @click="clickBurger"> <img :src="m_close"></a>
-                <MenuPanel
-                   :list="content_prevItem"
-                   :functionalityStyle="style_panelStyle"
-                   :positionStyle="panel_prevPositionStyle"
-                   :isTranslating="isTranslating"
-                   :transitionStyle="style_transitionStyle"
-                   :showHeaderArrow="prevItemHasParent"
-                />
-                <!-- staging -->
-                <MenuPanel
-                   :list="content_currentItem"
-                   :functionalityStyle="style_panelStyle"
-                   :positionStyle="panel_stagingPositionStyle"
-                   :isTranslating="isTranslating"
-                   :transitionStyle="style_transitionStyle"
-                   :showHeaderArrow="currentItemHasParent"
-                   :handleHeaderClicked="clickPrevItem"
-                   :handleItemClicked="clickNextItem"
-                />
-                <!-- next -->
-                <MenuPanel
-                   :list="content_nextItem"
-                   :functionalityStyle="style_panelStyle"
-                   :positionStyle="panel_nextPositionStyle"
-                   :isTranslating="isTranslating"
-                   :transitionStyle="style_transitionStyle"
-                   :showHeaderArrow="true"
-                />
-              </div>
-            </div>
+      <div class="right_info">        <div class="search_bar">
+         
+            <div class="mobil_searc mobil_only">
+          <a href="#">
+            <img
+              :src="search_mobile"
+              alt="search_mobile"
+            /> 
+            </a>          
           </div>
           <form class="srch_form desk_only">
             <input type="text" name="search" placeholder="Search">
@@ -132,11 +99,50 @@
             <span class="cart_items">{{cartQuantity}}</span>
           </router-link>
         </div>
-         <div class="menu_btn mobil_only">
+        <!-- <div class="menu_btn mobil_only">
         <a class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <img :src="menuLines" />
           </a>
-          </div>
+          </div>-->
+           <div class="Menu">
+              <MenuBurger :handleBurgerClicked="clickBurger" />
+              <MenuShadow :isActive="isActive" :handleShadowClicked="clickShadow" />
+              <div class="Menu__panel-wrapper"
+                 :class="{'isActive': isActive}"
+                 :style="[style_wrapperStyle, isActive ? style_wrapperActiveStyle : {}]"
+              >
+              <!-- prev -->
+                <a href="#" class="btn_bck"  @click="clickBurger"> <img :src="m_close"></a>
+                <MenuPanel
+                   :list="content_prevItem"
+                   :functionalityStyle="style_panelStyle"
+                   :positionStyle="panel_prevPositionStyle"
+                   :isTranslating="isTranslating"
+                   :transitionStyle="style_transitionStyle"
+                   :showHeaderArrow="prevItemHasParent"
+                />
+                <!-- staging -->
+                <MenuPanel
+                   :list="content_currentItem"
+                   :functionalityStyle="style_panelStyle"
+                   :positionStyle="panel_stagingPositionStyle"
+                   :isTranslating="isTranslating"
+                   :transitionStyle="style_transitionStyle"
+                   :showHeaderArrow="currentItemHasParent"
+                   :handleHeaderClicked="clickPrevItem"
+                   :handleItemClicked="clickNextItem"
+                />
+                <!-- next -->
+                <MenuPanel
+                   :list="content_nextItem"
+                   :functionalityStyle="style_panelStyle"
+                   :positionStyle="panel_nextPositionStyle"
+                   :isTranslating="isTranslating"
+                   :transitionStyle="style_transitionStyle"
+                   :showHeaderArrow="true"
+                />
+              </div>
+            </div>
       </div>
     </div>
     <div class="top_devider"></div>
