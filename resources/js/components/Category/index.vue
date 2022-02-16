@@ -280,6 +280,7 @@ export default {
     margin: 0;
     display: block;
     clear: both;
+        padding:  0 20px;
     position: absolute;
     bottom: 40px;
 }
@@ -288,11 +289,11 @@ export default {
 
  .Menu__list li {  padding: 0!important;}
 .bottom_menu ul li a {
-    font-size: 18px;
+    font-size: 17px;
     text-decoration: none;
     color: #9d9d9c;
-    padding:  0 20px;
-    font-weight: 300;
+    font-weight: 400;
+    position: relative;
     line-height: 41px;
 }
 .lv_0:before {
@@ -301,15 +302,15 @@ export default {
     border-bottom: 8px solid transparent;
     border-left: 10px solid #00b3ba;
     position: absolute;
-    right: 17px;
+    right: 25px;
 }
-li.Menu__item.lv_1:before {
+li.Menu__item.lv_1:before,li.Menu__item.lv_2:before  {
     content: "";
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
     border-left: 7px solid #00b3ba;
     position: absolute;
-    right: 17px;
+    right: 25px;
 }
 .Menu__header .arrow {
     display: none !important;
@@ -321,19 +322,22 @@ li.Menu__item.lv_1:before {
     padding: 20px !important;
     font-size: 24px !important;
     font-weight: 700;
-    margin: 30px 0 0 0 !important;
+    margin: 10px 0 0 0 !important;
     color: #9d9d9c !important;
 }
 .bottom_menu ul li a img {
     margin-right: 10px;
     display: inline-block;
 }
-.lv_0:after ,li.Menu__item.lv_1:after{
+ul.Menu__list>.lv_0:first-child {
+    margin-top: 10px !important;
+}
+.lv_0:after ,li.Menu__item.lv_1:after,li.Menu__item.lv_2:after{
     content: "";
     flex-grow: 1;
     height: 1px;
     background: #ededed;
-    margin-left: 10px;
+    margin:0 20px 0 10px;
 }
 .lv_0 a, .lv_0 {
     font-size: 24px;
@@ -345,7 +349,7 @@ li.Menu__item.lv_1:before {
     justify-content: space-between;
 
 }
-li.Menu__item.lv_1 a, li.Menu__item.lv_1 {
+li.Menu__item.lv_1 a, li.Menu__item.lv_1 ,li.Menu__item.lv_2 a, li.Menu__item.lv_2 {
     font-size: 18px;
     color: #9d9d9c;
     display: flex !important;
@@ -354,6 +358,15 @@ li.Menu__item.lv_1 a, li.Menu__item.lv_1 {
     font-weight: 500;
     line-height: 1.9 !important;
     height: auto;
+}
+.back_prev {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+.bottom_menu ul li a span {
+    display: inline-block;
+    width: 45px;
 }
   </style>
 

@@ -18,7 +18,7 @@ const functionalityStyle = {
 
         const wrapperStyle = {
             width: `${panelWidth}px`,
-            position: `absolute`,
+            position: `fixed`,
             top: 0,
             right: `-${panelWidth}px`,
             zIndex: 99999,

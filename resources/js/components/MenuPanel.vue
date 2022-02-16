@@ -8,8 +8,8 @@
             ]"
         >
         <div class="back_prev">
-            <div  v-if="list.title" @click="handleHeaderClicked" > prev </div>
-            <a href="#">X</a>
+            <div> <span v-if="list.title" @click="handleHeaderClicked"> <img :src="m_prev"></span> </div>
+            <a href="#" class="btn_bck"> <img :src="m_close"></a>
 
     </div>
         
@@ -28,9 +28,9 @@
                 >
                     <template v-if="item.children.length > 0" :href="item.link">
                         <div class="text">{{ item.title }}</div>
-                        <span class="arrow">
+                        <!--<span class="arrow">
                             <RightArrowIcon />
-                        </span>
+                        </span>-->
                     </template>
                     <a v-else :href="item.link">
                         <div class="text">{{ item.title }}</div>
@@ -39,9 +39,9 @@
             </ul>
             <div class="bottom_menu">
                <ul>
-                   <li><a href="#"><img src="/../../assets/images/paw.png">Cart</a></li>
-                   <li><a href="#">Orders</a></li>
-                   <li><a href="#">Help</a></li>
+                   <li><a href="#"><span><img :src="m_cart"></span>Cart</a></li>
+                   <li><a href="#"><span><img :src="m_order"></span>Orders</a></li>
+                   <li><a href="#"><span><img :src="m_help"></span>Help</a></li>
                </ul> 
             </div>
         </div>
@@ -52,8 +52,21 @@
 <script>
 import RightArrowIcon from './icons/RightArrowIcon.vue';
 import LeftArrowIcon from './icons/LeftArrowIcon.vue';
-
+import m_cart from "../assets/images/m_cart.png";
+import m_order from "../assets/images/m_order.png";
+import m_help from "../assets/images/m_help.png";
+import m_prev from "../assets/images/m_prev.png";
+import m_close from "../assets/images/m_close.png";
 export default {
+    data: function () {
+    return {
+      m_cart: m_cart,
+      m_order: m_order,
+      m_help: m_help,
+      m_prev: m_prev,
+      m_close: m_close,
+  }
+},
     components: {
         RightArrowIcon,
         LeftArrowIcon,
