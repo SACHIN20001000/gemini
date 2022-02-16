@@ -23,7 +23,7 @@ class ChowhubFaqController extends Controller
 
         if ($request->ajax())
         {
-            $data = ChowhubFaq::with('user')->orderby('chowhub_faqs.id','DESC');
+            $data = ChowhubFaq::with('user')->select('chowhub_faqs.*')->orderby('chowhub_faqs.id','DESC');
 
 
             return Datatables::of($data)
