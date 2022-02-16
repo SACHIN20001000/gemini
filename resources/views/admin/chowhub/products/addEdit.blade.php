@@ -4,13 +4,23 @@
 
 <style>.imageSize{height: 100px;width: 100px;} .tag{color:black !important;background-color: aqua;font-size: 15px;}</style>
 <div class="container">
+
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Products</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{isset($product) ? $product->name : 'Add New' }}</span>
+                <h4 class="content-title mb-0 my-auto">Products</h4>
+                @if(isset($type))
+                <span class="text-muted mt-1 tx-13 ms-2 mb-0">/Add New</span>
+                @else
+                <span class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{isset($product) ? $product->name : 'Add New' }}</span>
+                @endif
+
             </div>
         </div>
+        @if(isset($product))
+        <a class="btn btn-main-primary ml_auto" style=" margin-left: 730px;"  href="{{route('chowhub_duplicate','id='.$product->id)}}">Duplicate Product</a>
+        @endif
         <a class="btn btn-main-primary ml_auto" href="{{ route('chowhub-products.index') }}">View Products</a>
     </div>
     <!-- breadcrumb -->
@@ -21,12 +31,23 @@
             <div class="card">
                 <div class="card-body">
                     <div class="main-content-label mg-b-5">
-                        {{isset($product) ? 'Update # '.$product->id : 'Add New' }}
-                    </div>
 
-                    <form  id="product-add-edit" action="{{isset($product) ? route('chowhub-products.update',$product->id) : route('chowhub-products.store')}}" method="POST" enctype="multipart/form-data">
+                        @if(isset($type))
+                        Add New
+                        @else
+                        {{isset($product) ? 'Update # '.$product->id : 'Add New' }}
+                        @endif
+                    </div>
+                    @if(isset($type))
+                <form  id="product-add-edit" action="{{route('chowhub-products.store')}}" method="POST" enctype="multipart/form-data">
+                @else
+                <form  id="product-add-edit" action="{{isset($product) ? route('chowhub-products.update',$product->id) : route('chowhub-products.store')}}" method="POST" enctype="multipart/form-data">
+                @endif
+
                         @csrf
+                        @if(empty($type))
                         {{ isset($product) ? method_field('PUT'):'' }}
+                        @endif
                         <div class="col-lg-12 col-md-12">
                             <div class="card">
                                 <div class="card-body">
@@ -181,7 +202,7 @@
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
                                           <select name="pet_type" class="form-control dog" >
-                                             
+
                                               <option value="dog"{{ (isset($product) && $product->pet_type  == 'dog') ? 'selected' : '' }}>Dog</option>
                                               <option value="cat"{{ (isset($product) && $product->pet_type  == 'cat') ? 'selected' : '' }}>Cat</option>
                                           </select>
@@ -194,7 +215,7 @@
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
 
                                             <select name="weight[]" class="form-control select2 multi" multiple="multiple" >
-                                             
+
                                               <option value="0-22lbs" <?php if(isset($product->weight)){ if(in_array('0-22lbs', json_decode($product->weight))){echo "Selected";}}?>>0-22lbs</option>
                                               <option value="23-59lbs"<?php  if(isset($product->weight)){ if(in_array('23-59lbs', json_decode($product->weight))){echo "Selected";}}?>>23-59lbs</option>
                                               <option value="60+lbs"<?php  if(isset($product->weight)){ if(in_array('60+lbs', json_decode($product->weight))){echo "Selected";}}?>>60+lbs</option>
@@ -208,7 +229,7 @@
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
 
                                             <select name="age[]" class="form-control select2 multi" multiple="multiple" >
-                                             
+
                                               <option value="0-1yrs" <?php if(isset($product->age)){ if(in_array('0-1yrs', json_decode($product->age))){echo "Selected";}}?>>0-1yrs</option>
                                               <option value="1-10yrs"<?php  if(isset($product->age)){ if(in_array('1-10yrs', json_decode($product->age))){echo "Selected";}}?>>1-10yrs</option>
                                               <option value="10+yrs"<?php  if(isset($product->age)){ if(in_array('10+yrs', json_decode($product->age))){echo "Selected";}}?>>10+yrs</option>
@@ -221,7 +242,7 @@
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
                                         <select name="food_type" class="form-control dog" >
-                                             
+
                                               <option value="food" {{ (isset($product) && $product->food_type  == 'food') ? 'selected' : '' }}>Food</option>
                                               <option value="treats" {{ (isset($product) && $product->food_type  == 'treats') ? 'selected' : '' }}>Treats</option>
                                               <option value="supps" {{ (isset($product) && $product->food_type  == 'supps') ? 'selected' : '' }}>Supps</option>
@@ -235,7 +256,7 @@
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
                                         <select name="protein_type[]" class="form-control select2 multi" multiple="multiple" >
-                                             
+
                                               <option value="turkey" <?php if(isset($product->protein_type)){ if(in_array('turkey', json_decode($product->protein_type))){echo "Selected";}}?>>Turkey</option>
                                               <option value="chicken"<?php  if(isset($product->protein_type)){ if(in_array('chicken', json_decode($product->protein_type))){echo "Selected";}}?>>Chicken</option>
                                               <option value="beef"<?php  if(isset($product->protein_type)){ if(in_array('beef', json_decode($product->protein_type))){echo "Selected";}}?>>Beef</option>
@@ -419,7 +440,11 @@
                             </div>
                         </div>
 
+                        @if(isset($type))
+                        <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">Save</button>
+                        @else
                         <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>
+                        @endif
                     </form>
                     <!-- form end  -->
 

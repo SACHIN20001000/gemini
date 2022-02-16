@@ -18,17 +18,17 @@ const functionalityStyle = {
 
         const wrapperStyle = {
             width: `${panelWidth}px`,
-            position: `absolute`,
+            position: `fixed`,
             top: 0,
-            left: `-${panelWidth}px`,
+            right: `-${panelWidth}px`,
             zIndex: 99999,
             height: `100vh`,
             overflow: `hidden`,
-            transition: `left ${menuOpenTransitionSecond}`,
+            transition: `right ${menuOpenTransitionSecond}`,
         };
 
         const wrapperActiveStyle = {
-            left: 0,
+            right: 0,
         };
 
         const panelStyle = {

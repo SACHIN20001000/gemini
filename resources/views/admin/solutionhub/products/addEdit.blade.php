@@ -8,9 +8,18 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Products</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{isset($product) ? $product->name : 'Add New' }}</span>
+                <h4 class="content-title mb-0 my-auto">Products</h4>
+                @if(isset($type))
+                <span class="text-muted mt-1 tx-13 ms-2 mb-0">/Add New</span>
+                @else
+                <span class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{isset($product) ? $product->name : 'Add New' }}</span>
+                @endif
+
             </div>
         </div>
+        @if(isset($product))
+        <a class="btn btn-main-primary ml_auto" style=" margin-left: 730px;"  href="{{route('solutionhub_duplicate','id='.$product->id)}}">Duplicate Product</a>
+        @endif
         <a class="btn btn-main-primary ml_auto" href="{{ route('solutionhub-products.index') }}">View Products</a>
     </div>
     <!-- breadcrumb -->
@@ -21,12 +30,22 @@
             <div class="card">
                 <div class="card-body">
                     <div class="main-content-label mg-b-5">
+                         @if(isset($type))
+                        Add New
+                        @else
                         {{isset($product) ? 'Update # '.$product->id : 'Add New' }}
+                        @endif
                     </div>
-
+                    @if(isset($type))
+                    <form  id="product-add-edit" action="{{route('solutionhub-products.store')}}" method="POST" enctype="multipart/form-data">
+                    @else
                     <form  id="product-add-edit" action="{{isset($product) ? route('solutionhub-products.update',$product->id) : route('solutionhub-products.store')}}" method="POST" enctype="multipart/form-data">
+                    @endif
+
                         @csrf
+                        @if(empty($type))
                         {{ isset($product) ? method_field('PUT'):'' }}
+                        @endif
                         <div class="col-lg-12 col-md-12">
                             <div class="card">
                                 <div class="card-body">
@@ -175,10 +194,11 @@
                             </div>
                         </div>
 
-
-
-
-                        <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>
+                    @if(isset($type))
+                       <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">Save</button>
+                    @else
+                    <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>
+                    @endif
                     </form>
                     <!-- form end  -->
 

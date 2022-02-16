@@ -677,4 +677,49 @@ class ProductController extends Controller
         ]);
     }
 
+    public function duplicate(Request $request)
+    {
+
+        $id=$request->id;
+        $categories = Category::where('type', 'Product')->get();
+        $stores = Store::all();
+        $product = Product::with(['category', 'store', 'productDescriptionDetail', 'productVariation', 'productGallery', 'variationAttributesValue.variationAttributeName'])
+                ->where('id', $id)
+                ->first();
+
+        $variations = [];
+        foreach ($product->productVariation as $key => $variation)
+        {
+            $allvariations = json_decode($variation->variation_attributes_name_id);
+
+            $viewData = [];
+
+            foreach ($allvariations as $data)
+            {
+
+                $attr_name = VariationAttribute::where('id', $data->attribute_name_id)->pluck('name')->first();
+                $attrValue = VariationAttributeValue::where('id', $data->attribute_id)->pluck('name')->first();
+                $viewData[$attr_name] = $attrValue;
+            }
+
+            $viewData['Qty'] = array('value' => $variation->quantity, 'name' => 'qty', 'placeholder' => 'Qty', 'type' => 'number', 'customClass' => '');
+            $viewData['hidden_id'] = array('value' => $variation->id, 'name' => 'id', 'placeholder' => '', 'type' => 'hidden', 'customClass' => '');
+            $viewData['Weight'] = array('value' => $variation->weight, 'name' => 'weight', 'placeholder' => 'weight', 'type' => 'number', 'customClass' => '');
+            $viewData['Regular Price'] = array('value' => $variation->real_price, 'name' => 'regular_price', 'placeholder' => 'Regular Price', 'type' => 'number', 'customClass' => '');
+            $viewData['Sale Price'] = array('value' => $variation->sale_price, 'name' => 'sale_price', 'placeholder' => 'Sale Price', 'type' => 'number', 'customClass' => '');
+            $viewData['Sku'] = array('value' => $variation->sku, 'name' => 'sku', 'placeholder' => 'Sku', 'type' => 'text', 'customClass' => '');
+            $viewData['Image(800PX * 850PX)'] = array('value' => '', 'name' => 'image', 'placeholder' => 'Image', 'type' => 'file', 'datafile' => $variation->image, 'customClass' => 'dropify');
+
+            array_push($variations, $viewData);
+        }
+
+        $attributes = [];
+        foreach ($product->variationAttributesValue as $data)
+        {
+            $attributes[$data->variationAttributeName->name][] = $data->name;
+        }
+        $type='Duplicate';
+
+        return view('admin.products.addEdit', compact('product', 'type','stores', 'categories', 'attributes', 'variations'));
+    }
 }

@@ -301,7 +301,9 @@ public function store(AddProduct $request)
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+        public function show(){
 
+        }
     /**
      * Show the form for editing the specified resource.
      *
@@ -682,5 +684,48 @@ public function store(AddProduct $request)
                     "success" => 'Deleted Successfully',
         ]);
     }
+    public function duplicate(Request $request)
+    {
 
+        $id=$request->id;
+        $stores = LitterhubStore::all();
+        $product = LitterhubProduct::with([ 'store', 'productVariation', 'productFeaturePageImage', 'productGallery', 'variationAttributesValue.variationAttributeName'])->where('id', $id)->first();
+
+        $variations = [];
+        foreach ($product->productVariation as $key => $variation)
+        {
+            $allvariations = json_decode($variation->variation_attributes_name_id);
+
+            $viewData = [];
+
+            foreach ($allvariations as $data)
+            {
+
+                $attr_name = LitterhubVariationAttribute::where('id', $data->attribute_name_id)->pluck('name')->first();
+                $attrValue = LitterhubVariationAttributeValue::where('id', $data->attribute_id)->pluck('name')->first();
+                $viewData[$attr_name] = $attrValue;
+            }
+
+            $viewData['Qty'] = array('value' => $variation->quantity, 'name' => 'qty', 'placeholder' => 'Qty', 'type' => 'number', 'customClass' => '');
+            $viewData['Weight'] = array('value' => $variation->weight, 'name' => 'weight', 'placeholder' => 'weight', 'type' => 'number', 'customClass' => '');
+            $viewData['Regular Price'] = array('value' => $variation->real_price, 'name' => 'regular_price', 'placeholder' => 'Regular Price', 'type' => 'number', 'customClass' => '');
+            $viewData['Sale Price'] = array('value' => $variation->sale_price, 'name' => 'sale_price', 'placeholder' => 'Sale Price', 'type' => 'number', 'customClass' => '');
+            $viewData['Sku'] = array('value' => $variation->sku, 'name' => 'sku', 'placeholder' => 'Sku', 'type' => 'text', 'customClass' => '');
+            $viewData['Image(360px*360px)'] = array('value' => '', 'name' => 'image', 'placeholder' => 'Image', 'type' => 'file', 'dataitem' => $variation->image, 'customClass' => 'dropify');
+            $viewData['hidden_id'] = array('value' => $variation->id, 'name' => 'id', 'placeholder' => '', 'type' => 'hidden', 'customClass' => '');
+
+            array_push($variations, $viewData);
+        }
+
+        $attributes = [];
+        foreach ($product->variationAttributesValue as $data)
+        {
+            $attributes[$data->variationAttributeName->name][] = $data->name;
+        }
+        $type='Duplicate';
+        return view('admin.litterhub.products.addEdit', compact('product','type', 'stores',  'attributes', 'variations'));
+
+
+
+    }
 }
