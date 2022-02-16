@@ -212,7 +212,12 @@
                                             <label class="form-label mg-b-0">No. Of Cats</label>
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                            <input class="form-control" name="cat_count" value="{{isset($product) ? $product->cat_count : '' }}" placeholder="Number Of Cats" type="number">
+                                          <select name="cat_count" class="form-control dog" id="">
+
+                                              <option value="1"{{ (isset($product) && $product->cat_count  == '1') ? 'selected' : '' }}>1 cat</option>
+                                              <option value="2-5"{{ (isset($product) && $product->cat_count  == '2-5') ? 'selected' : '' }}>2-5 cats</option>
+                                              <option value="6+"{{ (isset($product) && $product->cat_count  == '6+') ? 'selected' : '' }}>6+ cats</option>
+                                          </select>
                                         </div>
                                     </div>
 
