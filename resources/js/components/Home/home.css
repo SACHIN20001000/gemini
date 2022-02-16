@@ -154,7 +154,10 @@ section.treat_sec_updt {padding-top: 20px; }
 .img_topbanner_bg_0 a {left: unset !important; right: 0; }
 section.banner_sec img {margin-left: 10px; }
 .img_topbanner_bg_2 a {left: unset !important; right: 0; }
-
+.dropdownlogin {position: relative; }
+.dropdownlogin a{cursor: pointer;}
+.dropdownlogin a:hover {background: #fff; } 
+ul.profile_drop {position: absolute; z-index: 9999; background: #ffffff; border: 1px solid rgba(0,0,0,.1); border-radius: 3px; list-style: none; margin: 0; padding: 0; top: 100%; }
 /*info sec*/
 
 section.sec_info {margin: 200px 0; text-align: center; }

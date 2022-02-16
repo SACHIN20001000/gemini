@@ -19,10 +19,41 @@
                 alt="search_mobile"
               />
             </a>
-            <div class="mob_serach_window" v-if="activeSearchMob">
-              <p>Hello --</p>
-            </div>
           </div>
+
+            <div class="mob_serach_window"
+              :class="searchactive"
+            >
+            <div class="s_warpper">
+              <div class="form_search">
+                <form>
+                 <div class="srch_wrap">
+                  <input type="serach" class="srch_input">
+                  <button>
+                    <img
+                    :src="search_mobile"
+                    alt="search_mobile"
+                    />
+            </button> 
+                 </div> 
+                   <a href="javascript:;" @click="searchMobilePopup">
+               <img :src="m_close">
+            </a>
+                </form>
+              </div>
+              <div class="serch_items">
+                <p> Popular Search Terms</p>
+                <ul>
+                 <li><a href="#">dog clean</a></li> 
+                 <li><a href="#">diaper</a></li> 
+                 <li><a href="#">home clean</a></li> 
+                 <li><a href="#">blankets</a></li> 
+                 ...
+                </ul>
+              </div>
+            </div>
+            </div>
+
           <form class="srch_form desk_only">
             <input type="text" name="search" placeholder="Search">
             <input type="submit" value="">
@@ -216,7 +247,8 @@ export default {
       isTranslating: false,
       m_close:m_close,
       myProfileActive: false,
-      activeSearchMob: false
+      activeSearchMob: false,
+      searchactive:'searchide'
     }
   },
   watch:{
@@ -344,6 +376,11 @@ export default {
     },
     searchMobilePopup(){
       this.activeSearchMob = !this.activeSearchMob
+      if(this.activeSearchMob){
+        this.searchactive = 'searchactive'
+      }else{
+        this.searchactive = 'searchide'
+      }
     }
   }
 }
