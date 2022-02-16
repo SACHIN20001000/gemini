@@ -6,9 +6,13 @@
           <div class="">
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
               <ul class="navbar-nav">
-                <li class="nav-item">
+                <li
+                  class="nav-item"
+                  :class="activeMenu?'activemenu':''"
+                  >
                   <a
                     @mouseover="mouseEvent($event, 'item', 'shop')"
+                    @mouseleave="hideMegaMenu($event)"
                     class="item nav-link"
                     aria-current="page"
                   >
@@ -79,13 +83,14 @@
         </nav>
       </div>
     </div>
-    <MegaMenu v-if="showMegaMenu" />
+    <MegaMenu v-if="showMegaMenu" @clicked-show-detail="onClickChild"/>
     <div class="viewport-warning">
       <div class="message">
         This example was made for viewport sizes 920px and above :)
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -108,15 +113,30 @@ export default {
       magnifier:magnifier,
       menu:menu,
       users:users,
+      activeMenu:''
     };
   },
   methods: {
     mouseEvent(event, source, key = "") {
       if (source === "item") {
+        this.activeMenu='yes'
         event.stopPropagation();
       }
       this.showMegaMenu = key === "shop";
     },
+    hideMegaMenu(en){
+      if(en.relatedTarget){
+        if(en.relatedTarget._prevClass !='megamenu-wrapper'){
+          this.activeMenu=''
+          eventBus.$emit("hide-mega-menu")
+        }
+      }
+    },
+    onClickChild(en){
+      if(en=='yes'){
+        this.activeMenu=''
+      }
+    }
   },
   mounted() {
     eventBus.$on("hide-mega-menu", () => {
@@ -212,10 +232,31 @@ export default {
     margin: 0 auto;
     justify-content: center;
     display: flex;
-    flex-wrap:wrap; 
+    flex-wrap:wrap;
     position:relative;
     z-index:99;
     background: #00b7bc;
 }
-
+.activemenu{
+  background: #e4022d;
+}
+.activemenu:before {
+  content: "";
+  width: 1px;
+  height: 98%;
+  background: #e4022d;
+  position: absolute;
+  left: -1px;
+  top: 1;
+}
+.activemenu a{border:0 !important;}
+.activemenu a:before
+{
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}
 </style>

@@ -349,6 +349,7 @@ import loading from "../../assets/images/loading.gif"
 import input_edit from "../../assets/images/input_edit.png"
 import store_profile from "../../assets/images/store_profile.png"
 import ship from "../../assets/images/ship.png"
+import paw from "../../assets/images/paw.png"
 
 export default {
   name:"Profile",

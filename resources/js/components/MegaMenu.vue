@@ -57,69 +57,69 @@
       <div class="menu_cols">
         <ul>
           <li><h3>Food</h3></li>
-         <li><a href="#">Dry food</a></li> 
-         <li><a href="#">Wet food</a></li> 
-         <li><a href="#">Raw food</a></li> 
+         <li><a href="#">Dry food</a></li>
+         <li><a href="#">Wet food</a></li>
+         <li><a href="#">Raw food</a></li>
          <li class="shop_all"><a href="#">Shop All ></a></li>
         </ul>
         <ul>
           <li><h3>Treats</h3></li>
-         <li><a href="#">Biscuits & Crunchy</a></li> 
-         <li><a href="#">Soft & Chewy</a></li> 
-         <li><a href="#">Dental</a></li> 
-         <li><a href="#">Jerky </a></li> 
-         <li><a href="#">Bones & Bully Sticks</a></li> 
-         <li><a href="#">Freeze-Dried</a></li> 
+         <li><a href="#">Biscuits & Crunchy</a></li>
+         <li><a href="#">Soft & Chewy</a></li>
+         <li><a href="#">Dental</a></li>
+         <li><a href="#">Jerky </a></li>
+         <li><a href="#">Bones & Bully Sticks</a></li>
+         <li><a href="#">Freeze-Dried</a></li>
          <li class="shop_all"><a href="#">Shop All ></a></li>
         </ul>
          <ul>
           <li><h3>Toys</h3></li>
-         <li><a href="#">Chew</a></li> 
-         <li><a href="#">Plush</a></li> 
-         <li><a href="#">Fetch</a></li> 
-         <li><a href="#">Rope & Tug</a></li> 
-         <li><a href="#">Interactive</a></li> 
-         <li><a href="#">Storage</a></li> 
-         <li><a href="#">Variety Packs</a></li> 
+         <li><a href="#">Chew</a></li>
+         <li><a href="#">Plush</a></li>
+         <li><a href="#">Fetch</a></li>
+         <li><a href="#">Rope & Tug</a></li>
+         <li><a href="#">Interactive</a></li>
+         <li><a href="#">Storage</a></li>
+         <li><a href="#">Variety Packs</a></li>
          <li class="shop_all"><a href="#">Shop All ></a></li>
         </ul>
           <ul>
           <li><h3>Healthcare</h3></li>
-         <li><a href="#">Dental</a></li> 
-         <li><a href="#">Heartworn & Worm Prevention</a></li> 
-         <li><a href="#">Milk Replacers</a></li> 
-         <li><a href="#">Ear Care</a></li> 
-         <li><a href="#">Eye Care</a></li> 
-         <li><a href="#">Calming & Anxiety</a></li> 
-         <li><a href="#">Vitamins</a></li> 
+         <li><a href="#">Dental</a></li>
+         <li><a href="#">Heartworn & Worm Prevention</a></li>
+         <li><a href="#">Milk Replacers</a></li>
+         <li><a href="#">Ear Care</a></li>
+         <li><a href="#">Eye Care</a></li>
+         <li><a href="#">Calming & Anxiety</a></li>
+         <li><a href="#">Vitamins</a></li>
          <li class="shop_all"><a href="#">Shop All ></a></li>
         </ul>
           <ul>
           <li><h3>Supplies</h3></li>
-         <li><a href="#">Beds</a></li> 
-         <li><a href="#">Bowls & Feeders</a></li> 
-         <li><a href="#">Leashes, Collar & Harnesses</a></li> 
-         <li><a href="#">Crates, Pens, & Gates</a></li> 
-         <li><a href="#">Carriers & Travel</a></li> 
-         <li><a href="#">Clothing & Accessories</a></li> 
-         <li><a href="#">Training</a></li> 
-         <li><a href="#">Technology</a></li> 
+         <li><a href="#">Beds</a></li>
+         <li><a href="#">Bowls & Feeders</a></li>
+         <li><a href="#">Leashes, Collar & Harnesses</a></li>
+         <li><a href="#">Crates, Pens, & Gates</a></li>
+         <li><a href="#">Carriers & Travel</a></li>
+         <li><a href="#">Clothing & Accessories</a></li>
+         <li><a href="#">Training</a></li>
+         <li><a href="#">Technology</a></li>
          <li class="shop_all"><a href="#">Shop All ></a></li>
         </ul>
       </div>
       <div class="menu_brand">
         <h3>Brands</h3>
        <ul>
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-       </ul> 
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+       </ul>
       </div>
         </div>
-      
-      <div class="sub-category_image" style="background: #9d8ac1;  margin: -30px 0;">        
+
+      <div class="sub-category_image" style="background: #9d8ac1;  margin: -30px 0;">
       <div class="menu_banner">
        <a href="#">
         <h2>THE
@@ -127,9 +127,9 @@
         TREAT YOUR
         PUP WILL
         WANT TO EAT</h2>
-        <img :src="m1"> 
+        <img :src="m1">
         <a href="#">Shop</a>
-       </a> 
+       </a>
       </div>
       </div>
     </div>
@@ -140,58 +140,58 @@
       <div class="menu_cols">
         <ul>
           <li><h3>Food</h3></li>
-         <li><a href="#">Dry food</a></li> 
-         <li><a href="#">Wet food</a></li> 
-         <li><a href="#">Raw food</a></li> 
-         <li><a href="#">Toppings</a></li> 
+         <li><a href="#">Dry food</a></li>
+         <li><a href="#">Wet food</a></li>
+         <li><a href="#">Raw food</a></li>
+         <li><a href="#">Toppings</a></li>
          <li class="shop_all"><a href="#">Shop All ></a></li>
         </ul>
         <ul>
           <li><h3>Litter</h3></li>
-         <li><a href="#">Litter</a></li> 
-         <li><a href="#">Litter Boxes</a></li> 
-         <li><a href="#">Litter Accessorie</a></li> 
-         <li><a href="#">Waste Disposal</a></li> 
-         <li><a href="#">Cleaners & Deodorizers</a></li> 
-         <li><a href="#">Litter Enclosures</a></li> 
+         <li><a href="#">Litter</a></li>
+         <li><a href="#">Litter Boxes</a></li>
+         <li><a href="#">Litter Accessorie</a></li>
+         <li><a href="#">Waste Disposal</a></li>
+         <li><a href="#">Cleaners & Deodorizers</a></li>
+         <li><a href="#">Litter Enclosures</a></li>
          <li class="shop_all"><a href="#">Shop All ></a></li>
         </ul>
          <ul>
           <li><h3>Litter Enclosures</h3></li>
-         <li><a href="#">Treats</a></li> 
-         <li><a href="#">Bowls & Feeders</a></li> 
-         <li><a href="#">Grooming</a></li> 
-         <li><a href="#">Beds</a></li> 
-         <li><a href="#">Healthcare</a></li> 
-         <li><a href="#">Flea & Tick</a></li> 
-         <li><a href="#">Flea & Tick</a></li> 
-         <li><a href="#">Trees, Condos, & Scratchers</a></li> 
+         <li><a href="#">Treats</a></li>
+         <li><a href="#">Bowls & Feeders</a></li>
+         <li><a href="#">Grooming</a></li>
+         <li><a href="#">Beds</a></li>
+         <li><a href="#">Healthcare</a></li>
+         <li><a href="#">Flea & Tick</a></li>
+         <li><a href="#">Flea & Tick</a></li>
+         <li><a href="#">Trees, Condos, & Scratchers</a></li>
          <li class="shop_all"><a href="#">Shop All ></a></li>
         </ul>
-        
+
       </div>
       <div class="menu_brand">
         <h3>Brands</h3>
        <ul>
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-       </ul> 
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+       </ul>
       </div>
         </div>
-      
-      <div class="sub-category_image" style="background: #ebdac6;  margin: -30px 0;">        
+
+      <div class="sub-category_image" style="background: #ebdac6;  margin: -30px 0;">
       <div class="menu_banner">
        <a href="#">
         <h2 class="h43">Quality litter
 plus health
 monitorinG
 </h2>
-        <img :src="m2" style="margin: -10px 0 70px 0;"> 
+        <img :src="m2" style="margin: -10px 0 70px 0;">
         <a href="#" class="btn_blu_banner">Shop</a>
-       </a> 
+       </a>
       </div>
       </div>
     </div>
@@ -200,80 +200,80 @@ monitorinG
       <div class="menu_cols col_3s">
         <ul>
           <li><h3>Puppy</h3></li>
-         <li><a href="#">Puppy Food</a></li> 
-         <li><a href="#">Puppy Treats</a></li> 
-         <li><a href="#">Toys</a></li> 
-         <li><a href="#">Bedding/Essentials</a></li> 
-         <li><a href="#">Potty Training</a></li> 
-         <li><a href="#">Walking Supplies</a></li> 
+         <li><a href="#">Puppy Food</a></li>
+         <li><a href="#">Puppy Treats</a></li>
+         <li><a href="#">Toys</a></li>
+         <li><a href="#">Bedding/Essentials</a></li>
+         <li><a href="#">Potty Training</a></li>
+         <li><a href="#">Walking Supplies</a></li>
          <li class="shop_all"><a href="#">Shop All ></a></li>
         </ul>
         <ul>
           <li><h3>Adult Dogr</h3></li>
-         <li><a href="#">Food</a></li> 
-         <li><a href="#">Treats</a></li> 
-         <li><a href="#">Toys</a></li> 
-         <li><a href="#">Healthcare</a></li> 
-         <li><a href="#">Vitamins & Supps</a></li> 
-         <li><a href="#">Crates, Penns, Gates</a></li> 
+         <li><a href="#">Food</a></li>
+         <li><a href="#">Treats</a></li>
+         <li><a href="#">Toys</a></li>
+         <li><a href="#">Healthcare</a></li>
+         <li><a href="#">Vitamins & Supps</a></li>
+         <li><a href="#">Crates, Penns, Gates</a></li>
          <li class="shop_all"><a href="#">Shop All ></a></li>
         </ul>
          <ul>
           <li><h3>Senior Dog</h3></li>
-         <li><a href="#">Senior Dog Food</a></li> 
-         <li><a href="#">Beds</a></li> 
-         <li><a href="#">Senior Dog Treats</a></li> 
-         <li><a href="#">Health & Wellness</a></li> 
-         <li><a href="#">Supplements & Vitamins</a></li> 
+         <li><a href="#">Senior Dog Food</a></li>
+         <li><a href="#">Beds</a></li>
+         <li><a href="#">Senior Dog Treats</a></li>
+         <li><a href="#">Health & Wellness</a></li>
+         <li><a href="#">Supplements & Vitamins</a></li>
          <li class="shop_all"><a href="#">Shop All ></a></li>
-        </ul> 
+        </ul>
             <ul>
           <li><h3>Kitten</h3></li>
-         <li><a href="#">Kitten Food</a></li> 
-         <li><a href="#">Kitten Treats</a></li> 
-         <li><a href="#">Toys</a></li> 
-         <li><a href="#">Litter & Acccessories</a></li> 
-         <li><a href="#">Bedding</a></li> 
+         <li><a href="#">Kitten Food</a></li>
+         <li><a href="#">Kitten Treats</a></li>
+         <li><a href="#">Toys</a></li>
+         <li><a href="#">Litter & Acccessories</a></li>
+         <li><a href="#">Bedding</a></li>
          <li class="shop_all"><a href="#">Shop All ></a></li>
         </ul>
         <ul>
           <li><h3>Adult Cat</h3></li>
-         <li><a href="#">Food</a></li> 
-         <li><a href="#">Treats</a></li> 
-         <li><a href="#">Trees, Condos & Scratches</a></li> 
-         <li><a href="#">Grooming</a></li> 
+         <li><a href="#">Food</a></li>
+         <li><a href="#">Treats</a></li>
+         <li><a href="#">Trees, Condos & Scratches</a></li>
+         <li><a href="#">Grooming</a></li>
          <li class="shop_all"><a href="#">Shop All ></a></li>
         </ul>
          <ul>
           <li><h3>Senior Cat</h3></li>
-         <li><a href="#">Senior Cat Food</a></li> 
-         <li><a href="#">Health & Wellness</a></li> 
-         <li><a href="#">Beds</a></li> 
-         <li><a href="#">Vitamins</a></li> 
+         <li><a href="#">Senior Cat Food</a></li>
+         <li><a href="#">Health & Wellness</a></li>
+         <li><a href="#">Beds</a></li>
+         <li><a href="#">Vitamins</a></li>
          <li class="shop_all"><a href="#">Shop All ></a></li>
-        </ul>        
+        </ul>
       </div>
       <!--<div class="menu_brand">
         <h3>Brands</h3>
        <ul>
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-       </ul> 
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+       </ul>
       </div>-->
         </div>
-      
-      <div class="sub-category_image" style="background: #94af97;  margin: -30px 0;">        
+
+      <div class="sub-category_image" style="background: #94af97;  margin: -30px 0;">
       <div class="menu_banner">
        <a href="#">
         <h2 class="h52 text-center">FOR EVERY
 LIFE STAGE
 </h2>
-        <img :src="m3"> 
+        <img :src="m3">
         <a href="#">Shop</a>
-       </a> 
+       </a>
       </div>
       </div>
     </div>
@@ -282,41 +282,41 @@ LIFE STAGE
       <div class="menu_cols">
         <ul>
           <li><h3>Needs</h3></li>
-         <li><a href="#">Female Dogs in Heat</a></li> 
-         <li><a href="#">Separation Anxiety</a></li> 
-         <li><a href="#">Male Marking</a></li> 
-         <li><a href="#">Dog Hip & Joint Issues</a></li> 
-         <li><a href="#">Aggressive Chewers</a></li> 
+         <li><a href="#">Female Dogs in Heat</a></li>
+         <li><a href="#">Separation Anxiety</a></li>
+         <li><a href="#">Male Marking</a></li>
+         <li><a href="#">Dog Hip & Joint Issues</a></li>
+         <li><a href="#">Aggressive Chewers</a></li>
          </ul>
         <ul>
           <li><h3> <br></h3></li>
-         <li><a href="#">Bladder & UTI Issues</a></li> 
-         <li><a href="#">Incontinence</a></li> 
-         <li><a href="#">Dog Diarrhea</a></li> 
-         <li><a href="#">Dog Potty Training</a></li> 
-         <li><a href="#">Dog Allergy & Itchy Skin</a></li> 
-         
-        </ul>   
+         <li><a href="#">Bladder & UTI Issues</a></li>
+         <li><a href="#">Incontinence</a></li>
+         <li><a href="#">Dog Diarrhea</a></li>
+         <li><a href="#">Dog Potty Training</a></li>
+         <li><a href="#">Dog Allergy & Itchy Skin</a></li>
+
+        </ul>
       </div>
      <div class="menu_brand mt-8">
         <h3>Brands</h3>
        <ul>
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-       </ul> 
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+       </ul>
       </div>
         </div>
-      
-      <div class="sub-category_image" style="background: #95bdbf;  margin: -30px 0;">        
+
+      <div class="sub-category_image" style="background: #95bdbf;  margin: -30px 0;">
       <div class="menu_banner text-center">
        <a href="#">
         <h2 class="h72 text-center">FOR EVERY NEED</h2>
-        <img :src="m4"> 
+        <img :src="m4">
         <a href="#">Shop</a>
-       </a> 
+       </a>
       </div>
       </div>
     </div>
@@ -325,22 +325,22 @@ LIFE STAGE
      <div class="menu_brand brand_big">
         <h3>Brands</h3>
        <ul>
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
         <li><a href="#"><img :src="paw"></a></li>
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
         <li><a href="#"><img :src="paw"></a></li>
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-       </ul> 
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+       </ul>
       </div>
         </div>
     </div>
@@ -349,46 +349,46 @@ LIFE STAGE
       <div class="menu_cols">
         <ul>
           <li><h3>Dogs</h3></li>
-         <li><a href="#">Diapers</a></li> 
-         <li><a href="#">Belly Bands</a></li> 
-         <li><a href="#">Covrs™</a></li> 
-         <li><a href="#">Extendrs™</a></li> 
-         <li><a href="#">SoftSupps®</a></li> 
-         <li><a href="#">Pawtect® Pads</a></li> 
-         <li><a href="#">Blankets</a></li> 
-         <li><a href="#">Gnawtlers®</a></li> 
+         <li><a href="#">Diapers</a></li>
+         <li><a href="#">Belly Bands</a></li>
+         <li><a href="#">Covrs™</a></li>
+         <li><a href="#">Extendrs™</a></li>
+         <li><a href="#">SoftSupps®</a></li>
+         <li><a href="#">Pawtect® Pads</a></li>
+         <li><a href="#">Blankets</a></li>
+         <li><a href="#">Gnawtlers®</a></li>
          <li class="shop_all"><a href="#">Shop All ></a></li>
         </ul>
         <ul>
           <li><h3>Cats</h3></li>
-         <li><a href="#">Diapers</a></li> 
-         <li><a href="#">Covrs™</a></li> 
-         <li><a href="#">Extendrs™</a></li> 
-         <li><a href="#">Extendrs™</a></li> 
-         <li><a href="#">Blankets</a></li> 
+         <li><a href="#">Diapers</a></li>
+         <li><a href="#">Covrs™</a></li>
+         <li><a href="#">Extendrs™</a></li>
+         <li><a href="#">Extendrs™</a></li>
+         <li><a href="#">Blankets</a></li>
          <li class="shop_all"><a href="#">Shop All ></a></li>
         </ul>
       </div>
       <!--<div class="menu_brand">
         <h3>Brands</h3>
        <ul>
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-        <li><a href="#"><img :src="paw"></a></li> 
-       </ul> 
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="#"><img :src="paw"></a></li>
+       </ul>
       </div>-->
         </div>
-      
-      <div class="sub-category_image" style="background: #e3002b;  margin: -30px 0;">        
+
+      <div class="sub-category_image" style="background: #e3002b;  margin: -30px 0;">
       <div class="menu_banner text-center">
        <a href="#">
         <h2 class="h72 text-center">PET PARENTS®
 </h2>
-        <img :src="m5" style="margin:-20px 0 0 0"> 
+        <img :src="m5" style="margin:-20px 0 0 0">
         <!--<a href="#" class="btn_blu_banner">Shop</a>-->
-       </a> 
+       </a>
       </div>
       </div>
     </div>
@@ -428,6 +428,7 @@ export default {
   methods: {
     hideMegaMenu() {
       eventBus.$emit("hide-mega-menu");
+      this.$emit('clicked-show-detail', 'yes')
     },
     isActive(key) {
       return this.activeMainCategory === key;
