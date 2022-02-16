@@ -10,8 +10,8 @@
           alt="logo"
         />
       </router-link>
-      <div class="right_info">        <div class="search_bar">
-
+      <div class="right_info">
+        <div class="search_bar">
           <div class="mobil_searc mobil_only">
             <a href="javascript:;" @click="searchMobilePopup">
               <img
@@ -34,8 +34,8 @@
                     :src="search_mobile"
                     alt="search_mobile"
                     />
-            </button> 
-                 </div> 
+                  </button>
+                 </div>
                    <a href="javascript:;" @click="searchMobilePopup">
                <img :src="m_close">
             </a>
@@ -44,10 +44,10 @@
               <div class="serch_items">
                 <p> Popular Search Terms</p>
                 <ul>
-                 <li><a href="#">dog clean</a></li> 
-                 <li><a href="#">diaper</a></li> 
-                 <li><a href="#">home clean</a></li> 
-                 <li><a href="#">blankets</a></li> 
+                 <li><a href="#">dog clean</a></li>
+                 <li><a href="#">diaper</a></li>
+                 <li><a href="#">home clean</a></li>
+                 <li><a href="#">blankets</a></li>
                  ...
                 </ul>
               </div>
@@ -70,7 +70,7 @@
           </div>
           <div class="pr_info">
             <label>{{accountDetails.name}}</label>
-            <div class="dropdownlogin">
+            <div class="dropdownlogin"  @mouseleave="profilePopupClose($event)">
             <a
               href="javascript:;"
               class="alink"
@@ -78,7 +78,7 @@
             >
               MY PROFILE
             </a>
-              <ul class="profile_drop" v-if="myProfileActive">
+              <ul class="profile_drop" v-if="myProfileActive"  @mouseleave="closePopupWin()">
                 <li>
                   <a
                   class="alink dropdown-item"
@@ -180,7 +180,7 @@
   </header>
 </template>
 <style>
-  @import './header.css';  
+  @import './header.css';
 </style>
 <script>
 import imgLogo from "../../assets/images/logo.png"
@@ -260,7 +260,7 @@ export default {
     this.cartInfoupdate()
   },
   mounted() {
-    this.content_currentItem = this.source;
+    this.content_currentItem = this.source
   },
   computed: {
     ...mapGetters(['cartQuantity','accountDetails']),
@@ -380,6 +380,16 @@ export default {
         this.searchactive = 'searchactive'
       }else{
         this.searchactive = 'searchide'
+      }
+    },
+    closePopupWin(){
+      this.myProfileActive=false
+    },
+    profilePopupClose(en){
+      if(en.relatedTarget){
+        if(en.relatedTarget._prevClass !='profile_bar'){
+          this.closePopupWin()
+        }
       }
     }
   }
