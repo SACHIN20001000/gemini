@@ -22,7 +22,7 @@ const functionalityStyle = {
             top: 0,
             right: `-${panelWidth}px`,
             zIndex: 99999,
-            height: `100vh`,
+            height: `100%`,
             overflow: `hidden`,
             transition: `right ${menuOpenTransitionSecond}`,
         };
@@ -35,7 +35,7 @@ const functionalityStyle = {
             position: `absolute`,
             top: 0,
             zIndex: 99999,
-            height: `100vh`,
+            height: `100%`,
             width: `${panelWidth}px`,
             backgroundColor: `#fff`,
         };
