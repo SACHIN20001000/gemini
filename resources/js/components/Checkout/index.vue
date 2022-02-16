@@ -749,6 +749,7 @@ export default {
     couponSpecificCategory(couponDetails){
       var _this = this
       var categoryIds=[]
+      var applyCodeORNot=0
       couponDetails.category_id.filter(function(cid,cind){
         categoryIds.push(Number(cid))
       })
@@ -757,6 +758,7 @@ export default {
         this.cartItems.filter(function(cartitem,ciind){
           if(categoryIds.includes(cartitem.product.category_id)){
             _this.productPercentageDiscount(cartitem,couponDetails,ciind)
+            applyCodeORNot=1
           }
         })
         this.$refs.notifications.displayNotification('success','Coupon Code','Coupon Code is applied.')
@@ -764,15 +766,21 @@ export default {
       }else {
         this.cartItems.filter(function(cartitem,ciind){
           if(categoryIds.includes(cartitem.product.category_id)){
-            this.productFixedDiscount(cartitem,couponDetails,ciind)
+            _this.productFixedDiscount(cartitem,couponDetails,ciind)
+            applyCodeORNot=1
           }
         })
-        this.$refs.notifications.displayNotification('success','Coupon Code','Coupon Code is applied.')
+        if(applyCodeORNot>0){
+          this.$refs.notifications.displayNotification('success','Coupon Code','Coupon Code is applied.')
+        }else{
+          this.$refs.notifications.displayNotification('error','Coupon Code','This code is not valid')
+        }
         this.loadingDisplay=false
       }
     },
     couponSpecificProducts(couponDetails){
       var _this = this
+      var applyCodeORNot=0
       var productIds=[]
       couponDetails.product_id.filter(function(pid,pind){
         productIds.push(Number(pid))
@@ -782,17 +790,27 @@ export default {
         this.cartItems.filter(function(cartitem,ciind){
           if(productIds.includes(cartitem.product_id)){
             _this.productPercentageDiscount(cartitem,couponDetails,ciind)
+            applyCodeORNot=1
           }
         })
-        this.$refs.notifications.displayNotification('success','Coupon Code','Coupon Code is applied.')
+        if(applyCodeORNot>0){
+          this.$refs.notifications.displayNotification('success','Coupon Code','Coupon Code is applied.')
+        }else{
+          this.$refs.notifications.displayNotification('error','Coupon Code','This code is not valid')
+        }
         this.loadingDisplay=false
       }else{
         this.cartItems.filter(function(cartitem,ciind){
           if(productIds.includes(cartitem.product_id)){
-            this.productFixedDiscount(cartitem,couponDetails,ciind)
+            _this.productFixedDiscount(cartitem,couponDetails,ciind)
+            applyCodeORNot=1
           }
         })
-        this.$refs.notifications.displayNotification('success','Coupon Code','Coupon Code is applied.')
+        if(applyCodeORNot>0){
+          this.$refs.notifications.displayNotification('success','Coupon Code','Coupon Code is applied.')
+        }else{
+          this.$refs.notifications.displayNotification('error','Coupon Code','This code is not valid')
+        }
         this.loadingDisplay=false
       }
     },
@@ -801,21 +819,28 @@ export default {
         var discountVal = Number(cartitem.variationProduct.sale_price*couponDetails.value)/100
         var discountPrice = discountVal.toFixed(2)
         if(cartitem.variationProduct.sale_price>discountPrice){
-          var multiPrice = (discountPrice*cartitem.quantity).toFixed(2)
-          this.form.data.total = (this.form.data.total-Number(multiPrice)).toFixed(2)
-          this.order_form.data.discountAmount=Number(this.order_form.data.discountAmount)+Number(multiPrice)
+          var multiPrice = discountPrice*cartitem.quantity
+          var formatAfterDiscount = multiPrice.toFixed(2)
+          var totalformat = this.form.data.total-Number(formatAfterDiscount)
+          this.form.data.total = totalformat.toFixed(2)
+
+          this.order_form.data.discountAmount=Number(this.order_form.data.discountAmount)+Number(formatAfterDiscount)
           var afterDiscount = Number(cartitem.variationProduct.sale_price)-Number(discountPrice)
-          this.cartItems[ciind].discountPrice=afterDiscount
+
+          this.cartItems[ciind].discountPrice=formatAfterDiscount
         }
       }else{
         var discountVal = Number(cartitem.product.sale_price*couponDetails.value)/100
         if(cartitem.product.sale_price>discountVal){
           var discountPrice = discountVal.toFixed(2)
-          var multiPrice = (discountPrice*cartitem.quantity).toFixed(2)
-          this.form.data.total = (this.form.data.total-Number(multiPrice)).toFixed(2)
-          this.order_form.data.discountAmount=Number(this.order_form.data.discountAmount)+Number(multiPrice)
+          var multiPrice = discountPrice*cartitem.quantity
+          var formatAfterDiscount = multiPrice.toFixed(2)
+          var totalformat = this.form.data.total-Number(formatAfterDiscount)
+          this.form.data.total = totalformat.toFixed(2)
+
+          this.order_form.data.discountAmount=Number(this.order_form.data.discountAmount)+Number(formatAfterDiscount)
           var afterDiscount = Number(cartitem.product.sale_price)-Number(discountPrice)
-          this.cartItems[ciind].discountPrice=afterDiscount
+          this.cartItems[ciind].discountPrice=formatAfterDiscount
         }
       }
     },
@@ -823,22 +848,26 @@ export default {
       if(cartitem.variationProduct){
         var discountVal = Number(cartitem.variationProduct.sale_price)-Number(couponDetails.value)
         if(discountVal>0){
-          var discountPrice = discountVal.toFixed(2)
-          var multiPrice = (discountPrice*cartitem.quantity).toFixed(2)
-          this.form.data.total = (this.form.data.total-Number(multiPrice)).toFixed(2)
-          this.order_form.data.discountAmount=Number(this.order_form.data.discountAmount)+Number(multiPrice)
-          var afterDiscount = Number(cartitem.variationProduct.sale_price)-Number(discountPrice)
-          this.cartItems[ciind].discountPrice=afterDiscount
+          var discountPrice = couponDetails.value.toFixed(2)
+          var multiPrice = discountPrice*cartitem.quantity
+          var formatAfterDiscount = multiPrice.toFixed(2)
+          var totalformat = this.form.data.total-Number(formatAfterDiscount)
+          this.form.data.total = totalformat.toFixed(2)
+          this.order_form.data.discountAmount=Number(this.order_form.data.discountAmount)+Number(formatAfterDiscount)
+
+          this.cartItems[ciind].discountPrice=formatAfterDiscount
         }
       }else{
         var discountVal = Number(cartitem.product.sale_price)-Number(couponDetails.value)
         if(discountVal>0){
-          var discountPrice = discountVal.toFixed(2)
-          var multiPrice = (discountPrice*cartitem.quantity).toFixed(2)
-          this.form.data.total = (this.form.data.total-Number(multiPrice)).toFixed(2)
-          this.order_form.data.discountAmount=Number(this.order_form.data.discountAmount)+Number(multiPrice)
-          var afterDiscount = Number(cartitem.product.sale_price)-Number(discountPrice)
-          this.cartItems[ciind].discountPrice=afterDiscount
+          var discountPrice = couponDetails.value.toFixed(2)
+          var multiPrice = discountPrice*cartitem.quantity
+          var formatAfterDiscount = multiPrice.toFixed(2)
+          var totalformat = this.form.data.total-Number(formatAfterDiscount)
+          this.form.data.total = totalformat.toFixed(2)
+          this.order_form.data.discountAmount=Number(this.order_form.data.discountAmount)+Number(formatAfterDiscount)
+
+          this.cartItems[ciind].discountPrice=formatAfterDiscount
         }
       }
     }
