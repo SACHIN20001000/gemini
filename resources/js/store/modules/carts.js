@@ -37,7 +37,19 @@ const actions = {
     const cartId = localStorage.getItem('cartId')
     HTTP.get(process.env.MIX_APP_APIURL+'cart/'+cartId+'?key='+cartKey).then((response) => {
       commit('getItemsCart', response.data.data)
-    });
+    }).catch((errors) => {
+      commit("catErrors", errors.response.data.message)
+      localStorage.removeItem('cartKey')
+      localStorage.removeItem('cartId')
+      HTTP.get(process.env.MIX_APP_APIURL+"cart").then((response) => {
+        commit("getCartToken", response.data.data)
+        const cartToken = response.data.data;
+        if(cartToken.key){
+          localStorage.setItem('cartKey', cartToken.key)
+          localStorage.setItem('cartId', cartToken.id)
+        }
+      })
+    })
   },
   async getChowhubCartItems ({ commit },chowhubcart) {
     HTTP.get(process.env.MIX_APP_APIURL+'chowhub/cart/'+chowhubcart.cartId+'?key='+chowhubcart.cartKey).then((response) => {
