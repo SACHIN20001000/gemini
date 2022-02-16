@@ -119,7 +119,7 @@ public function store(AddProduct $request)
             $products->productName = $inputs['productName'];
             $products->description = $inputs['description'];
             $products->real_price = $inputs['real_price'];
-            $products->sale_price = $inputs['sale_price'];
+            $products->sale_price = $inputs['sale_price'] ??0;
             $products->sku = $inputs['sku'];
             $products->pet_type = $inputs['pet_type'];
             $products->age =json_encode($inputs['age']);
@@ -277,7 +277,7 @@ public function store(AddProduct $request)
                             }
                         }
                         $productVariation->real_price = $variation['regular_price'];
-                        $productVariation->sale_price = $variation['sale_price'];
+                        $productVariation->sale_price = $variation['sale_price']  ??0;
 
                         $productVariation->quantity = $variation['qty'];
                         $productVariation->weight = $variation['weight'];
@@ -373,7 +373,7 @@ public function store(AddProduct $request)
             $products->productName = $inputs['productName'];
             $products->description = $inputs['description'];
             $products->real_price = $inputs['real_price'];
-            $products->sale_price = $inputs['sale_price'];
+            $products->sale_price = $inputs['sale_price'] ??0;
             if (!empty($inputs['feature_image']))
             {
                 $path = Storage::disk('s3')->put('images', $inputs['feature_image']);
@@ -544,7 +544,7 @@ public function store(AddProduct $request)
                                 $productVariation->image = $Imagepath;
                             }
                             $productVariation->real_price = $variation['regular_price'];
-                            $productVariation->sale_price = $variation['sale_price'];
+                            $productVariation->sale_price = $variation['sale_price']  ??0;
 
                             $productVariation->quantity = $variation['qty'];
                             $productVariation->weight = $variation['weight'];
@@ -575,7 +575,7 @@ public function store(AddProduct $request)
                                 $productVariation->image = $Imagepath;
                             }
                             $productVariation->real_price = $variation['regular_price'];
-                            $productVariation->sale_price = $variation['sale_price'];
+                            $productVariation->sale_price = $variation['sale_price']  ??0;
 
                             $productVariation->quantity = $variation['qty'];
                             $productVariation->weight = $variation['weight'];

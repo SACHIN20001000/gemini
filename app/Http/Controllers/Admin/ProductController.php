@@ -125,7 +125,7 @@ class ProductController extends Controller
             $products->productName = $inputs['productName'];
             $products->description = $inputs['description'];
             $products->real_price = $inputs['real_price'];
-            $products->sale_price = $inputs['sale_price'];
+            $products->sale_price = $inputs['sale_price']??0;
             if (!empty($inputs['banner_image']))
             {
               $path = Storage::disk('s3')->put('images', $inputs['banner_image']);
@@ -270,7 +270,7 @@ class ProductController extends Controller
                             }
                         }
                         $productVariation->real_price = $variation['regular_price'];
-                        $productVariation->sale_price = $variation['sale_price'];
+                        $productVariation->sale_price = $variation['sale_price']??0;
 
                         $productVariation->quantity = $variation['qty'];
                         $productVariation->weight = $variation['weight'];
@@ -377,7 +377,7 @@ class ProductController extends Controller
             $products->productName = $inputs['productName'];
             $products->description = $inputs['description'];
             $products->real_price = $inputs['real_price'];
-            $products->sale_price = $inputs['sale_price'];
+            $products->sale_price = $inputs['sale_price']??0;
             $products->sku = $inputs['sku'];
             $products->weight = $inputs['weight'];
             $products->quantity = $inputs['qty'];
@@ -540,7 +540,7 @@ class ProductController extends Controller
                                 $productVariation->image = $Imagepath;
                             }
                             $productVariation->real_price = $variation['regular_price'];
-                            $productVariation->sale_price = $variation['sale_price'];
+                            $productVariation->sale_price = $variation['sale_price']??0;
 
                             $productVariation->quantity = $variation['qty'];
                             $productVariation->weight = $variation['weight'];
@@ -574,7 +574,7 @@ class ProductController extends Controller
                                 $productVariation->image = $Imagepath;
                             }
                             $productVariation->real_price = $variation['regular_price'];
-                            $productVariation->sale_price = $variation['sale_price'];
+                            $productVariation->sale_price = $variation['sale_price']??0;
 
                             $productVariation->quantity = $variation['qty'];
                             $productVariation->weight = $variation['weight'];

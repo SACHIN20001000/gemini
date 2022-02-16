@@ -37,7 +37,7 @@ class UpdateProduct extends FormRequest
             'age' => 'required',
             'food_type' => 'required',
             'protein_type' => 'required',
-            'feature_image' => 'dimensions:width=619,height=577',
+            //'feature_image' => 'dimensions:width=619,height=577',
             // 'image' => 'dimensions:width=619,height=577',
             // 'description_images' => 'dimensions:width=1238,height=652',
             // 'feature_page_images' => 'dimensions:width=1238,height=652',
