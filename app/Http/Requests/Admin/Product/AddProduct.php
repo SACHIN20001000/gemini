@@ -32,7 +32,7 @@ class AddProduct extends FormRequest
 
             'weight' => 'required',
             'real_price' => 'required',
-            'sale_price' => 'required',
+            //'sale_price' => 'required',
              'sku' => 'required',
             'qty' => 'required',
             // 'banner_image' => 'dimensions:width=1500,height=450',

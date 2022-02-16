@@ -498,11 +498,15 @@ function CheckDimensionFeatureImage() {
                                                     {
 
                                                     let attributeName = $("#name_attributes").val();
+                                                    attributeName = attributeName.trim();
                                                     let value_attributes = $("#value_attributes").val();
                                                     if (value_attributes.length != 0 && attributeName.length != 0){
                                                     var removeLastQuama = value_attributes.charAt(value_attributes.length - 1);
                                                     if (removeLastQuama != ','){
                                                     let attributeValues = value_attributes.split(",");
+                                                    attributeValues = attributeValues.map(function (el) {
+                                                      return el.trim();
+                                                    });
                                                     attributes[attributeName] = attributeValues;
                                                     productsEvent.displayAttributes();
                                                     productsEvent.createVariations();
