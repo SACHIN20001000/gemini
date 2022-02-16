@@ -11,14 +11,14 @@
         />
       </router-link>
       <div class="right_info">        <div class="search_bar">
-         
+
             <div class="mobil_searc mobil_only">
           <a href="#">
             <img
               :src="search_mobile"
               alt="search_mobile"
-            /> 
-            </a>          
+            />
+            </a>
           </div>
           <form class="srch_form desk_only">
             <input type="text" name="search" placeholder="Search">
@@ -36,35 +36,31 @@
           </div>
           <div class="pr_info">
             <label>{{accountDetails.name}}</label>
-            <div class="dropdown">
-            <router-link
-              :to="{ path: '/profile'}"
-              class="alink dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              data-toggle="dropdown"
-              aria-haspopup="true"
+            <div class="dropdownlogin">
+            <a
+              href="javascript:;"
+              class="alink"
+              @click="myProfile('')"
             >
               MY PROFILE
-            </router-link>
-              <ul class="dropdown-menu profile_drop" aria-labelledby="dropdownMenuButton1">
+            </a>
+              <ul class="profile_drop" v-if="myProfileActive">
                 <li>
-                  <router-link
-                  :to="{ path: '/profile'}"
+                  <a
                   class="alink dropdown-item"
+                  @click="myProfile('profile')"
+                  href="javascript:;"
                   >
-                  MY ACCOUNT
-                  </router-link>
+                    MY ACCOUNT
+                  </a>
                 </li>
                 <li>
-                  <router-link
-                  :to="{ path: '/signout'}"
-                  class="alink dropdown-item"
+                  <a
+                    class="alink dropdown-item"
+                    @click="myProfile('signout')"
                   >
-                  LogOut
-                  </router-link>
+                    LogOut
+                  </a>
                 </li>
               </ul>
             </div>
@@ -318,7 +314,8 @@ export default {
       token: localStorage.getItem('userauth'),
       isActive: false,
       isTranslating: false,
-      m_close:m_close
+      m_close:m_close,
+      myProfileActive: false
     }
   },
   watch:{
@@ -428,17 +425,21 @@ export default {
     },
     homingAfterTranslatingBack() {
         setTimeout(() => {
-            this.setTranslating(false);
-
-            // homing
-            this.panel_homingPosition();
-            this.content_homingItemAfterBack();
-        }, this.menuSwitchSpeed);
+            this.setTranslating(false)
+            this.panel_homingPosition()
+            this.content_homingItemAfterBack()
+        }, this.menuSwitchSpeed)
     },
 
     // utils
     setTranslating(status) {
         this.isTranslating = status;
+    },
+    myProfile(urllink){
+      this.myProfileActive = !this.myProfileActive
+      if(urllink !=''){
+        this.$router.push('/'+urllink)
+      }
     }
   }
 }
