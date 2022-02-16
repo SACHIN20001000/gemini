@@ -30,7 +30,7 @@ class UpdateProduct extends FormRequest
             'status' => 'required',
             'weight' => 'required',
             'real_price' => 'required',
-            'sale_price' => 'required',
+            //'sale_price' => 'required',
             'sku' => 'required',
             'qty' => 'required',
             'pet_type' => 'required',

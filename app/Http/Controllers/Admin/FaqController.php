@@ -23,7 +23,7 @@ class FaqController extends Controller
 
         if ($request->ajax())
         {
-            $data = Faq::with('user')->orderby('faqs.id','DESC');
+            $data = Faq::with('user')->select('faqs.*')->orderby('faqs.id','DESC');
             return Datatables::of($data)
             ->addIndexColumn()
 
