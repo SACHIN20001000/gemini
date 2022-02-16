@@ -12,13 +12,16 @@
       </router-link>
       <div class="right_info">        <div class="search_bar">
 
-            <div class="mobil_searc mobil_only">
-          <a href="#">
-            <img
-              :src="search_mobile"
-              alt="search_mobile"
-            />
+          <div class="mobil_searc mobil_only">
+            <a href="javascript:;" @click="searchMobilePopup">
+              <img
+                :src="search_mobile"
+                alt="search_mobile"
+              />
             </a>
+            <div class="mob_serach_window" v-if="activeSearchMob">
+              <p>Hello --</p>
+            </div>
           </div>
           <form class="srch_form desk_only">
             <input type="text" name="search" placeholder="Search">
@@ -108,7 +111,7 @@
                  :style="[style_wrapperStyle, isActive ? style_wrapperActiveStyle : {}]"
               >
               <!-- prev -->
-                <a href="#" class="btn_bck"  @click="clickBurger"> <img :src="m_close"></a>
+                <a href="javascript:;" class="btn_bck"  @click="clickBurger"> <img :src="m_close"></a>
                 <MenuPanel
                    :list="content_prevItem"
                    :functionalityStyle="style_panelStyle"
@@ -146,110 +149,7 @@
   </header>
 </template>
 <style>
-  @import './header.css';
-  .viewport-warning {
-      display: none !important;
-  }
-
-  .lv_0 a, .lv_0 {
-      font-size: 30px;
-      font-weight: 700;
-      color: #9d9d9c !important;
-  }
-  .bottom_menu ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: block;
-      clear: both;
-          padding:  0 20px;
-      position: absolute;
-      bottom: 40px;
-  }
-  .Menu__list
-  {padding:  0 20px !important;}
-
-   .Menu__list li {  padding: 0!important;}
-  .bottom_menu ul li a {
-      font-size: 17px;
-      text-decoration: none;
-      color: #9d9d9c;
-      font-weight: 400;
-      position: relative;
-      line-height: 41px;
-  }
-  .lv_0:before {
-      content: "";
-      border-top: 8px solid transparent;
-      border-bottom: 8px solid transparent;
-      border-left: 10px solid #00b3ba;
-      position: absolute;
-      right: 25px;
-  }
-  li.Menu__item.lv_1:before,li.Menu__item.lv_2:before  {
-      content: "";
-      border-top: 5px solid transparent;
-      border-bottom: 5px solid transparent;
-      border-left: 7px solid #00b3ba;
-      position: absolute;
-      right: 25px;
-  }
-  .Menu__header .arrow {
-      display: none !important;
-  }
-  .Menu__panel {
-      padding-top: 30px;
-  }
-  .Menu__header {
-      padding: 20px !important;
-      font-size: 24px !important;
-      font-weight: 700;
-      margin: 10px 0 0 0 !important;
-      color: #9d9d9c !important;
-  }
-  .bottom_menu ul li a img {
-      margin-right: 10px;
-      display: inline-block;
-  }
-  ul.Menu__list>.lv_0:first-child {
-      margin-top: 10px !important;
-  }
-  .lv_0:after ,li.Menu__item.lv_1:after,li.Menu__item.lv_2:after{
-      content: "";
-      flex-grow: 1;
-      height: 1px;
-      background: #ededed;
-      margin:0 20px 0 10px;
-  }
-  .lv_0 a, .lv_0 {
-      font-size: 24px;
-      font-weight: 700;
-      color: #9d9d9c !important;
-      margin: 30px 0 !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between;
-
-  }
-  li.Menu__item.lv_1 a, li.Menu__item.lv_1 ,li.Menu__item.lv_2 a, li.Menu__item.lv_2 {
-      font-size: 18px;
-      color: #9d9d9c;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between;
-      font-weight: 500;
-      line-height: 1.9 !important;
-      height: auto;
-  }
-  .back_prev {
-      display: flex;
-      justify-content: space-between;
-      padding: 0 20px;
-  }
-  .bottom_menu ul li a span {
-      display: inline-block;
-      width: 45px;
-  }
+  @import './header.css';  
 </style>
 <script>
 import imgLogo from "../../assets/images/logo.png"
@@ -315,7 +215,8 @@ export default {
       isActive: false,
       isTranslating: false,
       m_close:m_close,
-      myProfileActive: false
+      myProfileActive: false,
+      activeSearchMob: false
     }
   },
   watch:{
@@ -440,6 +341,9 @@ export default {
       if(urllink !=''){
         this.$router.push('/'+urllink)
       }
+    },
+    searchMobilePopup(){
+      this.activeSearchMob = !this.activeSearchMob
     }
   }
 }
