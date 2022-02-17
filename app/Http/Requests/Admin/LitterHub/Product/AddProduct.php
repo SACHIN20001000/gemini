@@ -24,15 +24,15 @@ class AddProduct extends FormRequest
     public function rules()
     {
         return [
-            // 'productName' => 'required',
-            // 'category_id' => 'required',
-            // 'store_id' => 'required',
-            // 'status' => 'required',
-            // 'weight' => 'required',
-            // 'real_price' => 'required',
-            // 'sale_price' => 'required',
-            // 'sku' => 'required',
-            // 'qty' => 'required',
+            'productName' => 'required',
+   
+            'store_id' => 'required',
+            'litter_material' => 'required',
+
+            'real_price' => 'required',
+
+            'sku' => 'required',
+            'qty' => 'required',
             // 'pet_type' => 'required',
             // 'age' => 'required',
             // 'food_type' => 'required',

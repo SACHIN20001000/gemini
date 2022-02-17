@@ -24,13 +24,15 @@ class UpdateProduct extends FormRequest
     public function rules()
     {
         return [
-            // 'productName' => 'required',
-            // 'category_id' => 'required',
-            // 'store_id' => 'required',
-            // 'status' => 'required',
-            // 'weight' => 'required',
-            // 'real_price' => 'required',
-            // 'sale_price' => 'required',
+            'productName' => 'required',
+
+            'store_id' => 'required',
+            'litter_material' => 'required',
+
+            'real_price' => 'required',
+
+            'sku' => 'required',
+            'qty' => 'required',
             // 'sku' => 'required',
             // 'qty' => 'required',
             // 'pet_type' => 'required',
