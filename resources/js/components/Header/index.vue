@@ -135,14 +135,14 @@
           </a>
           </div>-->
            <div class="Menu">
-              <MenuBurger :handleBurgerClicked="clickBurger" />
+              <MenuBurger @handleBurgerClicked="clickBurger" />
               <MenuShadow :isActive="isActive" :handleShadowClicked="clickShadow" />
               <div class="Menu__panel-wrapper"
                  :class="{'isActive': isActive}"
                  :style="[style_wrapperStyle, isActive ? style_wrapperActiveStyle : {}]"
               >
               <!-- prev -->
-                <a href="javascript:;" class="btn_bck"  @click="clickBurger"> <img :src="m_close"></a>
+                <!--<a href="javascript:;" class="btn_bck"  @click="clickBurger"> <img :src="m_close"></a>-->
                 <MenuPanel
                    :list="content_prevItem"
                    :functionalityStyle="style_panelStyle"

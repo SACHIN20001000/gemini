@@ -17,10 +17,10 @@ const functionalityStyle = {
         const menuSwitchTransitionSecond = `.${menuSwitchSpeed / 10}s`;
 
         const wrapperStyle = {
-            width: `${panelWidth}px`,
-            position: `fixed`,
-            top: 0,
-            right: `-${panelWidth}px`,
+            width: `100%`,
+            position: `absolute`,
+            top: '80px',
+            right: `0`,
             zIndex: 99999,
             height: `100%`,
             overflow: `hidden`,
@@ -29,14 +29,15 @@ const functionalityStyle = {
 
         const wrapperActiveStyle = {
             right: 0,
+            width:'100%',
         };
 
         const panelStyle = {
             position: `absolute`,
             top: 0,
             zIndex: 99999,
-            height: `100%`,
-            width: `${panelWidth}px`,
+            height: `min(100%,calc(100% - 80px))`,
+            width: `100%`,
             backgroundColor: `#fff`,
         };
 

@@ -46,7 +46,41 @@ form.srch_form.desk_only input[type="text"]::placeholder {color: #b5b5b5; }
 .btn_log_sign a:hover {color: #e4022d; text-decoration: underline; }
 .menu_nav .navbar-nav>li:hover .sub_menu {opacity: 1; visibility: visible;}
 a.btn_bck {position: absolute; z-index: 999999; width: calc(100% - 50px); text-align: right; padding: 0 20px; right: 0; top: 31px; }
-
+.Menu__panel-wrapper:not(.isActive)
+{
+  opacity: 0 !important; visibility:hidden !important; 
+}
+span.menu_lines>span {
+    display: block;
+    height: 2px;
+    cursor: pointer;
+    transition-duration: .15s;
+    background: #666;
+}
+body.hidden_body {
+    overflow: hidden;
+}
+.Menu__burger.active span.menu_lines>span:nth-child(3) {
+    transform: rotate(-45deg);
+    transform-origin: 1px -4px;
+}
+.Menu__burger.active span.menu_lines>span:nth-child(1) {
+    transform: rotate(45deg);
+    transform-origin: 5px 5px;
+}
+.Menu__burger.active span.menu_lines>span:nth-child(2) {
+    opacity: 0;
+}
+span.menu_lines {
+    width: 30px;
+    padding: 6px 0;
+    height: 34px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/*.Menu__panel{left: 100%;}*/
 ul.sub_menu {
     position: absolute;
     list-style: none;
@@ -101,7 +135,7 @@ ul.sub_menu > li > a:hover {
     clear: both;
         padding:  0 20px;
     position: absolute;
-    bottom: 40px;
+    bottom: 20px;
 }
 .Menu__list
 {padding:  0 20px !important;}
@@ -135,7 +169,7 @@ li.Menu__item.lv_1:before,li.Menu__item.lv_2:before  {
     display: none !important;
 }
 .Menu__panel {
-    padding-top: 30px;
+    padding-top: 20px;
 }
 .Menu__header {
     padding: 20px !important;
