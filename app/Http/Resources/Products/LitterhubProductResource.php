@@ -10,7 +10,7 @@ use App\Http\Resources\Products\ProductGalleryResource;
 use App\Http\Resources\Products\ProductAttributesResource;
 use App\Http\Resources\Products\TagsResource;
 use App\Http\Resources\Products\ProductDescriptionImageResource;
-
+use App\Http\Resources\Products\BackendTagsResource;
 use App\Models\VariationAttribute;
 
 class LitterhubProductResource extends JsonResource
@@ -42,7 +42,7 @@ class LitterhubProductResource extends JsonResource
             'real_price' => $this->real_price,
             'sale_price' => $this->sale_price,
             'feature_image' => $this->feature_image,
-           
+
             'store' => new ProductStoreResource($this->store),
             'variations' => ProductVariationsResource::collection($this->productVariation),
             'gallary' =>  ProductGalleryResource::collection($this->productGallery),
@@ -50,7 +50,7 @@ class LitterhubProductResource extends JsonResource
             'experiential_page_image' =>  ProductFeaturePageImageResource::collection($this->productFeaturePageImage) ,
             'attributes' => ProductAttributesResource::collection($this->variationAttributesValue),
             'tags'=>$this->tags?TagsResource::collection($this->tags):null,
-
+            'backend_tags'=>$this->backendtags?BackendTagsResource::collection($this->backendtags):null,
             'variation_attributes'=>  $this->getAttributeByProduct($this->id)
 
         ];

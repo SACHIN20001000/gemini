@@ -4,7 +4,7 @@ namespace App\Http\Resources\Products;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Products\TagsResource;
-
+use App\Http\Resources\Products\BackendTagsResource;
 class SolutionhubProductResource extends JsonResource
 {
     /**
@@ -30,6 +30,7 @@ class SolutionhubProductResource extends JsonResource
             'energetic' => $this->energetic,
             'feature_image' => $this->feature_image,
             'tags'=>$this->tags?TagsResource::collection($this->tags):null,
+            'backend_tags'=>$this->backendtags?BackendTagsResource::collection($this->backendtags):null,
         ];
     }
 
