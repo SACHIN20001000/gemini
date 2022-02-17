@@ -39,7 +39,7 @@
                     <li><a class="slide-item" href="{{route('stores.index')}}">Stores</a></li>
                     <li><a class="slide-item" href="{{route('orders.index')}}">Orders</a></li>
                     <li><a class="slide-item" href="{{ route('questions.index') }}">Questions</a></li>
-                    <li><a class="slide-item" href="{{ route('ratings.index') }}">Rating</a></li>
+                    <li><a class="slide-item" href="{{ route('ratings.index') }}">Reviews</a></li>
                     <li><a class="slide-item" href="{{ route('coupons.index') }}">Coupons</a></li>
 
                 </ul>
@@ -52,8 +52,8 @@
                     <!-- <li><a class="slide-item" href="{{ route('chowhub-categories.index') }}">Categories</a></li> -->
                     <li><a class="slide-item" href="{{route('chowhub-products.index')}}">Products</a></li>
                     <li><a class="slide-item" href="{{route('chowhub-store.index')}}">Stores</a></li>
-                    <li><a class="slide-item" href="{{ route('chowhub-questions.index') }}">Questions</a></li>
-                    <li><a class="slide-item" href="{{ route('chowhub-ratings.index') }}">Rating</a></li>
+                    <li><a class="slide-item" href="{{ route('chowhub-questions.index') }}">Faqs</a></li>
+                    <li><a class="slide-item" href="{{ route('chowhub-ratings.index') }}">Reviews</a></li>
                     <li><a class="slide-item" href="{{ route('chowhub-coupons.index') }}">Coupons</a></li>
 
 
@@ -77,7 +77,7 @@
                     <!-- <li><a class="slide-item" href="{{ route('chowhub-categories.index') }}">Categories</a></li> -->
                     <li><a class="slide-item" href="{{route('litterhub-products.index')}}">Products</a></li>
                     <li><a class="slide-item" href="{{route('litterhub-store.index')}}">Stores</a></li>
-                    <li><a class="slide-item" href="{{ route('litterhub-questions.index') }}">Questions</a></li>
+                    <li><a class="slide-item" href="{{ route('litterhub-questions.index') }}">Faqs</a></li>
                     <!-- <li><a class="slide-item" href="{{ route('chowhub-ratings.index') }}">Rating</a></li> -->
                     <li><a class="slide-item" href="{{ route('litterhub-coupons.index') }}">Coupons</a></li>
 

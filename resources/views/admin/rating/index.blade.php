@@ -7,7 +7,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Rating</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ list</span>
+                <h4 class="content-title mb-0 my-auto">Reviews</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ list</span>
             </div>
         </div>
 
@@ -18,7 +18,7 @@
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 grid-margin">
             <div class="card">
                 <div class="card-header pb-0">
-                    <p class="tx-12 tx-gray-500 mb-2">Listing of All Rating...</p>
+                    <p class="tx-12 tx-gray-500 mb-2">Listing of All Reviews...</p>
                 </div>
                 <div class="card-body">
 
