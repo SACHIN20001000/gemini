@@ -37,7 +37,7 @@ class ChowhubProductController extends Controller
 
         if ($request->ajax())
         {
-            $data = ChowhubProduct::with('store', 'category')->orderby('id','DESC');
+            $data = ChowhubProduct::with('store')->orderby('id','DESC');
 
             return Datatables::of($data)
                             ->addIndexColumn()
@@ -94,11 +94,11 @@ class ChowhubProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('type', 'Chowhub')->get();
+
         $stores = ChowhubStore::all();
         $attributes = [];
         $variations = [];
-        return view('admin.chowhub.products.addEdit', compact('categories', 'stores', 'attributes', 'variations'));
+        return view('admin.chowhub.products.addEdit', compact('stores', 'attributes', 'variations'));
     }
 
     /**
@@ -135,7 +135,7 @@ public function store(AddProduct $request)
                 $products->feature_image = $image_path;
             }
             $products->quantity = $inputs['qty'];
-            $products->category_id = $inputs['category_id'];
+
             $products->store_id = $inputs['store_id'];
             $products->status = $inputs['status'];
             if (!empty($inputs['variations']))
@@ -311,7 +311,7 @@ public function store(AddProduct $request)
      */
     public function edit($id)
     {
-        $categories = Category::where('type', 'Chowhub')->get();
+
         $stores = ChowhubStore::all();
         $product = ChowhubProduct::with(['category', 'store', 'productVariation', 'productFeaturePageImage', 'productGallery', 'variationAttributesValue.variationAttributeName'])->where('id', $id)->first();
 
@@ -347,7 +347,7 @@ public function store(AddProduct $request)
             $attributes[$data->variationAttributeName->name][] = $data->name;
         }
 
-        return view('admin.chowhub.products.addEdit', compact('product', 'stores', 'categories', 'attributes', 'variations'));
+        return view('admin.chowhub.products.addEdit', compact('product', 'stores',  'attributes', 'variations'));
     }
 
     /**
@@ -390,7 +390,6 @@ public function store(AddProduct $request)
             $products->food_type = $inputs['food_type'];
             $products->protein_type = json_encode($inputs['protein_type']);
             $products->quantity = $inputs['qty'];
-            $products->category_id = $inputs['category_id'];
             $products->store_id = $inputs['store_id'];
             $products->status = $inputs['status'];
             if (!empty($inputs['variations']))
@@ -721,7 +720,6 @@ public function store(AddProduct $request)
             'protein_type' =>  $product->protein_type,
             'type' =>  $product->type,
             'store_id' =>  $product->store_id,
-            'category_id' =>  $product->category_id,
             'feature_image' =>  $product->feature_image,
             'real_price' =>  $product->real_price,
             'sale_price' =>  $product->sale_price,

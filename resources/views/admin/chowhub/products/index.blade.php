@@ -29,9 +29,7 @@
                                 <tr>
                                     <th class="wd-lg-20p"><span>Name</span></th>
                                     <th class="wd-lg-20p"><span>Store</span></th>
-                                    <th class="wd-lg-20p"><span>Category</span></th>
                                     <th class="wd-lg-20p"><span>Status</span></th>
-
                                     <th class="wd-lg-20p"><span>Created At</span></th>
                                     <th class="wd-lg-20p">Action</th>
                                 </tr>
@@ -67,7 +65,6 @@
             columns: [
                 {data: 'productName', name: 'productName' },
                 {data: 'store.name', name: 'store.name'},
-                {data: 'category.name', name: 'category.name'},
                 {data: 'status', name: 'status'},
 
                 {data: 'created_at', name: 'created_at'},

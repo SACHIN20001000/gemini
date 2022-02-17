@@ -26,7 +26,7 @@ class CreateChowhubProductsTable extends Migration
 
             $table->set('type', ['Single Product', 'Variation'])->default('Single Product');
             $table->unsignedBigInteger('store_id')->nullable();
-            $table->unsignedBigInteger('category_id')->nullable();
+
             $table->string('feature_image')->nullable();
             $table->float('real_price', 8, 2)->nullable();
             $table->float('sale_price', 8, 2)->nullable();

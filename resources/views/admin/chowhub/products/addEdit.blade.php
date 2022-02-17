@@ -121,18 +121,7 @@
                                     </div>
 
 
-                                    <div class="row row-xs align-items-center mg-b-20">
-                                        <div class="col-md-4">
-                                            <label class="form-label mg-b-0">Category</label>
-                                        </div>
-                                        <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                            <select name="category_id"  class="form-control">
-                                                @foreach($categories as $category)
-                                                <option {{ (isset($product) && $product->category_id  == $category->id) ? 'selected' : '' }}  value="{{$category->id}}">  {{$category->name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
+                              
 
                                     <div class="row row-xs align-items-center mg-b-20">
                                         <div class="col-md-4">
@@ -419,7 +408,7 @@
 
 
                         <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>
-                  
+
                     </form>
                     <!-- form end  -->
 
@@ -510,7 +499,7 @@ function CheckDimensionFeatureImage() {
                                                     var removeLastQuama = value_attributes.charAt(value_attributes.length - 1);
                                                     if (removeLastQuama != ','){
                                                     let attributeValues = value_attributes.split(",");
-                                                    
+
                                                     attributeValues = attributeValues.map(function (el) {
                                                       return el.trim();
                                                     });
