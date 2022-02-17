@@ -22,16 +22,16 @@ export default {
 
 <style lang="scss" scoped>
 
-.vmenu-shadow {
-    position: fixed;
+/*.vmenu-shadow {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: #333;
-    opacity: 0.5;
+    opacity: 1;
     z-index: 99997;
-}
+}*/
 
 .vmenu-fade-enter-active, .vmenu-fade-leave-active {
     transition: opacity .5s;

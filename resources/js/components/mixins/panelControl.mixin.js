@@ -21,10 +21,10 @@ const panelControl = {
                     left: 0,
                 },
                 prev: {
-                    left: `-${this.panelWidth}px`,
+                    left: `-100%`,
                 },
                 next: {
-                    left: `${this.panelWidth}px`,
+                    left: `100%`,
                 },
             };
         },

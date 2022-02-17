@@ -1,5 +1,5 @@
 <template>
-    <div @click="handleBurgerClicked" class="Menu__burger">
+    <div @click="changeMenuBureger" class="Menu__burger" :class="[activeClass ? 'active' : '' ]">
         <MenuIcon />
     </div>
 </template>
@@ -8,15 +8,24 @@
 import MenuIcon from './icons/MenuIcon.vue';
 
 export default {
+    data: function () {
+        return {
+            activeClass: false,
+        }
+    },
     components: {
         MenuIcon,
     },
     props: {
-        handleBurgerClicked: {
-            type: Function,
-            required: true,
-        },
     },
+    methods: {
+        changeMenuBureger() {
+
+            this.activeClass = !this.activeClass
+            this.$emit('handleBurgerClicked');
+             document.body.classList.toggle('hidden_body');
+        },
+    }
 };
 </script>
 

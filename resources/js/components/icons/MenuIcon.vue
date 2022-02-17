@@ -1,5 +1,10 @@
 <template>
-	 <img :src="menuLines" />
+	 <!-- <img :src="menuLines" /> -->
+   <span class="menu_lines">
+     <span></span>
+     <span></span>
+     <span></span>
+   </span>
 </template>
 
 <script>

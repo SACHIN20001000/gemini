@@ -280,8 +280,9 @@ section.banner_sec .container_max {
 }
 
 
-@media only screen and (max-width: 400px)
+@media only screen and (max-width: 420px)
 {
+	.img_box1 img,.img_box2 img,.img_box3 img{right: 0;}
  .red_box h2, .blue_box h2 {font-size: 35px; letter-spacing: -2px; }
  .red_box img {margin-top: 11px; max-width: 94px; }
  .sub_1>h1 { font-size: 23px; }
