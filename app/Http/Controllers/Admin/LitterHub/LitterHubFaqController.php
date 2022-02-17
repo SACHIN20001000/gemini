@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Chowhub;
+namespace App\Http\Controllers\Admin\Litterhub;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\ChowhubFaq;
+use App\Models\Litterhub\LitterhubFaq;
 
-use App\Models\ChowhubProduct;
+use App\Models\Litterhub\LitterhubProduct;
 
 use DataTables;
 use App\Http\Requests\Admin\Faq\AddFaq;
 use App\Http\Requests\Admin\Faq\UpdateFaq;
-class ChowhubFaqController extends Controller
+class LitterhubFaqController extends Controller
 {
    /**
      * Display a listing of the resource.
@@ -23,7 +23,7 @@ class ChowhubFaqController extends Controller
 
         if ($request->ajax())
         {
-            $data = ChowhubFaq::with('user')->orderby('id','DESC');
+            $data = LitterhubFaq::select('litterhub_faqs.*')->with('user')->orderBY('litterhub_faqs.id','DESC');
 
 
             return Datatables::of($data)
@@ -31,6 +31,7 @@ class ChowhubFaqController extends Controller
 
             ->addColumn('published', function ($row)
             {
+
                 if($row->published == 1){
                     $published =  '<span class="label text-success d-flex">
                                         <div class="dot-label bg-success me-1"></div>active
@@ -56,10 +57,10 @@ class ChowhubFaqController extends Controller
                             {
 
                                 $action = '<span class="action-buttons">
-                                    <a  href="'.route("chowhub-questions.edit", $row).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
+                                    <a  href="'.route("litterhub-questions.edit", $row->id).'" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
 
-                                    <a href="'.route("chowhub-questions.destroy", $row).'"
+                                    <a href="'.route("litterhub-questions.destroy", $row->id).'"
                                             class="btn btn-sm btn-danger remove_us"
                                             title="Delete User"
                                             data-toggle="tooltip"
@@ -79,7 +80,7 @@ class ChowhubFaqController extends Controller
                             ;
         }
 
-        return view('admin.chowhub.faqs.index');
+        return view('admin.litterhub.faqs.index');
     }
 
     /**
@@ -90,9 +91,9 @@ class ChowhubFaqController extends Controller
     public function create()
     {
 
-        $products = ChowhubProduct::select('productName','id')->get();
+        $products = LitterhubProduct::select('productName','id')->get();
 
-        return view('admin.chowhub.faqs.addEdit',compact('products'));
+        return view('admin.litterhub.faqs.addEdit',compact('products'));
     }
 
     /**
@@ -107,7 +108,7 @@ class ChowhubFaqController extends Controller
 
         $inputs = $request->all();
         $inputs['user_id']=auth()->user()->id;
-        ChowhubFaq::create($inputs);
+        LitterhubFaq::create($inputs);
          return back()->with('success','Question addded successfully!');
     }
 
@@ -130,11 +131,11 @@ class ChowhubFaqController extends Controller
      */
     public function edit($id)
     {
-        $faq=ChowhubFaq::find($id);
-        $faqs = ChowhubFaq::where('id','!=',$id)->get();
-        $products = ChowhubProduct::select('productName','id')->get();
+        $faq=LitterhubFaq::find($id);
+        $faqs = LitterhubFaq::where('id','!=',$id)->get();
+        $products = LitterhubProduct::select('productName','id')->get();
 
-        return view('admin.chowhub.faqs.addEdit',compact('faqs','faq','products'));
+        return view('admin.litterhub.faqs.addEdit',compact('faqs','faq','products'));
     }
 
     /**
@@ -149,7 +150,7 @@ class ChowhubFaqController extends Controller
 
         $inputs = $request->all();
         $inputs['user_id']=auth()->user()->id;
-        ChowhubFaq::find($id)->update($inputs);
+        LitterhubFaq::find($id)->update($inputs);
 
         return back()->with('success','Question updated successfully!');
     }
@@ -162,7 +163,8 @@ class ChowhubFaqController extends Controller
      */
     public function destroy($id)
     {
-        ChowhubFaq::find($id)->delete();
+
+        LitterhubFaq::find($id)->delete();
         return back()->with('success','Question deleted successfully!');
     }
 

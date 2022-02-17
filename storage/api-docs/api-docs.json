@@ -1607,6 +1607,90 @@
                 }
             }
         },
+        "litterhub/faq/{product_id}": {
+            "get": {
+                "tags": [
+                    "Faqs"
+                ],
+                "summary": "Faqs",
+                "operationId": "litterhub faqs",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    },
+                    {
+                        "name": "keyword",
+                        "in": "query",
+                        "description": "search title/description",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FaqResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "litterhub/faq/store": {
+            "post": {
+                "tags": [
+                    "Faqs"
+                ],
+                "summary": "Litterhub Faqs store",
+                "operationId": "litterhub faqs store",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FaqRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FaqResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "/litterhub/products": {
             "get": {
                 "tags": [

@@ -8,7 +8,7 @@
                 <h4 class="content-title mb-0 my-auto">Questions</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{isset($faq) ? $faq->name : 'Add New' }}</span>
             </div>
         </div>
-        <a class="btn btn-main-primary ml_auto" href="{{ route('chowhub-questions.index') }}">View Questions</a>
+        <a class="btn btn-main-primary ml_auto" href="{{ route('litterhub-questions.index') }}">View Questions</a>
     </div>
     <!-- breadcrumb -->
     <!--Row-->
@@ -23,7 +23,7 @@
 
 
                     <!--  start  -->
-                    <form  id="faq-add-edit" action="{{isset($faq) ? route('chowhub-questions.update',$faq->id) : route('chowhub-questions.store')}}" method="POST" enctype="multipart/form-data">
+                    <form  id="faq-add-edit" action="{{isset($faq) ? route('litterhub-questions.update',$faq->id) : route('litterhub-questions.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{ isset($faq) ? method_field('PUT'):'' }}
                         <div class="pd-30 pd-sm-40 bg-gray-200">
