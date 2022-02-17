@@ -10,7 +10,7 @@
                 <h4 class="content-title mb-0 my-auto">Questions</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ list</span>
             </div>
         </div>
-        <a class="btn btn-main-primary ml_auto" href="{{ route('chowhub-questions.create') }}">Add New</a>
+        <a class="btn btn-main-primary ml_auto" href="{{ route('litterhub-questions.create') }}">Add New</a>
     </div>
     <!-- breadcrumb -->
 
@@ -62,7 +62,7 @@
         var table = $('#datatable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('chowhub-questions.index') }}",
+            ajax: "{{ route('litterhub-questions.index') }}",
             columns: [
                 {data: 'user.name', name: 'user.name'},
                 {data: 'question', name: 'question'},

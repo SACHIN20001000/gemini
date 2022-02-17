@@ -77,7 +77,7 @@
                     <!-- <li><a class="slide-item" href="{{ route('chowhub-categories.index') }}">Categories</a></li> -->
                     <li><a class="slide-item" href="{{route('litterhub-products.index')}}">Products</a></li>
                     <li><a class="slide-item" href="{{route('litterhub-store.index')}}">Stores</a></li>
-                    <!-- <li><a class="slide-item" href="{{ route('chowhub-questions.index') }}">Questions</a></li> -->
+                    <li><a class="slide-item" href="{{ route('litterhub-questions.index') }}">Questions</a></li>
                     <!-- <li><a class="slide-item" href="{{ route('chowhub-ratings.index') }}">Rating</a></li> -->
                     <li><a class="slide-item" href="{{ route('litterhub-coupons.index') }}">Coupons</a></li>
 

@@ -14,6 +14,8 @@ use App\Http\Controllers\API\Chowhub\ChowhubCartController;
 use App\Http\Controllers\API\Litterhub\LitterhubStoreController;
 use App\Http\Controllers\API\Litterhub\LitterhubProductController;
 use App\Http\Controllers\API\Litterhub\LitterhubCartController;
+use App\Http\Controllers\API\Litterhub\LitterhubFaqController;
+
 use App\Http\Controllers\API\Solutionhub\SolutionhubProductController;
 
 
@@ -117,6 +119,8 @@ Route::get('chowhub/faq/{id}/{string}', [FaqController::class, 'getChowhubFaqByS
 Route::post('faq/store', [FaqController::class, 'store']);
 Route::get('chowhub/faq/{id}', [FaqController::class, 'chouhubIndex']);
 Route::post('chowhub/faq/store', [FaqController::class, 'chouhubStore']);
+Route::get('litterhub/faq/{id}', [LitterhubFaqController::class, 'index']);
+Route::post('litterhub/faq/store', [LitterhubFaqController::class, 'store']);
 Route::post('rating/create', [RatingController::class, 'create']);
 Route::get('rating/overall/{id}', [RatingController::class, 'getOverallRating']);
 

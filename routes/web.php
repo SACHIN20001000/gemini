@@ -29,6 +29,8 @@ use App\Http\Controllers\Admin\Chowhub\ChowhubRatingController;
 use App\Http\Controllers\Admin\LitterHub\LitterHubStoreController;
 use App\Http\Controllers\Admin\LitterHub\LitterHubProductController;
 use App\Http\Controllers\Admin\LitterHub\LitterHubCouponController;
+use App\Http\Controllers\Admin\LitterHub\LitterHubFaqController;
+
 
 
 
@@ -96,6 +98,8 @@ Route::prefix('admin')->group(function ()
         Route::resource('orders', OrderController::class);
 
         Route::resource('chowhub-questions', ChowhubFaqController::class);
+        Route::resource('litterhub-questions', LitterHubFaqController::class);
+
         Route::resource('ratings', RatingController::class);
         Route::post('save-image', [App\Http\Controllers\Admin\RatingController::class, 'save_photo']);
         Route::post('save-chowhub-image', [App\Http\Controllers\Admin\Chowhub\ChowhubRatingController::class, 'save_photo']);
