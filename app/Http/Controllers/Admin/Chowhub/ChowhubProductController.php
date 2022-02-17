@@ -712,7 +712,7 @@ public function store(AddProduct $request)
         $productVariation = ChowhubProductVariation::where('product_id',$id)->get();
 
         $products = ChowhubProduct::create([
-            'productName' =>  $product->productName,
+            'productName' =>   $product->productName . ' copy'.date("d-h-m-s"),
             'description' =>  $product->description,
             'sku' =>  $product->sku,
             'pet_type' =>  $product->pet_type,

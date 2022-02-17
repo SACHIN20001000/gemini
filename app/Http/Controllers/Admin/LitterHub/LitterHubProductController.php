@@ -704,7 +704,7 @@ public function store(AddProduct $request)
         $productVariation = LitterhubProductVariation::where('product_id',$id)->get();
 
         $products = LitterhubProduct::create([
-            'productName' =>  $product->productName,
+            'productName' =>   $product->productName . ' copy'.date("d-h-m-s"),
             'description' =>  $product->description,
             'sku' =>  $product->sku,
             'pet_type' =>  $product->pet_type,

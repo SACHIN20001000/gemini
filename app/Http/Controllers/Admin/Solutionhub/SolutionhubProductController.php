@@ -248,7 +248,7 @@ public function store(AddProduct $request)
         $productTag = SolutionhubProductTag::where('product_id',$id)->get();
         $productBackendTag = SolutionhubProductBackendTag::where('product_id',$id)->get();
           $products = SolutionhubProduct::create([
-            'productName' =>  $product->productName,
+            'productName' =>   $product->productName . ' copy'.date("d-h-m-s"),
             'description' =>  $product->description,
             'tag' =>  $product->tag,
             'status' =>  $product->status,
