@@ -60,6 +60,8 @@ class LitterhubProductController extends Controller
                             ->addColumn('action', function ($row)
                             {
                                 $action = '<span class="action-buttons">
+                                <a  href="' . url("admin/litterhub-product/duplicate?id=".$row->id) . '" class="btn btn-sm btn-info btn-b"><i class="fa-solid fa-clone"></i>
+                                </a>
                                     <a  href="' . route("litterhub-products.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
 
@@ -292,7 +294,7 @@ public function store(AddProduct $request)
             }
         }
 
-        return back()->with('success', 'Product added successfully!');
+        return redirect('admin/litterhub-products')->with('success', 'Product added successfully!');
     }
 
     /**
@@ -687,45 +689,122 @@ public function store(AddProduct $request)
     public function duplicate(Request $request)
     {
 
+
+
+
         $id=$request->id;
-        $stores = LitterhubStore::all();
-        $product = LitterhubProduct::with([ 'store', 'productVariation', 'productFeaturePageImage', 'productGallery', 'variationAttributesValue.variationAttributeName'])->where('id', $id)->first();
+        $product = LitterhubProduct::find($id);
+        $productGallery = LitterhubProductGallery::where('product_id',$id)->get();
 
-        $variations = [];
-        foreach ($product->productVariation as $key => $variation)
-        {
-            $allvariations = json_decode($variation->variation_attributes_name_id);
+        $variationAttributeValue = LitterhubVariationAttributeValue::where('product_id',$id)->get();
+        $productTag = LitterhubProductTag::where('product_id',$id)->get();
+        $productBackendTag = LitterhubProductBackendTag::where('product_id',$id)->get();
+        $litterhubProductDescriptionImage = LitterhubProductDescriptionImage::where('product_id',$id)->get();
+        $litterhubProductFeaturePageImage = LitterhubProductFeaturePageImage::where('product_id',$id)->get();
+        $productVariation = LitterhubProductVariation::where('product_id',$id)->get();
 
-            $viewData = [];
+        $products = LitterhubProduct::create([
+            'productName' =>  $product->productName,
+            'description' =>  $product->description,
+            'sku' =>  $product->sku,
+            'pet_type' =>  $product->pet_type,
+            'age' =>  $product->age,
+            'food_type' =>  $product->food_type,
+            'protein_type' =>  $product->protein_type,
+            'type' =>  $product->type,
+            'store_id' =>  $product->store_id,
+            'category_id' =>  $product->category_id,
+            'feature_image' =>  $product->feature_image,
+            'real_price' =>  $product->real_price,
+            'sale_price' =>  $product->sale_price,
+            'weight' =>  $product->weight,
+            'quantity' =>  $product->quantity,
+            'status' =>  $product->status,
+        ]);
 
-            foreach ($allvariations as $data)
-            {
 
-                $attr_name = LitterhubVariationAttribute::where('id', $data->attribute_name_id)->pluck('name')->first();
-                $attrValue = LitterhubVariationAttributeValue::where('id', $data->attribute_id)->pluck('name')->first();
-                $viewData[$attr_name] = $attrValue;
+     if(!empty($productGallery)){
+        foreach ($productGallery as $key => $value) {
+
+            LitterhubProductGallery::create([
+                'product_id' =>  $products->id,
+                'image_path' =>  $value->image_path,
+                'priority' =>  $value->priority,
+
+            ]);
+        }
+     }
+    if(!empty($variationAttributeValue)){
+        $variationAttributeIds = [];
+        foreach ($variationAttributeValue as $key => $value) {
+
+         $selectedAttrubutes=   LitterhubVariationAttributeValue::create([
+                'product_id' =>  $products->id,
+                'attribute_id' =>  $value->attribute_id,
+                'name' =>  $value->name,
+            ]);
+            $AttributesArray = [];
+            $AttributesArray['attribute_id'] = $selectedAttrubutes->id;
+            $AttributesArray['attribute_name_id'] = $selectedAttrubutes->attribute_id;
+            array_push($variationAttributeIds, $AttributesArray);
+        }
+     }
+    if(!empty($productTag)){
+        foreach ($productTag as $key => $value) {
+
+            LitterhubProductTag::create([
+                'product_id' =>  $products->id,
+                'tag_id' =>  $value->tag_id,
+            ]);
+        }
+    }
+      if(!empty($productBackendTag)){
+        foreach ($productBackendTag as $key => $value) {
+
+            LitterhubProductBackendTag::create([
+                'product_id' =>  $products->id,
+                'tag_id' =>  $value->tag_id,
+            ]);
+        }
+    }
+
+    if(!empty($litterhubProductDescriptionImage)){
+        foreach ($litterhubProductDescriptionImage as $key => $value) {
+
+            LitterhubProductDescriptionImage::create([
+                'product_id' =>  $products->id,
+                'image_path' =>  $value->image_path,
+                'priority' =>  $value->priority,
+            ]);
+        }
+     }
+
+     if(!empty($litterhubProductFeaturePageImage)){
+        foreach ($litterhubProductFeaturePageImage as $key => $value) {
+
+            LitterhubProductFeaturePageImage::create([
+                'product_id' =>  $products->id,
+                'image_path' =>  $value->image_path,
+                'priority' =>  $value->priority,
+            ]);
+        }
+     }
+      if(!empty($productVariation)){
+            foreach ($productVariation as $key => $value) {
+
+                LitterhubProductVariation::create([
+                    'product_id' =>  $products->id,
+                    'real_price' =>  $value->real_price,
+                    'sale_price' =>  $value->sale_price,
+                    'image' =>  $value->image,
+                    'weight' =>  $value->weight,
+                    'quantity' =>  $value->quantity,
+                    'variation_attributes_name_id' =>  json_encode($variationAttributeIds),
+                    'sku' =>  $value->sku,
+                ]);
             }
-
-            $viewData['Qty'] = array('value' => $variation->quantity, 'name' => 'qty', 'placeholder' => 'Qty', 'type' => 'number', 'customClass' => '');
-            $viewData['Weight'] = array('value' => $variation->weight, 'name' => 'weight', 'placeholder' => 'weight', 'type' => 'number', 'customClass' => '');
-            $viewData['Regular Price'] = array('value' => $variation->real_price, 'name' => 'regular_price', 'placeholder' => 'Regular Price', 'type' => 'number', 'customClass' => '');
-            $viewData['Sale Price'] = array('value' => $variation->sale_price, 'name' => 'sale_price', 'placeholder' => 'Sale Price', 'type' => 'number', 'customClass' => '');
-            $viewData['Sku'] = array('value' => $variation->sku, 'name' => 'sku', 'placeholder' => 'Sku', 'type' => 'text', 'customClass' => '');
-            $viewData['Image(360px*360px)'] = array('value' => '', 'name' => 'image', 'placeholder' => 'Image', 'type' => 'file', 'dataitem' => $variation->image, 'customClass' => 'dropify');
-            $viewData['hidden_id'] = array('value' => $variation->id, 'name' => 'id', 'placeholder' => '', 'type' => 'hidden', 'customClass' => '');
-
-            array_push($variations, $viewData);
-        }
-
-        $attributes = [];
-        foreach ($product->variationAttributesValue as $data)
-        {
-            $attributes[$data->variationAttributeName->name][] = $data->name;
-        }
-        $type='Duplicate';
-        return view('admin.litterhub.products.addEdit', compact('product','type', 'stores',  'attributes', 'variations'));
-
-
+         }
+    return redirect('admin/litterhub-products')->with('success', 'Product Duplicate successfully!');
 
     }
 }

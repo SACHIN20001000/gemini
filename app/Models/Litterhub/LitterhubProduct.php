@@ -15,7 +15,7 @@ class LitterhubProduct extends Model
         'updated_at' => 'datetime:M d, Y h:i:s',
     ];
     protected $fillable = [
-        'productName', 'type', 'feature_image', 'description', 'real_price', 'sale_price', 'category_id', 'status','scented','clumping','cat_count','litter_material'
+        'productName', 'type', 'feature_image', 'description', 'real_price', 'sale_price', 'category_id', 'status','scented','clumping','cat_count','litter_material','sku','store_id','weight','quantity'
     ];
     protected $appends = array('availTags','availBackendTags');
 

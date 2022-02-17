@@ -56,7 +56,11 @@ class ProductController extends Controller
                             })
                             ->addColumn('action', function ($row)
                             {
-                                $action = '<span class="action-buttons">
+
+                                $action = '
+                                <span class="action-buttons">
+                                <a  href="' . url("admin/product/duplicate?id=".$row->id) . '" class="btn btn-sm btn-info btn-b"><i class="fa-solid fa-clone"></i>
+                                </a>
                                     <a  href="' . route("products.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
 
@@ -106,7 +110,7 @@ class ProductController extends Controller
     {
 
         $inputs = $request->all();
-
+// echo "<Pre>"; print_r($inputs);die;
         if(!empty($inputs['product_detail'])){
             foreach($inputs['product_detail'] as $key => $value)
             {
@@ -128,16 +132,23 @@ class ProductController extends Controller
             $products->sale_price = $inputs['sale_price'];
             if (!empty($inputs['banner_image']))
             {
-              $path = Storage::disk('s3')->put('images', $inputs['banner_image']);
-              $image_path = Storage::disk('s3')->url($path);
-              $products->banner_image = $image_path;
+                if(!$inputs['type']){
+                    $path = Storage::disk('s3')->put('images', $inputs['banner_image']);
+                    $image_path = Storage::disk('s3')->url($path);
+                }
+
+              $products->banner_image = $image_path ?? $inputs['banner_image'] ;
 
             }
             if (!empty($inputs['feature_image']))
-            {
+            {if(!$inputs['type']){
+
                 $path = Storage::disk('s3')->put('images', $inputs['feature_image']);
                 $image_path = Storage::disk('s3')->url($path);
-                $products->feature_image = $image_path;
+
+            }
+
+                $products->feature_image = $image_path ?? $inputs['feature_image'];
             }
             $products->about_description = $inputs['about_description'];
 
@@ -163,10 +174,15 @@ class ProductController extends Controller
                 $productDespImage = new ProductDescriptionDetail();
                 if (!empty($product_detail['image_path']))
                 {
-                    $filename = $product_detail['image_path']->hashname();
-                      $image = Image::make($product_detail['image_path'])->resize(600, 600);
-                      Storage::disk('s3')->put('/images/'.$filename, $image->stream(), 'public');
-                      $image_path = Storage::disk('s3')->url('images/'.$filename);
+                    if(!$inputs['type']){
+                        $filename = $product_detail['image_path']->hashname();
+                        $image = Image::make($product_detail['image_path'])->resize(600, 600);
+                        Storage::disk('s3')->put('/images/'.$filename, $image->stream(), 'public');
+                        $image_path = Storage::disk('s3')->url('images/'.$filename);
+                    }else{
+                        $image_path = $product_detail['image_path'];
+                    }
+
                     // $path = Storage::disk('s3')->put('images', $product_detail['image_path']);
                     // $image_path = Storage::disk('s3')->url($path);
                     $productDespImage->image_path = $image_path;
@@ -245,10 +261,16 @@ class ProductController extends Controller
                         $Imagepath = '';
                         if (!empty($variation['image']))
                         {
-                          $filename = $variation['image']->hashname();
-                          $image = Image::make($variation['image'])->resize(800, 850);
-                          Storage::disk('s3')->put('/images/'.$filename, $image->stream(), 'public');
-                          $Imagepath = Storage::disk('s3')->url('images/'.$filename);
+                            if($inputs['type']){
+                                $Imagepath = $variation['image'];
+                            }else{
+                                $filename = $variation['image']->hashname();
+                                $image = Image::make($variation['image'])->resize(800, 850);
+                                Storage::disk('s3')->put('/images/'.$filename, $image->stream(), 'public');
+                                $Imagepath = Storage::disk('s3')->url('images/'.$filename) ?? $variation['image'];
+                            }
+
+
 
                         }
 
@@ -284,7 +306,7 @@ class ProductController extends Controller
             }
         }
 
-        return back()->with('success', 'Product added successfully!');
+        return redirect('admin/products')->with('success', 'Product added successfully!');
     }
 
     /**
@@ -510,7 +532,7 @@ class ProductController extends Controller
 
                         if (!empty($variation['id']))
                         {
-                            
+
                             $productVariation = ProductVariation::find($variation['id']);
                             $productVariation->product_id = $products->id;
 
@@ -529,7 +551,7 @@ class ProductController extends Controller
                                         array_push($variationAttributeIds, $AttributesArray);
                                     }
                                 }
-                                
+
                             }
                             if (!empty($variation['image']))
                             {
@@ -681,45 +703,92 @@ class ProductController extends Controller
     {
 
         $id=$request->id;
-        $categories = Category::where('type', 'Product')->get();
-        $stores = Store::all();
-        $product = Product::with(['category', 'store', 'productDescriptionDetail', 'productVariation', 'productGallery', 'variationAttributesValue.variationAttributeName'])
-                ->where('id', $id)
-                ->first();
 
-        $variations = [];
-        foreach ($product->productVariation as $key => $variation)
-        {
-            $allvariations = json_decode($variation->variation_attributes_name_id);
+        $product = Product::find($id);
+        $productDescriptionDetail = ProductDescriptionDetail::where('product_id',$id)->get();
+        $productGallery = ProductGallery::where('product_id',$id)->get();
+        $productVariation = ProductVariation::where('product_id',$id)->get();
+        $variationAttributeValue = VariationAttributeValue::where('product_id',$id)->get();
+        $productTag = ProductTag::where('product_id',$id)->get();
 
-            $viewData = [];
+        $products = Product::create([
+            'productName' =>  $product->productName,
+            'description' =>  $product->description,
+            'sku' =>  $product->sku,
+            'banner_image' =>  $product->banner_image,
+            'about_description' =>  $product->about_description,
+            'type' =>  $product->type,
+            'store_id' =>  $product->store_id,
+            'category_id' =>  $product->category_id,
+            'feature_image' =>  $product->feature_image,
+            'real_price' =>  $product->real_price,
+            'sale_price' =>  $product->sale_price,
+            'weight' =>  $product->weight,
+            'quantity' =>  $product->quantity,
+            'status' =>  $product->status,
+            'seo_title' =>  $product->seo_title,
+            'meta_description' =>  $product->meta_description,
+        ]);
+     if(!empty($productDescriptionDetail)){
+        foreach ($productDescriptionDetail as $key => $value) {
 
-            foreach ($allvariations as $data)
-            {
+            ProductDescriptionDetail::create([
+                'product_id' =>  $products->id,
+                'image_path' =>  $value->image_path,
+                'value' =>  $value->value,
+            ]);
+        }
+     }
 
-                $attr_name = VariationAttribute::where('id', $data->attribute_name_id)->pluck('name')->first();
-                $attrValue = VariationAttributeValue::where('id', $data->attribute_id)->pluck('name')->first();
-                $viewData[$attr_name] = $attrValue;
+     if(!empty($productGallery)){
+        foreach ($productGallery as $key => $value) {
+
+            ProductGallery::create([
+                'product_id' =>  $products->id,
+                'image_path' =>  $value->image_path,
+            ]);
+        }
+     }
+    if(!empty($productTag)){
+            foreach ($productTag as $key => $value) {
+
+                ProductTag::create([
+                    'product_id' =>  $products->id,
+                    'tag_id' =>  $value->tag_id,
+                ]);
             }
-
-            $viewData['Qty'] = array('value' => $variation->quantity, 'name' => 'qty', 'placeholder' => 'Qty', 'type' => 'number', 'customClass' => '');
-            $viewData['hidden_id'] = array('value' => $variation->id, 'name' => 'id', 'placeholder' => '', 'type' => 'hidden', 'customClass' => '');
-            $viewData['Weight'] = array('value' => $variation->weight, 'name' => 'weight', 'placeholder' => 'weight', 'type' => 'number', 'customClass' => '');
-            $viewData['Regular Price'] = array('value' => $variation->real_price, 'name' => 'regular_price', 'placeholder' => 'Regular Price', 'type' => 'number', 'customClass' => '');
-            $viewData['Sale Price'] = array('value' => $variation->sale_price, 'name' => 'sale_price', 'placeholder' => 'Sale Price', 'type' => 'number', 'customClass' => '');
-            $viewData['Sku'] = array('value' => $variation->sku, 'name' => 'sku', 'placeholder' => 'Sku', 'type' => 'text', 'customClass' => '');
-            $viewData['Image(800PX * 850PX)'] = array('value' => '', 'name' => 'image', 'placeholder' => 'Image', 'type' => 'file', 'datafile' => $variation->image, 'customClass' => 'dropify');
-
-            array_push($variations, $viewData);
         }
+    if(!empty($variationAttributeValue)){
+        $variationAttributeIds = [];
+        foreach ($variationAttributeValue as $key => $value) {
 
-        $attributes = [];
-        foreach ($product->variationAttributesValue as $data)
-        {
-            $attributes[$data->variationAttributeName->name][] = $data->name;
+         $selectedAttrubutes=   VariationAttributeValue::create([
+                'product_id' =>  $products->id,
+                'attribute_id' =>  $value->attribute_id,
+                'name' =>  $value->name,
+            ]);
+            $AttributesArray = [];
+            $AttributesArray['attribute_id'] = $selectedAttrubutes->id;
+            $AttributesArray['attribute_name_id'] = $selectedAttrubutes->attribute_id;
+            array_push($variationAttributeIds, $AttributesArray);
         }
-        $type='Duplicate';
+     }
 
-        return view('admin.products.addEdit', compact('product', 'type','stores', 'categories', 'attributes', 'variations'));
+      if(!empty($productVariation)){
+            foreach ($productVariation as $key => $value) {
+
+                productVariation::create([
+                    'product_id' =>  $products->id,
+                    'real_price' =>  $value->real_price,
+                    'sale_price' =>  $value->sale_price,
+                    'image' =>  $value->image,
+                    'weight' =>  $value->weight,
+                    'quantity' =>  $value->quantity,
+                    'variation_attributes_name_id' =>  json_encode($variationAttributeIds),
+                    'sku' =>  $value->sku,
+                ]);
+            }
+         }
+    return redirect('admin/products')->with('success', 'Product Duplicate successfully!');
     }
 }
