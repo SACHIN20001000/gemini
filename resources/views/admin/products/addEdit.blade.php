@@ -9,16 +9,12 @@
         <div class="my-auto">
             <div class="d-flex">
                 <h4 class="content-title mb-0 my-auto">Products</h4>
-                @if(isset($type))
-                <span class="text-muted mt-1 tx-13 ms-2 mb-0">/Add New</span>
-                @else
+
                 <span class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{isset($product) ? $product->name : 'Add New' }}</span>
-                @endif
+
             </div>
         </div>
-        @if(isset($product))
-        <a class="btn btn-main-primary ml_auto" style=" margin-left: 730px;" href="{{route('duplicate','id='.$product->id)}}">Duplicate Product</a>
-        @endif
+
         @if(isset($product))
         <a class="btn btn-main-primary ml_auto" target="_blank" href="/products/<?php echo strtolower(str_replace(' ', '-', $product->productName));?>/{{$product->id}}">View Product</a>
         @endif
@@ -28,26 +24,22 @@
     <!-- row -->
     <div class="row">
         <div class="col-lg-12 col-md-12">
-            @if(isset($type))
-            <form  id="product-add-edit" action="{{route('products.store')}}" method="POST" enctype="multipart/form-data">
-            @else
+
             <form  id="product-add-edit" action="{{isset($product) ? route('products.update',$product->id) : route('products.store')}}" method="POST" enctype="multipart/form-data">
-            @endif
+
 
                 <div class="card">
                     <div class="card-body">
                         <div class="main-content-label mg-b-5">
-                        @if(isset($type))
-                        Add New
-                        @else
+
                         {{isset($product) ? 'Update # '.$product->id : 'Add New' }}
-                        @endif
+
 
                         </div>
                         @csrf
-                        @if(empty($type))
+
                         {{ isset($product) ? method_field('PUT'):'' }}
-                        @endif
+
 
                         <div class="col-lg-12 col-md-12">
                             <div class="card">
@@ -115,10 +107,15 @@
                                                             <input id="product-galary" type="file" name="images" accept=".jpg, .png, image/jpeg, image/png, html, zip, css,js" multiple>
                                                             <ul id="product-galary-items"></ul>
                                                             @if(isset($product))
+
+
                                                             @foreach($product->productGallery as $image)
                                                             <div id="imgDel{{$image->id}}"><a href="{{$image->image_path}}" target="_blank" data-item-id="{{$image->id}}"> <img src="{{$image->image_path}}"  alt="" height=50 width=50></a><i class="fas fa-trash-alt"  onclick='delImage({{$image->id}})'></i></div>
+
                                                             @endforeach
                                                             @endif
+
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -279,6 +276,9 @@
                             <h4>Product Description Details(600px * 600px)</h4>
                             @if(!empty($product->productDescriptionDetail[0]['image_path']))
                             <table class="table table-bordered" id="description_fields">
+
+
+
                                 <?php $counter = 0; ?>
                                 @foreach($product->productDescriptionDetail as $productDescriptionDetail)
 
@@ -287,6 +287,9 @@
                                     <td>
                                         <input type="file" name="product_detail[{{$counter}}][image_path]"  class="dropify"  data-default-file="{{$productDescriptionDetail->image_path}}" id="name_description" data-height="200" />
                                     </td>
+                                    @if(!empty($type))
+                                    <input type="hidden" name="product_detail[{{$counter}}][image_path]" value="{{$productDescriptionDetail->image_path}}" />
+                                    @endif
                                     <td>
                                         <div class="PD_detail">
                                             <textarea name="product_detail[{{$counter}}][value]" cols="30" rows="10" class="form-control" id="value_description">{{$productDescriptionDetail->value}}</textarea>
@@ -350,11 +353,9 @@
                 </div>
 
 
-                @if(isset($type))
-                <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">Save</button>
-            @else
+
             <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>
-            @endif
+
 
             </form>
             <!-- form end  -->
@@ -518,6 +519,7 @@ function CheckDimensionFeatureImage() {
                      if (value != 'hidden_id'){
                      $("#variations_heading").append('<th>' + value + '</th>');
                      }
+
                      });
                      // console.log(variations)
                      $.each(variations, function(index, value) {

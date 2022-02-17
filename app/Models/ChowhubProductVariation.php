@@ -15,7 +15,7 @@ class ChowhubProductVariation extends Model
         'updated_at' => 'datetime:d-m-Y',
     ];
     protected $fillable = [
-        'product_id', 'real_price', 'sale_price', 'image', 'variation_name', 'sku_id', 'variation_ids'
+        'product_id', 'real_price', 'sale_price', 'image', 'variation_name', 'sku', 'variation_ids','variation_attributes_name_id','weight','quantity'
     ];
 
     public function products()

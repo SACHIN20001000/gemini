@@ -15,7 +15,7 @@ class ProductGallery extends Model
         'updated_at' => 'datetime:d-m-Y',
     ];
     protected $fillable = [
-        'product_id', 'image'
+        'product_id', 'image_path'
     ];
 
 }

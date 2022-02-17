@@ -52,6 +52,8 @@ class SolutionhubProductController extends Controller
                             ->addColumn('action', function ($row)
                             {
                                 $action = '<span class="action-buttons">
+                                <a  href="' . url("admin/solutionhub-product/duplicate?id=".$row->id) . '" class="btn btn-sm btn-info btn-b"><i class="fa-solid fa-clone"></i>
+                                </a>
                                     <a  href="' . route("solutionhub-products.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
 
@@ -142,7 +144,7 @@ public function store(AddProduct $request)
             }
         }
 
-        return back()->with('success', 'Product added successfully!');
+        return redirect('admin/solutionhub-products')->with('success', 'Product added successfully!');
     }
 
     /**
@@ -242,11 +244,41 @@ public function store(AddProduct $request)
     {
 
         $id=$request->id;
-        $type='Duplicate';
-        $product = SolutionhubProduct::where('id', $id)->first();
-        return view('admin.solutionhub.products.addEdit', compact('product','type'));
+        $product = SolutionhubProduct::find($id);
+        $productTag = SolutionhubProductTag::where('product_id',$id)->get();
+        $productBackendTag = SolutionhubProductBackendTag::where('product_id',$id)->get();
+          $products = SolutionhubProduct::create([
+            'productName' =>  $product->productName,
+            'description' =>  $product->description,
+            'tag' =>  $product->tag,
+            'status' =>  $product->status,
+            'feature_image' =>  $product->feature_image,
+            'separation_anxiety' =>  $product->separation_anxiety,
+            'teething' =>  $product->teething,
+            'boredom' =>  $product->boredom,
+            'disabled' =>  $product->disabled,
+            'energetic' =>  $product->energetic,
 
-      
+        ]);
+    if(!empty($productTag)){
+        foreach ($productTag as $key => $value) {
+
+            SolutionhubProductTag::create([
+                'product_id' =>  $products->id,
+                'tag_id' =>  $value->tag_id,
+            ]);
+        }
+    }
+      if(!empty($productBackendTag)){
+        foreach ($productBackendTag as $key => $value) {
+
+            SolutionhubProductBackendTag::create([
+                'product_id' =>  $products->id,
+                'tag_id' =>  $value->tag_id,
+            ]);
+        }
+    }
+    return redirect('admin/solutionhub-products')->with('success', 'Product Duplicate successfully!');
 
     }
 }

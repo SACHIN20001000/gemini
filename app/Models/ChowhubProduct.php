@@ -15,7 +15,7 @@ class ChowhubProduct extends Model
         'updated_at' => 'datetime:M d, Y h:i:s',
     ];
     protected $fillable = [
-        'productName', 'type', 'feature_image', 'description', 'real_price', 'sale_price', 'category_id', 'status','food_type','age','pet_type','protein_type'
+        'productName', 'type', 'feature_image', 'description', 'real_price', 'sale_price', 'category_id', 'status','food_type','age','pet_type','protein_type','sku','store_id','weight','quantity'
     ];
     protected $appends = array('availTags','availBackendTags');
 
