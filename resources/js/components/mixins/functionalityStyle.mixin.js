@@ -36,7 +36,7 @@ const functionalityStyle = {
             position: `absolute`,
             top: 0,
             zIndex: 99999,
-            height: `min(100%,calc(100% - 80px))`,
+            height: `100vh`,
             width: `100%`,
             backgroundColor: `#fff`,
         };
