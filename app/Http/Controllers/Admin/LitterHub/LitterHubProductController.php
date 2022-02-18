@@ -127,7 +127,7 @@ public function store(AddProduct $request)
             $products->scented = $inputs['scented'];
             $products->clumping = $inputs['clumping'];
             $products->cat_count = $inputs['cat_count'];
-            $products->litter_material = json_encode($inputs['litter_material']);
+            $products->litter_material = json_encode($inputs['litter_material']) ?? [];
             // $products->weight = $inputs['weight'];
             if (!empty($inputs['feature_image']))
             {
@@ -386,7 +386,7 @@ public function store(AddProduct $request)
             $products->scented = $inputs['scented'];
             $products->clumping = $inputs['clumping'];
             $products->cat_count = $inputs['cat_count'];
-            $products->litter_material = json_encode($inputs['litter_material']);
+            $products->litter_material = json_encode($inputs['litter_material'])?? [];
             $products->quantity = $inputs['qty'];
 
             $products->store_id = $inputs['store_id'];
