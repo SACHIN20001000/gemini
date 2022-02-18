@@ -118,6 +118,7 @@ public function store(AddProduct $request)
 
         if (!empty($inputs['productName']))
         {
+            $litter_material=$inputs['litter_material'] ?? [];
             $products = new LitterhubProduct();
             $products->productName = $inputs['productName'];
             $products->description = $inputs['description'];
@@ -127,7 +128,7 @@ public function store(AddProduct $request)
             $products->scented = $inputs['scented'];
             $products->clumping = $inputs['clumping'];
             $products->cat_count = $inputs['cat_count'];
-            $products->litter_material = json_encode($inputs['litter_material']) ?? [];
+            $products->litter_material = json_encode($litter_material);
             // $products->weight = $inputs['weight'];
             if (!empty($inputs['feature_image']))
             {
@@ -371,6 +372,7 @@ public function store(AddProduct $request)
         $backendtags = explode(",", $inputs['backend_tag']);
         if (!empty($inputs['productName']))
         {
+            $litter_material=$inputs['litter_material'] ?? [];
             $products = LitterhubProduct::find($id);
             $products->productName = $inputs['productName'];
             $products->description = $inputs['description'];
@@ -386,7 +388,7 @@ public function store(AddProduct $request)
             $products->scented = $inputs['scented'];
             $products->clumping = $inputs['clumping'];
             $products->cat_count = $inputs['cat_count'];
-            $products->litter_material = json_encode($inputs['litter_material'])?? [];
+            $products->litter_material = json_encode($litter_material);
             $products->quantity = $inputs['qty'];
 
             $products->store_id = $inputs['store_id'];
