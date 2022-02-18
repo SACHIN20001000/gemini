@@ -52,9 +52,9 @@
 
 @section('scripts')
 @if(isset($store))
-{!! JsValidator::formRequest('App\Http\Requests\Admin\LitterHub\Stores\UpdateStores','#store-add-edit') !!}
+{!! JsValidator::formRequest('App\Http\Requests\Admin\Litterhub\Stores\UpdateStores','#store-add-edit') !!}
 @else
-{!! JsValidator::formRequest('App\Http\Requests\Admin\LitterHub\Stores\AddStores','#store-add-edit') !!}
+{!! JsValidator::formRequest('App\Http\Requests\Admin\Litterhub\Stores\AddStores','#store-add-edit') !!}
 @endif
 
 @endsection
