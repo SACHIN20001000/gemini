@@ -117,6 +117,10 @@ public function store(AddProduct $request)
 
         if (!empty($inputs['productName']))
         {
+            $age=$inputs['age']??[];
+            $protein_type=$inputs['protein_type']??[];
+            $weight=$inputs['weight']??[];
+
             $products = new ChowhubProduct();
             $products->productName = $inputs['productName'];
             $products->description = $inputs['description'];
@@ -124,10 +128,10 @@ public function store(AddProduct $request)
             $products->sale_price = $inputs['sale_price'] ??0;
             $products->sku = $inputs['sku'];
             $products->pet_type = $inputs['pet_type'];
-            $products->age =json_encode($inputs['age'])?? [];
+            $products->age =json_encode($age);
             $products->food_type = $inputs['food_type'];
-            $products->protein_type = json_encode($inputs['protein_type']) ?? [];
-            $products->weight = json_encode($inputs['weight'])?? [];
+            $products->protein_type = json_encode($protein_type) ;
+            $products->weight = json_encode($weight);
             if (!empty($inputs['feature_image']))
             {
                 $path = Storage::disk('s3')->put('images', $inputs['feature_image']);
@@ -371,6 +375,9 @@ public function store(AddProduct $request)
         $backendtags = explode(",", $inputs['backend_tag']);
         if (!empty($inputs['productName']))
         {
+            $age=$inputs['age']??[];
+            $protein_type=$inputs['protein_type']??[];
+            $weight=$inputs['weight']??[];
             $products = ChowhubProduct::find($id);
             $products->productName = $inputs['productName'];
             $products->description = $inputs['description'];
@@ -385,10 +392,10 @@ public function store(AddProduct $request)
             $products->sku = $inputs['sku'];
 
             $products->pet_type = $inputs['pet_type'];
-            $products->weight = json_encode($inputs['weight'])?? [];
-            $products->age =json_encode($inputs['age'])?? [];
+            $products->weight = json_encode(weight);
+            $products->age =json_encode($age);
             $products->food_type = $inputs['food_type'];
-            $products->protein_type = json_encode($inputs['protein_type'])?? [];
+            $products->protein_type = json_encode($protein_type);
             $products->quantity = $inputs['qty'];
             $products->store_id = $inputs['store_id'];
             $products->status = $inputs['status'];
