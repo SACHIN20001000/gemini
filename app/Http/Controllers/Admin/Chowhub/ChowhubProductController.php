@@ -392,7 +392,7 @@ public function store(AddProduct $request)
             $products->sku = $inputs['sku'];
 
             $products->pet_type = $inputs['pet_type'];
-            $products->weight = json_encode(weight);
+            $products->weight = json_encode($weight);
             $products->age =json_encode($age);
             $products->food_type = $inputs['food_type'];
             $products->protein_type = json_encode($protein_type);
