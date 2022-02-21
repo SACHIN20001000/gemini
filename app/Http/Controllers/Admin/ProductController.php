@@ -331,6 +331,7 @@ class ProductController extends Controller
                 ->first();
 
         $variations = [];
+       // dd($product->productVariation->toArray());
         foreach ($product->productVariation as $key => $variation)
         {
             $allvariations = json_decode($variation->variation_attributes_name_id);
@@ -504,7 +505,7 @@ class ProductController extends Controller
                                     ], [
                                 'name' => $vakey
                     ]);
-                    array_push($attributesName, $vakey);
+                    array_push($attributesName, $variationAttribute);
 
                     /*                     * insert attribute* */
                     if ($variationAttribute->id)
@@ -575,11 +576,12 @@ class ProductController extends Controller
                             $productVariation->product_id = $products->id;
 
                             $variationAttributeIds = [];
+                            
                             foreach ($attributesName as $key => $attribute)
                             {
-                                if($attribute && isset($variation[$attribute]))
+                                if($attribute && isset($variation[$attribute->name]))
                                 {
-                                $selectedAttrubutes = VariationAttributeValue::select('id', 'attribute_id')->where(['product_id' => $products->id, 'name' => $variation[$attribute]])->first();
+                                $selectedAttrubutes = VariationAttributeValue::select('id', 'attribute_id')->where(['product_id' => $products->id, 'name' => $variation[$attribute->name],'attribute_id' =>$attribute->id])->first();
                                 if ($selectedAttrubutes)
                                 {
                                     $AttributesArray = [];
