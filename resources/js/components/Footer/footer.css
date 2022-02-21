@@ -1,6 +1,6 @@
 footer.main_footer ul { list-style: none; padding: 0; margin: 0;}
 footer.main_footer { padding: 30px 60px;}
-ul.social_list { display: flex; justify-content: space-between; max-width: 180px; margin: 25px auto !important;}
+ul.social_list { display: flex; justify-content: start; grid-gap: 10px; flex-wrap: wrap; max-width: 180px; margin: 25px auto !important;}
 .foot_menu_1 { background: #b2b2b2;  position: relative;  padding: 40px 50px;}
 ul.foot_nav1 { display: flex;  flex-wrap: wrap;}
 ul.foot_nav1 li {  max-width: 50%; width: 100%;}
