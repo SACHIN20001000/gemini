@@ -67,10 +67,11 @@
                 </div></div>
                  <div class="col-md-5">
                   <ul class="social_list footer_nav">
-                   <li><a href="https://www.facebook.com/petparentsbrand" target="_blank"><img :src="imgFb"></a></li>
-                   <li><a href="https://www.instagram.com/officialpetparents/" target="_blank"><img :src="imgInsta"></a></li>
-                   <li><a href="https://www.youtube.com/channel/UCe8MRqPp0A2vo1ZAFStKmYg?disable_polymer=true" target="_blank"><img :src="imgUtube"></a></li>
-                   <li><a href="https://www.linkedin.com/company/petparents" target="_blank"><img :src="imgLink"></a></li>
+                    <li><a href="https://www.facebook.com/thepetparentsstore" target="_blank"><img :src="imgFb"></a></li>
+                    <li><a href="https://www.instagram.com/thepetparentsstore/" target="_blank"><img :src="imgInsta"></a></li>
+                    <li><a href="https://www.youtube.com/channel/UCZw0ibMC9AOhepXDX85HE4g" target="_blank"><img :src="imgUtube"></a></li>
+                    <li><a href="https://www.tiktok.com/@thepetparentsstore?lang=en" target="_blank"><img :src="tiktokicon"></a></li>
+                    <li><a href="https://pinterest.com/" target="_blank"><img :src="pinterestIcon"></a></li>
                 </ul></div>
                </div>
                 <div class="row">
@@ -232,6 +233,8 @@ import imgFb  from "../../assets/images/fb.png"
 import imgInsta  from "../../assets/images/insta.png"
 import imgUtube  from "../../assets/images/utube.png"
 import imgLink  from "../../assets/images/link.png"
+import pinterestIcon  from "../../assets/images/pinterestIcon.png"
+import tiktokicon  from "../../assets/images/tiktokicon.png"
 
 export default {
   name:"Dashboard",
@@ -241,6 +244,8 @@ export default {
       imgFb: imgFb,
       imgInsta: imgInsta,
       imgUtube: imgUtube,
+      pinterestIcon: pinterestIcon,
+      tiktokicon: tiktokicon,
       imgLink: imgLink
     }
   }
