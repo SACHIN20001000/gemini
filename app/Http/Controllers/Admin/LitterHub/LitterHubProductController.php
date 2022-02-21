@@ -233,8 +233,7 @@ public function store(AddProduct $request)
                                     ], [
                                 'name' => $vakey
                     ]);
-                    array_push($attributesName, $vakey);
-
+                    array_push($attributesName, $variationAttribute);
                     /*                     * insert attribute* */
                     if ($variationAttribute->id)
                     {
@@ -271,13 +270,16 @@ public function store(AddProduct $request)
                         $variationAttributeIds = [];
                         foreach ($attributesName as $key => $attribute)
                         {
-                            $selectedAttrubutes = LitterhubVariationAttributeValue::select('id', 'attribute_id')->where(['product_id' => $products->id, 'name' => $variation[$attribute]])->first();
-                            if ($selectedAttrubutes)
+                            if($attribute && isset($variation[$attribute->name]))
                             {
-                                $AttributesArray = [];
-                                $AttributesArray['attribute_id'] = $selectedAttrubutes->id;
-                                $AttributesArray['attribute_name_id'] = $selectedAttrubutes->attribute_id;
-                                array_push($variationAttributeIds, $AttributesArray);
+                                $selectedAttrubutes = LitterhubVariationAttributeValue::select('id', 'attribute_id')->where(['product_id' => $products->id, 'name' => $variation[$attribute->name],'attribute_id' =>$attribute->id])->first();
+                                if ($selectedAttrubutes)
+                                {
+                                    $AttributesArray = [];
+                                    $AttributesArray['attribute_id'] = $selectedAttrubutes->id;
+                                    $AttributesArray['attribute_name_id'] = $selectedAttrubutes->attribute_id;
+                                    array_push($variationAttributeIds, $AttributesArray);
+                                }
                             }
                         }
                         $productVariation->real_price = $variation['regular_price'];
@@ -488,8 +490,7 @@ public function store(AddProduct $request)
                                     ], [
                                 'name' => $vakey
                     ]);
-                    array_push($attributesName, $vakey);
-
+                    array_push($attributesName, $variationAttribute);
                     /*                     * insert attribute* */
                     if ($variationAttribute->id)
                     {
@@ -522,13 +523,16 @@ public function store(AddProduct $request)
                             $variationAttributeIds = [];
                             foreach ($attributesName as $key => $attribute)
                             {
-                                $selectedAttrubutes = LitterhubVariationAttributeValue::select('id', 'attribute_id')->where(['product_id' => $products->id, 'name' => $variation[$attribute]])->first();
-                                if ($selectedAttrubutes)
+                                $selectedAttrubutes = LitterhubVariationAttributeValue::select('id', 'attribute_id')->where(['product_id' => $products->id, 'name' => $variation[$attribute->name],'attribute_id' =>$attribute->id])->first();
+                                if($attribute && isset($variation[$attribute->name]))
                                 {
-                                    $AttributesArray = [];
-                                    $AttributesArray['attribute_id'] = $selectedAttrubutes->id;
-                                    $AttributesArray['attribute_name_id'] = $selectedAttrubutes->attribute_id;
-                                    array_push($variationAttributeIds, $AttributesArray);
+                                    if ($selectedAttrubutes)
+                                    {
+                                        $AttributesArray = [];
+                                        $AttributesArray['attribute_id'] = $selectedAttrubutes->id;
+                                        $AttributesArray['attribute_name_id'] = $selectedAttrubutes->attribute_id;
+                                        array_push($variationAttributeIds, $AttributesArray);
+                                    }
                                 }
                             }
                             if (!empty($variation['image']))
@@ -555,13 +559,16 @@ public function store(AddProduct $request)
                             $variationAttributeIds = [];
                             foreach ($attributesName as $key => $attribute)
                             {
-                                $selectedAttrubutes = LitterhubVariationAttributeValue::select('id', 'attribute_id')->where(['product_id' => $products->id, 'name' => $variation[$attribute]])->first();
-                                if ($selectedAttrubutes)
+                                $selectedAttrubutes = LitterhubVariationAttributeValue::select('id', 'attribute_id')->where(['product_id' => $products->id, 'name' => $variation[$attribute->name],'attribute_id' =>$attribute->id])->first();
+                                if($attribute && isset($variation[$attribute->name]))
                                 {
-                                    $AttributesArray = [];
-                                    $AttributesArray['attribute_id'] = $selectedAttrubutes->id;
-                                    $AttributesArray['attribute_name_id'] = $selectedAttrubutes->attribute_id;
-                                    array_push($variationAttributeIds, $AttributesArray);
+                                    if ($selectedAttrubutes)
+                                    {
+                                        $AttributesArray = [];
+                                        $AttributesArray['attribute_id'] = $selectedAttrubutes->id;
+                                        $AttributesArray['attribute_name_id'] = $selectedAttrubutes->attribute_id;
+                                        array_push($variationAttributeIds, $AttributesArray);
+                                    }
                                 }
                             }
                             if (!empty($variation['image']))
