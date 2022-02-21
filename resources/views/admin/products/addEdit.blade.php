@@ -452,7 +452,7 @@ function CheckDimensionFeatureImage() {
              },
                      addAttributes:function()
                      {
-
+                        $("#error").empty();
                      let attributeName = $("#name_attributes").val();
                      attributeName=attributeName.trim();
                      let value_attributes = $("#value_attributes").val();
@@ -462,8 +462,8 @@ function CheckDimensionFeatureImage() {
                      var removeLastQuama = value_attributes.charAt(value_attributes.length - 1);
                      if (removeLastQuama != ','){
                         if($.inArray(attributeName, blockedHeader) != -1) {
-                        
-                            document.getElementById("error").textContent = "You can not use ( " +attributeName+" ) as a name";
+
+                            document.getElementById("error").textContent = "You can not use ( " +attributeName+" ) as a attribute name";
                             } else {
                                 blockedHeader.push(attributeName);
 
