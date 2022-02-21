@@ -6,9 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Litterhub\LitterhubProduct;
+use App\Models\Solutionhub\SolutionhubProduct;
+
 use App\Models\ChowhubProduct;
 use App\Models\Rating;
 use App\Models\User;
+use App\Models\Post;
+
 
 use App\Models\Order;
 class DashboardController extends Controller
@@ -38,12 +43,12 @@ class DashboardController extends Controller
                     $q->where('name','!=','IotAdmin');
                 })
             ->count();
+            $litterhubproduct=LitterhubProduct::where(['status'=>1])->count();
+            $solutionhubproduct=SolutionhubProduct::where(['status'=>1])->count();
+            $page=Post::where(['status'=>1])->count();
 
 
-
-
-
-        return view('admin.dashboard',compact('category','user','product','chowhubproduct','order','rating','orderpending','orderprocessing','ordercompleted'));
+        return view('admin.dashboard',compact('category','page','litterhubproduct','solutionhubproduct','user','product','chowhubproduct','order','rating','orderpending','orderprocessing','ordercompleted'));
     }
 
 }

@@ -1,15 +1,24 @@
 <template>
   <div class="main">
-    <p>Cart Details</p>
-    <table width="100%" class="headingcart">
-      <tr>
-        <th>Image</th>
-        <th>Product Name</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Total Price</th>
-      </tr>
-    </table>
+     <div class="container_max">
+    <div class="cart_head">
+              <img
+              :src="cart_logo"
+              alt="cart_logo"
+              />
+          </div>
+          <div class="row">
+      <div class="col-md-12">
+        <ul class="cart_header cart_grid">
+        <li>Image</li>
+        <li class="pr_tile">Product Name</li>
+        <li>Price</li>
+        <li>Quantity</li>
+        <li>Total Price</li>
+        <li>Action</li>
+        </ul>
+
+      </div>
     <ul class="listcartItem" v-if="chowhubItems">
       <li
         v-for="(cartItem,keygetCartItem) in chowhubItems"
@@ -17,31 +26,33 @@
       >
         <div
           v-if="cartItem.variationProduct"
-          class="cartlabel"
+          class="cartlabel cart_grid"
         >
-          <span><img :src="cartItem.variationProduct.image" width="100px" /></span>
-          <span>{{cartItem.product.productName}}</span>
-          <span>{{cartItem.variationProduct.sale_price}}</span>
-          <span>
+           <span class="prod_img"><div class="img_ratio"><img :src="cartItem.variationProduct.image" /></div></span>
+          <span class="prod_name" >{{cartItem.product.productName}}</span>
+          <span class="prod_price">{{cartItem.variationProduct.sale_price}}</span>
+          <span class="prod_quant">
             {{cartItem.quantity}}
           </span>
-          <span>{{cartItem.variationProduct.sale_price*cartItem.quantity}}</span>
+          <span class="prod_items">{{cartItem.variationProduct.sale_price*cartItem.quantity}}</span>
         </div>
         <div
           v-else
           class="cartlabel"
         >
-          <span><img :src="cartItem.product.image_path" width="100px" /></span>
-          <span>{{cartItem.product.productName}}</span>
-          <span>{{cartItem.product.sale_price}}</span>
-          <span>
+           <span class="prod_img"><div class="img_ratio"><img :src="cartItem.product.image_path"  /></div></span>
+          <span class="prod_name" >{{cartItem.product.productName}}</span>
+          <span class="prod_price">{{cartItem.product.sale_price}}</span>
+          <span class="prod_quant">
             {{cartItem.quantity}}
           </span>
-          <span>{{cartItem.product.sale_price*cartItem.quantity}}</span>
+          <span class="prod_items">{{cartItem.product.sale_price*cartItem.quantity}}</span>
         </div>
       </li>
     </ul>
-    <p class="totalamount">Total Cart Price: {{getChowhubCartTotal()}}</p>
+  </div>
+    <p class="totalamount  cart_total text-right">Total Cart Price: <span> {{getChowhubCartTotal()}}</span></p>
+  </div>
   </div>
 </template>
 <style>
@@ -50,13 +61,15 @@
 <script>
 import {mapActions,mapGetters} from "vuex"
 import axios from 'axios';
+import cart_logo from "../../assets/images/cart_logo.png"
 
 export default {
   name:"Carts",
   data: function () {
     return {
       cartItemsList:{},
-      updateMessage:''
+      updateMessage:'',
+       cart_logo: cart_logo,
     }
   },
   created(){

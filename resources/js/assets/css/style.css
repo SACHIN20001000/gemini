@@ -150,7 +150,9 @@ html,body
 input[type="text"]:focus,select:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="submit"]:focus, input[type="range"]:focus, textarea:focus {
     outline: 1px solid #bfbfbf !important;
 }
-
+ul {
+    list-style: none;
+}
 input[type="text"],
 input[type="number"] ,
 input[type="password"] ,
