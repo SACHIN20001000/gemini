@@ -454,16 +454,25 @@ function CheckDimensionFeatureImage() {
                      let attributeName = $("#name_attributes").val();
                      attributeName=attributeName.trim();
                      let value_attributes = $("#value_attributes").val();
+                     var blockedHeader = new Array("QTY","qty", "weight","regular price","sale price","sku","image","WEIGHT", "REGULAR PRICE", "SALE PRICE", "SKU", "IMAGE");
+
                      if (value_attributes.length != 0 && attributeName.length != 0){
                      var removeLastQuama = value_attributes.charAt(value_attributes.length - 1);
                      if (removeLastQuama != ','){
-                     let attributeValues = value_attributes.split(",");
-                     attributeValues = attributeValues.map(function (el) {
-                                                      return el.trim();
-                                                    });
-                     attributes[attributeName] = attributeValues;
-                     productsEvent.displayAttributes();
-                     productsEvent.createVariations();
+                        if($.inArray(attributeName, blockedHeader) != -1) {
+                            swal('You can not use this value as a attribut name... please change this and try again ')
+                            } else {
+                                blockedHeader.push(attributeName);
+
+                                let attributeValues = value_attributes.split(",");
+                                attributeValues = attributeValues.map(function (el) {
+                                                                return el.trim();
+                                                                });
+                                attributes[attributeName] = attributeValues;
+                                productsEvent.displayAttributes();
+                                productsEvent.createVariations();
+                            }
+
                      } else(
                              swal('Their is not (,) at the last of your value')
                              )
