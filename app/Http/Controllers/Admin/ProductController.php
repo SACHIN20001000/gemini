@@ -59,7 +59,7 @@ class ProductController extends Controller
 
                                 $action = '
                                 <span class="action-buttons">
-                                <a  href="' . url("admin/product/duplicate?id=".$row->id) . '" class="btn btn-sm btn-info btn-b"><i class="fa-solid fa-clone"></i>
+                                <a  href="' . url("admin/product/duplicate?id=".$row->id) . '" class="btn btn-sm btn-info btn-b"><i class="las la-copy" title="Duplicate Product"></i>
                                 </a>
                                     <a  href="' . route("products.edit", $row) . '" class="btn btn-sm btn-info btn-b"><i class="las la-pen"></i>
                                     </a>
