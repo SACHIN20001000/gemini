@@ -281,7 +281,7 @@
                                         <tr>
                                             <td>
                                                 <input type="text"  id="name_attributes" placeholder="Enter your Name" class="form-control tableData" />
-
+                                                <p id="error" style="color:red; font-size:15px"></p>
                                             </td>
                                             <td><input type="text"   id="value_attributes" placeholder="Enter your value with (,) seperated" class="form-control tableData" />
                                             </td>
@@ -494,7 +494,7 @@ function CheckDimensionFeatureImage() {
                                                         var removeLastQuama = value_attributes.charAt(value_attributes.length - 1);
                                                         if (removeLastQuama != ','){
                                                             if($.inArray(attributeName, blockedHeader) != -1) {
-                                                                swal('You can not use this value as a attribut name... please change this and try again ')
+                                                                document.getElementById("error").textContent = "You can not use ( " +attributeName+" ) as a name";
                                                                 } else {
                                                                     blockedHeader.push(attributeName);
 
