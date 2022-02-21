@@ -403,7 +403,7 @@
                         </div>
 
                         <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>
-                      
+
                     </form>
                     <!-- form end  -->
 
@@ -482,16 +482,19 @@ function CheckDimensionFeatureImage() {
                                             {
 
                                             },
-                                                    addAttributes:function()
+                                            addAttributes:function()
                                                     {
 
                                                     let attributeName = $("#name_attributes").val();
-                                                    attributeName = attributeName.trim();
+
+                                                    attributeName=attributeName.trim();
+
                                                     let value_attributes = $("#value_attributes").val();
                                                     if (value_attributes.length != 0 && attributeName.length != 0){
                                                     var removeLastQuama = value_attributes.charAt(value_attributes.length - 1);
                                                     if (removeLastQuama != ','){
                                                     let attributeValues = value_attributes.split(",");
+
                                                     attributeValues = attributeValues.map(function (el) {
                                                       return el.trim();
                                                     });
@@ -538,6 +541,11 @@ function CheckDimensionFeatureImage() {
                                                     });
                                                     variations = attrs;
                                                     productsEvent.displayVariations();
+                                                    }
+                                                    else
+                                                    {
+                                                        variations = [];
+                                                        productsEvent.displayVariations();
                                                     }
                                                     },
                                                     displayVariations:function() {
