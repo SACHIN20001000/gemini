@@ -729,6 +729,8 @@ public function store(AddProduct $request)
             'weight' =>  $product->weight,
             'quantity' =>  $product->quantity,
             'status' =>  $product->status,
+            'litter_material' =>  $product->litter_material,
+
         ]);
 
 
