@@ -252,7 +252,7 @@
 										<li class="mt-0" id="mrg-8"> <i class="ti-pie-chart bg-primary-gradient text-white product-icon"></i> <span class="fw-semibold mb-4 tx-14 ">Total Products From All Type </span> <a href="#" class="float-end tx-11 text-muted"></a>
 											<p class="mb-0 text-muted tx-12">{{$chowhubproduct + $product + $litterhubproduct + $solutionhubproduct}} Products</p>
 										</li>
-										<li class="mt-0" id="mrg-8"> <i class="mdi mdi-cart-outline bg-danger-gradient text-white product-icon"></i> <span class="fw-semibold mb-4 tx-14 ">Toatal Orders</span> <a href="#" class="float-end tx-11 text-muted"></a>
+										<li class="mt-0" id="mrg-8"> <i class="mdi mdi-cart-outline bg-danger-gradient text-white product-icon"></i> <span class="fw-semibold mb-4 tx-14 ">Total Orders</span> <a href="#" class="float-end tx-11 text-muted"></a>
 											<p class="mb-0 text-muted tx-12">{{$order}} Orders</p>
 										</li>
 										<li class="mt-0" id="mrg-8"> <i class="ti-bar-chart-alt bg-success-gradient text-white product-icon"></i> <span class="fw-semibold mb-4 tx-14 ">Customer Reviews</span> <a href="#" class="float-end tx-11 text-muted"></a>
