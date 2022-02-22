@@ -483,141 +483,172 @@ function CheckDimensionFeatureImage() {
 
                                             },
                                             addAttributes:function()
-                                                    {
-                                                        $("#error").empty();
-                                                        let attributeName = $("#name_attributes").val();
-                                                        attributeName=attributeName.trim();
-                                                        let value_attributes = $("#value_attributes").val();
-                                                        var blockedHeader = new Array("QTY","qty", "weight","regular price","sale price","sku","image","WEIGHT", "REGULAR PRICE", "SALE PRICE", "SKU", "IMAGE");
+                     {
+                        $("#error").empty();
+                     let attributeName = $("#name_attributes").val();
+                     attributeName=attributeName.trim();
+                     let value_attributes = $("#value_attributes").val();
+                     var blockedHeader = new Array("QTY","qty", "weight","regular price","sale price","sku","image","WEIGHT", "REGULAR PRICE", "SALE PRICE", "SKU", "IMAGE");
 
-                                                        if (value_attributes.length != 0 && attributeName.length != 0){
-                                                        var removeLastQuama = value_attributes.charAt(value_attributes.length - 1);
-                                                        if (removeLastQuama != ','){
-                                                            if($.inArray(attributeName, blockedHeader) != -1) {
-                                                                document.getElementById("error").textContent = "You can not use ( " +attributeName+" ) as a attribute name";
-                                                                } else {
-                                                                    blockedHeader.push(attributeName);
+                     if (value_attributes.length != 0 && attributeName.length != 0){
+                     var removeLastQuama = value_attributes.charAt(value_attributes.length - 1);
+                     if (removeLastQuama != ','){
+                        if($.inArray(attributeName, blockedHeader) != -1) {
 
-                                                                    let attributeValues = value_attributes.split(",");
-                                                                    attributeValues = attributeValues.map(function (el) {
-                                                                                                    return el.trim();
-                                                                                                    });
-                                                                    attributes[attributeName] = attributeValues;
-                                                                    productsEvent.displayAttributes();
-                                                                    productsEvent.createVariations();
-                                                                }
+                            document.getElementById("error").textContent = "You can not use ( " +attributeName+" ) as a attribute name";
+                            } else {
+                                blockedHeader.push(attributeName);
 
-                                                        } else(
-                                                                swal('Their is not (,) at the last of your value')
-                                                                )
+                                let attributeValues = value_attributes.split(",");
+                                attributeValues = attributeValues.map(function (el) {
+                                                                return el.trim();
+                                                                });
+                                attributes[attributeName] = attributeValues;
+                                productsEvent.displayAttributes();
+                                productsEvent.createVariations();
+                            }
 
-
-                                                        } else{
-                                                            swal("Both Feild is Required ")
-                                                        }
+                     } else(
+                             swal('Their is not (,) at the last of your value')
+                             )
 
 
-                                                        },
-                                                    displayAttributes:function() {
-                                                    $(".dynamic_attributes").remove();
-                                                    for (const [attr, values] of Object.entries(attributes))
-                                                    {
-                                                    let cellValue = values.toString();
-                                                    $("#attributes_fields").prepend('<tr class="dynamic_attributes" id="row' + attr + '"><td><input type="text" disabled="true" name="attributes[name][]"  value="' + attr + '" placeholder="Enter your Name" class="form-control tableData" /></td><td><input type="text" readonly="true" value="' + cellValue + '" name="attributes[' + attr + ']"  placeholder="Enter your value with (,) seperated" class="form-control tableData" /></td><td><button type="button" name="remove" onclick="productsEvent.removeAttributes(\'' + attr + '\')" class="btn btn-danger btn_remove">X</button></td></tr>');
-                                                    }
-                                                    $("#name_attributes").val('');
-                                                    $("#value_attributes").val('');
-                                                    },
-                                                    createVariations:function() {
-                                                    let attrs = [];
-                                                    if (Object.keys(attributes).length)
-                                                    {
-                                                    for (const [attr, values] of Object.entries(attributes))
-                                                            attrs.push(values.map(v => ({[attr]:v})));
-                                                    attrs = attrs.reduce((a, b) => a.flatMap(d => b.map(e => ({...d, ...e}))));
-                                                    $.each(attrs, function(index, value) {
-                                                    attrs[index]['Qty'] = {value:0, name:'qty', placeholder:"Qty", type:'number', customClass:""};
-                                                    attrs[index]['Weight'] = {value:0, name:'weight', placeholder:"weight", type:'number', customClass:""};
-                                                    attrs[index]['Regular Price'] = {value:0, name:'regular_price', placeholder:"Regular Price", type:'number', customClass:""};
-                                                    attrs[index]['Sale Price'] = {value:0, name:'sale_price', placeholder:"Sale Price", type:'number', customClass:""};
-                                                    attrs[index]['Sku'] = {value:0, name:'sku', placeholder:"Sku", type:'text', customClass:""};
-                                                    attrs[index]['Image(360px*360px)'] = {value:null, name:'image', placeholder:"Image", type:'file', customClass:"dropify   "};
-                                                    });
-                                                    variations = attrs;
-                                                    productsEvent.displayVariations();
-                                                    }
-                                                    else
-                                                    {
-                                                        variations = [];
-                                                        productsEvent.displayVariations();
-                                                    }
-                                                    },
-                                                    displayVariations:function() {
-                                                    $("#variations_fields").empty();
-                                                    $("#variations_heading").empty();
-                                                    // console.log(variations);
-                                                    if (variations && Object.keys(variations).length)
-                                                    {
-                                                    let headings = Object.keys(variations[0]);
-                                                    $.each(headings, function(index, value) {
-                                                    if (value != 'hidden_id'){
-                                                    $("#variations_heading").append('<th>' + value + '</th>');
-                                                    }
-                                                    });
-                                                    // console.log(variations)
-                                                    $.each(variations, function(index, value) {
-                                                    let testdata = {};
-                                                    let htmlString = '<tr class="variation-tr">';
-                                                    for (const [name, variation] of Object.entries(value))
-                                                    {
-                                                    if (typeof variation === 'object' && variation !== null)
-                                                    {
-                                                    if (variation.type == 'hidden'){
-                                                    htmlString += '<input  name="variations[' + index + '][' + variation.name + ']" class="form-control hidden_id ' + variation.customClass + '" type="' + variation.type + '" onchange="productsEvent.updateVariationvalue(\'' + index + '\',\'' + name + '\',this.value)"  value="' + variation.value + '" placeholder="' + variation.placeholder + '">';
-                                                    } else{
-                                                    htmlString += '<td><input  name="variations[' + index + '][' + variation.name + ']" class="form-control tableData ' + variation.customClass + '" data-default-file="' + variation.dataitem + '" type="' + variation.type + '" onchange="productsEvent.updateVariationvalue(\'' + index + '\',\'' + name + '\',this.value)"  value="' + variation.value + '" placeholder="' + variation.placeholder + '"></td>';
-                                                    }
-                                                    if (variation.src){
-                                                    htmlString += '<td><div id="delete_variation_img' + variation.value + ' "> <a href="' + variation.src + '" target="_blank" ><img height=50 style="max-width: 50px;" src="' + variation.src + '" onchange="productsEvent.updateVariationvalue(\'' + index + '\',\'' + name + '\',this.value)" ></a><i class="fas fa-trash-alt" onclick="removeVariationImage(\'' + variation.value + '\')" ></i></div></td>';
-                                                    }
-                                                    }
-                                                    else
-                                                    {
-                                                    htmlString += '<td><input name="variations[' + index + '][' + name + ']" class="form-control tableData" type="text" readonly="true" value="' + variation + '" placeholder="' + variation + '"></td>';
-                                                    }
+                     } else{
+                        swal("Both Feild is Required ")
+                     }
 
-                                                    }
 
-                                                    htmlString += '<td><button type="button" name="remove" onclick="productsEvent.removeVariation(\'' + index + '\')" class="btn btn-danger btn_remove">X</button></td>';
-                                                    htmlString += '</tr>';
-                                                    $("#variations_fields").append(htmlString);
-                                                    $('.dropify').dropify();
-                                                    });
-                                                    }
-                                                    },
-                                                    removeAttributes:function(attribute_name)
-                                                    {
-                                                    delete attributes[attribute_name];
-                                                    productsEvent.displayAttributes();
-                                                    productsEvent.createVariations();
-                                                    },
-                                                    removeVariation:function(index)
-                                                    {
-                                                    variations.splice(index, 1);
-                                                    productsEvent.displayVariations();
-                                                    },
-                                                    updateVariationvalue:function(index, key, value)
-                                                    {
-                                                    variations[index][key].value = value;
-                                                    },
-                                                    removeProductGalaryImage:function(itemId)
-                                                    {
-                                                    $('#galary-item' + itemId + '').remove();
-                                                    },
-                                                    removeFeatureDescriptionImage:function(itemId)
-                                                    {
-                                                    $('#feature-page-item' + itemId + '').remove();
-                                                    },
+                     },
+                     displayAttributes:function() {
+                     $(".dynamic_attributes").remove();
+                     for (const [attr, values] of Object.entries(attributes))
+                     {
+                     let cellValue = values.toString();
+                     $("#attributes_fields").prepend('<tr class="dynamic_attributes" id="row' + attr.split(' ')[0] + '"><td><input type="text" readonly="true" name="attributes[' + attr + ']"  value="' + attr + '" placeholder="Enter your Name" class="form-control tableData attr" /></td><td><input type="text" readonly="true" value="' + cellValue + '" name="attributes[' + attr + ']"  placeholder="Enter your value with (,) seperated" class="form-control tableData attrval" /></td><td><button type="button" name="remove" onclick="productsEvent.removeAttributes(\'' + attr + '\')" class="btn btn-danger btn_remove">X</button> <input onclick="productsEvent.editAttributes(\'' + attr + '\',\'' + values + '\')" class="btn btn-success button" type="button" value="Edit" /></td></tr>');
+                     }
+                     $("#name_attributes").val('');
+                     $("#value_attributes").val('');
+                     },
+                     createVariations:function() {
+                     let attrs = [];
+                     if (Object.keys(attributes).length)
+                     {
+                     for (const [attr, values] of Object.entries(attributes))
+                             attrs.push(values.map(v => ({[attr]:v})));
+                     attrs = attrs.reduce((a, b) => a.flatMap(d => b.map(e => ({...d, ...e}))));
+                     $.each(attrs, function(index, value) {
+                     attrs[index]['Qty'] = {value:0, name:'qty', placeholder:"Qty", type:'number', customClass:""};
+                     attrs[index]['Weight'] = {value:0, name:'weight', placeholder:"weight", type:'number', customClass:""};
+                     attrs[index]['Regular Price'] = {value:0, name:'regular_price', placeholder:"Regular Price", type:'number', customClass:""};
+                     attrs[index]['Sale Price'] = {value:0, name:'sale_price', placeholder:"Sale Price", type:'number', customClass:""};
+                     attrs[index]['Sku'] = {value:0, name:'sku', placeholder:"Sku", type:'text', customClass:""};
+                     attrs[index]['Image(800px * 850px)'] = {value:null, name:'image', placeholder:"Image", type:'file', customClass:"dropify"};
+                     });
+                     variations = attrs;
+                     productsEvent.displayVariations();
+                     }
+                     else
+                        {
+                            variations = [];
+                            productsEvent.displayVariations();
+                        }
+                     },
+                     displayVariations:function() {
+                     $("#variations_fields").empty();
+                     $("#variations_heading").empty();
+                     if (variations && Object.keys(variations).length)
+                     {
+                     let headings = Object.keys(variations[0]);
+                     $.each(headings, function(index, value) {
+                     if (value != 'hidden_id'){
+                     $("#variations_heading").append('<th>' + value + '</th>');
+                     }
+
+                     });
+                     // console.log(variations)
+                     $.each(variations, function(index, value) {
+                     let testdata = {};
+                     let htmlString = '<tr class="variation-tr">';
+                     for (const [name, variation] of Object.entries(value))
+                     {
+                     if (typeof variation === 'object' && variation !== null)
+                     {
+                     if (variation.type == 'hidden'){
+                     htmlString += '<input  name="variations[' + index + '][' + variation.name + ']" class="form-control hidden_id ' + variation.customClass + '" type="' + variation.type + '" onchange="productsEvent.updateVariationvalue(\'' + index + '\',\'' + name + '\',this.value)"  value="' + variation.value + '" placeholder="' + variation.placeholder + '">';
+                     } else{
+                     htmlString += '<td><input  name="variations[' + index + '][' + variation.name + ']" class="form-control tableData ' + variation.customClass + '" data-default-file="' + variation.datafile + '" type="' + variation.type + '" onchange="productsEvent.updateVariationvalue(\'' + index + '\',\'' + name + '\',this.value)"  value="' + variation.value + '" placeholder="' + variation.placeholder + '"></td>';
+                     }
+                     if (variation.src){
+                     htmlString += '<td><div id="delete_variation_img' + variation.value + ' "> <a href="' + variation.src + '" target="_blank" ><img height=50 style="max-width: 50px;" src="' + variation.src + '" onchange="productsEvent.updateVariationvalue(\'' + index + '\',\'' + name + '\',this.value)" ></a><i class="fas fa-trash-alt" onclick="removeVariationImage(\'' + variation.value + '\')" ></i></div></td>';
+                     }
+                     }
+                     else
+                     {
+                     htmlString += '<td><input name="variations[' + index + '][' + name + ']" class="form-control tableData" type="text" readonly="true" value="' + variation + '" placeholder="' + variation + '"></td>';
+                     }
+
+                     }
+
+                     htmlString += '<td><button type="button" name="remove" onclick="productsEvent.removeVariation(\'' + index + '\')" class="btn btn-danger btn_remove">X</button></td>';
+                     htmlString += '</tr>';
+                     $("#variations_fields").append(htmlString);
+                     $('.dropify').dropify();
+
+                     });
+                     }
+                     },
+                     removeAttributes:function(attribute_name)
+                     {
+                     delete attributes[attribute_name];
+                     productsEvent.displayAttributes();
+                     productsEvent.createVariations();
+                     },
+                     removeVariation:function(index)
+                     {
+                     variations.splice(index, 1);
+                     productsEvent.displayVariations();
+                     },
+                     editAttributes:function(attr,values){
+
+                        $('#row' + attr.split(' ')[0] ).find(".attrval").each(function() {
+                            this.removeAttribute("readonly");
+                            var attrl=$('#row' + attr.split(' ')[0] ).find(".attr").val();
+                            console.log(attrl + '='+attr)
+                            $('#row' + attr.split(' ')[0] ).find(".button").val('Update');
+
+                            delete attributes[attr];
+                            attributes[attrl] = this.value.split(',');
+
+                            if(values != this.value){
+                                productsEvent.displayAttributes();
+                                productsEvent.createVariations();
+                                $('#row' + attr.split(' ')[0] ).find(".button").val('Edit');
+                                this.addAttribute("readonly");
+                            }
+                        });
+                        $('#row' + attr.split(' ')[0] ).find(".attr").each(function() {
+                            var attrval=$('#row' + attr.split(' ')[0] ).find(".attrval").val();
+                            $('#row' + attr.split(' ')[0] ).find(".button").val('Update');
+                            this.removeAttribute("readonly");
+                            delete attributes[attr];
+                            attributes[this.value.split(',')] = attrval.split(',');
+
+                            if(attr != this.value){
+                                productsEvent.displayAttributes();
+                                productsEvent.createVariations();
+                                $('#row' + attr.split(' ')[0] ).find(".button").val('Edit');
+                                this.addAttribute("readonly");
+                            }
+                        });
+                     },
+                     updateVariationvalue:function(index, key, value)
+                     {
+                     variations[index][key].value = value;
+                     },
+                     removeProductGalaryImage:function(itemId)
+                     {
+                     $('#galary-item' + itemId + '').remove();
+                     },
                                             };
                                             productsEvent.initialize();
                                             })();

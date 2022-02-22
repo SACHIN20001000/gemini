@@ -375,7 +375,6 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
-
  function CheckDimensionBannerImage() {
      var fileUpload = document.getElementById("image_Validate");
         if (typeof (fileUpload.files) != "undefined") {
@@ -492,7 +491,7 @@ function CheckDimensionFeatureImage() {
                      for (const [attr, values] of Object.entries(attributes))
                      {
                      let cellValue = values.toString();
-                     $("#attributes_fields").prepend('<tr class="dynamic_attributes" id="row' + attr + '"><td><input type="text" disabled="true" name="attributes[name][]"  value="' + attr + '" placeholder="Enter your Name" class="form-control tableData" /></td><td><input type="text" readonly="true" value="' + cellValue + '" name="attributes[' + attr + ']"  placeholder="Enter your value with (,) seperated" class="form-control tableData" /></td><td><button type="button" name="remove" onclick="productsEvent.removeAttributes(\'' + attr + '\')" class="btn btn-danger btn_remove">X</button></td></tr>');
+                     $("#attributes_fields").prepend('<tr class="dynamic_attributes" id="row' + attr.split(' ')[0] + '"><td><input type="text" readonly="true" name="attributes[' + attr + ']"  value="' + attr + '" placeholder="Enter your Name" class="form-control tableData attr" /></td><td><input type="text" readonly="true" value="' + cellValue + '" name="attributes[' + attr + ']"  placeholder="Enter your value with (,) seperated" class="form-control tableData attrval" /></td><td><button type="button" name="remove" onclick="productsEvent.removeAttributes(\'' + attr + '\')" class="btn btn-danger btn_remove">X</button> <input onclick="productsEvent.editAttributes(\'' + attr + '\',\'' + values + '\')" class="btn btn-success button" type="button" value="Edit" /></td></tr>');
                      }
                      $("#name_attributes").val('');
                      $("#value_attributes").val('');
@@ -575,6 +574,39 @@ function CheckDimensionFeatureImage() {
                      {
                      variations.splice(index, 1);
                      productsEvent.displayVariations();
+                     },
+                     editAttributes:function(attr,values){
+
+                        $('#row' + attr.split(' ')[0] ).find(".attrval").each(function() {
+                            this.removeAttribute("readonly");
+                            var attrl=$('#row' + attr.split(' ')[0] ).find(".attr").val();
+                            console.log(attrl + '='+attr)
+                            $('#row' + attr.split(' ')[0] ).find(".button").val('Update');
+
+                            delete attributes[attr];
+                            attributes[attrl] = this.value.split(',');
+
+                            if(values != this.value){
+                                productsEvent.displayAttributes();
+                                productsEvent.createVariations();
+                                $('#row' + attr.split(' ')[0] ).find(".button").val('Edit');
+                                this.addAttribute("readonly");
+                            }
+                        });
+                        $('#row' + attr.split(' ')[0] ).find(".attr").each(function() {
+                            var attrval=$('#row' + attr.split(' ')[0] ).find(".attrval").val();
+                            $('#row' + attr.split(' ')[0] ).find(".button").val('Update');
+                            this.removeAttribute("readonly");
+                            delete attributes[attr];
+                            attributes[this.value.split(',')] = attrval.split(',');
+
+                            if(attr != this.value){
+                                productsEvent.displayAttributes();
+                                productsEvent.createVariations();
+                                $('#row' + attr.split(' ')[0] ).find(".button").val('Edit');
+                                this.addAttribute("readonly");
+                            }
+                        });
                      },
                      updateVariationvalue:function(index, key, value)
                      {
