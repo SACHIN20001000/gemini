@@ -64,7 +64,7 @@
             ajax: "{{ route('chowhub-products.index') }}",
             columns: [
                 {data: 'productName', name: 'productName' },
-                {data: 'store.name', name: 'store.name'},
+                {data: 'store.name', name: 'store.name', orderable: false},
                 {data: 'status', name: 'status'},
 
                 {data: 'created_at', name: 'created_at'},

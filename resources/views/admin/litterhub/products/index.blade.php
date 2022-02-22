@@ -29,7 +29,7 @@
                                 <tr>
                                     <th class="wd-lg-20p"><span>Name</span></th>
                                     <th class="wd-lg-20p"><span>Store</span></th>
-                                 
+
                                     <th class="wd-lg-20p"><span>Status</span></th>
 
                                     <th class="wd-lg-20p"><span>Created At</span></th>
@@ -66,7 +66,7 @@
             ajax: "{{ route('litterhub-products.index') }}",
             columns: [
                 {data: 'productName', name: 'productName' },
-                {data: 'store.name', name: 'store.name'},
+                {data: 'store.name', name: 'store.name',orderable: false,},
 
                 {data: 'status', name: 'status'},
 
