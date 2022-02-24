@@ -72,6 +72,17 @@ class CreateChowhubProductsTable extends Migration
             $table->unsignedBigInteger('tag_id');
             $table->timestamps();
         });
+        Schema::create('chowhub_brands', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
+        Schema::create('chowhub_product_brands', function (Blueprint $table) {
+            $table->id();
+			$table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('brand_id');
+            $table->timestamps();
+        });
         Schema::create('chowhub_backend_tags', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -126,6 +137,8 @@ class CreateChowhubProductsTable extends Migration
         Schema::dropIfExists('chowhub_product_backend_tags');
         Schema::dropIfExists('chowhub_tags');
         Schema::dropIfExists('chowhub_product_tags');
+        Schema::dropIfExists('chowhub_brands');
+        Schema::dropIfExists('chowhub_product_brands');
         Schema::dropIfExists('chowhub_variations_attributes');
         Schema::dropIfExists('chowhub_variations_attributes_values');
         Schema::dropIfExists('chowhub_product_variations');

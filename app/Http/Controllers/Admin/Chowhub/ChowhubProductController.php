@@ -11,6 +11,9 @@ use App\Models\ChowhubVariationAttribute;
 use App\Models\ChowhubVariationAttributeValue;
 use App\Models\Category;
 use App\Models\ChowhubTag;
+use App\Models\ChowhubBrand;
+use App\Models\ChowhubProductBrand;
+
 use App\Models\ChowhubBackendTag;
 use App\Models\ChowhubProductBackendTag;
 use App\Models\ChowhubProductTag;
@@ -112,6 +115,8 @@ public function store(AddProduct $request)
         $inputs = $request->all();
         $tags = explode(",", $inputs['tag']);
         $backendtags = explode(",", $inputs['backend_tag']);
+        $brands = explode(",", $inputs['brand']);
+
         // ADD PRODUCT TABLE DATA
 
 
@@ -221,7 +226,23 @@ public function store(AddProduct $request)
                     $tagValue->save();
                 }
             }
+            if (!empty($brands))
+            {
+                foreach ($brands as $vakey => $brandName)
+                {
 
+                    $brand = ChowhubBrand::updateOrCreate([
+                                'name' => $brandName
+                                    ], [
+                                'name' => $brandName
+                    ]);
+
+                    $brandValue = new ChowhubProductBrand;
+                    $brandValue->brand_id = $brand->id;
+                    $brandValue->product_id = $products->id;
+                    $brandValue->save();
+                }
+            }
             if (!empty($inputs['attributes']))
             {
 
@@ -369,7 +390,7 @@ public function store(AddProduct $request)
     {
         $inputs = $request->all();
 
-       // echo '<pre>'; print_r($inputs); die;
+    
 
         if(!isset($inputs['variations'][0]['id'])){
             ChowhubProductVariation::where('product_id', $id)->delete();
@@ -377,6 +398,8 @@ public function store(AddProduct $request)
         ChowhubVariationAttributeValue::where('product_id', $id)->delete();
         $tags = explode(",", $inputs['tag']);
         $backendtags = explode(",", $inputs['backend_tag']);
+        $brands = explode(",", $inputs['brand']);
+
         if (!empty($inputs['productName']))
         {
             $age=$inputs['age']??[];
@@ -443,6 +466,24 @@ public function store(AddProduct $request)
                     $tagValue->tag_id = $tag->id;
                     $tagValue->product_id = $products->id;
                     $tagValue->save();
+                }
+            }
+            if (!empty($brands))
+            {
+                ChowhubProductBrand::where('product_id', $id)->delete();
+                foreach ($brands as $vakey => $brandName)
+                {
+
+                    $brand = ChowhubBrand::updateOrCreate([
+                                'name' => $brandName
+                                    ], [
+                                'name' => $brandName
+                    ]);
+
+                    $brandValue = new ChowhubProductBrand;
+                    $brandValue->brand_id = $brand->id;
+                    $brandValue->product_id = $products->id;
+                    $brandValue->save();
                 }
             }
             if (!empty($inputs['feature_page_images']))
@@ -721,6 +762,8 @@ public function store(AddProduct $request)
 
         $variationAttributeValue = ChowhubVariationAttributeValue::where('product_id',$id)->get();
         $productTag = ChowhubProductTag::where('product_id',$id)->get();
+        $productBrand = ChowhubProductBrand::where('product_id',$id)->get();
+
         $productBackendTag = ChowhubProductBackendTag::where('product_id',$id)->get();
         $chowhubProductDescriptionImage = ChowhubProductDescriptionImage::where('product_id',$id)->get();
         $chowhubProductFeaturePageImage = ChowhubProductFeaturePageImage::where('product_id',$id)->get();
@@ -789,7 +832,15 @@ public function store(AddProduct $request)
             ]);
         }
     }
+    if(!empty($productBrand)){
+        foreach ($productBrand as $key => $value) {
 
+            ChowhubProductBrand::create([
+                'product_id' =>  $products->id,
+                'brand_id' =>  $value->brand_id,
+            ]);
+        }
+    }
     if(!empty($chowhubProductDescriptionImage)){
         foreach ($chowhubProductDescriptionImage as $key => $value) {
 
