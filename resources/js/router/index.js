@@ -12,7 +12,8 @@ import Products from "../components/Products";
 import Cart from "../components/Cart";
 import Checkout from "../components/Checkout";
 import Payment from "../components/Payment";
-import Chowhub from "../components/chowhub";
+import Chowhub from "../components/Chowhub";
+import Brand from "../components/Brands";
 
 Vue.use(VueRouter)
 
@@ -117,6 +118,12 @@ export default new VueRouter({
       // beforeEnter : guardMyroute,
       name: 'Logout',
       component: Logout
+    },
+    {
+      path: '/brand/:brandid',
+      beforeEnter : guardMyroute,
+      name: 'Brand',
+      component: Brand
     },
     {
       path: '/chowhub/:cartid/:cartkey',
