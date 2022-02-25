@@ -1,0 +1,25 @@
+.errorMsg{
+  width: 100%;
+  color: red;
+  font-size: 14px;
+  font-weight: normal;
+}
+.productList{
+  width: 100%
+}
+.productList ul{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.productList ul li{
+  width: 25%;
+  list-style: none;
+}
+.productList ul li span{
+  width: 100%;
+  padding: 5px;
+  display: block;
+}
