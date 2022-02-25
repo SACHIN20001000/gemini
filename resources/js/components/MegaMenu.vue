@@ -110,11 +110,11 @@
       <div class="menu_brand">
         <h3>Brands</h3>
        <ul>
-        <li><a href="#"><img :src="paw"></a></li>
-        <li><a href="#"><img :src="paw"></a></li>
-        <li><a href="#"><img :src="paw"></a></li>
-        <li><a href="#"><img :src="paw"></a></li>
-        <li><a href="#"><img :src="paw"></a></li>
+        <li><a href="/brand/1"><img :src="paw"></a></li>
+        <li><a href="/brand/1"><img :src="paw"></a></li>
+        <li><a href="/brand/1"><img :src="paw"></a></li>
+        <li><a href="/brand/1"><img :src="paw"></a></li>
+        <li><a href="/brand/1"><img :src="paw"></a></li>
        </ul>
       </div>
         </div>
