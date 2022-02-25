@@ -19,9 +19,9 @@
         </ul>
 
       </div>
-    <ul class="listcartItem" v-if="chowhubItems">
+    <ul class="listcartItem" v-if="litterhubItems">
       <li
-        v-for="(cartItem,keygetCartItem) in chowhubItems"
+        v-for="(cartItem,keygetCartItem) in litterhubItems"
         :key="keygetCartItem"
       >
         <div
@@ -29,8 +29,8 @@
           class="cartlabel cart_grid"
         >
            <span class="prod_img"><div class="img_ratio"><img :src="cartItem.variationProduct.image" /></div></span>
-          <span class="prod_name" >{{cartItem.product.productName}}</span>
-          <span class="prod_price">{{cartItem.variationProduct.sale_price}}</span>
+          <span class="prod_name" v-if="cartItem.product">{{cartItem.product.productName}}</span>
+          <span class="prod_price" v-if="cartItem.variationProduct">{{cartItem.variationProduct.sale_price}}</span>
           <span class="prod_quant">
             {{cartItem.quantity}}
           </span>
@@ -40,23 +40,23 @@
           v-else
           class="cartlabel"
         >
-           <span class="prod_img"><div class="img_ratio"><img :src="cartItem.product.image_path"  /></div></span>
-          <span class="prod_name" >{{cartItem.product.productName}}</span>
-          <span class="prod_price">{{cartItem.product.sale_price}}</span>
+           <span class="prod_img"><div class="img_ratio" v-if="cartItem.product"><img :src="cartItem.product.image_path"  /></div></span>
+          <span class="prod_name" v-if="cartItem.product">{{cartItem.product.productName}}</span>
+          <span class="prod_price" v-if="cartItem.product">{{cartItem.product.sale_price}}</span>
           <span class="prod_quant">
             {{cartItem.quantity}}
           </span>
-          <span class="prod_items">{{cartItem.product.sale_price*cartItem.quantity}}</span>
+          <span class="prod_items" v-if="cartItem.product">{{cartItem.product.sale_price*cartItem.quantity}}</span>
         </div>
       </li>
     </ul>
   </div>
-    <p class="totalamount  cart_total text-right">Total Cart Price: <span> {{getChowhubCartTotal()}}</span></p>
+    <p class="totalamount  cart_total text-right">Total Cart Price: <span> {{getLitterhubCartTotal()}}</span></p>
   </div>
   </div>
 </template>
 <style>
-  @import './chowhub.css';
+  @import './litterhub.css';
 </style>
 <script>
 import {mapActions,mapGetters} from "vuex"
@@ -64,7 +64,7 @@ import axios from 'axios';
 import cart_logo from "../../assets/images/cart_logo.png"
 
 export default {
-  name:"Carts",
+  name:"Litterhub",
   data: function () {
     return {
       cartItemsList:{},
@@ -74,30 +74,36 @@ export default {
   },
   created(){
     if(this.$route.params.cartid!='' && this.$route.params.cartkey!=''){
-      var chowhubcart={'cartId':this.$route.params.cartid,'cartKey':this.$route.params.cartkey}
-      this.getChowhubCartItems(chowhubcart)
+      var litterhubcart={'cartId':this.$route.params.cartid,'cartKey':this.$route.params.cartkey}
+      this.getLitterhubCartItems(litterhubcart)
     }
   },
   watch:{
-    chowhubItems(){
+    litterhubItems(){
       /*this.chowhubItems()*/
     }
   },
   computed: {
-    ...mapGetters(['chowhubItems'])
+    ...mapGetters(['litterhubItems'])
   },
   methods: {
-    ...mapActions(['getChowhubCartItems']),
-    getChowhubCartTotal(){
-      if(this.chowhubItems.length>0){
-        return this.chowhubItems.reduce((acc, cartItem) => {
+    ...mapActions(['getLitterhubCartItems']),
+    getLitterhubCartTotal(){
+      var tottalAmout=0;
+      if(this.litterhubItems.length>0){
+        this.litterhubItems.filter((acc, cartItem) => {
           if(cartItem.variationProduct){
-            return (cartItem.quantity * cartItem.variationProduct.sale_price) + acc;
+            tottalAmout = (cartItem.quantity * cartItem.variationProduct.sale_price) + acc;
           }else{
-            return (cartItem.quantity * cartItem.product.sale_price) + acc;
+            if(cartItem.product){
+              tottalAmout =  (cartItem.quantity * cartItem.product.sale_price) + acc;
+            }
           }
 
-        }, 0).toFixed(2);
+        })
+        return tottalAmout.toFixed(2)
+      }else{
+        return tottalAmout
       }
     }
   }
