@@ -68,8 +68,8 @@
                 {data: 'productName', name: 'productName' },
                 {data: 'food_type', name: 'food_type' },
                 {data: 'pet_type', name: 'pet_type' },
-                {data: 'availBrands', name: 'availBrands', orderable: false },
-                {data: 'availBackendTags', name: 'availBackendTags', orderable: false },
+                {data: 'availBrands', name: 'availBrands' },
+                {data: 'availBackendTags', name: 'availBackendTags' },
                 {data: 'status', name: 'status'},            
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
