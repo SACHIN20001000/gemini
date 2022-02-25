@@ -28,6 +28,10 @@
                             <thead>
                                 <tr>
                                     <th class="wd-lg-20p"><span>Name</span></th>
+                                    <th class="wd-lg-20p"><span>Pet Type</span></th>
+                                    <th class="wd-lg-20p"><span>Brand</span></th>
+                                    <th class="wd-lg-20p"><span>Backend Tags</span></th>
+
                                     <th class="wd-lg-20p"><span>Store</span></th>
                                     <th class="wd-lg-20p"><span>Status</span></th>
                                     <th class="wd-lg-20p"><span>Created At</span></th>
@@ -64,6 +68,11 @@
             ajax: "{{ route('chowhub-products.index') }}",
             columns: [
                 {data: 'productName', name: 'productName' },
+                {data: 'pet_type', name: 'pet_type' },
+                {data: 'availBrands', name: 'availBrands', orderable: false },
+                {data: 'availBackendTags', name: 'availBackendTags', orderable: false },
+
+
                 {data: 'store.name', name: 'store.name', orderable: false},
                 {data: 'status', name: 'status'},
 
