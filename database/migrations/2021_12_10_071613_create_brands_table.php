@@ -20,8 +20,8 @@ class CreateBrandsTable extends Migration
             $table->string('cover_image')->nullable();
             $table->string('brand_color')->nullable();
             $table->string('tag_line')->nullable();
-            $table->string('overview')->nullable();
-            $table->string('category_text')->nullable();
+            $table->longText('overview')->nullable();
+            $table->longText('category_text')->nullable();
             $table->timestamps();
         });
     }

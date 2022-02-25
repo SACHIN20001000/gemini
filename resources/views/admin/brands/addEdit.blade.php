@@ -66,7 +66,7 @@
                                     <label class="form-label mg-b-0">Brand Color</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                <input type="text" name="brand_color"  class="form-control" value="{{isset($brand) ? $brand->brand_color : '' }}" >
+                                <input type="text" name="brand_color" placeholder="Enter Your brand color"  class="form-control" value="{{isset($brand) ? $brand->brand_color : '' }}" >
                                 </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
@@ -74,7 +74,9 @@
                                     <label class="form-label mg-b-0">Tag Line</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                <textarea name="tag_line"  >{{isset($brand) ? $brand->tag_line : '' }}</textarea>
+                              
+                                <input type="text" name="tag_line"  class="form-control" placeholder="Enter Your tag line" value="{{isset($brand) ? $brand->tag_line : '' }}" >
+
                                 </div>
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
