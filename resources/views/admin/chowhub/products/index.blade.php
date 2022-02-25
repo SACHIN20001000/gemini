@@ -34,7 +34,7 @@
 
                                     <th class="wd-lg-20p"><span>Store</span></th>
                                     <th class="wd-lg-20p"><span>Status</span></th>
-                                    <th class="wd-lg-20p"><span>Created At</span></th>
+                                  
                                     <th class="wd-lg-20p">Action</th>
                                 </tr>
                             </thead>
@@ -76,7 +76,7 @@
                 {data: 'store.name', name: 'store.name', orderable: false},
                 {data: 'status', name: 'status'},
 
-                {data: 'created_at', name: 'created_at'},
+            
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
