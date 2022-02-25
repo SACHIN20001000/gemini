@@ -6,6 +6,8 @@ use App\Http\Controllers\API\PassportAuthController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\API\BrandController;
+
 use App\Http\Controllers\API\Chowhub\ChowhubProductController;
 use App\Http\Controllers\API\Chowhub\ChowhubCategoryController;
 use App\Http\Controllers\API\Chowhub\ChowhubStoreController;
@@ -99,6 +101,9 @@ Route::middleware('auth:api')->group(function ()
     });
     Route::resource('order', OrderController::class);
 });
+Route::get('brand', [BrandController::class, 'index']);
+Route::get('brand/{id}', [BrandController::class, 'productByBrand']);
+
 
 Route::resource('cart', CartController::class);
 Route::get('cartIdByKey', [CartController::class, 'getCartIDUsingKey']);

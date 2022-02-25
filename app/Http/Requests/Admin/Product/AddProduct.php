@@ -28,6 +28,8 @@ class AddProduct extends FormRequest
 
              'category_id' => 'required',
              'store_id' => 'required',
+             'brand_id' => 'required',
+
              'status' => 'required',
 
             'weight' => 'required',

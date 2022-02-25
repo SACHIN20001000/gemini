@@ -11,6 +11,8 @@ use App\Models\VariationAttribute;
 use App\Models\VariationAttributeValue;
 use App\Models\Category;
 use App\Models\Store;
+use App\Models\Brand;
+
 use App\Models\ProductTag;
 use App\Models\Tag;
 use App\Models\ProductDescriptionDetail;
@@ -95,9 +97,11 @@ class ProductController extends Controller
     {
         $categories = Category::where('type', 'Product')->get();
         $stores = Store::all();
+        $brands = Brand::all();
+
         $attributes = [];
         $variations = [];
-        return view('admin.products.addEdit', compact('categories', 'stores', 'attributes', 'variations'));
+        return view('admin.products.addEdit', compact('categories', 'brands','stores', 'attributes', 'variations'));
     }
 
     /**
@@ -156,6 +160,8 @@ class ProductController extends Controller
             $products->weight = $inputs['weight'];
             $products->quantity = $inputs['qty'];
             $products->category_id = $inputs['category_id'];
+            $products->brand_id = $inputs['brand_id'];
+
             $products->store_id = $inputs['store_id'];
             $products->status = $inputs['status'];
             $products->seo_title = $inputs['seo_title'];
@@ -326,6 +332,8 @@ class ProductController extends Controller
     {
         $categories = Category::where('type', 'Product')->get();
         $stores = Store::all();
+        $brands = Brand::all();
+
         $product = Product::with(['category', 'store', 'productDescriptionDetail', 'productVariation', 'productGallery', 'variationAttributesValue.variationAttributeName'])
                 ->where('id', $id)
                 ->first();
@@ -364,7 +372,7 @@ class ProductController extends Controller
         }
 
 
-        return view('admin.products.addEdit', compact('product', 'stores', 'categories', 'attributes', 'variations'));
+        return view('admin.products.addEdit', compact('product','brands', 'stores', 'categories', 'attributes', 'variations'));
     }
 
     /**
@@ -421,6 +429,8 @@ class ProductController extends Controller
             }
             $products->about_description = $inputs['about_description'];
             $products->category_id = $inputs['category_id'];
+            $products->brand_id = $inputs['brand_id'];
+
             $products->store_id = $inputs['store_id'];
             $products->status = $inputs['status'];
             if (!empty($inputs['variations']))
@@ -723,6 +733,7 @@ class ProductController extends Controller
             'type' =>  $product->type,
             'store_id' =>  $product->store_id,
             'category_id' =>  $product->category_id,
+            'brand_id' =>  $product->brand_id,
             'feature_image' =>  $product->feature_image,
             'real_price' =>  $product->real_price,
             'sale_price' =>  $product->sale_price,

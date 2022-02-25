@@ -150,6 +150,18 @@
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Brand</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <select name="brand_id"  class="form-control">
+                                        @foreach($brands as $brand)
+                                        <option {{ (isset($product) && $product->brand_id  == $brand->id) ? 'selected' : '' }}  value="{{$brand->id}}">  {{$brand->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
                                     <label class="form-label mg-b-0">Status</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
