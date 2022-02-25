@@ -17,7 +17,11 @@ class CreateBrandsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('logo')->nullable();
-
+            $table->string('cover_image')->nullable();
+            $table->string('brand_color')->nullable();
+            $table->string('tag_line')->nullable();
+            $table->string('overview')->nullable();
+            $table->string('category_text')->nullable();
             $table->timestamps();
         });
     }

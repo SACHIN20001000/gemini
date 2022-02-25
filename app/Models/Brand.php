@@ -15,7 +15,7 @@ class Brand extends Model
         'updated_at' => 'datetime:d-m-Y',
     ];
     protected $fillable = [
-        'name', 'logo'
+        'name', 'logo','cover_image','brand_color','tag_line','overview','category_text'
     ];
 
 }
