@@ -25,6 +25,7 @@ class AddBrands extends FormRequest
     {
         return [
             'name' => 'required',
+            'tag_line' => 'required',
           
         ];
     }

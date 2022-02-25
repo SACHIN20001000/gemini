@@ -24,9 +24,10 @@ class UpdateBrands extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
-            'required'
-        ]
+            'name' => 'required',
+            'tag_line' => 'required',
+
+       
         ];
     }
 }
