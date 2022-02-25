@@ -15,7 +15,7 @@ class SolutionhubProduct extends Model
         'updated_at' => 'datetime:M d, Y h:i:s',
     ];
     protected $fillable = [
-        'productName', 'description', 'tag', 'feature_image', 'status',  'separation_anxiety','teething','boredom','disabled','energetic'
+        'productName', 'description', 'tag', 'feature_image', 'status',  'separation_anxiety','teething','boredom','disabled','energetic','aggressive_chewers'
     ];
     protected $appends = array('availTags','availBackendTags');
     public function backendtags()

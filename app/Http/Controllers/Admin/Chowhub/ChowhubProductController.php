@@ -40,8 +40,8 @@ class ChowhubProductController extends Controller
 
         if ($request->ajax())
         {
-           
-            if(isset($request['order'])){
+    
+            if(!empty($request['order'])){
                 $data = ChowhubProduct::with('store')->get();
             }else{
                 $data = ChowhubProduct::with('store')->orderby('id','DESC');

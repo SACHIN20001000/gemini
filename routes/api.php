@@ -75,14 +75,14 @@ Route::middleware([EnsureApiTokenIsValid::class])->group(function () {
   Route::any('litterhub/products/{id}', [LitterhubProductController::class, 'productById']);
   Route::get('litterhub/products/attributes/{id}', [LitterhubProductController::class, 'getAttributeByProduct']);
 //solutionhub
-Route::get('solutionhub/products', [SolutionhubProductController::class, 'index']);
+
 Route::any('solutionhub/products/{id}', [SolutionhubProductController::class, 'productById']);
   Route::get('pages', [PageController::class, 'index']);
   Route::any('pages/{id}', [PageController::class, 'pageByID']);
 
 
 });
-
+Route::get('solutionhub/products', [SolutionhubProductController::class, 'index']);
 Route::get('solutionhub/tags', [SolutionhubProductController::class, 'allTags']);
 Route::get('chowhub/tags', [ChowhubProductController::class, 'allTags']);
 Route::get('litterhub/tags', [LitterhubProductController::class, 'allTags']);

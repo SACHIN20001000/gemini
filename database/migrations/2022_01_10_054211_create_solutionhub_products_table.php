@@ -21,6 +21,8 @@ class CreateSolutionHubProductsTable extends Migration
             $table->string('status')->nullable();
             $table->string('feature_image')->nullable();
             $table->integer('separation_anxiety')->nullable();
+            $table->integer('aggressive_chewers')->nullable();
+
             $table->integer('teething')->nullable();
             $table->integer('boredom')->nullable();
             $table->integer('disabled')->nullable();
