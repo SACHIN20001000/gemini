@@ -12,7 +12,9 @@ import Products from "../components/Products";
 import Cart from "../components/Cart";
 import Checkout from "../components/Checkout";
 import Payment from "../components/Payment";
-import Chowhub from "../components/chowhub";
+import Chowhub from "../components/Chowhub";
+import Litterhub from "../components/Litterhub";
+import Brand from "../components/Brands";
 
 Vue.use(VueRouter)
 
@@ -119,10 +121,22 @@ export default new VueRouter({
       component: Logout
     },
     {
+      path: '/brand/:brandid',
+      beforeEnter : guardMyroute,
+      name: 'Brand',
+      component: Brand
+    },
+    {
       path: '/chowhub/:cartid/:cartkey',
       beforeEnter : guardMyroute,
       name: 'Chowhub',
       component: Chowhub
+    },
+    {
+      path: '/litterhub/:cartid/:cartkey',
+      beforeEnter : guardMyroute,
+      name: 'Litterhub',
+      component: Litterhub
     }
   ],
   scrollBehavior() {

@@ -6,6 +6,7 @@ const state = {
   addCartItems: [],
   deleteCartItem: [],
   chowhubItems: [],
+  litterhubItems: [],
   deleteCartItems: []
 }
 const getters = {
@@ -13,6 +14,7 @@ const getters = {
   addCartItems: state => state.addCartItems,
   deleteCartItem: state => state.deleteCartItem,
   chowhubItems: state => state.chowhubItems,
+  litterhubItems: state => state.litterhubItems,
   deleteCartItems: state => state.deleteCartItems,
   cartQuantity: state => {
     return state.getCartItem.reduce((acc, cartItem) => {
@@ -56,6 +58,11 @@ const actions = {
       commit('chowhubCartItems', response.data.data)
     });
   },
+  async getLitterhubCartItems ({ commit },litterhubcart) {
+    HTTP.get(process.env.MIX_APP_APIURL+'litterhub/cart/'+litterhubcart.cartId+'?key='+litterhubcart.cartKey).then((response) => {
+      commit('litterhubCartItems', response.data.data)
+    });
+  },
   addCartItem ({ commit }, cartItem) {
     const cartId = localStorage.getItem('cartId')
     HTTP.post(process.env.MIX_APP_APIURL+'cart/'+cartId, cartItem).then((response) => {
@@ -87,6 +94,9 @@ const mutations = {
   ),
   chowhubCartItems: (state, payload) => (
     state.chowhubItems = payload
+  ),
+  litterhubCartItems: (state, payload) => (
+    state.litterhubItems = payload
   ),
   addItemCart: (state, payload) => (
     state.addCartItems = payload
