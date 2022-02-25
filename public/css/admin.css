@@ -14,3 +14,4 @@
 #datatable {
     width: auto !important;
 }
+.dataTables_processing {text-align: center; opacity: 0.8;text-decoration: none;font-size: 20px;padding: 20px;margin: 0 auto;width: 50%;position: relative;bottom: 80%;}
