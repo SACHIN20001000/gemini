@@ -64,7 +64,6 @@ Route::middleware([EnsureApiTokenIsValid::class])->group(function () {
   Route::any('products/category/{id}', [ProductController::class, 'productByCategoryId']);
   Route::get('products/attributes/{id}', [ProductController::class, 'getAttributeByProduct']);
 
-  Route::get('chowhub/products', [ChowhubProductController::class, 'index']);
   Route::any('chowhub/products/{id}', [ChowhubProductController::class, 'productById']);
   Route::any('chowhub/products/category/{id}', [ChowhubProductController::class, 'productByCategoryId']);
   Route::get('chowhub/products/attributes/{id}', [ChowhubProductController::class, 'getAttributeByProduct']);
@@ -82,6 +81,8 @@ Route::any('solutionhub/products/{id}', [SolutionhubProductController::class, 'p
 
 
 });
+Route::get('chowhub/products', [ChowhubProductController::class, 'index']);
+
 Route::get('solutionhub/products', [SolutionhubProductController::class, 'index']);
 Route::get('solutionhub/tags', [SolutionhubProductController::class, 'allTags']);
 Route::get('chowhub/tags', [ChowhubProductController::class, 'allTags']);

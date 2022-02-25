@@ -886,4 +886,5 @@ public function store(AddProduct $request)
          }
     return redirect('admin/chowhub-products')->with('success', 'Product Duplicate successfully!');
     }
+
 }
