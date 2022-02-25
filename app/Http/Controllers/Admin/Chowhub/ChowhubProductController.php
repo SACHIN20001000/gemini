@@ -40,7 +40,14 @@ class ChowhubProductController extends Controller
 
         if ($request->ajax())
         {
-            $data = ChowhubProduct::with('store')->orderby('id','DESC');
+           
+            if(isset($request->order)){
+                $data = ChowhubProduct::with('store')->get();
+            }else{
+                $data = ChowhubProduct::with('store')->orderby('id','DESC');
+            }
+           
+            
 
             return Datatables::of($data)
                             ->addIndexColumn()
