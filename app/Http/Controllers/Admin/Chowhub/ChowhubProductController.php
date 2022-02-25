@@ -205,9 +205,9 @@ public function store(AddProduct $request)
                 {
 
                     $tag = ChowhubTag::updateOrCreate([
-                                'name' => $tagName
+                                'name' => trim(strtolower($tagName))
                                     ], [
-                                'name' => $tagName
+                                'name' => trim(strtolower($tagName))
                     ]);
 
                     $tagValue = new ChowhubProductTag;
@@ -222,9 +222,9 @@ public function store(AddProduct $request)
                 {
 
                     $tag = ChowhubBackendTag::updateOrCreate([
-                                'name' => $tagName
+                                'name' => trim(strtolower($tagName))
                                     ], [
-                                'name' => $tagName
+                                'name' => trim(strtolower($tagName))
                     ]);
 
                     $tagValue = new ChowhubProductBackendTag;
@@ -448,9 +448,9 @@ public function store(AddProduct $request)
                 foreach ($tags as $vakey => $tagName)
                 {
                     $tag = ChowhubTag::updateOrCreate([
-                                'name' => $tagName
+                                'name' => trim(strtolower($tagName))
                                     ], [
-                                'name' => $tagName
+                                'name' => trim(strtolower($tagName))
                     ]);
                     $tagValue = new ChowhubProductTag;
                     $tagValue->tag_id = $tag->id;
@@ -464,9 +464,9 @@ public function store(AddProduct $request)
                 {
 
                     $tag = ChowhubBackendTag::updateOrCreate([
-                                'name' => $tagName
+                                'name' => trim(strtolower($tagName))
                                     ], [
-                                'name' => $tagName
+                                'name' => trim(strtolower($tagName))
                     ]);
 
                     $tagValue = new ChowhubProductBackendTag;
