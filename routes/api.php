@@ -101,8 +101,8 @@ Route::middleware('auth:api')->group(function ()
     });
     Route::resource('order', OrderController::class);
 });
-Route::get('brand', [BrandController::class, 'index']);
-Route::get('brand/{id}', [BrandController::class, 'productByBrand']);
+Route::get('brand/{id}', [BrandController::class, 'index']);
+Route::get('brand/product/{id}', [BrandController::class, 'productByBrand']);
 
 
 Route::resource('cart', CartController::class);

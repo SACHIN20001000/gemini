@@ -12,12 +12,17 @@ class BrandController extends Controller
 {
       /**
      * @OA\Get(
-     *      path="/brand",
+     *      path="/brand/{id}",
      *      operationId="brands",
      *      tags={"Brand"},
      *
      *     summary="Brand",
-     *   
+     *   *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="3",
+     *         required=true,
+     *      ),
      *     @OA\Response(
      *         response="200",
      *         description="Pages",
@@ -40,19 +45,20 @@ class BrandController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function index(Request $request)
+    public function index($id)
     {
        
-        $brands = Brand::orderBy('id', 'DESC')
-                ->get();
+        $brands = Brand::find($id);
+        if($brands){
+            return  new BrandResource($brands);
 
-        return  BrandResource::collection($brands);
-
+        }
+       
     }
 
     /**
      * @OA\Get(
-     *      path="/brand/{brand_id}",
+     *      path="/brand/product/{brand_id}",
      *      operationId="get products by brands",
      *      tags={"Brand"},
      *
