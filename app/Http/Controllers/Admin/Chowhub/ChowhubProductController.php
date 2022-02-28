@@ -397,7 +397,7 @@ public function store(AddProduct $request)
     {
         $inputs = $request->all();
 
-    
+
 
         if(!isset($inputs['variations'][0]['id'])){
             ChowhubProductVariation::where('product_id', $id)->delete();
