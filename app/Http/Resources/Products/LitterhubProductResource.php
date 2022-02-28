@@ -11,6 +11,8 @@ use App\Http\Resources\Products\ProductAttributesResource;
 use App\Http\Resources\Products\TagsResource;
 use App\Http\Resources\Products\ProductDescriptionImageResource;
 use App\Http\Resources\Products\BackendTagsResource;
+use App\Http\Resources\Products\BrandsResource;
+
 use App\Models\VariationAttribute;
 
 class LitterhubProductResource extends JsonResource
@@ -51,6 +53,7 @@ class LitterhubProductResource extends JsonResource
             'attributes' => ProductAttributesResource::collection($this->variationAttributesValue),
             'tags'=>$this->tags?TagsResource::collection($this->tags):null,
             'backend_tags'=>$this->backendtags?BackendTagsResource::collection($this->backendtags):null,
+            'brand_tags'=>$this->brands?BrandsResource::collection($this->brands):null,
             'variation_attributes'=>  $this->getAttributeByProduct($this->id)
 
         ];
