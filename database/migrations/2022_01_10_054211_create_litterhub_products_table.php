@@ -53,6 +53,17 @@ class CreateLitterHubProductsTable extends Migration
 
             $table->timestamps();
         });
+        Schema::create('litterhub_brands', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
+        Schema::create('litterhub_product_brands', function (Blueprint $table) {
+            $table->id();
+			$table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('brand_id');
+            $table->timestamps();
+        });
         Schema::create('litterhub_product_feature_page_images', function (Blueprint $table) {
             $table->id();
 			$table->unsignedBigInteger('product_id');
@@ -126,6 +137,8 @@ class CreateLitterHubProductsTable extends Migration
         Schema::dropIfExists('litterhub_product_backend_tags');
         Schema::dropIfExists('litterhub_tags');
         Schema::dropIfExists('litterhub_product_tags');
+        Schema::dropIfExists('litterhub_brands');
+        Schema::dropIfExists('litterhub_product_brands');
         Schema::dropIfExists('litterhub_variations_attributes');
         Schema::dropIfExists('litterhub_variations_attributes_values');
         Schema::dropIfExists('litterhub_product_variations');
