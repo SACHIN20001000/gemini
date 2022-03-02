@@ -19,8 +19,10 @@ class CreateCategoriesTable extends Migration
             $table->string('slug');
             $table->string('feature_image');
             $table->integer('order')->nullable();
-
             $table->string('type');
+            $table->string('color');     
+            $table->string('description');     
+            $table->string('tag_line');
             $table->integer('parent')->default(0);
             $table->integer('status')->default(0);
             $table->timestamps();

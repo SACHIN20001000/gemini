@@ -42,12 +42,19 @@
                                     <label class="form-label mg-b-0">Feature Image</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="feature_image"  type="file">
-                                    @if(!empty($category->feature_image))
-                                    <a href="{{$category->feature_image}}" target="_blank"><img src="{{$category->feature_image}}"  height="50" width="50"></a>
-                                    @endif
+                               
+                                @if(!empty($category->feature_image))
+                                <input type="file" class="dropify" data-default-file="{{$category->feature_image}}" name="feature_image"  id="feature_image">
+
+                                @else
+                                <input type="file" class="dropify"  name="feature_image" id="feature_image">
+
+
+                                @endif
+                                  
                                 </div>
                             </div>
+
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
                                     <label class="form-label mg-b-0">Parent Category</label>
@@ -83,6 +90,32 @@
 
                                 </div>
                             </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Color</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <input type="color" name="color" placeholder="Enter Your color"  class="form-control" value="{{isset($category) ? $category->color : '' }}" >
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Tag Line</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                              
+                                <input type="text" name="tag_line"  class="form-control" placeholder="Enter Your tag line" value="{{isset($category) ? $category->tag_line : '' }}" >
+
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Description</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <textarea name="description"  >{{isset($category) ? $category->description : '' }}</textarea>
+                                </div>
+                            </div>
                             <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($category) ? 'Update' : 'Save' }}</button>
                         </div>
                 </div>
@@ -98,6 +131,19 @@
 @endsection
 
 @section('scripts')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<script>
+$('textarea').summernote({
+                                            toolbar: [
+                                            ['font', ['bold', 'italic', 'underline', 'clear']],
+                                            ['insert', ['link','image', 'doc', 'video']],
+                                            ['misc', ['codeview']],
+                                            ],
+                                        height: 250
+                                        });
+                                        $('.dropify').dropify();
+</script>
 @if(isset($category))
 {!! JsValidator::formRequest('App\Http\Requests\Admin\Category\UpdateCategory','#category-add-edit') !!}
 @else
