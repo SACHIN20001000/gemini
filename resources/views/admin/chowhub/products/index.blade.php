@@ -27,6 +27,8 @@
                         <table class="table card-table table-striped table-vcenter text-nowrap mb-0" id="datatable">
                             <thead>
                                 <tr>
+                                <th class="wd-lg-20p"><span>Id</span></th>
+
                                     <th class="wd-lg-20p"><span>Name</span></th>
                                     <th class="wd-lg-20p"><span>Product Type</span></th>
                                     <th class="wd-lg-20p"><span>Pet Type</span></th>
@@ -63,8 +65,11 @@
         var table = $('#datatable').DataTable({
             processing: true,
             serverSide: true,
+            order: [ 0, 'desc' ],
             ajax: "{{ route('chowhub-products.index') }}",
             columns: [
+                {data: 'id', name: 'id' },
+
                 {data: 'productName', name: 'productName' },
                 {data: 'food_type', name: 'food_type' },
                 {data: 'pet_type', name: 'pet_type' },
