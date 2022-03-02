@@ -258,7 +258,7 @@ public function store(AddProduct $request)
 
                 $brandValue = new SolutionhubProductBrand;
                 $brandValue->brand_id = $brand->id;
-                $brandValue->product_id = $products->id;
+                $brandValue->product_id = $id;
                 $brandValue->save();
             }
         }
