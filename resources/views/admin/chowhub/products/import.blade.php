@@ -9,7 +9,7 @@
                 <h4 class="content-title mb-0 my-auto">Import</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ Add New</span>
             </div>
         </div>
-<a href="{{route('chowhub-import.create')}}" class="btn btn-info">Export here</a>
+
     </div>
     <!-- breadcrumb -->
     <!--Row-->
