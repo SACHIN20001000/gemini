@@ -21,7 +21,7 @@ class CreateCategoriesTable extends Migration
             $table->integer('order')->nullable();
             $table->string('type');
             $table->string('color');     
-            $table->string('description');     
+            $table->longText('description');     
             $table->string('tag_line');
             $table->integer('parent')->default(0);
             $table->integer('status')->default(0);
