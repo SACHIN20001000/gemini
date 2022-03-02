@@ -29,7 +29,17 @@ class CreateSolutionHubProductsTable extends Migration
             $table->integer('energetic')->nullable();
             $table->timestamps();
         });
-
+        Schema::create('solutionhub_brands', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
+        Schema::create('solutionhub_product_brands', function (Blueprint $table) {
+            $table->id();
+			$table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('brand_id');
+            $table->timestamps();
+        });
         Schema::create('solutionhub_tags', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -66,5 +76,7 @@ class CreateSolutionHubProductsTable extends Migration
         Schema::dropIfExists('solutionhub_product_backend_tags');
         Schema::dropIfExists('solutionhub_tags');
         Schema::dropIfExists('solutionhub_product_tags');
+        Schema::dropIfExists('solutionhub_brands');
+        Schema::dropIfExists('solutionhub_product_brands');
     }
 }

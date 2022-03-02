@@ -17,7 +17,7 @@ class SolutionhubProduct extends Model
     protected $fillable = [
         'productName', 'description', 'tag', 'feature_image', 'status',  'separation_anxiety','teething','boredom','disabled','energetic','aggressive_chewers'
     ];
-    protected $appends = array('availTags','availBackendTags');
+    protected $appends = array('availTags','availBackendTags','availBrands');
     public function backendtags()
     {
 
@@ -27,6 +27,11 @@ class SolutionhubProduct extends Model
     {
 
         return $this->hasMany(SolutionhubProductTag::class, 'product_id', 'id');
+    }
+    public function brands()
+    {
+
+        return $this->hasMany(SolutionhubProductBrand::class, 'product_id', 'id');
     }
     public function getAvailTagsAttribute()
     {
@@ -47,6 +52,18 @@ class SolutionhubProduct extends Model
         foreach ($tags as $key => $tag)
         {
             $tagName = $tag->tagName;
+            array_push($tagsData, $tagName->name);
+        }
+        $tagsData = implode(',', $tagsData);
+        return $tagsData;
+    }
+    public function getAvailBrandsAttribute()
+    {
+        $tags = $this->brands;
+        $tagsData = [];
+        foreach ($tags as $key => $tag)
+        {
+            $tagName = $tag->brandName;
             array_push($tagsData, $tagName->name);
         }
         $tagsData = implode(',', $tagsData);

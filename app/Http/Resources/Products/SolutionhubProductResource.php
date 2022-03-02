@@ -5,6 +5,8 @@ namespace App\Http\Resources\Products;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Products\TagsResource;
 use App\Http\Resources\Products\BackendTagsResource;
+use App\Http\Resources\Products\BrandsResource;
+
 class SolutionhubProductResource extends JsonResource
 {
     /**
@@ -33,6 +35,8 @@ class SolutionhubProductResource extends JsonResource
             'feature_image' => $this->feature_image ?? '',
             'tags'=>$this->tags?TagsResource::collection($this->tags):null,
             'backend_tags'=>$this->backendtags?BackendTagsResource::collection($this->backendtags):null,
+            'brand'=>$this->brands?BrandsResource::collection($this->brands):null,
+       
         ];
     }
 

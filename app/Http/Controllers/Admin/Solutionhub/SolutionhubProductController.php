@@ -9,6 +9,8 @@ use App\Models\Solutionhub\SolutionhubTag;
 use App\Models\Solutionhub\SolutionhubProductTag;
 use App\Models\Solutionhub\SolutionhubBackendTag;
 use App\Models\Solutionhub\SolutionhubProductBackendTag;
+use App\Models\Solutionhub\SolutionhubBrand;
+use App\Models\Solutionhub\SolutionhubProductBrand;
 use DataTables;
 use Illuminate\Support\Str;
 use App\Http\Requests\Admin\Solutionhub\Product\AddProduct;
@@ -109,6 +111,7 @@ public function store(AddProduct $request)
         $products=SolutionhubProduct::create($inputs);
         $tags = explode(",", $inputs['tag']);
         $backendtags = explode(",", $inputs['backend_tag']);
+        $brands = explode(",", $inputs['brand']);
         if (!empty($tags))
         {
             foreach ($tags as $vakey => $tagName)
@@ -124,6 +127,23 @@ public function store(AddProduct $request)
                 $tagValue->tag_id = $tag->id;
                 $tagValue->product_id = $products->id;
                 $tagValue->save();
+            }
+        }
+        if (!empty($brands))
+        {
+            foreach ($brands as $vakey => $brandName)
+            {
+
+                $brand = SolutionhubBrand::updateOrCreate([
+                            'name' => $brandName
+                                ], [
+                            'name' => $brandName
+                ]);
+
+                $brandValue = new SolutionhubProductBrand;
+                $brandValue->brand_id = $brand->id;
+                $brandValue->product_id = $products->id;
+                $brandValue->save();
             }
         }
         if (!empty($backendtags))
@@ -187,6 +207,7 @@ public function store(AddProduct $request)
       SolutionhubProduct::find($id)->update($inputs);
         $tags = explode(",", $inputs['tag']);
         $backendtags = explode(",", $inputs['backend_tag']);
+        $brands = explode(",", $inputs['brand']);
         if (!empty($tags))
         {
             SolutionhubProductTag::where('product_id', $id)->delete();
@@ -223,6 +244,24 @@ public function store(AddProduct $request)
                 $tagValue->save();
             }
         }
+        if (!empty($brands))
+        {
+            SolutionhubProductBrand::where('product_id', $id)->delete();
+            foreach ($brands as $vakey => $brandName)
+            {
+
+                $brand = SolutionhubBrand::updateOrCreate([
+                            'name' => $brandName
+                                ], [
+                            'name' => $brandName
+                ]);
+
+                $brandValue = new SolutionhubProductBrand;
+                $brandValue->brand_id = $brand->id;
+                $brandValue->product_id = $products->id;
+                $brandValue->save();
+            }
+        }
         return back()->with('success', 'Product Updated successfully!');
     }
 
@@ -247,6 +286,7 @@ public function store(AddProduct $request)
         $product = SolutionhubProduct::find($id);
         $productTag = SolutionhubProductTag::where('product_id',$id)->get();
         $productBackendTag = SolutionhubProductBackendTag::where('product_id',$id)->get();
+        $productBrand = SolutionhubProductBrand::where('product_id',$id)->get();
           $products = SolutionhubProduct::create([
             'productName' =>   $product->productName . ' copy'.date("d-h-m-s"),
             'description' =>  $product->description,
@@ -275,6 +315,15 @@ public function store(AddProduct $request)
             SolutionhubProductBackendTag::create([
                 'product_id' =>  $products->id,
                 'tag_id' =>  $value->tag_id,
+            ]);
+        }
+    }
+    if(!empty($productBrand)){
+        foreach ($productBrand as $key => $value) {
+
+            SolutionhubProductBrand::create([
+                'product_id' =>  $products->id,
+                'brand_id' =>  $value->brand_id,
             ]);
         }
     }
