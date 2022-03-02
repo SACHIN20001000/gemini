@@ -136,22 +136,21 @@ class ProductController extends Controller
             $products->sale_price = $inputs['sale_price']??0;
             if (!empty($inputs['banner_image']))
             {
-                if(!$inputs['type']){
+               
                     $path = Storage::disk('s3')->put('images', $inputs['banner_image']);
                     $image_path = Storage::disk('s3')->url($path);
-                }
+               
 
               $products->banner_image = $image_path ?? $inputs['banner_image'] ;
 
             }
             if (!empty($inputs['feature_image']))
-            {if(!$inputs['type']){
+            {
+               
 
                 $path = Storage::disk('s3')->put('images', $inputs['feature_image']);
                 $image_path = Storage::disk('s3')->url($path);
-
-            }
-
+                
                 $products->feature_image = $image_path ?? $inputs['feature_image'];
             }
             $products->about_description = $inputs['about_description'];
@@ -180,17 +179,12 @@ class ProductController extends Controller
                 $productDespImage = new ProductDescriptionDetail();
                 if (!empty($product_detail['image_path']))
                 {
-                    if(!$inputs['type']){
+                 
                         $filename = $product_detail['image_path']->hashname();
                         $image = Image::make($product_detail['image_path'])->resize(600, 600);
                         Storage::disk('s3')->put('/images/'.$filename, $image->stream(), 'public');
                         $image_path = Storage::disk('s3')->url('images/'.$filename);
-                    }else{
-                        $image_path = $product_detail['image_path'];
-                    }
-
-                    // $path = Storage::disk('s3')->put('images', $product_detail['image_path']);
-                    // $image_path = Storage::disk('s3')->url($path);
+                   
                     $productDespImage->image_path = $image_path;
                 }
                 $productDespImage->product_id = $products->id;
@@ -266,14 +260,12 @@ class ProductController extends Controller
                         $Imagepath = '';
                         if (!empty($variation['image']))
                         {
-                            if($inputs['type']){
-                                $Imagepath = $variation['image'];
-                            }else{
+                          
                                 $filename = $variation['image']->hashname();
                                 $image = Image::make($variation['image'])->resize(800, 850);
                                 Storage::disk('s3')->put('/images/'.$filename, $image->stream(), 'public');
                                 $Imagepath = Storage::disk('s3')->url('images/'.$filename) ?? $variation['image'];
-                            }
+                            
 
 
 
@@ -417,8 +409,8 @@ class ProductController extends Controller
             if (!empty($inputs['banner_image']))
             {
 
-              $path = Storage::disk('s3')->put('images', $inputs['banner_image']);
-              $image_path = Storage::disk('s3')->url($path);
+                 $path = Storage::disk('s3')->put('images', $inputs['banner_image']);
+                $image_path = Storage::disk('s3')->url($path);
                 $products->banner_image = $image_path;
             }
             if (!empty($inputs['feature_image']))
