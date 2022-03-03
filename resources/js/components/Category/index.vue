@@ -42,6 +42,7 @@
         >
         </div>
         <div class="tab-cat">
+          <div class="tb_slider">
           <swiper class="swiper" :options="swiperOption">
             <swiper-slide class="active-tab"><a href="#">Dry Food</a></swiper-slide>
             <swiper-slide><a href="#">Wet Food</a></swiper-slide>
@@ -54,9 +55,13 @@
             <swiper-slide><a href="#">Litter Boxes13</a></swiper-slide>
             <swiper-slide><a href="#">Litter Boxes14</a></swiper-slide>
             <swiper-slide><a href="#">Litter Boxes15</a></swiper-slide>
-            <div class="swiper-button-prev" slot="button-prev"></div>
-            <div class="swiper-button-next" slot="button-next"></div>
+              
           </swiper>
+          <div class="swiper_nav">
+                <div class="swiper-button-prev" slot="button-prev"></div>
+                <div class="swiper-button-next" slot="button-next"></div>
+              </div>
+          </div><!-- 
           <ul>
             <li class="active-tab"><a href="#">Health Care</a></li>
             <li><a href="#">Health Care</a></li>
@@ -65,7 +70,7 @@
             <li><a href="#">Health Care</a></li>
             <li><a href="#">Grooming</a></li>
             <li><a href="#">Litter Boxes</a></li>
-          </ul>
+          </ul> -->
         </div>
       <div class="cat_list">
       <h2>Cat Dry Food Selection</h2>
