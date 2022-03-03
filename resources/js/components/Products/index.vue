@@ -65,8 +65,16 @@
             <div class="pro_dec" v-html="product.description"></div>
             <div class="select_type">
               <div class="row" v-if="variationAttributes">
+                <div class="col-auto quantity_select">
+                <label for="staticEmail2" class="sr-only0 line_label no_line">Quantity</label>
+                <div class="number-input md-number-input">
+                  <button  class="minus" @click="quantityMinus">-</button>
+                  <input class="quantity" min="0" v-model="quantity" type="number">
+                  <button class="plus" @click="quantityPlus">+</button>
+                </div>
+              </div>
                 <div
-                  class="col-md-6"
+                  class="cols"
                   v-for="(varitationattr, vakey) in variationAttributes"
                   :key="vakey"
                 >
@@ -92,14 +100,14 @@
               </div>
             </div>
             <div class="row g-3 align-items-center cart_form">
-              <div class="col-auto quantity_select">
+              <!--<div class="col-auto quantity_select">
                 <label for="staticEmail2" class="sr-only">Quantity</label>
                 <div class="number-input md-number-input">
                   <button  class="minus" @click="quantityMinus">-</button>
                   <input class="quantity" min="0" v-model="quantity" type="number">
                   <button class="plus" @click="quantityPlus">+</button>
                 </div>
-              </div>
+              </div>-->
               <div class="col-auto amount_pro">
                 <span  class="form-control">${{finalVariant.sale_price}}</span>
               </div>
@@ -706,7 +714,7 @@ export default {
       loopedSlides: 3, // looped slides should be the same
       spaceBetween: 15,
       centeredSlides: false,
-      slidesPerView: 3,
+      slidesPerView: 4,
       observer: true,
       observeParents: true,
       touchRatio: 0.2,
