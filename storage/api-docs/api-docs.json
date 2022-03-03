@@ -19,6 +19,36 @@
         }
     ],
     "paths": {
+        "/brand": {
+            "get": {
+                "tags": [
+                    "Brand"
+                ],
+                "summary": "Brand",
+                "operationId": "brands",
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BrandResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
         "/cart": {
             "get": {
                 "tags": [
@@ -2861,6 +2891,26 @@
                     }
                 },
                 "type": "string"
+            },
+            "BrandResponse": {
+                "title": "Brand Response",
+                "description": "Brand Response",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "example": {
+                            "id": 2,
+                            "name": "test test",
+                            "logo": "https://petparent.s3.ap-south-1.amazonaws.com/images/fkBJ1vhxMQ0UM6gmL9F4aXnFQiQ2t4ckdLJ5Qh7p.jpg",
+                            "cover_image": "https://petparent.s3.ap-south-1.amazonaws.com/images/n889KiAXfHpXXziIvCrDqxoiZxkWlumz4iWfyw2W.png",
+                            "brand_color": "3434",
+                            "tag_line": "<p>fdggdf</p>",
+                            "overview": "<p>gfd</p>",
+                            "category_text": "<p>gfdgf</p>"
+                        }
+                    }
+                },
+                "type": "object"
             },
             "CartCheckoutRequest": {
                 "title": "Create new checkout",

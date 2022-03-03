@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('content') 
+@section('content')
 
 <div class="container">
     <!-- breadcrumb -->
@@ -13,7 +13,7 @@
         <a class="btn btn-main-primary ml_auto" href="{{ route('products.create') }}">Add New</a>
     </div>
     <!-- breadcrumb -->
-   
+
     <div class="row row-sm">
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 grid-margin">
             <div class="card">
@@ -31,7 +31,7 @@
                                     <!-- <th class="wd-lg-20p"><span>Description</span></th> -->
                                     <!-- <th class="wd-lg-20p"><span>Type</span></th> -->
                                     <!-- <th class="wd-lg-20p"><span>Real Price</span></th>-->
-                                    <th class="wd-lg-20p"><span>Store</span></th> 
+                                    <th class="wd-lg-20p"><span>Store</span></th>
                                     <th class="wd-lg-20p"><span>Category</span></th>
                                     <th class="wd-lg-20p"><span>Status</span></th>
 
@@ -68,12 +68,12 @@
             serverSide: true,
             ajax: "{{ route('products.index') }}",
             columns: [
-                {data: 'productName', name: 'productName'},   
+                {data: 'productName', name: 'productName'},
                 // {data: 'description', name: 'description'},
                 // {data: 'type', name: 'type'},
                 // {data: 'real_price', name: 'real_price'},
-                {data: 'store.name', name: 'store.name'},
-                {data: 'category.name', name: 'category.name'},
+                {data: 'store.name', name: 'store.name',orderable: false,},
+                {data: 'category.name', name: 'category.name',orderable: false,},
                 {data: 'status', name: 'status'},
 
                 {data: 'created_at', name: 'created_at'},

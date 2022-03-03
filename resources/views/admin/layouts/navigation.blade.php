@@ -41,6 +41,7 @@
                     <li><a class="slide-item" href="{{ route('questions.index') }}">Questions</a></li>
                     <li><a class="slide-item" href="{{ route('ratings.index') }}">Reviews</a></li>
                     <li><a class="slide-item" href="{{ route('coupons.index') }}">Coupons</a></li>
+                    <li><a class="slide-item" href="{{ route('brands.index') }}">Brands</a></li>
 
                 </ul>
             </li>
@@ -55,7 +56,7 @@
                     <li><a class="slide-item" href="{{ route('chowhub-questions.index') }}">Faqs</a></li>
                     <li><a class="slide-item" href="{{ route('chowhub-ratings.index') }}">Reviews</a></li>
                     <li><a class="slide-item" href="{{ route('chowhub-coupons.index') }}">Coupons</a></li>
-
+                    <li><a class="slide-item" href="{{ route('chowhub-import.index') }}">Import</a></li>
 
                 </ul>
             </li>

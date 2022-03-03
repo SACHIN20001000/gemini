@@ -6,6 +6,8 @@ use App\Http\Controllers\API\PassportAuthController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\API\BrandController;
+
 use App\Http\Controllers\API\Chowhub\ChowhubProductController;
 use App\Http\Controllers\API\Chowhub\ChowhubCategoryController;
 use App\Http\Controllers\API\Chowhub\ChowhubStoreController;
@@ -64,7 +66,6 @@ Route::middleware([EnsureApiTokenIsValid::class])->group(function () {
   Route::any('products/category/{id}', [ProductController::class, 'productByCategoryId']);
   Route::get('products/attributes/{id}', [ProductController::class, 'getAttributeByProduct']);
 
-  Route::get('chowhub/products', [ChowhubProductController::class, 'index']);
   Route::any('chowhub/products/{id}', [ChowhubProductController::class, 'productById']);
   Route::any('chowhub/products/category/{id}', [ChowhubProductController::class, 'productByCategoryId']);
   Route::get('chowhub/products/attributes/{id}', [ChowhubProductController::class, 'getAttributeByProduct']);
@@ -75,14 +76,16 @@ Route::middleware([EnsureApiTokenIsValid::class])->group(function () {
   Route::any('litterhub/products/{id}', [LitterhubProductController::class, 'productById']);
   Route::get('litterhub/products/attributes/{id}', [LitterhubProductController::class, 'getAttributeByProduct']);
 //solutionhub
-Route::get('solutionhub/products', [SolutionhubProductController::class, 'index']);
+
 Route::any('solutionhub/products/{id}', [SolutionhubProductController::class, 'productById']);
   Route::get('pages', [PageController::class, 'index']);
   Route::any('pages/{id}', [PageController::class, 'pageByID']);
 
 
 });
+Route::get('chowhub/products', [ChowhubProductController::class, 'index']);
 
+Route::get('solutionhub/products', [SolutionhubProductController::class, 'index']);
 Route::get('solutionhub/tags', [SolutionhubProductController::class, 'allTags']);
 Route::get('chowhub/tags', [ChowhubProductController::class, 'allTags']);
 Route::get('litterhub/tags', [LitterhubProductController::class, 'allTags']);
@@ -98,6 +101,9 @@ Route::middleware('auth:api')->group(function ()
     });
     Route::resource('order', OrderController::class);
 });
+Route::get('brand/{id}', [BrandController::class, 'index']);
+Route::get('brand/product/{id}', [BrandController::class, 'productByBrand']);
+
 
 Route::resource('cart', CartController::class);
 Route::get('cartIdByKey', [CartController::class, 'getCartIDUsingKey']);

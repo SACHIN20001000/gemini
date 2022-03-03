@@ -12,6 +12,8 @@ use App\Models\Litterhub\LitterhubVariationAttribute;
 use App\Models\Litterhub\LitterhubVariationAttributeValue;
 use App\Models\Litterhub\LitterhubTag;
 use App\Models\Litterhub\LitterhubProductTag;
+use App\Models\Litterhub\LitterhubBrand;
+use App\Models\Litterhub\LitterhubProductBrand;
 use App\Models\Litterhub\LitterhubBackendTag;
 use App\Models\Litterhub\LitterhubProductBackendTag;
 use App\Models\Litterhub\LitterhubProductDescriptionImage;
@@ -112,6 +114,7 @@ public function store(AddProduct $request)
         $inputs = $request->all();
         $tags = explode(",", $inputs['tag']);
         $backendtags = explode(",", $inputs['backend_tag']);
+        $brands = explode(",", $inputs['brand']);
         // ADD PRODUCT TABLE DATA
 //         echo"<pre>";
 // print_r($inputs);die;
@@ -218,6 +221,23 @@ public function store(AddProduct $request)
                     $tagValue->tag_id = $tag->id;
                     $tagValue->product_id = $products->id;
                     $tagValue->save();
+                }
+            }
+            if (!empty($brands))
+            {
+                foreach ($brands as $vakey => $brandName)
+                {
+
+                    $brand = LitterhubBrand::updateOrCreate([
+                                'name' => $brandName
+                                    ], [
+                                'name' => $brandName
+                    ]);
+
+                    $brandValue = new LitterhubProductBrand;
+                    $brandValue->brand_id = $brand->id;
+                    $brandValue->product_id = $products->id;
+                    $brandValue->save();
                 }
             }
             if (!empty($inputs['attributes']))
@@ -369,9 +389,11 @@ public function store(AddProduct $request)
         if(!isset($inputs['variations'][0]['id'])){
             LitterhubProductVariation::where('product_id', $id)->delete();
         }
+
         LitterhubVariationAttributeValue::where('product_id', $id)->delete();
         $tags = explode(",", $inputs['tag']);
         $backendtags = explode(",", $inputs['backend_tag']);
+        $brands = explode(",", $inputs['brand']);
         if (!empty($inputs['productName']))
         {
             $litter_material=$inputs['litter_material'] ?? [];
@@ -418,6 +440,24 @@ public function store(AddProduct $request)
                     $tagValue->tag_id = $tag->id;
                     $tagValue->product_id = $products->id;
                     $tagValue->save();
+                }
+            }
+            if (!empty($brands))
+            {
+                LitterhubProductBrand::where('product_id', $id)->delete();
+                foreach ($brands as $vakey => $brandName)
+                {
+
+                    $brand = LitterhubBrand::updateOrCreate([
+                                'name' => $brandName
+                                    ], [
+                                'name' => $brandName
+                    ]);
+
+                    $brandValue = new LitterhubProductBrand;
+                    $brandValue->brand_id = $brand->id;
+                    $brandValue->product_id = $products->id;
+                    $brandValue->save();
                 }
             }
             if (!empty($backendtags))
@@ -711,7 +751,7 @@ public function store(AddProduct $request)
         $litterhubProductDescriptionImage = LitterhubProductDescriptionImage::where('product_id',$id)->get();
         $litterhubProductFeaturePageImage = LitterhubProductFeaturePageImage::where('product_id',$id)->get();
         $productVariation = LitterhubProductVariation::where('product_id',$id)->get();
-
+        $productBrand = LitterhubProductBrand::where('product_id',$id)->get();
         $products = LitterhubProduct::create([
             'productName' =>   $product->productName . ' copy'.date("d-h-m-s"),
             'description' =>  $product->description,
@@ -778,7 +818,15 @@ public function store(AddProduct $request)
             ]);
         }
     }
+    if(!empty($productBrand)){
+        foreach ($productBrand as $key => $value) {
 
+            LitterhubProductBrand::create([
+                'product_id' =>  $products->id,
+                'brand_id' =>  $value->brand_id,
+            ]);
+        }
+    }
     if(!empty($litterhubProductDescriptionImage)){
         foreach ($litterhubProductDescriptionImage as $key => $value) {
 

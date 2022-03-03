@@ -16,14 +16,17 @@ class Product extends Model
         'updated_at' => 'datetime:M d, Y h:i:s',
     ];
     protected $fillable = [
-        'productName', 'type', 'banner_image', 'about_description', 'feature_image','seo_title','meta_description', 'description', 'real_price', 'sale_price', 'category_id', 'status','store_id','weight','quantity','sku','description'
+        'productName','brand_id', 'type', 'banner_image', 'about_description', 'feature_image','seo_title','meta_description', 'description', 'real_price', 'sale_price', 'category_id', 'status','store_id','weight','quantity','sku','description'
     ];
 
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
-
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class, 'brand_id');
+    }
     public function store()
     {
         return $this->belongsTo(Store::class, 'store_id');

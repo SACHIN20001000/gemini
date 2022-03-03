@@ -25,9 +25,9 @@ class AddCategory extends FormRequest
     {
         return [
             'name' => [
-            'required',
-            'unique:categories,name'
-            ],'feature_image' => 'required','status' => 'required'
+            'required'
+            
+            ],'feature_image' => 'required','status' => 'required','order' => 'required'
         ];
     }
 }
