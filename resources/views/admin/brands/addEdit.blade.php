@@ -37,13 +37,62 @@
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
-                                    <label class="form-label mg-b-0">Logo</label>
+                                    <label class="form-label mg-b-0">Logo </label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
-                                    <input class="form-control" name="logo"  type="file">
-                                    @if(!empty($brand->logo))
-                                    <a href="{{$brand->logo}}" target="_blank"><img src="{{$brand->logo}}"  height="50" width="50"></a>
-                                    @endif                                    
+                                        @if(!empty($brand->logo))
+                                            <input type="file" class="dropify" data-default-file="{{$brand->logo}}" name="logo"  >
+                                        @else
+                                            <input type="file" class="dropify"  name="logo" >
+                                        @endif
+                             
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Cover Image</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                @if(!empty($brand->cover_image))
+                                            <input type="file" class="dropify" data-default-file="{{$brand->cover_image}}" name="cover_image"  >
+                                        @else
+                                            <input type="file" class="dropify"  name="cover_image" >
+                                        @endif
+                              
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Brand Color</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <input type="color" name="brand_color" placeholder="Enter Your brand color"  class="form-control" value="{{isset($brand) ? $brand->brand_color : '' }}" >
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Tag Line</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                              
+                                <input type="text" name="tag_line"  class="form-control" placeholder="Enter Your tag line" value="{{isset($brand) ? $brand->tag_line : '' }}" >
+
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Brand Overview</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <textarea name="overview"  >{{isset($brand) ? $brand->overview : '' }}</textarea>
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Category Text</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                <textarea name="category_text"  >{{isset($brand) ? $brand->category_text : '' }}</textarea>
                                 </div>
                             </div>
                             <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($brand) ? 'Update' : 'Save' }}</button>
@@ -61,6 +110,19 @@
 @endsection
 
 @section('scripts')
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<script>
+$('textarea').summernote({
+                                            toolbar: [
+                                            ['font', ['bold', 'italic', 'underline', 'clear']],
+                                            ['insert', ['link','image', 'doc', 'video']],
+                                            ['misc', ['codeview']],
+                                            ],
+                                        height: 250
+                                        });
+</script>
+   
 @if(isset($brand))
 {!! JsValidator::formRequest('App\Http\Requests\Admin\Brands\UpdateBrands','#brand-add-edit') !!}
 @else

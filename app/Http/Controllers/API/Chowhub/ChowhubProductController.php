@@ -47,7 +47,7 @@ class ChowhubProductController extends Controller
     public function index(Request $request)
     {
         $limit = $request->limit ? $request->limit : 20;
-        $products = ChowhubProduct::with(['category', 'store', 'productVariation', 'productDescriptionImage', 'productGallery', 'variationAttributesValue', 'tags.tagName'])->orderBy('id','DESC')->paginate($limit);
+        $products = ChowhubProduct::with(['category', 'store', 'productVariation', 'productDescriptionImage', 'productGallery', 'variationAttributesValue', 'tags.tagName'])->orderBy('id','DESC')->get();
 
         return ChowhubProductResource::collection($products);
     }

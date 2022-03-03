@@ -150,6 +150,18 @@
                             </div>
                             <div class="row row-xs align-items-center mg-b-20">
                                 <div class="col-md-4">
+                                    <label class="form-label mg-b-0">Brand</label>
+                                </div>
+                                <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                    <select name="brand_id"  class="form-control">
+                                        @foreach($brands as $brand)
+                                        <option {{ (isset($product) && $product->brand_id  == $brand->id) ? 'selected' : '' }}  value="{{$brand->id}}">  {{$brand->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row row-xs align-items-center mg-b-20">
+                                <div class="col-md-4">
                                     <label class="form-label mg-b-0">Status</label>
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
@@ -229,8 +241,10 @@
                             <h4>Attributes</h4>
                             <table class="table table-bordered" id="attributes_fields">
                                 <tr>
+
                                     <td>
                                         <input type="text"  id="name_attributes" placeholder="Enter your Name" class="form-control tableData" />
+                                        <p id="error" style="color:red; font-size:15px"></p>
                                     </td>
                                     <td><input type="text"   id="value_attributes" placeholder="Enter your value with (,) seperated" class="form-control tableData" />
                                     </td>
@@ -373,7 +387,6 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
-
  function CheckDimensionBannerImage() {
      var fileUpload = document.getElementById("image_Validate");
         if (typeof (fileUpload.files) != "undefined") {
@@ -450,20 +463,30 @@ function CheckDimensionFeatureImage() {
              },
                      addAttributes:function()
                      {
-
+                        $("#error").empty();
                      let attributeName = $("#name_attributes").val();
                      attributeName=attributeName.trim();
                      let value_attributes = $("#value_attributes").val();
+                     var blockedHeader = new Array("QTY","qty", "weight","regular price","sale price","sku","image","WEIGHT", "REGULAR PRICE", "SALE PRICE", "SKU", "IMAGE");
+
                      if (value_attributes.length != 0 && attributeName.length != 0){
                      var removeLastQuama = value_attributes.charAt(value_attributes.length - 1);
                      if (removeLastQuama != ','){
-                     let attributeValues = value_attributes.split(",");
-                     attributeValues = attributeValues.map(function (el) {
-                                                      return el.trim();
-                                                    });
-                     attributes[attributeName] = attributeValues;
-                     productsEvent.displayAttributes();
-                     productsEvent.createVariations();
+                        if($.inArray(attributeName, blockedHeader) != -1) {
+
+                            document.getElementById("error").textContent = "You can not use ( " +attributeName+" ) as a attribute name";
+                            } else {
+                                blockedHeader.push(attributeName);
+
+                                let attributeValues = value_attributes.split(",");
+                                attributeValues = attributeValues.map(function (el) {
+                                                                return el.trim();
+                                                                });
+                                attributes[attributeName] = attributeValues;
+                                productsEvent.displayAttributes();
+                                productsEvent.createVariations();
+                            }
+
                      } else(
                              swal('Their is not (,) at the last of your value')
                              )
@@ -480,7 +503,7 @@ function CheckDimensionFeatureImage() {
                      for (const [attr, values] of Object.entries(attributes))
                      {
                      let cellValue = values.toString();
-                     $("#attributes_fields").prepend('<tr class="dynamic_attributes" id="row' + attr + '"><td><input type="text" disabled="true" name="attributes[name][]"  value="' + attr + '" placeholder="Enter your Name" class="form-control tableData" /></td><td><input type="text" readonly="true" value="' + cellValue + '" name="attributes[' + attr + ']"  placeholder="Enter your value with (,) seperated" class="form-control tableData" /></td><td><button type="button" name="remove" onclick="productsEvent.removeAttributes(\'' + attr + '\')" class="btn btn-danger btn_remove">X</button></td></tr>');
+                     $("#attributes_fields").prepend('<tr class="dynamic_attributes" id="row' + attr.split(' ')[0] + '"><td><input type="text" readonly="true" name="attributes[' + attr + ']"  value="' + attr + '" placeholder="Enter your Name" class="form-control tableData attr" /></td><td><input type="text" readonly="true" value="' + cellValue + '" name="attributes[' + attr + ']"  placeholder="Enter your value with (,) seperated" class="form-control tableData attrval" /></td><td><button type="button" name="remove" onclick="productsEvent.removeAttributes(\'' + attr + '\')" class="btn btn-danger btn_remove">X</button> <input onclick="productsEvent.editAttributes(\'' + attr + '\',\'' + values + '\')" class="btn btn-success button" type="button" value="Edit" /></td></tr>');
                      }
                      $("#name_attributes").val('');
                      $("#value_attributes").val('');
@@ -563,6 +586,39 @@ function CheckDimensionFeatureImage() {
                      {
                      variations.splice(index, 1);
                      productsEvent.displayVariations();
+                     },
+                     editAttributes:function(attr,values){
+
+                        $('#row' + attr.split(' ')[0] ).find(".attrval").each(function() {
+                            this.removeAttribute("readonly");
+                            var attrl=$('#row' + attr.split(' ')[0] ).find(".attr").val();
+                            console.log(attrl + '='+attr)
+                            $('#row' + attr.split(' ')[0] ).find(".button").val('Update');
+
+                            delete attributes[attr];
+                            attributes[attrl] = this.value.split(',');
+
+                            if(values != this.value){
+                                productsEvent.displayAttributes();
+                                productsEvent.createVariations();
+                                $('#row' + attr.split(' ')[0] ).find(".button").val('Edit');
+                                this.addAttribute("readonly");
+                            }
+                        });
+                        $('#row' + attr.split(' ')[0] ).find(".attr").each(function() {
+                            var attrval=$('#row' + attr.split(' ')[0] ).find(".attrval").val();
+                            $('#row' + attr.split(' ')[0] ).find(".button").val('Update');
+                            this.removeAttribute("readonly");
+                            delete attributes[attr];
+                            attributes[this.value.split(',')] = attrval.split(',');
+
+                            if(attr != this.value){
+                                productsEvent.displayAttributes();
+                                productsEvent.createVariations();
+                                $('#row' + attr.split(' ')[0] ).find(".button").val('Edit');
+                                this.addAttribute("readonly");
+                            }
+                        });
                      },
                      updateVariationvalue:function(index, key, value)
                      {

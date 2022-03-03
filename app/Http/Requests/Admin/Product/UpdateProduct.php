@@ -27,17 +27,14 @@ class UpdateProduct extends FormRequest
             'productName' => 'required',
             'category_id' => 'required',
             'store_id' => 'required',
+            'brand_id' => 'required',
             'status' => 'required',
             'weight' => 'required',
             'real_price' => 'required',
-            //'sale_price' => 'required',
             'sku' => 'required',
             'qty' => 'required',
             'qty' => 'required',
-            // 'banner_image' => 'dimensions:width=1500,height=450',
-            // 'feature_image' => 'dimensions:width=800,height=850'
-
-
+         
         ];
     }
     public function messages()

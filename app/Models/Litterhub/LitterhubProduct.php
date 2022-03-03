@@ -17,7 +17,7 @@ class LitterhubProduct extends Model
     protected $fillable = [
         'productName', 'type', 'feature_image', 'description', 'real_price', 'sale_price', 'category_id', 'status','scented','clumping','cat_count','litter_material','sku','store_id','weight','quantity'
     ];
-    protected $appends = array('availTags','availBackendTags');
+    protected $appends = array('availTags','availBackendTags','availBrands');
 
 
     public function category()
@@ -44,7 +44,11 @@ class LitterhubProduct extends Model
     {
         return $this->hasMany(LitterhubVariationAttributeValue::class, 'product_id', 'id');
     }
+    public function brands()
+    {
 
+        return $this->hasMany(LitterhubProductBrand::class, 'product_id', 'id');
+    }
     public function tags()
     {
 
@@ -64,7 +68,7 @@ class LitterhubProduct extends Model
     {
         return $this->hasMany(LitterhubProductFeaturePageImage::class, 'product_id', 'id');
     }
-
+ 
     public function getAvailTagsAttribute()
     {
         $tags = $this->tags;
@@ -84,6 +88,18 @@ class LitterhubProduct extends Model
         foreach ($tags as $key => $tag)
         {
             $tagName = $tag->tagName;
+            array_push($tagsData, $tagName->name);
+        }
+        $tagsData = implode(',', $tagsData);
+        return $tagsData;
+    }
+    public function getAvailBrandsAttribute()
+    {
+        $tags = $this->brands;
+        $tagsData = [];
+        foreach ($tags as $key => $tag)
+        {
+            $tagName = $tag->brandName;
             array_push($tagsData, $tagName->name);
         }
         $tagsData = implode(',', $tagsData);

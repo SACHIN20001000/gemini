@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\Chowhub\ChowhubCategoryController;
 use App\Http\Controllers\Admin\Chowhub\ChowhubStoreController;
 use App\Http\Controllers\Admin\Chowhub\ChowhubProductController;
 use App\Http\Controllers\Admin\Chowhub\ChowhubCouponController;
+use App\Http\Controllers\Admin\Chowhub\ChowhubImportController;
+
 
 use App\Http\Controllers\Admin\Solutionhub\SolutionhubProductController;
 use App\Http\Controllers\Admin\UserController;
@@ -99,7 +101,7 @@ Route::prefix('admin')->group(function ()
 
         Route::resource('chowhub-questions', ChowhubFaqController::class);
         Route::resource('litterhub-questions', LitterHubFaqController::class);
-
+        Route::resource('chowhub-import', ChowhubImportController::class);
         Route::resource('ratings', RatingController::class);
         Route::post('save-image', [App\Http\Controllers\Admin\RatingController::class, 'save_photo']);
         Route::post('save-chowhub-image', [App\Http\Controllers\Admin\Chowhub\ChowhubRatingController::class, 'save_photo']);

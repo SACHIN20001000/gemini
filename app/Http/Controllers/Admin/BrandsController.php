@@ -62,8 +62,8 @@ class BrandsController extends Controller
      */
     public function create()
     {
-        $brands = Brand::all();
-        return view('admin.brands.addEdit', compact('brands'));
+       
+        return view('admin.brands.addEdit');
     }
 
     /**
@@ -81,6 +81,12 @@ class BrandsController extends Controller
             $path = Storage::disk('s3')->put('images', $request->logo);
             $path = Storage::disk('s3')->url($path);
             $inputs['logo'] = $path;
+        }
+        if ($request->hasFile('cover_image'))
+        {
+            $path = Storage::disk('s3')->put('images', $request->cover_image);
+            $path = Storage::disk('s3')->url($path);
+            $inputs['cover_image'] = $path;
         }
         Brand::create($inputs);
 
@@ -126,6 +132,12 @@ class BrandsController extends Controller
             $path = Storage::disk('s3')->put('images', $request->logo);
             $path = Storage::disk('s3')->url($path);
             $inputs['logo'] = $path;
+        }
+        if ($request->hasFile('cover_image'))
+        {
+            $path = Storage::disk('s3')->put('images', $request->cover_image);
+            $path = Storage::disk('s3')->url($path);
+            $inputs['cover_image'] = $path;
         }
         $brand->update($inputs);
         return back()->with('success', 'Brand updated successfully!');

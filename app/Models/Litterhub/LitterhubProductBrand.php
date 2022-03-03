@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Litterhub;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Brand extends Model
+class LitterhubProductBrand extends Model
 {
 
     use HasFactory;
@@ -15,7 +15,12 @@ class Brand extends Model
         'updated_at' => 'datetime:d-m-Y',
     ];
     protected $fillable = [
-        'name', 'logo','cover_image','brand_color','tag_line','overview','category_text'
+        'product_id', 'brand_id'
     ];
+
+    public function brandName()
+    {
+        return $this->belongsTo(LitterhubBrand::class, 'brand_id');
+    }
 
 }

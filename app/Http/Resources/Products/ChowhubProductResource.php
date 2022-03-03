@@ -53,7 +53,7 @@ class ChowhubProductResource extends JsonResource
             'attributes' => ProductAttributesResource::collection($this->variationAttributesValue),
             'tags'=>$this->tags?TagsResource::collection($this->tags):null,
             'backend_tags'=>$this->backendtags?BackendTagsResource::collection($this->backendtags):null,
-
+            'brands'=>$this->brands?BrandsResource::collection($this->brands):null,
             'variation_attributes'=>  $this->getAttributeByProduct($this->id)
 
         ];
