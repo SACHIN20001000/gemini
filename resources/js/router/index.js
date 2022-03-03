@@ -121,7 +121,7 @@ export default new VueRouter({
       component: Logout
     },
     {
-      path: '/brand/:brandid',
+      path: '/brand/:slug/:brandid',
       beforeEnter : guardMyroute,
       name: 'Brand',
       component: Brand
