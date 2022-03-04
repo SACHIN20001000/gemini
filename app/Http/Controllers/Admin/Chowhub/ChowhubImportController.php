@@ -140,36 +140,41 @@ class ChowhubImportController extends Controller {
                         if (!empty($description_images)) {
                          
                             foreach($description_images as $key => $value) {
-
+                              if(!empty($value)){
                                 ChowhubProductDescriptionImage::create([
                                     'product_id' => $products->id,
                                     'image_path' => $value,
                                     'priority' => $key,
                                 ]);
-
+                              }
                             }
                         }
 
                         if (!empty($feature_page_images)) {
 
                             foreach($feature_page_images as $key => $value) {
+                              if(!empty($value)){
                                 ChowhubProductFeaturePageImage::create([
                                     'product_id' => $products->id,
                                     'image_path' => $value,
                                     'priority' => $key,
                                 ]);
-
+                              }
                             }
                         }
                         if (!empty($media_image)) {
 
                             foreach($media_image as $key => $value) {
+                         
+                              if(!empty($value)){
                                 ChowhubProductGallery::create([
-                                    'product_id' => $products->id,
-                                    'image_path' => $value,
-                                    'priority' => $key,
+                                  'product_id' => $products->id,
+                                  'image_path' => $value,
+                                  'priority' => $key,
 
-                                ]);
+                              ]);
+                              }
+                                
 
                             }
                         }
