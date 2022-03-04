@@ -73,7 +73,7 @@
                     </span>
                     <label>(125 Reviews)</label>
                   </div>
-                  <h3>branProduct.name</h3>
+                  <h3>{{limitedString(branProduct.name)}}</h3>
                   <p class="bd_type" v-if="branProduct.variations">Variations</p>
                   <p class="bd_type" v-else>Simple</p>
                   <label v-if="branProduct.variations">${{branProduct.variations[0].real_price}}</label>
@@ -140,7 +140,14 @@ export default {
     },
     productSlug(productName){
       return productName.replace(/\s+/g, '-').toLowerCase()
-    }
+    },
+    limitedString(str){
+      if(str.length > 12) {
+         return str.slice(0,12)+'...'
+      }else{
+        return str
+      }      
+   }
   }
 }
 </script>
