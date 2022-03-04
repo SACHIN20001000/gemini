@@ -31,7 +31,7 @@ class SolutionhubProductController extends Controller
 
         if ($request->ajax())
         {
-            $data = SolutionhubProduct::orderby('id','DESC');
+            $data = SolutionhubProduct::with('backendtags','tags','brands')->get();
 
             return Datatables::of($data)
                             ->addIndexColumn()

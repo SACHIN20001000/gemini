@@ -27,11 +27,14 @@
                         <table class="table card-table table-striped table-vcenter text-nowrap mb-0" id="datatable">
                             <thead>
                                 <tr>
+                                <th class="wd-lg-20p"><span>Id</span></th>
+
                                     <th class="wd-lg-20p"><span>Name</span></th>
+                                    <th class="wd-lg-20p"><span>Brand</span></th>
+                                    <th class="wd-lg-20p"><span>Tags</span></th>
+                                    <th class="wd-lg-20p"><span>Backend Tags</span></th>
                   
                                     <th class="wd-lg-20p"><span>Status</span></th>
-
-                                    <th class="wd-lg-20p"><span>Created At</span></th>
                                     <th class="wd-lg-20p">Action</th>
                                 </tr>
                             </thead>
@@ -62,12 +65,16 @@
         var table = $('#datatable').DataTable({
             processing: true,
             serverSide: true,
+            order: [ 0, 'desc' ],
             ajax: "{{ route('solutionhub-products.index') }}",
             columns: [
-                {data: 'productName', name: 'productName' },
-                {data: 'status', name: 'status'},
+                {data: 'id', name: 'id' },
 
-                {data: 'created_at', name: 'created_at'},
+                {data: 'productName', name: 'productName' },
+                {data: 'availBrands', name: 'availBrands' },
+                {data: 'availTags', name: 'availTags' },
+                {data: 'availBackendTags', name: 'availBackendTags' }, 
+                {data: 'status', name: 'status'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
