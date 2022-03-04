@@ -56,7 +56,7 @@
                     <li><a class="slide-item" href="{{ route('chowhub-questions.index') }}">Faqs</a></li>
                     <li><a class="slide-item" href="{{ route('chowhub-ratings.index') }}">Reviews</a></li>
                     <li><a class="slide-item" href="{{ route('chowhub-coupons.index') }}">Coupons</a></li>
-                    <li><a class="slide-item" href="{{ route('chowhub-import.index') }}">Import</a></li>
+                    <!-- <li><a class="slide-item" href="{{ route('chowhub-import.index') }}">Import</a></li> -->
 
                 </ul>
             </li>
