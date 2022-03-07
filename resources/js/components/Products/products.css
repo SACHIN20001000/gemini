@@ -1,6 +1,6 @@
 
 
-
+ 
 
 .pro_dec {font-weight: 300; font-size: 14px; }/* responsive */
 .srch_q button {border: 0; background: none; position: absolute; top: 13px; width: 40px; right: 0; }
@@ -152,6 +152,96 @@ section.duo_banner .row {
 }
 section.xl_sec img {
     max-width: 100%;
+}
+.row.pr_slide {
+    flex-direction: column;
+}
+.row.pr_slide>div {
+    max-width: 100% !important;
+}
+.swiper-container.swiper.gallery-top .swiper-zoom-container {
+    padding-top: 450px !important;
+}
+.cart_form {
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    max-width: 470px;
+}
+.cart_form>div {
+    flex: auto !important;
+}
+.ingradients-wrap .col-md-4, .ingradients-wrap .col-md-8 {
+    max-width: 100% !important;
+    padding: 10px;
+}
+.ingradients-inner .textdecoration {
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+}
+.ingradients-wrap {
+    max-width: 360px;
+    margin: 20px auto;
+}
+.cart_form>.add_cart>button {
+    width: 100%;
+}
+.cart_form>.add_cart {
+    width: 100px;
+}
+.cart_form>.amount_pro {
+    max-width: calc(100% - 70px);
+}
+.cart_form>.amount_pro>span {
+    width: 100% !important;
+}
+.nutrition_inner img {
+    max-width:100% !important;
+}
+body,html{overflow-x:hidden ;}
+.question-inner02>.col-sm-3 ,.review-wrap .row.m-lr> .col-sm-3{
+    max-width: 60%;
+}
+.question-inner02> .Large-btn-box ,.review-wrap .row.m-lr> .col-sm-2{
+    max-width: 40%;
+}
+.light-box2 {
+    flex-wrap: nowrap !important;
+    min-height: 160px !important;
+}
+.faq_list>p {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding: 0px 12px !important;
+    line-height: 40px !important;
+}
+.question-inner02 .col-sm-7
+{
+   padding: 20px 0;
+}
+.question-inner02 .col-sm-7 .col-sm-3 {
+    max-width: 150px;
+}
+.question-inner02 .col-sm-7 .col-sm-9 {
+    max-width: calc(100% - 150px);
+}
+p.light-box-txt02 {
+    word-break: break-all;
+    line-height: .7;
+    text-align: center;
+    font-size: 32px;
+}
+.light-box2
+{
+   min-height: 160px !important;
+}
+.reviews-img-section
+{
+   margin: 20px 0 !important;
+}
+.bm-wrap.cmnt_txt span {
+    font-size: 12px !important;
 }
 
  }
@@ -433,12 +523,15 @@ p.ingr b {
    background: #f6f6f6;
 }
 .ingradients-inner .textdecoration {
-   font-family: 'Gentona';
-   font-size: 14px;
-   line-height: 1.7;
-   color: #706f6f;
-   font-weight: 400;
-   max-width: 500px;
+    font-family: 'Gentona';
+    font-size: 20px;
+    line-height: 1.5;
+    color: #868686;
+    font-weight: 400;
+    max-width: 650px;
+}
+.ingradients-wrap:nth-child(even) .ingradients-inner {
+    background: #fcfcfc;
 }
 .centered_txt {
    display: flex;
@@ -449,10 +542,10 @@ p.ingr b {
    padding-top: 35px;
 }
 .title-txt {
-   font-size: 24px;
+   font-size: 31px;
    color: #706f6f;
    text-align: center;
-   font-weight: 400;
+   font-weight: 300;
    border-bottom: 1px solid #c6c6c6;
    padding-bottom: 30px;
    margin-bottom: 30px;
@@ -834,7 +927,6 @@ p.copy_p {
     }
    .reviews-img-section {
        margin-top: 20px;
-       height: 170px;
        overflow: scroll;
    }
    .star-box {
@@ -1035,6 +1127,16 @@ body {
 .gallery-thumbs .swiper-slide-active {
   opacity: 1;
 }
+
+.ingradients-wrap .col-md-4 {
+    max-width: 360px;
+}
+
+.ingradients-wrap .col-md-8 {
+    max-width: calc(100% - 360px);
+    width: 100%;
+}
+
 /**************************swiper css end**************************/
 .nutrition_inner .col-md-12 img {width: 100%;}
 .question_form{display: flex; width: 100%;}
@@ -1078,7 +1180,7 @@ span.rate_flex {display: flex; justify-content: space-between; max-width: 168px;
  .vue-star-rating-rating-text{display: none !important;}
 select[name="sortreviews"] {max-width: 120px; height: 30px; padding: 0 0 0 10px; font-size: 14px; font-weight: 400; }
 .reviews-img-section img {max-width: 100px; width: 100%; height: 80px; object-fit: cover; }
-section.about-brand p {font-family: 'Gentona'; font-size: 14px; line-height: 1.3; color: #706f6f; font-weight: 300; }
+section.about-brand p {font-family: 'Gentona'; font-size: 16px; line-height: 1.3; color: #706f6f; font-weight: 300; }
 .swiper-button-prev.swiper-button-white, .swiper-button-next.swiper-button-white{--swiper-navigation-color:#e1e1e1 !important;}
 ul.style_p1 span.selectedOption + small {; display: block; font-weight: 300; }
 .select_type .row {flex-direction: row-reverse; }
@@ -1092,7 +1194,7 @@ ul.style_p1 span.selectedOption + small {; display: block; font-weight: 300; }
 }
 .gallery-thumbs  .swiper-slide {
     position: relative;
-    padding-top: 30%;
+    padding-top: 24%;
     background: #fff;
    /* border: 1px solid rgba(0,0,0,.1);*/
     height: auto;
