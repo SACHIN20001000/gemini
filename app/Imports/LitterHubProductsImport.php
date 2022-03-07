@@ -2,11 +2,11 @@
 
 namespace App\Imports;
 
-use App\Models\LitterHubProduct;
+use App\Models\LitterhubProduct;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
-class LitterHubProductsImport implements ToModel
+class LitterhubProductsImport implements ToModel
 {
     /**
     * @param array $row
@@ -19,7 +19,7 @@ class LitterHubProductsImport implements ToModel
     public function model(array $row)
     {
      
-        return new LitterHubProduct([
+        return new LitterhubProduct([
          //
 
 
