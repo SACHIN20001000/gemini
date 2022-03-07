@@ -10,7 +10,12 @@
                 <h4 class="content-title mb-0 my-auto">Products</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ list</span>
             </div>
         </div>
+        <div>
         <a class="btn btn-main-primary ml_auto" href="{{ route('litterhub-products.create') }}">Add New</a>
+        <a class="btn btn-main-primary ml_auto export-btn"  href="#">Export</a>
+        <a class="btn btn-main-primary ml_auto"  href="{{ route('litterhub-import.index') }}">Import</a>
+        </div>
+       
     </div>
     <!-- breadcrumb -->
 
@@ -27,6 +32,7 @@
                         <table class="table card-table table-striped table-vcenter text-nowrap mb-0" id="datatable">
                             <thead>
                                 <tr>
+                                <th class="wd-lg-20p"><span><input type="checkbox" name="export"  class="form-check-input allchecked"></span></th>
                                 <th class="wd-lg-20p"><span>Id</span></th>
                                     <th class="wd-lg-20p"><span>Name</span></th>
                                     <th class="wd-lg-20p"><span>Store</span></th>
@@ -58,15 +64,17 @@
 @endsection
 
 @section('scripts')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
 
         var table = $('#datatable').DataTable({
             processing: true,
             serverSide: true,
-            order: [ 0, 'desc' ],
+            order: [ 1, 'desc' ],
             ajax: "{{ route('litterhub-products.index') }}",
             columns: [
+                {data: 'checkbox', name: 'checkbox', orderable: false, searchable: false },
                 {data: 'id', name: 'id' },
                 {data: 'productName', name: 'productName' },
                 {data: 'store.name', name: 'store.name',orderable: false,},
@@ -80,7 +88,52 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
+        $.ajaxSetup({
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+        });
+        $(".allchecked").click(function(){
+        if ($(this).is(':checked'))
+            {
+                $(".checkbox").prop('checked', true);
+            }else{
+                $(".checkbox").prop('checked', false);
+            }              
+        });
+        $(".export-btn").click(function(){
+           
+            if ($('.checkbox').is(':checked'))
+            {
+                var id=[];
+                $('input[name="export"]:checked').each(function() {
+                    id.push(this.value);
+                });
+              
+                var data = 'id=' + id;
+                $.ajax({
+                    type:'POST',
+                            url:'/admin/litterhub-product-export',
+                            data: data,
+                            cache: false,
+                            xhrFields:{
+                                responseType: 'blob'
+                            },
 
+                            success:function(data){
+                               
+                                var link = document.createElement('a');
+                                link.href = window.URL.createObjectURL(data);
+                                link.download = `ExportProducts.csv`;
+                                link.click();
+                            }
+                    });
+            }else{
+                swal("Please Select Products For Export...");
+            }     
+        });
+      
     });
+  
 </script>
 @endsection

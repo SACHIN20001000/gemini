@@ -1,38 +1,34 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Chowhub;
+namespace App\Http\Controllers\Admin\LitterHub;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\ChowhubProduct;
-use App\Models\ChowhubProductVariation;
-use App\Models\ChowhubProductGallery;
-use App\Models\ChowhubVariationAttribute;
-use App\Models\ChowhubVariationAttributeValue;
-use App\Models\Category;
-use App\Models\ChowhubTag;
-use App\Models\ChowhubBrand;
-use App\Models\ChowhubProductBrand;
+use App\Models\LitterHub\LitterHubProduct;
+use App\Models\LitterHub\LitterHubProductVariation;
+use App\Models\LitterHub\LitterHubProductGallery;
+use App\Models\LitterHub\LitterHubVariationAttribute;
+use App\Models\LitterHub\LitterHubVariationAttributeValue;
+use App\Models\LitterHub\Category;
+use App\Models\LitterHub\LitterHubTag;
+use App\Models\LitterHub\LitterHubBrand;
+use App\Models\LitterHub\LitterHubProductBrand;
 use Illuminate\Support\Facades\Validator;
-use App\Models\ChowhubBackendTag;
-use App\Models\ChowhubProductBackendTag;
-use App\Models\ChowhubProductTag;
-use App\Models\ChowhubProductDescriptionImage;
-use App\Models\ChowhubProductFeaturePageImage;
-use App\Models\ChowhubStore;
-use DataTables;
-use Illuminate\Support\Str;
-use App\Http\Requests\Admin\Chowhub\Product\AddProduct;
-use App\Http\Requests\Admin\Chowhub\Product\UpdateProduct;
+use App\Models\LitterHub\LitterHubBackendTag;
+use App\Models\LitterHub\LitterHubProductBackendTag;
+use App\Models\LitterHub\LitterHubProductTag;
+use App\Models\LitterHub\LitterHubProductDescriptionImage;
+use App\Models\LitterHub\LitterHubProductFeaturePageImage;
+use App\Models\LitterHub\LitterHubStore;
 use Storage;
 use Intervention\Image\Facades\Image;
-use App\Imports\ChowhubProductsImport;
-use App\Exports\ChowhubProductsExport;
+use App\Imports\LitterHubProductsImport;
+use App\Exports\LitterHubProductsExport;
 use Maatwebsite\Excel\Facades\Excel;
 use DB;
 
-class ChowhubImportController extends Controller {
+class LitterHubImportController extends Controller {
 
     /**
      * Display a listing of the resource.
@@ -40,7 +36,7 @@ class ChowhubImportController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public  function index(Request $request) {
-        return view('admin.chowhub.products.import');
+        return view('admin.litterhub.products.import');
     }
 
     public  function store(Request $request) {
@@ -59,7 +55,7 @@ class ChowhubImportController extends Controller {
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
-            $CsvFile = Excel::toArray(new ChowhubProductsImport(), $request->file('product_csv'));
+            $CsvFile = Excel::toArray(new LitterHubProductsImport(), $request->file('product_csv'));
             $storagePath= env('STORAGE_PATH') ?? 'https://petparent.s3.ap-south-1.amazonaws.com/';
             if (!empty($CsvFile)) {
 
@@ -74,9 +70,9 @@ class ChowhubImportController extends Controller {
                     }
                     $header = $value[0];
                 }
+        
                 foreach($csvData as $key => $value) {
 
-                  
                     $variation = [];
                       foreach($header as $key => $val) {
                         (strtolower($val) == 'variation') ? (array_push($variation, $value[$key])) : '';
@@ -87,16 +83,15 @@ class ChowhubImportController extends Controller {
                         (strtolower($val) == 'product') ? ($product = $value[$key]) : '';
                         (strtolower($val) == 'description') ? ($description = $value[$key]) : '';
                         (strtolower($val) == 'sku') ? ($sku = $value[$key]) : '';
-                        (strtolower($val) == 'pet_type') ? ($pet_type = $value[$key]) : '';
-                        (strtolower($val) == 'age') ? ($age = $value[$key]) : '';
-                        (strtolower($val) == 'food_type') ? ($food_type = $value[$key]) : '';
-                        (strtolower($val) == 'protein_type') ? ($protein_type = $value[$key]) : '';
+                        (strtolower($val) == 'scented') ? ($scented = $value[$key]) : '';
+                        (strtolower($val) == 'cat_count') ? ($cat_count = $value[$key]) : '';
+                        (strtolower($val) == 'litter_material') ? ($litter_material = $value[$key]) : '';
+                        (strtolower($val) == 'clumping') ? ($clumping = $value[$key]) : '';
                         (strtolower($val) == 'type') ? ($type = $value[$key]) : '';
                         (strtolower($val) == 'store_id') ? ($store_id = $value[$key]) : '';
                         (strtolower($val) == 'feature_image') ? ($feature_image = $value[$key]) : '';
                         (strtolower($val) == 'real_price') ? ($real_price = $value[$key]) : '';
                         (strtolower($val) == 'sale_price') ? ($sale_price = $value[$key]) : '';
-                        (strtolower($val) == 'weight') ? ($weight = $value[$key]) : '';
                         (strtolower($val) == 'quantity') ? ($quantity = $value[$key]) : '';
                         (strtolower($val) == 'status') ? ($status = $value[$key]) : '';
                         (strtolower($val) == 'backend_tag') ? ($backend_tag = $value[$key]) : '';
@@ -119,20 +114,19 @@ class ChowhubImportController extends Controller {
                     $brand = explode(',', $brand);
 
                     if ($product ) {
-                        $products = ChowhubProduct::create([
+                        $products = LitterHubProduct::create([
                             'productName' => $product,
                             'description' => $description,
                             'sku' => $sku,
-                            'pet_type' => $pet_type,
-                            'age' => json_encode(explode(',', $age)),
-                            'food_type' => $food_type,
-                            'protein_type' => json_encode(explode(',', $protein_type)),
+                            'scented' => $scented,
+                            'litter_material' => json_encode(explode(',', $litter_material)),
+                            'cat_count' => $cat_count,
+                            'clumping' => $clumping,
                             'type' => $type,
                             'store_id' => $store_id,
                             'feature_image' => (!empty($feature_image)) ? $storagePath.$feature_image : null,
                             'real_price' => $real_price,
                             'sale_price' => $sale_price,
-                            'weight' => json_encode(explode(',', $weight)),
                             'quantity' => $quantity,
                             'status' => $status,
                         ]);
@@ -140,7 +134,7 @@ class ChowhubImportController extends Controller {
                          
                             foreach($description_images as $key => $value) {
                               if(!empty($value)){
-                                ChowhubProductDescriptionImage::create([
+                                LitterHubProductDescriptionImage::create([
                                     'product_id' => $products->id,
                                     'image_path' => $storagePath.$value,
                                     'priority' => $key,
@@ -153,7 +147,7 @@ class ChowhubImportController extends Controller {
 
                             foreach($feature_page_images as $key => $value) {
                               if(!empty($value)){
-                                ChowhubProductFeaturePageImage::create([
+                                LitterHubProductFeaturePageImage::create([
                                     'product_id' => $products->id,
                                     'image_path' => $storagePath.$value,
                                     'priority' => $key,
@@ -166,9 +160,9 @@ class ChowhubImportController extends Controller {
                             foreach($media_image as $key => $value) {
                          
                               if(!empty($value)){
-                                ChowhubProductGallery::create([
+                                LitterHubProductGallery::create([
                                   'product_id' => $products->id,
-                                  'image_path' => $storagePath.$value,
+                                  'image_path' => $storagePath. $value,
                                   'priority' => $key,
 
                               ]);
@@ -180,13 +174,13 @@ class ChowhubImportController extends Controller {
                         if (!empty($tag)) {
                             foreach($tag as $tagName) {
 
-                                $tags = ChowhubTag::updateOrCreate([
+                                $tags = LitterHubTag::updateOrCreate([
                                     'name' => trim(strtolower($tagName))
                                 ], [
                                     'name' => trim(strtolower($tagName))
                                 ]);
 
-                                $tagValue = new ChowhubProductTag;
+                                $tagValue = new LitterHubProductTag;
                                 $tagValue->tag_id = $tags->id;
                                 $tagValue->product_id = $products->id;
                                 $tagValue->save();
@@ -195,13 +189,13 @@ class ChowhubImportController extends Controller {
                         if (!empty($backend_tag)) {
                             foreach($backend_tag as $vakey => $tagName) {
 
-                                $tag = ChowhubBackendTag::updateOrCreate([
+                                $tag = LitterHubBackendTag::updateOrCreate([
                                     'name' => trim(strtolower($tagName))
                                 ], [
                                     'name' => trim(strtolower($tagName))
                                 ]);
 
-                                $tagValue = new ChowhubProductBackendTag;
+                                $tagValue = new LitterHubProductBackendTag;
                                 $tagValue->tag_id = $tag->id;
                                 $tagValue->product_id = $products->id;
                                 $tagValue->save();
@@ -210,13 +204,13 @@ class ChowhubImportController extends Controller {
                         if (!empty($brand)) {
                             foreach($brand as $vakey => $tagName) {
 
-                                $tag = ChowhubBrand::updateOrCreate([
+                                $tag = LitterHubBrand::updateOrCreate([
                                     'name' => trim(strtolower($tagName))
                                 ], [
                                     'name' => trim(strtolower($tagName))
                                 ]);
 
-                                $tagValue = new ChowhubProductBrand;
+                                $tagValue = new LitterHubProductBrand;
                                 $tagValue->brand_id = $tag->id;
                                 $tagValue->product_id = $products->id;
                                 $tagValue->save();
@@ -237,7 +231,7 @@ class ChowhubImportController extends Controller {
                                 }
 
 
-                                $variationAttribute = ChowhubVariationAttribute::updateOrCreate([
+                                $variationAttribute = LitterHubVariationAttribute::updateOrCreate([
                                     'name' => $attributeName[0] ?? null
                                 ], [
                                     'name' => $attributeName[0] ?? null
@@ -250,7 +244,7 @@ class ChowhubImportController extends Controller {
                                     $variationAttrArrs = explode(",", $attri);
 
                                     foreach($variationAttrArrs as $variationAttrArr) {
-                                        $variationAttributeValue = new ChowhubVariationAttributeValue;
+                                        $variationAttributeValue = new LitterHubVariationAttributeValue;
                                         $variationAttributeValue->attribute_id = $variationAttribute->id;
                                         $variationAttributeValue->product_id = $products->id;
                                         $variationAttributeValue->name = $variationAttrArr;
@@ -283,7 +277,7 @@ class ChowhubImportController extends Controller {
                                     }
                                   
 
-                                    $productVariation = new ChowhubProductVariation;
+                                    $productVariation = new LitterHubProductVariation;
                                     $productVariation->product_id = $products->id;
 
                                     $variationAttributeIds = [];
@@ -293,10 +287,10 @@ class ChowhubImportController extends Controller {
                                             if (isset($attribute[1])) {
                                                 $attrVal = $attribute[1];
                                             }
-                                            $attr = ChowhubVariationAttribute::where('name', $attribute[0])->first();
+                                            $attr = LitterHubVariationAttribute::where('name', $attribute[0])->first();
 
                                             if ($attr) {
-                                                $selectedAttrubutes = ChowhubVariationAttributeValue::select('id', 'attribute_id')->where(['product_id' => $products->id, 'name' => $attrVal, 'attribute_id' => $attr->id])->first();
+                                                $selectedAttrubutes = LitterHubVariationAttributeValue::select('id', 'attribute_id')->where(['product_id' => $products->id, 'name' => $attrVal, 'attribute_id' => $attr->id])->first();
 
                                                 if ($selectedAttrubutes) {
                                                     $AttributesArray = [];
@@ -316,21 +310,25 @@ class ChowhubImportController extends Controller {
                                     $productVariation->weight = $variationWeight ?? 0;
                                     $productVariation->variation_attributes_name_id = json_encode($variationAttributeIds);
                                     $productVariation->sku = $variationSku ?? null;
-
                                     if(!empty($variationImage)){
                                         $productVariation->image = $storagePath.$variationImage ?? null;
                                     }
+                                                                
                                     $productVariation->save();
 
                                 }
                             }
-                    
+                            // DB::commit();
                         }
                     } else {
                         return redirect()->back()->with('error', 'Csv file in not matched!');
                     }
                  
-                  
+                //   } catch (\Throwable $th) {
+                //     DB::rollback();
+                //     echo $th;die;
+                //     echo "herer errro";
+                // }
                 }
             }
         }
@@ -339,7 +337,7 @@ class ChowhubImportController extends Controller {
 
     public function export (Request $request) {
 
-        return Excel::download(new ChowhubProductsExport($request->id), 'export.csv');
+        return Excel::download(new LitterHubProductsExport($request->id), 'export.csv');
     }
 
 }

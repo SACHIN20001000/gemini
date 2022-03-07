@@ -24,7 +24,7 @@
                     
 
                     <!--  start  --> 
-                    <form  id="store-add-edit" action="{{ route('chowhub-import.store')}}" method="POST" enctype="multipart/form-data">
+                    <form  id="store-add-edit" action="{{ route('litterhub-import.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{ isset($store) ? method_field('PUT'):'' }}
                         <div class="pd-30 pd-sm-40 bg-gray-200">
@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                 <input type="file" name="product_csv"  class="dropify"accept="csv">
-                               <br> <a href="/csv/samplechowhubproduct.csv" class="btn btn-info">View Sample file </a>
+                               <br> <a href="/csv/samplelitterhubproduct.csv" class="btn btn-info">View Sample file </a>
                             </div>
                               
                                 

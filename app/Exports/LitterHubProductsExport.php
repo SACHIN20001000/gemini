@@ -2,25 +2,25 @@
 
 namespace App\Exports;
 
-use App\Models\ChowhubProduct;
-use App\Models\ChowhubProductVariation;
-use App\Models\ChowhubProductGallery;
-use App\Models\ChowhubVariationAttribute;
-use App\Models\ChowhubVariationAttributeValue;
-use App\Models\Category;
-use App\Models\ChowhubTag;
-use App\Models\ChowhubBrand;
-use App\Models\ChowhubProductBrand;
+use App\Models\LitterHub\LitterHubProduct;
+use App\Models\LitterHub\LitterHubProductVariation;
+use App\Models\LitterHub\LitterHubProductGallery;
+use App\Models\LitterHub\LitterHubVariationAttribute;
+use App\Models\LitterHub\LitterHubVariationAttributeValue;
+use App\Models\LitterHub\Category;
+use App\Models\LitterHub\LitterHubTag;
+use App\Models\LitterHub\LitterHubBrand;
+use App\Models\LitterHub\LitterHubProductBrand;
 
-use App\Models\ChowhubBackendTag;
-use App\Models\ChowhubProductBackendTag;
-use App\Models\ChowhubProductTag;
-use App\Models\ChowhubProductDescriptionImage;
-use App\Models\ChowhubProductFeaturePageImage;
-use App\Models\ChowhubStore;
+use App\Models\LitterHub\LitterHubBackendTag;
+use App\Models\LitterHub\LitterHubProductBackendTag;
+use App\Models\LitterHub\LitterHubProductTag;
+use App\Models\LitterHub\LitterHubProductDescriptionImage;
+use App\Models\LitterHub\LitterHubProductFeaturePageImage;
+use App\Models\LitterHub\LitterHubStore;
 use Maatwebsite\Excel\Concerns\FromCollection;
 // use Maatwebsite\Excel\Concerns\withHeadings;
-class ChowhubProductsExport implements FromCollection
+class LitterHubProductsExport implements FromCollection
 // ,WithHeadings
 {
     /**
@@ -31,29 +31,27 @@ class ChowhubProductsExport implements FromCollection
     function __construct($id) {
            $this->id = $id;
     }
-    // public function headings(): array {
-    //     return [
-    //         "product","description","sku","pet_type","age","food_type","protein_type","type","store_id","feature_image","real_price","sale_price","weight","quantity","status","backend_tag","tag","brand","media_image","description_images","experimental_page_images","attributes","variation","variation","variation","variation"
-    //     ];
-    // }
+
     public function collection()
     {
+
         $id=$this->id;
+
         $product_id=explode(',',$id);
+      
         $finalData=[];
         $header['productName']="product" ?? null;
         $header['description']='description' ?? null;
         $header['sku']='sku' ?? null;
-        $header['pet_type']='pet_type' ?? null;
-        $header['age']='age' ?? null;
-        $header['food_type']='food_type' ?? null;
-        $header['protein_type']='protein_type' ?? null;
+        $header['scented']='scented' ?? null;
+        $header['litter_material']='litter_material' ?? null;
+        $header['clumping']='clumping' ?? null;
+        $header['cat_count']='cat_count' ?? null;
         $header['type']='type' ?? null;
         $header['store_id']='store_id' ?? null;
         $header['feature_image']='feature_image' ?? null;
         $header['real_price']='real_price' ?? null;
         $header['sale_price']='sale_price' ?? null;
-        $header['weight']='weight' ?? null;
         $header['quantity']='quantity' ?? null;
         $header['status']='status' ?? null;
         $header['backend_tag']='backend_tag' ?? null;
@@ -68,12 +66,12 @@ class ChowhubProductsExport implements FromCollection
         
         foreach ($product_id as $key => $id) {
     
-            $product = ChowhubProduct::find($id);
-            $productGallery = ChowhubProductGallery::where('product_id',$id)->get();
-            $variationAttributeValue = ChowhubVariationAttributeValue::where('product_id',$id)->get();
-            $chowhubProductDescriptionImage = ChowhubProductDescriptionImage::where('product_id',$id)->get();
-            $chowhubProductFeaturePageImage = ChowhubProductFeaturePageImage::where('product_id',$id)->get();
-            $productVariation = ChowhubProductVariation::where('product_id',$id)->get();
+            $product = LitterHubProduct::find($id);
+            $productGallery = LitterHubProductGallery::where('product_id',$id)->get();
+            $variationAttributeValue = LitterHubVariationAttributeValue::where('product_id',$id)->get();
+            $LitterHubProductDescriptionImage = LitterHubProductDescriptionImage::where('product_id',$id)->get();
+            $LitterHubProductFeaturePageImage = LitterHubProductFeaturePageImage::where('product_id',$id)->get();
+            $productVariation = LitterHubProductVariation::where('product_id',$id)->get();
         
             if($product){
                
@@ -83,13 +81,13 @@ class ChowhubProductsExport implements FromCollection
                 $data['productName']=$product->productName ?? null;
                 $data['description']=$product->description ?? null;
                 $data['sku']=$product->sku ?? null;
-                $data['pet_type']=$product->pet_type ?? null;
-                $data['age']=str_replace(array('"','[',']','\\'),'',$product->age)  ?? null;
-                $data['food_type']=$product->food_type ?? null;
-                $data['protein_type']=str_replace(array('"','[',']','\\'),'',$product->protein_type) ?? null;
+                $data['scented']=$product->scented ?? null;
+                $data['litter_material']=str_replace(array('"','[',']','\\'),'',$product->litter_material)  ?? null;
+                $data['clumping']=$product->clumping ?? null;
+                $data['cat_count']=$product->cat_count ?? null;
                 $data['type']=$product->type ?? null;
                 $data['store_id']=$product->store_id ?? null;
-                if($product->feature_image){
+                if(!empty($product->feature_image)){
                     $product->feature_image = explode('images',$product->feature_image);
                     $path='images'.$product->feature_image[1];
                 }else{
@@ -98,7 +96,6 @@ class ChowhubProductsExport implements FromCollection
                 $data['feature_image']=$path ?? null;
                 $data['real_price']=$product->real_price ?? null;
                 $data['sale_price']=$product->sale_price ?? null;
-                $data['weight']=str_replace(array('"','[',']','\\'),'',$product->weight) ?? null;
                 $data['quantity']=$product->quantity ?? null;
                 $data['status']=$product->status ?? null;
                 $data['backend_tag']=$product->availBackendTags ?? null;
@@ -113,15 +110,17 @@ class ChowhubProductsExport implements FromCollection
                         $media .= 'images'. $value->image_path[1].','; 
                         }
                 }
-                if($chowhubProductDescriptionImage){
-                    foreach ($chowhubProductDescriptionImage as $key => $value) {
+                if($LitterHubProductDescriptionImage){
+                    foreach ($LitterHubProductDescriptionImage as $key => $value) {
                         $value->image_path= explode('images',$value->image_path);
                         $description_images .= 'images'. $value->image_path[1].','; 
+                  
                         }
-                } if($chowhubProductFeaturePageImage){
-                    foreach ($chowhubProductFeaturePageImage as $key => $value) {
+                } if($LitterHubProductFeaturePageImage){
+                    foreach ($LitterHubProductFeaturePageImage as $key => $value) {
                         $value->image_path= explode('images',$value->image_path);
                         $feature_page_images .= 'images'. $value->image_path[1].','; 
+                    
                         }
                 }
                 $data['media']=$media ?? null;
@@ -134,11 +133,12 @@ class ChowhubProductsExport implements FromCollection
                         $image='';
                         $real_price=$value->real_price ?? null;
                         $sale_price=$value->sale_price ?? null;
-                        $image=$value->image ?? null;
                         if($value->image){
+                           
                             $value->image= explode('images',$value->image);
                             $image .= 'images'. $value->image[1].',' ?? null; 
                         }
+                  
                         $weight=$value->weight ?? null;
                         $quantity=$value->quantity ?? null;
                         $sku=$value->sku ?? null;
@@ -152,8 +152,8 @@ class ChowhubProductsExport implements FromCollection
                             foreach ($allvariations as $variat)
                             {
 
-                                $attr_name = ChowhubVariationAttribute::where('id', $variat->attribute_name_id)->pluck('name')->first();
-                                $attrValue = ChowhubVariationAttributeValue::where('id', $variat->attribute_id)->pluck('name')->first();
+                                $attr_name = LitterHubVariationAttribute::where('id', $variat->attribute_name_id)->pluck('name')->first();
+                                $attrValue = LitterHubVariationAttributeValue::where('id', $variat->attribute_id)->pluck('name')->first();
                                 $viewData[$attr_name] = $attrValue ?? null;
                                 
                             }
@@ -185,6 +185,7 @@ class ChowhubProductsExport implements FromCollection
                     $at.=$key.'='.$attVal.';';
                     
                     }
+              
                     $data['attributes']= $at ?? null;
                     foreach ($var as $key => $value) {
                    

@@ -43,6 +43,13 @@ class LitterhubProductController extends Controller
 
             return Datatables::of($data)
                             ->addIndexColumn()
+                            ->addColumn('checkbox', function ($row)
+                            {
+                             
+                                    $checkbox = '<input type="checkbox" name="export" id="" value="'.$row->id.'" class="form-check-input checkbox">';
+                                
+                                return $checkbox;
+                            })
                             ->addColumn('status', function ($row)
                             {
                                 if ($row->status == 1)
@@ -81,7 +88,7 @@ class LitterhubProductController extends Controller
                                 ';
                                 return $action;
                             })
-                            ->rawColumns(['action', 'status'])
+                            ->rawColumns(['action', 'status','checkbox'])
                             ->make(true)
             ;
         }

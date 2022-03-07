@@ -9,8 +9,7 @@ use App\Http\Controllers\Admin\Chowhub\ChowhubStoreController;
 use App\Http\Controllers\Admin\Chowhub\ChowhubProductController;
 use App\Http\Controllers\Admin\Chowhub\ChowhubCouponController;
 use App\Http\Controllers\Admin\Chowhub\ChowhubImportController;
-
-
+use App\Http\Controllers\Admin\Solutionhub\SolutionhubImportController;
 use App\Http\Controllers\Admin\Solutionhub\SolutionhubProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PetController;
@@ -32,6 +31,7 @@ use App\Http\Controllers\Admin\LitterHub\LitterHubStoreController;
 use App\Http\Controllers\Admin\LitterHub\LitterHubProductController;
 use App\Http\Controllers\Admin\LitterHub\LitterHubCouponController;
 use App\Http\Controllers\Admin\LitterHub\LitterHubFaqController;
+use App\Http\Controllers\Admin\LitterHub\LitterHubImportController;
 
 
 
@@ -103,6 +103,9 @@ Route::prefix('admin')->group(function ()
         Route::resource('litterhub-questions', LitterHubFaqController::class);
         Route::resource('chowhub-import', ChowhubImportController::class);
         Route::post('product-export', [App\Http\Controllers\Admin\Chowhub\ChowhubImportController::class, 'export']);
+        Route::post('solutionhub-product-export', [App\Http\Controllers\Admin\Solutionhub\SolutionhubImportController::class, 'export']);
+        Route::resource('solutionhub-import', SolutionhubImportController::class);
+
 
         Route::resource('ratings', RatingController::class);
         Route::post('save-image', [App\Http\Controllers\Admin\RatingController::class, 'save_photo']);
@@ -129,7 +132,8 @@ Route::prefix('admin')->group(function ()
         Route::post('delete-litterhub-description-photo', [App\Http\Controllers\Admin\LitterHub\LitterHubProductController::class, 'del_description_photo']);
         Route::post('delete-litterhub-feature-page-photo', [App\Http\Controllers\Admin\LitterHub\LitterHubProductController::class, 'del_feature_page_photo']);
         Route::post('delete-litterhub-variation-img', [App\Http\Controllers\Admin\LitterHub\LitterHubProductController::class, 'del_variationPhoto']);
-
+        Route::post('litterhub-product-export', [App\Http\Controllers\Admin\LitterHub\LitterHubImportController::class, 'export']);
+        Route::resource('litterhub-import', LitterHubImportController::class);
 
         //chowhub
         Route::resource('chowhub-categories', ChowhubCategoryController::class);
