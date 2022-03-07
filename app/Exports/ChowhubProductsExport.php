@@ -137,14 +137,14 @@ class ChowhubProductsExport implements FromCollection
                         $image=$value->image ?? null;
                         if($value->image){
                             $value->image= explode('images',$value->image);
-                            $image .= 'images'. $value->image[1].',' ?? null; 
+                            $image = 'images'. $value->image[1].',' ?? null; 
                         }
                         $weight=$value->weight ?? null;
                         $quantity=$value->quantity ?? null;
                         $sku=$value->sku ?? null;
                         $attr='' ?? null ;
                         $variationData='qty='.$quantity.',weight='.$weight.',real_price='.$real_price.',sale_price='.$sale_price.',sku='.$sku.',image='.$image.'';
-                       
+                    
                         $allvariations = json_decode($value->variation_attributes_name_id);
 
                             $viewData = [];
@@ -201,7 +201,7 @@ class ChowhubProductsExport implements FromCollection
             
         }
         array_unshift($finalData,$header);
-       
+      
         return collect($finalData);
    
     }

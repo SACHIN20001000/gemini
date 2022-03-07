@@ -136,7 +136,7 @@ class LitterhubProductsExport implements FromCollection
                         if($value->image){
                            
                             $value->image= explode('images',$value->image);
-                            $image .= 'images'. $value->image[1].',' ?? null; 
+                            $image = 'images'. $value->image[1].',' ?? null; 
                         }
                   
                         $weight=$value->weight ?? null;
