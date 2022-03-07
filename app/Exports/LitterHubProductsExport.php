@@ -2,25 +2,25 @@
 
 namespace App\Exports;
 
-use App\Models\LitterHub\LitterHubProduct;
-use App\Models\LitterHub\LitterHubProductVariation;
-use App\Models\LitterHub\LitterHubProductGallery;
-use App\Models\LitterHub\LitterHubVariationAttribute;
-use App\Models\LitterHub\LitterHubVariationAttributeValue;
-use App\Models\LitterHub\Category;
-use App\Models\LitterHub\LitterHubTag;
-use App\Models\LitterHub\LitterHubBrand;
-use App\Models\LitterHub\LitterHubProductBrand;
+use App\Models\Litterhub\LitterhubProduct;
+use App\Models\Litterhub\LitterhubProductVariation;
+use App\Models\Litterhub\LitterhubProductGallery;
+use App\Models\Litterhub\LitterhubVariationAttribute;
+use App\Models\Litterhub\LitterhubVariationAttributeValue;
+use App\Models\Litterhub\Category;
+use App\Models\Litterhub\LitterhubTag;
+use App\Models\Litterhub\LitterhubBrand;
+use App\Models\Litterhub\LitterhubProductBrand;
 
-use App\Models\LitterHub\LitterHubBackendTag;
-use App\Models\LitterHub\LitterHubProductBackendTag;
-use App\Models\LitterHub\LitterHubProductTag;
-use App\Models\LitterHub\LitterHubProductDescriptionImage;
-use App\Models\LitterHub\LitterHubProductFeaturePageImage;
-use App\Models\LitterHub\LitterHubStore;
+use App\Models\Litterhub\LitterhubBackendTag;
+use App\Models\Litterhub\LitterhubProductBackendTag;
+use App\Models\Litterhub\LitterhubProductTag;
+use App\Models\Litterhub\LitterhubProductDescriptionImage;
+use App\Models\Litterhub\LitterhubProductFeaturePageImage;
+use App\Models\Litterhub\LitterhubStore;
 use Maatwebsite\Excel\Concerns\FromCollection;
 // use Maatwebsite\Excel\Concerns\withHeadings;
-class LitterHubProductsExport implements FromCollection
+class LitterhubProductsExport implements FromCollection
 // ,WithHeadings
 {
     /**
@@ -66,12 +66,12 @@ class LitterHubProductsExport implements FromCollection
         
         foreach ($product_id as $key => $id) {
     
-            $product = LitterHubProduct::find($id);
-            $productGallery = LitterHubProductGallery::where('product_id',$id)->get();
-            $variationAttributeValue = LitterHubVariationAttributeValue::where('product_id',$id)->get();
-            $LitterHubProductDescriptionImage = LitterHubProductDescriptionImage::where('product_id',$id)->get();
-            $LitterHubProductFeaturePageImage = LitterHubProductFeaturePageImage::where('product_id',$id)->get();
-            $productVariation = LitterHubProductVariation::where('product_id',$id)->get();
+            $product = LitterhubProduct::find($id);
+            $productGallery = LitterhubProductGallery::where('product_id',$id)->get();
+            $variationAttributeValue = LitterhubVariationAttributeValue::where('product_id',$id)->get();
+            $LitterhubProductDescriptionImage = LitterhubProductDescriptionImage::where('product_id',$id)->get();
+            $LitterhubProductFeaturePageImage = LitterhubProductFeaturePageImage::where('product_id',$id)->get();
+            $productVariation = LitterhubProductVariation::where('product_id',$id)->get();
         
             if($product){
                
@@ -110,14 +110,14 @@ class LitterHubProductsExport implements FromCollection
                         $media .= 'images'. $value->image_path[1].','; 
                         }
                 }
-                if($LitterHubProductDescriptionImage){
-                    foreach ($LitterHubProductDescriptionImage as $key => $value) {
+                if($LitterhubProductDescriptionImage){
+                    foreach ($LitterhubProductDescriptionImage as $key => $value) {
                         $value->image_path= explode('images',$value->image_path);
                         $description_images .= 'images'. $value->image_path[1].','; 
                   
                         }
-                } if($LitterHubProductFeaturePageImage){
-                    foreach ($LitterHubProductFeaturePageImage as $key => $value) {
+                } if($LitterhubProductFeaturePageImage){
+                    foreach ($LitterhubProductFeaturePageImage as $key => $value) {
                         $value->image_path= explode('images',$value->image_path);
                         $feature_page_images .= 'images'. $value->image_path[1].','; 
                     
@@ -152,8 +152,8 @@ class LitterHubProductsExport implements FromCollection
                             foreach ($allvariations as $variat)
                             {
 
-                                $attr_name = LitterHubVariationAttribute::where('id', $variat->attribute_name_id)->pluck('name')->first();
-                                $attrValue = LitterHubVariationAttributeValue::where('id', $variat->attribute_id)->pluck('name')->first();
+                                $attr_name = LitterhubVariationAttribute::where('id', $variat->attribute_name_id)->pluck('name')->first();
+                                $attrValue = LitterhubVariationAttributeValue::where('id', $variat->attribute_id)->pluck('name')->first();
                                 $viewData[$attr_name] = $attrValue ?? null;
                                 
                             }

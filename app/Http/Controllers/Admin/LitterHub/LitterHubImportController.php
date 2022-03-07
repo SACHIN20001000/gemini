@@ -1,34 +1,34 @@
 <?php
 
-namespace App\Http\Controllers\Admin\LitterHub;
+namespace App\Http\Controllers\Admin\Litterhub;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\LitterHub\LitterHubProduct;
-use App\Models\LitterHub\LitterHubProductVariation;
-use App\Models\LitterHub\LitterHubProductGallery;
-use App\Models\LitterHub\LitterHubVariationAttribute;
-use App\Models\LitterHub\LitterHubVariationAttributeValue;
-use App\Models\LitterHub\Category;
-use App\Models\LitterHub\LitterHubTag;
-use App\Models\LitterHub\LitterHubBrand;
-use App\Models\LitterHub\LitterHubProductBrand;
+use App\Models\Litterhub\LitterhubProduct;
+use App\Models\Litterhub\LitterhubProductVariation;
+use App\Models\Litterhub\LitterhubProductGallery;
+use App\Models\Litterhub\LitterhubVariationAttribute;
+use App\Models\Litterhub\LitterhubVariationAttributeValue;
+use App\Models\Litterhub\Category;
+use App\Models\Litterhub\LitterhubTag;
+use App\Models\Litterhub\LitterhubBrand;
+use App\Models\Litterhub\LitterhubProductBrand;
 use Illuminate\Support\Facades\Validator;
-use App\Models\LitterHub\LitterHubBackendTag;
-use App\Models\LitterHub\LitterHubProductBackendTag;
-use App\Models\LitterHub\LitterHubProductTag;
-use App\Models\LitterHub\LitterHubProductDescriptionImage;
-use App\Models\LitterHub\LitterHubProductFeaturePageImage;
-use App\Models\LitterHub\LitterHubStore;
+use App\Models\Litterhub\LitterhubBackendTag;
+use App\Models\Litterhub\LitterhubProductBackendTag;
+use App\Models\Litterhub\LitterhubProductTag;
+use App\Models\Litterhub\LitterhubProductDescriptionImage;
+use App\Models\Litterhub\LitterhubProductFeaturePageImage;
+use App\Models\Litterhub\LitterhubStore;
 use Storage;
 use Intervention\Image\Facades\Image;
-use App\Imports\LitterHubProductsImport;
-use App\Exports\LitterHubProductsExport;
+use App\Imports\LitterhubProductsImport;
+use App\Exports\LitterhubProductsExport;
 use Maatwebsite\Excel\Facades\Excel;
 use DB;
 
-class LitterHubImportController extends Controller {
+class LitterhubImportController extends Controller {
 
     /**
      * Display a listing of the resource.
@@ -55,7 +55,7 @@ class LitterHubImportController extends Controller {
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
-            $CsvFile = Excel::toArray(new LitterHubProductsImport(), $request->file('product_csv'));
+            $CsvFile = Excel::toArray(new LitterhubProductsImport(), $request->file('product_csv'));
             $storagePath= env('STORAGE_PATH') ?? 'https://petparent.s3.ap-south-1.amazonaws.com/';
             if (!empty($CsvFile)) {
 
@@ -114,7 +114,7 @@ class LitterHubImportController extends Controller {
                     $brand = explode(',', $brand);
 
                     if ($product ) {
-                        $products = LitterHubProduct::create([
+                        $products = LitterhubProduct::create([
                             'productName' => $product,
                             'description' => $description,
                             'sku' => $sku,
@@ -134,7 +134,7 @@ class LitterHubImportController extends Controller {
                          
                             foreach($description_images as $key => $value) {
                               if(!empty($value)){
-                                LitterHubProductDescriptionImage::create([
+                                LitterhubProductDescriptionImage::create([
                                     'product_id' => $products->id,
                                     'image_path' => $storagePath.$value,
                                     'priority' => $key,
@@ -147,7 +147,7 @@ class LitterHubImportController extends Controller {
 
                             foreach($feature_page_images as $key => $value) {
                               if(!empty($value)){
-                                LitterHubProductFeaturePageImage::create([
+                                LitterhubProductFeaturePageImage::create([
                                     'product_id' => $products->id,
                                     'image_path' => $storagePath.$value,
                                     'priority' => $key,
@@ -160,7 +160,7 @@ class LitterHubImportController extends Controller {
                             foreach($media_image as $key => $value) {
                          
                               if(!empty($value)){
-                                LitterHubProductGallery::create([
+                                LitterhubProductGallery::create([
                                   'product_id' => $products->id,
                                   'image_path' => $storagePath. $value,
                                   'priority' => $key,
@@ -174,13 +174,13 @@ class LitterHubImportController extends Controller {
                         if (!empty($tag)) {
                             foreach($tag as $tagName) {
 
-                                $tags = LitterHubTag::updateOrCreate([
+                                $tags = LitterhubTag::updateOrCreate([
                                     'name' => trim(strtolower($tagName))
                                 ], [
                                     'name' => trim(strtolower($tagName))
                                 ]);
 
-                                $tagValue = new LitterHubProductTag;
+                                $tagValue = new LitterhubProductTag;
                                 $tagValue->tag_id = $tags->id;
                                 $tagValue->product_id = $products->id;
                                 $tagValue->save();
@@ -189,13 +189,13 @@ class LitterHubImportController extends Controller {
                         if (!empty($backend_tag)) {
                             foreach($backend_tag as $vakey => $tagName) {
 
-                                $tag = LitterHubBackendTag::updateOrCreate([
+                                $tag = LitterhubBackendTag::updateOrCreate([
                                     'name' => trim(strtolower($tagName))
                                 ], [
                                     'name' => trim(strtolower($tagName))
                                 ]);
 
-                                $tagValue = new LitterHubProductBackendTag;
+                                $tagValue = new LitterhubProductBackendTag;
                                 $tagValue->tag_id = $tag->id;
                                 $tagValue->product_id = $products->id;
                                 $tagValue->save();
@@ -204,13 +204,13 @@ class LitterHubImportController extends Controller {
                         if (!empty($brand)) {
                             foreach($brand as $vakey => $tagName) {
 
-                                $tag = LitterHubBrand::updateOrCreate([
+                                $tag = LitterhubBrand::updateOrCreate([
                                     'name' => trim(strtolower($tagName))
                                 ], [
                                     'name' => trim(strtolower($tagName))
                                 ]);
 
-                                $tagValue = new LitterHubProductBrand;
+                                $tagValue = new LitterhubProductBrand;
                                 $tagValue->brand_id = $tag->id;
                                 $tagValue->product_id = $products->id;
                                 $tagValue->save();
@@ -231,7 +231,7 @@ class LitterHubImportController extends Controller {
                                 }
 
 
-                                $variationAttribute = LitterHubVariationAttribute::updateOrCreate([
+                                $variationAttribute = LitterhubVariationAttribute::updateOrCreate([
                                     'name' => $attributeName[0] ?? null
                                 ], [
                                     'name' => $attributeName[0] ?? null
@@ -244,7 +244,7 @@ class LitterHubImportController extends Controller {
                                     $variationAttrArrs = explode(",", $attri);
 
                                     foreach($variationAttrArrs as $variationAttrArr) {
-                                        $variationAttributeValue = new LitterHubVariationAttributeValue;
+                                        $variationAttributeValue = new LitterhubVariationAttributeValue;
                                         $variationAttributeValue->attribute_id = $variationAttribute->id;
                                         $variationAttributeValue->product_id = $products->id;
                                         $variationAttributeValue->name = $variationAttrArr;
@@ -277,7 +277,7 @@ class LitterHubImportController extends Controller {
                                     }
                                   
 
-                                    $productVariation = new LitterHubProductVariation;
+                                    $productVariation = new LitterhubProductVariation;
                                     $productVariation->product_id = $products->id;
 
                                     $variationAttributeIds = [];
@@ -287,10 +287,10 @@ class LitterHubImportController extends Controller {
                                             if (isset($attribute[1])) {
                                                 $attrVal = $attribute[1];
                                             }
-                                            $attr = LitterHubVariationAttribute::where('name', $attribute[0])->first();
+                                            $attr = LitterhubVariationAttribute::where('name', $attribute[0])->first();
 
                                             if ($attr) {
-                                                $selectedAttrubutes = LitterHubVariationAttributeValue::select('id', 'attribute_id')->where(['product_id' => $products->id, 'name' => $attrVal, 'attribute_id' => $attr->id])->first();
+                                                $selectedAttrubutes = LitterhubVariationAttributeValue::select('id', 'attribute_id')->where(['product_id' => $products->id, 'name' => $attrVal, 'attribute_id' => $attr->id])->first();
 
                                                 if ($selectedAttrubutes) {
                                                     $AttributesArray = [];
@@ -337,7 +337,7 @@ class LitterHubImportController extends Controller {
 
     public function export (Request $request) {
 
-        return Excel::download(new LitterHubProductsExport($request->id), 'export.csv');
+        return Excel::download(new LitterhubProductsExport($request->id), 'export.csv');
     }
 
 }
