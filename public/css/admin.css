@@ -14,8 +14,4 @@
 #datatable {
     width: auto !important;
 }
-table.dataTable thead .sorting::after {
-    content: '\f3d0';
-    position: relative !important;
-    left: 7px !important;
-}
+
