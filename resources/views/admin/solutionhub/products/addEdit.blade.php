@@ -134,7 +134,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-12 col-md-12">
+                        <!-- <div class="col-lg-12 col-md-12">
                             <div class="card">
                                 <div class="card-body">
                                     <h4>Shipping</h4>
@@ -207,7 +207,7 @@
                                         </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
 
                     <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>

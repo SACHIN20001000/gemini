@@ -333,18 +333,14 @@ public function store(AddProduct $request)
         $productTag = SolutionhubProductTag::where('product_id',$id)->get();
         $productBackendTag = SolutionhubProductBackendTag::where('product_id',$id)->get();
         $productBrand = SolutionhubProductBrand::where('product_id',$id)->get();
+        $productCategory = SolutionhubProductCategory::where('product_id',$id)->get();
+
           $products = SolutionhubProduct::create([
             'productName' =>   $product->productName . ' copy'.date("d-h-m-s"),
             'description' =>  $product->description,
             'tag' =>  $product->tag,
             'status' =>  $product->status,
             'feature_image' =>  $product->feature_image,
-            'separation_anxiety' =>  $product->separation_anxiety,
-            'teething' =>  $product->teething,
-            'boredom' =>  $product->boredom,
-            'disabled' =>  $product->disabled,
-            'energetic' =>  $product->energetic,
-
         ]);
     if(!empty($productTag)){
         foreach ($productTag as $key => $value) {
@@ -352,6 +348,15 @@ public function store(AddProduct $request)
             SolutionhubProductTag::create([
                 'product_id' =>  $products->id,
                 'tag_id' =>  $value->tag_id,
+            ]);
+        }
+    }
+    if(!empty($productCategory)){
+        foreach ($productCategory as $key => $value) {
+
+            SolutionhubProductCategory::create([
+                'product_id' =>  $products->id,
+                'category_id' =>  $value->category_id,
             ]);
         }
     }
