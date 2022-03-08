@@ -1,5 +1,6 @@
 <template>
   <header>
+    <notifications group="foo"  position="top right" />
     <div class="logo_nav">
       <a
         href="/"
@@ -257,6 +258,7 @@ export default {
     }
   },
   created(){
+    this.init()
     this.cartInfoupdate()
   },
   mounted() {
@@ -272,7 +274,15 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getCartItems','getProfile']),
+    ...mapActions(["getToken" ,"getCartToken",'getCartItems','getProfile']),
+    init(){
+      if(localStorage.getItem('token') === null || localStorage.getItem('token') =='undefined') {
+        this.getToken()
+      }
+      if(localStorage.getItem('cartId') === null || localStorage.getItem('cartId') =='undefined') {
+        this.getCartToken()
+      }
+    },
     cartInfoupdate(){
       if(localStorage.getItem('cartKey') != null){
         this.getCartItems()

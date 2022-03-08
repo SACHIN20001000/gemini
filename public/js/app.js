@@ -3208,6 +3208,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -3278,6 +3279,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
+    this.init();
     this.cartInfoupdate();
   },
   mounted: function mounted() {
@@ -3291,7 +3293,16 @@ __webpack_require__.r(__webpack_exports__);
       return this.content_parentStack.length >= 2;
     }
   }),
-  methods: (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])((0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_19__.mapActions)(['getCartItems', 'getProfile'])), {}, {
+  methods: (0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])((0,E_xampp_htdocs_pet_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,vuex__WEBPACK_IMPORTED_MODULE_19__.mapActions)(["getToken", "getCartToken", 'getCartItems', 'getProfile'])), {}, {
+    init: function init() {
+      if (localStorage.getItem('token') === null || localStorage.getItem('token') == 'undefined') {
+        this.getToken();
+      }
+
+      if (localStorage.getItem('cartId') === null || localStorage.getItem('cartId') == 'undefined') {
+        this.getCartToken();
+      }
+    },
     cartInfoupdate: function cartInfoupdate() {
       if (localStorage.getItem('cartKey') != null) {
         this.getCartItems();
@@ -15901,6 +15912,7 @@ var actions = {
               _Api_auth__WEBPACK_IMPORTED_MODULE_2__["default"].get("https://petparentsbranddev.tk/api/" + "cart").then(function (response) {
                 commit("getCartToken", response.data.data);
                 var cartToken = response.data.data;
+                console.log(cartToken);
 
                 if (cartToken.key) {
                   localStorage.setItem('cartKey', cartToken.key);
@@ -71542,6 +71554,8 @@ var render = function () {
   return _c(
     "header",
     [
+      _c("notifications", { attrs: { group: "foo", position: "top right" } }),
+      _vm._v(" "),
       _c("div", { staticClass: "logo_nav" }, [
         _c("a", { staticClass: "navbar-brand", attrs: { href: "/" } }, [
           _c("img", { attrs: { src: _vm.imgLogo, alt: "logo" } }),
