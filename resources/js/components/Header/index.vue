@@ -1,15 +1,15 @@
 <template>
   <header>
     <div class="logo_nav">
-      <router-link
-        :to="{ path: '/'}"
+      <a
+        href="/"
         class="navbar-brand"
       >
         <img
           :src="imgLogo"
           alt="logo"
         />
-      </router-link>
+      </a>
       <div class="right_info">
         <div class="search_bar">
           <div class="mobil_searc mobil_only">
@@ -103,31 +103,31 @@
         </div>
         <div class="profile_bar" v-else>
           <div class="btn_log_sign">
-            <router-link
-              :to="{ path: '/signin'}"
+            <a
+              href="/signin"
               class="alink log_btn"
             >
               Login
-            </router-link>
+            </a>
 
-            <router-link
-              :to="{ path: '/register'}"
+            <a
+              href="/register"
               class="alink sign_btn"
             >
               register
-            </router-link>
+            </a>
           </div>
         </div>
         <div class="cart_bar">
-          <router-link
-            :to="{ path: '/cart'}"
+          <a
+            href="/cart"
           >
             <img
               :src="imgCartIcon"
               alt="Cart Icon"
             >
             <span class="cart_items">{{cartQuantity}}</span>
-          </router-link>
+          </a>
         </div>
         <!-- <div class="menu_btn mobil_only">
         <a class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

@@ -62,20 +62,20 @@
                 </li>
                  </li>
                 <li class="nav-item nv mobil_only">
-                  <router-link
-                    :to="{ path: '/signin'}"
+                  <a
+                    href="/signin"
                     class="alink log_btn"
                   >
                     Login
-                  </router-link>
+                  </a>
 
                   <li class="nav-itemnv mobil_only">
-                  <router-link
-                :to="{ path: '/register'}"
-                class="alink sign_btn"
-              >
-                register
-              </router-link>
+                  <a
+                    href="/register"
+                    class="alink sign_btn"
+                  >
+                    register
+                  </a>
                 </li>
               </ul>
             </div>

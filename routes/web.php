@@ -44,7 +44,7 @@ use App\Models\ProductGallery;
 
 
 use App\Http\Controllers\Admin\SettingController;
-
+use App\Http\Controllers\HomeController;
 
 
 /*
@@ -210,11 +210,14 @@ Route::prefix('iot-admin')->group(function ()
 Auth::routes([
     'register' => false
 ]);
-
+/*
 Route::prefix('')->group(function ()
 {
     Route::get('{any}', function ()
     {
         return view('site');
     })->where('any', '.*');
-});
+});*/
+
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/products/{slug}/{id}', [HomeController::class, 'productDeatials']);

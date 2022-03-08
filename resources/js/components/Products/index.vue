@@ -791,9 +791,12 @@ export default {
   }),
   mounted: function() {
     this.getProdcut()
-    this.getFaqs(this.$route.params.id)
-    this.getReviews(this.$route.params.id)
-    this.getOverAllRating(this.$route.params.id)
+    let uri = window.location.href.split('/')
+    if(uri[5]){
+      this.getFaqs(uri[5])
+      this.getReviews(uri[5])
+      this.getOverAllRating(uri[5])
+    }
   },
   watch: {
     product(){
@@ -853,8 +856,9 @@ export default {
   methods: {
     ...mapActions(['getProduct','addCartItem','getCartItems','addFaq','getFaqs','getReviews','addReview', 'getOverAllRating']),
     getProdcut(){
-      if (this.$route.params.id) {
-        this.getProduct(this.$route.params.id)
+      let uri = window.location.href.split('/')
+      if (uri[5]) {
+        this.getProduct(uri[5])
       }
     },
     addItemInCart(proId){
@@ -980,7 +984,11 @@ export default {
       this.faqForm.validate()
       var _self = this
       if (!this.faqForm.validate().errors().any()) {
-        var productId = this.$route.params.id
+        let uri = window.location.href.split('/')
+        var productId =0
+        if (uri[5]) {
+          productId = uri[5]
+        }
         this.faqForm.data.product_id=productId
         this.addFaq(this.faqForm.data)
         this.$refs.notifications.displayNotification('success','Question Added','Question is added.')
@@ -1004,7 +1012,10 @@ export default {
         Object.keys(this.reviewForm.data).forEach(function(key,index) {
           formData.append(key,_self.reviewForm.data[key])
         })
-        formData.append('product_id',this.$route.params.id)
+        let uri = window.location.href.split('/')
+        if (uri[5]) {
+          formData.append('product_id',uri[5])
+        }
         Object.keys(this.reviewForm.data).forEach(function(key,index) {
             _self.reviewForm.data[key] = ''
         })
@@ -1045,7 +1056,11 @@ export default {
     submitReviewFilter(){
       this.reviewFilterForm.validate()
       if (!this.reviewFilterForm.validate().errors().any()) {
-        var productId = this.$route.params.id
+        var productId = 0
+        let uri = window.location.href.split('/')
+        if (uri[5]) {
+          productId = uri[5]
+        }
         HTTP.get(process.env.MIX_APP_APIURL+'rating/'+productId+'?keyword='+this.reviewFilterForm.data.search+'&type='+this.reviewFilterForm.data.filterSort).then((response) => {
           this.reviews = response.data.data
           if(this.reviews.length>10){
@@ -1081,7 +1096,11 @@ export default {
     sortRatings(event){
       if(event.target.value !=''){
         var sortby = event.target.value
-        var productId = this.$route.params.id
+        var productId = 0
+        let uri = window.location.href.split('/')
+        if (uri[5]) {
+          productId = uri[5]
+        }
         HTTP.get(process.env.MIX_APP_APIURL+'rating/'+productId+'?keyword=&type='+sortby).then((response) => {
           this.reviews = response.data.data
           if(this.reviews.length>10){
