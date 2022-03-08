@@ -138,7 +138,7 @@
 html,body
 {
         font-family: 'Gentona',Open Sans;
-        background: #eeeeee;
+        background: #eeeeee !important;
 }
 .max-1280 {
     max-width: 1280px;
@@ -164,8 +164,8 @@ input[type="email"] ,
 input[type="submit"] ,
 input[type="range"] ,
 input[name="text"],
-select 
-{ 
+select
+{
   color: #706f6f;
   font-weight: 300;
   height: 40px;
@@ -186,7 +186,7 @@ select
 .btn_blu i,.btn_red i,.btn i,.btn_blu_blank i,.btn_red_blank i{margin: 0 5px;}
 
 .swal2-confirm{
-height: 40px !important;  color: #fff !important; padding: 0 30px !important; line-height:38px !important; text-decoration: none; display: inline-block; border-radius: 0 !important; 
+height: 40px !important;  color: #fff !important; padding: 0 30px !important; line-height:38px !important; text-decoration: none; display: inline-block; border-radius: 0 !important;
     background: #11b6bd !important; border: 1px solid #11b6bd !important ;color:#fff !important; }
 .swal2-confirm:hover{background: transparent !important; color:#11b6bd !important; border: 1px solid #11b6bd !important; }
 

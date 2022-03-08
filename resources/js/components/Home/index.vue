@@ -1,66 +1,5 @@
 <template>
   <div class="main">
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "Product",
-      "name": "Product_TITLE",
-      "image": [
-        "https://petparent.s3.ap-south-1.amazonaws.com/images/CRaQNtLHGgEk7ymtYhyT8hjDgTY8pIY1ccLLdw29.png",
-        "https://petparent.s3.ap-south-1.amazonaws.com/images/CRaQNtLHGgEk7ymtYhyT8hjDgTY8pIY1ccLLdw29.png",
-        "https://petparent.s3.ap-south-1.amazonaws.com/images/CRaQNtLHGgEk7ymtYhyT8hjDgTY8pIY1ccLLdw29.png"
-       ],
-      "description": "Product Description",
-      "sku": "0446310786",
-      "mpn": "925872",
-      "brand": {
-        "@type": "Brand",
-        "name": "ACME"
-      },
-      "review": {
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "4",
-          "bestRating": "5"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Fred Benson"
-        }
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.4",
-        "reviewCount": "89"
-      },
-      "offers": {
-        "@type": "Offer",
-        "url": "https://example.com/anvil",
-        "priceCurrency": "USD",
-        "price": "119.99",
-        "priceValidUntil": "2020-11-20",
-        "itemCondition": "https://schema.org/UsedCondition",
-        "availability": "https://schema.org/InStock"
-      }
-    }
-  </script>
-    <!--<div id="map" v-cloak>
-      <p>
-        Let us locate you for better results...
-        <button @click="locateMe">Get location</button>
-      </p>
-      <div v-if="errorStr">
-        Sorry, but the following error
-        occurred: {{errorStr}}
-      </div>
-      <div v-if="gettingLocation">
-        <i>Getting your location...</i>
-      </div>
-      <div v-if="location">
-        Your location data is {{ location.coords.latitude }}, {{ location.coords.longitude}}
-      </div>
-    </div>-->
     <div class="free_ship_bar">
       <p>
         <img
@@ -102,15 +41,15 @@
           class="col-md-6"
           :class="'img_topbanner_bg_'+keycat"
         >
-          <router-link
-            :to="{ path: 'category/'+firstCatbanner.slug}"
+          <a
+            :href="'category/'+firstCatbanner.slug"
           >
             <img
               :src="firstCatbanner.feature_image"
               alt="Treats"
             >
             <h2>{{firstCatbanner.name}}</h2>
-          </router-link>
+          </a>
         </div>
         </div>
       </div>
@@ -135,16 +74,16 @@
             v-for="(category, key) in categories"
             :key="key"
           >
-            <router-link
+            <a
               v-if="category.order==5 || category.order==6"
-              :to="{ path: 'category/'+category.slug}"
+              :href="'category/'+category.slug"
             >
               <img
                 :src="category.feature_image"
                 alt="Dog"
               >
               <h2>{{category.name}}</h2>
-            </router-link>
+            </a>
           </div>
         </div>
       </div>
@@ -237,8 +176,8 @@
               v-for="(product,pkey) in products"
               :key="pkey"
             >
-              <router-link
-                :to="{ path: 'products/'+productSlug(product.name)+'/'+product.id}"
+              <a
+                :href="'products/'+productSlug(product.name)+'/'+product.id"
               >
                 <div v-if="product.gallary && product.gallary.length>0">
                   <img
@@ -247,7 +186,7 @@
                   >
                 </div>
                 <h3>{{product.name}}</h3>
-              </router-link>
+              </a>
             </div>
           </slick>
         </div>
@@ -424,8 +363,8 @@
           <li
             v-for="(listPage,pkey) in listPages"  :key="pkey"
           >
-          <router-link
-            :to="{ path: 'blog/'+listPage.slug}"
+          <a
+            :href="'blog/'+listPage.slug"
           >
             <span>
               <img
@@ -433,7 +372,7 @@
                 alt="listPage.title"
               >
             </span>
-          </router-link>
+          </a>
           </li>
         </ul>
       </div>
