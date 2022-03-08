@@ -66,6 +66,7 @@
 
              <ul class="slide-menu">
                    <li><a class="slide-item" href="{{route('solutionhub-products.index')}}">Products</a></li>
+                    <li><a class="slide-item" href="{{ route('solutionhub-categories.index') }}">Categories</a></li>
 
 
 

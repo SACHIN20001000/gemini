@@ -79,6 +79,34 @@
                                     </div>
                                     <div class="row row-xs align-items-center mg-b-20">
                                         <div class="col-md-4">
+                                            <label class="form-label mg-b-0">Category</label>
+                                        </div>
+                                        <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                            <select name="category_id"  class="form-control">
+                                                @foreach($categories as $category)
+                                                <option {{ (isset($product) && $product->category_id  == $category->id) ? 'selected' : '' }}  value="{{$category->id}}">  {{$category->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row row-xs align-items-center mg-b-20">
+                                        <div class="col-md-4">
+                                            <label class="form-label mg-b-0">Age</label>
+                                        </div>
+                                        <div class="col-md-8 mg-t-5 mg-md-t-0">
+
+                                            <select name="category_id[]" class="form-control select2 select" multiple="multiple" >
+                                            @foreach($categories as $category)
+                                                <option <?php if(isset($category->id)){ if(in_array('0-1yrs', json_decode($product->age))){echo "Selected";}}?>  value="{{$category->id}}">  {{$category->name}}</option>
+                                                @endforeach
+                                              <option value="0-1yrs" <?php if(isset($product->age)){ if(in_array('0-1yrs', json_decode($product->age))){echo "Selected";}}?>>0-1yrs</option>
+                                              <option value="1-10yrs"<?php  if(isset($product->age)){ if(in_array('1-10yrs', json_decode($product->age))){echo "Selected";}}?>>1-10yrs</option>
+                                              <option value="10+yrs"<?php  if(isset($product->age)){ if(in_array('10+yrs', json_decode($product->age))){echo "Selected";}}?>>10+yrs</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row row-xs align-items-center mg-b-20">
+                                        <div class="col-md-4">
                                             <label class="form-label mg-b-0">Description </label>
                                         </div>
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">

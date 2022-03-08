@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\Solutionhub;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Solutionhub\SolutionhubProduct;
+use App\Models\Category;
+
 use App\Models\Solutionhub\SolutionhubTag;
 use App\Models\Solutionhub\SolutionhubProductTag;
 use App\Models\Solutionhub\SolutionhubBackendTag;
@@ -95,7 +97,8 @@ class SolutionhubProductController extends Controller
      */
     public function create()
     {
-        return view('admin.solutionhub.products.addEdit');
+        $categories = Category::where('type', 'Solutionhub')->get();
+        return view('admin.solutionhub.products.addEdit',compact('categories'));
     }
 
     /**
@@ -189,9 +192,9 @@ public function store(AddProduct $request)
      */
     public function edit($id)
     {
-
+        $categories = Category::where('type','Solutionhub')->where('parent', '!=',0)->get();
         $product = SolutionhubProduct::where('id', $id)->first();
-        return view('admin.solutionhub.products.addEdit', compact('product'));
+        return view('admin.solutionhub.products.addEdit', compact('product','categories'));
     }
 
     /**
