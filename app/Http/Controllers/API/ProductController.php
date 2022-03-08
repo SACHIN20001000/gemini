@@ -116,7 +116,7 @@ class ProductController extends Controller
 
 
         $products = Product::with(['category', 'productDescriptionDetail', 'store', 'productVariation', 'productGallery', 'variationAttributesValue'])->find($id);
-        print_r($products);die;
+     
         if ($products)
         {
             return new ProductResource($products);
