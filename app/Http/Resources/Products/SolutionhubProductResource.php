@@ -6,6 +6,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Products\TagsResource;
 use App\Http\Resources\Products\BackendTagsResource;
 use App\Http\Resources\Products\BrandsResource;
+use App\Http\Resources\Products\SolutionhubCategoryResource;
+
 
 class SolutionhubProductResource extends JsonResource
 {
@@ -22,20 +24,22 @@ class SolutionhubProductResource extends JsonResource
 
             'id' => $this->id,
             'name' => $this->productName,
-            'separation_anxiety' => $this->separation_anxiety,
-            'teething' => $this->teething,
-            'aggressive_chewers' => $this->aggressive_chewers,
+            // 'separation_anxiety' => $this->separation_anxiety,
+            // 'teething' => $this->teething,
+            // 'aggressive_chewers' => $this->aggressive_chewers,
 
             
-            'boredom' => $this->boredom,
-            'disabled' => $this->disabled,
+            // 'boredom' => $this->boredom,
+            // 'disabled' => $this->disabled,
             'status' => $this->status,
             'description' => $this->description,
-            'energetic' => $this->energetic,
+            // 'energetic' => $this->energetic,
             'feature_image' => $this->feature_image ?? '',
             'tags'=>$this->tags?TagsResource::collection($this->tags):null,
             'backend_tags'=>$this->backendtags?BackendTagsResource::collection($this->backendtags):null,
             'brand'=>$this->brands?BrandsResource::collection($this->brands):null,
+            'category'=>$this->category?SolutionhubCategoryResource::collection($this->category):null,
+            'parent_category'=>$this->parentCategory?SolutionhubTagResource::collection($this->parentCategory):null,
        
         ];
     }

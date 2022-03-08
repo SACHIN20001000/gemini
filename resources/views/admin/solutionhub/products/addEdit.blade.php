@@ -77,6 +77,21 @@
                                             <input type="text" name="brand" placeholder="Brand" value="{{isset($product) ? $product->availBrands : '' }}" data-role="tagsinput" class="form-control"/>
                                         </div>
                                     </div>
+                                
+                                    <div class="row row-xs align-items-center mg-b-20">
+                                        <div class="col-md-4">
+                                            <label class="form-label mg-b-0">Category</label>
+                                        </div>
+                                        <div class="col-md-8 mg-t-5 mg-md-t-0">
+
+                                            <select name="category_id[]" class="form-control select2 select" multiple="multiple" >
+                                            @foreach($categories as $category)
+                                                <option   value="{{$category->id}}" <?php if(isset($procategory)){ if(in_array($category->id, $procategory)){echo "Selected";}}?>  >  {{$category->name}}</option>
+                                            @endforeach
+                                            
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="row row-xs align-items-center mg-b-20">
                                         <div class="col-md-4">
                                             <label class="form-label mg-b-0">Description </label>
@@ -119,7 +134,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-12 col-md-12">
+                        <!-- <div class="col-lg-12 col-md-12">
                             <div class="card">
                                 <div class="card-body">
                                     <h4>Shipping</h4>
@@ -192,7 +207,7 @@
                                         </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
 
                     <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($product) ? 'Update' : 'Save' }}</button>
@@ -219,7 +234,7 @@
 
     <script type="text/javascript">
          $(document).ready(function() {
-             $("#select").select2({
+             $(".select").select2({
                 multiple:true
                 });
                 $(".dog").select2({ });

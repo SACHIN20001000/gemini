@@ -246,7 +246,7 @@
                                         <div class="col-md-8 mg-t-5 mg-md-t-0">
                                         <select name="protein_type[]" class="form-control select2 multi" multiple="multiple" >
 
-                                              <option value="turkey" <?php if(isset($product->protein_type)){ if(in_array('turkey', json_decode($product->protein_type))){echo "Selected";}}?>>Turkey</option>
+                                              <option value="turkey"  <?php if(isset($product->protein_type)){ if(in_array('turkey', json_decode($product->protein_type))){echo "Selected";}}?>>Turkey</option>
                                               <option value="chicken"<?php  if(isset($product->protein_type)){ if(in_array('chicken', json_decode($product->protein_type))){echo "Selected";}}?>>Chicken</option>
                                               <option value="beef"<?php  if(isset($product->protein_type)){ if(in_array('beef', json_decode($product->protein_type))){echo "Selected";}}?>>Beef</option>
                                               <option value="lamb"<?php  if(isset($product->protein_type)){  if(in_array('lamb', json_decode($product->protein_type))){echo "Selected";}}?>>Lamb</option>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\Solutionhub;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Solutionhub\SolutionhubProduct;
+use App\Models\Category;
+
 use App\Models\Solutionhub\SolutionhubTag;
 use App\Models\Solutionhub\SolutionhubProductTag;
 use App\Http\Requests\Admin\Solutionhub\Product\AddProduct;
@@ -50,8 +52,9 @@ class SolutionhubProductController extends Controller
     public function index(Request $request)
     {
         $limit = $request->limit ? $request->limit : 20;
-        $products = SolutionhubProduct::with( ['tags.tagName'])->orderBy('id','DESC')->paginate($limit);
-
+        $products = SolutionhubProduct::with( ['tags.tagName','category'])->orderBy('id','DESC')->paginate($limit);
+        // $products->parent_category = Category::where('type','Solutionhub')->where('parent',0)->get();
+     
         return SolutionhubProductResource::collection($products);
     }
 

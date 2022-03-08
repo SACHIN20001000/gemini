@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\Chowhub\ChowhubCouponController;
 use App\Http\Controllers\Admin\Chowhub\ChowhubImportController;
 use App\Http\Controllers\Admin\Solutionhub\SolutionhubImportController;
 use App\Http\Controllers\Admin\Solutionhub\SolutionhubProductController;
+use App\Http\Controllers\Admin\Solutionhub\SolutionhubCategoryController;
+
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PetController;
 
@@ -115,6 +117,8 @@ Route::prefix('admin')->group(function ()
         //Solutionhub
 
         Route::resource('solutionhub-products', SolutionhubProductController::class);
+        Route::resource('solutionhub-categories', SolutionhubCategoryController::class);
+
         Route::any('/solutionhub-product/duplicate', [App\Http\Controllers\Admin\Solutionhub\SolutionhubProductController::class, 'duplicate'])->name('solutionhub_duplicate');
 
         //litterhub

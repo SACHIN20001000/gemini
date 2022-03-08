@@ -40,6 +40,12 @@ class CreateSolutionHubProductsTable extends Migration
             $table->unsignedBigInteger('brand_id');
             $table->timestamps();
         });
+        Schema::create('solutionhub_product_categories', function (Blueprint $table) {
+            $table->id();
+			$table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('category_id');
+            $table->timestamps();
+        });
         Schema::create('solutionhub_tags', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -78,5 +84,7 @@ class CreateSolutionHubProductsTable extends Migration
         Schema::dropIfExists('solutionhub_product_tags');
         Schema::dropIfExists('solutionhub_brands');
         Schema::dropIfExists('solutionhub_product_brands');
+        Schema::dropIfExists('solutionhub_product_categories');
+
     }
 }
