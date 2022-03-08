@@ -264,7 +264,7 @@ return [
          * Uncomment to add constants which can be used in annotations
          */
         'constants' => [
-        'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'http://3.132.243.209/api'),
+        'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'https://petparentsbranddev.tk/api/'),
         ],
         // STATIC TOKEN 
         'api_token' => [
