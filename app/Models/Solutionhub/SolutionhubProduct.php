@@ -4,7 +4,7 @@ namespace App\Models\Solutionhub;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use  App\Models\Category;
 class SolutionhubProduct extends Model
 {
 
@@ -17,11 +17,16 @@ class SolutionhubProduct extends Model
     protected $fillable = [
         'productName', 'description', 'tag', 'feature_image', 'status',  'separation_anxiety','teething','boredom','disabled','energetic','aggressive_chewers'
     ];
-    protected $appends = array('availTags','availBackendTags','availBrands');
+    protected $appends = array('availTags','availBackendTags','availBrands', 'parentCategory');
     public function backendtags()
     {
 
         return $this->hasMany(SolutionhubProductBackendTag::class, 'product_id', 'id');
+    }
+    public function category()
+    {
+
+        return $this->hasMany(SolutionhubProductCategory::class, 'product_id', 'id');
     }
     public function tags()
     {
@@ -57,6 +62,7 @@ class SolutionhubProduct extends Model
         $tagsData = implode(',', $tagsData);
         return $tagsData;
     }
+    
     public function getAvailBrandsAttribute()
     {
         $tags = $this->brands;
@@ -69,4 +75,10 @@ class SolutionhubProduct extends Model
         $tagsData = implode(',', $tagsData);
         return $tagsData;
     }
+
+    public function getParentCategoryAttribute()
+    {
+        return Category::where('type','Solutionhub')->where('parent',0)->get();
+    }
+
 }

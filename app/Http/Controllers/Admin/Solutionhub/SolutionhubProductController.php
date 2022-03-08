@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Solutionhub\SolutionhubProduct;
 use App\Models\Category;
+use App\Models\Solutionhub\SolutionhubProductCategory;
 
 use App\Models\Solutionhub\SolutionhubTag;
 use App\Models\Solutionhub\SolutionhubProductTag;
@@ -97,7 +98,7 @@ class SolutionhubProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('type', 'Solutionhub')->get();
+        $categories = Category::where('type','Solutionhub')->where('parent', '!=',0)->get();
         return view('admin.solutionhub.products.addEdit',compact('categories'));
     }
 
@@ -122,6 +123,18 @@ public function store(AddProduct $request)
         $tags = explode(",", $inputs['tag']);
         $backendtags = explode(",", $inputs['backend_tag']);
         $brands = explode(",", $inputs['brand']);
+        if (!empty($inputs['category_id']))
+        {
+            foreach ($inputs['category_id']  as $category)
+            {
+
+                $categorySave = new SolutionhubProductCategory;
+                $categorySave->category_id = $category;
+                $categorySave->product_id = $products->id;
+                $categorySave->save();
+            }
+        }
+
         if (!empty($tags))
         {
             foreach ($tags as $vakey => $tagName)
@@ -193,8 +206,17 @@ public function store(AddProduct $request)
     public function edit($id)
     {
         $categories = Category::where('type','Solutionhub')->where('parent', '!=',0)->get();
-        $product = SolutionhubProduct::where('id', $id)->first();
-        return view('admin.solutionhub.products.addEdit', compact('product','categories'));
+      
+        $product = SolutionhubProduct::with('category')->where('id', $id)->first();
+        $procategory=[];
+        if($product->category){
+            foreach ($product->category as $key => $value) {
+            array_push($procategory, $value->category_id);
+
+            }
+        }
+     
+        return view('admin.solutionhub.products.addEdit', compact('procategory','product','categories'));
     }
 
     /**
@@ -207,6 +229,7 @@ public function store(AddProduct $request)
     public function update(UpdateProduct $request, $id)
     {
         $inputs = $request->all();
+       
         if (!empty($inputs['feature_image']))
         {
             $path = Storage::disk('s3')->put('images', $inputs['feature_image']);
@@ -214,10 +237,23 @@ public function store(AddProduct $request)
             $inputs['feature_image'] = $image_path;
         }
 
-      SolutionhubProduct::find($id)->update($inputs);
+        SolutionhubProduct::find($id)->update($inputs);
         $tags = explode(",", $inputs['tag']);
         $backendtags = explode(",", $inputs['backend_tag']);
         $brands = explode(",", $inputs['brand']);
+        if (!empty($inputs['category_id']))
+        {
+            SolutionhubProductCategory::where('product_id', $id)->delete();
+            foreach ($inputs['category_id']  as $category)
+            {
+
+                $categorySave = new SolutionhubProductCategory;
+                $categorySave->category_id = $category;
+                $categorySave->product_id = $id;
+                $categorySave->save();
+            }
+        }
+
         if (!empty($tags))
         {
             SolutionhubProductTag::where('product_id', $id)->delete();
