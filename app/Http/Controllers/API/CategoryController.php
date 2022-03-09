@@ -136,7 +136,7 @@ class CategoryController extends Controller
     public function solution_category(Request $request)
     {
         // $limit = $request->limit ? $request->limit : 20;
-        $categories = Category::with('childrens')->where(['status' => 1, 'type' => 'Solutionhub'])->get();
+        $categories = Category::with('childrens')->where(['status' => 1, 'type' => 'Solutionhub','parent'=> 0])->get();
 
         return CategoryResource::collection($categories);
     }
