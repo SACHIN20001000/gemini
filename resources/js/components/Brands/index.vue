@@ -77,11 +77,11 @@
                   <p class="bd_type" v-if="branProduct.variations">Variations</p>
                   <p class="bd_type" v-else>Simple</p>
                   <label v-if="branProduct.variations">${{branProduct.variations[0].real_price}}</label>
-                  <router-link
-                    :to="{ path: '/products/'+productSlug(branProduct.name)+'/'+branProduct.id}"
+                  <a
+                    :href="'/products/'+productSlug(branProduct.name)+'/'+branProduct.id"
                   >
                     More Options Available
-                 </router-link>
+                 </a>
                 </div>
               </div>
             </div>
@@ -121,9 +121,9 @@ export default {
     }
   },
   created(){
-    if(this.$route.params.slug && this.$route.params.brandid){
-      this.getBrand(this.$route.params.brandid)
-      this.getBrandProducts(this.$route.params.brandid)
+    if(window.brandslug && window.brandid){
+      this.getBrand(window.brandid)
+      this.getBrandProducts(window.brandid)
     }
   },
   computed: {
@@ -146,7 +146,7 @@ export default {
          return str.slice(0,12)+'...'
       }else{
         return str
-      }      
+      }
    }
   }
 }

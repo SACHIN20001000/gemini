@@ -73,8 +73,8 @@ export default {
     }
   },
   created(){
-    if(this.$route.params.cartid!='' && this.$route.params.cartkey!=''){
-      var chowhubcart={'cartId':this.$route.params.cartid,'cartKey':this.$route.params.cartkey}
+    if(window.cartid!='' && window.cartkey!=''){
+      var chowhubcart={'cartId':window.cartid,'cartKey':window.cartkey}
       this.getChowhubCartItems(chowhubcart)
     }
   },
