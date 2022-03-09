@@ -64,9 +64,6 @@ class SolutionhubProductController extends Controller
      *      operationId="Solutionhub Product By Id",
      * summary="Solutionhub_products_by_id",
      *      tags={"SolutionhubProducts"},
-     *      security={
-     *          {"Token": {}},
-     *          },
      *      @OA\Parameter(
      *         name="id",
      *         in="path",

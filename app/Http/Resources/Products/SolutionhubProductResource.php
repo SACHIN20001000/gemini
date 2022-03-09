@@ -39,7 +39,7 @@ class SolutionhubProductResource extends JsonResource
             'backend_tags'=>$this->backendtags?BackendTagsResource::collection($this->backendtags):null,
             'brand'=>$this->brands?BrandsResource::collection($this->brands):null,
             'category'=>$this->category?SolutionhubCategoryResource::collection($this->category):null,
-            'parent_category'=>$this->parentCategory?SolutionhubTagResource::collection($this->parentCategory):null,
+            // 'parent_category'=>$this->parentCategory?SolutionhubTagResource::collection($this->parentCategory):null,
        
         ];
     }
