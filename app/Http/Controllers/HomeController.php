@@ -59,7 +59,7 @@ class HomeController extends Controller
 		$metaInfo= [
 					'title'=>'PetParent category page',
 					'description'=>'Meta descrption category page',
-          'slug'=>$slug
+					'catslug'=>$slug
 				];
 
 		return view('frontend.category', compact('metaInfo'));
