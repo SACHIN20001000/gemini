@@ -73,8 +73,8 @@ export default {
     }
   },
   created(){
-    if(this.$route.params.cartid!='' && this.$route.params.cartkey!=''){
-      var litterhubcart={'cartId':this.$route.params.cartid,'cartKey':this.$route.params.cartkey}
+    if(window.cartid!='' && window.cartkey!=''){
+      var litterhubcart={'cartId':window.cartid,'cartKey':window.cartkey}
       this.getLitterhubCartItems(litterhubcart)
     }
   },

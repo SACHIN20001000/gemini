@@ -44,6 +44,19 @@ Vue.component('header-component', require('./components/Header/index.vue').defau
 Vue.component('footer-component', require('./components/Footer/index.vue').default)
 Vue.component('home-component', require('./components/Home/index.vue').default)
 Vue.component('product-component', require('./components/Products/index.vue').default)
+Vue.component('blog-component', require('./components/Blog/index.vue').default)
+Vue.component('brands-component', require('./components/Brands/index.vue').default)
+Vue.component('cart-component', require('./components/Cart/index.vue').default)
+Vue.component('category-component', require('./components/Category/index.vue').default)
+Vue.component('checkout-component', require('./components/Checkout/index.vue').default)
+Vue.component('chowhub-component', require('./components/Chowhub/index.vue').default)
+Vue.component('dashboard-component', require('./components/Dashboard/index.vue').default)
+Vue.component('litterhub-component', require('./components/Litterhub/index.vue').default)
+Vue.component('payment-component', require('./components/Payment/index.vue').default)
+Vue.component('profile-component', require('./components/Profile/index.vue').default)
+Vue.component('register-component', require('./components/Register/index.vue').default)
+Vue.component('login-component', require('./components/Register/Login.vue').default)
+Vue.component('logout-component', require('./components/Register/Logout.vue').default)
 
 const app = new Vue({
     el: '#app',

@@ -791,11 +791,10 @@ export default {
   }),
   mounted: function() {
     this.getProdcut()
-    let uri = window.location.href.split('/')
-    if(uri[5]){
-      this.getFaqs(uri[5])
-      this.getReviews(uri[5])
-      this.getOverAllRating(uri[5])
+    if(window.prodId){
+      this.getFaqs(window.prodId)
+      this.getReviews(window.prodId)
+      this.getOverAllRating(window.prodId)
     }
   },
   watch: {
@@ -856,9 +855,9 @@ export default {
   methods: {
     ...mapActions(['getProduct','addCartItem','getCartItems','addFaq','getFaqs','getReviews','addReview', 'getOverAllRating']),
     getProdcut(){
-      let uri = window.location.href.split('/')
-      if (uri[5]) {
-        this.getProduct(uri[5])
+
+      if (window.prodId) {
+        this.getProduct(window.prodId)
       }
     },
     addItemInCart(proId){
@@ -984,10 +983,10 @@ export default {
       this.faqForm.validate()
       var _self = this
       if (!this.faqForm.validate().errors().any()) {
-        let uri = window.location.href.split('/')
+
         var productId =0
-        if (uri[5]) {
-          productId = uri[5]
+        if (window.prodId) {
+          productId = window.prodId
         }
         this.faqForm.data.product_id=productId
         this.addFaq(this.faqForm.data)
@@ -1012,9 +1011,8 @@ export default {
         Object.keys(this.reviewForm.data).forEach(function(key,index) {
           formData.append(key,_self.reviewForm.data[key])
         })
-        let uri = window.location.href.split('/')
-        if (uri[5]) {
-          formData.append('product_id',uri[5])
+        if (window.prodId) {
+          formData.append('product_id',window.prodId)
         }
         Object.keys(this.reviewForm.data).forEach(function(key,index) {
             _self.reviewForm.data[key] = ''
@@ -1057,9 +1055,9 @@ export default {
       this.reviewFilterForm.validate()
       if (!this.reviewFilterForm.validate().errors().any()) {
         var productId = 0
-        let uri = window.location.href.split('/')
-        if (uri[5]) {
-          productId = uri[5]
+
+        if (window.prodId) {
+          productId = window.prodId
         }
         HTTP.get(process.env.MIX_APP_APIURL+'rating/'+productId+'?keyword='+this.reviewFilterForm.data.search+'&type='+this.reviewFilterForm.data.filterSort).then((response) => {
           this.reviews = response.data.data
@@ -1097,9 +1095,9 @@ export default {
       if(event.target.value !=''){
         var sortby = event.target.value
         var productId = 0
-        let uri = window.location.href.split('/')
-        if (uri[5]) {
-          productId = uri[5]
+
+        if (window.prodId) {
+          productId = window.prodId
         }
         HTTP.get(process.env.MIX_APP_APIURL+'rating/'+productId+'?keyword=&type='+sortby).then((response) => {
           this.reviews = response.data.data

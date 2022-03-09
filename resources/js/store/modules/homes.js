@@ -75,6 +75,7 @@ const actions = {
     HTTP.get(process.env.MIX_APP_APIURL+"cart").then((response) => {
       commit("getCartToken", response.data.data)
       const cartToken = response.data.data;
+      console.log(cartToken);
       if(cartToken.key){
         localStorage.setItem('cartKey', cartToken.key)
         localStorage.setItem('cartId', cartToken.id)

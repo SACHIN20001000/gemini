@@ -25,8 +25,8 @@ import {mapActions,mapGetters} from "vuex"
 export default {
   name:"Blog",
   created(){
-    if (this.$route.params.slug) {
-      this.getPage(this.$route.params.slug)
+    if (window.slugd) {
+      this.getPage(window.slugd)
     }
   },
   computed: {

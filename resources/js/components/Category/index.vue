@@ -55,13 +55,13 @@
             <swiper-slide><a href="#">Litter Boxes13</a></swiper-slide>
             <swiper-slide><a href="#">Litter Boxes14</a></swiper-slide>
             <swiper-slide><a href="#">Litter Boxes15</a></swiper-slide>
-              
+
           </swiper>
           <div class="swiper_nav">
                 <div class="swiper-button-prev" slot="button-prev"></div>
                 <div class="swiper-button-next" slot="button-next"></div>
               </div>
-          </div><!-- 
+          </div><!--
           <ul>
             <li class="active-tab"><a href="#">Health Care</a></li>
             <li><a href="#">Health Care</a></li>
@@ -377,8 +377,8 @@ export default {
   },
   watch:{
     categories(){
-      if (this.$route.params.slug) {
-        this.category = this.singleCategory(this.$route.params.slug)
+      if (window.catslug) {
+        this.category = this.singleCategory(window.catslug)
         this.getProductsByCategory(this.category.id)
       }
     }

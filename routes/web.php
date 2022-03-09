@@ -219,5 +219,19 @@ Route::prefix('')->group(function ()
     })->where('any', '.*');
 });*/
 
+
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/products/{slug}/{id}', [HomeController::class, 'productDeatials']);
+Route::get('/blog/{slug}', [HomeController::class, 'blog']);
+Route::get('/brand/{slug}/{brandid}', [HomeController::class, 'brand']);
+Route::get('/cart', [HomeController::class, 'cart']);
+Route::get('/category/{slug}', [HomeController::class, 'category']);
+Route::get('/checkout', [HomeController::class, 'checkout']);
+Route::get('/chowhub/{cartid}/{cartkey}', [HomeController::class, 'chowhub']);
+Route::get('/dashboard', [HomeController::class, 'dashboard']);
+Route::get('/litterhub/{cartid}/{cartkey}', [HomeController::class, 'litterhub']);
+Route::get('/payment', [HomeController::class, 'payment']);
+Route::get('/profile', [HomeController::class, 'profile']);
+Route::get('/register', [HomeController::class, 'register']);
+Route::get('/signin', [HomeController::class, 'login']);
+Route::get('/signout', [HomeController::class, 'logout']);
