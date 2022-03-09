@@ -51,6 +51,7 @@ Vue.component('category-component', require('./components/Category/index.vue').d
 Vue.component('checkout-component', require('./components/Checkout/index.vue').default)
 Vue.component('chowhub-component', require('./components/Chowhub/index.vue').default)
 Vue.component('dashboard-component', require('./components/Dashboard/index.vue').default)
+Vue.component('store-component', require('./components/Store/index.vue').default)
 Vue.component('litterhub-component', require('./components/Litterhub/index.vue').default)
 Vue.component('payment-component', require('./components/Payment/index.vue').default)
 Vue.component('profile-component', require('./components/Profile/index.vue').default)

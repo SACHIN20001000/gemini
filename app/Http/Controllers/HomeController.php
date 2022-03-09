@@ -59,7 +59,7 @@ class HomeController extends Controller
 		$metaInfo= [
 					'title'=>'PetParent category page',
 					'description'=>'Meta descrption category page',
-          'slug'=>$slug
+					'catslug'=>$slug
 				];
 
 		return view('frontend.category', compact('metaInfo'));
@@ -95,6 +95,16 @@ class HomeController extends Controller
 				];
 
 		return view('frontend.dashboard', compact('metaInfo'));
+
+    }
+  public function store()
+    {
+		$metaInfo= [
+					'title'=>'PetParent store page',
+					'description'=>'Meta descrption store page'
+				];
+
+		return view('frontend.store', compact('metaInfo'));
 
     }
 	public function litterhub($cartid,$cartkey)
@@ -238,7 +248,9 @@ class HomeController extends Controller
             $metaInfo= [
       					'title'=>$products->productName,
       					'description'=>$products->description,
-						'schemaResponse'=>$productSchema
+						'schemaResponse'=>$productSchema,
+						'slug'=>$slug,
+						'id'=>$id
       				];
     			return view('frontend.productDeatials', compact('metaInfo'));
         }else{
