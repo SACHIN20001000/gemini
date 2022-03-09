@@ -92,18 +92,18 @@
          <div class="row update_row">
           <div class="col-md-7">
             <div class="btn_left">
-              <router-link
-                :to="{ path: '/'}"
+              <a
+                href="/"
                 class="btn_blu"
               >
                 Continue Shopping
-              </router-link>
-              <router-link
-                :to="{ path: 'checkout'}"
+              </a>
+              <a
+                href="/checkout"
                 class="btn_red"
               >
                 Check Out <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-              </router-link>
+              </a>
             </div>
           </div>
            <div class="col-md-5">
@@ -120,11 +120,11 @@
       <div class="proccedtocheckout1 text-right">
         <p class="msg_offer">YOU ARE $13.01 AWAY FROM FREE SHIPPING</p>
         <div class="msg_blu"> <span class="btn_blu">FREE 3 DAY SHIPPING ON U.S. ORDERS OVER $45</span></div>
-        <router-link class="btn_red"
-          :to="{ path: 'checkout'}"
+        <a class="btn_red"
+          href="/checkout"
         >
           Proceed To Checkout <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-        </router-link>
+        </a>
         <div class="pay_type">
         <a href="#">
          <img
