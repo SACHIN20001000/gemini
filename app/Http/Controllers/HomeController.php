@@ -248,9 +248,9 @@ class HomeController extends Controller
             $metaInfo= [
       					'title'=>$products->productName,
       					'description'=>$products->description,
-						    'schemaResponse'=>$productSchema,
-                'slug'=>$slug,
-                'id'=>$id
+						'schemaResponse'=>$productSchema,
+						'slug'=>$slug,
+						'id'=>$id
       				];
     			return view('frontend.productDeatials', compact('metaInfo'));
         }else{
