@@ -5,26 +5,26 @@
     <div class="checkoutform">
       <div class="twobythree">
         <div class="text-center check_logo">
-          <router-link
-            :to="{ path: '/'}"
+          <a
+            href="/"
           >
             <img :src="paw">
-          </router-link>
+          </a>
       </div>
         <ul class="pay_steps">
           <li>
-            <router-link
-              :to="{ path: '/'}"
+            <a
+              href="/"
             >
               Information
-            </router-link>
+            </a>
           </li>
           <li>
-            <router-link
-              :to="{ path: 'cart'}"
+            <a
+              href="/cart"
             >
               Cart
-            </router-link>
+            </a>
           </li>
           <li class="active">Payment</li>
         </ul>
@@ -706,11 +706,11 @@ export default {
         this.$refs.notifications.displayNotification('success','Payment','Payment is received.')
         this.loadingDisplay=false
         this.removeCartItem()
-        this.$router.push('/payment')
+        window.location.href="/payment"
       }).catch((errors) => {
         this.$refs.notifications.displayNotification('error','Payment',errors.response.data.message)
         this.loadingDisplay=false
-      })
+      }) 
     },
     couponEntireOrder(couponDetails){
       if(couponDetails.count>0){
