@@ -25,7 +25,7 @@ class CategoryResource extends JsonResource
             'status' => $this->status,
             'feature_image' => $this->feature_image,
             'status' => $this->status,
-            'childrens' => self::collection($this->childrens)
+            'category' => self::collection($this->childrens)
 
         ];
     }
