@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{URL::asset('assets/img/brand/favicon.png')}}" type="image/x-icon"/>
 	  <script src="https://js.stripe.com/v3/"></script>
-    <script type="text/javascript">var brandslug="{{$metaInfo['catslug']}}";</script>
+    <script type="text/javascript">var brandslug="{{$metaInfo['catslug']}}";var catId="{{$metaInfo['id']}}";</script>
 </head>
 
 <body>

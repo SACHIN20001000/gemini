@@ -42,7 +42,7 @@
           :class="'img_topbanner_bg_'+keycat"
         >
           <a
-            :href="'category/'+firstCatbanner.slug"
+            :href="'category/'+firstCatbanner.slug+'/'+firstCatbanner.id"
           >
             <img
               :src="firstCatbanner.feature_image"
@@ -76,7 +76,7 @@
           >
             <a
               v-if="category.order==5 || category.order==6"
-              :href="'category/'+category.slug"
+              :href="'category/'+category.slug+'/'+category.id"
             >
               <img
                 :src="category.feature_image"

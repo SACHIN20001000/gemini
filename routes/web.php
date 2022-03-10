@@ -226,7 +226,7 @@ Route::get('/products/{slug}/{id}', [FrontController::class, 'productDeatials'])
 Route::get('/blog/{slug}', [FrontController::class, 'blog']);
 Route::get('/brand/{slug}/{brandid}', [FrontController::class, 'brand']);
 Route::get('/cart', [FrontController::class, 'cart']);
-Route::get('/category/{slug}', [FrontController::class, 'category']);
+Route::get('/category/{slug}/{id}', [FrontController::class, 'category']);
 Route::get('/checkout', [FrontController::class, 'checkout']);
 Route::get('/chowhub/{cartid}/{cartkey}', [FrontController::class, 'chowhub']);
 Route::get('/dashboard', [FrontController::class, 'dashboard']);
