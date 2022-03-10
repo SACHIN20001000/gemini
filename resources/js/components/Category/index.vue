@@ -89,7 +89,7 @@
               <label>${{productList.real_price}}</label>
             </span>
             <a
-              :href="'products/'+productSlug(productList.name)+'/'+productList.id"
+              :href="'/products/'+productSlug(productList.name)+'/'+productList.id"
             >
               More Options Available
             </a>
