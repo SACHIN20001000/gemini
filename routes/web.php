@@ -47,6 +47,7 @@ use App\Models\ProductGallery;
 
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FrontController;
 
 
 /*
@@ -231,18 +232,18 @@ Route::prefix('')->group(function ()
 
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/products/{slug}/{id}', [HomeController::class, 'productDeatials']);
-Route::get('/blog/{slug}', [HomeController::class, 'blog']);
-Route::get('/brand/{slug}/{brandid}', [HomeController::class, 'brand']);
-Route::get('/cart', [HomeController::class, 'cart']);
-Route::get('/category/{slug}', [HomeController::class, 'category']);
-Route::get('/checkout', [HomeController::class, 'checkout']);
-Route::get('/chowhub/{cartid}/{cartkey}', [HomeController::class, 'chowhub']);
-Route::get('/dashboard', [HomeController::class, 'dashboard']);
-Route::get('/store', [HomeController::class, 'store']);
-Route::get('/litterhub/{cartid}/{cartkey}', [HomeController::class, 'litterhub']);
-Route::get('/payment', [HomeController::class, 'payment']);
-Route::get('/profile', [HomeController::class, 'profile']);
-Route::get('/register', [HomeController::class, 'register']);
-Route::get('/signin', [HomeController::class, 'login']);
-Route::get('/signout', [HomeController::class, 'logout']);
+Route::get('/products/{slug}/{id}', [FrontController::class, 'productDeatials']);
+Route::get('/blog/{slug}', [FrontController::class, 'blog']);
+Route::get('/brand/{slug}/{brandid}', [FrontController::class, 'brand']);
+Route::get('/cart', [FrontController::class, 'cart']);
+Route::get('/category/{slug}', [FrontController::class, 'category']);
+Route::get('/checkout', [FrontController::class, 'checkout']);
+Route::get('/chowhub/{cartid}/{cartkey}', [FrontController::class, 'chowhub']);
+Route::get('/dashboard', [FrontController::class, 'dashboard']);
+Route::get('/store', [FrontController::class, 'store']);
+Route::get('/litterhub/{cartid}/{cartkey}', [FrontController::class, 'litterhub']);
+Route::get('/payment', [FrontController::class, 'payment']);
+Route::get('/profile', [FrontController::class, 'profile']);
+Route::get('/register', [FrontController::class, 'register']);
+Route::get('/signin', [FrontController::class, 'login']);
+Route::get('/signout', [FrontController::class, 'logout']);
