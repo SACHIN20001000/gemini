@@ -111,7 +111,6 @@ h1.line_heading:after {content: ""; margin-left: 5px; flex-grow: 1; display: blo
 .sub_1 a {font-size: 19px; color: #fff; font-weight: 400; }
 section.duo_banner {padding: 50px 0 25px 0; }
 section.Keep_touch {background: #f6f6f6; }
-.container_min {max-width: 1000px; margin: 0 auto; padding: 0 15px; width: 100%; }
 .form_text h1 {font-size: 67px; font-weight: bold; line-height: .7; letter-spacing: -3px; color: #00b7bc; }
 .form_text h1 span:not(.re_d) {font-weight: 300; }
 .form_text p {font-size: 15px; color: #9d9d9c; }

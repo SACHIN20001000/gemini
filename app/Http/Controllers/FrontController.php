@@ -44,12 +44,13 @@ class FrontController extends Controller
 		return view('frontend.cart', compact('metaInfo'));
 
     }
-	public function category($slug)
+	public function category($slug, $id)
     {
 		$metaInfo= [
 					'title'=>'PetParent category page',
 					'description'=>'Meta descrption category page',
-					'catslug'=>$slug
+					'catslug'=>$slug,
+          'id'=>$id
 				];
 
 		return view('frontend.category', compact('metaInfo'));

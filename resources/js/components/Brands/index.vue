@@ -13,10 +13,10 @@
       </section>
       <section class="brand_strip">
         <a href="brand_box">
-           <img
-        :src="brand.logo"
-        alt="Ship"
-        >
+          <img
+            :src="brand.logo"
+            alt="Ship"
+          >
         </a>
       </section>
       <section class="abt_text">
@@ -29,28 +29,6 @@
       <section class="brand_grid">
         <div class="max-1280">
           <div class="grid-4-6d">
-            <!--<div class="prod_big" style="background: #f6f6f6;">
-              <img
-              :src="product"
-              alt="product"
-              >
-              <div class="bd-txt">
-                <div class="bd_rate">
-                  <span>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                  </span>
-                  <label>(125 Reviews)</label>
-                </div>
-                <h3>Product Name</h3>
-                <p class="bd_type"> Product Type</p>
-                <label>$00.00</label>
-                <a href="#">More Options Available </a>
-              </div>
-            </div>-->
             <div class="flex_product" v-if="brandProducts">
               <div
                 class="prod_min"
@@ -147,7 +125,7 @@ export default {
       }else{
         return str
       }
-   }
+    }
   }
 }
 </script>

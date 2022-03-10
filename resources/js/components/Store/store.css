@@ -1,0 +1,134 @@
+.flex_stores {
+    display: grid;
+    grid-template-columns: 4.5fr 2.75fr 2.75fr;
+    align-items: end;
+    padding-bottom:20px ;
+}
+.store_title {
+    text-align: center;
+    margin:50px auto 10px auto;
+    padding: 20px 0 0 0;
+    color: #706f6f;
+    font-size: 40px;
+    position: relative;
+}
+.rd_label:before {
+    content: "";
+    width: 320px;
+    height: 10px;
+    background: #e3002b;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    border-radius: 50px;
+}
+.store_box {
+    display: flex;
+    gap: 20px;
+}
+
+.store-img img {
+    max-width: 271px;
+}
+.store-info {
+    color: #9d9d9c;
+}
+.store-info>label{
+    margin: 0 0 10px 0;
+    font-weight: 500;
+      color: #9d9d9c;
+    font-size: 18px;
+    line-height: 1.2;
+}
+.st_loc a {
+    font-size: 14px;
+    font-weight: 300;
+    color: #fff;
+    text-decoration: none;
+    background: #c6c6c6;
+    line-height: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    padding: 0 15px;
+}
+.store_info>h1 {
+    margin: 0 0 10px 0;
+    font-weight: 500;
+      color: #9d9d9c;
+    font-size: 18px;
+}
+.store-info p {
+    font-size: 14px;
+    max-width: 150px;
+    font-weight: 300;
+    margin:0px 0 10px 0;
+    line-height: 2;
+}
+.soon-text h1 {
+    font-size: 18px;
+    color: #9d9d9c;
+    font-weight: 600;
+}
+.st-soon>div {
+    display: flex;
+    height:calc(100% - 30px);
+    background: #dadada;
+    align-items: center;
+    justify-content: center;
+}
+.line_devide {
+    display: block;
+    border-top: 1px solid rgba(0,0,0,.2);
+    margin: 20px 0 30px 0;
+}
+
+@media only screen and (max-width:768px)
+{
+.row.flex_stores {
+    grid-template-columns: 1fr;
+}
+.st-soon>div {
+    min-height: 180px;
+    margin: 40px 0;
+}
+.row.flex_stores {
+    grid-template-columns: 1fr;
+    max-width: 476px;
+    margin: 0 auto;
+}
+.store_open {
+    margin-bottom: 20px;
+}
+.st-soon>div {
+    min-height: 170px;
+    margin: 20px 0;
+    max-width: 270px;
+}
+}
+
+@media only screen and (max-width: 400px)
+{
+
+.store_box {
+    flex-direction: column;
+}
+}
+
+@media only screen and (min-width:768px) and (max-width: 1024px)
+{
+    .flex_stores {
+    grid-template-columns: repeat(2, 1fr);
+}
+.st-soon>div {
+    margin: 10px 0;
+    min-height: 170px;
+}
+.max_1070 {
+    max-width: 100%;
+    padding: 20px;
+}
+}
