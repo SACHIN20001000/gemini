@@ -28,6 +28,8 @@
                             <thead>
                                 <tr>
                                     <th class="wd-lg-20p"><span>Name</span></th>
+                                    <th class="wd-lg-20p"><span>Sub Category</span></th>
+
                                     <th class="wd-lg-20p"><span>Created</span></th>
                                     <th class="wd-lg-20p"><span>Status</span></th>
 
@@ -64,6 +66,8 @@
             ajax: "{{ route('solutionhub-categories.index') }}",
             columns: [
                 {data: 'name', name: 'name'},
+                {data: 'subcategroy', name: 'subcategroy'},
+
                 {data: 'created_at', name: 'created_at'},
                 {data: 'status', name: 'status', orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},

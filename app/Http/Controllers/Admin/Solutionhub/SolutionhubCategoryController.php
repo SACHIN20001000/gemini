@@ -23,12 +23,14 @@ class SolutionhubCategoryController extends Controller
     {
         if ($request->ajax())
         {
-            $data = Category::where('type', 'Solutionhub')->orderby('id','DESC');
+            $data = Category::where('type', 'Solutionhub')->get();
+           
 
             return Datatables::of($data)
                             ->addIndexColumn()
                             ->addColumn('status', function ($row)
                             {
+                               
                                 if ($row->status == 1)
                                 {
                                     $status = '<span class="label text-success d-flex">
@@ -42,6 +44,21 @@ class SolutionhubCategoryController extends Controller
                                 }
 
                                 return $status;
+                            })
+                            ->addColumn('subcategroy', function ($row)
+                            {
+                               
+                                $cat= Category::where('parent',$row->id)->get();
+                                $subcategroy=[];
+                            foreach ($cat as $key => $value) {
+                              
+                         
+                                array_push($subcategroy,$value->name);
+                            }
+                           
+                            $subcategroy = implode(',',$subcategroy);
+                            
+                                return $subcategroy;
                             })
                             ->addColumn('action', function ($row)
                             {
@@ -63,7 +80,7 @@ class SolutionhubCategoryController extends Controller
                                 ';
                                 return $action;
                             })
-                            ->rawColumns(['action', 'status'])
+                            ->rawColumns(['action', 'status','subcategroy'])
                             ->make(true)
             ;
         }
