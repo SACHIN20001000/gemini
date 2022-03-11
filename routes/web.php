@@ -100,6 +100,11 @@ Route::prefix('admin')->group(function ()
         Route::resource('products', ProductController::class);
         Route::any('/product/duplicate', [App\Http\Controllers\Admin\ProductController::class, 'duplicate'])->name('duplicate');
         Route::resource('stores', StoreController::class);
+        Route::post('save-store-images', [StoreController::class, 'storeimageAjax'])->name('storeimageAjax');
+        Route::post('delete-store-photo', [StoreController::class, 'del_photo']);
+
+
+
         Route::resource('orders', OrderController::class);
 
         Route::resource('chowhub-questions', ChowhubFaqController::class);

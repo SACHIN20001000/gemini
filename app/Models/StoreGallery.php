@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Store extends Model
+class StoreGallery extends Model
 {
-
+    protected $table = 'store_galleries';
     use HasFactory;
 
     protected $casts = [
@@ -15,10 +15,7 @@ class Store extends Model
         'updated_at' => 'datetime:M d, Y h:i:s',
     ];
     protected $fillable = [
-        'name','address','description','city','state','country','zip_code','url','direction_link'
+        'store_id','image_path'
     ];
-    public function storeGallery()
-    {
-        return $this->hasMany(StoreGallery::class,'store_id','id');
-    }
+
 }

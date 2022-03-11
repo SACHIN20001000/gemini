@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Store;
+use App\Models\StoreGallery;
+
 use DataTables;
 use App\Http\Requests\Admin\Stores\AddStores;
 use App\Http\Requests\Admin\Stores\UpdateStores;
@@ -76,10 +78,33 @@ class StoreController extends Controller
     public function store(AddStores $request)
     {
 
-
-        $Store = new Store;
-        $Store->name = $request->name;
-        $Store->save();
+      
+        $inputs = $request->all();
+   
+            $store = Store::create([
+                'name' =>  $inputs['name'],
+                'description' =>  $inputs['description'],
+                'address' =>  $inputs['address'],
+                'city' =>  $inputs['city'],
+                'state' =>  $inputs['state'],
+                'country' =>  $inputs['country'],
+                'zip_code' =>  $inputs['zip_code'],
+                'url' =>  $inputs['url'],
+                'direction_link' =>  $inputs['direction_link'],
+            
+            ]);
+            if(!empty($request->image)){
+                foreach ($request->image as $key => $value) {
+                    StoreGallery::create([
+                        'store_id' =>  $store->id,
+                        'image_path' =>  $value,
+                        
+                    ]);
+                    
+                }
+            }
+       
+       
 
         return back()->with('success', 'Store addded successfully!');
     }
@@ -119,9 +144,30 @@ class StoreController extends Controller
     public function update(UpdateStores $request, $id)
     {
 
-        $Store = Store::find($id);
-        $Store->name = $request->name;
-        $Store->save();
+        $inputs = $request->all();
+   
+        $store = Store::find($id)->update([
+            'name' =>  $inputs['name'],
+            'description' =>  $inputs['description'],
+            'address' =>  $inputs['address'],
+            'city' =>  $inputs['city'],
+            'state' =>  $inputs['state'],
+            'country' =>  $inputs['country'],
+            'zip_code' =>  $inputs['zip_code'],
+            'url' =>  $inputs['url'],
+            'direction_link' =>  $inputs['direction_link'],
+        
+        ]);
+        if(!empty($request->image)){
+            foreach ($request->image as $key => $value) {
+                StoreGallery::create([
+                    'store_id' =>  $id,
+                    'image_path' =>  $value,
+                    
+                ]);
+                
+            }
+        }
 
         return back()->with('success', 'Store updated successfully!');
     }
@@ -134,9 +180,38 @@ class StoreController extends Controller
      */
     public function destroy($id)
     {
+        StoreGallery::where('store_id', $id)->delete();
         Store::find($id)->delete();
 
         return back()->with('success', 'Store deleted successfully!');
     }
+    public function storeimageAjax(Request $request)
+    {
+        if ($request->file('images'))
+        {
+            $path = Storage::disk('s3')->put('images/store', $request->images);
+            $path = Storage::disk('s3')->url($path);
+            $id = substr($path, -8, 1);
+            return Response()->json([
+                        "success" => true,
+                        "image" => $path,
+                        "id" => $id
+            ]);
+        }
 
+        return Response()->json([
+                    "success" => false,
+                    "image" => ''
+        ]);
+    }
+    
+    public function del_photo(Request $request)
+    {
+
+        StoreGallery::find($request->id)->delete();
+
+        return Response()->json([
+                    "success" => 'Deleted Successfully',
+        ]);
+    }
 }

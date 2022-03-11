@@ -24,9 +24,7 @@ class UpdateStores extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
-            'required'
-        ]
+            'name' => 'required','address' => 'required','city' => 'required','state' => 'required','country' => 'required','zip_code' => 'required'
         ];
     }
 }

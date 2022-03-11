@@ -470,7 +470,7 @@ function CheckDimensionFeatureImage() {
             return false;
         }
 }
-// trext editor section
+// text editor section
                                             $('#hiddenDescription').summernote({
                                                 toolbar: [
                                                 ['font', ['bold', 'italic', 'underline', 'clear']],
