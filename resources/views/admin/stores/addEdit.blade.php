@@ -132,10 +132,10 @@
                                     <input class="form-control" name="direction_link" value="{{isset($store) ? $store->direction_link : '' }}" type="text" >
                                 </div>
                             </div>
-                                 
+                            </div>   
                             <button class="btn btn-main-primary pd-x-30 mg-r-5 mg-t-5" type="submit">{{isset($store) ? 'Update' : 'Save' }}</button>
-                        </div>
-                </div>
+                            </div>   
+           
                 </form>
                 <!-- form end  -->
             </div>
