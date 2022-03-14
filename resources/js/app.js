@@ -8,7 +8,6 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import { StripePlugin } from '@vue-stripe/vue-stripe'
 import moment from 'moment'
 import VueNestedMenu from 'vue-nested-menu'
-import VueJsonLD from 'vue-jsonld'
 
 Vue.filter('formatDate', function(value) {
     if (value) {
@@ -28,7 +27,6 @@ Vue.use(VueAwesomeSwiper)
 Vue.use(StripePlugin, options)
 Vue.use(VueMeta)
 Vue.use(VueNestedMenu)
-Vue.use(VueJsonLD)
 
 import './assets/js/jquery-3.6.0.min.js'
 import './assets/js/bootstrap.bundle.min.js'
@@ -47,6 +45,7 @@ Vue.component('product-component', require('./components/Products/index.vue').de
 Vue.component('blog-component', require('./components/Blog/index.vue').default)
 Vue.component('brands-component', require('./components/Brands/index.vue').default)
 Vue.component('cart-component', require('./components/Cart/index.vue').default)
+Vue.component('cartnew-component', require('./components/CartNew/index.vue').default)
 Vue.component('category-component', require('./components/Category/index.vue').default)
 Vue.component('checkout-component', require('./components/Checkout/index.vue').default)
 Vue.component('chowhub-component', require('./components/Chowhub/index.vue').default)
