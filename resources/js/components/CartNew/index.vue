@@ -1,94 +1,134 @@
 <template>
   <div class="main">
-    <div class="container_max">
-          <div class="cart_head">
-              <img
-              :src="cart_logo"
-              alt="cart_logo"
-              />
+    <section class="color_title red">
+      <div class="nav_width"><h1>My Cart</h1></div>
+    </section>
+    <section class="cart_banner">
+      <div class="nav_width">
+        <div class="banner_grid">
+          <div class="wel-come">
+            <h2>Welcome back Susan M.!</h2>
           </div>
-      <div class="row">
-        <div class="col-md-12">
-        <ul class="cart_header cart_grid">
-        <li>Image</li>
-        <li class="pr_tile">Product Name</li>
-        <li>Price</li>
-        <li>Quantity</li>
-        <li>Total Price</li>
-        <li>Action</li>
-        </ul>
-
+          <div class="wel-come-p">
+            <p>You have 5,341 points, do you want to use them? </p>
+          </div>
+          <div class="wel-come-stat">
+            <div class="stat_box">
+              <h3>Redeem <span>5,341</span> Point</h3>
+            </div>
+          </div>          
+        </div>
       </div>
+    </section>
 
-      <ul class="listcartItem">
+<div class="container_max">
+<h1 class="cart_title">Your Shopping Cart</h1>
+<div class="cart_grids">
+  <div class="cart_cols cart_header">
+    <div class="cr_title text-left"><span class="desk_only">Item </span><span class="mobil_only">Items(s) Added to Your Cart</span></div>
+    <div class="cr_title text-left">How to Get it</div>
+    <div class="cr_title text-center">Unit Price</div>
+    <div class="cr_title text-center">Quantity</div>
+    <div class="cr_title text-right pe-8">Item Total</div>
+  </div>
+  <div class="cart_cols cart_body">
+    <div class="cr_data gd-img">
+      <div class="pr-img">
+        <img  :src="itemImg">
+      </div>
+      <div class="pr-details">
+        <label>Pet Parents® Dog Diapers </label>
+        <span>Princess | Size: S</span>
+      </div>
+    </div>
+    <div class="cr_data get-item">
+      <p><input type="radio"> <label>In-Store</label></p>
+      <p><input type="radio"> <label>Curbside</label></p>
+      <p><input type="radio"> <label>Ship</label></p>
+    </div>
+    <div class="cr_data it-price">
+    <h2><span>Item Price:</span><div>$25.00</div></h2>
+    </div>
+          <div class="cr_data cr-number">
+            <div class="col-auto quantity_select quant_3">
+            <!-- <label for="staticEmail2" class="sr-only">Quantity</label>    -->
+            <div class="number-input md-number-input">
+            <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus">-</button>
+            <input class="quantity" min="0" name="quantity" value="1" type="number">
+            <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">+</button>
+            </div>
+            </div>
+          </div>
+          <div class="cr_data cr-total text-right pe-8">
+            <h2>$50.00<a href="#">remove item</a></h2>
+          </div>
+  </div>
+   <div class="cart_cols cart_body">
+    <div class="cr_data gd-img">
+      <div class="pr-img">
+        <img  :src="itemImg">
+      </div>
+      <div class="pr-details">
+        <label>Pet Parents® Dog Diapers </label>
+        <span>Princess | Size: S</span>
+      </div>
+    </div>
+    <div class="cr_data get-item">
+      <p><input type="radio"> <label>In-Store</label></p>
+      <p><input type="radio"> <label>Curbside</label></p>
+      <p><input type="radio"> <label>Ship</label></p>
+    </div>
+    <div class="cr_data it-price">
+    <h2><span>Item Price:</span><div>$25.00</div></h2>
+    </div>
+          <div class="cr_data cr-number">
+            <div class="col-auto quantity_select quant_3">
+            <!-- <label for="staticEmail2" class="sr-only">Quantity</label>    -->
+            <div class="number-input md-number-input">
+            <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus">-</button>
+            <input class="quantity" min="0" name="quantity" value="1" type="number">
+            <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus">+</button>
+            </div>
+            </div>
+          </div>
+          <div class="cr_data cr-total text-right pe-8">
+            <h2>$50.00<a href="#">remove item</a></h2>
+          </div>
+  </div>
+</div>
+
+<div class="cart_detal">
+  <div class="cr-banner">
+    <img :src="cart_banner">
+  </div>
+
+    <div class="cart_detail_box">
+    <ul class="ct_listing">
+      <div>
         <li>
-          <div
-            class="cartlabel"
-          >
-            <span class="prod_img"><div class="img_ratio"><img width="50px" :src="itemImg" /></div></span>
-            <span class="prod_name">Pet Parents® Pawtect® Pads (2pack) of Washable Premium Pee Pads</span>
-            <span class="prod_price">$89.99</span>
-            <span class="prod_quant">
-              <input
-                type="number"
-                name="qtyproduct"
-                value="2"
-              >
-            </span>
-            <span class="prod_items">$20</span>
-            <span class="prod_remove">
-              <a
-                class="button"
-              >
-                X
-              </a>
-            </span>
-          </div>
+        <p>Merchandise Total <label>$106.98</label></p>
+        <p>Additional Savings <label>-</label></p>
         </li>
-      </ul>
-         </div>
-         <div class="row update_row">
-          <div class="col-md-7">
-            <div class="btn_left">
-              <a
-                href="/"
-                class="btn_blu"
-              >
-                Continue Shopping
-              </a>
-              <a
-                href="/checkout"
-                class="btn_red"
-              >
-                Check Out <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
-           <div class="col-md-5">
-            <div class="btn_right text-right">
-              <a href="javascript:;" class="btn_blu_blank">Update Cart</a>
-            </div>
-          </div>
-         </div>
 
-      <p class="totalamount cart_total">Total Cart Price: <span>$55.00</span></p>
-      <div class="proccedtocheckout1 text-right">
-        <p class="msg_offer">YOU ARE $13.01 AWAY FROM FREE SHIPPING</p>
-        <div class="msg_blu"> <span class="btn_blu">FREE 3 DAY SHIPPING ON U.S. ORDERS OVER $45</span></div>
-        <a class="btn_red"
-          href="/checkout"
-        >
-          Proceed To Checkout <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-        </a>
-        <div class="pay_type">
-        <a href="#">
-         <img
-              :src="cart_pay"
-              alt="cart_pay"
-              />
-            </a>
-          </div>
+        <li>
+        <p>Points Used <label>-</label></p>
+        </li>
+        <li>
+        <p>Shipping <label>-</label></p>
+        <p>Estimated Tax<label>-</label></p>
+        </li>
+        <li>
+        <p>Total<label class="lb_total">$106.98</label></p>
+        </li>
       </div>
+    </ul>
+    <div class="btn-flex">
+     <a href="#" class=" btn btn_grey">Keep Shopping</a> 
+     <a href="#" class="btn_blu">Continue to Chckout</a> 
+    </div>
+
+  </div>
+</div>
     </div>
   </div>
 </template>
@@ -99,7 +139,8 @@
 import cart_logo from "../../assets/images/cart_logo.png"
 import cart_pay from "../../assets/images/pay.png"
 import loading from "../../assets/images/loading.gif"
-import itemImg from "../../assets/images/dog1.png"
+import itemImg from "../../assets/images/m1.png"
+import cart_banner from "../../assets/images/cart-banner.jpg"
 
 export default {
   name:"Carts",
@@ -109,6 +150,7 @@ export default {
       cart_logo: cart_logo,
       cart_pay: cart_pay,
       itemImg: itemImg,
+      cart_banner: cart_banner,
       btnUpdateCart:true,
       loading:loading
     }
