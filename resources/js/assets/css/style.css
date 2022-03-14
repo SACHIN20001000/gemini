@@ -146,6 +146,7 @@ html,body
     margin: 0 auto;
     padding: 0 15px;
 }
+.nav_width{max-width: min(100% - 141px,1150px); margin: 0 auto;}
 .max_1070{  max-width: 1070px;  margin:0 auto;}
 .container_max{max-width:min(100% - 130px,1600px); padding: 0 15px; margin:0 auto; width: 100%;}
 .main_container{    max-width: 100%;  margin:0 auto;  min-height: 100vh; background: #fff;}
