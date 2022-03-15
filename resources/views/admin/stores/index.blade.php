@@ -32,6 +32,8 @@
                                     <th class="wd-lg-20p"><span>State</span></th>
                                     <th class="wd-lg-20p"><span>Country</span></th>
                                     <th class="wd-lg-20p"><span>Zip Code</span></th>
+                                    <th class="wd-lg-20p"><span>Products Count</span></th>
+
 
                                     <th class="wd-lg-20p"><span>Created At</span></th>
 
@@ -72,6 +74,8 @@
                 {data: 'state', name: 'state'},
                 {data: 'country', name: 'country'},
                 {data: 'zip_code', name: 'zip_code'},
+                {data: 'productCount', name: 'productCount'},
+
               
 
                 {data: 'created_at', name: 'created_at'},

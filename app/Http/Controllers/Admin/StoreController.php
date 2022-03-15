@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Store;
+use App\Models\Product;
+
 use App\Models\StoreGallery;
 
 use DataTables;
@@ -50,7 +52,12 @@ class StoreController extends Controller
                                 ';
                                 return $action;
                             })
-                            ->rawColumns(['action'])
+                            ->addColumn('productCount', function ($row)
+                            {
+                                $productCount=Product::where('store_id',$row->id)->count();
+                                return $productCount;
+                            })
+                            ->rawColumns(['action','productCount'])
                             ->make(true)
             ;
         }
