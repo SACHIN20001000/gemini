@@ -21,7 +21,7 @@
 <body>
     <div id="app">
      <header-component></header-component>
-     <cart-component></cart-component>
+     <cartnew-component></cartnew-component>
      <footer-component></footer-component>
     </div>
 
