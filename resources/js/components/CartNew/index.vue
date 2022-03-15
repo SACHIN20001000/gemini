@@ -99,7 +99,8 @@
 
 <div class="cart_detal">
   <div class="cr-banner">
-    <img :src="cart_banner">
+    <img :src="cart_banner" class="desk_only">
+    <img :src="mobi_banner" class="mobil_only">
   </div>
 
     <div class="cart_detail_box">
@@ -141,6 +142,7 @@ import cart_pay from "../../assets/images/pay.png"
 import loading from "../../assets/images/loading.gif"
 import itemImg from "../../assets/images/m1.png"
 import cart_banner from "../../assets/images/cart-banner.jpg"
+import mobi_banner from "../../assets/images/mobi_cart.jpg"
 
 export default {
   name:"Carts",
@@ -151,6 +153,7 @@ export default {
       cart_pay: cart_pay,
       itemImg: itemImg,
       cart_banner: cart_banner,
+      mobi_banner: mobi_banner,
       btnUpdateCart:true,
       loading:loading
     }
