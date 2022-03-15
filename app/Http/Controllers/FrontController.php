@@ -170,6 +170,16 @@ class FrontController extends Controller
 		return view('frontend.logout', compact('metaInfo'));
 
     }
+	public function pagination()
+    {
+		$metaInfo= [
+					'title'=>'PetParent logout page',
+					'description'=>'Meta descrption logout page'
+				];
+
+		return view('frontend.pagination', compact('metaInfo'));
+
+    }
 	public function productDeatials($slug,$id)
     {
   		if($slug){
