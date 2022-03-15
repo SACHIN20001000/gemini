@@ -28,10 +28,10 @@
                             <thead>
                                 <tr>
                                     <th class="wd-lg-20p"><span>Name</span></th>
-                                    <th class="wd-lg-20p"><span>Created</span></th>
+                                    <th class="wd-lg-20p"><span>Products Count</span></th>
                                     <th class="wd-lg-20p"><span>Order</span></th>
                                     <th class="wd-lg-20p"><span>Status</span></th>
-
+                                    <th class="wd-lg-20p"><span>Created</span></th>
 
 
                                     <th class="wd-lg-20p">Action</th>
@@ -67,10 +67,10 @@
             ajax: "{{ route('categories.index') }}",
             columns: [
                 {data: 'name', name: 'name'},
-                {data: 'created_at', name: 'created_at'},
+                {data: 'productCount', name: 'productCount'},
                 {data: 'order', name: 'order', },
                 {data: 'status', name: 'status', orderable: false, searchable: false},
-
+                {data: 'created_at', name: 'created_at'},
 
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Brand;
+use App\Models\Product;
+
 use DataTables;
 use App\Http\Requests\Admin\Brands\AddBrands;
 use App\Http\Requests\Admin\Brands\UpdateBrands;
@@ -47,7 +49,12 @@ class BrandsController extends Controller
                                 ';
                                 return $action;
                             })
-                            ->rawColumns(['action'])
+                            ->addColumn('productCount', function ($row)
+                            {
+                                $productCount=Product::where('brand_id',$row->id)->count();
+                                return $productCount;
+                            })
+                            ->rawColumns(['action','productCount'])
                             ->make(true)
             ;
         }

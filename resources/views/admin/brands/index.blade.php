@@ -28,6 +28,8 @@
                             <thead>
                                 <tr>
                                     <th class="wd-lg-20p"><span>Name</span></th>
+                                    <th class="wd-lg-20p"><span>Products Count</span></th>
+
                                     <th class="wd-lg-20p"><span>Created At</span></th>
 
                                     <th class="wd-lg-20p">Action</th>
@@ -63,6 +65,8 @@
             ajax: "{{ route('brands.index') }}",
             columns: [
                 {data: 'name', name: 'name'},
+                {data: 'productCount', name: 'productCount'},
+
                 {data: 'created_at', name: 'created_at'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]

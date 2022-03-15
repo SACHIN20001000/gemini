@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
+
 use DataTables;
 use App\Http\Requests\Admin\Category\AddCategory;
 use App\Http\Requests\Admin\Category\UpdateCategory;
@@ -44,6 +46,11 @@ class CategoryController extends Controller
 
                                 return $status;
                             })
+                            ->addColumn('productCount', function ($row)
+                            {
+                                $productCount=Product::where('category_id',$row->id)->count();
+                                return $productCount;
+                            })
                             ->addColumn('action', function ($row)
                             {
                                 $action = '<span class="action-buttons">
@@ -64,7 +71,7 @@ class CategoryController extends Controller
                                 ';
                                 return $action;
                             })
-                            ->rawColumns(['action', 'status'])
+                            ->rawColumns(['action', 'status','productCount'])
                             ->make(true)
             ;
         }
