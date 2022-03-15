@@ -254,7 +254,7 @@ a.btn.btn_grey {
 {
     .banner_grid {
     grid-template-columns: 1fr;
-    transform: translatey(50px);
+    transform: translatey(25px);
 }
 section.cart_banner {
     background: #f6f6f6;
@@ -350,6 +350,39 @@ section.color_title h1 {
 }
 .cart_grids>.cart_cols {
     grid-template-columns: unset;
+    padding: 8px;
+
 }
 
+.cart_detal {
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 10px 0;
+}
+.wel-come h2
+{text-align: center;}
+.wel-come-p p {
+    font-size: 16px;
+    text-align: center;
+    line-height: 1;
+}
+.stat_box h3 {
+    font-size: 15px;
+}
+.stat_box h3>span
+{
+    font-size: 34px;
+}
+.stat_box {
+    height: 50px;
+    max-width: 250px;
+    margin: 0 auto;
+}
+h1.cart_title {
+    display: none;
+}
+.get-item p input
+{
+        margin: 0 7px 0 0;
+}
 }
