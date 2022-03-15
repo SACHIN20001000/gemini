@@ -30,7 +30,7 @@
                                     <th class="wd-lg-20p"><span>Name</span></th>
                                     <!-- <th class="wd-lg-20p"><span>Description</span></th> -->
                                     <!-- <th class="wd-lg-20p"><span>Type</span></th> -->
-                                    <!-- <th class="wd-lg-20p"><span>Real Price</span></th>-->
+                                    <th class="wd-lg-20p"><span>Real Price</span></th>
                                     <th class="wd-lg-20p"><span>Store</span></th>
                                     <th class="wd-lg-20p"><span>Category</span></th>
                                     <th class="wd-lg-20p"><span>Status</span></th>
@@ -71,7 +71,7 @@
                 {data: 'productName', name: 'productName'},
                 // {data: 'description', name: 'description'},
                 // {data: 'type', name: 'type'},
-                // {data: 'real_price', name: 'real_price'},
+                {data: 'real_price', name: 'real_price'},
                 {data: 'store.name', name: 'store.name',orderable: false,},
                 {data: 'category.name', name: 'category.name',orderable: false,},
                 {data: 'status', name: 'status'},
