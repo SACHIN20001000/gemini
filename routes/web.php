@@ -253,3 +253,4 @@ Route::get('/profile', [FrontController::class, 'profile']);
 Route::get('/register', [FrontController::class, 'register']);
 Route::get('/signin', [FrontController::class, 'login']);
 Route::get('/signout', [FrontController::class, 'logout']);
+Route::get('/pagination', [FrontController::class, 'pagination']);
