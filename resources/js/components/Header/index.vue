@@ -381,7 +381,7 @@ export default {
     myProfile(urllink){
       this.myProfileActive = !this.myProfileActive
       if(urllink !=''){
-        this.$router.push('/'+urllink)
+        window.location.href='/'+urllink
       }
     },
     searchMobilePopup(){
