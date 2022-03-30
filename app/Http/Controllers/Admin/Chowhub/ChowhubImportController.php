@@ -92,7 +92,7 @@ class ChowhubImportController extends Controller {
                         (strtolower($val) == 'food_type') ? ($food_type = $value[$key]) : '';
                         (strtolower($val) == 'protein_type') ? ($protein_type = $value[$key]) : '';
                         (strtolower($val) == 'type') ? ($type = $value[$key]) : '';
-                        (strtolower($val) == 'store_id') ? ($store_id = $value[$key]) : '';
+                        (strtolower($val) == 'store') ? ($store_id = $value[$key]) : '';
                         (strtolower($val) == 'feature_image') ? ($feature_image = $value[$key]) : '';
                         (strtolower($val) == 'real_price') ? ($real_price = $value[$key]) : '';
                         (strtolower($val) == 'sale_price') ? ($sale_price = $value[$key]) : '';
@@ -118,9 +118,17 @@ class ChowhubImportController extends Controller {
                     $tag = explode(',', $tag);
                     $brand = explode(',', $brand);
 
+                    if(!empty($store_id)){
+                        $store=ChowhubStore::where('name',$store_id)->first();
+                        if(!empty($store)){
+                            $store_id= $store->id ?? null;
+
+                        }
+                    }
+
                     if ($product ) {
                         $products = ChowhubProduct::create([
-                            'productName' => $product,
+                            'productName' => $product.'copy',
                             'description' => $description,
                             'sku' => $sku,
                             'pet_type' => $pet_type,

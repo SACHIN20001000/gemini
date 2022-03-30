@@ -48,7 +48,7 @@ class LitterhubProductsExport implements FromCollection
         $header['clumping']='clumping' ?? null;
         $header['cat_count']='cat_count' ?? null;
         $header['type']='type' ?? null;
-        $header['store_id']='store_id' ?? null;
+        $header['store_id']='store' ?? null;
         $header['feature_image']='feature_image' ?? null;
         $header['real_price']='real_price' ?? null;
         $header['sale_price']='sale_price' ?? null;
@@ -86,7 +86,15 @@ class LitterhubProductsExport implements FromCollection
                 $data['clumping']=$product->clumping ?? null;
                 $data['cat_count']=$product->cat_count ?? null;
                 $data['type']=$product->type ?? null;
-                $data['store_id']=$product->store_id ?? null;
+                if(!empty($product->store_id)){
+                    $store= LitterhubStore::find($product->store_id);
+                    if(!empty($store)){
+                        $store_name= $store->name;
+                    }
+                   
+                }
+
+                $data['store_id']=$store_name ?? null;
                 if(!empty($product->feature_image)){
                     $product->feature_image = explode('images',$product->feature_image);
                     $path='images'.$product->feature_image[1];
