@@ -10,7 +10,8 @@ use App\Models\Solutionhub\SolutionhubProductVariation;
 use App\Models\Solutionhub\SolutionhubProductGallery;
 use App\Models\Solutionhub\SolutionhubVariationAttribute;
 use App\Models\Solutionhub\SolutionhubVariationAttributeValue;
-use App\Models\Solutionhub\Category;
+use App\Models\Category;
+use App\Models\Solutionhub\SolutionhubProductCategory;
 use App\Models\Solutionhub\SolutionhubTag;
 use App\Models\Solutionhub\SolutionhubBrand;
 use App\Models\Solutionhub\SolutionhubProductBrand;
@@ -84,12 +85,7 @@ class SolutionhubImportController extends Controller {
                         (strtolower($val) == 'description') ? ($description = $value[$key]) : '';
                         (strtolower($val) == 'status') ? ($status = $value[$key]) : '';
                         (strtolower($val) == 'feature_image') ? ($feature_image = $value[$key]) : '';
-                        (strtolower($val) == 'separation_anxiety') ? ($separation_anxiety = $value[$key]) : '';
-                        (strtolower($val) == 'aggressive_chewers') ? ($aggressive_chewers = $value[$key]) : '';
-                        (strtolower($val) == 'teething') ? ($teething = $value[$key]) : '';
-                        (strtolower($val) == 'boredom') ? ($boredom = $value[$key]) : '';
-                        (strtolower($val) == 'disabled') ? ($disabled = $value[$key]) : '';
-                        (strtolower($val) == 'energetic') ? ($energetic = $value[$key]) : '';
+                        (strtolower($val) == 'category') ? ($category = $value[$key]) : '';
                         (strtolower($val) == 'backend_tag') ? ($backend_tag = $value[$key]) : '';
                         (strtolower($val) == 'tag') ? ($tag = $value[$key]) : '';
                         (strtolower($val) == 'brand') ? ($brand = $value[$key]) : '';
@@ -101,22 +97,16 @@ class SolutionhubImportController extends Controller {
                     $backend_tag = explode(',', $backend_tag);
                     $tag = explode(',', $tag);
                     $brand = explode(',', $brand);
-                  
-                 
+                    $category = explode(',', $category);
+              
+        
                     if ($product ) {
                         $products = SolutionhubProduct::create([
-                            'productName' => $product,
+                            'productName' => $product .'copy',
                             'description' => $description,
                             'status' => $status ?? 0,
                             'feature_image' => (!empty($feature_image)) ? $storagePath.$feature_image : null,
-                           
-                            'separation_anxiety	' => $separation_anxiety ?? 0,
-                      
-                            'aggressive_chewers' => $aggressive_chewers ?? 0,
-                            'teething' => $teething ?? 0,
-                            'boredom' => $boredom ?? 0,
-                            'disabled' => $disabled ?? 0,
-                            'energetic' => $energetic ?? 0,
+
                          
                         ]);
                        
@@ -166,6 +156,18 @@ class SolutionhubImportController extends Controller {
                                 $tagValue->save();
                             }
                          
+                        }
+                        if (!empty($category)) {
+                            foreach($category as $vakey => $value) {
+    
+                             $category= Category::where('name',trim($value))->first();
+                            if(!empty($category)){
+                                $categorySave = new SolutionhubProductCategory;
+                                $categorySave->category_id = $category->id;
+                                $categorySave->product_id = $products->id;
+                                $categorySave->save();
+                            }
+                            }
                         }
                     } else {
                         return redirect()->back()->with('error', 'Csv file in not matched!');

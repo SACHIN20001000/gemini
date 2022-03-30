@@ -88,7 +88,7 @@ class LitterhubImportController extends Controller {
                         (strtolower($val) == 'litter_material') ? ($litter_material = $value[$key]) : '';
                         (strtolower($val) == 'clumping') ? ($clumping = $value[$key]) : '';
                         (strtolower($val) == 'type') ? ($type = $value[$key]) : '';
-                        (strtolower($val) == 'store_id') ? ($store_id = $value[$key]) : '';
+                        (strtolower($val) == 'store') ? ($store_id = $value[$key]) : '';
                         (strtolower($val) == 'feature_image') ? ($feature_image = $value[$key]) : '';
                         (strtolower($val) == 'real_price') ? ($real_price = $value[$key]) : '';
                         (strtolower($val) == 'sale_price') ? ($sale_price = $value[$key]) : '';
@@ -112,10 +112,17 @@ class LitterhubImportController extends Controller {
                     $backend_tag = explode(',', $backend_tag);
                     $tag = explode(',', $tag);
                     $brand = explode(',', $brand);
+                    if(!empty($store_id)){
+                        $store=LitterhubStore::where('name',$store_id)->first();
+                        if(!empty($store)){
+                            $store_id= $store->id ?? null;
+
+                        }
+                    }
 
                     if ($product ) {
                         $products = LitterhubProduct::create([
-                            'productName' => $product,
+                            'productName' => $product.'copy',
                             'description' => $description,
                             'sku' => $sku,
                             'scented' => $scented,

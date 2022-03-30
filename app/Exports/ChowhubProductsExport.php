@@ -12,6 +12,7 @@ use App\Models\ChowhubTag;
 use App\Models\ChowhubBrand;
 use App\Models\ChowhubProductBrand;
 
+
 use App\Models\ChowhubBackendTag;
 use App\Models\ChowhubProductBackendTag;
 use App\Models\ChowhubProductTag;
@@ -49,7 +50,7 @@ class ChowhubProductsExport implements FromCollection
         $header['food_type']='food_type' ?? null;
         $header['protein_type']='protein_type' ?? null;
         $header['type']='type' ?? null;
-        $header['store_id']='store_id' ?? null;
+        $header['store_id']='store' ?? null;
         $header['feature_image']='feature_image' ?? null;
         $header['real_price']='real_price' ?? null;
         $header['sale_price']='sale_price' ?? null;
@@ -88,7 +89,15 @@ class ChowhubProductsExport implements FromCollection
                 $data['food_type']=$product->food_type ?? null;
                 $data['protein_type']=str_replace(array('"','[',']','\\'),'',$product->protein_type) ?? null;
                 $data['type']=$product->type ?? null;
-                $data['store_id']=$product->store_id ?? null;
+                if(!empty($product->store_id)){
+                    $store= ChowhubStore::find($product->store_id);
+                    if(!empty($store)){
+                        $store_name= $store->name;
+                    }
+                   
+                }
+
+                $data['store_id']=$store_name ?? null;
                 if($product->feature_image){
                     $product->feature_image = explode('images',$product->feature_image);
                     $path='images'.$product->feature_image[1];

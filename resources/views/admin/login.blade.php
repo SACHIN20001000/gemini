@@ -41,9 +41,9 @@
 															<strong>Oh snap!</strong> {{ $error }}
 											</div>
 											</div>
-																	<!-- <div style="color: red;font-size: 20px;">{{$error}}</div> -->
+														
 															@endforeach
-													@endif
+								@endif
 													<form method="POST" action="{{ route('login') }}" >
 													@csrf
 														<div class="form-group">

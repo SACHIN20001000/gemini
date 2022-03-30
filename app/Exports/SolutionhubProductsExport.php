@@ -11,6 +11,7 @@ use App\Models\Solutionhub\SolutionhubBackendTag;
 use App\Models\Solutionhub\SolutionhubProductBackendTag;
 use App\Models\Solutionhub\SolutionhubBrand;
 use App\Models\Solutionhub\SolutionhubProductBrand;
+use App\Models\Category;
 use DataTables;
 use Illuminate\Support\Str;
 use App\Http\Requests\Admin\Solutionhub\Product\AddProduct;
@@ -40,12 +41,7 @@ class SolutionhubProductsExport implements FromCollection
         $header['description']='description' ?? null;
         $header['status']='status' ?? null;
         $header['feature_image']='feature_image' ?? null;
-        $header['separation_anxiety']='separation_anxiety' ?? null;
-        $header['aggressive_chewers']='aggressive_chewers' ?? null;
-        $header['teething']='teething' ?? null;
-        $header['boredom']='boredom' ?? null;
-        $header['disabled']='disabled' ?? null;
-        $header['energetic']='energetic' ?? null;
+        $header['category']='category' ?? null;
         $header['backend_tag']='backend_tag' ?? null;
         $header['tag']='tag'?? null;
         $header['brand']='brand' ?? null;
@@ -53,7 +49,7 @@ class SolutionhubProductsExport implements FromCollection
         
         foreach ($product_id as $key => $id) {
     
-            $product = SolutionhubProduct::find($id);        
+            $product = SolutionhubProduct::with('category')->where('id', $id)->first();       
             if($product){
                
                
@@ -66,19 +62,28 @@ class SolutionhubProductsExport implements FromCollection
                 }else{
                     $path= '';
                 }
-                
-
+                $procategory='';
+                if($product->category){
+                    foreach ($product->category as $key => $value) {
+                       
+                    $categoryName = Category::find($value->category_id);
+                    if(!empty($categoryName)){
+                       $procategory .=$categoryName->name.',';
+                    }
+                    
+                   
+                    }
+                }
                 $data['feature_image']=$path ?? null;
-                $data['separation_anxiety']=$product->separation_anxiety ?? 0;
-                $data['aggressive_chewers']=$product->aggressive_chewers ?? 0;
-                $data['teething']=$product->teething ?? 0;
-                $data['boredom']=$product->boredom ?? 0;
-                $data['disabled']=$product->disabled ?? 0;
-                $data['energetic']=$product->energetic ?? 0;
-
+                $data['category']=rtrim($procategory, ',') ?? null;
                 $data['backend_tag']=$product->availBackendTags ?? null;
                 $data['tag']=$product->availTags ?? null;
                 $data['brand']=$product->availBrands ?? null;
+              
+                
+            
+
+               
                  array_push($finalData,$data); 
                     while(count($data) > 0) {
                         array_pop($data);
@@ -87,6 +92,7 @@ class SolutionhubProductsExport implements FromCollection
             
         }
         array_unshift($finalData,$header);
+       
         return collect($finalData);
    
   
