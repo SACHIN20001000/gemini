@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="col-md-8 mg-t-5 mg-md-t-0">
                                 <input type="file" name="product_csv"  class="dropify"accept="csv">
-                               <br> <a href="/csv/samplesolutionhubproduct.csv" class="btn btn-info">View Sample file </a>
+                               <br> <a href="/csv/samplesolutionproduct.csv" class="btn btn-info">View Sample file </a>
                             </div>
                               
                                 
