@@ -289,7 +289,7 @@ class LitterhubCartController extends Controller
         }
     }
     /**
-     * @OA\Update(
+     * @OA\Post(
      *      path="/litterhub/cartUpdate/{cart}/{itemId}",
      *      operationId="Update litterhub cart item",
      *      tags={"LitterhubCarts"},
