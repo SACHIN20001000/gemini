@@ -157,6 +157,8 @@ Route::get('litterhub/stores/{store}', [LitterhubStoreController::class, 'show']
 Route::resource('litterhub/cart', LitterhubCartController::class, ['as' => 'litterhubcart']);
 Route::get('/litterhub/cartIdByKey', [LitterhubCartController::class, 'getCartIDUsingKey']);
 Route::delete('/litterhub/cart/{cart}/{itemId}', [LitterhubCartController::class, 'deleteCartItem']);
+Route::post('/litterhub/cartUpdate/{cart}/{itemId}', [LitterhubCartController::class, 'updateCartItem']);
+
 Route::post('/litterhub/cart/{cart}',[LitterhubCartController::class, 'addProducts']);
 Route::post('/litterhub/checkout/{cart}',[LitterhubCartController::class, 'checkout']);
 

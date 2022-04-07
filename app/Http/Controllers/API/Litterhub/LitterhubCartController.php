@@ -288,7 +288,66 @@ class LitterhubCartController extends Controller
                             ], 400);
         }
     }
+    /**
+     * @OA\Update(
+     *      path="/litterhub/cartUpdate/{cart}/{itemId}",
+     *      operationId="Update litterhub cart item",
+     *      tags={"LitterhubCarts"},
+     *     summary="Update cart item",
+     *        *      @OA\Parameter(
+     *         name="cart id",
+     *         in="path",
+     *         description="3",
+     *         required=true,
+     *      ),
+     * *        *      @OA\Parameter(
+     *         name="item id",
+     *         in="path",
+     *         description="3",
+     *         required=true,
+     *      ),
+     *      *    @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CartKeyRequest")
+     *     ),
+     *     @OA\Response(
+     *         response="204",
+     *         description="Delete cart item by key",
+     *
+     *     ),
+     *    @OA\Response(
+     *      response=400,ref="#/components/schemas/BadRequest"
+     *    ),
+     *    @OA\Response(
+     *      response=404,ref="#/components/schemas/Notfound"
+     *    ),
+     *    @OA\Response(
+     *      response=500,ref="#/components/schemas/Forbidden"
+     *    )
+     * )
+     * Store a newly created resource in storage.
+     *
+     * @param \App\Http\Requests\ExampleStoreRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateCartItem(LitterhubCart $cart, LitterhubCartItem $itemId, LitterhubCartIdRequest $request)
+    {
+        if ($cart->key == $request->key)
+        {
 
+            $itemId->quantity=  $request->quantity ?? $itemId->quantity;
+            $itemId->save();
+
+            return response()->json('Cart item has been Updated.', 200);
+        } else
+        {
+
+            return response()->json([
+                        'message' => 'The Cart key does not match with any cart.',
+                            ], 400);
+        }
+    }
     /**
      * @OA\Get(
      *      path="litterhub/cartIdByKey",
