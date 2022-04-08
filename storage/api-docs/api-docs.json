@@ -14,18 +14,26 @@
     },
     "servers": [
         {
-            "url": "http://3.132.243.209/api",
+            "url": "https://petparentsbranddev.tk/api/",
             "description": "Demo API Server"
         }
     ],
     "paths": {
-        "/brand": {
+        "/brand/{id}": {
             "get": {
                 "tags": [
                     "Brand"
                 ],
                 "summary": "Brand",
                 "operationId": "brands",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Pages",
@@ -33,6 +41,44 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/BrandResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/brand/product/{brand_id}": {
+            "get": {
+                "tags": [
+                    "Brand"
+                ],
+                "summary": "Brand",
+                "operationId": "get products by brands",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResponse"
                                 }
                             }
                         }
@@ -508,6 +554,84 @@
                 ]
             }
         },
+        "solutionhub/categories": {
+            "get": {
+                "tags": [
+                    "SolutionhubProducts"
+                ],
+                "summary": "Categories",
+                "operationId": "Categories",
+                "responses": {
+                    "200": {
+                        "description": "Categories",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CategoriesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Token": []
+                    }
+                ]
+            }
+        },
+        "solutionhub/categories/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Categories By Id",
+                "operationId": "Categories By Id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "1",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Categories",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CategoriesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "Token": []
+                    }
+                ]
+            }
+        },
         "/chowhub/cart": {
             "get": {
                 "tags": [
@@ -612,6 +736,53 @@
                 "responses": {
                     "204": {
                         "description": "Get cart id by key"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/chowhub/cartUpdate/{cart}/{itemId}": {
+            "post": {
+                "tags": [
+                    "ChowhubCarts"
+                ],
+                "summary": "Update cart item",
+                "operationId": "Update Chowhub cart item",
+                "parameters": [
+                    {
+                        "name": "cart id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    },
+                    {
+                        "name": "item id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CartKeyRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Delete cart item by key"
                     },
                     "400": {
                         "$ref": "#/components/schemas/BadRequest"
@@ -1509,6 +1680,53 @@
                 ],
                 "summary": "Delete cart item",
                 "operationId": "Delete litterhub cart item",
+                "parameters": [
+                    {
+                        "name": "cart id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    },
+                    {
+                        "name": "item id",
+                        "in": "path",
+                        "description": "3",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CartKeyRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Delete cart item by key"
+                    },
+                    "400": {
+                        "$ref": "#/components/schemas/BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/schemas/Notfound"
+                    },
+                    "500": {
+                        "$ref": "#/components/schemas/Forbidden"
+                    }
+                }
+            }
+        },
+        "/litterhub/cartUpdate/{cart}/{itemId}": {
+            "post": {
+                "tags": [
+                    "LitterhubCarts"
+                ],
+                "summary": "Update cart item",
+                "operationId": "Update litterhub cart item",
                 "parameters": [
                     {
                         "name": "cart id",
@@ -2686,12 +2904,7 @@
                     "500": {
                         "$ref": "#/components/schemas/Forbidden"
                     }
-                },
-                "security": [
-                    {
-                        "Token": []
-                    }
-                ]
+                }
             }
         },
         "/solutionhub/tags": {

@@ -150,6 +150,8 @@ Route::get('/chowhub/cartIdByKey', [ChowhubCartController::class, 'getCartIDUsin
 Route::delete('/chowhub/cart/{cart}/{itemId}', [ChowhubCartController::class, 'deleteCartItem']);
 Route::post('/chowhub/cart/{cart}',[ChowhubCartController::class, 'addProducts']);
 Route::post('/chowhub/checkout/{cart}',[ChowhubCartController::class, 'checkout']);
+Route::post('/chowhub/cartUpdate/{cart}/{itemId}', [ChowhubCartController::class, 'updateCartItem']);
+
 Route::get('/payments',[TestController::class, 'index']);
 //litterhub
 Route::get('litterhub/stores', [LitterhubStoreController::class, 'index']);
