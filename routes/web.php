@@ -237,6 +237,8 @@ Route::prefix('')->group(function ()
 
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('lightspeedapptoken', [HomeController::class, 'lightspeedapptoken']);
+
 Route::get('/products/{slug}/{id}', [FrontController::class, 'productDeatials']);
 Route::get('/blog/{slug}', [FrontController::class, 'blog']);
 Route::get('/brand/{slug}/{brandid}', [FrontController::class, 'brand']);
