@@ -2,7 +2,7 @@
 
 <head>
     @include('frontend.common', ['metaInfo' => $metaInfo]);
-    <script type="text/javascript">var cartid="{{$metaInfo['cartid']}}";var cartkey={{$metaInfo['cartkey']}};</script>
+    <script type="text/javascript">var cartid="{{$metaInfo['cartid']}}";var cartkey="{{$metaInfo['cartkey']}}";</script>
 </head>
 
 <body>
