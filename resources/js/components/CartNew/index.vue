@@ -94,7 +94,7 @@
           </h2>
         </div>
       </div>
-      <div v-else>
+      <div  class="cart_cols cart_body" v-else>
         <div class="cr_data gd-img">
           <div class="pr-img">
             <img :src="cartItem.product.image_path" />
