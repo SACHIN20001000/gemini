@@ -48,16 +48,6 @@
             </div>
             <div class="pr-details">
               <label>{{cartItem.product.productName}} </label>
-              <span v-if="cartItem.variationProduct && cartItem.variationProduct.variation_attributes_name_id">
-                <ul class="itenVarient">
-                  <li
-                    v-for="(varientItem, vikey) in cartItem.variationProduct.variation_attributes_name_id"
-                    :key="vikey"
-                  >
-                    {{getVarientName(cartItem.product.attributes,varientItem.attribute_id)}}
-                  </li>
-                </ul>
-              </span>
             </div>
           </div>
 
@@ -144,10 +134,10 @@ export default {
       if(this.litterhubItems.length>0){
         this.litterhubItems.filter((litterHubVal, cartItemInd) => {
           if(litterHubVal.variationProduct){
-            tottalAmout = (litterHubVal.quantity * litterHubVal.variationProduct.sale_price);
+            tottalAmout = tottalAmout+(litterHubVal.quantity * litterHubVal.variationProduct.sale_price);
           }else{
             if(litterHubVal.product){
-              tottalAmout =  (litterHubVal.quantity * litterHubVal.product.sale_price);
+              tottalAmout =  tottalAmout+(litterHubVal.quantity * litterHubVal.product.sale_price);
             }
           }
 
@@ -156,6 +146,9 @@ export default {
       }else{
         return tottalAmout
       }
+    },
+    currencyFormat(priceVal){
+      return priceVal.toFixed(2)
     }
   }
 }
